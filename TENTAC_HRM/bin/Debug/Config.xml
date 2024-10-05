@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Table1>
+    <TypeConnect>SQL</TypeConnect>
+    <MatKhauAccess />
+    <ServerName>localhost</ServerName>
+    <Database>TENTAC_HRM</Database>
+    <UserName>sa</UserName>
+    <PassWord>t-net</PassWord>
+  </Table1>
+</NewDataSet>
