@@ -33,7 +33,7 @@ namespace TENTAC_HRM.Category
             {
                 insert_data();
             }
-            _Personnel.load_ngoaingu();
+            //_Personnel.load_ngoaingu();
         }
 
         private void frm_language_Load(object sender, EventArgs e)

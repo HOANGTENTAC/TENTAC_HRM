@@ -13,7 +13,7 @@ namespace TENTAC_HRM
     {
         public DataTable load_nhanvien()
         {
-            string sql = "select MaNhanVien as value,HoTen as name from tbl_NhanNVien";
+            string sql = "select MaNhanVien as value,TenNhanVien as name from MITACOSQL.dbo.NHANVIEN";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -58,7 +58,7 @@ namespace TENTAC_HRM
         /// <returns></returns>
         public DataTable load_diachi(int id)
         {
-            string sql = string.Format("select Id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where del_flg = 0 and LoaiDiaChi = '{0}'", id);
+            string sql = string.Format("select Id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where delflg = 0 and LoaiDiaChi = '{0}'", id);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -335,7 +335,7 @@ namespace TENTAC_HRM
             int x = 0;
             foreach (Page page in pages)
             {
-                Button btnPage = new Button();
+                DevComponents.DotNetBar.ButtonX btnPage = new DevComponents.DotNetBar.ButtonX();
                 if (count == 0 || count == pages.Count - 1)
                 {
                     btnPage.Location = new System.Drawing.Point(x, 0);

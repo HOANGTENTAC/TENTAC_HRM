@@ -39,7 +39,7 @@ namespace TENTAC_HRM.User_control
 
         private void cbo_phongban_search_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
+            load_data(1);
         }
 
         private void cbo_trang_thai_SelectionChangeCommitted(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace TENTAC_HRM.User_control
         //Viết sự kiện khi kích trên nút phân trang
         private void Page_Click(object sender, EventArgs e)
         {
-            Button btnPager = (sender as Button);
+            DevComponents.DotNetBar.ButtonX btnPager = (sender as DevComponents.DotNetBar.ButtonX);
             this.load_data(int.Parse(btnPager.Name));
             lb_totalsize.Text = int.Parse(btnPager.Name) + "/" + pageCount.ToString();
         }
@@ -71,7 +71,7 @@ namespace TENTAC_HRM.User_control
             load_phongban();
             load_chucvu();
             load_phongban(true);
-
+            Load_LoaiNhanVien();
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
             datatable.Columns.Add("name");
@@ -83,10 +83,23 @@ namespace TENTAC_HRM.User_control
             cbo_pagenumber.ComboBox.DataSource = datatable;
             cbo_pagenumber.ComboBox.DisplayMember = "name";
             cbo_pagenumber.ComboBox.ValueMember = "id";
+            cbo_pagenumber.ComboBox.SelectedIndex = 1;
             trv_sodoquanly.SelectedNode = trv_sodoquanly.Nodes[0];
             treeview_select = trv_sodoquanly.SelectedNode.Tag.ToString();
             load_data(1);
+
         }
+
+        private void Load_LoaiNhanVien()
+        {
+            string sql = "select MaPhanLoai,TenPhanLoai from mst_phanloaiNhanvien";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            cbo_LoaiNhanVien.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaPhanLoai")).CopyToDataTable();
+            cbo_LoaiNhanVien.DisplayMember = "TenPhanLoai";
+            cbo_LoaiNhanVien.ValueMember = "MaPhanLoai";
+        }
+
         private void load_treeview()
         {
             DataTable dtCongTy = SQLHelper.ExecuteDt("select * from  dbo.[mst_CONGTY]");
@@ -126,13 +139,13 @@ namespace TENTAC_HRM.User_control
         }
         private void load_trang_thai()
         {
-            string sql = "select type_id,type_name from sys_all_type where type_type = 1";
+            string sql = "select typeid,typename from sys_alltype where typetype = 1";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            cbo_trang_thai.ComboBox.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("type_id")).CopyToDataTable();
-            cbo_trang_thai.ComboBox.DisplayMember = "type_name";
-            cbo_trang_thai.ComboBox.ValueMember = "type_id";
+            cbo_trang_thai.ComboBox.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("typeid")).CopyToDataTable();
+            cbo_trang_thai.ComboBox.DisplayMember = "typename";
+            cbo_trang_thai.ComboBox.ValueMember = "typeid";
         }
         private void load_bophan()
         {
@@ -150,19 +163,26 @@ namespace TENTAC_HRM.User_control
             if(search == true)
             {
                 sql = "select maphongban,tenphongban from mst_PhongBan where del_flg = 0";
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDt(sql);
+                dt.Rows.Add("0", "");
+                cbo_phongban_search.ComboBox.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
+                cbo_phongban_search.ComboBox.DisplayMember = "tenphongban";
+                cbo_phongban_search.ComboBox.ValueMember = "maphongban";
             }
             else
             {
                 sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDt(sql);
+                dt.Rows.Add("0", "");
+                cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
+                cbo_phongban.DisplayMember = "tenphongban";
+                cbo_phongban.ValueMember = "maphongban";
             }
-            sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
+            //sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
 
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            dt.Rows.Add("0", "");
-            cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
-            cbo_phongban.DisplayMember = "tenphongban";
-            cbo_phongban.ValueMember = "maphongban";
+
         }
         private void load_chucvu()
         {
@@ -192,15 +212,20 @@ namespace TENTAC_HRM.User_control
         }
         public void load_data(int pageIndex)
         {
-            string sql = "select * into ##tblTemp from view_hoso_nhansu where 1=1";
+            string sql = "select ROW_NUMBER() OVER(ORDER BY MaNhanVien ASC)AS rownumber, * into ##tblTemp from view_hoso_nhansu where 1=1";
             if (!string.IsNullOrEmpty(txt_search_ten.Text))
             {
-                sql = sql + string.Format(" and hoten like N''%{0}%''", txt_search_ten.Text);
+                sql = sql + string.Format(" and TenNhanVien like N''%{0}%''", txt_search_ten.Text);
             }
 
-            if (cbo_trang_thai.ComboBox.SelectedValue.ToString() != "0")
+            if (cbo_trang_thai.ComboBox.SelectedValue != null && cbo_trang_thai.ComboBox.SelectedValue.ToString() != "0")
             {
                 sql = sql + string.Format(" and Id_TrangThai = {0}", cbo_trang_thai.ComboBox.SelectedValue.ToString());
+            }
+
+            if(cbo_phongban_search.ComboBox.SelectedValue.ToString() != "0")
+            {
+                sql = sql + string.Format(" and MaPhongBan = ''{0}'' ", cbo_phongban_search.ComboBox.SelectedValue.ToString());
             }
 
             if (treeview_select != "")
@@ -211,19 +236,14 @@ namespace TENTAC_HRM.User_control
                 }
                 else if (treeview_select == "nv_moi")
                 {
-                    sql = sql + " and maphongban is null";
-                }
-                else if (treeview_select.Contains("ma_cty"))
-                {
-                    sql = sql + string.Format(" and macongty = ''{0}''", treeview_select.Remove(0, 7));
-                }
-                else if (treeview_select.Contains("ma_khuvuc"))
-                {
-                    sql = sql + string.Format(" and makhuvuc = ''{0}''", treeview_select.Remove(0, 10));
+                    sql = sql + " and NhanVienMoi = 1";
                 }
                 else
                 {
-                    sql = sql + string.Format(" and maphongban = ''{0}''", treeview_select);
+                    sql = sql + $" and (macongty = ''{treeview_select}''" +
+                                $" or makhuvuc = ''{treeview_select}''" +
+                                $" or maphongban = ''{treeview_select}''" +
+                                $" or machucvu = ''{treeview_select}'')";
                 }
             }
             DataSet dt = new DataSet();
@@ -279,20 +299,21 @@ namespace TENTAC_HRM.User_control
         {
             if (dgv_nhan_su.Rows.Count > 0)
             {
-                if (dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value != null)
+                if (dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value != null)
                 {
                     string ma_nhan_su_value = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
-                    string sql = string.Format("select a.id,a.manhanvien,a.hinhanh,a.socccd,hoten,ngaysinh," +
-                        "gioitinh,a.email,a.dienthoaidd,a.dienthoainha,c.tenphongban,d.TenChucVu,a.ghichu," +
-                        "e.TenKhuVuc,f.dia_chi_full,g.type_name as trangthai,f.dia_chi_full as noi_o," +
-                        "id_trangthai,d.machucvu,c.maphongban,e.MaKhuVuv,machamcong " +
+                    string sql = string.Format("select a.id,a.manhanvien,b.hinhanh,a.socccd,b.TenNhanVien,b.ngaysinh," +
+                        "b.gioitinh,b.email,a.dienthoaidd,a.dienthoainha,c.tenphongban,d.TenChucVu,b.ghichu," +
+                        "e.TenKhuVuc,f.diachifull,g.typename as trangthai,f.diachifull as noi_o," +
+                        "id_trangthai,d.machucvu,c.maphongban,e.MaKhuVuc,machamcong,a.LoaiNhanVien " +
                         "from tbl_NhanVien a " +
+                        "left join MITACOSQL.dbo.NHANVIEN b on a.MaNhanVien = b.MaNhanVien " +
                         "left join mst_PhongBan c on c.MaPhongBan = b.MaPhongBan " +
                         "left join mst_ChucVu d on d.MaChucVu = b.MaChucVu " +
                         "left join mst_khuVuc e on e.MaKhuVuc = b.MaKhuVuc " +
-                        "left join tbl_NhanvienDiachi f on f.ma_nhan_vien = a.manhanvien and f.loaidiachi = 41 and f.isactive = 1 " +
+                        "left join tbl_NhanvienDiachi f on f.manhanvien = a.manhanvien and f.loaidiachi = 41 and f.isactive = 1 " +
                         "left join sys_alltype g on a.id_trangthai = g.typeid " +
-                        "left join tbl_NhanvienDiachi h on h.ma_nhan_vien = a.manhanvien and h.loaidiachi = 43 and h.isactive = 1 " +
+                        "left join tbl_NhanvienDiachi h on h.manhanvien = a.manhanvien and h.loaidiachi = 43 and h.isactive = 1 " +
                         "where a.manhanvien = '{0}'", ma_nhan_su_value);
                     DataTable dataTable = new DataTable();
                     dataTable = SQLHelper.ExecuteDt(sql);
@@ -309,7 +330,7 @@ namespace TENTAC_HRM.User_control
                         {
                             pb_avata.Image = null;
                         }
-                        lb_nhan_vien.Text = dataTable.Rows[0]["hoten"].ToString() + " | " + dataTable.Rows[0]["manhanvien"].ToString();
+                        lb_nhan_vien.Text = dataTable.Rows[0]["TenNhanVien"].ToString() + " | " + dataTable.Rows[0]["manhanvien"].ToString();
                         txt_machancong.Text = dataTable.Rows[0]["machamcong"].ToString();
                         dtp_ngaysinh.Text = DateTime.Parse(dataTable.Rows[0]["ngaysinh"].ToString()).ToString("yyyy/MM/dd");
                         txt_email.Text = dataTable.Rows[0]["email"].ToString();
@@ -321,6 +342,7 @@ namespace TENTAC_HRM.User_control
                         cbo_phongban.SelectedValue = dataTable.Rows[0]["maphongban"].ToString();
                         cbo_chucvu.SelectedValue = dataTable.Rows[0]["machucvu"].ToString();
                         cbo_trangthai.SelectedValue = dataTable.Rows[0]["id_trangthai"].ToString();
+                        cbo_LoaiNhanVien.SelectedValue = dataTable.Rows[0]["LoaiNhanVien"].ToString();
                         _id_nhan_vien = int.Parse(dataTable.Rows[0]["id"].ToString());
                         _ma_nhan_vien = dataTable.Rows[0]["manhanvien"].ToString();
                         load_diachi();

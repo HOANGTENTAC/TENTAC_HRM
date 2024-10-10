@@ -83,7 +83,7 @@ namespace TENTAC_HRM.ChamCong
         }
         private void calamviec()
         {
-            string sql = "SELECT [MaCaLamViec],[CaLamViec] FROM [tbl_CaLamViec]";
+            string sql = "SELECT [MaCaLamViec],[CaLamViec] FROM MITACOSQL.dbo.CaLamViecNew";
             DataTable dataTable = new DataTable();
             dataTable = SQLHelper.ExecuteDt(sql);
             dataTable.Rows.Add("", "");
@@ -98,7 +98,7 @@ namespace TENTAC_HRM.ChamCong
         }
         private void load_phongban()
         {
-            string sql = "SELECT [MaPhongBan],[TenPhongBan] FROM [mst_PHONGBAN]";
+            string sql = "SELECT [MaPhongBan],[TenPhongBan] FROM MITACOSQL.dbo.PHONGBAN";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "Chọn tất cả");
@@ -127,7 +127,7 @@ namespace TENTAC_HRM.ChamCong
                 "hts.d11,hts.d12,hts.d13,hts.d14,hts.d15,hts.d16,hts.d17,hts.d18,hts.d19,hts.d20," +
                 "hts.d21,hts.d22,hts.d23,hts.d24,hts.d25,hts.d26,hts.d27,hts.d28,hts.d29,hts.d30," +
                 "hts.d31 " +
-                "from tbl_BangXepCa hts " +
+                "from MITACOSQL.dbo.BangXepCa hts " +
                 "inner join tbl_NhanVien nv on hts.MaChamCong=nv.machamcong " +
                 $"where hts.Nam = '{cbo_year.ComboBox.SelectedValue}' and hts.Thang = '{cbo_month.Text}'" + where;
             DataTable dt = new DataTable();
