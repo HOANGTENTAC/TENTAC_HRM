@@ -42,34 +42,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_nhan_su = new System.Windows.Forms.DataGridView();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ho_lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_sinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gioi_tinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hon_nhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_cccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_ho_chieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dien_thoai_dd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_vao_lam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_so_thue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_tk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.work_pemit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_ton_giao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_dan_toc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngoai_ngu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tin_hoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_nganh_dao_tao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_bac_dao_tao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dia_chi_full = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_phong_ban = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_chuc_vu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.trang_thai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoc_tich = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ghi_chu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pnlDieuHuong = new System.Windows.Forms.Panel();
@@ -79,7 +51,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txt_search_ten = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.cbo_phongban_search = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_trang_thai = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
@@ -125,6 +97,34 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.manhanvien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.holot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngaysinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.honnhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.socccd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sohochieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dienthoaidd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayvaolam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.masothue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sotk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workpemit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ten_ton_giao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ten_dan_toc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngoai_ngu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tin_hoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ten_nganh_dao_tao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ten_bac_dao_tao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dia_chi_full = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenphongban = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenchucvu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.trang_thai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quoc_tich = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ghichu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -228,20 +228,20 @@
             this.dgv_nhan_su.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.edit_column,
             this.rownumber,
-            this.ma_nhan_vien,
-            this.ho_lot,
+            this.manhanvien,
+            this.holot,
             this.ten,
-            this.ngay_sinh,
-            this.gioi_tinh,
-            this.hon_nhan,
-            this.so_cccd,
-            this.so_ho_chieu,
-            this.dien_thoai_dd,
+            this.ngaysinh,
+            this.gioitinh,
+            this.honnhan,
+            this.socccd,
+            this.sohochieu,
+            this.dienthoaidd,
             this.email,
-            this.ngay_vao_lam,
-            this.ma_so_thue,
-            this.so_tk,
-            this.work_pemit,
+            this.ngayvaolam,
+            this.masothue,
+            this.sotk,
+            this.workpemit,
             this.ten_ton_giao,
             this.ten_dan_toc,
             this.ngoai_ngu,
@@ -249,11 +249,11 @@
             this.ten_nganh_dao_tao,
             this.ten_bac_dao_tao,
             this.dia_chi_full,
-            this.ten_phong_ban,
-            this.ten_chuc_vu,
+            this.tenphongban,
+            this.tenchucvu,
             this.trang_thai,
             this.quoc_tich,
-            this.ghi_chu});
+            this.ghichu});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -280,184 +280,6 @@
             this.dgv_nhan_su.TabIndex = 12;
             this.dgv_nhan_su.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_nhan_su_CellClick);
             this.dgv_nhan_su.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_nhan_su_CellFormatting);
-            // 
-            // edit_column
-            // 
-            this.edit_column.Frozen = true;
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.edit_column.ToolTipText = "Sửa";
-            this.edit_column.Width = 30;
-            // 
-            // rownumber
-            // 
-            this.rownumber.DataPropertyName = "rownumber";
-            this.rownumber.Frozen = true;
-            this.rownumber.HeaderText = "STT";
-            this.rownumber.Name = "rownumber";
-            this.rownumber.Width = 40;
-            // 
-            // ma_nhan_vien
-            // 
-            this.ma_nhan_vien.DataPropertyName = "ma_nhan_vien";
-            this.ma_nhan_vien.Frozen = true;
-            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.ma_nhan_vien.Name = "ma_nhan_vien";
-            this.ma_nhan_vien.Width = 120;
-            // 
-            // ho_lot
-            // 
-            this.ho_lot.DataPropertyName = "ho_lot";
-            this.ho_lot.Frozen = true;
-            this.ho_lot.HeaderText = "Họ lót";
-            this.ho_lot.Name = "ho_lot";
-            // 
-            // ten
-            // 
-            this.ten.DataPropertyName = "ten";
-            this.ten.Frozen = true;
-            this.ten.HeaderText = "Tên";
-            this.ten.Name = "ten";
-            // 
-            // ngay_sinh
-            // 
-            this.ngay_sinh.DataPropertyName = "ngay_sinh";
-            this.ngay_sinh.HeaderText = "Ngày sinh";
-            this.ngay_sinh.Name = "ngay_sinh";
-            // 
-            // gioi_tinh
-            // 
-            this.gioi_tinh.DataPropertyName = "gioi_tinh";
-            this.gioi_tinh.HeaderText = "Giới tính";
-            this.gioi_tinh.Name = "gioi_tinh";
-            // 
-            // hon_nhan
-            // 
-            this.hon_nhan.DataPropertyName = "hon_nhan";
-            this.hon_nhan.HeaderText = "Hôn nhân";
-            this.hon_nhan.Name = "hon_nhan";
-            // 
-            // so_cccd
-            // 
-            this.so_cccd.DataPropertyName = "so_cccd";
-            this.so_cccd.HeaderText = "CCCD";
-            this.so_cccd.Name = "so_cccd";
-            // 
-            // so_ho_chieu
-            // 
-            this.so_ho_chieu.DataPropertyName = "so_ho_chieu";
-            this.so_ho_chieu.HeaderText = "Số hộ chiếu";
-            this.so_ho_chieu.Name = "so_ho_chieu";
-            // 
-            // dien_thoai_dd
-            // 
-            this.dien_thoai_dd.DataPropertyName = "dien_thoai_dd";
-            this.dien_thoai_dd.HeaderText = "Điện thoại";
-            this.dien_thoai_dd.Name = "dien_thoai_dd";
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "email";
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            // 
-            // ngay_vao_lam
-            // 
-            this.ngay_vao_lam.DataPropertyName = "ngay_vao_lam";
-            this.ngay_vao_lam.HeaderText = "Ngày vào làm";
-            this.ngay_vao_lam.Name = "ngay_vao_lam";
-            // 
-            // ma_so_thue
-            // 
-            this.ma_so_thue.DataPropertyName = "ma_so_thue";
-            this.ma_so_thue.HeaderText = "Mã số thuế";
-            this.ma_so_thue.Name = "ma_so_thue";
-            // 
-            // so_tk
-            // 
-            this.so_tk.DataPropertyName = "so_tk";
-            this.so_tk.HeaderText = "Số tài khoản";
-            this.so_tk.Name = "so_tk";
-            // 
-            // work_pemit
-            // 
-            this.work_pemit.DataPropertyName = "work_pemit";
-            this.work_pemit.HeaderText = "Work Pemit";
-            this.work_pemit.Name = "work_pemit";
-            // 
-            // ten_ton_giao
-            // 
-            this.ten_ton_giao.DataPropertyName = "ten_ton_giao";
-            this.ten_ton_giao.HeaderText = "Tôn giáo";
-            this.ten_ton_giao.Name = "ten_ton_giao";
-            // 
-            // ten_dan_toc
-            // 
-            this.ten_dan_toc.DataPropertyName = "ten_dan_toc";
-            this.ten_dan_toc.HeaderText = "Dân tộc";
-            this.ten_dan_toc.Name = "ten_dan_toc";
-            // 
-            // ngoai_ngu
-            // 
-            this.ngoai_ngu.DataPropertyName = "ngoai_ngu";
-            this.ngoai_ngu.HeaderText = "Ngoại ngữ";
-            this.ngoai_ngu.Name = "ngoai_ngu";
-            // 
-            // tin_hoc
-            // 
-            this.tin_hoc.DataPropertyName = "tin_hoc";
-            this.tin_hoc.HeaderText = "Tin học";
-            this.tin_hoc.Name = "tin_hoc";
-            // 
-            // ten_nganh_dao_tao
-            // 
-            this.ten_nganh_dao_tao.DataPropertyName = "ten_nganh_dao_tao";
-            this.ten_nganh_dao_tao.HeaderText = "Ngành đào tạo";
-            this.ten_nganh_dao_tao.Name = "ten_nganh_dao_tao";
-            // 
-            // ten_bac_dao_tao
-            // 
-            this.ten_bac_dao_tao.DataPropertyName = "ten_bac_dao_tao";
-            this.ten_bac_dao_tao.HeaderText = "Bậc đào tạo";
-            this.ten_bac_dao_tao.Name = "ten_bac_dao_tao";
-            // 
-            // dia_chi_full
-            // 
-            this.dia_chi_full.DataPropertyName = "dia_chi_full";
-            this.dia_chi_full.HeaderText = "Quê quán";
-            this.dia_chi_full.Name = "dia_chi_full";
-            // 
-            // ten_phong_ban
-            // 
-            this.ten_phong_ban.DataPropertyName = "ten_phong_ban";
-            this.ten_phong_ban.HeaderText = "Phòng ban";
-            this.ten_phong_ban.Name = "ten_phong_ban";
-            // 
-            // ten_chuc_vu
-            // 
-            this.ten_chuc_vu.DataPropertyName = "ten_chuc_vu";
-            this.ten_chuc_vu.HeaderText = "Chức vụ";
-            this.ten_chuc_vu.Name = "ten_chuc_vu";
-            // 
-            // trang_thai
-            // 
-            this.trang_thai.DataPropertyName = "trang_thai";
-            this.trang_thai.HeaderText = "Trạng thái";
-            this.trang_thai.Name = "trang_thai";
-            // 
-            // quoc_tich
-            // 
-            this.quoc_tich.DataPropertyName = "quoc_tich";
-            this.quoc_tich.HeaderText = "Quốc tịch";
-            this.quoc_tich.Name = "quoc_tich";
-            // 
-            // ghi_chu
-            // 
-            this.ghi_chu.DataPropertyName = "ghi_chu";
-            this.ghi_chu.HeaderText = "Ghi chú";
-            this.ghi_chu.Name = "ghi_chu";
             // 
             // panel5
             // 
@@ -515,7 +337,7 @@
             this.toolStripLabel1,
             this.txt_search_ten,
             this.toolStripLabel2,
-            this.toolStripComboBox1,
+            this.cbo_phongban_search,
             this.toolStripLabel3,
             this.cbo_trang_thai,
             this.toolStripLabel4,
@@ -553,10 +375,10 @@
             this.toolStripLabel2.Size = new System.Drawing.Size(65, 29);
             this.toolStripLabel2.Text = "Phòng ban";
             // 
-            // toolStripComboBox1
+            // cbo_phongban_search
             // 
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 32);
+            this.cbo_phongban_search.Name = "cbo_phongban_search";
+            this.cbo_phongban_search.Size = new System.Drawing.Size(121, 32);
             // 
             // toolStripLabel3
             // 
@@ -1006,6 +828,184 @@
             this.label38.TabIndex = 3;
             this.label38.Text = "Phòng ban:";
             // 
+            // edit_column
+            // 
+            this.edit_column.Frozen = true;
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.edit_column.ToolTipText = "Sửa";
+            this.edit_column.Width = 30;
+            // 
+            // rownumber
+            // 
+            this.rownumber.DataPropertyName = "rownumber";
+            this.rownumber.Frozen = true;
+            this.rownumber.HeaderText = "STT";
+            this.rownumber.Name = "rownumber";
+            this.rownumber.Width = 40;
+            // 
+            // manhanvien
+            // 
+            this.manhanvien.DataPropertyName = "manhanvien";
+            this.manhanvien.Frozen = true;
+            this.manhanvien.HeaderText = "Mã nhân viên";
+            this.manhanvien.Name = "manhanvien";
+            this.manhanvien.Width = 120;
+            // 
+            // holot
+            // 
+            this.holot.DataPropertyName = "holot";
+            this.holot.Frozen = true;
+            this.holot.HeaderText = "Họ lót";
+            this.holot.Name = "holot";
+            // 
+            // ten
+            // 
+            this.ten.DataPropertyName = "ten";
+            this.ten.Frozen = true;
+            this.ten.HeaderText = "Tên";
+            this.ten.Name = "ten";
+            // 
+            // ngaysinh
+            // 
+            this.ngaysinh.DataPropertyName = "ngaysinh";
+            this.ngaysinh.HeaderText = "Ngày sinh";
+            this.ngaysinh.Name = "ngaysinh";
+            // 
+            // gioitinh
+            // 
+            this.gioitinh.DataPropertyName = "gioitinh";
+            this.gioitinh.HeaderText = "Giới tính";
+            this.gioitinh.Name = "gioitinh";
+            // 
+            // honnhan
+            // 
+            this.honnhan.DataPropertyName = "honnhan";
+            this.honnhan.HeaderText = "Hôn nhân";
+            this.honnhan.Name = "honnhan";
+            // 
+            // socccd
+            // 
+            this.socccd.DataPropertyName = "socccd";
+            this.socccd.HeaderText = "CCCD";
+            this.socccd.Name = "socccd";
+            // 
+            // sohochieu
+            // 
+            this.sohochieu.DataPropertyName = "sohochieu";
+            this.sohochieu.HeaderText = "Số hộ chiếu";
+            this.sohochieu.Name = "sohochieu";
+            // 
+            // dienthoaidd
+            // 
+            this.dienthoaidd.DataPropertyName = "dienthoaidd";
+            this.dienthoaidd.HeaderText = "Điện thoại";
+            this.dienthoaidd.Name = "dienthoaidd";
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            // 
+            // ngayvaolam
+            // 
+            this.ngayvaolam.DataPropertyName = "ngayvaolam";
+            this.ngayvaolam.HeaderText = "Ngày vào làm";
+            this.ngayvaolam.Name = "ngayvaolam";
+            // 
+            // masothue
+            // 
+            this.masothue.DataPropertyName = "masothue";
+            this.masothue.HeaderText = "Mã số thuế";
+            this.masothue.Name = "masothue";
+            // 
+            // sotk
+            // 
+            this.sotk.DataPropertyName = "sotk";
+            this.sotk.HeaderText = "Số tài khoản";
+            this.sotk.Name = "sotk";
+            // 
+            // workpemit
+            // 
+            this.workpemit.DataPropertyName = "workpemit";
+            this.workpemit.HeaderText = "Work Pemit";
+            this.workpemit.Name = "workpemit";
+            // 
+            // ten_ton_giao
+            // 
+            this.ten_ton_giao.DataPropertyName = "ten_ton_giao";
+            this.ten_ton_giao.HeaderText = "Tôn giáo";
+            this.ten_ton_giao.Name = "ten_ton_giao";
+            // 
+            // ten_dan_toc
+            // 
+            this.ten_dan_toc.DataPropertyName = "ten_dan_toc";
+            this.ten_dan_toc.HeaderText = "Dân tộc";
+            this.ten_dan_toc.Name = "ten_dan_toc";
+            // 
+            // ngoai_ngu
+            // 
+            this.ngoai_ngu.DataPropertyName = "ngoai_ngu";
+            this.ngoai_ngu.HeaderText = "Ngoại ngữ";
+            this.ngoai_ngu.Name = "ngoai_ngu";
+            // 
+            // tin_hoc
+            // 
+            this.tin_hoc.DataPropertyName = "tin_hoc";
+            this.tin_hoc.HeaderText = "Tin học";
+            this.tin_hoc.Name = "tin_hoc";
+            // 
+            // ten_nganh_dao_tao
+            // 
+            this.ten_nganh_dao_tao.DataPropertyName = "ten_nganh_dao_tao";
+            this.ten_nganh_dao_tao.HeaderText = "Ngành đào tạo";
+            this.ten_nganh_dao_tao.Name = "ten_nganh_dao_tao";
+            // 
+            // ten_bac_dao_tao
+            // 
+            this.ten_bac_dao_tao.DataPropertyName = "ten_bac_dao_tao";
+            this.ten_bac_dao_tao.HeaderText = "Bậc đào tạo";
+            this.ten_bac_dao_tao.Name = "ten_bac_dao_tao";
+            // 
+            // dia_chi_full
+            // 
+            this.dia_chi_full.DataPropertyName = "dia_chi_full";
+            this.dia_chi_full.HeaderText = "Quê quán";
+            this.dia_chi_full.Name = "dia_chi_full";
+            // 
+            // tenphongban
+            // 
+            this.tenphongban.DataPropertyName = "tenphongban";
+            this.tenphongban.HeaderText = "Phòng ban";
+            this.tenphongban.Name = "tenphongban";
+            // 
+            // tenchucvu
+            // 
+            this.tenchucvu.DataPropertyName = "tenchucvu";
+            this.tenchucvu.HeaderText = "Chức vụ";
+            this.tenchucvu.Name = "tenchucvu";
+            // 
+            // trang_thai
+            // 
+            this.trang_thai.DataPropertyName = "trang_thai";
+            this.trang_thai.HeaderText = "Trạng thái";
+            this.trang_thai.Name = "trang_thai";
+            // 
+            // quoc_tich
+            // 
+            this.quoc_tich.DataPropertyName = "quoc_tich";
+            this.quoc_tich.HeaderText = "Quốc tịch";
+            this.quoc_tich.Name = "quoc_tich";
+            // 
+            // ghichu
+            // 
+            this.ghichu.DataPropertyName = "ghichu";
+            this.ghichu.HeaderText = "Ghi chú";
+            this.ghichu.Name = "ghichu";
+            // 
             // uc_nhan_su
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1065,40 +1065,12 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox txt_search_ten;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox cbo_phongban_search;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripComboBox cbo_trang_thai;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripComboBox cbo_pagenumber;
         private System.Windows.Forms.ToolStripLabel toolStripLabel5;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rownumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ho_lot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_sinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gioi_tinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hon_nhan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_cccd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_ho_chieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dien_thoai_dd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_vao_lam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_so_thue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_tk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn work_pemit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_ton_giao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_dan_toc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngoai_ngu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tin_hoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_nganh_dao_tao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_bac_dao_tao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dia_chi_full;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_phong_ban;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_chuc_vu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn trang_thai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoc_tich;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ghi_chu;
         private System.Windows.Forms.PictureBox pb_avata;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
@@ -1125,5 +1097,33 @@
         private FontAwesome.Sharp.IconButton btn_update_image;
         private FontAwesome.Sharp.IconButton btn_thuong_tru;
         private FontAwesome.Sharp.IconButton btn_que_quan;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rownumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn manhanvien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn holot;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ten;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngaysinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gioitinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn honnhan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn socccd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sohochieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dienthoaidd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngayvaolam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn masothue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sotk;
+        private System.Windows.Forms.DataGridViewTextBoxColumn workpemit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ten_ton_giao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ten_dan_toc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngoai_ngu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tin_hoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ten_nganh_dao_tao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ten_bac_dao_tao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dia_chi_full;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenphongban;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenchucvu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn trang_thai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quoc_tich;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ghichu;
     }
 }

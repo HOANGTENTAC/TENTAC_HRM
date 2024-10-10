@@ -110,5 +110,11 @@ namespace TENTAC_HRM.DataAccessLayer.MayChamCong
             _sqlParameter.Add(new SqlParameter("@mamcc", _mayChamCongDTO.MaMCC));
             return executeNonQuerya("maychamcong_getallbymamcc", _sqlParameter);
         }
+        public DataTable MayChamCong_getBySerial(MayChamCongDTO _mayChamCongDTO)
+        {
+            List<SqlParameter> _sqlParameter = new List<SqlParameter>();
+            _sqlParameter.Add(new SqlParameter("@Serial", _mayChamCongDTO.Serial));
+            return executeNonQuerya("MayChamCong_getBySerial", _sqlParameter);
+        }
     }
 }

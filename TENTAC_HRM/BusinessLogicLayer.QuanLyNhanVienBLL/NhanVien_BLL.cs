@@ -26,14 +26,14 @@ namespace TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL
         }
         public DataTable TaiNhanVienLenMayChamCong()
         {
-            string sql = "SELECT ma_nhan_vien,ho_ten,ma_cham_cong,ten_cham_cong,ma_the FROM dbo.hrm_nhan_vien";
+            string sql = "SELECT manhanvien,hoten,machamcong,tenchamcong,mathe FROM dbo.tbl_NhanVien";
             return SQLHelper.ExecuteDt(sql);
         }
         public DataTable NhanVienSearchTaiNhanVienLenMCC(Nhanvien_model model)
         {
-            string sql = "select ma_nhan_vien,ho_ten,ma_cham_cong,ten_cham_cong,ma_the " +
-                "from  dbo.hrm_nhan_vien " +
-                "where ho_ten like '%"+model.Ma_so_value +"%' or ma_nhan_vien like '%"+model.Ho_ten_value +"%'";
+            string sql = "select manhanvien,hoten,machamcong,tenchamcong,mathe " +
+                "from  dbo.tbl_NhanVien " +
+                "where hoten like '%"+model.Ma_so_value +"%' or manhanvien like '%"+model.Ho_ten_value +"%'";
             return SQLHelper.ExecuteDt(sql);
         }
         public void Insert_NhanVienFromDevice(Nhanvien_model _nhanVienDTO)

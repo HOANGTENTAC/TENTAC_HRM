@@ -34,6 +34,12 @@ namespace TENTAC_HRM.User_control
             InitializeComponent();
             cbo_trang_thai.ComboBox.SelectionChangeCommitted += cbo_trang_thai_SelectionChangeCommitted;
             cbo_pagenumber.ComboBox.SelectionChangeCommitted += cbo_pagenumber_SelectionChangeCommitted;
+            cbo_phongban_search.ComboBox.SelectionChangeCommitted += cbo_phongban_search_SelectionChangeCommitted;
+        }
+
+        private void cbo_phongban_search_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
         }
 
         private void cbo_trang_thai_SelectionChangeCommitted(object sender, EventArgs e)
@@ -64,6 +70,7 @@ namespace TENTAC_HRM.User_control
             load_bophan();
             load_phongban();
             load_chucvu();
+            load_phongban(true);
 
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
@@ -82,55 +89,37 @@ namespace TENTAC_HRM.User_control
         }
         private void load_treeview()
         {
-            string sql_nv_nghiviec_dv = "select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 2";
-            DataTable dt_nv_nghiviec_dv = new DataTable();
-            dt_nv_nghiviec_dv = SQLHelper.ExecuteDt(sql_nv_nghiviec_dv);
-            for (int i = 0; i < dt_nv_nghiviec_dv.Rows.Count; i++)
+            DataTable dtCongTy = SQLHelper.ExecuteDt("select * from  dbo.[mst_CONGTY]");
+            for (int i = 0; i < dtCongTy.Rows.Count; i++)
             {
-                TreeNode treenv_nghiviec_dv = new TreeNode();
-                treenv_nghiviec_dv.Text = dt_nv_nghiviec_dv.Rows[i][1].ToString();
-                treenv_nghiviec_dv.Tag = dt_nv_nghiviec_dv.Rows[i][0].ToString();
-                trv_sodoquanly.Nodes[1].Nodes.Add(treenv_nghiviec_dv);
-
-                string sql_phongban_nghiviec = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where ma_phong_ban_root = '{0}'", dt_nv_nghiviec_dv.Rows[i]["ma_phong_ban"].ToString());
-                DataTable dt_phongban_nghiviec = new DataTable();
-                dt_phongban_nghiviec = SQLHelper.ExecuteDt(sql_phongban_nghiviec);
-                for (int j = 0; j < dt_phongban_nghiviec.Rows.Count; j++)
+                TreeNode treeCongTy = new TreeNode()
                 {
-                    TreeNode treephongban_nghiviec = new TreeNode();
-                    treephongban_nghiviec.Text = dt_phongban_nghiviec.Rows[j][1].ToString();
-                    treephongban_nghiviec.Tag = dt_phongban_nghiviec.Rows[j][0].ToString();
-                    trv_sodoquanly.Nodes[1].Nodes[i].Nodes.Add(treephongban_nghiviec);
-                }
-            }
-            string sql = "select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 1";
-            DataTable dt_cty = new DataTable();
-            dt_cty = SQLHelper.ExecuteDt(sql);
-            for (int i = 0; i < dt_cty.Rows.Count; i++)
-            {
-                TreeNode treeCongTy = new TreeNode();
-                treeCongTy.Text = dt_cty.Rows[i][1].ToString();
-                treeCongTy.Tag = "ma_cty_" + dt_cty.Rows[i][0].ToString();
+                    Text = dtCongTy.Rows[i][1].ToString(),
+                    Tag = dtCongTy.Rows[i][0].ToString()
+                };
                 trv_sodoquanly.Nodes.Add(treeCongTy);
-                string sql_khuvuc = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where ma_phong_ban_root = '{0}'", dt_cty.Rows[i]["ma_phong_ban"].ToString());
-                DataTable dt_khuvuc = new DataTable();
-                dt_khuvuc = SQLHelper.ExecuteDt(sql_khuvuc);
-                for (int j = 0; j < dt_khuvuc.Rows.Count; j++)
+                string MaCongTy = dtCongTy.Rows[i]["MaCongTy"].ToString();
+                DataTable dtKhuVuc = SQLHelper.ExecuteDt($"select * from  dbo.[mst_KHUVUC] where MaCongTy= '{MaCongTy}'");
+                for (int j = 0; j < dtKhuVuc.Rows.Count; j++)
                 {
-                    TreeNode treekhuvuc = new TreeNode();
-                    treekhuvuc.Text = dt_khuvuc.Rows[j][1].ToString();
-                    treekhuvuc.Tag = "ma_khuvuc_" + dt_khuvuc.Rows[j][0].ToString();
-                    trv_sodoquanly.Nodes[i + 2].Nodes.Add(treekhuvuc);
-
-                    string sql_phongban = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where ma_phong_ban_root = '{0}'", dt_khuvuc.Rows[j]["ma_phong_ban"].ToString());
-                    DataTable dt_phongban = new DataTable();
-                    dt_phongban = SQLHelper.ExecuteDt(sql_phongban);
-                    for (int z = 0; z < dt_phongban.Rows.Count; z++)
+                    TreeNode treeKhuVuc = new TreeNode()
                     {
-                        TreeNode treephongban = new TreeNode();
-                        treephongban.Text = dt_phongban.Rows[z][1].ToString();
-                        treephongban.Tag = dt_phongban.Rows[z][0].ToString();
-                        trv_sodoquanly.Nodes[i + 2].Nodes[j].Nodes.Add(treephongban);
+                        Text = dtKhuVuc.Rows[j][2].ToString(),
+                        Tag = dtKhuVuc.Rows[j][0].ToString()
+                    };
+                    trv_sodoquanly.Nodes[i + 2].Nodes.Add(treeKhuVuc);
+                    string MaKhuVuc = dtKhuVuc.Rows[j]["MaKhuVuc"].ToString();
+                    DataTable dtPhongBan = SQLHelper.ExecuteDt($"select * from  dbo.[mst_PHONGBAN] where MaKhuVuc='{MaKhuVuc}'");
+
+                    for (int z = 0; z < dtPhongBan.Rows.Count; z++)
+                    {
+                        TreeNode treePhongBan = new TreeNode()
+                        {
+                            Text = dtPhongBan.Rows[z]["TenPhongBan"].ToString(),
+                            Tag = dtPhongBan.Rows[z]["MaPhongBan"].ToString()
+                        };
+
+                        trv_sodoquanly.Nodes[i + 2].Nodes[j].Nodes.Add(treePhongBan);
                     }
                 }
             }
@@ -147,43 +136,53 @@ namespace TENTAC_HRM.User_control
         }
         private void load_bophan()
         {
-            string sql = "select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 2 and del_flg = 0";
+            string sql = "select MaKhuVuc,TenKhuVuc from mst_KhuVuc";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            cbo_bophan.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("ma_phong_ban")).CopyToDataTable();
-            cbo_bophan.DisplayMember = "ten_phong_ban";
-            cbo_bophan.ValueMember = "ma_phong_ban";
+            cbo_bophan.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaKhuVuc")).CopyToDataTable();
+            cbo_bophan.DisplayMember = "TenKhuVuc";
+            cbo_bophan.ValueMember = "MaKhuVuc";
         }
-        private void load_phongban()
+        private void load_phongban(bool search = false)
         {
-            string sql = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 3 and del_flg = 0 and ma_phong_ban_root = '{0}'", cbo_bophan.SelectedValue);
+            string sql = "";
+            if(search == true)
+            {
+                sql = "select maphongban,tenphongban from mst_PhongBan where del_flg = 0";
+            }
+            else
+            {
+                sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
+            }
+            sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
+
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("ma_phong_ban")).CopyToDataTable();
-            cbo_phongban.DisplayMember = "ten_phong_ban";
-            cbo_phongban.ValueMember = "ma_phong_ban";
+            cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
+            cbo_phongban.DisplayMember = "tenphongban";
+            cbo_phongban.ValueMember = "maphongban";
         }
         private void load_chucvu()
         {
-            string sql = string.Format("select ma_chuc_vu,ten_chuc_vu from chuc_vu where del_flg = 0");
+            string sql = string.Format("select machucvu,tenchucvu from mst_ChucVu where del_flg = 0");
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            cbo_chucvu.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("ma_chuc_vu")).CopyToDataTable();
-            cbo_chucvu.DisplayMember = "ten_chuc_vu";
-            cbo_chucvu.ValueMember = "ma_chuc_vu";
+            cbo_chucvu.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("machucvu")).CopyToDataTable();
+            cbo_chucvu.DisplayMember = "tenchucvu";
+            cbo_chucvu.ValueMember = "machucvu";
         }
         private void load_trang_thai1()
         {
-            string sql = "select type_id,type_name from sys_all_type where type_type = 1";
+            string sql = "select typeid,typename from sys_AllType where TypeType = 1";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            cbo_trangthai.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("type_id")).CopyToDataTable();
-            cbo_trangthai.DisplayMember = "type_name";
-            cbo_trangthai.ValueMember = "type_id";
+            cbo_trangthai.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("typeid")).CopyToDataTable();
+            cbo_trangthai.DisplayMember = "typename";
+            cbo_trangthai.ValueMember = "typeid";
         }
         private void load_gioitinh()
         {
@@ -196,35 +195,35 @@ namespace TENTAC_HRM.User_control
             string sql = "select * into ##tblTemp from view_hoso_nhansu where 1=1";
             if (!string.IsNullOrEmpty(txt_search_ten.Text))
             {
-                sql = sql + string.Format(" and ho_ten like N''%{0}%''", txt_search_ten.Text);
+                sql = sql + string.Format(" and hoten like N''%{0}%''", txt_search_ten.Text);
             }
 
             if (cbo_trang_thai.ComboBox.SelectedValue.ToString() != "0")
             {
-                sql = sql + string.Format(" and id_trang_thai = {0}", cbo_trang_thai.ComboBox.SelectedValue.ToString());
+                sql = sql + string.Format(" and Id_TrangThai = {0}", cbo_trang_thai.ComboBox.SelectedValue.ToString());
             }
 
             if (treeview_select != "")
             {
                 if (treeview_select == "nv_nv")
                 {
-                    sql = sql + " and id_trang_thai = 5";
+                    sql = sql + " and Id_TrangThai = 5";
                 }
                 else if (treeview_select == "nv_moi")
                 {
-                    sql = sql + " and ma_phong_ban is null";
+                    sql = sql + " and maphongban is null";
                 }
                 else if (treeview_select.Contains("ma_cty"))
                 {
-                    sql = sql + string.Format(" and ma_cong_ty = ''{0}''", treeview_select.Remove(0, 7));
+                    sql = sql + string.Format(" and macongty = ''{0}''", treeview_select.Remove(0, 7));
                 }
                 else if (treeview_select.Contains("ma_khuvuc"))
                 {
-                    sql = sql + string.Format(" and ma_khu_vuc = ''{0}''", treeview_select.Remove(0, 10));
+                    sql = sql + string.Format(" and makhuvuc = ''{0}''", treeview_select.Remove(0, 10));
                 }
                 else
                 {
-                    sql = sql + string.Format(" and ma_phong_ban = ''{0}''", treeview_select);
+                    sql = sql + string.Format(" and maphongban = ''{0}''", treeview_select);
                 }
             }
             DataSet dt = new DataSet();
@@ -247,7 +246,7 @@ namespace TENTAC_HRM.User_control
             {
                 datagrid_click();
                 frm_personnel frm = new frm_personnel(this);
-                frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
+                frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
                 frm.status_frm = true;
                 frm.ShowDialog();
             }
@@ -271,7 +270,7 @@ namespace TENTAC_HRM.User_control
             if (dgv_nhan_su.CurrentCell.OwningColumn.Name == "edit_column")
             {
                 frm_personnel frm = new frm_personnel(this);
-                frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
+                frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
                 frm.status_frm = true;
                 frm.ShowDialog();
             }
@@ -282,28 +281,27 @@ namespace TENTAC_HRM.User_control
             {
                 if (dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value != null)
                 {
-                    string ma_nhan_su_value = dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
-                    string sql = string.Format("select a.id_nhan_vien,a.ma_nhan_vien,a.hinh_anh,a.so_cccd,ho_ten,ngay_sinh," +
-                        "gioi_tinh,a.email,a.dien_thoai_dd,a.dien_thoai_nha,c.ten_phong_ban,d.ten_chuc_vu as ten_chuc_vu,a.ghi_chu," +
-                        "e.ten_phong_ban as khu_vuc,f.dia_chi_full,g.type_name as trangthai,f.dia_chi_full as noi_o," +
-                        "id_trang_thai,d.ma_chuc_vu,c.ma_phong_ban,e.ma_phong_ban as ma_khu_vuc,ma_cham_cong " +
-                        "from hrm_nhan_vien a " +
-                        "left join nhanvien_phongban b on a.ma_nhan_vien = b.ma_nhan_vien and b.is_active = 1 " +
-                        "left join phong_ban c on c.ma_phong_ban = b.ma_phong_ban " +
-                        "left join chuc_vu d on d.ma_chuc_vu = b.ma_chuc_vu " +
-                        "left join phong_ban e on e.ma_phong_ban = b.ma_khu_vuc " +
-                        "left join hrm_nhanvien_diachi f on f.ma_nhan_vien = a.ma_nhan_vien and f.loai_dia_chi = 41 and f.is_active = 1 " +
-                        "left join sys_all_type g on a.id_trang_thai = g.type_id " +
-                        "left join hrm_nhanvien_diachi h on h.ma_nhan_vien = a.ma_nhan_vien and h.loai_dia_chi = 43 and h.is_active = 1 " +
-                        "where a.ma_nhan_vien = '{0}'", ma_nhan_su_value);
+                    string ma_nhan_su_value = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
+                    string sql = string.Format("select a.id,a.manhanvien,a.hinhanh,a.socccd,hoten,ngaysinh," +
+                        "gioitinh,a.email,a.dienthoaidd,a.dienthoainha,c.tenphongban,d.TenChucVu,a.ghichu," +
+                        "e.TenKhuVuc,f.dia_chi_full,g.type_name as trangthai,f.dia_chi_full as noi_o," +
+                        "id_trangthai,d.machucvu,c.maphongban,e.MaKhuVuv,machamcong " +
+                        "from tbl_NhanVien a " +
+                        "left join mst_PhongBan c on c.MaPhongBan = b.MaPhongBan " +
+                        "left join mst_ChucVu d on d.MaChucVu = b.MaChucVu " +
+                        "left join mst_khuVuc e on e.MaKhuVuc = b.MaKhuVuc " +
+                        "left join tbl_NhanvienDiachi f on f.ma_nhan_vien = a.manhanvien and f.loaidiachi = 41 and f.isactive = 1 " +
+                        "left join sys_alltype g on a.id_trangthai = g.typeid " +
+                        "left join tbl_NhanvienDiachi h on h.ma_nhan_vien = a.manhanvien and h.loaidiachi = 43 and h.isactive = 1 " +
+                        "where a.manhanvien = '{0}'", ma_nhan_su_value);
                     DataTable dataTable = new DataTable();
                     dataTable = SQLHelper.ExecuteDt(sql);
                     if (dataTable.Rows.Count > 0)
                     {
-                        if (!string.IsNullOrEmpty(dataTable.Rows[0]["hinh_anh"].ToString()))
+                        if (!string.IsNullOrEmpty(dataTable.Rows[0]["hinhanh"].ToString()))
                         {
                             Byte[] byteanh_nv = new Byte[0];
-                            byteanh_nv = (Byte[])(dataTable.Rows[0]["hinh_anh"]);
+                            byteanh_nv = (Byte[])(dataTable.Rows[0]["hinhanh"]);
                             MemoryStream stmBLOBData = new MemoryStream(byteanh_nv);
                             pb_avata.Image = Image.FromStream(stmBLOBData);
                         }
@@ -311,20 +309,20 @@ namespace TENTAC_HRM.User_control
                         {
                             pb_avata.Image = null;
                         }
-                        lb_nhan_vien.Text = dataTable.Rows[0]["ho_ten"].ToString() + " | " + dataTable.Rows[0]["ma_nhan_vien"].ToString();
-                        txt_machancong.Text = dataTable.Rows[0]["ma_cham_cong"].ToString();
-                        dtp_ngaysinh.Text = DateTime.Parse(dataTable.Rows[0]["ngay_sinh"].ToString()).ToString("yyyy/MM/dd");
+                        lb_nhan_vien.Text = dataTable.Rows[0]["hoten"].ToString() + " | " + dataTable.Rows[0]["manhanvien"].ToString();
+                        txt_machancong.Text = dataTable.Rows[0]["machamcong"].ToString();
+                        dtp_ngaysinh.Text = DateTime.Parse(dataTable.Rows[0]["ngaysinh"].ToString()).ToString("yyyy/MM/dd");
                         txt_email.Text = dataTable.Rows[0]["email"].ToString();
-                        txt_cccd.Text = dataTable.Rows[0]["so_cccd"].ToString();
-                        txt_dienthoai.Text = dataTable.Rows[0]["dien_thoai_dd"].ToString();
-                        txt_ghichu.Text = dataTable.Rows[0]["ghi_chu"].ToString();
-                        cbo_gioitinh.SelectedValue = (dataTable.Rows[0]["gioi_tinh"].ToString() == "False" ? 0 : 1);
-                        cbo_bophan.SelectedValue = dataTable.Rows[0]["ma_khu_vuc"].ToString();
-                        cbo_phongban.SelectedValue = dataTable.Rows[0]["ma_phong_ban"].ToString();
-                        cbo_chucvu.SelectedValue = dataTable.Rows[0]["ma_chuc_vu"].ToString();
-                        cbo_trangthai.SelectedValue = dataTable.Rows[0]["id_trang_thai"].ToString();
-                        _id_nhan_vien = int.Parse(dataTable.Rows[0]["id_nhan_vien"].ToString());
-                        _ma_nhan_vien = dataTable.Rows[0]["ma_nhan_vien"].ToString();
+                        txt_cccd.Text = dataTable.Rows[0]["socccd"].ToString();
+                        txt_dienthoai.Text = dataTable.Rows[0]["dienthoaidd"].ToString();
+                        txt_ghichu.Text = dataTable.Rows[0]["ghichu"].ToString();
+                        cbo_gioitinh.SelectedValue = (dataTable.Rows[0]["gioitinh"].ToString() == "False" ? 0 : 1);
+                        cbo_bophan.SelectedValue = dataTable.Rows[0]["makhuvuc"].ToString();
+                        cbo_phongban.SelectedValue = dataTable.Rows[0]["maphongban"].ToString();
+                        cbo_chucvu.SelectedValue = dataTable.Rows[0]["machucvu"].ToString();
+                        cbo_trangthai.SelectedValue = dataTable.Rows[0]["id_trangthai"].ToString();
+                        _id_nhan_vien = int.Parse(dataTable.Rows[0]["id"].ToString());
+                        _ma_nhan_vien = dataTable.Rows[0]["manhanvien"].ToString();
                         load_diachi();
                     }
                 }
@@ -341,7 +339,7 @@ namespace TENTAC_HRM.User_control
         private void btn_transfer_Click(object sender, EventArgs e)
         {
             frm_staff_transfer frm = new frm_staff_transfer();
-            frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
+            frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
             frm.ShowDialog();
         }
 
@@ -365,13 +363,13 @@ namespace TENTAC_HRM.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 3 and del_flg = 0 and ma_phong_ban_root = '{0}'", row);
+                    string sql = string.Format("select maphongban,tenphongban from mst_phongban where del_flg = 0 and MaKhuVuc = '{0}'",row);
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");
-                    cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("ma_phong_ban")).CopyToDataTable();
-                    cbo_phongban.DisplayMember = "ten_phong_ban";
-                    cbo_phongban.ValueMember = "ma_phong_ban";
+                    cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
+                    cbo_phongban.DisplayMember = "tenphongban";
+                    cbo_phongban.ValueMember = "maphongban";
                 }
             }
         }
@@ -384,13 +382,13 @@ namespace TENTAC_HRM.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 4 and del_flg = 0 and ma_phong_ban_root = '{0}'", row);
+                    string sql = string.Format("select MaChucVu,TenChucVu from mst_ChucVu where del_flg = 0 ");
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");
-                    cbo_chucvu.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("ma_phong_ban")).CopyToDataTable();
-                    cbo_chucvu.DisplayMember = "ten_phong_ban";
-                    cbo_chucvu.ValueMember = "ma_phong_ban";
+                    cbo_chucvu.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaChucVu")).CopyToDataTable();
+                    cbo_chucvu.DisplayMember = "TenChucVu";
+                    cbo_chucvu.ValueMember = "MaChucVu";
                 }
             }
         }
@@ -410,10 +408,10 @@ namespace TENTAC_HRM.User_control
                     ms.Read(_Picbyte, 0, _Picbyte.Length);
                 }
 
-                string sql = "update hrm_nhan_vien set ma_cham_cong = @ma_cham_cong, ngay_sinh = @ngay_sinh," +
-                    "so_cccd = @so_cccd,gioi_tinh = @gioi_tinh,email = @email,dien_thoai_dd = @dien_thoai_dd," +
-                    "id_trang_thai = @id_trang_thai,ghi_chu = @ghi_chu,hinh_anh = @hinh_anh " +
-                    "where id_nhan_vien = @id_nhan_vien";
+                string sql = "update tbl_NhanVien set machamcong = @ma_cham_cong, ngaysinh = @ngay_sinh," +
+                    "socccd = @so_cccd,gioitinh = @gioi_tinh,email = @email,dienthoaidd = @dien_thoai_dd," +
+                    "id_trangthai = @id_trang_thai,ghichu = @ghi_chu,hinhanh = @hinh_anh " +
+                    "where id = @id_nhan_vien";
                 SqlParameter[] param = new SqlParameter[]
                 {
                     new SqlParameter("@id_nhan_vien", SqlDbType.Int) {Value = _id_nhan_vien},
@@ -480,11 +478,11 @@ namespace TENTAC_HRM.User_control
         }
         public void load_diachi()
         {
-            string sql_dia_chi = string.Format("select dia_chi,loai_dia_chi from hrm_nhanvien_diachi where ma_nhan_vien = '{0}' and is_active = 1 and del_flg = 0", _ma_nhan_vien);
+            string sql_dia_chi = string.Format("select diachi,loaidiachi from tbl_nhanviendiachi where manhanvien = '{0}' and isactive = 1 and del_flg = 0", _ma_nhan_vien);
             DataTable dt_diachi = new DataTable();
             dt_diachi = SQLHelper.ExecuteDt(sql_dia_chi);
-            DataRow quequan = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loai_dia_chi") == 41).FirstOrDefault();
-            DataRow thuongtru = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loai_dia_chi") == 43).FirstOrDefault();
+            DataRow quequan = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loaidiachi") == 41).FirstOrDefault();
+            DataRow thuongtru = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loaidiachi") == 43).FirstOrDefault();
             txt_quequan.Text = (quequan != null ? quequan.ItemArray[0].ToString() : "");
             txt_noio.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
         }

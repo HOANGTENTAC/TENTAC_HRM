@@ -17,7 +17,14 @@ namespace TENTAC_HRM
         {
             return ConfigurationManager.AppSettings["conn_string"].ToString();
         }
-
+        public static DataTable ExecuteDt_tr(string Sqlstr, SqlTransaction tr, SqlConnection con)
+        {
+            SqlCommand command = new SqlCommand(Sqlstr, con, tr);
+            DataTable dataTable = new DataTable();
+            SqlDataReader reader = command.ExecuteReader();
+            dataTable.Load(reader);
+            return dataTable;
+        }
         public static int ExecuteSql(string Sqlstr)
         {
             string sqlConnection = GetSqlConnection();

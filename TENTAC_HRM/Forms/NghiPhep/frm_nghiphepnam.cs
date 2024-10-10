@@ -20,7 +20,7 @@ namespace TENTAC_HRM.Cham_Cong
 
         private void frm_nghiphepnam_Load(object sender, EventArgs e)
         {
-            string sql = string.Format("select ho_ten from hrm_nhan_vien where ma_nhan_vien = '{0}'", _ma_nhanvien);
+            string sql = string.Format("select hoten from tbl_nhanvien where manhanvien = '{0}'", _ma_nhanvien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)

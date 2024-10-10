@@ -61,15 +61,15 @@ namespace TENTAC_HRM
                 pl_taisan.Enabled = true;
                 tc_qtlv.Enabled = true;
 
-                string sql = string.Format("select * from hrm_nhan_vien where ma_nhan_vien = '{0}'", _ma_nhan_vien);
+                string sql = string.Format("select * from tbl_NhanVien where MaNhanVien = '{0}'", _ma_nhan_vien);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
-                txt_ma_so.Text = dt.Rows[0]["ma_nhan_vien"].ToString();
-                txt_ho_lot.Text = dt.Rows[0]["ho_lot"].ToString();
-                txt_ten.Text = dt.Rows[0]["ten"].ToString();
-                dtp_ngay_sinh.Text = dt.Rows[0]["ngay_sinh"].ToString();
-                cbo_gioi_tinh.SelectedValue = (dt.Rows[0]["gioi_tinh"].ToString() == "True" ? 1 : 0);
-                if (dt.Rows[0]["hon_nhan"].ToString() == "0")
+                txt_ma_so.Text = dt.Rows[0]["MaNhanVien"].ToString();
+                txt_ho_lot.Text = dt.Rows[0]["HoLot"].ToString();
+                txt_ten.Text = dt.Rows[0]["Ten"].ToString();
+                dtp_ngay_sinh.Text = dt.Rows[0]["NgaySinh"].ToString();
+                cbo_gioi_tinh.SelectedValue = (dt.Rows[0]["GioiTinh"].ToString() == "True" ? 1 : 0);
+                if (dt.Rows[0]["HonNhan"].ToString() == "0")
                 {
                     rb_docthan.Checked = true;
                 }
@@ -78,73 +78,73 @@ namespace TENTAC_HRM
                     rb_dakethon.Checked = true;
                     btn_honnhan.Enabled = true;
                 }
-                cbo_trang_thai.SelectedValue = dt.Rows[0]["id_trang_thai"].ToString();
-                cbo_dan_toc.SelectedValue = dt.Rows[0]["id_dan_toc"].ToString();
-                cbo_ton_giao.SelectedValue = dt.Rows[0]["id_ton_giao"].ToString();
-                txt_cccd.Text = dt.Rows[0]["so_cccd"].ToString();
-                dtp_ngay_cap_cccd.Text = dt.Rows[0]["ngay_cap_cccd"].ToString();
-                txt_noi_cap_cc.Text = dt.Rows[0]["noi_cap_cccd"].ToString();
-                txt_ho_chieu.Text = dt.Rows[0]["so_ho_chieu"].ToString();
-                if (dt.Rows[0]["ngay_het_han_ho_chieu"].ToString() != "")
+                cbo_trang_thai.SelectedValue = dt.Rows[0]["id_trangthai"].ToString();
+                cbo_dan_toc.SelectedValue = dt.Rows[0]["DanToc"].ToString();
+                cbo_ton_giao.SelectedValue = dt.Rows[0]["TonGiao"].ToString();
+                txt_cccd.Text = dt.Rows[0]["SoCCCD"].ToString();
+                dtp_ngay_cap_cccd.Text = dt.Rows[0]["NgayCapCCCD"].ToString();
+                txt_noi_cap_cc.Text = dt.Rows[0]["NoiCapCCCD"].ToString();
+                txt_ho_chieu.Text = dt.Rows[0]["SoHoChieu"].ToString();
+                if (dt.Rows[0]["NgatHetHanHoChieu"].ToString() != "")
                 {
-                    dtp_ngay_cap_hc.Text = dt.Rows[0]["ngay_cap_ho_chieu"].ToString();
+                    dtp_ngay_cap_hc.Text = dt.Rows[0]["NgayCapHoChieu"].ToString();
                 }
                 else
                 {
                     dtp_ngay_cap_hc.CustomFormat = " ";
                 }
-                txt_noi_cap_hc.Text = dt.Rows[0]["noi_cap_ho_chieu"].ToString();
-                if (dt.Rows[0]["ngay_het_han_ho_chieu"].ToString() != "")
+                txt_noi_cap_hc.Text = dt.Rows[0]["NoiCapHopChieu"].ToString();
+                if (dt.Rows[0]["NgatHetHanHoChieu"].ToString() != "")
                 {
-                    dtp_het_han_hc.Text = dt.Rows[0]["ngay_het_han_ho_chieu"].ToString();
+                    dtp_het_han_hc.Text = dt.Rows[0]["NgatHetHanHoChieu"].ToString();
                 }
                 else
                 {
                     dtp_het_han_hc.CustomFormat = " ";
                 }
-                cbo_quoc_tich.SelectedValue = dt.Rows[0]["id_quoc_tich"].ToString();
-                txt_di_dong.Text = dt.Rows[0]["dien_thoai_dd"].ToString();
-                txt_email.Text = dt.Rows[0]["email"].ToString();
-                dtp_ngay_vao_lam.Text = dt.Rows[0]["ngay_vao_lam"].ToString();
-                dtp_ngay_ket_thuc_lam.Text = dt.Rows[0]["ngay_ket_thuc"].ToString();
-                dtp_ngay_thu_viec.Text = dt.Rows[0]["ngay_thu_viec"].ToString();
-                dtp_ngay_ket_thuc_tv.Text = dt.Rows[0]["ngay_ket_thuc_thu_viec"].ToString();
-                txt_ghi_chu.Text = dt.Rows[0]["ghi_chu"].ToString();
-                txt_ma_so_thue.Text = dt.Rows[0]["ma_so_thue"].ToString();
-                dtp_ngay_dk_thue.Text = dt.Rows[0]["ngay_dk_thue"].ToString();
-                txt_noi_dk_thue.Text = dt.Rows[0]["noi_dk_thue"].ToString();
-                txt_sotk.Text = dt.Rows[0]["so_tk"].ToString();
-                txt_ngan_hang_nhan.Text = dt.Rows[0]["ngan_hang"].ToString();
+                cbo_quoc_tich.SelectedValue = dt.Rows[0]["QuocTich"].ToString();
+                txt_di_dong.Text = dt.Rows[0]["DienThoaiDD"].ToString();
+                txt_email.Text = dt.Rows[0]["Email"].ToString();
+                dtp_ngay_vao_lam.Text = dt.Rows[0]["NgayVaoLam"].ToString();
+                dtp_ngay_ket_thuc_lam.Text = dt.Rows[0]["NgayKetThuc"].ToString();
+                dtp_ngay_thu_viec.Text = dt.Rows[0]["NgayThuViec"].ToString();
+                dtp_ngay_ket_thuc_tv.Text = dt.Rows[0]["NgayKetThucThuViec"].ToString();
+                txt_ghi_chu.Text = dt.Rows[0]["GhiChu"].ToString();
+                txt_ma_so_thue.Text = dt.Rows[0]["MaSoThue"].ToString();
+                dtp_ngay_dk_thue.Text = dt.Rows[0]["NgyaDKThue"].ToString();
+                txt_noi_dk_thue.Text = dt.Rows[0]["NoiDKThue"].ToString();
+                txt_sotk.Text = dt.Rows[0]["SoTK"].ToString();
+                txt_ngan_hang_nhan.Text = dt.Rows[0]["NganHang"].ToString();
                 cbo_ngan_hang.SelectedValue = dt.Rows[0]["id_ngan_hang_ck"].ToString();
-                txt_work_permit.Text = dt.Rows[0]["work_permit"].ToString();
-                if (dt.Rows[0]["ngay_het_han_ho_chieu"].ToString() != "")
+                txt_work_permit.Text = dt.Rows[0]["WorkPermit"].ToString();
+                if (dt.Rows[0]["NgayHetHanHoChieu"].ToString() != "")
                 {
-                    dtp_ngay_cap_workpermit.Text = dt.Rows[0]["ngay_cap_wp"].ToString();
+                    dtp_ngay_cap_workpermit.Text = dt.Rows[0]["NgayCapWP"].ToString();
                 }
                 else
                 {
                     dtp_ngay_cap_workpermit.CustomFormat = " ";
                 }
-                if (dt.Rows[0]["ngay_het_han_ho_chieu"].ToString() != "")
+                if (dt.Rows[0]["NgayHetHanHoChieu"].ToString() != "")
                 {
-                    dtp_ngay_het_workpermit.Text = dt.Rows[0]["ngay_het_han_wp"].ToString();
+                    dtp_ngay_het_workpermit.Text = dt.Rows[0]["NgayHetHanWP"].ToString();
                 }
                 else
                 {
                     dtp_ngay_het_workpermit.CustomFormat = " ";
                 }
-                chk_khong_cu_tru.Checked = dt.Rows[0]["ca_nhan_khong_cu_tru"].ToString() == "1" ? true : false;
-                chk_khong_uy_quyen.Checked = dt.Rows[0]["khong_uy_quyen_qt"].ToString() == "1" ? true : false;
-                chk_tien_mat.Checked = dt.Rows[0]["nhan_tien_mat"].ToString() == "1" ? true : false;
-                txt_chieu_cao.Text = dt.Rows[0]["chieu_cao"].ToString();
-                txt_can_nang.Text = dt.Rows[0]["can_nang"].ToString();
-                cbo_nhom_mau.SelectedValue = dt.Rows[0]["nhom_mau"].ToString();
-                txt_luu_y_sk.Text = dt.Rows[0]["Luu_y_sk"].ToString();
-                chk_khuyet_tat.Checked = string.IsNullOrEmpty(dt.Rows[0]["khuyet_tat"].ToString()) ? false : bool.Parse(dt.Rows[0]["khuyet_tat"].ToString());
-                if (!string.IsNullOrEmpty(dt.Rows[0]["hinh_anh"].ToString()))
+                chk_khong_cu_tru.Checked = dt.Rows[0]["CaNhanKhongCuTru"].ToString() == "1" ? true : false;
+                chk_khong_uy_quyen.Checked = dt.Rows[0]["KhongUyQuyenQT"].ToString() == "1" ? true : false;
+                chk_tien_mat.Checked = dt.Rows[0]["NhanTienMat"].ToString() == "1" ? true : false;
+                txt_chieu_cao.Text = dt.Rows[0]["ChieuCao"].ToString();
+                txt_can_nang.Text = dt.Rows[0]["CanNang"].ToString();
+                cbo_nhom_mau.SelectedValue = dt.Rows[0]["NhomMau"].ToString();
+                txt_luu_y_sk.Text = dt.Rows[0]["KuuYSK"].ToString();
+                chk_khuyet_tat.Checked = string.IsNullOrEmpty(dt.Rows[0]["khuyetTat"].ToString()) ? false : bool.Parse(dt.Rows[0]["khuyetTat"].ToString());
+                if (!string.IsNullOrEmpty(dt.Rows[0]["HinhAnh"].ToString()))
                 {
                     Byte[] byteanh_nv = new Byte[0];
-                    byteanh_nv = (Byte[])(dt.Rows[0]["hinh_anh"]);
+                    byteanh_nv = (Byte[])(dt.Rows[0]["HinhAnh"]);
                     MemoryStream stmBLOBData = new MemoryStream(byteanh_nv);
                     pb_avata.Image = Image.FromStream(stmBLOBData);
                 }
@@ -153,8 +153,8 @@ namespace TENTAC_HRM
                 load_hopdong();
                 load_baohiem();
                 load_chuyenmon();
-                load_ngoaingu();
-                load_tinhoc();
+                //load_ngoaingu();
+                //load_tinhoc();
                 load_tieusu();
                 load_nguoithan();
                 load_phucap();
@@ -180,97 +180,107 @@ namespace TENTAC_HRM
         }
         public void load_nghiviec()
         {
-            string sql = string.Format("select id_qt_nghiviec,tu_ngay,den_ngay,ngay_quyet_dinh,so_quyet_dinh,noi_dung,type_name as loai_nghi_viec " +
-                "from hrm_qt_nghiviec a join sys_all_type b on a.loai_nghi_viec = b.type_id where a.ma_nhan_vien = '{0}'", _ma_nhan_vien);
+            string sql = string.Format("select Id as IdNghiViec,TuNgay,DenNgay,NgayQuyetDinh,SoQuyetDinh,NoiDung,TypeName as LoaiNghiViec " +
+                "from tbl_QTNghiViec a " +
+                "join sys_AllType b on a.LoaiNghiViec = b.TypeId " +
+                "where a.MaNhanVien = '{0}'", _ma_nhan_vien);
             dgv_qt_nghiviec.DataSource = SQLHelper.ExecuteDt(sql);
         }
         public void load_daotao()
         {
-            string sql = string.Format("select id_qt_daotao,tu_ngay,den_ngay,so_quyet_dinh,noi_dung,hinh_thuc from hrm_qt_daotao where ma_nhan_vien = '{0}'", _ma_nhan_vien);
+            string sql = string.Format("select Id as IdDaoTao,TuNgay,DenNgay,SoQuyetDinh,NoiDung,HinhThuc " +
+                "from tbl_QTDaoTao " +
+                "where MaNhanVien = '{0}'", _ma_nhan_vien);
             dgv_qt_daotao.DataSource = SQLHelper.ExecuteDt(sql);
         }
         public void load_danhgia()
         {
-            string sql = string.Format("select id_qt_danhgia,ngay_danh_gia,noi_dung,diem_danh_gia,xep_loai from hrm_qt_danhgia where ma_nhan_vien = '{0}'", _ma_nhan_vien);
+            string sql = string.Format("select Id as IdDanhGia,NgayDanhGia,NoiDung,DiemDanhGia,XepLoai " +
+                "from tbl_QTDanhGia " +
+                "where MaNhanVien = '{0}'", _ma_nhan_vien);
             dgv_qt_danhgia.DataSource = SQLHelper.ExecuteDt(sql);
         }
         public void load_thaisan()
         {
-            string sql = string.Format("select tu_ngay,den_ngay,ghi_chu from hrm_nhanvien_thaisan where ma_nhan_vien = '{0}'", _ma_nhan_vien);
+            string sql = string.Format("select TuNgay,DenNgay,GhiChu from tbl_NhanVienThaiSan " +
+                "where MaNhanVien = '{0}'", _ma_nhan_vien);
             dgv_thaisai.DataSource = SQLHelper.ExecuteDt(sql);
         }
         public void load_taisan()
         {
-            string sql = string.Format("select a.id_nhanvien_taisan,a.so_phieu,a.ngay_vao_so,a.dien_giai,a.tu_ngay as tu_ngay_ts,a.den_ngay as den_ngay_ts " +
-                "from nhanvien_taisan a where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select Id as IdTaiSan,SoPhieu,NgayVaoSo,DienGiai,TuNgay as TuNgayTS,DenNgay as DenNgayTS " +
+                "from tbl_NhanVienTaiSan a " +
+                "where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_taisan.DataSource = dt;
         }
         public void load_tainan()
         {
-            string sql = string.Format("select a.id_qt_tainan,b.type_name as ten_tai_nan,c.type_name as muc_do,ngay_dien_ra,noi_dien_ra,noi_dung " +
-                "from hrm_qt_tainan a " +
-                "join sys_all_type b on a.id_ten_tai_nan = b.type_id " +
-                "join sys_all_type c on a.id_muc_do = c.type_id " +
-                "where ma_nhan_vien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select a.Id as IdTaiNan,b.TypeName as TenTaiNan,c.TypeName as MucDo,NgayDienRa,NoiDienRa,NoiDung " +
+                "from tbl_QTTaiNan a " +
+                "join sys_AllType b on a.Id_TenTaiNan = b.TypeId " +
+                "join sys_AllType c on a.Id_MucDo = c.TypeId " +
+                "where MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_tainan.DataSource = dt;
         }
         public void Load_kyluat()
         {
-            string sql = string.Format("select id_qt_kyluat,ngay_ky_luat as ngay_ky_luat_kl,so_quyet_dinh as so_quyet_dinh_kl," +
-                "noi_dung as noi_dung_kl,hinh_thuc as hinh_thuc_kl, so_tien as so_tien_kl,ly_do as ly_do_kl " +
-                "from hrm_qt_kyluat " +
-                "where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select Id as IdKyLuat,NgayKyLuat,SoQuyetDinh as SoQuyetDinhKL," +
+                "NoiDung as NoiDungKL,HinhThuc as HinhThucKL, SoTien as SoTienKL,LyDo as LyDoKL " +
+                "from tbl_QTKyLuat " +
+                "where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_kyluat.DataSource = dt;
         }
         public void Load_congtac()
         {
-            string sql = string.Format("select id_qt_congtac,tu_ngay,den_ngay,so_quyet_dinh," +
-                "dia_diem,noi_dung from hrm_qt_congtac where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select Id,TuNgay,DenNgay,SoQuyetDinh," +
+                "DiaDiem,NoiDung " +
+                "from tbl_QTCongTac " +
+                "where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_congtac.DataSource = dt;
         }
         public void Load_khenthuong()
         {
-            string sql = string.Format("select id_qt_khenthuong,ngay_khen_thuong as ngay_khen_thuong_kt,so_quyet_dinh as so_quyet_dinh_kt," +
-                "noi_dung as noi_dung_kt,hinh_thuc as hinh_thuc_kt, so_tien as so_tien_kt,ly_do as ly_do_kt " +
-                "from hrm_qt_khenthuong " +
-                "where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select Id,NgayKenThuong as NgayKhenThuong_KT,SoQuyetDinh as SoQuyetDinh_KT," +
+                "NoiDung as NoiDung_KT,HinhThuc as HinhThuc_KT, SoTien as SoTien_KT,LyDo as LyDo_KT " +
+                "from tbl_QTKhenThuong " +
+                "where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_khenthuong.DataSource = dt;
         }
         public void load_luong()
         {
-            string sql = string.Format("select * from hrm_nhavien_luong where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select * from tbl_NhaVienLuong where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                txt_tu_ngay_luong.Text = dt.Rows[0]["tu_ngay"].ToString();
-                txt_den_ngay_luong.Text = dt.Rows[0]["den_ngay"].ToString();
-                txt_muc_luong.Text = decimal.Parse(dt.Rows[0]["muc_luong"].ToString()).ToString("N0", CultureInfo.InvariantCulture);
-                txt_muc_thue.Text = dt.Rows[0]["pt_thue_tncn"].ToString();
-                chk_dong_bhxh.Checked = bool.Parse(dt.Rows[0]["is_dong_bhxh"].ToString());
-                chk_dong_bhyt.Checked = bool.Parse(dt.Rows[0]["is_dong_bhyt"].ToString());
-                chk_dong_bhtn.Checked = bool.Parse(dt.Rows[0]["is_dong_bhtn"].ToString());
-                chk_phi_cd.Checked = bool.Parse(dt.Rows[0]["is_dong_kpcd"].ToString());
-                chk_mien_dong_thue.Checked = bool.Parse(dt.Rows[0]["is_mien_thue"].ToString());
-                chk_phan_tram_thue_thu_nhap.Checked = bool.Parse(dt.Rows[0]["is_thue_co_dinh"].ToString());
+                txt_tu_ngay_luong.Text = dt.Rows[0]["TuNgay"].ToString();
+                txt_den_ngay_luong.Text = dt.Rows[0]["DenNgay"].ToString();
+                txt_muc_luong.Text = decimal.Parse(dt.Rows[0]["MucLuong"].ToString()).ToString("N0", CultureInfo.InvariantCulture);
+                txt_muc_thue.Text = dt.Rows[0]["PT_ThueTNCN"].ToString();
+                chk_dong_bhxh.Checked = bool.Parse(dt.Rows[0]["is_DongBHXH"].ToString());
+                chk_dong_bhyt.Checked = bool.Parse(dt.Rows[0]["is_DongBHYT"].ToString());
+                chk_dong_bhtn.Checked = bool.Parse(dt.Rows[0]["is_DongBHTN"].ToString());
+                chk_phi_cd.Checked = bool.Parse(dt.Rows[0]["is_DongKPCD"].ToString());
+                chk_mien_dong_thue.Checked = bool.Parse(dt.Rows[0]["is_MienThue"].ToString());
+                chk_phan_tram_thue_thu_nhap.Checked = bool.Parse(dt.Rows[0]["is_ThueCoDinh"].ToString());
             }
         }
         public void load_phucap()
         {
-            string sql = string.Format("select a.tu_ngay as tu_ngay_pc,a.den_ngay as den_ngay_pc,b.ten_loai_phu_cap as loai_phu_cap,a.muc_phu_cap " +
-                "from hrm_nhanvien_phucap a " +
-                "left join hrm_loai_phu_cap b on a.id_loai_phu_cap = b.id_loai_phu_cap " +
-                "where a.ma_nhan_vien = '{0}' and is_active = 1 and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select a.TuNgay as TuNgay_PC,a.DenNgay as DenNgay_PC,b.TenLoaiPhuCap as LoaiPhuCap,a.MucPhuCap " +
+                "from tbl_NhanVienPhuCap a " +
+                "left join tbl_LoaiPhuCap b on a.id_LoaiPhuCap = b.Id " +
+                "where a.MaNhanVien = '{0}' and IsActive = 1 and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -280,61 +290,61 @@ namespace TENTAC_HRM
         }
         public void load_diachi()
         {
-            string sql_dia_chi = string.Format("select dia_chi,loai_dia_chi from hrm_nhanvien_diachi where ma_nhan_vien = '{0}' and is_active = 1 and del_flg = 0", _ma_nhan_vien);
+            string sql_dia_chi = string.Format("select DiaChi,LoaiDiaChi from tbl_NhanVienDiaChi where MaNhanVien = '{0}' and IsActive = 1 and del_flg = 0", _ma_nhan_vien);
             DataTable dt_diachi = new DataTable();
             dt_diachi = SQLHelper.ExecuteDt(sql_dia_chi);
-            DataRow quequan = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loai_dia_chi") == 41).FirstOrDefault();
-            DataRow thuongtru = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loai_dia_chi") == 43).FirstOrDefault();
+            DataRow quequan = dt_diachi.AsEnumerable().Where(x => x.Field<int>("LoaiDiaChi") == 41).FirstOrDefault();
+            DataRow thuongtru = dt_diachi.AsEnumerable().Where(x => x.Field<int>("LoaiDiaChi") == 43).FirstOrDefault();
             txt_que_quan.Text = (quequan != null ? quequan.ItemArray[0].ToString() : "");
             txt_thuong_tru.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
         }
         public void load_nguoithan()
         {
-            string sql = string.Format("select id_nguoi_than,b.type_name as moi_quan_he,ho_ten,ngay_sinh,ma_so_thue,cccd,is_phu_thuoc " +
-                "from hrm_nhanvien_nguoithan a " +
-                "join sys_all_type b on a.loai_quan_he = b.type_id and type_type = 80 " +
-                "where a.ma_nhan_vien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select Id,b.TypeName as MoiQuanHe,HoTen,NgaySinh,MaSoThue,CCCD,IsPhuThuoc " +
+                "from tbl_NhanVienNguoiThan a " +
+                "join sys_AllType b on a.LoaiQuanHe = b.TypeId and TypeType = 80 " +
+                "where a.MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_nguoi_than.DataSource = dt;
         }
         public void load_tieusu()
         {
-            string sql = string.Format("select id_tieu_su,tu_nam,den_nam,cong_viec,ten_dia_chi as quoc_gia " +
-                "from hrm_nhanvien_tieusu a " +
-                "join hrm_dia_chi b on a.id_quoc_gia = b.id_dia_chi and b.id_dia_chi_cha is null " +
-                "where ma_nhan_vien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select Id,TuNam,DenNam,CongViec,TenDiaChi as QuocGia " +
+                "from tbl_NhanVienTieuSu a " +
+                "join mst_DonViHanhChinh b on a.id_QuocGia = b.Id and b.ParentId is null " +
+                "where MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_tieusu.DataSource = dt;
         }
         public void load_phongban()
         {
-            string sql = string.Format("select b.ten_phong_ban as don_vi,c.ten_phong_ban as phong_ban,d.ten_chuc_vu,a.tu_ngay,a.den_ngay " +
-                "from nhanvien_phongban a " +
-                "left join phong_ban b on a.ma_cong_ty = b.ma_phong_ban " +
-                "left join phong_ban c on a.ma_phong_ban = c.ma_phong_ban " +
-                "left join chuc_vu d on a.ma_chuc_vu = d.ma_chuc_vu " +
-                "where a.is_active = 1 and ma_nhan_vien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select b.TenCongTy,c.TenPhongBan,d.TenChucVu " +
+                "from tbl_NhanVien a " +
+                "left join mst_CongTy b on a.MaCongTy = b.MaCongTy " +
+                "left join mst_PhongBan c on a.MaPhongBan = c.MaPhongBan " +
+                "left join mst_ChucVu d on a.MaChucVu = d.MaChucVu " +
+                "where a.IsActive = 1 and MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                txt_donvi.Text = dt.Rows[0]["don_vi"].ToString();
-                txt_phongban.Text = dt.Rows[0]["phong_ban"].ToString();
-                txt_chucvu.Text = dt.Rows[0]["ten_chuc_vu"].ToString();
-                txt_tungay_dv.Text = DateTime.Parse(dt.Rows[0]["tu_ngay"].ToString()).ToString("yyyy/MM/dd");
-                txt_denngay_dv.Text = DateTime.Parse(dt.Rows[0]["den_ngay"].ToString()).ToString("yyyy/MM/dd");
+                txt_donvi.Text = dt.Rows[0]["TenCongTy"].ToString();
+                txt_phongban.Text = dt.Rows[0]["TenPhongBan"].ToString();
+                txt_chucvu.Text = dt.Rows[0]["TenChucVu"].ToString();
+                //txt_tungay_dv.Text = DateTime.Parse(dt.Rows[0]["tu_ngay"].ToString()).ToString("yyyy/MM/dd");
+                //txt_denngay_dv.Text = DateTime.Parse(dt.Rows[0]["den_ngay"].ToString()).ToString("yyyy/MM/dd");
             }
         }
         public void load_chuyenmon()
         {
-            string sql = string.Format("select b.id_dao_tao,c.ten_bac_dao_tao,d.ten_he_dao_tao,e.ten_nganh_dao_tao,b.truong_dao_tao,tu_ngay,den_ngay,ngay_nhan_bang,xep_loai_bang " +
-                "from hrm_nhanvien_daotao b " +
-                "left join hrm_bac_dao_tao c on c.id_bac_dao_tao = b.id_bac_dao_tao " +
-                "left join hrm_he_dao_tao d on d.id_he_dao_tao = b.id_he_dao_tao " +
-                "left join hrm_nganh_dao_tao e on e.id_nganh_dao_tao = b.id_nganh_dao_tao " +
-                "where b.loai_dao_tao = 70 and b.ma_nhan_vien = '{0}' and b.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select b.Id,c.TenBac,d.TenHe,e.TenNganh,b.TruongDaoTao,TuNgay,DenNgay,NgayNhanBang,XepLoaiBang " +
+                "from tbl_NhanVienDaoTao b " +
+                "left join mst_BacDaoTao c on c.Id = b.id_BacDaoTao " +
+                "left join mst_HeDaoTao d on d.Id = b.id_HeDaoTao " +
+                "left join mst_NganhDaoTao e on e.Id = b.id_NganhDaoTao " +
+                "where b.LoaiDaoTao = 70 and b.MaNhanVien = '{0}' and b.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -342,62 +352,62 @@ namespace TENTAC_HRM
                 dgv_daotao.DataSource = dt;
             }
         }
-        public void load_ngoaingu()
-        {
-            string sql = string.Format("select id_ngoai_ngu,ngoai_ngu,truong_dao_tao,nam_nhan_bang,b.type_name as xep_loai " +
-            "from ngoai_ngu a " +
-            "join sys_all_type b on a.xep_loai = b.type_name_short " +
-            "where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            if (dt.Rows.Count > 0)
-            {
-                dgv_ngoaingu.DataSource = dt;
-            }
-        }
-        public void load_tinhoc()
-        {
-            string sql = string.Format("select id_tin_hoc,tin_hoc,truong_dao_tao,nam_nhan_bang,b.type_name as xep_loai " +
-                "from tin_hoc a " +
-                "join sys_all_type b on a.xep_loai = b.type_name_short " +
-                "where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            if (dt.Rows.Count > 0)
-            {
-                dgv_tinhoc.DataSource = dt;
-            }
-        }
+        //public void load_ngoaingu()
+        //{
+        //    string sql = string.Format("select id_ngoai_ngu,ngoai_ngu,truong_dao_tao,nam_nhan_bang,b.type_name as xep_loai " +
+        //    "from ngoai_ngu a " +
+        //    "join sys_all_type b on a.xep_loai = b.type_name_short " +
+        //    "where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+        //    DataTable dt = new DataTable();
+        //    dt = SQLHelper.ExecuteDt(sql);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        dgv_ngoaingu.DataSource = dt;
+        //    }
+        //}
+        //public void load_tinhoc()
+        //{
+        //    string sql = string.Format("select id_tin_hoc,tin_hoc,truong_dao_tao,nam_nhan_bang,b.type_name as xep_loai " +
+        //        "from tin_hoc a " +
+        //        "join sys_all_type b on a.xep_loai = b.type_name_short " +
+        //        "where ma_nhan_vien = '{0}' and del_flg = 0", _ma_nhan_vien);
+        //    DataTable dt = new DataTable();
+        //    dt = SQLHelper.ExecuteDt(sql);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        dgv_tinhoc.DataSource = dt;
+        //    }
+        //}
         public void load_hopdong()
         {
-            string sql = string.Format("select b.id_hop_dong,c.ten_loai_hop_dong,b.so_hop_dong,b.tu_ngay,b.den_ngay " +
-                "from hrm_nhanvien_hopdong b " +
-                "left join hrm_loai_hop_dong c on c.id_loai_hop_dong = b.id_loai_hop_dong " +
-                "where b.ma_nhan_vien = '{0}' and b.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select b.Id,c.TenLoai,b.SoHopDing,b.TuNgay,b.DenNgay " +
+                "from tbl_NhanVienHopDong b " +
+                "left join mst_LoaiHopDong c on c.Id = b.id_LoaiHopDong " +
+                "where b.NhanVien = '{0}' and b.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                _id_hop_dong = int.Parse(dt.Rows[0]["id_hop_dong"].ToString());
-                txt_loai_hd.Text = dt.Rows[0]["ten_loai_hop_dong"].ToString();
-                txt_so_hd.Text = dt.Rows[0]["so_hop_dong"].ToString();
-                txt_tungay_hd.Text = DateTime.Parse(dt.Rows[0]["tu_ngay"].ToString()).ToString("yyyy/MM/dd");
-                txt_dengay_hd.Text = DateTime.Parse(dt.Rows[0]["den_ngay"].ToString()).ToString("yyyy/MM/dd");
+                _id_hop_dong = int.Parse(dt.Rows[0]["id"].ToString());
+                txt_loai_hd.Text = dt.Rows[0]["TenLoaiHopDong"].ToString();
+                txt_so_hd.Text = dt.Rows[0]["SoHopDong"].ToString();
+                txt_tungay_hd.Text = DateTime.Parse(dt.Rows[0]["TuNgay"].ToString()).ToString("yyyy/MM/dd");
+                txt_dengay_hd.Text = DateTime.Parse(dt.Rows[0]["DenNgay"].ToString()).ToString("yyyy/MM/dd");
             }
         }
 
         public void load_baohiem()
         {
-            string sql = string.Format("select so_the,tu_ngay,den_ngay,noi_thuc_hien,ten_dia_chi,loai_bao_hiem " +
-                "from hrm_nhanvien_baohiem a " +
-                "join sys_all_type b on a.loai_bao_hiem = b.type_id " +
-                " left join hrm_dia_chi c on c.id_dia_chi = a.id_tinh and c.loai_dia_chi = 22 " +
-                "where a.is_active = 1 and a.ma_nhan_vien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Format("select SoThe,TuNgay,DenNgay,NoiThucHien,TenDiaChi,LoaiBaoHiem " +
+                "from tbl_NhanVienBaoHiem a " +
+                "join sys_AllType b on a.LoaiBaoHiem = b.TypeId " +
+                " left join mst_DonViHanhChinh c on c.Id = a.id_tinh and c.LoaiDiaChi = 22 " +
+                "where a.IsActive = 1 and a.MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable(sql);
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                DataRow data_bhxh = dt.AsEnumerable().Where(x => x.Field<int>("loai_bao_hiem") == 50).FirstOrDefault();
+                DataRow data_bhxh = dt.AsEnumerable().Where(x => x.Field<int>("LoaiBaoHiem") == 50).FirstOrDefault();
                 if (data_bhxh != null)
                 {
                     txt_so_bhxh.Text = data_bhxh.ItemArray[0].ToString().ToString();
@@ -406,7 +416,7 @@ namespace TENTAC_HRM
                     txt_tinh_bhxh.Text = data_bhxh.ItemArray[4].ToString().ToString();
                 }
 
-                DataRow data_bhyt = dt.AsEnumerable().Where(x => x.Field<int>("loai_bao_hiem") == 51).FirstOrDefault();
+                DataRow data_bhyt = dt.AsEnumerable().Where(x => x.Field<int>("LoaiBaoHiem") == 51).FirstOrDefault();
                 if (data_bhyt != null)
                 {
                     txt_so_bhyt.Text = data_bhyt.ItemArray[0].ToString().ToString();
@@ -442,21 +452,21 @@ namespace TENTAC_HRM
         }
         private void load_cbo_nation()
         {
-            string sql = "select * from hrm_DAN_TOC";
+            string sql = "select * from mst_DanToc";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            cbo_dan_toc.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("ID_DAN_TOC")).CopyToDataTable(); ;
-            cbo_dan_toc.DisplayMember = "TEN_DAN_TOC";
-            cbo_dan_toc.ValueMember = "ID_DAN_TOC";
+            cbo_dan_toc.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable(); ;
+            cbo_dan_toc.DisplayMember = "TenDanToc";
+            cbo_dan_toc.ValueMember = "Id";
         }
         private void load_cbo_religion()
         {
-            string sql = "select * from hrm_TON_GIAO";
+            string sql = "select * from mst_TenGiao";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            cbo_ton_giao.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("ID_TON_GIAO")).CopyToDataTable(); ;
-            cbo_ton_giao.DisplayMember = "TEN_TON_GIAO";
-            cbo_ton_giao.ValueMember = "ID_TON_GIAO";
+            cbo_ton_giao.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable(); ;
+            cbo_ton_giao.DisplayMember = "TenTonGia";
+            cbo_ton_giao.ValueMember = "Id";
         }
 
         private void load_gender()
@@ -481,12 +491,12 @@ namespace TENTAC_HRM
         }
         private void load_ngan_hang()
         {
-            string sql = "select id_ngan_hang,ten_ngan_hang from hrm_ngan_hang";
+            string sql = "select Id,TenNganHang from mst_NganHang";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             cbo_ngan_hang.DataSource = dt;
-            cbo_ngan_hang.DisplayMember = "ten_ngan_hang";
-            cbo_ngan_hang.ValueMember = "id_ngan_hang";
+            cbo_ngan_hang.DisplayMember = "TenNganHang";
+            cbo_ngan_hang.ValueMember = "Id";
         }
         private void cbo_quoc_tich_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -680,7 +690,7 @@ namespace TENTAC_HRM
         {
             if (txt_cccd.Text.Length == 3)
             {
-                string sql = string.Format("SELECT ma_dia_chi,ten_dia_chi FROM [TENTAC_HRM].[dbo].[hrm_dia_chi] where id_dia_chi_cha = 1 and ma_dia_chi = {0}", txt_cccd.Text);
+                string sql = string.Format("SELECT MaDiaChi,TenDiaChi FROM mst_DonViHanhChinh where ParentId = 1 and MaDiaChi = {0}", txt_cccd.Text);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 if (dt.Rows.Count == 0)
@@ -817,7 +827,7 @@ namespace TENTAC_HRM
         {
             if (txt_ma_so.Text.Length == 2)
             {
-                string sql = string.Format("select * from sys_all_type where type_type = 143 and type_name = '{0}'", txt_ma_so.Text);
+                string sql = string.Format("select * from sys_AllType where TypeType = 143 and TypeName = '{0}'", txt_ma_so.Text);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 if (dt.Rows.Count == 0)
@@ -827,7 +837,7 @@ namespace TENTAC_HRM
                 }
                 else
                 {
-                    string sql1 = "select type_value from sys_all_type where type_id = 143";
+                    string sql1 = "select TypeValue from sys_AllType where TypeId = 143";
                     DataTable dt1 = new DataTable();
                     dt1 = SQLHelper.ExecuteDt(sql1);
                     txt_ma_so.Text = txt_ma_so.Text + (int.Parse(dt1.Rows[0][0].ToString()) + 1);
@@ -1352,20 +1362,20 @@ namespace TENTAC_HRM
         private void update_ho_so()
         {
             set_txt_value();
-            string sql = "update hrm_nhan_vien " +
-                "set id_trang_thai = @trang_thai, ma_nhan_vien = @ma_so,ten = @ten,ho_lot = @ho_lot,ho_ten = @ho_ten, ngay_sinh = @ngay_sinh," +
-                "gioi_tinh = @gioi_tinh, hon_nhan = @hon_nhan,id_ton_giao = @ton_giao,id_dan_toc = @dan_toc, id_quoc_tich = @quoc_tich," +
-                "so_cccd = @cccd, ngay_cap_cccd = @ngay_cap_cc,noi_cap_cccd = @noi_cap_cc, so_ho_chieu = @so_ho_chieu,ngay_cap_ho_chieu = @ngay_cap_hc," +
-                "noi_cap_ho_chieu = @noi_cap_hc,ngay_het_han_ho_chieu = @ngay_het_han_hc," +
-                "dien_thoai_dd = @sdt, email = @email," +
-                "hinh_anh = @hinh_anh, ghi_chu = @ghi_chu,Ngay_thu_viec = @ngay_thu_viec, thoi_gian_thu_viec = @tg_thu_viec," +
-                "ngay_ket_thuc_thu_viec = @ngay_kt_thu_viec, ngay_vao_lam = @ngay_vao_lam, ngay_ket_thuc = @ngay_ket_thuc," +
-                "ma_so_thue = @ma_so_thue, ngay_dk_thue = @ngay_dk_thue,noi_dk_thue = @noi_dk_thue," +
-                "so_tk = @so_tk, ngan_hang = @ngan_hang,nhan_tien_mat = @tien_mat,ca_nhan_khong_cu_tru = @khong_cu_tru,khong_uy_quyen_qt= @khong_uy_quyen," +
-                "id_ngan_hang_ck = @ngan_hang_ck, work_permit = @work_permit, ngay_cap_wp = @ngay_cap_wp,ngay_het_han_wp = @ngay_het_han_wp," +
-                "chieu_cao = @chieu_cao, can_nang = @can_nang, nhom_mau = @nhom_mau, suc_khoe = @suc_khoe,luu_y_sk = @luu_y_sk,khuyet_tat = @khuyet_tat," +
-                "ngay_cap_nhat = GETDATE(),ma_cham_cong = @ma_cham_cong,ten_cham_cong = @ten_cham_cong, ma_the = @ma_the,id_nguoi_tao = @id_nguoi_tao " +
-                "where ma_nhan_vien = @ma_nhan_vien";
+            string sql = "update tbl_NhanVien " +
+                "set id_TrangThai = @trang_thai, MaNhanVien = @ma_so,ten = @ten,HoLot = @ho_lot,HoTen = @ho_ten, NgaySinh = @ngaysinh," +
+                "GioiTinh = @gioi_tinh, HonNhan = @hon_nhan,TonGiao = @ton_giao,DanToc = @dan_toc, QuocTich = @quoc_tich," +
+                "SoCCCD = @cccd, NgayCapCCCD = @ngay_cap_cc,NoiCapCCCD = @noi_cap_cc, SoHoChieu = @so_ho_chieu,NgayCapHoChieu = @ngay_cap_hc," +
+                "NoiCapHoChieu = @noi_cap_hc,NgayHetHanHoChieu = @ngay_het_han_hc," +
+                "DienThoaiDD = @sdt, Email = @email," +
+                "HinhAnh = @hinh_anh, GhiChu = @ghi_chu,NgayThuViec = @ngay_thu_viec, ThoiGianThuViec = @tg_thu_viec," +
+                "NgayKetThucThuViec = @ngay_kt_thu_viec, NgayVaoLam = @ngay_vao_lam, NgayKetThuc = @ngay_ket_thuc," +
+                "MaSoThue = @ma_so_thue, NgayDKThue = @ngay_dk_thue,NoiDKThue = @noi_dk_thue," +
+                "SoTK = @so_tk, NganHang = @ngan_hang,NhanTienMat = @tien_mat,CaNhanKhongCuTru = @khong_cu_tru,KhongUyQuyenQT= @khong_uy_quyen," +
+                "Id_NganHangCK = @ngan_hang_ck, WorkPermit = @work_permit, NgayCapWP = @ngay_cap_wp,NgayHetHanWP = @ngay_het_han_wp," +
+                "ChieuCao = @chieu_cao, CanNang = @can_nang, NhomMau = @nhom_mau, SucKhoe = @suc_khoe,LuuYSK = @luu_y_sk,KhuyetTat = @khuyet_tat," +
+                "NgayCapNhat = GETDATE(),MaChamCong = @ma_cham_cong,TenChamCong = @ten_cham_cong, MaThe = @ma_the,NguoiTao = @id_nguoi_tao " +
+                "where MaNhanVien = @ma_nhan_vien";
             SqlParameter[] param = new SqlParameter[]
             {
                 new SqlParameter("@ma_nhan_vien", SqlDbType.VarChar) {Value = _ma_nhan_vien},
@@ -1374,7 +1384,7 @@ namespace TENTAC_HRM
                 new SqlParameter("@ten", SqlDbType.NVarChar) {Value = nhanvien.Ten_value},
                 new SqlParameter("@ho_lot", SqlDbType.NVarChar) {Value = nhanvien.Ho_lot_value},
                 new SqlParameter("@ho_ten", SqlDbType.NVarChar) {Value = nhanvien.Ho_ten_value},
-                new SqlParameter("@ngay_sinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value},
+                new SqlParameter("@ngaysinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value},
                 new SqlParameter("@gioi_tinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
                 new SqlParameter("@hon_nhan", SqlDbType.Int) {Value = nhanvien.Hon_nhan_value},
                 new SqlParameter("@ton_giao", SqlDbType.Int) {Value = nhanvien.Ton_giao_value},
@@ -1428,13 +1438,13 @@ namespace TENTAC_HRM
         private void insert_ho_so()
         {
             set_txt_value();
-            string sql = "insert into hrm_nhan_vien(id_trang_thai,ma_nhan_vien,ho_ten,ten,ho_lot,ngay_sinh,gioi_tinh,hon_nhan,id_ton_giao,id_dan_toc,id_quoc_tich," +
-                         "so_cccd,ngay_cap_cccd,noi_cap_cccd,so_ho_chieu,ngay_cap_ho_chieu,noi_cap_ho_chieu,ngay_het_han_ho_chieu," +
-                         "dien_thoai_dd,email,ghi_chu,ngay_thu_viec,thoi_gian_thu_viec,ngay_ket_thuc_thu_viec," +
-                         "ngay_vao_lam,ngay_ket_thuc,ma_so_thue,ngay_dk_thue,noi_dk_thue,so_tk,ngan_hang,nhan_tien_mat,ca_nhan_khong_cu_tru," +
-                         "khong_uy_quyen_qt,id_ngan_hang_ck,work_permit,ngay_cap_wp,ngay_het_han_wp,hinh_anh,chieu_cao,can_nang,nhom_mau,suc_khoe,luu_y_sk,khuyet_tat," +
-                         "ma_cham_cong,ten_cham_cong,ma_the,id_nguoi_tao) " +
-                         "values(@trang_thai,@ma_so,@ho_ten,@ten,@ho_lot,@ngay_sinh,@gioi_tinh,@hon_nhan,@ton_giao,@dan_toc,@quoc_tich," +
+            string sql = "insert into tbl_NhanVien(id_TrangThai,MaNhanVien,HoTen,Ten,HoLot,NgaySinh,GioiTinh,HonNhan,TonGiao,DanToc,QuocTich," +
+                         "SoCCCD,NgayCapCCCD,NoiCapCCCD,SoHoChieu,NgayCapHoChieu,NoiCapHoChieu,NgayHetHanHoChieu," +
+                         "DienThoaiDD,Email,GhiChu,NgayThuViec,ThoiGianThuViec,NgayKetThucThuViec," +
+                         "NgayVaoLam,NgayKetThuc,MaSoThue,NgayDKThue,NoiDKThue,SoTK,NganHang,NhanTienMat,CaNhanKhongCuTru," +
+                         "KhongUyQuyenQT,Id_NganHangCK,WorkPermit,NgayCapWP,NgayHetHanWP,HinhAnh,ChieuCao,CanNang,NhomMau,SucKhoe,LuuYSK,KhuyetTat," +
+                         "MaChamCong,TenChamCong,MaThe,NguoiTao) " +
+                         "values(@trang_thai,@ma_so,@ho_ten,@ten,@ho_lot,@ngaysinh,@gioi_tinh,@hon_nhan,@ton_giao,@dan_toc,@quoc_tich," +
                          "@cccd,@ngay_cap_cc,@noi_cap_cc,@so_ho_chieu,@ngay_cap_hc,@noi_cap_hc,@ngay_het_han_hc," +
                          "@sdt,@email,@ghi_chu,@ngay_thu_viec,@tg_thu_viec,@ngay_kt_thu_viec," +
                          "@ngay_vao_lam,@ngay_ket_thuc,@ma_so_thue,@ngay_dk_thue,@noi_dk_thue,@so_tk,@ngan_hang,@tien_mat,@ca_nhan_khong_cu_tru," +
@@ -1447,7 +1457,7 @@ namespace TENTAC_HRM
                 new SqlParameter("@ho_ten", SqlDbType.NVarChar) {Value = nhanvien.Ho_ten_value},
                 new SqlParameter("@ten", SqlDbType.NVarChar) {Value = nhanvien.Ten_value},
                 new SqlParameter("@ho_lot", SqlDbType.NVarChar) {Value = nhanvien.Ho_lot_value},
-                new SqlParameter("@ngay_sinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value,IsNullable = true},
+                new SqlParameter("@ngaysinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value,IsNullable = true},
                 new SqlParameter("@gioi_tinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
                 new SqlParameter("@hon_nhan", SqlDbType.Int) {Value = nhanvien.Hon_nhan_value},
                 new SqlParameter("@ton_giao", SqlDbType.Int) {Value = nhanvien.Ton_giao_value},

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Model;
@@ -18,6 +19,11 @@ namespace TENTAC_HRM.DataAccessLayer.MayChamCong.DuLieuMayChamCongDAL
             _sqlParameter.Add(new SqlParameter("@MaSoMay", _checkInOutDTO.MaSo_May));
             _sqlParameter.Add(new SqlParameter("@TenMay", _checkInOutDTO.Ten_May));
             Procedure("CheckInOut_add", _sqlParameter);
+        }
+        public DataTable CountAll_CheckInOut()
+        {
+            List<SqlParameter> _sqlParameter = new List<SqlParameter>();
+            return executeNonQuerya("CheckInOut_count", _sqlParameter);
         }
     }
 }

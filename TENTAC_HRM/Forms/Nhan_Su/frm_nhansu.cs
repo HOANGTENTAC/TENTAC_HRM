@@ -107,12 +107,12 @@ namespace TENTAC_HRM.Nhan_Su
             string sql = "select * into ##tblTemp from view_hoso_nhansu where 1=1";
             if (!string.IsNullOrEmpty(txt_search_ten.Text))
             {
-                sql = sql + string.Format(" and ho_ten like N''%{0}%''", txt_search_ten.Text);
+                sql = sql + string.Format(" and hoten like N''%{0}%''", txt_search_ten.Text);
             }
 
             if (cbo_trang_thai.ComboBox.SelectedValue.ToString() != "0")
             {
-                sql = sql + string.Format(" and id_trang_thai = {0}", cbo_trang_thai.ComboBox.SelectedValue.ToString());
+                sql = sql + string.Format(" and id_trangthai = {0}", cbo_trang_thai.ComboBox.SelectedValue.ToString());
             }
 
             if (treeview_select != "")
@@ -123,19 +123,19 @@ namespace TENTAC_HRM.Nhan_Su
                 }
                 else if (treeview_select == "nv_moi")
                 {
-                    sql = sql + " and ma_phong_ban is null";
+                    sql = sql + " and maphongban is null";
                 }
                 else if (treeview_select.Contains("id_cty"))
                 {
-                    sql = sql + string.Format(" and ma_cong_ty = ''{0}''", treeview_select.Remove(0, 7));
+                    sql = sql + string.Format(" and macongty = ''{0}''", treeview_select.Remove(0, 7));
                 }
                 else if (treeview_select.Contains("id_khuvuc"))
                 {
-                    sql = sql + string.Format(" and ma_khu_vuc = ''{0}''", treeview_select.Remove(0, 10));
+                    sql = sql + string.Format(" and makhuvuc = ''{0}''", treeview_select.Remove(0, 10));
                 }
                 else
                 {
-                    sql = sql + string.Format(" and ma_phong_ban = ''{0}''", treeview_select);
+                    sql = sql + string.Format(" and maphongban = ''{0}''", treeview_select);
                 }
             }
             DataSet dt = new DataSet();
@@ -187,7 +187,7 @@ namespace TENTAC_HRM.Nhan_Su
             if (dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value != null)
             {
                 string ma_nhan_su_value = dgv_nhan_su.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
-                string sql = string.Format("select a.id_nhan_vien,a.ma_nhan_vien,a.hinh_anh,a.so_cccd,ho_ten,ngay_sinh," +
+                string sql = string.Format("select a.id_nhan_vien,a.ma_nhan_vien,a.hinh_anh,a.so_cccd,ho_ten,ngaysinh," +
                     "gioi_tinh,a.email,a.dien_thoai_dd,a.dien_thoai_nha,c.ten_phong_ban,d.ten_phong_ban as ten_chuc_vu,a.ghi_chu," +
                     "e.ten_phong_ban as khu_vuc,f.dia_chi_full,g.type_name as trangthai,f.dia_chi_full as noi_o " +
                     "from hrm_nhan_vien a " +
@@ -216,7 +216,7 @@ namespace TENTAC_HRM.Nhan_Su
                     }
                     lb_nhan_vien.Text = dataTable.Rows[0]["ho_ten"].ToString() + " | " + dataTable.Rows[0]["ma_nhan_vien"].ToString();
                     lb_ma_the.Text = dataTable.Rows[0]["ma_nhan_vien"].ToString() + " | " + "Số hồ sơ:";
-                    lb_ngay_sinh.Text = DateTime.Parse(dataTable.Rows[0]["ngay_sinh"].ToString()).ToString("yyyy/MM/dd");
+                    lb_ngay_sinh.Text = DateTime.Parse(dataTable.Rows[0]["ngaysinh"].ToString()).ToString("yyyy/MM/dd");
                     lb_email.Text = dataTable.Rows[0]["email"].ToString();
                     lb_cccd.Text = dataTable.Rows[0]["so_cccd"].ToString();
                     lb_dt.Text = dataTable.Rows[0]["dien_thoai_dd"].ToString();

@@ -34,11 +34,11 @@
             this.cbo_month = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_year = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.cbo_phongban = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.txt_tenbang_xepca = new System.Windows.Forms.ToolStripTextBox();
+            this.txt_search = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -46,63 +46,66 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.btn_refresh = new System.Windows.Forms.ToolStripButton();
             this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.dgv_xepca = new System.Windows.Forms.DataGridView();
-            this.bangchamcong_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_ca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ho_lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_ca = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.tat_ca = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d6 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d9 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d10 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d11 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d13 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d14 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d15 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d16 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d17 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d18 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d19 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d20 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d21 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d22 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d23 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d24 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d25 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d26 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d27 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d28 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d29 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d30 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.d31 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.txt_info = new System.Windows.Forms.ToolStripLabel();
+            this.lb_count_nv = new System.Windows.Forms.ToolStripLabel();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chk_col = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.d1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d5 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d8 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d9 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d11 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d12 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d13 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d14 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d15 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d17 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d18 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d19 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d20 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d21 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d22 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d23 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d24 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d25 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d26 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d27 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d28 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d29 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d30 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.d31 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_xepca)).BeginInit();
+            this.toolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.cbo_month,
             this.toolStripLabel2,
             this.cbo_year,
+            this.toolStripLabel4,
+            this.cbo_phongban,
             this.toolStripLabel3,
-            this.txt_tenbang_xepca,
+            this.txt_search,
             this.toolStripSeparator1,
-            this.toolStripButton1,
-            this.toolStripSeparator2,
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripSeparator3,
@@ -110,7 +113,7 @@
             this.toolStripButton5,
             this.toolStripSeparator4,
             this.toolStripButton6,
-            this.toolStripButton7,
+            this.btn_refresh,
             this.btn_close});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -157,36 +160,32 @@
             this.cbo_year.Name = "cbo_year";
             this.cbo_year.Size = new System.Drawing.Size(60, 23);
             // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(65, 22);
+            this.toolStripLabel4.Text = "Phòng ban";
+            // 
+            // cbo_phongban
+            // 
+            this.cbo_phongban.Name = "cbo_phongban";
+            this.cbo_phongban.Size = new System.Drawing.Size(121, 25);
+            // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(95, 22);
-            this.toolStripLabel3.Text = "Tên Bảng Xếp Ca";
+            this.toolStripLabel3.Size = new System.Drawing.Size(129, 22);
+            this.toolStripLabel3.Text = "Tên hoặc mã nhân viên";
             // 
-            // txt_tenbang_xepca
+            // txt_search
             // 
-            this.txt_tenbang_xepca.Enabled = false;
-            this.txt_tenbang_xepca.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txt_tenbang_xepca.Name = "txt_tenbang_xepca";
-            this.txt_tenbang_xepca.Size = new System.Drawing.Size(100, 25);
+            this.txt_search.Name = "txt_search";
+            this.txt_search.Size = new System.Drawing.Size(160, 25);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(176, 22);
-            this.toolStripButton1.Text = "Nạp lại danh sách nhân viên";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton2
             // 
@@ -223,8 +222,8 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(127, 22);
-            this.toolStripButton5.Text = "Ngày nghỉ, kỳ nghỉ";
+            this.toolStripButton5.Size = new System.Drawing.Size(82, 22);
+            this.toolStripButton5.Text = "Ngày nghỉ";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripSeparator4
@@ -240,13 +239,14 @@
             this.toolStripButton6.Size = new System.Drawing.Size(51, 22);
             this.toolStripButton6.Text = "Xuất";
             // 
-            // toolStripButton7
+            // btn_refresh
             // 
-            this.toolStripButton7.Image = global::TENTAC_HRM.Properties.Resources.refresh;
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(64, 22);
-            this.toolStripButton7.Text = "Nạp lại";
+            this.btn_refresh.Image = global::TENTAC_HRM.Properties.Resources.refresh;
+            this.btn_refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(64, 22);
+            this.btn_refresh.Text = "Nạp lại";
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_close
             // 
@@ -263,13 +263,10 @@
             this.dgv_xepca.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_xepca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_xepca.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bangchamcong_id,
-            this.ma_ca,
-            this.ma_nhan_vien,
-            this.ho_lot,
-            this.ten,
-            this.ten_ca,
-            this.tat_ca,
+            this.id,
+            this.chk_col,
+            this.MaChamCong,
+            this.hoten,
             this.d1,
             this.d2,
             this.d3,
@@ -302,252 +299,289 @@
             this.d30,
             this.d31});
             this.dgv_xepca.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_xepca.Location = new System.Drawing.Point(0, 25);
+            this.dgv_xepca.Location = new System.Drawing.Point(0, 50);
             this.dgv_xepca.Name = "dgv_xepca";
-            this.dgv_xepca.Size = new System.Drawing.Size(1293, 601);
+            this.dgv_xepca.Size = new System.Drawing.Size(1293, 576);
             this.dgv_xepca.TabIndex = 1;
             this.dgv_xepca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_xepca_CellContentClick);
             // 
-            // bangchamcong_id
+            // toolStrip2
             // 
-            this.bangchamcong_id.DataPropertyName = "bangchamcong_id";
-            this.bangchamcong_id.HeaderText = "bangchamcong_id";
-            this.bangchamcong_id.Name = "bangchamcong_id";
-            this.bangchamcong_id.Visible = false;
+            this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.txt_info,
+            this.lb_count_nv});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1293, 25);
+            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Text = "toolStrip2";
             // 
-            // ma_ca
+            // txt_info
             // 
-            this.ma_ca.DataPropertyName = "ma_ca";
-            this.ma_ca.HeaderText = "ma_ca";
-            this.ma_ca.Name = "ma_ca";
-            this.ma_ca.Visible = false;
+            this.txt_info.Name = "txt_info";
+            this.txt_info.Size = new System.Drawing.Size(42, 22);
+            this.txt_info.Text = "ca HC:";
             // 
-            // ma_nhan_vien
+            // lb_count_nv
             // 
-            this.ma_nhan_vien.DataPropertyName = "ma_nhan_vien";
-            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.ma_nhan_vien.Name = "ma_nhan_vien";
-            this.ma_nhan_vien.Width = 120;
+            this.lb_count_nv.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lb_count_nv.Name = "lb_count_nv";
+            this.lb_count_nv.Size = new System.Drawing.Size(86, 22);
+            this.lb_count_nv.Text = "toolStripLabel5";
             // 
-            // ho_lot
+            // id
             // 
-            this.ho_lot.DataPropertyName = "ho_lot";
-            this.ho_lot.HeaderText = "Họ lót";
-            this.ho_lot.Name = "ho_lot";
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.Visible = false;
             // 
-            // ten
+            // chk_col
             // 
-            this.ten.DataPropertyName = "ten";
-            this.ten.HeaderText = "Tên";
-            this.ten.Name = "ten";
+            this.chk_col.DataPropertyName = "chk_col";
+            this.chk_col.HeaderText = "";
+            this.chk_col.Name = "chk_col";
+            this.chk_col.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.chk_col.Width = 30;
             // 
-            // ten_ca
+            // MaChamCong
             // 
-            this.ten_ca.DataPropertyName = "ten_ca";
-            this.ten_ca.HeaderText = "Ca";
-            this.ten_ca.Name = "ten_ca";
-            this.ten_ca.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MaChamCong.DataPropertyName = "MaChamCong";
+            this.MaChamCong.HeaderText = "Mã cc";
+            this.MaChamCong.Name = "MaChamCong";
+            this.MaChamCong.Width = 70;
             // 
-            // tat_ca
+            // hoten
             // 
-            this.tat_ca.DataPropertyName = "tat_ca";
-            this.tat_ca.FalseValue = "false";
-            this.tat_ca.HeaderText = "Tất cả";
-            this.tat_ca.Name = "tat_ca";
-            this.tat_ca.TrueValue = "true";
-            this.tat_ca.Width = 70;
+            this.hoten.DataPropertyName = "hoten";
+            this.hoten.HeaderText = "Tên nhân viên";
+            this.hoten.Name = "hoten";
+            this.hoten.Width = 150;
             // 
             // d1
             // 
             this.d1.DataPropertyName = "d1";
             this.d1.HeaderText = "d1";
             this.d1.Name = "d1";
+            this.d1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d2
             // 
             this.d2.DataPropertyName = "d2";
             this.d2.HeaderText = "d2";
             this.d2.Name = "d2";
+            this.d2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d3
             // 
             this.d3.DataPropertyName = "d3";
             this.d3.HeaderText = "d3";
             this.d3.Name = "d3";
+            this.d3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d4
             // 
             this.d4.DataPropertyName = "d4";
             this.d4.HeaderText = "d4";
             this.d4.Name = "d4";
+            this.d4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d5
             // 
             this.d5.DataPropertyName = "d5";
             this.d5.HeaderText = "d5";
             this.d5.Name = "d5";
+            this.d5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d6
             // 
             this.d6.DataPropertyName = "d6";
             this.d6.HeaderText = "d6";
             this.d6.Name = "d6";
+            this.d6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d7
             // 
             this.d7.DataPropertyName = "d7";
             this.d7.HeaderText = "d7";
             this.d7.Name = "d7";
+            this.d7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d8
             // 
             this.d8.DataPropertyName = "d8";
             this.d8.HeaderText = "d8";
             this.d8.Name = "d8";
+            this.d8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d9
             // 
             this.d9.DataPropertyName = "d9";
             this.d9.HeaderText = "d9";
             this.d9.Name = "d9";
+            this.d9.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d10
             // 
             this.d10.DataPropertyName = "d10";
             this.d10.HeaderText = "d10";
             this.d10.Name = "d10";
+            this.d10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d11
             // 
             this.d11.DataPropertyName = "d11";
             this.d11.HeaderText = "d11";
             this.d11.Name = "d11";
+            this.d11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d12
             // 
             this.d12.DataPropertyName = "d12";
             this.d12.HeaderText = "d12";
             this.d12.Name = "d12";
+            this.d12.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d13
             // 
             this.d13.DataPropertyName = "d13";
             this.d13.HeaderText = "d13";
             this.d13.Name = "d13";
+            this.d13.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d14
             // 
             this.d14.DataPropertyName = "d14";
             this.d14.HeaderText = "d14";
             this.d14.Name = "d14";
+            this.d14.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d15
             // 
             this.d15.DataPropertyName = "d15";
             this.d15.HeaderText = "d15";
             this.d15.Name = "d15";
+            this.d15.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d16
             // 
             this.d16.DataPropertyName = "d16";
             this.d16.HeaderText = "d16";
             this.d16.Name = "d16";
+            this.d16.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d17
             // 
             this.d17.DataPropertyName = "d17";
             this.d17.HeaderText = "d17";
             this.d17.Name = "d17";
+            this.d17.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d18
             // 
             this.d18.DataPropertyName = "d18";
             this.d18.HeaderText = "d18";
             this.d18.Name = "d18";
+            this.d18.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d19
             // 
             this.d19.DataPropertyName = "d19";
             this.d19.HeaderText = "d19";
             this.d19.Name = "d19";
+            this.d19.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d20
             // 
             this.d20.DataPropertyName = "d20";
             this.d20.HeaderText = "d20";
             this.d20.Name = "d20";
+            this.d20.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d21
             // 
             this.d21.DataPropertyName = "d21";
             this.d21.HeaderText = "d21";
             this.d21.Name = "d21";
+            this.d21.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d22
             // 
             this.d22.DataPropertyName = "d22";
             this.d22.HeaderText = "d22";
             this.d22.Name = "d22";
+            this.d22.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d23
             // 
             this.d23.DataPropertyName = "d23";
             this.d23.HeaderText = "d23";
             this.d23.Name = "d23";
+            this.d23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d24
             // 
             this.d24.DataPropertyName = "d24";
             this.d24.HeaderText = "d24";
             this.d24.Name = "d24";
+            this.d24.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d25
             // 
             this.d25.DataPropertyName = "d25";
             this.d25.HeaderText = "d25";
             this.d25.Name = "d25";
+            this.d25.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d26
             // 
             this.d26.DataPropertyName = "d26";
             this.d26.HeaderText = "d26";
             this.d26.Name = "d26";
+            this.d26.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d27
             // 
             this.d27.DataPropertyName = "d27";
             this.d27.HeaderText = "d27";
             this.d27.Name = "d27";
+            this.d27.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d28
             // 
             this.d28.DataPropertyName = "d28";
             this.d28.HeaderText = "d28";
             this.d28.Name = "d28";
+            this.d28.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d29
             // 
             this.d29.DataPropertyName = "d29";
             this.d29.HeaderText = "d29";
             this.d29.Name = "d29";
+            this.d29.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d30
             // 
             this.d30.DataPropertyName = "d30";
             this.d30.HeaderText = "d30";
             this.d30.Name = "d30";
+            this.d30.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // d31
             // 
             this.d31.DataPropertyName = "d31";
             this.d31.HeaderText = "d31";
             this.d31.Name = "d31";
+            this.d31.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // uc_bangxepca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_xepca);
+            this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -557,6 +591,8 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_xepca)).EndInit();
+            this.toolStrip2.ResumeLayout(false);
+            this.toolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,11 +605,7 @@
         private System.Windows.Forms.ToolStripComboBox cbo_month;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox cbo_year;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripTextBox txt_tenbang_xepca;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -581,46 +613,50 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripButton btn_refresh;
         private System.Windows.Forms.ToolStripButton btn_close;
         private System.Windows.Forms.DataGridView dgv_xepca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bangchamcong_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_ca;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ho_lot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ten_ca;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn tat_ca;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d7;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d8;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d9;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d10;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d11;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d12;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d13;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d14;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d15;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d16;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d17;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d18;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d19;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d20;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d21;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d22;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d23;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d24;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d25;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d26;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d27;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d28;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d29;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d30;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn d31;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel4;
+        private System.Windows.Forms.ToolStripComboBox cbo_phongban;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStripLabel txt_info;
+        private System.Windows.Forms.ToolStripLabel lb_count_nv;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripTextBox txt_search;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chk_col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaChamCong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d2;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d3;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d4;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d5;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d6;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d7;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d8;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d9;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d10;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d11;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d12;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d13;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d14;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d15;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d16;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d17;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d18;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d19;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d20;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d21;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d22;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d23;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d24;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d25;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d26;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d27;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d28;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d29;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d30;
+        private System.Windows.Forms.DataGridViewComboBoxColumn d31;
     }
 }

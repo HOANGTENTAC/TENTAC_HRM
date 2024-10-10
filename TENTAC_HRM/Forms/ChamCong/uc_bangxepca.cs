@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Custom;
+using TENTAC_HRM.Forms.NghiPhep;
 
 namespace TENTAC_HRM.ChamCong
 {
     public partial class uc_bangxepca : UserControl
     {
+        CheckBox headerCheckBox = new CheckBox();
         DataTable dt_bangchamcong = new DataTable();
         DateTime dtResult;
         DataProvider provider = new DataProvider();
@@ -24,58 +28,152 @@ namespace TENTAC_HRM.ChamCong
             InitializeComponent();
             cbo_month.ComboBox.SelectionChangeCommitted += cbo_month_SelectionChangeCommitted;
             cbo_year.ComboBox.SelectionChangeCommitted += cbo_year_SelectionChangeCommitted;
+            cbo_phongban.ComboBox.SelectionChangeCommitted += cbo_phongban_SelectionChangeCommitted;
         }
 
+        private void cbo_phongban_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            load_bangxepca();
+        }
+
+        private void BindGrid()
+        {
+            //Find the Location of Header Cell.
+            Point headerCellLocation = this.dgv_xepca.GetCellDisplayRectangle(1, -1, true).Location;
+
+            //Place the Header CheckBox in the Location of the Header Cell.
+            headerCheckBox.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 15);
+            headerCheckBox.BackColor = Color.Transparent;
+            headerCheckBox.Size = new Size(18, 18);
+
+            //Assign Click event to the Header CheckBox.
+            headerCheckBox.Click += new EventHandler(HeaderCheckBox_Clicked);
+            dgv_xepca.Controls.Add(headerCheckBox);
+        }
+        private void HeaderCheckBox_Clicked(object sender, EventArgs e)
+        {
+            //Necessary to end the edit mode of the Cell.
+            dgv_xepca.EndEdit();
+
+            //Loop and check and uncheck all row CheckBoxes based on Header Cell CheckBox.
+            foreach (DataGridViewRow row in dgv_xepca.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = (row.Cells["chk_col"] as DataGridViewCheckBoxCell);
+                checkBox.Value = headerCheckBox.Checked;
+            }
+        }
         private void cbo_month_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            load_bangcong();
-            load_data();
+            load_bangxepca();
         }
         private void cbo_year_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            load_bangcong();
-            load_data();
+            load_bangxepca();
         }
 
         private void uc_bangxepca_Load(object sender, EventArgs e)
         {
+            calamviec();
             load_year();
-            load_ca();
             cbo_month.ComboBox.SelectedItem = DateTime.Now.Month.ToString();
             add_column();
-            load_bangcong();
-            load_data();
+            load_bangxepca();
+            load_phongban();
+            BindGrid();
         }
-        private void load_bangcong()
+        private void calamviec()
         {
-            string sql = string.Format("select bangchamcong_id from hrm_danhsach_bangchamcong where thang = '{0}' and nam = '{1}'", cbo_month.ComboBox.SelectedItem, cbo_year.ComboBox.SelectedValue.ToString());
-            dt_bangchamcong = SQLHelper.ExecuteDt(sql);
-        }
-        private void load_ca()
-        {
-            string sql = "select ma_ca,ten_ca from dic_calamviec";
+            string sql = "SELECT [MaCaLamViec],[CaLamViec] FROM [tbl_CaLamViec]";
             DataTable dataTable = new DataTable();
             dataTable = SQLHelper.ExecuteDt(sql);
-            ten_ca.DataSource = dataTable;
-            ten_ca.DisplayMember = "ten_ca";
-            ten_ca.ValueMember = "ma_ca";
+            dataTable.Rows.Add("", "");
+
+            for (int i = 1; i <= 31; i++)
+            {
+                ((DataGridViewComboBoxColumn)dgv_xepca.Columns["d" + i.ToString()]).DataSource = dataTable;
+                ((DataGridViewComboBoxColumn)dgv_xepca.Columns["d" + i.ToString()]).DisplayMember = "CaLamViec";
+                ((DataGridViewComboBoxColumn)dgv_xepca.Columns["d" + i.ToString()]).ValueMember = "MaCaLamViec";
+                ((DataGridViewComboBoxColumn)dgv_xepca.Columns["d" + i.ToString()]).DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            }
         }
-        private void load_data()
+        private void load_phongban()
         {
-            DataTable dataTable = (DataTable)dgv_xepca.DataSource;
-            if (dataTable != null)
+            string sql = "SELECT [MaPhongBan],[TenPhongBan] FROM [mst_PHONGBAN]";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            dt.Rows.Add("0", "Chọn tất cả");
+            dt = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaPhongBan")).CopyToDataTable();
+            cbo_phongban.ComboBox.DataSource = dt;
+            cbo_phongban.ComboBox.DisplayMember = "TenPhongBan";
+            cbo_phongban.ComboBox.ValueMember = "MaPhongBan";
+        }
+        private void load_bangxepca()
+        {
+            headerCheckBox.Checked = false;
+            string where = "";
+            if (!string.IsNullOrEmpty(txt_search.TextBox.Text))
             {
-                dataTable.Clear();
+                where = where + $" and nv.MaNhanVien like '%{txt_search.TextBox.Text}%' or nv.TenNhanVien like '%{txt_search.TextBox.Text}%' ";
             }
-
-            if (dt_bangchamcong.Rows.Count > 0)
+            if (cbo_phongban.ComboBox.SelectedValue != null)
             {
-                string sql = string.Format("hrm_bangxepca_getlist '{0}'", dt_bangchamcong.Rows[0][0].ToString());
-
-                dataTable = SQLHelper.ExecuteDt(sql);
-                dgv_xepca.DataSource = dataTable;
+                if (cbo_phongban.ComboBox.SelectedValue.ToString() != "0")
+                {
+                    where = where + $" and nv.MaPhongBan = '{cbo_phongban.ComboBox.SelectedValue}'";
+                }
             }
-            txt_tenbang_xepca.Text = "Tháng " + cbo_month.ComboBox.SelectedIndex.ToString() + " - " + cbo_year.ComboBox.SelectedValue.ToString();
+            string sql = "select hts.id,'false' chk_col,hts.MaChamCong,nv.HoTen," +
+                "hts.d1,hts.d2,hts.d3,hts.d4,hts.d5,hts.d6,hts.d7,hts.d8,hts.d9,hts.d10," +
+                "hts.d11,hts.d12,hts.d13,hts.d14,hts.d15,hts.d16,hts.d17,hts.d18,hts.d19,hts.d20," +
+                "hts.d21,hts.d22,hts.d23,hts.d24,hts.d25,hts.d26,hts.d27,hts.d28,hts.d29,hts.d30," +
+                "hts.d31 " +
+                "from tbl_BangXepCa hts " +
+                "inner join tbl_NhanVien nv on hts.MaChamCong=nv.machamcong " +
+                $"where hts.Nam = '{cbo_year.ComboBox.SelectedValue}' and hts.Thang = '{cbo_month.Text}'" + where;
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            dgv_xepca.DataSource = dt;
+            lb_count_nv.Text = "Nhân viên : " + dt.Rows.Count;
+
+            int hc = 0;
+            int ca1 = 0;
+            int ca2 = 0;
+            int ca3 = 0;
+            foreach (DataRow item in dt.Rows)
+            {
+                int counthc = 0;
+                int countca1 = 0;
+                int countca2 = 0;
+                int countca3 = 0;
+
+                for (int i = 4; i < dt.Columns.Count; i++)
+                {
+                    if (item[i].ToString() == "HC" && counthc == 0)
+                    {
+                        counthc = 1;
+                        hc++;
+                    }
+                    if (item[i].ToString() == "CA1" && countca1 == 0)
+                    {
+                        countca1 = 1;
+                        ca1++;
+                    }
+                    if (item[i].ToString() == "CA2" && countca2 == 0)
+                    {
+                        countca2 = 1;
+                        ca2++;
+                    }
+                    if (item[i].ToString() == "CA3" && countca3 == 0)
+                    {
+                        countca3 = 1;
+                        ca3++;
+                    }
+                }
+            }
+            txt_info.Text = "ca HC: " + hc.ToString() + " nhân viên | " +
+                "ca 1   : " + ca1.ToString() + " nhân viên | " +
+                "ca 2   : " + ca2.ToString() + " nhân viên | " +
+                "ca 3   : " + ca3.ToString() + " nhân viên";
         }
 
         private void load_year()
@@ -94,22 +192,31 @@ namespace TENTAC_HRM.ChamCong
             for (int i = 1; i <= dtResult.Day; i++)
             {
                 DateTime date = new DateTime(dtResult.Year, dtResult.Month, i);
-                dgv_xepca.Columns[i + 6].HeaderText = i.ToString() + Environment.NewLine + provider.getdayname(date.DayOfWeek);
-                dgv_xepca.Columns[i + 6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgv_xepca.Columns[i + 6].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgv_xepca.Columns[i + 6].Width = 40;
+                dgv_xepca.Columns[i + 3].HeaderText = i.ToString() + Environment.NewLine + provider.getdayname(date.DayOfWeek);
+                dgv_xepca.Columns[i + 3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_xepca.Columns[i + 3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_xepca.Columns[i + 3].Width = 50;
 
-                if (i % 2 == 0)
-                {
-                    dgv_xepca.Columns[i + 6].DefaultCellStyle.BackColor = Color.MistyRose;
-                }
-                else
-                {
-                    dgv_xepca.Columns[i + 6].DefaultCellStyle.BackColor = Color.Cornsilk;
-                }
+                //if (i % 2 == 0)
+                //{
+                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.MistyRose;
+                //}
+                //else
+                //{
+                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.Cornsilk;
+                //}
+                //if (date.DayOfWeek == DayOfWeek.Sunday)
+                //{
+                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.Azure;
+                //}
+                dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.Cornsilk;
                 if (date.DayOfWeek == DayOfWeek.Sunday)
                 {
-                    dgv_xepca.Columns[i + 6].DefaultCellStyle.BackColor = Color.Azure;
+                    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.SlateGray;
+                }
+                else if (date.DayOfWeek == DayOfWeek.Saturday)
+                {
+                    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.LightSalmon;
                 }
             }
             if (dtResult.Day < 31)
@@ -118,6 +225,13 @@ namespace TENTAC_HRM.ChamCong
                 {
                     dgv_xepca.Columns[i + 6].Visible = false;
                 }
+            }
+            else
+            {
+                dgv_xepca.Columns["d28"].Visible = true;
+                dgv_xepca.Columns["d29"].Visible = true;
+                dgv_xepca.Columns["d30"].Visible = true;
+                dgv_xepca.Columns["d31"].Visible = true;
             }
         }
 
@@ -128,25 +242,6 @@ namespace TENTAC_HRM.ChamCong
 
         private void dgv_xepca_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgv_xepca.CurrentCell.OwningColumn.Name == "tat_ca")
-            {
-                if (dgv_xepca.CurrentRow.Cells["tat_ca"].Value.ToString() == "False")
-                {
-                    dgv_xepca.CurrentRow.Cells["tat_ca"].Value = true;
-                    for (int i = 1; i <= dtResult.Day; i++)
-                    {
-                        dgv_xepca.CurrentRow.Cells["d" + i].Value = true;
-                    }
-                }
-                else
-                {
-                    dgv_xepca.CurrentRow.Cells["tat_ca"].Value = false;
-                    for (int i = 1; i <= dtResult.Day; i++)
-                    {
-                        dgv_xepca.CurrentRow.Cells["d" + i].Value = false;
-                    }
-                }
-            }
         }
 
         private void btn_calamviec_Click(object sender, EventArgs e)
@@ -157,7 +252,30 @@ namespace TENTAC_HRM.ChamCong
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
+            Frm_NgayNghi frm = new Frm_NgayNghi();
+            frm.ShowDialog();
+        }
 
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                var mess = RJMessageBox.Show("Nạp lại sẽ mất hết dữ liệu trong tháng bạn có chắc muốn nạp lại dữ liệu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (mess == DialogResult.Yes)
+                {
+                    string month = (int.Parse(cbo_month.ComboBox.Text) < 10 ? "0" + cbo_month.ComboBox.Text : cbo_month.ComboBox.Text);
+                    string sql = $"proc_BangXepCaThang {cbo_year.ComboBox.Text}, {month}";
+                    SQLHelper.ExecuteSql(sql);
+                    RJMessageBox.Show("Nạp lại dữ liệu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    load_bangxepca();
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            Cursor.Current = Cursors.Default;
         }
     }
 }
