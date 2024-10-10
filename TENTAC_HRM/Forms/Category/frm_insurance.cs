@@ -88,9 +88,9 @@ namespace TENTAC_HRM.Category
             DataTable dt = new DataTable();
             dt = provider.load_tinh();
             dt.Rows.Add("0", "");
-            cbo_tinh.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id_dia_chi")).CopyToDataTable();
-            cbo_tinh.DisplayMember = "ten_dia_chi";
-            cbo_tinh.ValueMember = "id_dia_chi";
+            cbo_tinh.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable();
+            cbo_tinh.DisplayMember = "TenDiaChi";
+            cbo_tinh.ValueMember = "Id";
         }
 
         private void btn_luu_Click(object sender, EventArgs e)

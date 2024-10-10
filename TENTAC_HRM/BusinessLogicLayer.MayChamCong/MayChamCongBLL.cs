@@ -53,5 +53,9 @@ namespace TENTAC_HRM.BusinessLogicLayer.MayChamCong
         {
             return _mayChamCongDAL.MayChamCong_getAllByMaMCC(_mayChamCongDTO);
         }
+        public DataTable MayChamCongGetBySerial(MayChamCongDTO _mayChamCongDTO)
+        {
+            return _mayChamCongDAL.MayChamCong_getBySerial(_mayChamCongDTO);
+        }
     }
 }

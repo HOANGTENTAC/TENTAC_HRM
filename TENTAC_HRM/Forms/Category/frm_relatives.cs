@@ -111,7 +111,7 @@ namespace TENTAC_HRM.Category
             {
                 cbo_loai_quan_he.SelectedValue = dt.Rows[0]["loai_quan_he"].ToString();
                 txt_ho_ten.Text = dt.Rows[0]["ho_ten"].ToString();
-                dtp_ngay_sinh.Text = dt.Rows[0]["ngay_sinh"].ToString();
+                dtp_ngay_sinh.Text = dt.Rows[0]["ngaysinh"].ToString();
                 txt_nghe_nghiep.Text = dt.Rows[0]["nghe_nghiep"].ToString();
                 txt_noi_cu_tru.Text = dt.Rows[0]["noi_cu_tru"].ToString();
                 txt_ghi_chu.Text = dt.Rows[0]["ghi_chu"].ToString();
@@ -168,7 +168,7 @@ namespace TENTAC_HRM.Category
                 load_value_text();
                 string sql = string.Format("update hrm_nhanvien_nguoithan " +
                 "set loai_quan_he = {1},ho_ten = N'{2}',nam_sinh = '{3}',nghe_nghiep = N'{4}',noi_cu_tru = N'{5}'," +
-                "is_phu_thuoc = {6},ngay_sinh = '{7}', tu_thang = '{8}',den_thang = '{9}',ma_so_thue = '{10}',cccd = '{11}',quoc_tich = N'{12}'," +
+                "is_phu_thuoc = {6},ngaysinh = '{7}', tu_thang = '{8}',den_thang = '{9}',ma_so_thue = '{10}',cccd = '{11}',quoc_tich = N'{12}'," +
                 "ks_so = '{13}',ks_quyen = '{14}',ks_quoc_gia = N'{15}',ks_tinh = N'{16}',ks_huyen = N'{17}',ks_xa = N'{18}',ghi_chu = N'{19}'," +
                 "dien_thoai = '{20}',di_dong = '{21}',gioi_tinh = '{22}',ngay_cap_nhat = GETDATE() " +
                 "where id_nguoi_than = {0}", id_nguoithan_value, quanhe_value, hoten_value, namsinh_value, nghenghiep_value, noicutru_value,
@@ -190,7 +190,7 @@ namespace TENTAC_HRM.Category
             try
             {
                 load_value_text();
-                string sql = string.Format("insert into hrm_nhanvien_nguoithan(ma_nhan_vien,loai_quan_he,ho_ten,nam_sinh,nghe_nghiep,noi_cu_tru,is_phu_thuoc,ngay_sinh,tu_thang,den_thang, " +
+                string sql = string.Format("insert into hrm_nhanvien_nguoithan(manhanvien,loai_quan_he,hoten,nam_sinh,nghe_nghiep,noi_cu_tru,is_phu_thuoc,ngaysinh,tu_thang,den_thang, " +
                 "ma_so_thue,cccd,quoc_tich,ks_so,ks_quyen,ks_quoc_gia,ks_tinh,ks_huyen,ks_xa,ghi_chu,ngay_tao,id_nguoi_tao,dien_thoai,di_dong,gioi_tinh) " +
                 "values('{0}',{1},N'{2}','{3}',N'{4}',N'{5}',{6},'{7}','{8}','{9}'," +
                 "'{10}','{11}',N'{12}',N'{13}','{14}',N'{15}',N'{16}',N'{17}',N'{18}'," +

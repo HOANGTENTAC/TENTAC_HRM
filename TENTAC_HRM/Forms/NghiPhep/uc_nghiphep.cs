@@ -69,14 +69,14 @@ namespace TENTAC_HRM.Cham_Cong
         }
         public void load_data()
         {
-            string sql = string.Format("select f.id_nghi_phep,a.ma_nhan_vien,a.ho_ten,d.ten_phong_ban as don_vi,c.ten_phong_ban as chuc_vu," +
-                        "e.type_name as trang_thai,f.ngay_nghi,f.den_ngay,g.ten_nghi_phep as loai_phep,f.ghi_chu as noi_dung " +
-                        "from hrm_nhan_vien a " +
-                        "join nhanvien_phongban b on a.ma_nhan_vien = b.ma_nhan_vien and is_active = 1 " +
-                        "join phong_ban c on c.ma_phong_ban = b.ma_chuc_vu " +
-                        "join phong_ban d on d.ma_phong_ban = b.ma_phong_ban " +
-                        "join sys_all_type e on a.id_trang_thai = e.type_id " +
-                        "join tas_nghi_phep_nam f on f.ma_nhan_vien = a.ma_nhan_vien " +
+            string sql = string.Format("select f.id_nghi_phep,a.manhanvien,a.hoten,d.tenkhuvuc as don_vi,c.chucvu as chuc_vu," +
+                        "e.typename as trang_thai,f.ngay_nghi,f.den_ngay,g.ten_nghi_phep as loai_phep,f.ghi_chu as noi_dung " +
+                        "from tbl_nhanvien a " +
+                        "join nhanvien_phongban b on a.manhanvien = b.ma_nhan_vien and is_active = 1 " +
+                        "join mst_ChucVu c on c.MachucVu = b.machucvu " +
+                        "join mst_KhuVuc d on d.maphongban = b.maphongban " +
+                        "join sys_alltype e on a.id_trangthai = e.typeid " +
+                        "join tas_nghi_phep_nam f on f.ma_nhan_vien = a.manhanvien " +
                         "join tas_nghi_phep g on g.id_nghi_phep = f.id_loai_phep_nghi " +
                         "where f.nam = '{0}' and f.del_flg = 0",cbo_year.ComboBox.SelectedValue.ToString());
 

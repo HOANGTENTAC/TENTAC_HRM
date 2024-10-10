@@ -92,7 +92,7 @@ namespace TENTAC_HRM
         }
         private void load_nv_moi()
         {
-            string sql = "select ma_nhan_vien,ho_ten,ngay_vao_lam from hrm_nhan_vien where datediff(day,ngay_vao_lam,GETDATE()) <= 10";
+            string sql = "select manhanvien,hoten,ngayvaolam from tbl_NhanVien where datediff(day,ngayvaolam,GETDATE()) <= 10";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -100,9 +100,9 @@ namespace TENTAC_HRM
                 pl_nv_moi.Visible = true;
                 foreach (DataRow item in dt.Rows)
                 {
-                    ListViewItem item2 = new ListViewItem(item["ma_nhan_vien"].ToString());
-                    item2.SubItems.Add(item["ho_ten"].ToString());
-                    item2.SubItems.Add(DateTime.Parse(item["ngay_vao_lam"].ToString()).ToString("yyyy/MM/dd"));
+                    ListViewItem item2 = new ListViewItem(item["manhanvien"].ToString());
+                    item2.SubItems.Add(item["hoten"].ToString());
+                    item2.SubItems.Add(DateTime.Parse(item["ngayvaolam"].ToString()).ToString("yyyy/MM/dd"));
 
                     lv_nv_moi.Items.Add(item2);
                 }
@@ -117,7 +117,7 @@ namespace TENTAC_HRM
 
         private void load_sinhnhat()
         {
-            string sql = "select ma_nhan_vien,ho_ten,ngay_sinh from hrm_nhan_vien where MONTH(ngay_sinh) = MONTH(GETDATE())";
+            string sql = "select MaNhanVien,HoTen,NgaySinh from tbl_NhanVien where MONTH(NgaySinh) = MONTH(GETDATE())";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -125,9 +125,9 @@ namespace TENTAC_HRM
                 pl_sn.Visible = true;
                 foreach (DataRow item in dt.Rows)
                 {
-                    ListViewItem item2 = new ListViewItem(item["ma_nhan_vien"].ToString());
-                    item2.SubItems.Add(item["ho_ten"].ToString());
-                    item2.SubItems.Add(DateTime.Parse(item["ngay_sinh"].ToString()).ToString("yyyy/MM/dd"));
+                    ListViewItem item2 = new ListViewItem(item["MaNhanVien"].ToString());
+                    item2.SubItems.Add(item["HoTen"].ToString());
+                    item2.SubItems.Add(DateTime.Parse(item["NgaySinh"].ToString()).ToString("yyyy/MM/dd"));
 
                     lv_sinhnhat.Items.Add(item2);
                 }
@@ -141,8 +141,8 @@ namespace TENTAC_HRM
         }
         private void load_ngayhet_hopdong()
         {
-            string sql = "select nhanvien.ma_nhan_vien,nhanvien.ho_ten,a.den_ngay as ngay_het_han from hrm_nhan_vien nhanvien " +
-                "left join [hrm_nhanvien_hopdong] a on a.ma_nhan_vien = nhanvien.ma_nhan_vien " +
+            string sql = "select nhanvien.MaNhanVien,nhanvien.HoTen,a.den_ngay as ngay_het_han from tbl_NhanVien nhanvien " +
+                "left join [hrm_nhanvien_hopdong] a on a.ma_nhan_vien = nhanvien.MaNhanVien " +
                 "join hrm_loai_hop_dong b on a.id_loai_hop_dong = b.id_loai_hop_dong and b.id_loai_hop_dong in (2,3) " +
                 "where datediff(day,GETDATE(),a.den_ngay) <= 10";
             DataTable dt = new DataTable();
@@ -152,8 +152,8 @@ namespace TENTAC_HRM
                 pl_hopdong.Visible = true;
                 foreach (DataRow item in dt.Rows)
                 {
-                    ListViewItem item2 = new ListViewItem(item["ma_nhan_vien"].ToString());
-                    item2.SubItems.Add(item["ho_ten"].ToString());
+                    ListViewItem item2 = new ListViewItem(item["MaNhanVien"].ToString());
+                    item2.SubItems.Add(item["hoten"].ToString());
                     item2.SubItems.Add(DateTime.Parse(item["ngay_het_han"].ToString()).ToString("yyyy/MM/dd"));
 
                     lv_hopdong_hethan.Items.Add(item2);

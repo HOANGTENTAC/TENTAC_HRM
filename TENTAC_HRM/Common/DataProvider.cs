@@ -13,7 +13,7 @@ namespace TENTAC_HRM
     {
         public DataTable load_nhanvien()
         {
-            string sql = "select ma_nhan_vien as value,ho_ten as name from hrm_nhan_vien";
+            string sql = "select MaNhanVien as value,HoTen as name from tbl_NhanNVien";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -30,14 +30,14 @@ namespace TENTAC_HRM
         }
         public DataTable load_tinh()
         {
-            string sql = "select id_dia_chi,ten_dia_chi from hrm_dia_chi where loai_dia_chi = 22";
+            string sql = "select Id,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;
         }
         public DataTable load_dantoc()
         {
-            string sql = "SELECT id_dan_toc as id, ten_dan_toc as name from hrm_dan_toc where del_flg = 0";
+            string sql = "SELECT id, TenDanToc as name from mst_DanToc where del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -58,11 +58,11 @@ namespace TENTAC_HRM
         /// <returns></returns>
         public DataTable load_diachi(int id)
         {
-            string sql = string.Format("select id_dia_chi as id, ma_dia_chi + ' - ' + ten_dia_chi as name from hrm_dia_chi where del_flg = 0 and loai_dia_chi = '{0}'", id);
+            string sql = string.Format("select Id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where del_flg = 0 and LoaiDiaChi = '{0}'", id);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable();
         }
         /// <summary>
         /// 1 trạng thái công việc
@@ -81,7 +81,8 @@ namespace TENTAC_HRM
         /// <returns></returns>
         public DataTable load_all_type(int id)
         {
-            string sql = string.Format("select type_id as id,case when type_name_short is null then '' else type_name_short + ' ' end + type_name as name from sys_all_type where type_type = {0}", id);
+            string sql = string.Format("select TypeId as id,case when TypeNameShort is null then '' else TypeNameShort + ' ' end + TypeName as name " +
+                "from sys_AllType where TypeType = {0}", id);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -89,7 +90,7 @@ namespace TENTAC_HRM
         }
         public DataTable load_loainghiviec()
         {
-            string sql = string.Format("select type_id as id,type_name as name from sys_all_type where type_type = 1 and type_name_short = 'NGV'");
+            string sql = string.Format("select TypeId as id,TypeName as name from sys_AllType where TypeType = 1 and TypeNameShort = 'NGV'");
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -121,9 +122,9 @@ namespace TENTAC_HRM
         }
         public DataTable load_report_to()
         {
-            string sql = "select a.ma_nhan_vien as id, a.ho_ten as name, c.ten_chuc_vu from hrm_nhan_vien a " +
-                "join nhanvien_phongban b on a.ma_nhan_vien = b.ma_nhan_vien " +
-                "join chuc_vu c on c.ma_chuc_vu = b.ma_chuc_vu";
+            string sql = "select a.MaNhanVien as id, a.HoTen as name, b.TenChucVu " +
+                "from tbl_NhanVien a " +
+                "join mst_ChucVu b on b.MaChucVu = a.MaChucVu";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");

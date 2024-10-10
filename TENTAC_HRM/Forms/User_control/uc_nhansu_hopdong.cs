@@ -47,10 +47,10 @@ namespace TENTAC_HRM.User_control
             DataRowView vrow = (DataRowView)cbo_loai_hopdong.SelectedItem;
             string row = vrow.Row.ItemArray[0].ToString();
 
-            string sql = "select rownumber,id_hop_dong,ma_nhan_vien,so_hop_dong,ho_lot,ten,loai_hop_dong,thoi_gian,ngay_ky,tu_ngay,den_ngay,nguoi_ky,ghi_chu,id_loai_hop_dong into ##tblTemp from view_nhanvien_hopdong";
+            string sql = "select rownumber,Id,manhanvien,sohopdong,holot,ten,loaihopdong,thoigian,ngayky,tungay,denngay,nguoiky,ghichu,id_loaihopdong into ##tblTemp from view_nhanvien_hopdong";
             if (row != "0")
             {
-                sql = sql + string.Format(" where id_loai_hop_dong = {0}", row);
+                sql = sql + string.Format(" where id_loaihopdong = {0}", row);
             }
             DataSet dt = new DataSet();
             dt = SQLHelper.ExecuteDs("getnhanvienpaging " + pageIndex + "," + PageSize + ",N'" + sql + "'");

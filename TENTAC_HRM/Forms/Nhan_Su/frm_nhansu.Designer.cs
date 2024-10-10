@@ -477,7 +477,7 @@
             this.btn_exit.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_exit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(63, 29);
+            this.btn_exit.Size = new System.Drawing.Size(56, 29);
             this.btn_exit.Text = "Đóng";
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
@@ -495,7 +495,7 @@
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.txt_search_ten,
@@ -521,7 +521,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(51, 29);
+            this.toolStripLabel1.Size = new System.Drawing.Size(43, 29);
             this.toolStripLabel1.Text = "Họ tên";
             // 
             // txt_search_ten
@@ -534,7 +534,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(76, 29);
+            this.toolStripLabel2.Size = new System.Drawing.Size(65, 29);
             this.toolStripLabel2.Text = "Phòng ban";
             // 
             // toolStripComboBox1
@@ -545,7 +545,7 @@
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(70, 29);
+            this.toolStripLabel3.Size = new System.Drawing.Size(59, 29);
             this.toolStripLabel3.Text = "Trạng thái";
             // 
             // cbo_trang_thai
@@ -556,7 +556,7 @@
             // toolStripLabel4
             // 
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(42, 29);
+            this.toolStripLabel4.Size = new System.Drawing.Size(36, 29);
             this.toolStripLabel4.Text = "Show";
             // 
             // cbo_pagenumber
@@ -567,7 +567,7 @@
             // toolStripLabel5
             // 
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(50, 29);
+            this.toolStripLabel5.Size = new System.Drawing.Size(42, 29);
             this.toolStripLabel5.Text = "Entries";
             // 
             // toolStripSeparator1
@@ -580,7 +580,7 @@
             this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.plus;
             this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(63, 29);
+            this.btn_add.Size = new System.Drawing.Size(57, 29);
             this.btn_add.Text = "Thêm";
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
@@ -589,7 +589,7 @@
             this.btn_edit.Image = global::TENTAC_HRM.Properties.Resources.pen;
             this.btn_edit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_edit.Name = "btn_edit";
-            this.btn_edit.Size = new System.Drawing.Size(51, 29);
+            this.btn_edit.Size = new System.Drawing.Size(46, 29);
             this.btn_edit.Text = "Sửa";
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
@@ -598,7 +598,7 @@
             this.toolStripButton3.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(52, 29);
+            this.toolStripButton3.Size = new System.Drawing.Size(47, 29);
             this.toolStripButton3.Text = "Xóa";
             // 
             // btn_transfer
@@ -606,7 +606,7 @@
             this.btn_transfer.Image = global::TENTAC_HRM.Properties.Resources.data_transfer;
             this.btn_transfer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_transfer.Name = "btn_transfer";
-            this.btn_transfer.Size = new System.Drawing.Size(76, 29);
+            this.btn_transfer.Size = new System.Drawing.Size(68, 29);
             this.btn_transfer.Text = "Chuyển";
             this.btn_transfer.Click += new System.EventHandler(this.btn_transfer_Click);
             // 
