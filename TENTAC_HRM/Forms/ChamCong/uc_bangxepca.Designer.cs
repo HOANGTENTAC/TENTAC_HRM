@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.ChamCong
+﻿namespace TENTAC_HRM.Forms.ChamCong
 {
     partial class uc_bangxepca
     {
@@ -48,14 +48,14 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.btn_refresh = new System.Windows.Forms.ToolStripButton();
             this.btn_close = new System.Windows.Forms.ToolStripButton();
-            this.dgv_xepca = new System.Windows.Forms.DataGridView();
+            this.dgv_xepca = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.txt_info = new System.Windows.Forms.ToolStripLabel();
             this.lb_count_nv = new System.Windows.Forms.ToolStripLabel();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chk_col = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.d2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.d3 = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -179,6 +179,7 @@
             // 
             // txt_search
             // 
+            this.txt_search.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txt_search.Name = "txt_search";
             this.txt_search.Size = new System.Drawing.Size(160, 25);
             // 
@@ -266,7 +267,7 @@
             this.id,
             this.chk_col,
             this.MaChamCong,
-            this.hoten,
+            this.TenNhanVien,
             this.d1,
             this.d2,
             this.d3,
@@ -352,12 +353,12 @@
             this.MaChamCong.Name = "MaChamCong";
             this.MaChamCong.Width = 70;
             // 
-            // hoten
+            // TenNhanVien
             // 
-            this.hoten.DataPropertyName = "hoten";
-            this.hoten.HeaderText = "Tên nhân viên";
-            this.hoten.Name = "hoten";
-            this.hoten.Width = 150;
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            this.TenNhanVien.Width = 150;
             // 
             // d1
             // 
@@ -615,7 +616,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton btn_refresh;
         private System.Windows.Forms.ToolStripButton btn_close;
-        private System.Windows.Forms.DataGridView dgv_xepca;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgv_xepca;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripComboBox cbo_phongban;
         private System.Windows.Forms.ToolStrip toolStrip2;
@@ -626,7 +627,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chk_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaChamCong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hoten;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
         private System.Windows.Forms.DataGridViewComboBoxColumn d1;
         private System.Windows.Forms.DataGridViewComboBoxColumn d2;
         private System.Windows.Forms.DataGridViewComboBoxColumn d3;

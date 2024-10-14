@@ -34,14 +34,6 @@
             this.tb_dashboard = new System.Windows.Forms.TabPage();
             this.pl_dashboard = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
-            this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.trợGiúpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_exit = new FontAwesome.Sharp.IconMenuItem();
-            this.btn_maxximize = new FontAwesome.Sharp.IconMenuItem();
-            this.btn_minimize = new FontAwesome.Sharp.IconMenuItem();
-            this.btn_notifi = new FontAwesome.Sharp.IconMenuItem();
             this.tm_menu_left = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -93,23 +85,20 @@
             this.menustrip_tabpage = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btn_close_all = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAllButThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_setting = new TENTAC_HRM.Custom.RJButton();
-            this.btn_sodo_chucnang = new TENTAC_HRM.Custom.RJButton();
-            this.btn_bangxepca = new TENTAC_HRM.Custom.RJButton();
-            this.btn_luong = new TENTAC_HRM.Custom.RJButton();
-            this.btn_maychamcong = new TENTAC_HRM.Custom.RJButton();
-            this.btn_timekeeper = new TENTAC_HRM.Custom.RJButton();
-            this.btn_quatrinh = new TENTAC_HRM.Custom.RJButton();
-            this.btn_nhansu = new TENTAC_HRM.Custom.RJButton();
-            this.btn_category = new TENTAC_HRM.Custom.RJButton();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
+            this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trợGiúpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_exit = new FontAwesome.Sharp.IconMenuItem();
+            this.btn_maxximize = new FontAwesome.Sharp.IconMenuItem();
+            this.btn_minimize = new FontAwesome.Sharp.IconMenuItem();
+            this.btn_notifi = new FontAwesome.Sharp.IconMenuItem();
             this.tb_main.SuspendLayout();
             this.tb_dashboard.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pl_menu_left.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -123,6 +112,7 @@
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.menustrip_tabpage.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_main
@@ -167,98 +157,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuStrip1.BackgroundImage")));
-            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iconMenuItem1,
-            this.hệThốngToolStripMenuItem,
-            this.trợGiúpToolStripMenuItem,
-            this.btn_exit,
-            this.btn_maxximize,
-            this.btn_minimize,
-            this.btn_notifi});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1240, 30);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
-            // 
-            // iconMenuItem1
-            // 
-            this.iconMenuItem1.AutoSize = false;
-            this.iconMenuItem1.BackColor = System.Drawing.Color.Transparent;
-            this.iconMenuItem1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconMenuItem1.BackgroundImage")));
-            this.iconMenuItem1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.iconMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.iconMenuItem1.Enabled = false;
-            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(28, 26);
-            // 
-            // hệThốngToolStripMenuItem
-            // 
-            this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
-            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(71, 28);
-            this.hệThốngToolStripMenuItem.Text = "Hệ Thống";
-            // 
-            // trợGiúpToolStripMenuItem
-            // 
-            this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
-            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
-            this.trợGiúpToolStripMenuItem.Text = "Trợ giúp";
-            // 
-            // btn_exit
-            // 
-            this.btn_exit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_exit.IconChar = FontAwesome.Sharp.IconChar.Xmark;
-            this.btn_exit.IconColor = System.Drawing.Color.Black;
-            this.btn_exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(28, 28);
-            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
-            // 
-            // btn_maxximize
-            // 
-            this.btn_maxximize.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_maxximize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btn_maxximize.IconChar = FontAwesome.Sharp.IconChar.Clone;
-            this.btn_maxximize.IconColor = System.Drawing.Color.Black;
-            this.btn_maxximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_maxximize.Name = "btn_maxximize";
-            this.btn_maxximize.Size = new System.Drawing.Size(28, 28);
-            this.btn_maxximize.Click += new System.EventHandler(this.btn_maxximize_Click);
-            // 
-            // btn_minimize
-            // 
-            this.btn_minimize.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_minimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
-            this.btn_minimize.IconColor = System.Drawing.Color.Black;
-            this.btn_minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_minimize.Name = "btn_minimize";
-            this.btn_minimize.Size = new System.Drawing.Size(28, 28);
-            this.btn_minimize.Click += new System.EventHandler(this.btn_minimize_Click);
-            // 
-            // btn_notifi
-            // 
-            this.btn_notifi.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_notifi.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
-            this.btn_notifi.ForeColor = System.Drawing.Color.Red;
-            this.btn_notifi.IconChar = FontAwesome.Sharp.IconChar.Bell;
-            this.btn_notifi.IconColor = System.Drawing.Color.Black;
-            this.btn_notifi.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btn_notifi.Name = "btn_notifi";
-            this.btn_notifi.Size = new System.Drawing.Size(41, 28);
-            this.btn_notifi.Text = "0";
-            this.btn_notifi.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.btn_notifi.Click += new System.EventHandler(this.btn_notifi_Click);
-            // 
             // tm_menu_left
             // 
             this.tm_menu_left.Interval = 5;
@@ -295,7 +193,7 @@
             this.pl_menu_left.MinimumSize = new System.Drawing.Size(63, 0);
             this.pl_menu_left.Name = "pl_menu_left";
             this.pl_menu_left.Padding = new System.Windows.Forms.Padding(1);
-            this.pl_menu_left.Size = new System.Drawing.Size(63, 0);
+            this.pl_menu_left.Size = new System.Drawing.Size(63, 783);
             this.pl_menu_left.TabIndex = 6;
             // 
             // splitContainer1
@@ -314,15 +212,6 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
-            this.splitContainer1.Panel2.Controls.Add(this.btn_setting);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_sodo_chucnang);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_bangxepca);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_luong);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_maychamcong);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_timekeeper);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_quatrinh);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_nhansu);
-            this.splitContainer1.Panel2.Controls.Add(this.btn_category);
             this.splitContainer1.Size = new System.Drawing.Size(61, 753);
             this.splitContainer1.SplitterDistance = 240;
             this.splitContainer1.TabIndex = 1;
@@ -804,222 +693,97 @@
             this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
             this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.btn_close_all_but_this_Click);
             // 
-            // btn_setting
+            // menuStrip1
             // 
-            this.btn_setting.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_setting.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_setting.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_setting.BorderRadius = 0;
-            this.btn_setting.BorderSize = 0;
-            this.btn_setting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_setting.FlatAppearance.BorderSize = 0;
-            this.btn_setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_setting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_setting.ForeColor = System.Drawing.Color.White;
-            this.btn_setting.Image = ((System.Drawing.Image)(resources.GetObject("btn_setting.Image")));
-            this.btn_setting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_setting.Location = new System.Drawing.Point(0, 448);
-            this.btn_setting.Name = "btn_setting";
-            this.btn_setting.Size = new System.Drawing.Size(61, 56);
-            this.btn_setting.TabIndex = 8;
-            this.btn_setting.TextColor = System.Drawing.Color.White;
-            this.btn_setting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_setting.UseVisualStyleBackColor = false;
-            this.btn_setting.Click += new System.EventHandler(this.btn_setting_Click);
+            this.menuStrip1.AutoSize = false;
+            this.menuStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("menuStrip1.BackgroundImage")));
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iconMenuItem1,
+            this.hệThốngToolStripMenuItem,
+            this.trợGiúpToolStripMenuItem,
+            this.btn_exit,
+            this.btn_maxximize,
+            this.btn_minimize,
+            this.btn_notifi});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1240, 30);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
             // 
-            // btn_sodo_chucnang
+            // iconMenuItem1
             // 
-            this.btn_sodo_chucnang.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_sodo_chucnang.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_sodo_chucnang.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_sodo_chucnang.BorderRadius = 0;
-            this.btn_sodo_chucnang.BorderSize = 1;
-            this.btn_sodo_chucnang.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_sodo_chucnang.FlatAppearance.BorderSize = 0;
-            this.btn_sodo_chucnang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sodo_chucnang.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_sodo_chucnang.ForeColor = System.Drawing.Color.White;
-            this.btn_sodo_chucnang.Image = ((System.Drawing.Image)(resources.GetObject("btn_sodo_chucnang.Image")));
-            this.btn_sodo_chucnang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_sodo_chucnang.Location = new System.Drawing.Point(0, 392);
-            this.btn_sodo_chucnang.Name = "btn_sodo_chucnang";
-            this.btn_sodo_chucnang.Size = new System.Drawing.Size(61, 56);
-            this.btn_sodo_chucnang.TabIndex = 7;
-            this.btn_sodo_chucnang.TextColor = System.Drawing.Color.White;
-            this.btn_sodo_chucnang.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_sodo_chucnang.UseVisualStyleBackColor = false;
-            this.btn_sodo_chucnang.Click += new System.EventHandler(this.btn_sodo_chucnang_Click);
+            this.iconMenuItem1.AutoSize = false;
+            this.iconMenuItem1.BackColor = System.Drawing.Color.Transparent;
+            this.iconMenuItem1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconMenuItem1.BackgroundImage")));
+            this.iconMenuItem1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.iconMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.iconMenuItem1.Enabled = false;
+            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
+            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuItem1.Name = "iconMenuItem1";
+            this.iconMenuItem1.Size = new System.Drawing.Size(28, 26);
             // 
-            // btn_bangxepca
+            // hệThốngToolStripMenuItem
             // 
-            this.btn_bangxepca.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_bangxepca.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_bangxepca.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_bangxepca.BorderRadius = 0;
-            this.btn_bangxepca.BorderSize = 0;
-            this.btn_bangxepca.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_bangxepca.FlatAppearance.BorderSize = 0;
-            this.btn_bangxepca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_bangxepca.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_bangxepca.ForeColor = System.Drawing.Color.White;
-            this.btn_bangxepca.Image = ((System.Drawing.Image)(resources.GetObject("btn_bangxepca.Image")));
-            this.btn_bangxepca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_bangxepca.Location = new System.Drawing.Point(0, 336);
-            this.btn_bangxepca.Name = "btn_bangxepca";
-            this.btn_bangxepca.Size = new System.Drawing.Size(61, 56);
-            this.btn_bangxepca.TabIndex = 6;
-            this.btn_bangxepca.TextColor = System.Drawing.Color.White;
-            this.btn_bangxepca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_bangxepca.UseVisualStyleBackColor = false;
-            this.btn_bangxepca.Click += new System.EventHandler(this.btn_bangxepca_Click);
-            this.btn_bangxepca.MouseHover += new System.EventHandler(this.btn_bangxepca_MouseHover);
+            this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
+            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(71, 28);
+            this.hệThốngToolStripMenuItem.Text = "Hệ Thống";
             // 
-            // btn_luong
+            // trợGiúpToolStripMenuItem
             // 
-            this.btn_luong.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_luong.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_luong.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_luong.BorderRadius = 0;
-            this.btn_luong.BorderSize = 1;
-            this.btn_luong.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_luong.FlatAppearance.BorderSize = 0;
-            this.btn_luong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_luong.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_luong.ForeColor = System.Drawing.Color.White;
-            this.btn_luong.Image = ((System.Drawing.Image)(resources.GetObject("btn_luong.Image")));
-            this.btn_luong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_luong.Location = new System.Drawing.Point(0, 280);
-            this.btn_luong.Name = "btn_luong";
-            this.btn_luong.Size = new System.Drawing.Size(61, 56);
-            this.btn_luong.TabIndex = 5;
-            this.btn_luong.TextColor = System.Drawing.Color.White;
-            this.btn_luong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_luong.UseVisualStyleBackColor = false;
-            this.btn_luong.Click += new System.EventHandler(this.btn_luong_Click);
-            this.btn_luong.MouseHover += new System.EventHandler(this.btn_luong_MouseHover);
+            this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
+            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
+            this.trợGiúpToolStripMenuItem.Text = "Trợ giúp";
             // 
-            // btn_maychamcong
+            // btn_exit
             // 
-            this.btn_maychamcong.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_maychamcong.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_maychamcong.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_maychamcong.BorderRadius = 0;
-            this.btn_maychamcong.BorderSize = 0;
-            this.btn_maychamcong.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_maychamcong.FlatAppearance.BorderSize = 0;
-            this.btn_maychamcong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_maychamcong.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_maychamcong.ForeColor = System.Drawing.Color.White;
-            this.btn_maychamcong.Image = ((System.Drawing.Image)(resources.GetObject("btn_maychamcong.Image")));
-            this.btn_maychamcong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_maychamcong.Location = new System.Drawing.Point(0, 224);
-            this.btn_maychamcong.Name = "btn_maychamcong";
-            this.btn_maychamcong.Size = new System.Drawing.Size(61, 56);
-            this.btn_maychamcong.TabIndex = 4;
-            this.btn_maychamcong.TextColor = System.Drawing.Color.White;
-            this.btn_maychamcong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_maychamcong.UseVisualStyleBackColor = false;
-            this.btn_maychamcong.Click += new System.EventHandler(this.btn_maychamcong_Click);
-            this.btn_maychamcong.MouseHover += new System.EventHandler(this.btn_maychamcong_MouseHover);
+            this.btn_exit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_exit.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.btn_exit.IconColor = System.Drawing.Color.Black;
+            this.btn_exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_exit.Name = "btn_exit";
+            this.btn_exit.Size = new System.Drawing.Size(28, 28);
+            this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
-            // btn_timekeeper
+            // btn_maxximize
             // 
-            this.btn_timekeeper.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_timekeeper.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_timekeeper.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_timekeeper.BorderRadius = 0;
-            this.btn_timekeeper.BorderSize = 1;
-            this.btn_timekeeper.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_timekeeper.FlatAppearance.BorderSize = 0;
-            this.btn_timekeeper.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_timekeeper.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_timekeeper.ForeColor = System.Drawing.Color.White;
-            this.btn_timekeeper.Image = ((System.Drawing.Image)(resources.GetObject("btn_timekeeper.Image")));
-            this.btn_timekeeper.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_timekeeper.Location = new System.Drawing.Point(0, 168);
-            this.btn_timekeeper.Name = "btn_timekeeper";
-            this.btn_timekeeper.Size = new System.Drawing.Size(61, 56);
-            this.btn_timekeeper.TabIndex = 3;
-            this.btn_timekeeper.TextColor = System.Drawing.Color.White;
-            this.btn_timekeeper.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_timekeeper.UseVisualStyleBackColor = false;
-            this.btn_timekeeper.Click += new System.EventHandler(this.btn_timekeeper_Click);
-            this.btn_timekeeper.MouseHover += new System.EventHandler(this.btn_timekeeper_MouseHover);
+            this.btn_maxximize.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_maxximize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btn_maxximize.IconChar = FontAwesome.Sharp.IconChar.Clone;
+            this.btn_maxximize.IconColor = System.Drawing.Color.Black;
+            this.btn_maxximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_maxximize.Name = "btn_maxximize";
+            this.btn_maxximize.Size = new System.Drawing.Size(28, 28);
+            this.btn_maxximize.Click += new System.EventHandler(this.btn_maxximize_Click);
             // 
-            // btn_quatrinh
+            // btn_minimize
             // 
-            this.btn_quatrinh.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_quatrinh.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_quatrinh.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_quatrinh.BorderRadius = 0;
-            this.btn_quatrinh.BorderSize = 0;
-            this.btn_quatrinh.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_quatrinh.FlatAppearance.BorderSize = 0;
-            this.btn_quatrinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_quatrinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_quatrinh.ForeColor = System.Drawing.Color.White;
-            this.btn_quatrinh.Image = ((System.Drawing.Image)(resources.GetObject("btn_quatrinh.Image")));
-            this.btn_quatrinh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_quatrinh.Location = new System.Drawing.Point(0, 112);
-            this.btn_quatrinh.Name = "btn_quatrinh";
-            this.btn_quatrinh.Size = new System.Drawing.Size(61, 56);
-            this.btn_quatrinh.TabIndex = 2;
-            this.btn_quatrinh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_quatrinh.TextColor = System.Drawing.Color.White;
-            this.btn_quatrinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_quatrinh.UseVisualStyleBackColor = false;
-            this.btn_quatrinh.Click += new System.EventHandler(this.btn_quatrinh_Click);
-            this.btn_quatrinh.MouseHover += new System.EventHandler(this.btn_quatrinh_MouseHover);
+            this.btn_minimize.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_minimize.IconChar = FontAwesome.Sharp.IconChar.Minus;
+            this.btn_minimize.IconColor = System.Drawing.Color.Black;
+            this.btn_minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_minimize.Name = "btn_minimize";
+            this.btn_minimize.Size = new System.Drawing.Size(28, 28);
+            this.btn_minimize.Click += new System.EventHandler(this.btn_minimize_Click);
             // 
-            // btn_nhansu
+            // btn_notifi
             // 
-            this.btn_nhansu.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_nhansu.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_nhansu.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_nhansu.BorderRadius = 0;
-            this.btn_nhansu.BorderSize = 1;
-            this.btn_nhansu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_nhansu.FlatAppearance.BorderSize = 0;
-            this.btn_nhansu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nhansu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_nhansu.ForeColor = System.Drawing.Color.White;
-            this.btn_nhansu.Image = ((System.Drawing.Image)(resources.GetObject("btn_nhansu.Image")));
-            this.btn_nhansu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_nhansu.Location = new System.Drawing.Point(0, 56);
-            this.btn_nhansu.Name = "btn_nhansu";
-            this.btn_nhansu.Size = new System.Drawing.Size(61, 56);
-            this.btn_nhansu.TabIndex = 1;
-            this.btn_nhansu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_nhansu.TextColor = System.Drawing.Color.White;
-            this.btn_nhansu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_nhansu.UseVisualStyleBackColor = false;
-            this.btn_nhansu.Click += new System.EventHandler(this.btn_nhansu_Click);
-            this.btn_nhansu.MouseHover += new System.EventHandler(this.btn_nhansu_MouseHover);
-            // 
-            // btn_category
-            // 
-            this.btn_category.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_category.BackGroundColor = System.Drawing.Color.CornflowerBlue;
-            this.btn_category.BorderColor = System.Drawing.Color.LightSkyBlue;
-            this.btn_category.BorderRadius = 0;
-            this.btn_category.BorderSize = 0;
-            this.btn_category.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_category.FlatAppearance.BorderSize = 0;
-            this.btn_category.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_category.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.btn_category.ForeColor = System.Drawing.Color.White;
-            this.btn_category.Image = ((System.Drawing.Image)(resources.GetObject("btn_category.Image")));
-            this.btn_category.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_category.Location = new System.Drawing.Point(0, 0);
-            this.btn_category.Name = "btn_category";
-            this.btn_category.Size = new System.Drawing.Size(61, 56);
-            this.btn_category.TabIndex = 0;
-            this.btn_category.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_category.TextColor = System.Drawing.Color.White;
-            this.btn_category.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_category.UseVisualStyleBackColor = false;
-            this.btn_category.Click += new System.EventHandler(this.btn_category_Click);
-            this.btn_category.MouseHover += new System.EventHandler(this.btn_category_MouseHover);
+            this.btn_notifi.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_notifi.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.btn_notifi.ForeColor = System.Drawing.Color.Red;
+            this.btn_notifi.IconChar = FontAwesome.Sharp.IconChar.Bell;
+            this.btn_notifi.IconColor = System.Drawing.Color.Black;
+            this.btn_notifi.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_notifi.Name = "btn_notifi";
+            this.btn_notifi.Size = new System.Drawing.Size(41, 28);
+            this.btn_notifi.Text = "0";
+            this.btn_notifi.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btn_notifi.Click += new System.EventHandler(this.btn_notifi_Click);
             // 
             // frm_home
             // 
@@ -1040,13 +804,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_home_KeyDown);
             this.tb_main.ResumeLayout(false);
             this.tb_dashboard.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.pl_menu_left.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -1062,6 +823,8 @@
             this.panel5.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.menustrip_tabpage.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1130,15 +893,6 @@
         private System.Windows.Forms.ContextMenuStrip menustrip_tabpage;
         private System.Windows.Forms.ToolStripMenuItem btn_close_all;
         private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
-        private Custom.RJButton btn_setting;
-        private Custom.RJButton btn_sodo_chucnang;
-        private Custom.RJButton btn_bangxepca;
-        private Custom.RJButton btn_luong;
-        private Custom.RJButton btn_maychamcong;
-        private Custom.RJButton btn_timekeeper;
-        private Custom.RJButton btn_quatrinh;
-        private Custom.RJButton btn_nhansu;
-        private Custom.RJButton btn_category;
     }
 }
 

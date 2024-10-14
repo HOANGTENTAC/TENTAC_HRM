@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.ChamCong
+namespace TENTAC_HRM.Forms.ChamCong
 {
     public partial class frm_chinhsua_ca : Form
     {

@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page {
+            size: 7in 9.25in;
+            margin: 27mm 16mm 27mm 16mm;
+        }
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            border: 0px;
+            margin-top: -1px;
+            line-height: 1.122070;
+            font-style: normal;
+            font-weight: normal;
+            visibility: visible;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+/*        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }*/
+
+/*        #customers tr:hover {
+            background-color: #ddd;
+        }*/
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #E1F2FD;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h3 style="color: red; text-align: center; margin-bottom: 2px;">PHIẾU LƯƠNG THÁNG</h3>
+    <h3 style="color: red; text-align: center; margin-top: 0;">[Thang]</h3>
+    <table id="customers">
+        <tr>
+            <th colspan="4" style="color: red">A - Thông tin công nhân viên</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">1. ID:</td>
+            <td width="25%" style="text-align:right">[ID]</td>
+            <td width="25%">6. Tại ngân hàng:</td>
+            <td width="25%" style="text-align:right">[NganHang]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">2. Họ và tên:</td>
+            <td width="25%"style="text-align:right">[HoTen]</td>
+            <td width="25%">7. Email:</td>
+            <td width="25%"style="text-align:right">[Email]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">3. Bộ phận:</td>
+            <td width="25%"style="text-align:right">[BoPhan]</td>
+            <td width="25%">8. Ngày trả lương</td>
+            <td width="25%" style="text-align:right">[NgayTraLuong]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">4. Chức vụ: Nhân viên</td>
+            <td width="25%"style="text-align:right">[ChucVu]</td>
+            <td width="25%">9. Ngày phép còn lại</td>
+            <td width="25%" style="text-align:right">[NgayPhepConLai]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">5. Số tài khoản</td>
+            <td width="25%" style="text-align:right">[STK]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+    </table>
+    <table id="customers">
+        <tr>
+            <th colspan="2" style="color: red; border-right: 0">B - Lương theo hợp đồng lao động</th>
+            <th colspan="2" style="color: red; border-left: 0;text-align: right">[LuongTheoHopDong]</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">1. Lương cơ bản:</td>
+            <td width="25%" style="text-align:right">[LuongCoban]</td>
+            <td width="25%">6 .TC đi lại:</td>
+            <td width="25%" style="text-align:right">[TC_DiLai]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">2. TC trách nhiệm:</td>
+            <td width="25%" style="text-align:right">[TC_TrachNhiem]</td>
+            <td width="25%">7. TC chuyên cần:</td>
+            <td width="25%" style="text-align:right">[TC_ChuyenCan]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">3. TC độc hại:</td>
+            <td width="25%" style="text-align:right">[TCDocHai]</td>
+            <td width="25%">8. TC khác:</td>
+            <td width="25%" style="text-align:right">[TC_Khac]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">4. TC xe nâng:</td>
+            <td width="25%" style="text-align:right">[TC_XeNang]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">5. TC nhà ở:</td>
+            <td width="25%" style="text-align:right">[TC_Nha]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+    </table>
+    <table id="customers">
+        <tr>
+            <th colspan="2" style="color: red; border-right: 0">C - Tổng thu nhập thực tế</th>
+            <th colspan="2" style="color: red; border-left: 0;text-align: right">[TongThuNhapThucTe]</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Công thử việc (ngày)</td>
+            <td width="25%" style="text-align:right; font-style: italic;">[CongThuViec]</td>
+            <td width="25%">9. TC trách nhiệm:</td>
+            <td width="25%" style="text-align:right">[TC_TrachNhiem_TT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">1. Lương thử việc:</td>
+            <td width="25%" style="text-align:right">[LuongThuViec]</td>
+            <td width="25%">10. TC độc hại:</td>
+            <td width="25%" style="text-align:right">[TC_DocHai_TT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Công làm chính thức:</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[CongLamChinhThuc]</td>
+            <td width="25%">11. TC kỹ năng, xe nâng:</td>
+            <td width="25%" style="text-align:right">[TC_KyNang]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">2. Lương chính thức:</td>
+            <td width="25%" style="text-align:right">[LuongChinhThuc]</td>
+            <td width="25%">12. TC nhà ở:</td>
+            <td width="25%" style="text-align:right">[TC_Nha_TT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Ca đêm 30% (h)</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[CaDem]</td>
+            <td width="25%">13. TC đi lại:</td>
+            <td width="25%" style="text-align:right">[TC_DiLai_TT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">3. Tiền ca đêm</td>
+            <td width="25%" style="text-align:right">[TienCaDem]</td>
+            <td width="25%">14. TC chuyên cần:</td>
+            <td width="25%" style="text-align:right">[TC_ChuyenCan_TT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Tăng ca 150% (h)</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[TangCa150]</td>
+            <td width="25%">15.TC PCCC</td>
+            <td width="25%" style="text-align:right">[TC_PCCC]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">4. Tiền Tăng ca 150%</td>
+            <td width="25%" style="text-align:right">[TienTangCa150]</td>
+            <td width="25%">16. TC gửi trẻ:</td>
+            <td width="25%" style="text-align:right">[TC_GuiTre]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Tăng ca 200% (h)</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[TangCa200]</td>
+            <td width="25%">17. TC ATVSV</td>
+            <td width="25%" style="text-align:right">[TC_ATVSV]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">5. Tiền Tăng ca 200%</td>
+            <td width="25%" style="text-align:right">[TienTangCa200]</td>
+            <td width="25%">18. TC phụ nữ:</td>
+            <td width="25%" style="text-align:right">[TC_PhuNu]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Tăng ca 210% (h)</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[TangCa210]</td>
+            <td width="25%">19. Tiền ăn ca:</td>
+            <td width="25%" style="text-align:right">[TienTangCa]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">6 .Tiền Tăng ca 210%</td>
+            <td width="25%" style="text-align:right">[TienTangCa210]</td>
+            <td width="25%">20. TC khác</td>
+            <td width="25%" style="text-align:right">[TC_Khac_TT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Tăng ca 270% (h)</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[TangCa270]</td>
+            <td width="25%">21. Điều chỉnh</td>
+            <td width="25%" style="text-align:right">[DieuChinh]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">7. Tiền Tăng ca 270%</td>
+            <td width="25%" style="text-align:right">[TienTangCa270]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="text-align: right; font-style: italic;">Tăng ca 300% (h)</td>
+            <td width="25%" style="text-align: right; font-style: italic;">[TangCa300]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">8. Tiền Tăng ca 300%</td>
+            <td width="25%" style="text-align:right">[TienTangCa300]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+    </table>
+    <table id="customers">
+        <tr>
+            <th colspan="4" style="color: red">Các khoản thu nhập khác:</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%" style="">Số ngày phép thừa:</td>
+            <td width="25%" style="text-align: right">[SoNgayPhepThua]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">Tiền phép thừa:</td>
+            <td width="25%" style="text-align:right">[TienPhepThua]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+    </table>
+    <table id="customers">
+        <tr>
+            <th colspan="4" style="color: red">D - Tiền thưởng</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">1. Lương cơ bản:</td>
+            <td width="25%" style="text-align:right">[LuongCoBan]</td>
+            <td width="25%">7. Số tiền thưởng:</td>
+            <td width="25%" style="text-align:right">[SoTienThuong]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">2. TC tính thưởng:</td>
+            <td width="25%" style="text-align:right">[TC_TinhThuong]</td>
+            <td width="25%">8. Ngày trả thưởng:</td>
+            <td width="25%" style="text-align:right">[NgayTraThuong]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">3. Căn cứ tính thưởng:</td>
+            <td width="25%" style="text-align:right">[CanCuTinhThuong]</td>
+            <td width="25%">9. Khác</td>
+            <td width="25%" style="text-align:right">[Khac]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">4. Xếp loại cuối cùng:</td>
+            <td width="25%" style="text-align:right">[XepLoaiCuoiCung]</td>
+            <td width="25%">10. Ghi chú:</td>
+            <td width="25%" style="text-align:right">[GhiChu]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">5. Tỷ lệ thưởng:</td>
+            <td width="25%" style="text-align:right">[TyLeThuong]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">6. Hệ số tính:</td>
+            <td width="25%" style="text-align:right">[HeSoTinh]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+    </table>
+    <table id="customers">
+        <tr>
+            <th colspan="2" style="color: red; border-right: 0">E - Tổng các khoản giảm trừ lương</th>
+            <th colspan="2" style="text-align: right; border-left: 0 ; color: red ">[TongCacKhoanGiamTruLuong]</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">1. Bảo hiểm bắt buộc:</td>
+            <td width="25%" style="text-align:right">[BaoHiemBatBuoc]</td>
+            <td width="25%">5. Qũy PCTT:</td>
+            <td width="25%" style="text-align:right">[QuyPCTT]</td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">2. Đoàn phí:</td>
+            <td width="25%" style="text-align:right">[DoanPhi]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">3. Thuế thu nhập cá nhân:</td>
+            <td width="25%" style="text-align:right">[TTNCN]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">4. Trừ khác:</td>
+            <td width="25%" style="text-align:right">[TruKhac]</td>
+            <td width="25%"></td>
+            <td width="25%"></td>
+        </tr>
+    </table>    
+    <table id="customers">
+        <tr>
+            <th style="color: red; border-right: 0">F - Thu nhập thực lĩnh</th>
+            <th style="text-align: right; color: red; border-left: 0">[ThuNhapThucLinh]</th>
+        </tr>
+        <tr style="font-size: 13px;">
+            <td width="25%">Ghi chú</td>
+            <td width="75%" style="text-align:right">[GhiChu]</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+

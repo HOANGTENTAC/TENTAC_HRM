@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TENTAC_HRM.Main
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class uc_sodo_chucnang : UserControl
     {
