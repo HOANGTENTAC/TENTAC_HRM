@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.User_control
+﻿namespace TENTAC_HRM.Forms.User_control
 {
     partial class uc_dashboard
     {

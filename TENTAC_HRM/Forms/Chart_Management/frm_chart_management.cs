@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using TENTAC_HRM.Chart_Management;
+using TENTAC_HRM.Forms.Chart_Management;
 
-namespace TENTAC_HRM
+namespace TENTAC_HRM.Forms.Chart_Management
 {
     public partial class frm_chart_management : Form
     {

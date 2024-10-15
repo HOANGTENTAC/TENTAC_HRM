@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Chart_Management
+﻿namespace TENTAC_HRM.Forms.Chart_Management
 {
     partial class uc_chuc_vu
     {

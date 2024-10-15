@@ -10,13 +10,13 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TENTAC_HRM.Category;
+using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 using TENTAC_HRM.Properties;
-using TENTAC_HRM.User_control;
+using TENTAC_HRM.Forms.User_control;
 
-namespace TENTAC_HRM
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class frm_personnel : Form
     {

@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.Cham_Cong
+namespace TENTAC_HRM.Forms.Cham_Cong
 {
     public partial class uc_nghiphep : UserControl
     {

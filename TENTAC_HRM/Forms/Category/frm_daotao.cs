@@ -2,9 +2,10 @@
 using System.Data;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.User_control;
+using TENTAC_HRM.Forms.Main;
+using TENTAC_HRM.Forms.User_control;
 
-namespace TENTAC_HRM.Category
+namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_daotao : Form
     {

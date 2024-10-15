@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Nhan_Su
+﻿namespace TENTAC_HRM.Forms.Nhan_Su
 {
     partial class frm_nhansu
     {

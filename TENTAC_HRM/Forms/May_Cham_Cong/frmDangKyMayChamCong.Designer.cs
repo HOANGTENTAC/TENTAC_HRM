@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.May_Cham_Cong
+﻿namespace TENTAC_HRM.Forms.May_Cham_Cong
 {
     partial class frmDangKyMayChamCong
     {

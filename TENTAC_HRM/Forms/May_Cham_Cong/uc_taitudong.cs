@@ -11,7 +11,7 @@ using TENTAC_HRM.DataTransferObject.MayChamCong;
 using TENTAC_HRM.Model;
 using zkemkeeper;
 
-namespace TENTAC_HRM.May_Cham_Cong
+namespace TENTAC_HRM.Forms.May_Cham_Cong
 {
     public partial class uc_taitudong : UserControl
     {

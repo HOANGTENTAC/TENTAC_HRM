@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.User_control;
 
-namespace TENTAC_HRM.Category
+namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_congtac : Form
     {

@@ -2,9 +2,9 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using TENTAC_HRM.Category;
+using TENTAC_HRM.Forms.Category;
 
-namespace TENTAC_HRM.User_control
+namespace TENTAC_HRM.Forms.User_control
 {
     public partial class uc_nhansu_hopdong : UserControl
     {

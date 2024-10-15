@@ -1,6 +1,6 @@
 ﻿using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.Luong
+namespace TENTAC_HRM.Forms.Luong
 {
     partial class uc_luongthang
     {

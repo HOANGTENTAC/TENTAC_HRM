@@ -3,13 +3,13 @@ using System.Data;
 using System.Net;
 using System.Windows.Forms;
 using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
-using TENTAC_HRM.ChamCong;
+using TENTAC_HRM.Forms.ChamCong;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.DataTransferObject.MayChamCong;
 using zkemkeeper;
 
-namespace TENTAC_HRM.May_Cham_Cong
+namespace TENTAC_HRM.Forms.May_Cham_Cong
 {
     public partial class uc_quanly_maychamcongnew : UserControl
     {

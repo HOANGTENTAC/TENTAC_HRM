@@ -8,8 +8,9 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Media;
 using TENTAC_HRM.Custom;
+using TENTAC_HRM.Forms.Main;
 
-namespace TENTAC_HRM.User_control
+namespace TENTAC_HRM.Forms.User_control
 {
     public partial class uc_nhan_su : UserControl
     {

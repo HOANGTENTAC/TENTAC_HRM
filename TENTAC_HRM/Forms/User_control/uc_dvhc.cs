@@ -1,16 +1,9 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Management;
 using System.Windows.Forms;
-using TENTAC_HRM.User_control;
 
 namespace TENTAC_HRM.Forms.User_control
 {
@@ -399,7 +392,7 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 new SqlParameter("@Id", id),
                 new SqlParameter("@NgayCapNhat", DateTime.Now),
-                new SqlParameter("@NguoiCapNhat", "") 
+                new SqlParameter("@NguoiCapNhat", "")
             };
             SQLHelper.ExecuteSql(sql, parameters.ToArray());
             load_data();

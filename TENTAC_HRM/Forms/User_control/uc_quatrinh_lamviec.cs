@@ -3,10 +3,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using TENTAC_HRM.Category;
+using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.User_control
+namespace TENTAC_HRM.Forms.User_control
 {
     public partial class uc_quatrinh_lamviec : UserControl
     {

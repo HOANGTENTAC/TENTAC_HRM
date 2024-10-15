@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using TENTAC_HRM.User_control;
+using TENTAC_HRM.Forms.User_control;
 
-namespace TENTAC_HRM
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class frm_main_uc : Form
     {

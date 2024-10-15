@@ -6,10 +6,11 @@ using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 using TENTAC_HRM.Properties;
-using TENTAC_HRM.Search;
-using TENTAC_HRM.User_control;
+using TENTAC_HRM.Forms.Search;
+using TENTAC_HRM.Forms.User_control;
+using TENTAC_HRM.Forms.Main;
 
-namespace TENTAC_HRM.Category
+namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_nhanvien_taisan : Form
     {

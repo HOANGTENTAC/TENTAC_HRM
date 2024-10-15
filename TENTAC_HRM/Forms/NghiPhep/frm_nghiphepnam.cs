@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.Cham_Cong
+namespace TENTAC_HRM.Forms.Cham_Cong
 {
     public partial class frm_nghiphepnam : KryptonForm
     {

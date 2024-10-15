@@ -7,7 +7,7 @@ using TENTAC_HRM.Custom;
 using TENTAC_HRM.DataTransferObject.MayChamCong;
 using zkemkeeper;
 
-namespace TENTAC_HRM.May_Cham_Cong
+namespace TENTAC_HRM.Forms.May_Cham_Cong
 {
     public partial class frmDangKyMayChamCong : Form
     {

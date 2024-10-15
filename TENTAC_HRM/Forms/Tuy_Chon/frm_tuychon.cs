@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace TENTAC_HRM.Tuy_Chon
+namespace TENTAC_HRM.Forms.Tuy_Chon
 {
     public partial class frm_tuychon : Form
     {

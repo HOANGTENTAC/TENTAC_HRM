@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Search
+﻿namespace TENTAC_HRM.Forms.Search
 {
     partial class frm_serach_nhanvien
     {

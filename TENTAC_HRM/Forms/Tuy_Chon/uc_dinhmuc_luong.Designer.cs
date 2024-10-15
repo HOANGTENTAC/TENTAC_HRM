@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Tuy_Chon
+﻿namespace TENTAC_HRM.Forms.Tuy_Chon
 {
     partial class uc_dinhmuc_luong
     {

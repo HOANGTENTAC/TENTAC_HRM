@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TENTAC_HRM.Luong
+namespace TENTAC_HRM.Forms.Luong
 {
     public partial class uc_luongthang : UserControl
     {

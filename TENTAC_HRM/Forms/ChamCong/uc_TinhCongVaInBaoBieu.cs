@@ -11,10 +11,9 @@ using System.Windows.Forms;
 using TENTAC_HRM.BusinessLogicLayer.BaoBieuBLL;
 using TENTAC_HRM.BusinessLogicLayer.ChamCongBLL;
 using TENTAC_HRM.Common;
-using TENTAC_HRM.May_Cham_Cong;
 using TENTAC_HRM.Model;
 
-namespace TENTAC_HRM.ChamCong
+namespace TENTAC_HRM.Forms.ChamCong
 {
     public partial class uc_TinhCongVaInBaoBieu : UserControl
     {
