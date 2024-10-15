@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Category
+﻿namespace TENTAC_HRM.Forms.Category
 {
     partial class frm_honnhan
     {

@@ -122,7 +122,7 @@
             this.rjButton9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton9.ForeColor = System.Drawing.Color.Black;
-            this.rjButton9.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton9.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton9.Location = new System.Drawing.Point(296, 187);
             this.rjButton9.Name = "rjButton9";
             this.rjButton9.Size = new System.Drawing.Size(80, 80);
@@ -144,7 +144,7 @@
             this.rjButton12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton12.ForeColor = System.Drawing.Color.Black;
-            this.rjButton12.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton12.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton12.Location = new System.Drawing.Point(459, 189);
             this.rjButton12.Name = "rjButton12";
             this.rjButton12.Size = new System.Drawing.Size(80, 80);
@@ -166,7 +166,7 @@
             this.rjButton11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton11.ForeColor = System.Drawing.Color.Black;
-            this.rjButton11.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton11.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton11.Location = new System.Drawing.Point(377, 22);
             this.rjButton11.Name = "rjButton11";
             this.rjButton11.Size = new System.Drawing.Size(80, 80);
@@ -188,7 +188,7 @@
             this.rjButton8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton8.ForeColor = System.Drawing.Color.Black;
-            this.rjButton8.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton8.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton8.Location = new System.Drawing.Point(377, 528);
             this.rjButton8.Name = "rjButton8";
             this.rjButton8.Size = new System.Drawing.Size(80, 80);
@@ -232,7 +232,7 @@
             this.rjButton6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton6.ForeColor = System.Drawing.Color.Black;
-            this.rjButton6.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton6.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton6.Location = new System.Drawing.Point(124, 271);
             this.rjButton6.Name = "rjButton6";
             this.rjButton6.Size = new System.Drawing.Size(80, 80);
@@ -254,7 +254,7 @@
             this.rjButton5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton5.ForeColor = System.Drawing.Color.Black;
-            this.rjButton5.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton5.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton5.Location = new System.Drawing.Point(631, 271);
             this.rjButton5.Name = "rjButton5";
             this.rjButton5.Size = new System.Drawing.Size(80, 80);
@@ -298,7 +298,7 @@
             this.rjButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton3.ForeColor = System.Drawing.Color.Black;
-            this.rjButton3.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton3.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton3.Location = new System.Drawing.Point(495, 271);
             this.rjButton3.Name = "rjButton3";
             this.rjButton3.Size = new System.Drawing.Size(80, 80);
@@ -342,7 +342,7 @@
             this.rjButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rjButton1.ForeColor = System.Drawing.Color.Black;
-            this.rjButton1.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.rjButton1.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.rjButton1.Location = new System.Drawing.Point(377, 156);
             this.rjButton1.Name = "rjButton1";
             this.rjButton1.Size = new System.Drawing.Size(80, 80);
@@ -364,7 +364,7 @@
             this.btn_personnel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlanchedAlmond;
             this.btn_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_personnel.ForeColor = System.Drawing.Color.Black;
-            this.btn_personnel.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien_Image;
+            this.btn_personnel.Image = global::TENTAC_HRM.Properties.Resources.btnQuanLyNhanVien;
             this.btn_personnel.Location = new System.Drawing.Point(377, 271);
             this.btn_personnel.Name = "btn_personnel";
             this.btn_personnel.Size = new System.Drawing.Size(80, 80);

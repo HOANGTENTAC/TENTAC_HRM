@@ -2,9 +2,9 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using TENTAC_HRM.Category;
+using TENTAC_HRM.Forms.Category;
 
-namespace TENTAC_HRM.ChamCong
+namespace TENTAC_HRM.Forms.ChamCong
 {
     public partial class uc_timekeeper : UserControl
     {

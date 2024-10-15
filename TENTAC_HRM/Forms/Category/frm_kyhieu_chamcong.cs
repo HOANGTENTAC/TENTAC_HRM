@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.Category
+namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_kyhieu_chamcong : Form
     {

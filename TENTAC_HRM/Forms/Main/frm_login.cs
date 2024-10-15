@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.Main
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class frm_login : Form
     {

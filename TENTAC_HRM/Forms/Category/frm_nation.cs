@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TENTAC_HRM.Category
+namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_nation : Form
     {

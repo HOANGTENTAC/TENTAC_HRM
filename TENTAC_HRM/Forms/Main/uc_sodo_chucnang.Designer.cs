@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Main
+﻿namespace TENTAC_HRM.Forms.Main
 {
     partial class uc_sodo_chucnang
     {

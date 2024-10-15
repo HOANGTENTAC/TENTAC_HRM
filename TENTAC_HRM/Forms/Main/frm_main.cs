@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TENTAC_HRM.Nhan_Su;
+using TENTAC_HRM.Forms.Nhan_Su;
 
 namespace TENTAC_HRM.Main
 {

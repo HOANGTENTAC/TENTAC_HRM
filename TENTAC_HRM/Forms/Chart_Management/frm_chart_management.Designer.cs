@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM
+﻿namespace TENTAC_HRM.Forms.Chart_Management
 {
     partial class frm_chart_management
     {

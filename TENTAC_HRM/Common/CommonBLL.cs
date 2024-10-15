@@ -7,6 +7,7 @@ namespace TENTAC_HRM.Common
 {
     internal class CommonBLL : Provider
     {
+
         public void InsertTemplateVirtual(Common_model _commonDTO)
         {
             string sql = "insert into dbo.[template_virtual](ma_cham_cong,fingeridvirtual,flagvirtual,fingertemplatevirtual,fingerversionvirtual) " +

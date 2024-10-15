@@ -7,7 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM.Chart_Management
+namespace TENTAC_HRM.Forms.Chart_Management
 {
     public partial class uc_cong_ty : UserControl
     {

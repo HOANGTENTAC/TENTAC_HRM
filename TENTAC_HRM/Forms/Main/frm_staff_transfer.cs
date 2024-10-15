@@ -3,7 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
-namespace TENTAC_HRM
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class frm_staff_transfer : Form
     {

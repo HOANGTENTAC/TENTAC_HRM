@@ -10,13 +10,13 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TENTAC_HRM.Category;
+using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 using TENTAC_HRM.Properties;
-using TENTAC_HRM.User_control;
+using TENTAC_HRM.Forms.User_control;
 
-namespace TENTAC_HRM
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class frm_personnel : Form
     {
@@ -432,6 +432,7 @@ namespace TENTAC_HRM
         {
             frm_story frm = new frm_story(this);
             frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._ma_nhan_vien = _ma_nhan_vien;
             frm.ShowDialog();
         }
 
@@ -461,7 +462,7 @@ namespace TENTAC_HRM
         }
         private void load_cbo_religion()
         {
-            string sql = "select * from mst_TenGiao";
+            string sql = "select * from mst_TonGiao";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             cbo_ton_giao.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable(); ;

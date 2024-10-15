@@ -53,7 +53,7 @@
             this.cbo_year = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.D13 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dgv_lichnghi = new System.Windows.Forms.DataGridView();
+            this.dgv_lichnghi = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Nam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Thang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.D1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -456,7 +456,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn D13;
-        private System.Windows.Forms.DataGridView dgv_lichnghi;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgv_lichnghi;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nam;
         private System.Windows.Forms.DataGridViewTextBoxColumn Thang;
         private System.Windows.Forms.DataGridViewCheckBoxColumn D1;

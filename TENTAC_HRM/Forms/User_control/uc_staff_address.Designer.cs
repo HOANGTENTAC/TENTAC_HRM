@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.User_control
+﻿namespace TENTAC_HRM.Forms.User_control
 {
     partial class uc_staff_address
     {
@@ -53,18 +53,17 @@
             this.cbo_quoc_gia = new System.Windows.Forms.ComboBox();
             this.chk_dang_hieu_luc = new System.Windows.Forms.CheckBox();
             this.dgv_nhanvien_diachi = new System.Windows.Forms.DataGridView();
-            this.id_dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ho_lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dia_chi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.is_active = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typename = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diachi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isactive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pl_address.SuspendLayout();
             this.gb_diachi.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -359,14 +358,13 @@
             this.dgv_nhanvien_diachi.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_nhanvien_diachi.ColumnHeadersHeight = 25;
             this.dgv_nhanvien_diachi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_dia_chi,
+            this.id,
             this.edit_column,
             this.ma_nhan_vien,
-            this.ho_lot,
-            this.ten,
-            this.type_name,
-            this.dia_chi,
-            this.is_active});
+            this.TenNhanVien,
+            this.typename,
+            this.diachi,
+            this.isactive});
             this.dgv_nhanvien_diachi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_nhanvien_diachi.Location = new System.Drawing.Point(0, 25);
             this.dgv_nhanvien_diachi.Margin = new System.Windows.Forms.Padding(5);
@@ -376,63 +374,9 @@
             this.dgv_nhanvien_diachi.TabIndex = 4;
             this.dgv_nhanvien_diachi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_nhanvien_diachi_CellClick);
             // 
-            // id_dia_chi
-            // 
-            this.id_dia_chi.DataPropertyName = "id_dia_chi";
-            this.id_dia_chi.HeaderText = "id_dia_chi";
-            this.id_dia_chi.Name = "id_dia_chi";
-            this.id_dia_chi.Visible = false;
-            // 
-            // edit_column
-            // 
-            this.edit_column.FillWeight = 20.30457F;
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            // 
-            // ma_nhan_vien
-            // 
-            this.ma_nhan_vien.DataPropertyName = "ma_nhan_vien";
-            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.ma_nhan_vien.Name = "ma_nhan_vien";
-            // 
-            // ho_lot
-            // 
-            this.ho_lot.DataPropertyName = "ho_lot";
-            this.ho_lot.HeaderText = "Họ lót";
-            this.ho_lot.Name = "ho_lot";
-            // 
-            // ten
-            // 
-            this.ten.DataPropertyName = "ten";
-            this.ten.HeaderText = "Ten";
-            this.ten.Name = "ten";
-            // 
-            // type_name
-            // 
-            this.type_name.DataPropertyName = "type_name";
-            this.type_name.FillWeight = 82.33871F;
-            this.type_name.HeaderText = "Loại địa chỉ";
-            this.type_name.Name = "type_name";
-            // 
-            // dia_chi
-            // 
-            this.dia_chi.DataPropertyName = "dia_chi";
-            this.dia_chi.FillWeight = 230.8431F;
-            this.dia_chi.HeaderText = "Địa chỉ";
-            this.dia_chi.Name = "dia_chi";
-            // 
-            // is_active
-            // 
-            this.is_active.DataPropertyName = "is_active";
-            this.is_active.FillWeight = 66.5135F;
-            this.is_active.HeaderText = "Hiệu lực";
-            this.is_active.Name = "is_active";
-            this.is_active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.is_active.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_add,
             this.btn_delete});
@@ -466,6 +410,55 @@
             this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 74;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id_dia_chi";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // edit_column
+            // 
+            this.edit_column.FillWeight = 20.30457F;
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            // 
+            // ma_nhan_vien
+            // 
+            this.ma_nhan_vien.DataPropertyName = "manhanvien";
+            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
+            this.ma_nhan_vien.Name = "ma_nhan_vien";
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            // 
+            // typename
+            // 
+            this.typename.DataPropertyName = "typename";
+            this.typename.FillWeight = 82.33871F;
+            this.typename.HeaderText = "Loại địa chỉ";
+            this.typename.Name = "typename";
+            // 
+            // diachi
+            // 
+            this.diachi.DataPropertyName = "diachi";
+            this.diachi.FillWeight = 230.8431F;
+            this.diachi.HeaderText = "Địa chỉ";
+            this.diachi.Name = "diachi";
+            // 
+            // isactive
+            // 
+            this.isactive.DataPropertyName = "isactive";
+            this.isactive.FillWeight = 66.5135F;
+            this.isactive.HeaderText = "Hiệu lực";
+            this.isactive.Name = "isactive";
+            this.isactive.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.isactive.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // uc_staff_address
             // 
@@ -521,13 +514,12 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btn_add;
         private System.Windows.Forms.ToolStripButton btn_delete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_dia_chi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewImageColumn edit_column;
         private System.Windows.Forms.DataGridViewTextBoxColumn ma_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ho_lot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dia_chi;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn is_active;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typename;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diachi;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isactive;
     }
 }

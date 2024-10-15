@@ -1,0 +1,12 @@
+EmailAddress: vuongtricong@gmail.com;
+Password: papozetjugawjjst;
+Subject: Payslip;
+TextBody:
+Dear anh/chi [HoTen],
+Công ty xin gửi tới anh chị thông tin lương tháng từ 
+[TuThang] đến [DenThang]
+
+Best Regards,
+                            
+P.Kế Toán;
+EmailTest: toiluoncodon1996@gmail.com;

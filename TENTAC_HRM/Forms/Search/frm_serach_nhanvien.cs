@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using TENTAC_HRM.Properties;
 
-namespace TENTAC_HRM.Search
+namespace TENTAC_HRM.Forms.Search
 {
     public partial class frm_serach_nhanvien : Form
     {

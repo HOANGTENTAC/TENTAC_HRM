@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Cham_Cong
+﻿namespace TENTAC_HRM.Forms.Cham_Cong
 {
     partial class uc_nghiphep
     {

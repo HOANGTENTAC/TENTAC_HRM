@@ -9,8 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
+using TENTAC_HRM.Forms.Main;
 
-namespace TENTAC_HRM.Category
+namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_relatives : Form
     {

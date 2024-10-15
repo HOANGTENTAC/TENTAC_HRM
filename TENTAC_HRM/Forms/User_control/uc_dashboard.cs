@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using TENTAC_HRM.Properties;
 
-namespace TENTAC_HRM.User_control
+namespace TENTAC_HRM.Forms.User_control
 {
     public partial class uc_dashboard : UserControl
     {
