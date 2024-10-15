@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Forms.Main;
 
 namespace TENTAC_HRM.Forms.Nhan_Su
 {

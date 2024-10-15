@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using TENTAC_HRM.Main;
+using TENTAC_HRM.Forms.Main;
 
 namespace TENTAC_HRM
 {
