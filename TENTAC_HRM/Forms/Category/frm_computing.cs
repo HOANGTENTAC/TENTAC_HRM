@@ -68,7 +68,7 @@ namespace TENTAC_HRM.Category
             {
                 insert_data();
             }
-            _Personnel.load_tinhoc();
+            //_Personnel.load_tinhoc();
         }
         private void insert_data()
         {

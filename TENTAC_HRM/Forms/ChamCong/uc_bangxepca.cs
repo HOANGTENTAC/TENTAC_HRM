@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NghiPhep;
 
-namespace TENTAC_HRM.ChamCong
+namespace TENTAC_HRM.Forms.ChamCong
 {
     public partial class uc_bangxepca : UserControl
     {
@@ -83,7 +83,7 @@ namespace TENTAC_HRM.ChamCong
         }
         private void calamviec()
         {
-            string sql = "SELECT [MaCaLamViec],[CaLamViec] FROM [tbl_CaLamViec]";
+            string sql = "SELECT [MaCaLamViec],[CaLamViec] FROM MITACOSQL.dbo.CaLamViecNew";
             DataTable dataTable = new DataTable();
             dataTable = SQLHelper.ExecuteDt(sql);
             dataTable.Rows.Add("", "");
@@ -98,7 +98,7 @@ namespace TENTAC_HRM.ChamCong
         }
         private void load_phongban()
         {
-            string sql = "SELECT [MaPhongBan],[TenPhongBan] FROM [mst_PHONGBAN]";
+            string sql = "SELECT [MaPhongBan],[TenPhongBan] FROM MITACOSQL.dbo.PHONGBAN";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "Chọn tất cả");
@@ -122,13 +122,13 @@ namespace TENTAC_HRM.ChamCong
                     where = where + $" and nv.MaPhongBan = '{cbo_phongban.ComboBox.SelectedValue}'";
                 }
             }
-            string sql = "select hts.id,'false' chk_col,hts.MaChamCong,nv.HoTen," +
+            string sql = "select hts.id,'false' chk_col,hts.MaChamCong,nv.TenNhanVien," +
                 "hts.d1,hts.d2,hts.d3,hts.d4,hts.d5,hts.d6,hts.d7,hts.d8,hts.d9,hts.d10," +
                 "hts.d11,hts.d12,hts.d13,hts.d14,hts.d15,hts.d16,hts.d17,hts.d18,hts.d19,hts.d20," +
                 "hts.d21,hts.d22,hts.d23,hts.d24,hts.d25,hts.d26,hts.d27,hts.d28,hts.d29,hts.d30," +
                 "hts.d31 " +
-                "from tbl_BangXepCa hts " +
-                "inner join tbl_NhanVien nv on hts.MaChamCong=nv.machamcong " +
+                "from MITACOSQL.dbo.BangXepCa hts " +
+                "inner join MITACOSQL.dbo.NhanVien nv on hts.MaChamCong=nv.machamcong " +
                 $"where hts.Nam = '{cbo_year.ComboBox.SelectedValue}' and hts.Thang = '{cbo_month.Text}'" + where;
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);

@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.ChamCong
+﻿namespace TENTAC_HRM.Forms.ChamCong
 {
     partial class frm_chinhsua_ca
     {
