@@ -1,6 +1,6 @@
-﻿namespace TENTAC_HRM.User_control
+﻿namespace TENTAC_HRM.Forms.User_control
 {
-    partial class uc_staff_religion
+    partial class uc_foreign_languages
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,33 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dgv_foreign_languages = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
             this.btn_export = new System.Windows.Forms.ToolStripButton();
             this.btn_import = new System.Windows.Forms.ToolStripButton();
-            this.dgv_religion = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
-            this.MaTonGiao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.TenTonGiao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.MaNgoaiNgu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TenNgoaiNgu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.MoTa = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_foreign_languages)).BeginInit();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_religion)).BeginInit();
             this.SuspendLayout();
             // 
-            // errorProvider1
+            // dgv_foreign_languages
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.dgv_foreign_languages.AllowUserToAddRows = false;
+            this.dgv_foreign_languages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_foreign_languages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.check,
+            this.MaNgoaiNgu,
+            this.TenNgoaiNgu,
+            this.MoTa,
+            this.NgayCapNhat,
+            this.NguoiCapNhat,
+            this.edit_column});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_foreign_languages.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_foreign_languages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_foreign_languages.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv_foreign_languages.Location = new System.Drawing.Point(0, 25);
+            this.dgv_foreign_languages.Name = "dgv_foreign_languages";
+            this.dgv_foreign_languages.Size = new System.Drawing.Size(1006, 598);
+            this.dgv_foreign_languages.TabIndex = 7;
+            this.dgv_foreign_languages.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_foreign_languages_CellContentClick);
             // 
             // toolStrip1
             // 
@@ -66,8 +88,8 @@
             this.btn_import});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1099, 25);
-            this.toolStrip1.TabIndex = 5;
+            this.toolStrip1.Size = new System.Drawing.Size(1006, 25);
+            this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btn_add
@@ -106,41 +128,12 @@
             this.btn_import.Text = "Import";
             this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
             // 
-            // dgv_religion
-            // 
-            this.dgv_religion.AllowUserToAddRows = false;
-            this.dgv_religion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_religion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.check,
-            this.MaTonGiao,
-            this.TenTonGiao,
-            this.MoTa,
-            this.NgayCapNhat,
-            this.NguoiCapNhat,
-            this.edit_column});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_religion.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_religion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_religion.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgv_religion.Location = new System.Drawing.Point(0, 25);
-            this.dgv_religion.Name = "dgv_religion";
-            this.dgv_religion.Size = new System.Drawing.Size(1099, 570);
-            this.dgv_religion.TabIndex = 6;
-            this.dgv_religion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_religion_CellClick);
-            // 
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.HeaderText = "";
             this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 50;
+            this.dataGridViewImageColumn1.Width = 30;
             // 
             // Id
             // 
@@ -163,21 +156,21 @@
             this.check.TrueValue = null;
             this.check.Width = 50;
             // 
-            // MaTonGiao
+            // MaNgoaiNgu
             // 
-            this.MaTonGiao.DataPropertyName = "MaTonGiao";
-            this.MaTonGiao.HeaderText = "Mã Tôn Giáo";
-            this.MaTonGiao.Name = "MaTonGiao";
-            this.MaTonGiao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MaTonGiao.Width = 150;
+            this.MaNgoaiNgu.DataPropertyName = "MaNgoaiNgu";
+            this.MaNgoaiNgu.HeaderText = "Mã Ngoại Ngữ";
+            this.MaNgoaiNgu.Name = "MaNgoaiNgu";
+            this.MaNgoaiNgu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MaNgoaiNgu.Width = 150;
             // 
-            // TenTonGiao
+            // TenNgoaiNgu
             // 
-            this.TenTonGiao.DataPropertyName = "TenTonGiao";
-            this.TenTonGiao.HeaderText = "Tên Tôn Giáo";
-            this.TenTonGiao.Name = "TenTonGiao";
-            this.TenTonGiao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TenTonGiao.Width = 200;
+            this.TenNgoaiNgu.DataPropertyName = "TenNgoaiNgu";
+            this.TenNgoaiNgu.HeaderText = "Tên Ngoại Ngữ";
+            this.TenNgoaiNgu.Name = "TenNgoaiNgu";
+            this.TenNgoaiNgu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TenNgoaiNgu.Width = 200;
             // 
             // MoTa
             // 
@@ -210,39 +203,35 @@
             this.edit_column.Name = "edit_column";
             this.edit_column.Width = 50;
             // 
-            // uc_staff_religion
+            // uc_foreign_languages
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.dgv_religion);
+            this.Controls.Add(this.dgv_foreign_languages);
             this.Controls.Add(this.toolStrip1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "uc_staff_religion";
-            this.Size = new System.Drawing.Size(1099, 595);
-            this.Load += new System.EventHandler(this.uc_staff_religion_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.Name = "uc_foreign_languages";
+            this.Size = new System.Drawing.Size(1006, 623);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_foreign_languages)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_religion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgv_foreign_languages;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btn_add;
         private System.Windows.Forms.ToolStripButton btn_delete;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dgv_religion;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.ToolStripButton btn_export;
         private System.Windows.Forms.ToolStripButton btn_import;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn check;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaTonGiao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenTonGiao;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaNgoaiNgu;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenNgoaiNgu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MoTa;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayCapNhat;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiCapNhat;

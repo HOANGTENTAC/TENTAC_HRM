@@ -9,57 +9,59 @@ using System.Windows.Forms;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Mst_Add_Data;
+using TENTAC_HRM.User_control;
 using Excel = Microsoft.Office.Interop.Excel;
-namespace TENTAC_HRM.User_control
+namespace TENTAC_HRM.Forms.User_control
 {
-    public partial class uc_staff_religion : UserControl
+    public partial class uc_certificate : UserControl
     {
-        public static uc_staff_religion _instance;
-        public static uc_staff_religion Instance
+        public static uc_certificate _instance;
+        private static MstMaTuDong autoCodeGenerator = new MstMaTuDong();
+        public static uc_certificate Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new uc_staff_religion();
+                    _instance = new uc_certificate();
                 return _instance;
             }
         }
-        private static MstMaTuDong autoCodeGenerator = new MstMaTuDong();
-        public uc_staff_religion()
+        public uc_certificate()
         {
             InitializeComponent();
-            load_dataTonGiao();
+            load_dataChungChiNghe();
         }
-        public void load_dataTonGiao()
+        public void load_dataChungChiNghe()
         {
-            string sql = "select Id, MaTonGiao, TenTonGiao, MoTa,NgayCapNhat, NguoiCapNhat from mst_TonGiao where DelFlg = 0";
+            string sql = "select Id, MaChungChi,TenChungChi, MoTa, NgayCapNhat, NguoiCapNhat from mst_ChungChi where DelFlg = 0 order by MaChungChi";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            dgv_religion.DataSource = dt;
+            dgv_certificate.DataSource = dt;
         }
-        private void uc_staff_religion_Load(object sender, EventArgs e)
+        private void uc_certificate_Load(object sender, EventArgs e)
         {
-            load_dataTonGiao();
+            //pl_nation.Width = 0;
+            load_dataChungChiNghe();
         }
         private void btn_delete_Click(object sender, EventArgs e)
         {
-            dgv_religion.EndEdit();
             try
             {
+                dgv_certificate.EndEdit();
                 List<string> updateQueries = new List<string>();
 
-                for (int i = 0; i < dgv_religion.Rows.Count; i++)
+                for (int i = 0; i < dgv_certificate.Rows.Count; i++)
                 {
-                    DataGridViewRow row = dgv_religion.Rows[i];
+                    DataGridViewRow row = dgv_certificate.Rows[i];
 
                     bool isChecked = row.Cells["check"].Value != DBNull.Value && row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value);
 
                     if (isChecked)
                     {
-                        string MaTonGiao = row.Cells["MaTonGiao"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(MaTonGiao))
+                        string MaChungChi = row.Cells["MaChungChi"].Value?.ToString();
+                        if (!string.IsNullOrEmpty(MaChungChi))
                         {
-                            updateQueries.Add($@"UPDATE mst_TonGiao SET DelFlg = 1 WHERE MaTonGiao = N'{MaTonGiao}'");
+                            updateQueries.Add($@"UPDATE mst_ChungChi SET DelFlg = 1 WHERE MaChungChi = N'{MaChungChi}'");
                         }
                     }
                 }
@@ -77,20 +79,19 @@ namespace TENTAC_HRM.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_dataTonGiao();
+                load_dataChungChiNghe();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_export_Click(object sender, EventArgs e)
         {
             try
             {
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string fileName = $"MstTonGiao_{DateTime.Now.ToString("yyyyMMdd")}.xlsx";
+                string fileName = $"MstChungChi_{DateTime.Now.ToString("yyyyMMdd")}.xlsx";
                 string filePath = Path.Combine(desktopPath, fileName);
 
                 KillExcelProcesses(fileName);
@@ -100,11 +101,12 @@ namespace TENTAC_HRM.User_control
                 Excel._Worksheet worksheet = workbook.Sheets[1];
                 worksheet.Name = "sheet1";
 
-                string query = "SELECT Id, MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_TonGiao where DelFlg = 0";
+                string query = "SELECT Id, MaChungChi, TenChungChi, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_ChungChi where DelFlg = 0";
                 SqlDataReader reader = SQLHelper.ExecuteReader(query);
 
-                worksheet.Cells[1, 1] = "MaTonGiao";
-                worksheet.Cells[1, 2] = "TenTonGiao";
+                // Tiêu đề
+                worksheet.Cells[1, 1] = "MaChungChi";
+                worksheet.Cells[1, 2] = "TenChungChi";
                 worksheet.Cells[1, 3] = "MoTa";
                 worksheet.Cells[1, 4] = "NgayTao";
                 worksheet.Cells[1, 5] = "NguoiTao";
@@ -114,8 +116,8 @@ namespace TENTAC_HRM.User_control
                 int row = 2;
                 while (reader.Read())
                 {
-                    worksheet.Cells[row, 1] = reader["MaTonGiao"].ToString();
-                    worksheet.Cells[row, 2] = reader["TenTonGiao"].ToString();
+                    worksheet.Cells[row, 1] = reader["MaChungChi"].ToString();
+                    worksheet.Cells[row, 2] = reader["TenChungChi"].ToString();
                     worksheet.Cells[row, 3] = reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : "";
                     worksheet.Cells[row, 4] = reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "";
                     worksheet.Cells[row, 5] = reader["NguoiTao"].ToString();
@@ -139,7 +141,6 @@ namespace TENTAC_HRM.User_control
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_import_Click(object sender, EventArgs e)
         {
             try
@@ -162,50 +163,50 @@ namespace TENTAC_HRM.User_control
                     int res = 0;
                     for (int row = 2; row <= range.Rows.Count; row++)
                     {
-                        string maTonGiao = range.Cells[row, 1].Value != null ? range.Cells[row, 1].Value.ToString() : "";
-                        string tenTonGiao = range.Cells[row, 2].Value != null ? range.Cells[row, 2].Value.ToString() : "";
+                        string maChungChi = range.Cells[row, 1].Value != null ? range.Cells[row, 1].Value.ToString() : "";
+                        string tenChungChi = range.Cells[row, 2].Value != null ? range.Cells[row, 2].Value.ToString() : "";
                         string moTa = range.Cells[row, 3].Value != null ? range.Cells[row, 3].Value.ToString() : "";
 
-                        string checkQuery = "SELECT COUNT(*) FROM mst_TonGiao WHERE MaTonGiao = @MaTonGiao AND DelFlg = 0";
+                        string checkQuery = "SELECT COUNT(*) FROM mst_ChungChi WHERE MaChungChi = @MaChungChi AND DelFlg = 0";
                         var checkParams = new List<SqlParameter>
                     {
-                        new SqlParameter("@MaTonGiao", maTonGiao)
+                        new SqlParameter("@MaChungChi", maChungChi)
                     };
 
                         int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
 
-                        if (count > 0) 
+                        if (count > 0)
                         {
-                            string sqlUpdate = @"UPDATE mst_TonGiao
+                            string sqlUpdate = @"UPDATE mst_ChungChi
                                     SET 
-                                        TenTonGiao = @TenTonGiao,
+                                        TenChungChi = @TenChungChi,
                                         MoTa = @MoTa,
                                         NgayCapNhat = @NgayCapNhat,
                                         NguoiCapNhat = @NguoiCapNhat
                                     WHERE 
-                                        MaTonGiao = @MaTonGiao AND DelFlg = 0";
+                                        MaChungChi = @MaChungChi AND DelFlg = 0";
 
                             var updateParams = new List<SqlParameter>
-                        {
-                            new SqlParameter("@MaTonGiao", maTonGiao),
-                            new SqlParameter("@TenTonGiao", tenTonGiao),
-                            new SqlParameter("@MoTa", moTa),
-                            new SqlParameter("@NgayCapNhat", DateTime.Now),
-                            new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                        };
+                            {
+                                new SqlParameter("@MaChungChi", maChungChi),
+                                new SqlParameter("@TenChungChi", tenChungChi),
+                                new SqlParameter("@MoTa", moTa),
+                                new SqlParameter("@NgayCapNhat", DateTime.Now),
+                                new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
+                            };
                             res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
                         }
                         else
                         {
-                            string newMaTonGiao = autoCodeGenerator.GenerateNextCode("mst_TonGiao", "TG", "MaTonGiao");
+                            string newMaChungChi = autoCodeGenerator.GenerateNextCode("mst_ChungChi", "CC", "MaChungChi");
 
-                            string sqlInsert = @"INSERT INTO mst_TonGiao(MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                                    VALUES(@MaTonGiao, @TenTonGiao, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                            string sqlInsert = @"INSERT INTO mst_ChungChi(MaChungChi, TenChungChi, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
+                                    VALUES(@MaChungChi, @TenChungChi, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
 
                             var insertParams = new List<SqlParameter>
                         {
-                            new SqlParameter("@MaTonGiao", newMaTonGiao),
-                            new SqlParameter("@TenTonGiao", tenTonGiao),
+                            new SqlParameter("@MaChungChi", newMaChungChi),
+                            new SqlParameter("@TenChungChi", tenChungChi),
                             new SqlParameter("@MoTa", moTa),
                             new SqlParameter("@NgayTao", DateTime.Now),
                             new SqlParameter("@NguoiTao", SQLHelper.sUser),
@@ -223,36 +224,33 @@ namespace TENTAC_HRM.User_control
                         RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                load_dataTonGiao();
+                load_dataChungChiNghe();
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void dgv_religion_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_certificate_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgv_religion.Columns["edit_column"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgv_certificate.Columns["edit_column"].Index)
             {
-                string MaTonGiao = dgv_religion.CurrentRow.Cells["MaTonGiao"].Value.ToString();
-                string TenTonGiao = dgv_religion.CurrentRow.Cells["TenTonGiao"].Value.ToString();
-                string MoTa = dgv_religion.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstTonGiao frmMstTonGiao = new frmMstTonGiao(MaTonGiao, TenTonGiao, MoTa, false, this);
-                frmMstTonGiao.ShowDialog();
+                string MaChungChi = dgv_certificate.CurrentRow.Cells["MaChungChi"].Value.ToString();
+                string TenChungChi = dgv_certificate.CurrentRow.Cells["TenChungChi"].Value.ToString();
+                string MoTa = dgv_certificate.CurrentRow.Cells["MoTa"].Value.ToString();
+                frmMstChungChi frmMstChungChi = new frmMstChungChi(MaChungChi, TenChungChi, MoTa, false, this);
+                frmMstChungChi.ShowDialog();
             }
         }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             Control x = this.Parent;
             x.Controls.Remove(this);
         }
-
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstTonGiao frmMstTonGiao = new frmMstTonGiao(null, null, null, true, this);
-            frmMstTonGiao.ShowDialog();
+            frmMstChungChi frmMstChungChi = new frmMstChungChi(null, null, null, true, this);
+            frmMstChungChi.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)
         {
@@ -272,7 +270,7 @@ namespace TENTAC_HRM.User_control
                 }
                 catch (Exception ex)
                 {
-                    RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show(ex.Message, "Không thể đóng tiến trình Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
