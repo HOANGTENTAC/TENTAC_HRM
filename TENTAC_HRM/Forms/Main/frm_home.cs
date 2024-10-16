@@ -5,6 +5,8 @@ using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Properties;
 using TENTAC_HRM.Forms.User_control;
+using NPOI.SS.Formula.Functions;
+using FontAwesome.Sharp;
 
 namespace TENTAC_HRM.Forms.Main
 {
@@ -13,10 +15,13 @@ namespace TENTAC_HRM.Forms.Main
         bool notifi_hide = false;
         Label lb_menu;
         Panel panel = new Panel();
+        Panel panel_menu = new Panel();
+        Button btn_menu;
         Point _imageLocation = new Point(20, 4);
         Point _imgHitArea = new Point(20, 4);
 
         private bool isCollapsed = false;
+        private bool isCollapsedMenu = false;
         bool _btn_nhansu = false;
         bool _btn_maychamcong = false;
         bool _btn_luong = false;
@@ -35,41 +40,172 @@ namespace TENTAC_HRM.Forms.Main
             MaximizeWindow();
             load_menu();
         }
+        public IconChar GetUIFontAwesome(string strIcon)
+        {
+            IconChar item;
+            if (Enum.TryParse(strIcon, out item))
+                return item;
+            else
+                return IconChar.None;
+        }
         private void load_menu()
         {
-            splitContainer1.Panel2.Controls.Clear();
+            //splitContainer1.Panel2.Controls.Clear();
             string sql = "select a.*,b.FrmType,b.FrmText " +
                          "from mst_Menu a " +
                          "left join mst_from b on a.FromName = b.FrmName " +
                          "where a.ParentId = 0 order by a.MenuNumber desc";
             dt_MenuParent = SQLHelper.ExecuteDt(sql);
+
+            string sql_chil = $"select a.*,b.FrmType,b.FrmText " +
+             $"from mst_menu a " +
+             "left join mst_from b on a.FromName = b.FrmName " +
+             $"where ParentId != 0 order by a.MenuNumber desc";
+            dt_MenuChild = SQLHelper.ExecuteDt(sql_chil);
+
             foreach (DataRow item in dt_MenuParent.Rows)
             {
-                Custom.RJButton danhmuc = new Custom.RJButton
+                int Height = 0;
+                var chil = dt_MenuChild.Rows.Cast<DataRow>().Where(x => x["ParentId"].ToString() == item["ID"].ToString()).ToList();
+                Panel panel = new Panel { 
+                    Dock = DockStyle.Top,
+                    MinimumSize = new Size(200,30)
+                };
+
+                foreach (var itemchil in chil)
                 {
-                    Name = item["MenuName"].ToString(),
-                    Text = "",
+                    IconButton btn_chil = new IconButton()
+                    {
+                        IconColor = Color.White,
+                        IconSize = 20,
+                        TextImageRelation = TextImageRelation.ImageBeforeText,
+                        IconChar = GetUIFontAwesome(itemchil["MenuImage"].ToString()),
+                        Padding = new Padding(10,0,0,0),
+                        Tag = itemchil["Id"].ToString(),
+                        Name = itemchil["MenuName"].ToString(),
+                        ForeColor = Color.White,
+                        ImageAlign = ContentAlignment.MiddleLeft,
+                        Height = 30,
+                        Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                        Dock = DockStyle.Top,
+                        FlatStyle = FlatStyle.Flat,
+                        //Image = (Bitmap)Resources.ResourceManager.GetObject(itemchil["MenuImage"].ToString()),
+                        Text = itemchil["MenuText"].ToString(),
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        UseVisualStyleBackColor = false,
+                    };
+                    btn_chil.FlatAppearance.BorderColor = SystemColors.MenuHighlight;
+                    btn_chil.Click += BtnChil_Click;
+                    panel.Controls.Add(btn_chil);
+                    Height += 30;
+                }
+
+                IconButton btn = new IconButton()
+                {
                     Tag = item["Id"].ToString(),
-                    BackGroundColor = Color.CornflowerBlue,
-                    BackColor = Color.CornflowerBlue,
-                    BorderColor = Color.LightSkyBlue,
+                    Name = item["MenuName"].ToString(),
+                    ForeColor = Color.White,
+                    ImageAlign = ContentAlignment.MiddleRight,
+                    Height = 30,
+                    Font = new Font(Font.FontFamily, emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
                     Dock = DockStyle.Top,
                     FlatStyle = FlatStyle.Flat,
-                    Image = (Bitmap)Resources.ResourceManager.GetObject(item["MenuImage"].ToString()),
-                    ImageAlign = ContentAlignment.MiddleLeft,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    TextImageRelation = TextImageRelation.ImageBeforeText,
-                    BorderSize = 1,
+                    Image = Properties.Resources.up_arrow,
+                    Text = item["MenuText"].ToString(),
+                    TextAlign = ContentAlignment.MiddleLeft,
                     UseVisualStyleBackColor = false,
-                    BorderRadius = 0,
-                    Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
-                    Height = 55,
                 };
-                danhmuc.Click += btn_Menu_Click;
-                splitContainer1.Panel2.Controls.Add(danhmuc);
+                btn.FlatAppearance.BorderColor = SystemColors.MenuHighlight;
+                btn.Click += Btn_Click;
+                panel.Controls.Add(btn);
+                Height += 30;
+                panel.Size = new Size(201, Height);
+                panel.MaximumSize = new Size(201, Height);
+                panel.MinimumSize = new Size(201, 30);
+                pl_MenuLeft.Controls.Add(panel);
+                //Custom.RJButton danhmuc = new Custom.RJButton
+                //{
+                //    Name = item["MenuName"].ToString(),
+                //    Text = "",
+                //    Tag = item["Id"].ToString(),
+                //    BackGroundColor = Color.CornflowerBlue,
+                //    BackColor = Color.CornflowerBlue,
+                //    BorderColor = Color.LightSkyBlue,
+                //    Dock = DockStyle.Top,
+                //    FlatStyle = FlatStyle.Flat,
+                //    Image = (Bitmap)Resources.ResourceManager.GetObject(item["MenuImage"].ToString()),
+                //    ImageAlign = ContentAlignment.MiddleLeft,
+                //    TextAlign = ContentAlignment.MiddleCenter,
+                //    TextImageRelation = TextImageRelation.ImageBeforeText,
+                //    BorderSize = 1,
+                //    UseVisualStyleBackColor = false,
+                //    BorderRadius = 0,
+                //    Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                //    Height = 55,
+                //};
+                //danhmuc.Click += btn_Menu_Click;
+                //splitContainer1.Panel2.Controls.Add(danhmuc);
             }
         }
-        DataTable dt_Menu_child = new DataTable();
+
+        private void BtnChil_Click(object sender, EventArgs e)
+        {
+            btn_IdClick = ((IconButton)sender).Tag.ToString();
+            var name_parent = dt_MenuChild.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
+
+            if (_btn_show_menu_left == true)
+            {
+                if (name_parent != null)
+                    lbl_title_menu.Text = name_parent["MenuText"].ToString();
+            }
+            else
+            {
+                lbl_title_menu.Text = "";
+            }
+            if (!string.IsNullOrEmpty(name_parent["FromName"].ToString()))
+            {
+                Open_From(sender, e, false);
+            }
+        }        
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            btn_IdClick = ((IconButton)sender).Tag.ToString();
+            var name_parent = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
+
+            if (_btn_show_menu_left == true)
+            {
+                if (name_parent != null)
+                    lbl_title_menu.Text = name_parent["MenuText"].ToString();
+            }
+            else
+            {
+                lbl_title_menu.Text = "";
+            }
+            if (!string.IsNullOrEmpty(name_parent["FromName"].ToString()))
+            {
+                Open_From(sender, e, true);
+            }
+            else
+            {
+                panel_menu = (Panel)((IconButton)sender).Parent;
+                btn_menu = (IconButton)sender;
+                start_timermenu();
+            }
+        }
+        public void start_timermenu()
+        {
+            if (panel_menu.Size == panel_menu.MaximumSize)
+            {
+                isCollapsedMenu = false;
+            }
+            else if (panel_menu.Size == panel_menu.MinimumSize)
+            {
+                isCollapsedMenu = true;
+            }
+            timer2.Start();
+        }
+
+        DataTable dt_MenuChild = new DataTable();
         string btn_IdClick;
         private void btn_Menu_Click(object sender, EventArgs e)
         {
@@ -91,13 +227,13 @@ namespace TENTAC_HRM.Forms.Main
             }
             else
             {
-                splitContainer1.Panel1.Controls.Clear();
+                //splitContainer1.Panel1.Controls.Clear();
                 string sql = $"select a.*,b.FrmType,b.FrmText " +
                              $"from mst_menu a " +
                              "left join mst_from b on a.FromName = b.FrmName " +
                              $"where ParentId = '{((Custom.RJButton)sender).Tag}' order by a.MenuNumber desc";
-                dt_Menu_child = SQLHelper.ExecuteDt(sql);
-                foreach (DataRow item in dt_Menu_child.Rows)
+                dt_MenuChild = SQLHelper.ExecuteDt(sql);
+                foreach (DataRow item in dt_MenuChild.Rows)
                 {
                     Custom.RJButton bt = new Custom.RJButton
                     {
@@ -123,7 +259,7 @@ namespace TENTAC_HRM.Forms.Main
                     bt.Click += Bt_Click;
                     ToolTip ToolTip1 = new ToolTip();
                     ToolTip1.SetToolTip(bt, item["MenuText"].ToString());
-                    splitContainer1.Panel1.Controls.Add(bt);
+                    //splitContainer1.Panel1.Controls.Add(bt);
                 }
             }
 
@@ -136,11 +272,11 @@ namespace TENTAC_HRM.Forms.Main
 
         private void Open_From(object sender, EventArgs e, bool parent)
         {
-            btn_IdClick = ((Custom.RJButton)sender).Tag.ToString();
+            btn_IdClick = ((IconButton)sender).Tag.ToString();
             var name_parent = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
             if (parent == false)
             {
-                name_parent = dt_Menu_child.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
+                name_parent = dt_MenuChild.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
             }
             if (name_parent != null)
             {
@@ -340,35 +476,35 @@ namespace TENTAC_HRM.Forms.Main
             if (pl_menu_left.Size == pl_menu_left.MaximumSize)
             {
                 lbl_title_menu.Text = "";
-                foreach (Control item in splitContainer1.Panel2.Controls)
-                {
-                    item.Text = "";
-                }
-                foreach (Control item in splitContainer1.Panel1.Controls)
-                {
-                    item.Text = "";
-                }
+                //foreach (Control item in splitContainer1.Panel2.Controls)
+                //{
+                //    item.Text = "";
+                //}
+                //foreach (Control item in splitContainer1.Panel1.Controls)
+                //{
+                //    item.Text = "";
+                //}
                 isCollapsed = false;
                 _btn_show_menu_left = false;
             }
             else if (pl_menu_left.Size == pl_menu_left.MinimumSize)
             {
-                foreach (Control item in splitContainer1.Panel1.Controls)
-                {
-                    var names = dt_Menu_child.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
-                    item.Text = "  " + names["MenuText"].ToString();
-                }
+                //foreach (Control item in splitContainer1.Panel1.Controls)
+                //{
+                //    var names = dt_Menu_child.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
+                //    item.Text = "  " + names["MenuText"].ToString();
+                //}
                 isCollapsed = true;
                 _btn_show_menu_left = true;
 
                 var name_parent = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
                 if (name_parent != null)
                     lbl_title_menu.Text = name_parent["MenuText"].ToString();
-                foreach (Control item in splitContainer1.Panel2.Controls)
-                {
-                    var names = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
-                    item.Text = "  " + names["MenuText"].ToString();
-                }
+                //foreach (Control item in splitContainer1.Panel2.Controls)
+                //{
+                //    var names = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
+                //    item.Text = "  " + names["MenuText"].ToString();
+                //}
             }
             tm_menu_left.Start();
         }
@@ -420,7 +556,7 @@ namespace TENTAC_HRM.Forms.Main
                 this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2, (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
                 //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
                 //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
-                splitContainer1.Panel2MinSize = splitContainer1.Size.Height - splitContainer1.Panel1MinSize - 5;
+                //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - splitContainer1.Panel1MinSize - 5;
             }
             //if (WindowState == FormWindowState.Normal)
             //{
@@ -606,6 +742,30 @@ namespace TENTAC_HRM.Forms.Main
                         ReleaseCapture();
                         SendMessage(this.Handle, WM_NCLBUTTONDOW, HT_CAPTION, 0);
                     }
+                }
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            if (isCollapsedMenu)
+            {
+                btn_menu.Image = Resources.up_arrow;
+                panel_menu.Height += 10;
+                if (panel_menu.Size == panel_menu.MaximumSize)
+                {
+                    timer2.Stop();
+                    isCollapsedMenu = false;
+                }
+            }
+            else
+            {
+                btn_menu.Image = Resources.dow_arrow;
+                panel_menu.Height -= 10;
+                if (panel_menu.Size == panel_menu.MinimumSize)
+                {
+                    timer2.Stop();
+                    isCollapsedMenu = true;
                 }
             }
         }
