@@ -213,7 +213,7 @@
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Size = new System.Drawing.Size(61, 753);
-            this.splitContainer1.SplitterDistance = 240;
+            this.splitContainer1.SplitterDistance = 323;
             this.splitContainer1.TabIndex = 1;
             // 
             // panel2

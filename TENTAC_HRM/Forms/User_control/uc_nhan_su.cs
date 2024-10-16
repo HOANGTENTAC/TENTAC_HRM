@@ -68,6 +68,8 @@ namespace TENTAC_HRM.Forms.User_control
 
             datagrid_click();
             load_treeview();
+            trv_sodoquanly.Nodes[0].ExpandAll();
+            trv_sodoquanly.SelectedNode = trv_sodoquanly.Nodes[2].Nodes[1];
             load_bophan();
             load_phongban();
             load_chucvu();
@@ -85,7 +87,7 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_pagenumber.ComboBox.DisplayMember = "name";
             cbo_pagenumber.ComboBox.ValueMember = "id";
             cbo_pagenumber.ComboBox.SelectedIndex = 1;
-            trv_sodoquanly.SelectedNode = trv_sodoquanly.Nodes[0];
+            //trv_sodoquanly.SelectedNode = trv_sodoquanly.Nodes[0];
             treeview_select = trv_sodoquanly.SelectedNode.Tag.ToString();
             load_data(1);
 
@@ -213,10 +215,14 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_data(int pageIndex)
         {
-            string sql = "select ROW_NUMBER() OVER(ORDER BY MaNhanVien ASC)AS rownumber, * into ##tblTemp from view_hoso_nhansu where 1=1";
+            string sql = "select ROW_NUMBER() OVER(ORDER BY MaNhanVien ASC)AS rownumber," +
+                "MaNhanVien, TenNhanVien, Ten, NgaySinh, GioiTinh, HonNhan, SoCCCD, SoHoChieu, DienThoaiDD," +
+                "Email, NgayVaoLamViec, SoTK, Workpermit, TenTonGiao, TenDanToc, Ngoai_Ngu, Tin_Hoc, TenBac, DiaChiFull," +
+                "TenPhongBan, TenChucVu, QuocTich, GhiChu " +
+                "into ##tblTemp from view_hoso_nhansu where 1=1 ";
             if (!string.IsNullOrEmpty(txt_search_ten.Text))
             {
-                sql = sql + string.Format(" and TenNhanVien like N''%{0}%''", txt_search_ten.Text);
+                sql = sql + string.Format(" and TenNhanVien like N''%{0}%'' or MaNhanVien like ''%{0}%''", txt_search_ten.Text);
             }
 
             if (cbo_trang_thai.ComboBox.SelectedValue != null && cbo_trang_thai.ComboBox.SelectedValue.ToString() != "0")
@@ -430,23 +436,27 @@ namespace TENTAC_HRM.Forms.User_control
                     ms.Position = 0;
                     ms.Read(_Picbyte, 0, _Picbyte.Length);
                 }
+                string sql_new = $"update tbl_NhanVien set socccd = '{txt_cccd.Text}', dienthoaidd = '{txt_dienthoai.Text}'," +
+                    $"id_trangthai = '{int.Parse(cbo_trangthai.SelectedValue.ToString())}' " +
+                    $"where MaNhanVien = '{_ma_nhan_vien}'";
+                SQLHelper.ExecuteSql(sql_new);
 
-                string sql = "update tbl_NhanVien set machamcong = @ma_cham_cong, ngaysinh = @ngay_sinh," +
-                    "socccd = @so_cccd,gioitinh = @gioi_tinh,email = @email,dienthoaidd = @dien_thoai_dd," +
-                    "id_trangthai = @id_trang_thai,ghichu = @ghi_chu,hinhanh = @hinh_anh " +
-                    "where id = @id_nhan_vien";
+                string sql = "update MITACOSQL.dbo.NHANVIEN set machamcong = @ma_cham_cong, ngaysinh = @ngay_sinh," +
+                    "gioitinh = @gioi_tinh, email = @email,ghichu = @ghi_chu,hinhanh = @hinh_anh," +
+                    "MaKhuVuc = @makhuvuc, MaPhongBan = @maphongban " +
+                    "where MaNhanVien = @manhanvien";
                 SqlParameter[] param = new SqlParameter[]
                 {
-                    new SqlParameter("@id_nhan_vien", SqlDbType.Int) {Value = _id_nhan_vien},
-                    new SqlParameter("@ma_cham_cong", SqlDbType.Int) {Value = txt_machancong},
+                    new SqlParameter("@manhanvien", SqlDbType.VarChar) {Value = _ma_nhan_vien},
+                    new SqlParameter("@ma_cham_cong", SqlDbType.Int) {Value = int.Parse(txt_machancong.Text)},
                     new SqlParameter("@ngay_sinh", SqlDbType.Date) {Value = dtp_ngaysinh.Value},
-                    new SqlParameter("@so_cccd", SqlDbType.VarChar) {Value = txt_cccd.Text},
                     new SqlParameter("@gioi_tinh", SqlDbType.Bit) {Value = int.Parse(cbo_gioitinh.SelectedValue.ToString())},
                     new SqlParameter("@email", SqlDbType.VarChar) {Value = txt_email.Text},
-                    new SqlParameter("@dien_thoai_dd", SqlDbType.VarChar) {Value = txt_dienthoai.Text},
-                    new SqlParameter("@id_trang_thai", SqlDbType.Int) {Value = int.Parse(cbo_trangthai.SelectedValue.ToString())},
                     new SqlParameter("@ghi_chu", SqlDbType.NVarChar) {Value = txt_ghichu.Text},
-                    new SqlParameter("@hinh_anh", SqlDbType.Image) {Value = _Picbyte == null ? (object)DBNull.Value : _Picbyte}
+                    new SqlParameter("@hinh_anh", SqlDbType.Image) {Value = _Picbyte == null ? (object)DBNull.Value : _Picbyte},
+                    new SqlParameter("@makhuvuc", SqlDbType.VarChar) {Value = cbo_bophan.SelectedValue},
+                    new SqlParameter("@maphongban", SqlDbType.VarChar) {Value = cbo_phongban.SelectedValue},
+                    //new SqlParameter("@machucvu", SqlDbType.VarChar) {Value = cbo_chucvu.SelectedValue},
                 };
 
                 if (SQLHelper.ExecuteSql(sql,param) == 1)
@@ -508,6 +518,25 @@ namespace TENTAC_HRM.Forms.User_control
             DataRow thuongtru = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loaidiachi") == 43).FirstOrDefault();
             txt_quequan.Text = (quequan != null ? quequan.ItemArray[0].ToString() : "");
             txt_noio.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
+        }
+
+        private void dgv_nhan_su_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+            var centerFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            var textSize = TextRenderer.MeasureText(rowIdx, Font);
+            //if (grid.RowHeadersWidth < textSize.Width + 10)
+            //{
+            //    grid.RowHeadersWidth = textSize.Width + 10;
+            //}
+            var headerBounds =
+                new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIdx, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
     }
 }

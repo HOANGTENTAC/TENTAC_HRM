@@ -62,7 +62,8 @@ namespace TENTAC_HRM.Forms.Main
                     BorderSize = 1,
                     UseVisualStyleBackColor = false,
                     BorderRadius = 0,
-                    Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point)
+                    Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                    Height = 55,
                 };
                 danhmuc.Click += btn_Menu_Click;
                 splitContainer1.Panel2.Controls.Add(danhmuc);
@@ -202,6 +203,8 @@ namespace TENTAC_HRM.Forms.Main
             Location = new Point(0, 0);
             Rectangle workingRectangle = Screen.PrimaryScreen.WorkingArea;
             this.Size = new Size(workingRectangle.Width, workingRectangle.Height);
+            //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
+            //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
         }
         private void ResizableWindow()
         {
@@ -415,6 +418,8 @@ namespace TENTAC_HRM.Forms.Main
                 this.Size = new Size(1240, 835);
                 this.StartPosition = FormStartPosition.CenterScreen;
                 this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2, (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
+                //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
+                //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
                 splitContainer1.Panel2MinSize = splitContainer1.Size.Height - splitContainer1.Panel1MinSize - 5;
             }
             //if (WindowState == FormWindowState.Normal)

@@ -30,18 +30,18 @@ namespace TENTAC_HRM
         }
         public DataTable load_tinh()
         {
-            string sql = "select Id,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22";
+            string sql = "select MaDiaChi,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;
         }
         public DataTable load_dantoc()
         {
-            string sql = "SELECT id, TenDanToc as name from mst_DanToc where del_flg = 0";
+            string sql = "SELECT MaDanToc as id, TenDanToc as name from mst_DanToc where del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("MaDanToc")).CopyToDataTable();
         }
         /// <summary>
         /// 20 quoc gia
@@ -58,11 +58,11 @@ namespace TENTAC_HRM
         /// <returns></returns>
         public DataTable load_diachi(int id)
         {
-            string sql = string.Format("select Id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where delflg = 0 and LoaiDiaChi = '{0}'", id);
+            string sql = string.Format("select MaDiaChi as id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where delflg = 0 and LoaiDiaChi = '{0}'", id);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable();
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("id")).CopyToDataTable();
         }
         /// <summary>
         /// 1 trạng thái công việc
@@ -122,9 +122,9 @@ namespace TENTAC_HRM
         }
         public DataTable load_report_to()
         {
-            string sql = "select a.MaNhanVien as id, a.HoTen as name, b.TenChucVu " +
-                "from tbl_NhanVien a " +
-                "join mst_ChucVu b on b.MaChucVu = a.MaChucVu";
+            string sql = "select a.MaNhanVien as id, a.TenNhanVien as name, b.TenChucVu " +
+                "from MITACOSQL.dbo.NHANVIEN a " +
+                "left join MITACOSQL.dbo.ChucVu b on b.MaChucVu = a.MaChucVu";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
