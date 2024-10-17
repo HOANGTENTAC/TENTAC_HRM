@@ -1,15 +1,16 @@
-﻿using DevComponents.DotNetBar.Controls;
+﻿using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Mst_Add_Data;
-//using Excel = Microsoft.Office.Interop.Excel;
+
 namespace TENTAC_HRM.Forms.User_control
 {
     public partial class uc_certificate : UserControl
@@ -28,9 +29,9 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_certificate()
         {
             InitializeComponent();
-            load_dataChungChiNghe();
+            load_data();
         }
-        public void load_dataChungChiNghe()
+        public void load_data()
         {
             string sql = "select Id, MaChungChi,TenChungChi, MoTa, NgayCapNhat, NguoiCapNhat from mst_ChungChi where DelFlg = 0 order by MaChungChi";
             DataTable dt = new DataTable();
@@ -40,7 +41,7 @@ namespace TENTAC_HRM.Forms.User_control
         private void uc_certificate_Load(object sender, EventArgs e)
         {
             //pl_nation.Width = 0;
-            load_dataChungChiNghe();
+            load_data();
         }
         private void btn_delete_Click(object sender, EventArgs e)
         {
@@ -78,7 +79,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_dataChungChiNghe();
+                load_data();
             }
             catch (Exception ex)
             {
@@ -87,148 +88,150 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_export_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            //    string fileName = $"MstChungChi_{DateTime.Now.ToString("yyyyMMdd")}.xlsx";
-            //    string filePath = Path.Combine(desktopPath, fileName);
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                string fileName = $"MstChungChi_{DateTime.Now.ToString("yyyyMMdd")}.xlsx";
+                string filePath = Path.Combine(desktopPath, fileName);
 
-            //    KillExcelProcesses(fileName);
+                string query = "SELECT Id, MaChungChi, TenChungChi, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_ChungChi WHERE DelFlg = 0";
+                SqlDataReader reader = SQLHelper.ExecuteReader(query);
 
-            //    Excel.Application excelApp = new Excel.Application();
-            //    Excel.Workbook workbook = excelApp.Workbooks.Add(Type.Missing);
-            //    Excel._Worksheet worksheet = workbook.Sheets[1];
-            //    worksheet.Name = "sheet1";
+                IWorkbook workbook = new XSSFWorkbook();
+                ISheet worksheet = workbook.CreateSheet("ChungChi");
 
-            //    string query = "SELECT Id, MaChungChi, TenChungChi, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_ChungChi where DelFlg = 0";
-            //    SqlDataReader reader = SQLHelper.ExecuteReader(query);
+                IRow headerRow = worksheet.CreateRow(0);
+                headerRow.CreateCell(0).SetCellValue("Mã Chứng Chỉ");
+                headerRow.CreateCell(1).SetCellValue("Tên Chứng Chỉ");
+                headerRow.CreateCell(2).SetCellValue("Mô Tả");
+                headerRow.CreateCell(3).SetCellValue("Ngày Tạo");
+                headerRow.CreateCell(4).SetCellValue("Người Tạo");
+                headerRow.CreateCell(5).SetCellValue("Ngày Cập Nhật");
+                headerRow.CreateCell(6).SetCellValue("Người Cập Nhật");
 
-            //    // Tiêu đề
-            //    worksheet.Cells[1, 1] = "MaChungChi";
-            //    worksheet.Cells[1, 2] = "TenChungChi";
-            //    worksheet.Cells[1, 3] = "MoTa";
-            //    worksheet.Cells[1, 4] = "NgayTao";
-            //    worksheet.Cells[1, 5] = "NguoiTao";
-            //    worksheet.Cells[1, 6] = "NgayCapNhat";
-            //    worksheet.Cells[1, 7] = "NguoiCapNhat";
+                int row = 1;
+                while (reader.Read())
+                {
+                    IRow dataRow = worksheet.CreateRow(row);
+                    dataRow.CreateCell(0).SetCellValue(reader["MaChungChi"].ToString());
+                    dataRow.CreateCell(1).SetCellValue(reader["TenChungChi"].ToString());
+                    dataRow.CreateCell(2).SetCellValue(reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : "");
+                    dataRow.CreateCell(3).SetCellValue(reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "");
+                    dataRow.CreateCell(4).SetCellValue(reader["NguoiTao"].ToString());
+                    dataRow.CreateCell(5).SetCellValue(reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "");
+                    dataRow.CreateCell(6).SetCellValue(reader["NguoiCapNhat"].ToString());
+                    row++;
+                }
+                reader.Close();
 
-            //    int row = 2;
-            //    while (reader.Read())
-            //    {
-            //        worksheet.Cells[row, 1] = reader["MaChungChi"].ToString();
-            //        worksheet.Cells[row, 2] = reader["TenChungChi"].ToString();
-            //        worksheet.Cells[row, 3] = reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : "";
-            //        worksheet.Cells[row, 4] = reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "";
-            //        worksheet.Cells[row, 5] = reader["NguoiTao"].ToString();
-            //        worksheet.Cells[row, 6] = reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "";
-            //        worksheet.Cells[row, 7] = reader["NguoiCapNhat"].ToString();
-            //        row++;
-            //    }
-            //    reader.Close();
-            //    for (int i = 1; i <= 7; i++)
-            //    {
-            //        worksheet.Columns[i].AutoFit();
-            //    }
-            //    workbook.SaveAs(filePath);
-            //    workbook.Close(false);
-            //    excelApp.Quit();
-            //    RJMessageBox.Show("Xuất dữ liệu thành công! File đã được lưu vào Desktop.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                for (int i = 0; i <= 6; i++)
+                {
+                    worksheet.AutoSizeColumn(i);
+                }
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    workbook.Write(fileStream);
+                }
+                Cursor.Current = Cursors.Default;
+
+                RJMessageBox.Show("Xuất dữ liệu thành công! File đã được lưu vào Desktop.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btn_import_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    OpenFileDialog openFileDialog = new OpenFileDialog
-            //    {
-            //        Filter = "Excel Files|*.xls;*.xlsx;*.xlsm",
-            //        Title = "Chọn file Excel để nhập dữ liệu"
-            //    };
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    Filter = "Excel Files|*.xls;*.xlsx;*.xlsm",
+                    Title = "Chọn file Excel để nhập dữ liệu"
+                };
 
-            //    if (openFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        KillExcelProcesses(Path.GetFileName(openFileDialog.FileName));
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = Path.GetFileName(openFileDialog.FileName);
+                    if (!fileName.StartsWith("MstChungChi_"))
+                    {
+                        RJMessageBox.Show("Tên file không hợp lệ. Vui lòng chọn file có tên bắt đầu bằng 'MstChungChi_'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    KillExcelProcesses(fileName);
+                    Cursor.Current = Cursors.WaitCursor;
+                    using (var fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    {
+                        IWorkbook workbook = openFileDialog.FileName.EndsWith(".xlsx") ? (IWorkbook)new XSSFWorkbook(fs) : new HSSFWorkbook(fs);
+                        ISheet sheet = workbook.GetSheetAt(0);
 
-            //        Excel.Application excelApp = new Excel.Application();
-            //        Excel.Workbook workbook = excelApp.Workbooks.Open(openFileDialog.FileName);
-            //        Excel._Worksheet worksheet = workbook.Sheets[1];
-            //        Excel.Range range = worksheet.UsedRange;
+                        if (sheet.SheetName != "ChungChi")
+                        {
+                            RJMessageBox.Show("Tên sheet không hợp lệ. Vui lòng chọn file có sheet tên là 'ChungChi'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        int res = 0;
 
-            //        int res = 0;
-            //        for (int row = 2; row <= range.Rows.Count; row++)
-            //        {
-            //            string maChungChi = range.Cells[row, 1].Value != null ? range.Cells[row, 1].Value.ToString() : "";
-            //            string tenChungChi = range.Cells[row, 2].Value != null ? range.Cells[row, 2].Value.ToString() : "";
-            //            string moTa = range.Cells[row, 3].Value != null ? range.Cells[row, 3].Value.ToString() : "";
+                        for (int row = 1; row <= sheet.LastRowNum; row++)
+                        {
+                            IRow currentRow = sheet.GetRow(row);
+                            if (currentRow == null) continue;
 
-            //            string checkQuery = "SELECT COUNT(*) FROM mst_ChungChi WHERE MaChungChi = @MaChungChi AND DelFlg = 0";
-            //            var checkParams = new List<SqlParameter>
-            //        {
-            //            new SqlParameter("@MaChungChi", maChungChi)
-            //        };
+                            string maChungChi = currentRow.GetCell(0)?.ToString() ?? "";
+                            string tenChungChi = currentRow.GetCell(1)?.ToString() ?? "";
+                            string moTa = currentRow.GetCell(2)?.ToString() ?? "";
 
-            //            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
+                            string checkQuery = "SELECT COUNT(*) FROM mst_ChungChi WHERE MaChungChi = @MaChungChi AND DelFlg = 0";
+                            var checkParams = new List<SqlParameter> { new SqlParameter("@MaChungChi", maChungChi) };
+                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
 
-            //            if (count > 0)
-            //            {
-            //                string sqlUpdate = @"UPDATE mst_ChungChi
-            //                        SET 
-            //                            TenChungChi = @TenChungChi,
-            //                            MoTa = @MoTa,
-            //                            NgayCapNhat = @NgayCapNhat,
-            //                            NguoiCapNhat = @NguoiCapNhat
-            //                        WHERE 
-            //                            MaChungChi = @MaChungChi AND DelFlg = 0";
+                            if (count > 0)
+                            {
+                                string sqlUpdate = @"UPDATE mst_ChungChi SET TenChungChi = @TenChungChi, MoTa = @MoTa, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat WHERE MaChungChi = @MaChungChi AND DelFlg = 0";
+                                var updateParams = new List<SqlParameter>
+                                {
+                                    new SqlParameter("@MaChungChi", maChungChi),
+                                    new SqlParameter("@TenChungChi", tenChungChi),
+                                    new SqlParameter("@MoTa", moTa),
+                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
+                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
+                                };
+                                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
+                            }
+                            else
+                            {
+                                string newMaChungChi = autoCodeGenerator.GenerateNextCode("mst_ChungChi", "CC", "MaChungChi");
+                                string sqlInsert = @"INSERT INTO mst_ChungChi(MaChungChi, TenChungChi, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg) VALUES(@MaChungChi, @TenChungChi, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
 
-            //                var updateParams = new List<SqlParameter>
-            //                {
-            //                    new SqlParameter("@MaChungChi", maChungChi),
-            //                    new SqlParameter("@TenChungChi", tenChungChi),
-            //                    new SqlParameter("@MoTa", moTa),
-            //                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-            //                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-            //                };
-            //                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
-            //            }
-            //            else
-            //            {
-            //                string newMaChungChi = autoCodeGenerator.GenerateNextCode("mst_ChungChi", "CC", "MaChungChi");
-
-            //                string sqlInsert = @"INSERT INTO mst_ChungChi(MaChungChi, TenChungChi, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-            //                        VALUES(@MaChungChi, @TenChungChi, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
-
-            //                var insertParams = new List<SqlParameter>
-            //            {
-            //                new SqlParameter("@MaChungChi", newMaChungChi),
-            //                new SqlParameter("@TenChungChi", tenChungChi),
-            //                new SqlParameter("@MoTa", moTa),
-            //                new SqlParameter("@NgayTao", DateTime.Now),
-            //                new SqlParameter("@NguoiTao", SQLHelper.sUser),
-            //                new SqlParameter("@NgayCapNhat", DateTime.Now),
-            //                new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-            //            };
-            //                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
-            //            }
-            //        }
-
-            //        workbook.Close(false);
-            //        excelApp.Quit();
-            //        if (res > 0)
-            //        {
-            //            RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //        }
-            //    }
-            //    load_dataChungChiNghe();
-            //}
-            //catch (Exception ex)
-            //{
-            //    RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+                                var insertParams = new List<SqlParameter>
+                                {
+                                    new SqlParameter("@MaChungChi", newMaChungChi),
+                                    new SqlParameter("@TenChungChi", tenChungChi),
+                                    new SqlParameter("@MoTa", moTa),
+                                    new SqlParameter("@NgayTao", DateTime.Now),
+                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
+                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
+                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
+                                };
+                                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
+                            }
+                        }
+                        if (res > 0)
+                        {
+                            RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    Cursor.Current = Cursors.Default;
+                }
+                load_data();
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void dgv_certificate_CellClick(object sender, DataGridViewCellEventArgs e)
         {

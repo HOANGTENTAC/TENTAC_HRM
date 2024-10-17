@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_foreign_languages = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -36,9 +35,8 @@
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
             this.btn_export = new System.Windows.Forms.ToolStripButton();
             this.btn_import = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaNgoaiNgu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.TenNgoaiNgu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.MoTa = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
@@ -62,14 +60,14 @@
             this.NgayCapNhat,
             this.NguoiCapNhat,
             this.edit_column});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_foreign_languages.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_foreign_languages.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_foreign_languages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_foreign_languages.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_foreign_languages.Location = new System.Drawing.Point(0, 25);
@@ -128,13 +126,6 @@
             this.btn_import.Text = "Import";
             this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
             // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 30;
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -144,16 +135,10 @@
             // 
             // check
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = false;
-            this.check.DefaultCellStyle = dataGridViewCellStyle1;
-            this.check.FalseValue = null;
             this.check.HeaderText = "";
-            this.check.IndeterminateValue = null;
             this.check.Name = "check";
             this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.check.TrueValue = null;
             this.check.Width = 50;
             // 
             // MaNgoaiNgu
@@ -227,9 +212,8 @@
         private System.Windows.Forms.ToolStripButton btn_delete;
         private System.Windows.Forms.ToolStripButton btn_export;
         private System.Windows.Forms.ToolStripButton btn_import;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn check;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn check;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaNgoaiNgu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenNgoaiNgu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MoTa;

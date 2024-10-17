@@ -49,7 +49,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void load_Vung()
         {
-            string sql = @"Select Id, Vung from mst_Vung where DelFlg = 0";
+            string sql = @"Select Id, Vung from tbl_MucLuongToiThieu where DelFlg = 0";
             DataTable DT = SQLHelper.ExecuteDt(sql);
             DataRow row = DT.NewRow();
             row["Vung"] = "---Chọn Vùng---";
@@ -151,7 +151,7 @@ namespace TENTAC_HRM.Forms.User_control
                     {
                         string sqlDetail = $@"SELECT DVHC.Id, TenDiaChi, Vung, LuongToiThieuTheoThang, LuongToiThieuTheoGio
                                   FROM mst_DonViHanhChinh DVHC
-                                  LEFT JOIN mst_Vung V ON DVHC.MaKhuVuc = V.Id
+                                  LEFT JOIN tbl_MucLuongToiThieu V ON DVHC.MaKhuVuc = V.Id
                                   WHERE DVHC.Id = {selectedId}";
                         DataTable dtDetail = SQLHelper.ExecuteDt(sqlDetail);
 

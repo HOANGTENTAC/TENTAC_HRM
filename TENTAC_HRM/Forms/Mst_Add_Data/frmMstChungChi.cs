@@ -78,7 +78,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                uc_certificate.load_dataChungChiNghe();
+                uc_certificate.load_data();
                 load_null();
             }
             catch (Exception ex)

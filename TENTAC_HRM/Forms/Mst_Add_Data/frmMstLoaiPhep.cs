@@ -18,7 +18,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
     {
         private uc_leave_type uc_leave_type;
         private MstMaTuDong autoCodeGenerator;
-        public frmMstLoaiPhep(string maLoaiPhep, string tenLoaiPhep, string kyHieu, bool tinhCong, double? soCong ,bool addNew, uc_leave_type _uc_leave_type)
+        public frmMstLoaiPhep(string maLoaiPhep, string tenLoaiPhep, string kyHieu, bool tinhCong, double? soCong, bool addNew, uc_leave_type _uc_leave_type)
         {
             InitializeComponent();
             autoCodeGenerator = new MstMaTuDong();
@@ -34,7 +34,17 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             {
                 txtMaLoaiPhep.Text = autoCodeGenerator.GenerateNextCode("mst_LoaiPhep", "LP", "MaLoaiPhep");
             }
+         
             uc_leave_type = _uc_leave_type;
+
+            if (chkTinhCong.Checked == true)
+            {
+                txtSoCong.Enabled = true;
+            }
+            else
+            {
+                txtSoCong.Enabled = false;
+            }
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
@@ -111,6 +121,29 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             load_null();
+        }
+
+        private void chkTinhCong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTinhCong.Checked == true)
+            {
+                txtSoCong.Enabled = true;
+            }
+            else
+            {
+                txtSoCong.Enabled = false;
+            }
+        }
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+            if (e.KeyChar == '.' && txtSoCong.Text.Contains("."))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

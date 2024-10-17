@@ -143,6 +143,7 @@
             this.txtSoCong.Name = "txtSoCong";
             this.txtSoCong.Size = new System.Drawing.Size(167, 22);
             this.txtSoCong.TabIndex = 41;
+            this.txtSoCong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // lblSoCong
             // 
@@ -164,10 +165,11 @@
             // 
             // chkTinhCong
             // 
-            this.chkTinhCong.Location = new System.Drawing.Point(395, 135);
+            this.chkTinhCong.Location = new System.Drawing.Point(385, 134);
             this.chkTinhCong.Name = "chkTinhCong";
             this.chkTinhCong.Size = new System.Drawing.Size(29, 23);
             this.chkTinhCong.TabIndex = 43;
+            this.chkTinhCong.CheckedChanged += new System.EventHandler(this.chkTinhCong_CheckedChanged);
             // 
             // frmMstLoaiPhep
             // 

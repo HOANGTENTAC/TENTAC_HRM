@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
@@ -39,7 +33,7 @@ namespace TENTAC_HRM.Forms.User_control
             dt = SQLHelper.ExecuteDt(sql);
             dgv_leave_type.DataSource = dt;
         }
-        private void uc_certificate_Load(object sender, EventArgs e)
+        private void uc_leave_type_Load(object sender, EventArgs e)
         {
             //pl_nation.Width = 0;
             load_LoaiPhep();
@@ -87,12 +81,12 @@ namespace TENTAC_HRM.Forms.User_control
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void dgv_certificate_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_leave_type_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_leave_type.Columns["edit_column"].Index)
             {
-                string MaLoaiPhep = dgv_leave_type.CurrentRow.Cells["MaChungChi"].Value.ToString();
-                string TenLoaiPhep = dgv_leave_type.CurrentRow.Cells["TenChungChi"].Value.ToString();
+                string MaLoaiPhep = dgv_leave_type.CurrentRow.Cells["MaLoaiPhep"].Value.ToString();
+                string TenLoaiPhep = dgv_leave_type.CurrentRow.Cells["TenLoaiPhep"].Value.ToString();
                 string KyHieu = dgv_leave_type.CurrentRow.Cells["KyHieu"].Value.ToString();
                 bool TinhCong = Convert.ToBoolean(dgv_leave_type.CurrentRow.Cells["TinhCong"].Value);
                 double SoCong = dgv_leave_type.CurrentRow.Cells["SoCong"].Value != null ? Convert.ToDouble(dgv_leave_type.CurrentRow.Cells["SoCong"].Value): 0;

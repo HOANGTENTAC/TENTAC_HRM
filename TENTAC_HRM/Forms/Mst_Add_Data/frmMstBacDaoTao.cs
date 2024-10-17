@@ -8,60 +8,61 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
-    public partial class frmMstNgoaiNgu : Form
+    public partial class frmMstBacDaoTao : Form
     {
+        private uc_education_level uc_education_level;
         private MstMaTuDong autoCodeGenerator;
-        private uc_foreign_languages uc_foreign_languages;
-        public frmMstNgoaiNgu(string maNgoaiNgu, string tenNgoaiNgu, string moTa, bool addNew, uc_foreign_languages _uc_foreign_languages)
+        public frmMstBacDaoTao(string maTrinhDo, string tenTrinhDo, string moTa, bool addNew, uc_education_level _uc_education_level)
         {
             InitializeComponent();
+
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
-                txtMaNgoaiNgu.Text = maNgoaiNgu;
-                txtTenNgoaiNgu.Text = tenNgoaiNgu;
+                txtMaTrinhDo.Text = maTrinhDo;
+                txtTenTrinhDo.Text = tenTrinhDo;
                 txtMota.Text = moTa;
             }
             else
             {
-                txtMaNgoaiNgu.Text = autoCodeGenerator.GenerateNextCode("mst_NgoaiNgu", "NN", "MaNgoaiNgu");
+                txtMaTrinhDo.Text = autoCodeGenerator.GenerateNextCode("mst_BacDaoTao", "TD", "MaBac");
             }
-            uc_foreign_languages = _uc_foreign_languages;
+            uc_education_level = _uc_education_level;
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
             try
             {
-                string MaNgoaiNgu = txtMaNgoaiNgu.Text.Trim().ToUpper().ToString();
-                string TenNgoaiNgu = txtTenNgoaiNgu.Text.Trim().ToString();
+                string MaBac = txtMaTrinhDo.Text.Trim().ToUpper().ToString();
+                string TenBac = txtTenTrinhDo.Text.Trim().ToString();
                 string Mota = txtMota.Text.Trim().ToString();
                 string sql = string.Empty;
-                if (string.IsNullOrEmpty(TenNgoaiNgu))
+                if (string.IsNullOrEmpty(TenBac))
                 {
-                    RJMessageBox.Show("Bạn chưa nhập tên ngoại ngữ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show("Bạn chưa nhập tên trình độ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                sql = @"IF EXISTS (SELECT 1 FROM mst_NgoaiNgu WHERE MaNgoaiNgu = @MaNgoaiNgu AND DelFlg = 0)
+                sql = @"IF EXISTS (SELECT 1 FROM mst_BacDaoTao WHERE MaBac = @MaBac AND DelFlg = 0)
                         BEGIN
-                            UPDATE mst_NgoaiNgu
+                            UPDATE mst_BacDaoTao
                             SET 
-                                TenNgoaiNgu = @TenNgoaiNgu,
+                                TenBac = @TenBac,
                                 MoTa = @MoTa,
                                 NgayCapNhat = @NgayCapNhat,
                                 NguoiCapNhat = @NguoiCapNhat
                             WHERE 
-                                MaNgoaiNgu = @MaNgoaiNgu AND DelFlg = 0;
+                                MaBac = @MaBac AND DelFlg = 0;
                         END
                         ELSE
                         BEGIN
-                            INSERT INTO mst_NgoaiNgu(MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                            VALUES(@MaNgoaiNgu, @TenNgoaiNgu, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
+                            INSERT INTO mst_BacDaoTao(MaBac, TenBac, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
+                            VALUES(@MaBac, @TenBac, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
                         END";
 
                 var parameters = new List<SqlParameter>
                 {
-                    new SqlParameter("@MaNgoaiNgu", MaNgoaiNgu),
-                    new SqlParameter("@TenNgoaiNgu", TenNgoaiNgu),
+                    new SqlParameter("@MaBac", MaBac),
+                    new SqlParameter("@TenBac", TenBac),
                     new SqlParameter("@MoTa", Mota),
                     new SqlParameter("@NgayTao", DateTime.Now),
                     new SqlParameter("@NguoiTao", SQLHelper.sUser),
@@ -78,7 +79,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                uc_foreign_languages.load_data();
+                uc_education_level.load_data();
                 load_null();
             }
             catch (Exception ex)
@@ -88,8 +89,8 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void load_null()
         {
-            txtMaNgoaiNgu.Text = autoCodeGenerator.GenerateNextCode("mst_NgoaiNgu", "NN", "MaNgoaiNgu");
-            txtTenNgoaiNgu.Text = string.Empty;
+            txtMaTrinhDo.Text = autoCodeGenerator.GenerateNextCode("mst_BacDaoTao", "TD", "MaBac");
+            txtTenTrinhDo.Text = string.Empty;
             txtMota.Text = string.Empty;
         }
         private void btn_cancel_Click(object sender, EventArgs e)

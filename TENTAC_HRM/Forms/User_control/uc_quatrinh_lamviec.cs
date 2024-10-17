@@ -287,21 +287,21 @@ namespace TENTAC_HRM.Forms.User_control
 
         private void btn_add_dg_Click(object sender, EventArgs e)
         {
-            frm_danhgia frm = new frm_danhgia(null, this);
-            frm._edit = false;
-            frm._ma_nhan_vien = _ma_nhan_vien;
-            frm.ShowDialog();
+            //frm_danhgia frm = new frm_danhgia(null, this);
+            //frm._edit = false;
+            //frm._ma_nhan_vien = _ma_nhan_vien;
+            //frm.ShowDialog();
         }
 
         private void dgv_qt_danhgia_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgv_qt_danhgia.CurrentCell.OwningColumn.Name == "edit_column_danhgia")
             {
-                frm_danhgia frm = new frm_danhgia(null, this);
-                frm._id_danh_gia = int.Parse(dgv_qt_danhgia.CurrentRow.Cells["id_qt_danhgia"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._edit = true;
-                frm.ShowDialog();
+                //frm_danhgia frm = new frm_danhgia(null, this);
+                //frm._id_danh_gia = int.Parse(dgv_qt_danhgia.CurrentRow.Cells["id_qt_danhgia"].Value.ToString());
+                //frm._ma_nhan_vien = _ma_nhan_vien;
+                //frm._edit = true;
+                //frm.ShowDialog();
             }
         }
 

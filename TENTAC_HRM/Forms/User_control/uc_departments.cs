@@ -3,9 +3,14 @@ using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
@@ -13,51 +18,50 @@ using TENTAC_HRM.Forms.Mst_Add_Data;
 
 namespace TENTAC_HRM.Forms.User_control
 {
-    public partial class uc_major : UserControl
+    public partial class uc_departments : UserControl
     {
-        public static uc_major _instance;
-
+        public static uc_departments _instance;
         private static MstMaTuDong autoCodeGenerator = new MstMaTuDong();
-        public static uc_major Instance
+        public static uc_departments Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new uc_major();
+                    _instance = new uc_departments();
                 return _instance;
             }
         }
-        public uc_major()
+        public uc_departments()
         {
             InitializeComponent();
-            load_dataChuyenNganh();
+            load_data();
         }
-        public void load_dataChuyenNganh()
+        public void load_data()
         {
-            string sql = "select Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayCapNhat, NguoiCapNhat from mst_ChuyenNganh where DelFlg = 0 order by MaChuyenNganh";
+            string sql = "select Id, MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayCapNhat, NguoiCapNhat from mst_PhongBan where DelFlg = 0 order by MaPhongBan";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            dgv_major.DataSource = dt;
+            dgv_departments.DataSource = dt;
         }
         private void btn_delete_Click(object sender, EventArgs e)
         {
             try
             {
-                dgv_major.EndEdit();
+                dgv_departments.EndEdit();
                 List<string> updateQueries = new List<string>();
 
-                for (int i = 0; i < dgv_major.Rows.Count; i++)
+                for (int i = 0; i < dgv_departments.Rows.Count; i++)
                 {
-                    DataGridViewRow row = dgv_major.Rows[i];
+                    DataGridViewRow row = dgv_departments.Rows[i];
 
                     bool isChecked = row.Cells["check"].Value != DBNull.Value && row.Cells["check"].Value != null && Convert.ToBoolean(row.Cells["check"].Value);
 
                     if (isChecked)
                     {
-                        string MaNgoaiNgu = row.Cells["MaChuyenNganh"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(MaNgoaiNgu))
+                        string MaPhongBan = row.Cells["MaPhongBan"].Value?.ToString();
+                        if (!string.IsNullOrEmpty(MaPhongBan))
                         {
-                            updateQueries.Add($@"UPDATE mst_ChuyenNganh SET DelFlg = 1 WHERE MaChuyenNganh = N'{MaNgoaiNgu}'");
+                            updateQueries.Add($@"UPDATE mst_PhongBan SET DelFlg = 1 WHERE MaPhongBan = N'{MaPhongBan}'");
                         }
                     }
                 }
@@ -75,7 +79,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_dataChuyenNganh();
+                load_data();
             }
             catch (Exception ex)
             {
@@ -88,41 +92,42 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 Cursor.Current = Cursors.WaitCursor;
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string fileName = $"MstChuyenNganh_{DateTime.Now:yyyyMMdd}.xlsx";
+                string fileName = $"MstPhongBan_{DateTime.Now.ToString("yyyyMMdd")}.xlsx";
                 string filePath = Path.Combine(desktopPath, fileName);
 
-                KillExcelProcesses(fileName);
-
-                var workbook = new NPOI.XSSF.UserModel.XSSFWorkbook();
-                var worksheet = workbook.CreateSheet("ChuyenNganh");
-
-                var headerRow = worksheet.CreateRow(0);
-                headerRow.CreateCell(0).SetCellValue("Mã Chuyên Ngành");
-                headerRow.CreateCell(1).SetCellValue("Tên Chuyên Ngành");
-                headerRow.CreateCell(2).SetCellValue("Mô Tả");
-                headerRow.CreateCell(3).SetCellValue("Ngày Tạo");
-                headerRow.CreateCell(4).SetCellValue("Người Tạo");
-                headerRow.CreateCell(5).SetCellValue("Ngày Cập Nhật");
-                headerRow.CreateCell(6).SetCellValue("Người Cập Nhật");
-
-                string query = "SELECT Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_ChuyenNganh where DelFlg = 0";
+                string query = "SELECT Id, MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_PhongBan WHERE DelFlg = 0";
                 SqlDataReader reader = SQLHelper.ExecuteReader(query);
 
-                int rowIndex = 1;
+                IWorkbook workbook = new XSSFWorkbook();
+                ISheet worksheet = workbook.CreateSheet("PhongBan");
+
+                IRow headerRow = worksheet.CreateRow(0);
+                headerRow.CreateCell(0).SetCellValue("Mã Phòng Ban");
+                headerRow.CreateCell(1).SetCellValue("Mã Công Ty");
+                headerRow.CreateCell(2).SetCellValue("Mã Khu Vục");
+                headerRow.CreateCell(3).SetCellValue("Tên Phòng Ban");
+                headerRow.CreateCell(4).SetCellValue("Ngày Tạo");
+                headerRow.CreateCell(5).SetCellValue("Người Tạo");
+                headerRow.CreateCell(6).SetCellValue("Ngày Cập Nhật");
+                headerRow.CreateCell(7).SetCellValue("Người Cập Nhật");
+
+                int row = 1;
                 while (reader.Read())
                 {
-                    var row = worksheet.CreateRow(rowIndex++);
-                    row.CreateCell(0).SetCellValue(reader["MaChuyenNganh"].ToString());
-                    row.CreateCell(1).SetCellValue(reader["TenChuyenNganh"].ToString());
-                    row.CreateCell(2).SetCellValue(reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : "");
-                    row.CreateCell(3).SetCellValue(reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "");
-                    row.CreateCell(4).SetCellValue(reader["NguoiTao"].ToString());
-                    row.CreateCell(5).SetCellValue(reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "");
-                    row.CreateCell(6).SetCellValue(reader["NguoiCapNhat"].ToString());
+                    IRow dataRow = worksheet.CreateRow(row);
+                    dataRow.CreateCell(0).SetCellValue(reader["MaPhongBan"].ToString());
+                    dataRow.CreateCell(1).SetCellValue(reader["MaCongTy"].ToString());
+                    dataRow.CreateCell(2).SetCellValue(reader["MaKhuVuc"].ToString());
+                    dataRow.CreateCell(3).SetCellValue(reader["TenPhongBan"].ToString());
+                    dataRow.CreateCell(4).SetCellValue(reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "");
+                    dataRow.CreateCell(5).SetCellValue(reader["NguoiTao"].ToString());
+                    dataRow.CreateCell(6).SetCellValue(reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "");
+                    dataRow.CreateCell(7).SetCellValue(reader["NguoiCapNhat"].ToString());
+                    row++;
                 }
                 reader.Close();
 
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     worksheet.AutoSizeColumn(i);
                 }
@@ -131,8 +136,8 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     workbook.Write(fileStream);
                 }
-                workbook.Close();
                 Cursor.Current = Cursors.Default;
+
                 RJMessageBox.Show("Xuất dữ liệu thành công! File đã được lưu vào Desktop.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -153,54 +158,50 @@ namespace TENTAC_HRM.Forms.User_control
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string fileName = Path.GetFileName(openFileDialog.FileName);
-                    if (!fileName.StartsWith("MstChuyenNganh_"))
+                    if (!fileName.StartsWith("MstPhongBan_"))
                     {
-                        RJMessageBox.Show("Tên file không hợp lệ. Vui lòng chọn file có tên bắt đầu bằng 'MstChuyenNganh_'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        RJMessageBox.Show("Tên file không hợp lệ. Vui lòng chọn file có tên bắt đầu bằng 'MstPhongBan_'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+                    KillExcelProcesses(fileName);
                     Cursor.Current = Cursors.WaitCursor;
                     using (var fs = new FileStream(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
                     {
                         IWorkbook workbook = openFileDialog.FileName.EndsWith(".xlsx") ? (IWorkbook)new XSSFWorkbook(fs) : new HSSFWorkbook(fs);
                         ISheet sheet = workbook.GetSheetAt(0);
 
-                        if (sheet.SheetName != "ChuyenNganh")
+                        if (sheet.SheetName != "PhongBan")
                         {
-                            RJMessageBox.Show("Tên sheet không hợp lệ. Vui lòng chọn file có sheet tên là 'ChuyenNganh'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            RJMessageBox.Show("Tên sheet không hợp lệ. Vui lòng chọn file có sheet tên là 'PhongBan'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                         int res = 0;
+
                         for (int row = 1; row <= sheet.LastRowNum; row++)
                         {
                             IRow currentRow = sheet.GetRow(row);
-                            string maChuyenNganh = currentRow.GetCell(0)?.ToString() ?? "";
-                            string tenChuyenNganh = currentRow.GetCell(1)?.ToString() ?? "";
-                            string moTa = currentRow.GetCell(2)?.ToString() ?? "";
+                            if (currentRow == null) continue;
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_ChuyenNganh WHERE MaChuyenNganh = @MaChuyenNganh AND DelFlg = 0";
-                            var checkParams = new List<SqlParameter>
-                            {
-                                new SqlParameter("@MaChuyenNganh", maChuyenNganh)
-                            };
+                            string maPhongBan = currentRow.GetCell(0)?.ToString() ?? "";
+                            string maCongTy = currentRow.GetCell(1)?.ToString() ?? "";
+                            string maKhuVuc = currentRow.GetCell(2)?.ToString() ?? "";
+                            string tenPhongBan = currentRow.GetCell(3)?.ToString() ?? "";
 
+                            string checkQuery = "SELECT COUNT(*) FROM mst_PhongBan WHERE MaPhongBan = @MaPhongBan AND DelFlg = 0";
+                            var checkParams = new List<SqlParameter> { new SqlParameter("@MaPhongBan", maPhongBan) };
                             int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_ChuyenNganh
-                                SET 
-                                    TenChuyenNganh = @TenChuyenNganh,
-                                    MoTa = @MoTa,
-                                    NgayCapNhat = @NgayCapNhat,
-                                    NguoiCapNhat = @NguoiCapNhat
-                                WHERE 
-                                    MaChuyenNganh = @MaChuyenNganh AND DelFlg = 0";
-
+                                string sqlUpdate = @"UPDATE mst_PhongBan SET MaCongTy = @MaCongTy, MaKhuVuc = @MaKhuVuc, 
+                                                    TenPhongBan = @TenPhongBan, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat 
+                                                    WHERE MaPhongBan = @MaPhongBan AND DelFlg = 0";
                                 var updateParams = new List<SqlParameter>
                                 {
-                                    new SqlParameter("@MaChuyenNganh", maChuyenNganh),
-                                    new SqlParameter("@TenChuyenNganh", tenChuyenNganh),
-                                    new SqlParameter("@MoTa", moTa),
+                                    new SqlParameter("@MaPhongBan", maPhongBan),
+                                    new SqlParameter("@MaCongTy", maCongTy),
+                                    new SqlParameter("@MaKhuVuc", maKhuVuc),
+                                    new SqlParameter("@TenPhongBan", tenPhongBan),
                                     new SqlParameter("@NgayCapNhat", DateTime.Now),
                                     new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
                                 };
@@ -208,16 +209,16 @@ namespace TENTAC_HRM.Forms.User_control
                             }
                             else
                             {
-                                string newMaChuyenNganh = autoCodeGenerator.GenerateNextCode("mst_ChuyenNganh", "CN", "MaChuyenNganh");
-
-                                string sqlInsert = @"INSERT INTO mst_ChuyenNganh(MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                                    VALUES(@MaChuyenNganh, @TenChuyenNganh, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                                string newMaPhongBan = autoCodeGenerator.GenerateNextMaPhongBan();
+                                string sqlInsert = @"INSERT INTO mst_PhongBan(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg) 
+                                                VALUES(@MaPhongBan, @MaCongTy, @MaKhuVuc, @TenPhongBan, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
 
                                 var insertParams = new List<SqlParameter>
                                 {
-                                    new SqlParameter("@MaChuyenNganh", newMaChuyenNganh),
-                                    new SqlParameter("@TenChuyenNganh", tenChuyenNganh),
-                                    new SqlParameter("@MoTa", moTa),
+                                    new SqlParameter("@MaPhongBan", newMaPhongBan),
+                                    new SqlParameter("@MaCongTy", maCongTy),
+                                    new SqlParameter("@MaKhuVuc", maKhuVuc),
+                                    new SqlParameter("@TenPhongBan", tenPhongBan),
                                     new SqlParameter("@NgayTao", DateTime.Now),
                                     new SqlParameter("@NguoiTao", SQLHelper.sUser),
                                     new SqlParameter("@NgayCapNhat", DateTime.Now),
@@ -226,7 +227,6 @@ namespace TENTAC_HRM.Forms.User_control
                                 res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
                             }
                         }
-
                         if (res > 0)
                         {
                             RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -234,11 +234,23 @@ namespace TENTAC_HRM.Forms.User_control
                     }
                     Cursor.Current = Cursors.Default;
                 }
-                load_dataChuyenNganh();
+                load_data();
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void dgv_departments_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgv_departments.Columns["edit_column"].Index)
+            {
+                string MaPhongBan = dgv_departments.CurrentRow.Cells["MaPhongBan"].Value.ToString();
+                string MaCongTy = dgv_departments.CurrentRow.Cells["MaCongTy"].Value.ToString();
+                string MaKhuVuc = dgv_departments.CurrentRow.Cells["MaKhuVuc"].Value.ToString();
+                string TenPhongBan = dgv_departments.CurrentRow.Cells["TenPhongBan"].Value.ToString();
+                frmMstPhongBan frmMstPhongBan = new frmMstPhongBan(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, false, this);
+                frmMstPhongBan.ShowDialog();
             }
         }
         private void btn_close_Click(object sender, EventArgs e)
@@ -248,8 +260,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstChuyenNganh frmMstChuyenNganh = new frmMstChuyenNganh(null, null, null, true, this);
-            frmMstChuyenNganh.ShowDialog();
+            frmMstPhongBan frmMstPhongBan = new frmMstPhongBan(null, null, null, null, true, this);
+            frmMstPhongBan.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)
         {
@@ -271,17 +283,6 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show(ex.Message, "Không thể đóng tiến trình Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-        }
-        private void dgv_major_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex == dgv_major.Columns["edit_column"].Index)
-            {
-                string MaChuyenNganh = dgv_major.CurrentRow.Cells["MaChuyenNganh"].Value.ToString();
-                string TenChuyenNganh = dgv_major.CurrentRow.Cells["TenChuyenNganh"].Value.ToString();
-                string MoTa = dgv_major.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstChuyenNganh frmMstChuyenNganh = new frmMstChuyenNganh(MaChuyenNganh, TenChuyenNganh, MoTa, false, this);
-                frmMstChuyenNganh.ShowDialog();
             }
         }
     }

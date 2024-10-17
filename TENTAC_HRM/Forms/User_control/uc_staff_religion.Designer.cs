@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -40,7 +39,7 @@
             this.dgv_religion = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaTonGiao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.TenTonGiao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.MoTa = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
@@ -119,14 +118,14 @@
             this.NgayCapNhat,
             this.NguoiCapNhat,
             this.edit_column});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_religion.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_religion.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_religion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_religion.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_religion.Location = new System.Drawing.Point(0, 25);
@@ -151,16 +150,10 @@
             // 
             // check
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = false;
-            this.check.DefaultCellStyle = dataGridViewCellStyle1;
-            this.check.FalseValue = null;
             this.check.HeaderText = "";
-            this.check.IndeterminateValue = null;
             this.check.Name = "check";
             this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.check.TrueValue = null;
             this.check.Width = 50;
             // 
             // MaTonGiao
@@ -240,7 +233,7 @@
         private System.Windows.Forms.ToolStripButton btn_export;
         private System.Windows.Forms.ToolStripButton btn_import;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn check;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn check;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaTonGiao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenTonGiao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MoTa;

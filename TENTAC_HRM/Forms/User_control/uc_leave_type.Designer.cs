@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_leave_type = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaLoaiPhep = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.TenLoaiPhep = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.KyHieu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.SoCong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.chkTinhCong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TinhCong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_leave_type)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -60,24 +60,25 @@
             this.TenLoaiPhep,
             this.KyHieu,
             this.SoCong,
-            this.chkTinhCong,
             this.NgayCapNhat,
             this.NguoiCapNhat,
+            this.TinhCong,
             this.edit_column});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_leave_type.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_leave_type.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_leave_type.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_leave_type.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_leave_type.Location = new System.Drawing.Point(0, 25);
             this.dgv_leave_type.Name = "dgv_leave_type";
             this.dgv_leave_type.Size = new System.Drawing.Size(1175, 605);
             this.dgv_leave_type.TabIndex = 9;
+            this.dgv_leave_type.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_leave_type_CellClick);
             // 
             // toolStrip1
             // 
@@ -128,6 +129,7 @@
             this.check.HeaderText = "";
             this.check.Name = "check";
             this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.check.Width = 50;
             // 
             // MaLoaiPhep
@@ -136,7 +138,7 @@
             this.MaLoaiPhep.HeaderText = "Mã Loại Phép";
             this.MaLoaiPhep.Name = "MaLoaiPhep";
             this.MaLoaiPhep.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MaLoaiPhep.Width = 150;
+            this.MaLoaiPhep.Width = 120;
             // 
             // TenLoaiPhep
             // 
@@ -144,7 +146,7 @@
             this.TenLoaiPhep.HeaderText = "Tên Loại Phép";
             this.TenLoaiPhep.Name = "TenLoaiPhep";
             this.TenLoaiPhep.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TenLoaiPhep.Width = 200;
+            this.TenLoaiPhep.Width = 150;
             // 
             // KyHieu
             // 
@@ -162,18 +164,6 @@
             this.SoCong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SoCong.Width = 100;
             // 
-            // chkTinhCong
-            // 
-            this.chkTinhCong.DataPropertyName = "TinhCong";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = false;
-            this.chkTinhCong.DefaultCellStyle = dataGridViewCellStyle5;
-            this.chkTinhCong.FalseValue = null;
-            this.chkTinhCong.HeaderText = "Tính Công";
-            this.chkTinhCong.IndeterminateValue = null;
-            this.chkTinhCong.Name = "chkTinhCong";
-            this.chkTinhCong.TrueValue = null;
-            // 
             // NgayCapNhat
             // 
             this.NgayCapNhat.DataPropertyName = "NgayCapNhat";
@@ -189,6 +179,19 @@
             this.NguoiCapNhat.Name = "NguoiCapNhat";
             this.NguoiCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NguoiCapNhat.Width = 150;
+            // 
+            // TinhCong
+            // 
+            this.TinhCong.DataPropertyName = "TinhCong";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.TinhCong.DefaultCellStyle = dataGridViewCellStyle1;
+            this.TinhCong.FalseValue = null;
+            this.TinhCong.HeaderText = "Tính Công";
+            this.TinhCong.IndeterminateValue = null;
+            this.TinhCong.Name = "TinhCong";
+            this.TinhCong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TinhCong.TrueValue = null;
             // 
             // edit_column
             // 
@@ -221,14 +224,14 @@
         private System.Windows.Forms.ToolStripButton btn_delete;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn check;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn check;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaLoaiPhep;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenLoaiPhep;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn KyHieu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoCong;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn chkTinhCong;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayCapNhat;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiCapNhat;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn TinhCong;
         private System.Windows.Forms.DataGridViewImageColumn edit_column;
     }
 }
