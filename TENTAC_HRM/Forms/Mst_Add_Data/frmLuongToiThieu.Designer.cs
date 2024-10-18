@@ -40,6 +40,7 @@
             // 
             // txtLuongToiThieuTheoThang
             // 
+            this.txtLuongToiThieuTheoThang.BackColor = System.Drawing.SystemColors.Window;
             // 
             // 
             // 
@@ -54,6 +55,7 @@
             // lblLuongToiThieuTheoThang
             // 
             this.lblLuongToiThieuTheoThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLuongToiThieuTheoThang.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblLuongToiThieuTheoThang.Location = new System.Drawing.Point(27, 57);
             this.lblLuongToiThieuTheoThang.Name = "lblLuongToiThieuTheoThang";
             this.lblLuongToiThieuTheoThang.Size = new System.Drawing.Size(185, 23);
@@ -63,6 +65,7 @@
             // lblVung
             // 
             this.lblVung.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVung.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblVung.Location = new System.Drawing.Point(27, 21);
             this.lblVung.Name = "lblVung";
             this.lblVung.Size = new System.Drawing.Size(101, 23);
@@ -71,6 +74,7 @@
             // 
             // txtLuongToiThieuTheoGio
             // 
+            this.txtLuongToiThieuTheoGio.BackColor = System.Drawing.SystemColors.Window;
             // 
             // 
             // 
@@ -85,6 +89,7 @@
             // lblLuongToiThieuTheoGio
             // 
             this.lblLuongToiThieuTheoGio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLuongToiThieuTheoGio.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblLuongToiThieuTheoGio.Location = new System.Drawing.Point(27, 96);
             this.lblLuongToiThieuTheoGio.Name = "lblLuongToiThieuTheoGio";
             this.lblLuongToiThieuTheoGio.Size = new System.Drawing.Size(185, 23);
@@ -119,6 +124,7 @@
             // 
             // txtTenVung
             // 
+            this.txtTenVung.BackColor = System.Drawing.SystemColors.Window;
             // 
             // 
             // 

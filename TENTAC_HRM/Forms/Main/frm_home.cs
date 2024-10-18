@@ -7,6 +7,7 @@ using TENTAC_HRM.Properties;
 using TENTAC_HRM.Forms.User_control;
 using NPOI.SS.Formula.Functions;
 using FontAwesome.Sharp;
+using System.Collections.Generic;
 
 namespace TENTAC_HRM.Forms.Main
 {
@@ -16,10 +17,12 @@ namespace TENTAC_HRM.Forms.Main
         Label lb_menu;
         Panel panel = new Panel();
         Panel panel_menu = new Panel();
-        Button btn_menu;
+        //Button btn_menu;
+        private FontAwesome.Sharp.IconButton btn_menu;
         Point _imageLocation = new Point(20, 4);
         Point _imgHitArea = new Point(20, 4);
-
+        private IconButton currentBtn;
+        private List<string> tagList = new List<string>();
         private bool isCollapsed = false;
         private bool isCollapsedMenu = false;
         bool _btn_nhansu = false;
@@ -33,6 +36,7 @@ namespace TENTAC_HRM.Forms.Main
         bool _btn_show_menu_left = false;
         bool _btn_category = false;
         bool isPresent = false;
+        bool isMinisize = false;
         DataTable dt_MenuParent = new DataTable();
         public frm_home()
         {
@@ -48,6 +52,7 @@ namespace TENTAC_HRM.Forms.Main
             else
                 return IconChar.None;
         }
+        private IconButton selectedButton;
         private void load_menu()
         {
             //splitContainer1.Panel2.Controls.Clear();
@@ -67,62 +72,81 @@ namespace TENTAC_HRM.Forms.Main
             {
                 int Height = 0;
                 var chil = dt_MenuChild.Rows.Cast<DataRow>().Where(x => x["ParentId"].ToString() == item["ID"].ToString()).ToList();
-                Panel panel = new Panel { 
+                int children = 0;
+                Panel panel = new Panel
+                {
                     Dock = DockStyle.Top,
-                    MinimumSize = new Size(200,30)
+                    MinimumSize = new Size(200, 30)
                 };
 
                 foreach (var itemchil in chil)
                 {
                     IconButton btn_chil = new IconButton()
                     {
-                        IconColor = Color.White,
-                        IconSize = 20,
+                        IconColor = Color.FromArgb(211, 211, 211),
+                        IconSize = 25,
                         TextImageRelation = TextImageRelation.ImageBeforeText,
                         IconChar = GetUIFontAwesome(itemchil["MenuImage"].ToString()),
-                        Padding = new Padding(10,0,0,0),
+                        Padding = new Padding(10, 0, 0, 0),
                         Tag = itemchil["Id"].ToString(),
                         Name = itemchil["MenuName"].ToString(),
-                        ForeColor = Color.White,
+                        ForeColor = Color.FromArgb(211, 211, 211),
                         ImageAlign = ContentAlignment.MiddleLeft,
                         Height = 30,
-                        Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                        //Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                        Font = new Font("Arial", emSize: 10, FontStyle.Bold, unit: GraphicsUnit.Point),
                         Dock = DockStyle.Top,
                         FlatStyle = FlatStyle.Flat,
-                        //Image = (Bitmap)Resources.ResourceManager.GetObject(itemchil["MenuImage"].ToString()),
                         Text = itemchil["MenuText"].ToString(),
                         TextAlign = ContentAlignment.MiddleLeft,
                         UseVisualStyleBackColor = false,
                     };
-                    btn_chil.FlatAppearance.BorderColor = SystemColors.MenuHighlight;
+
+                    btn_chil.MouseEnter += (s, e) => btn_chil.ForeColor = Color.FromArgb(245, 245, 245);
+                    btn_chil.MouseLeave += (s, e) => btn_chil.ForeColor = Color.FromArgb(211, 211, 211);
+
+                    btn_chil.FlatAppearance.BorderColor = Color.FromArgb(18, 39, 75);
                     btn_chil.Click += BtnChil_Click;
                     panel.Controls.Add(btn_chil);
                     Height += 30;
+                    children++;
                 }
 
                 IconButton btn = new IconButton()
                 {
+                    IconColor = Color.FromArgb(245, 245, 245),
                     Tag = item["Id"].ToString(),
                     Name = item["MenuName"].ToString(),
-                    ForeColor = Color.White,
+                    ForeColor = Color.FromArgb(245, 245, 245),
                     ImageAlign = ContentAlignment.MiddleRight,
                     Height = 30,
-                    Font = new Font(Font.FontFamily, emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                    //Font = new Font(Font.FontFamily, emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                    Font = new Font("Arial", emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
                     Dock = DockStyle.Top,
                     FlatStyle = FlatStyle.Flat,
-                    Image = Properties.Resources.up_arrow,
                     Text = item["MenuText"].ToString(),
                     TextAlign = ContentAlignment.MiddleLeft,
                     UseVisualStyleBackColor = false,
                 };
-                btn.FlatAppearance.BorderColor = SystemColors.MenuHighlight;
+                tagList.Add(item["Id"].ToString());
+                if (children > 0)
+                {
+                    // btn.Image = Properties.Resources.up_arrow;
+                    btn.IconChar = IconChar.ChevronUp;
+                    btn.IconSize = 12;
+                    btn.IconColor = Color.FromArgb(245, 245, 245);
+                }
+
+                btn.FlatAppearance.BorderColor = Color.FromArgb(18, 39, 75);
+
                 btn.Click += Btn_Click;
                 panel.Controls.Add(btn);
-                Height += 30;
+                Height += 32;
                 panel.Size = new Size(201, Height);
                 panel.MaximumSize = new Size(201, Height);
                 panel.MinimumSize = new Size(201, 30);
                 pl_MenuLeft.Controls.Add(panel);
+
                 //Custom.RJButton danhmuc = new Custom.RJButton
                 //{
                 //    Name = item["MenuName"].ToString(),
@@ -166,7 +190,54 @@ namespace TENTAC_HRM.Forms.Main
             {
                 Open_From(sender, e, false);
             }
-        }        
+            ActivateButton(sender, RGBColors.color1);
+        }
+        private struct RGBColors
+        {
+            public static Color color1 = Color.FromArgb(172, 126, 241);
+            public static Color color2 = Color.FromArgb(249, 118, 176);
+            public static Color color3 = Color.FromArgb(253, 138, 114);
+            public static Color color4 = Color.FromArgb(95, 77, 221);
+            public static Color color5 = Color.FromArgb(249, 88, 155);
+            public static Color color6 = Color.FromArgb(24, 161, 251);
+        }
+        private void ActivateButton(object senderBtn, Color color)
+        {
+            if (senderBtn != null && isMinisize == false)
+            {
+                DisableButton();
+                currentBtn = (IconButton)senderBtn;
+                currentBtn.BackColor = Color.FromArgb(105, 105, 105);
+                currentBtn.ForeColor = Color.FromArgb(245, 245, 245);
+                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                currentBtn.IconColor = Color.FromArgb(245, 245, 245);
+                currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                currentBtn.ImageAlign = ContentAlignment.MiddleCenter;
+            }
+            else
+            {
+                DisableButton();
+                currentBtn = (IconButton)senderBtn;
+                currentBtn.BackColor = Color.FromArgb(105, 105, 105);
+                currentBtn.ForeColor = Color.FromArgb(245, 245, 245);
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                currentBtn.IconColor = Color.FromArgb(245, 245, 245);
+                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+        }
+        private void DisableButton()
+        {
+            if (currentBtn != null)
+            {
+                currentBtn.BackColor = Color.FromArgb(18, 39, 75);
+                currentBtn.ForeColor = Color.FromArgb(211, 211, 211);
+                currentBtn.TextAlign = ContentAlignment.MiddleLeft;
+                currentBtn.IconColor = Color.FromArgb(211, 211, 211);
+                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+        }
         private void Btn_Click(object sender, EventArgs e)
         {
             btn_IdClick = ((IconButton)sender).Tag.ToString();
@@ -248,7 +319,7 @@ namespace TENTAC_HRM.Forms.Main
                         Dock = DockStyle.Top,
                         Size = new Size(201, 45),
                         Name = item["MenuName"].ToString(),
-                        Text = _btn_show_menu_left == true ? item["MenuText"].ToString() : "",
+                        Text = item["MenuText"].ToString(),
                         Tag = item["Id"].ToString(),
                         //dantoc.Click += btn_dantoc_Click;
                         Image = (Bitmap)Resources.ResourceManager.GetObject(item["MenuImage"].ToString()),
@@ -331,6 +402,7 @@ namespace TENTAC_HRM.Forms.Main
             }
         }
         bool maximized = false;
+
         private void MaximizeWindow()
         {
             maximized = true;
@@ -484,6 +556,30 @@ namespace TENTAC_HRM.Forms.Main
                 //{
                 //    item.Text = "";
                 //}
+                foreach (Control item in pl_MenuLeft.Controls)
+                {
+                    if (item.HasChildren)
+                    {
+                        foreach (Control childControl in item.Controls)
+                        {
+                            if (childControl is IconButton btn)
+                            {
+                                btn.Size = new Size(30, 30);
+                                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                                btn.Text = "";
+                                var parentId = btn.Tag?.ToString();
+                                var parent = dt_MenuParent.Rows.Cast<DataRow>()
+                                    .FirstOrDefault(x => x["Id"].ToString() == parentId);
+                                if (parent != null)
+                                {
+                                    btn.IconChar = GetUIFontAwesome(parent["MenuImage"].ToString());
+                                    btn.IconSize = 32;
+                                }
+                            }
+                        }
+                    }
+                }
+                isMinisize = true;
                 isCollapsed = false;
                 _btn_show_menu_left = false;
             }
@@ -494,6 +590,7 @@ namespace TENTAC_HRM.Forms.Main
                 //    var names = dt_Menu_child.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
                 //    item.Text = "  " + names["MenuText"].ToString();
                 //}
+
                 isCollapsed = true;
                 _btn_show_menu_left = true;
 
@@ -505,6 +602,7 @@ namespace TENTAC_HRM.Forms.Main
                 //    var names = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
                 //    item.Text = "  " + names["MenuText"].ToString();
                 //}
+
             }
             tm_menu_left.Start();
         }
@@ -750,7 +848,12 @@ namespace TENTAC_HRM.Forms.Main
         {
             if (isCollapsedMenu)
             {
-                btn_menu.Image = Resources.up_arrow;
+                if(isMinisize == false)
+                {
+                    btn_menu.IconChar = IconChar.ChevronUp;
+                }
+                //btn_menu.Image = Resources.up_arrow;
+             
                 panel_menu.Height += 10;
                 if (panel_menu.Size == panel_menu.MaximumSize)
                 {
@@ -760,7 +863,11 @@ namespace TENTAC_HRM.Forms.Main
             }
             else
             {
-                btn_menu.Image = Resources.dow_arrow;
+                //btn_menu.Image = Resources.dow_arrow;
+                if(isMinisize == false)
+                {
+                    btn_menu.IconChar = IconChar.ChevronDown;
+                }
                 panel_menu.Height -= 10;
                 if (panel_menu.Size == panel_menu.MinimumSize)
                 {

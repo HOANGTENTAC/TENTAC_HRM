@@ -30,12 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_major = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btn_add = new System.Windows.Forms.ToolStripButton();
-            this.btn_delete = new System.Windows.Forms.ToolStripButton();
-            this.btn_export = new System.Windows.Forms.ToolStripButton();
-            this.btn_import = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaChuyenNganh = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
@@ -44,6 +38,12 @@
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_add = new System.Windows.Forms.ToolStripButton();
+            this.btn_delete = new System.Windows.Forms.ToolStripButton();
+            this.btn_export = new System.Windows.Forms.ToolStripButton();
+            this.btn_import = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_major)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -76,63 +76,6 @@
             this.dgv_major.Size = new System.Drawing.Size(1175, 605);
             this.dgv_major.TabIndex = 7;
             this.dgv_major.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_major_CellContentClick);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_add,
-            this.btn_delete,
-            this.btn_export,
-            this.btn_import});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1175, 25);
-            this.toolStrip1.TabIndex = 6;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btn_add
-            // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
-            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(57, 22);
-            this.btn_add.Text = "Thêm";
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(47, 22);
-            this.btn_delete.Text = "Xóa";
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // btn_export
-            // 
-            this.btn_export.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
-            this.btn_export.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(61, 22);
-            this.btn_export.Text = "Export";
-            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
-            // 
-            // btn_import
-            // 
-            this.btn_import.Image = global::TENTAC_HRM.Properties.Resources.update;
-            this.btn_import.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_import.Name = "btn_import";
-            this.btn_import.Size = new System.Drawing.Size(63, 22);
-            this.btn_import.Text = "Import";
-            this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 30;
             // 
             // Id
             // 
@@ -195,6 +138,63 @@
             this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
             this.edit_column.Name = "edit_column";
             this.edit_column.Width = 50;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_add,
+            this.btn_delete,
+            this.btn_export,
+            this.btn_import});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1175, 25);
+            this.toolStrip1.TabIndex = 6;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btn_add
+            // 
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
+            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(57, 22);
+            this.btn_add.Text = "Thêm";
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
+            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(47, 22);
+            this.btn_delete.Text = "Xóa";
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_export
+            // 
+            this.btn_export.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(61, 22);
+            this.btn_export.Text = "Export";
+            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+            // 
+            // btn_import
+            // 
+            this.btn_import.Image = global::TENTAC_HRM.Properties.Resources.update;
+            this.btn_import.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_import.Name = "btn_import";
+            this.btn_import.Size = new System.Drawing.Size(63, 22);
+            this.btn_import.Text = "Import";
+            this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 30;
             // 
             // uc_major
             // 

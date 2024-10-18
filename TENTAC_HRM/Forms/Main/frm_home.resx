@@ -185,13 +185,6 @@
   <metadata name="btn_notifi.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>933, 18</value>
   </metadata>
-  <data name="menuStrip1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAYCAIAAAB8wupbAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA64AAAOuAFqQfVbAAAAH0lE
-        QVQ4T2PYf/s/SWhUAzFoVAMxaFQDMWgEarj9HwBM1eWuuj/kxwAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="iconMenuItem1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>330, 18</value>
   </metadata>
