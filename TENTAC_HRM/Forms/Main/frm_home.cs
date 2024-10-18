@@ -44,6 +44,7 @@ namespace TENTAC_HRM.Forms.Main
             MaximizeWindow();
             load_menu();
         }
+
         public IconChar GetUIFontAwesome(string strIcon)
         {
             IconChar item;
@@ -411,6 +412,9 @@ namespace TENTAC_HRM.Forms.Main
             Location = new Point(0, 0);
             Rectangle workingRectangle = Screen.PrimaryScreen.WorkingArea;
             this.Size = new Size(workingRectangle.Width, workingRectangle.Height);
+
+            pl_menu_left.MaximumSize = new Size(203, this.Height - 30);
+            pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
             //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
             //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
         }
@@ -437,8 +441,8 @@ namespace TENTAC_HRM.Forms.Main
 
             tb_main.Padding = new Point(20, 4);
 
-            pl_menu_left.MaximumSize = new Size(203, this.Height);
-            pl_menu_left.MinimumSize = new Size(63, this.Height);
+            pl_menu_left.MaximumSize = new Size(203, this.Height - 30);
+            pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
             if (!tb_dashboard.Controls.Contains(uc_dashboard.Instance))
             {
                 tb_dashboard.Controls.Add(uc_dashboard.Instance);
@@ -597,6 +601,30 @@ namespace TENTAC_HRM.Forms.Main
                 var name_parent = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
                 if (name_parent != null)
                     lbl_title_menu.Text = name_parent["MenuText"].ToString();
+
+                foreach (Control item in pl_MenuLeft.Controls)
+                {
+                    if (item.HasChildren)
+                    {
+                        foreach (Control childControl in item.Controls)
+                        {
+                            if (childControl is IconButton btn)
+                            {
+                                btn.Size = new Size(30, 30);
+                                var Id = btn.Tag?.ToString();
+                                btn.ImageAlign = ContentAlignment.MiddleLeft;
+                                var chil = dt_MenuChild.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
+                                btn.Text = chil != null ? chil["MenuText"].ToString() : "";
+                                var parent = dt_MenuParent.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
+                                if (parent != null)
+                                {
+                                    btn.Text = parent["MenuText"].ToString();
+                                    btn.IconChar = IconChar.None;
+                                }
+                            }
+                        }
+                    }
+                }
                 //foreach (Control item in splitContainer1.Panel2.Controls)
                 //{
                 //    var names = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
@@ -642,6 +670,8 @@ namespace TENTAC_HRM.Forms.Main
 
         private void btn_maxximize_Click(object sender, EventArgs e)
         {
+            //pl_MenuLeft.Dock = DockStyle.Fill;
+            //pl_menu_left.Dock = DockStyle.Left;
             if (maximized == false)
             {
                 MaximizeWindow();
@@ -652,6 +682,9 @@ namespace TENTAC_HRM.Forms.Main
                 this.Size = new Size(1240, 835);
                 this.StartPosition = FormStartPosition.CenterScreen;
                 this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2, (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
+
+                pl_menu_left.MaximumSize = new Size(203, this.Height - 30);
+                pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
                 //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
                 //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
                 //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - splitContainer1.Panel1MinSize - 5;

@@ -37,15 +37,16 @@
             this.tm_menu_left = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ts_user = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ts_date = new System.Windows.Forms.ToolStripStatusLabel();
             this.pl_menu_left = new System.Windows.Forms.Panel();
             this.pl_MenuLeft = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_show_menu_left = new System.Windows.Forms.Button();
             this.lbl_title_menu = new System.Windows.Forms.Label();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ts_user = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ts_date = new System.Windows.Forms.ToolStripStatusLabel();
             this.pl_menu = new System.Windows.Forms.Panel();
             this.pl_menu_sub = new System.Windows.Forms.Panel();
             this.pl_nv_moi = new System.Windows.Forms.Panel();
@@ -98,9 +99,10 @@
             this.tb_dashboard.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.pl_menu_left.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.pl_menu.SuspendLayout();
             this.pl_menu_sub.SuspendLayout();
             this.pl_nv_moi.SuspendLayout();
@@ -120,12 +122,12 @@
             this.tb_main.Controls.Add(this.tb_dashboard);
             this.tb_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_main.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tb_main.Location = new System.Drawing.Point(203, 0);
+            this.tb_main.Location = new System.Drawing.Point(0, 0);
             this.tb_main.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.tb_main.Name = "tb_main";
             this.tb_main.SelectedIndex = 0;
             this.tb_main.ShowToolTips = true;
-            this.tb_main.Size = new System.Drawing.Size(1037, 783);
+            this.tb_main.Size = new System.Drawing.Size(1037, 805);
             this.tb_main.TabIndex = 1;
             this.tb_main.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tb_main_DrawItem);
             this.tb_main.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_main_MouseClick);
@@ -137,7 +139,7 @@
             this.tb_dashboard.Location = new System.Drawing.Point(4, 22);
             this.tb_dashboard.Name = "tb_dashboard";
             this.tb_dashboard.Padding = new System.Windows.Forms.Padding(3);
-            this.tb_dashboard.Size = new System.Drawing.Size(1029, 757);
+            this.tb_dashboard.Size = new System.Drawing.Size(1029, 779);
             this.tb_dashboard.TabIndex = 0;
             this.tb_dashboard.Text = "Bàn làm việc";
             this.tb_dashboard.UseVisualStyleBackColor = true;
@@ -147,7 +149,7 @@
             this.pl_dashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_dashboard.Location = new System.Drawing.Point(3, 3);
             this.pl_dashboard.Name = "pl_dashboard";
-            this.pl_dashboard.Size = new System.Drawing.Size(1023, 751);
+            this.pl_dashboard.Size = new System.Drawing.Size(1023, 773);
             this.pl_dashboard.TabIndex = 0;
             // 
             // timer1
@@ -164,7 +166,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.statusStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
@@ -173,16 +174,63 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.tb_main);
+            this.panel3.Controls.Add(this.panel7);
             this.panel3.Controls.Add(this.pl_menu_left);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1240, 783);
+            this.panel3.Size = new System.Drawing.Size(1240, 805);
             this.panel3.TabIndex = 8;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.statusStrip1);
+            this.panel7.Controls.Add(this.tb_main);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(203, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1037, 805);
+            this.panel7.TabIndex = 7;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.ts_user,
+            this.ts_date});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 783);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1037, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
+            this.toolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(90, 17);
+            this.toolStripStatusLabel1.Text = "Người dùng:";
+            // 
+            // ts_user
+            // 
+            this.ts_user.Name = "ts_user";
+            this.ts_user.Size = new System.Drawing.Size(41, 17);
+            this.ts_user.Text = "admin";
+            // 
+            // ts_date
+            // 
+            this.ts_date.Image = ((System.Drawing.Image)(resources.GetObject("ts_date.Image")));
+            this.ts_date.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ts_date.Name = "ts_date";
+            this.ts_date.Size = new System.Drawing.Size(891, 17);
+            this.ts_date.Spring = true;
+            this.ts_date.Text = "2023/07/13";
+            this.ts_date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pl_menu_left
             // 
+            this.pl_menu_left.AutoScroll = true;
             this.pl_menu_left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
             this.pl_menu_left.Controls.Add(this.pl_MenuLeft);
             this.pl_menu_left.Controls.Add(this.panel2);
@@ -192,7 +240,7 @@
             this.pl_menu_left.MinimumSize = new System.Drawing.Size(63, 0);
             this.pl_menu_left.Name = "pl_menu_left";
             this.pl_menu_left.Padding = new System.Windows.Forms.Padding(1);
-            this.pl_menu_left.Size = new System.Drawing.Size(203, 783);
+            this.pl_menu_left.Size = new System.Drawing.Size(203, 805);
             this.pl_menu_left.TabIndex = 6;
             // 
             // pl_MenuLeft
@@ -202,7 +250,7 @@
             this.pl_MenuLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_MenuLeft.Location = new System.Drawing.Point(1, 29);
             this.pl_MenuLeft.Name = "pl_MenuLeft";
-            this.pl_MenuLeft.Size = new System.Drawing.Size(201, 753);
+            this.pl_MenuLeft.Size = new System.Drawing.Size(201, 775);
             this.pl_MenuLeft.TabIndex = 0;
             // 
             // panel2
@@ -245,42 +293,6 @@
             this.lbl_title_menu.Size = new System.Drawing.Size(175, 28);
             this.lbl_title_menu.TabIndex = 0;
             this.lbl_title_menu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.ts_user,
-            this.ts_date});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 783);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1240, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripStatusLabel1.Image")));
-            this.toolStripStatusLabel1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(90, 17);
-            this.toolStripStatusLabel1.Text = "Người dùng:";
-            // 
-            // ts_user
-            // 
-            this.ts_user.Name = "ts_user";
-            this.ts_user.Size = new System.Drawing.Size(41, 17);
-            this.ts_user.Text = "admin";
-            // 
-            // ts_date
-            // 
-            this.ts_date.Image = ((System.Drawing.Image)(resources.GetObject("ts_date.Image")));
-            this.ts_date.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.ts_date.Name = "ts_date";
-            this.ts_date.Size = new System.Drawing.Size(1094, 17);
-            this.ts_date.Spring = true;
-            this.ts_date.Text = "2023/07/13";
-            this.ts_date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pl_menu
             // 
@@ -810,12 +822,13 @@
             this.tb_main.ResumeLayout(false);
             this.tb_dashboard.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            this.pl_menu_left.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.pl_menu_left.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.pl_menu.ResumeLayout(false);
             this.pl_menu_sub.ResumeLayout(false);
             this.pl_nv_moi.ResumeLayout(false);
@@ -853,7 +866,6 @@
         private System.Windows.Forms.Label lbl_title_menu;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel ts_user;
         private System.Windows.Forms.ToolStripStatusLabel ts_date;
         private FontAwesome.Sharp.IconMenuItem btn_notifi;
         private System.Windows.Forms.Panel pl_menu;
@@ -897,6 +909,8 @@
         private System.Windows.Forms.ToolStripMenuItem closeAllButThisToolStripMenuItem;
         private System.Windows.Forms.Panel pl_MenuLeft;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.ToolStripStatusLabel ts_user;
     }
 }
 
