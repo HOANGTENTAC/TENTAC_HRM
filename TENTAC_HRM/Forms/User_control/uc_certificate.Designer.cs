@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_certificate = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
@@ -51,6 +52,8 @@
             // dgv_certificate
             // 
             this.dgv_certificate.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.dgv_certificate.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_certificate.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_certificate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -61,14 +64,14 @@
             this.NgayCapNhat,
             this.NguoiCapNhat,
             this.edit_column});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_certificate.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_certificate.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_certificate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_certificate.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_certificate.Location = new System.Drawing.Point(0, 25);
@@ -155,7 +158,7 @@
             this.MaChungChi.HeaderText = "Mã Chứng Chỉ";
             this.MaChungChi.Name = "MaChungChi";
             this.MaChungChi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MaChungChi.Width = 150;
+            this.MaChungChi.Width = 120;
             // 
             // TenChungChi
             // 
@@ -171,7 +174,7 @@
             this.MoTa.HeaderText = "Mô Tả";
             this.MoTa.Name = "MoTa";
             this.MoTa.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MoTa.Width = 300;
+            this.MoTa.Width = 250;
             // 
             // NgayCapNhat
             // 

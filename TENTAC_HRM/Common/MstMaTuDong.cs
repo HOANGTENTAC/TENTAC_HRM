@@ -8,42 +8,16 @@ namespace TENTAC_HRM.Common
 {
     public class MstMaTuDong
     {
-        public string GenerateNextMaDanToc()
+        public string GenerateNextMaPhongBan()
         {
-            string query = "SELECT COALESCE(MAX(MaDanToc), 'DT000') FROM mst_DanToc WHERE MaDanToc LIKE 'DT%'";
+            string query = "SELECT COALESCE(MAX(MaPhongBan), 'PB00000') FROM mst_PhongBan WHERE MaPhongBan LIKE 'PB%'";
             var result = SQLHelper.ExecuteScalar(query);
 
             string currentMaxCode = result.ToString();
             int currentMaxNumber = int.Parse(currentMaxCode.Substring(2));
 
             int nextNumber = currentMaxNumber + 1;
-            string newCode = $"DT{nextNumber:D3}";
-
-            return newCode;
-        }
-        public string GenerateNextMaTonGiao()
-        {
-            string query = "SELECT COALESCE(MAX(MaTonGiao), 'TG000') FROM mst_TonGiao WHERE MaTonGiao LIKE 'TG%'";
-            var result = SQLHelper.ExecuteScalar(query);
-
-            string currentMaxCode = result.ToString();
-            int currentMaxNumber = int.Parse(currentMaxCode.Substring(2));
-
-            int nextNumber = currentMaxNumber + 1;
-            string newCode = $"TG{nextNumber:D3}";
-
-            return newCode;
-        }
-        public string GenerateNextMaNgoaiNgu()
-        {
-            string query = "SELECT COALESCE(MAX(MaNgoaiNgu), 'NN000') FROM mst_NgoaiNgu WHERE MaNgoaiNgu LIKE 'NN%'";
-            var result = SQLHelper.ExecuteScalar(query);
-
-            string currentMaxCode = result.ToString();
-            int currentMaxNumber = int.Parse(currentMaxCode.Substring(2));
-
-            int nextNumber = currentMaxNumber + 1;
-            string newCode = $"NN{nextNumber:D3}";
+            string newCode = $"PB{nextNumber:D5}";
 
             return newCode;
         }

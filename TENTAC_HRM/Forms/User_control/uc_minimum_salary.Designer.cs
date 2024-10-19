@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -102,6 +103,8 @@
             // dgv_minium_salary
             // 
             this.dgv_minium_salary.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.dgv_minium_salary.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_minium_salary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_minium_salary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -112,14 +115,14 @@
             this.NgayCapNhat,
             this.NguoiCapNhat,
             this.edit_column});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_minium_salary.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_minium_salary.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_minium_salary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_minium_salary.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_minium_salary.Location = new System.Drawing.Point(0, 25);
@@ -149,21 +152,21 @@
             this.Vung.HeaderText = "Tên Vùng";
             this.Vung.Name = "Vung";
             this.Vung.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Vung.Width = 150;
+            this.Vung.Width = 120;
             // 
             // LuongToiThieuTheoThang
             // 
             this.LuongToiThieuTheoThang.DataPropertyName = "LuongToiThieuTheoThang";
             this.LuongToiThieuTheoThang.HeaderText = "Lương Tối Thiểu Theo Tháng";
             this.LuongToiThieuTheoThang.Name = "LuongToiThieuTheoThang";
-            this.LuongToiThieuTheoThang.Width = 200;
+            this.LuongToiThieuTheoThang.Width = 170;
             // 
             // LuongToiThieuTheoGio
             // 
             this.LuongToiThieuTheoGio.DataPropertyName = "LuongToiThieuTheoGio";
             this.LuongToiThieuTheoGio.HeaderText = "Lương Tối Thiểu Theo Giờ";
             this.LuongToiThieuTheoGio.Name = "LuongToiThieuTheoGio";
-            this.LuongToiThieuTheoGio.Width = 200;
+            this.LuongToiThieuTheoGio.Width = 170;
             // 
             // NgayCapNhat
             // 

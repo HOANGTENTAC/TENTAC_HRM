@@ -165,7 +165,7 @@ namespace TENTAC_HRM.Forms.User_control
             string sql = "";
             if(search == true)
             {
-                sql = "select maphongban,tenphongban from mst_PhongBan where del_flg = 0";
+                sql = "select maphongban,tenphongban from mst_PhongBan where DelFlg = 0";
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 dt.Rows.Add("0", "");
@@ -175,7 +175,7 @@ namespace TENTAC_HRM.Forms.User_control
             }
             else
             {
-                sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
+                sql = string.Format("select maphongban,tenphongban from mst_PhongBan where DelFlg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 dt.Rows.Add("0", "");
@@ -392,7 +392,7 @@ namespace TENTAC_HRM.Forms.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select maphongban,tenphongban from mst_phongban where del_flg = 0 and MaKhuVuc = '{0}'",row);
+                    string sql = string.Format("select maphongban,tenphongban from mst_phongban where MaKhuVuc = '{0}'",row);
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");

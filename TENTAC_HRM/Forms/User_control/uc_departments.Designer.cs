@@ -30,13 +30,8 @@ namespace TENTAC_HRM.Forms.User_control
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_departments = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btn_add = new System.Windows.Forms.ToolStripButton();
-            this.btn_delete = new System.Windows.Forms.ToolStripButton();
-            this.btn_export = new System.Windows.Forms.ToolStripButton();
-            this.btn_import = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaPhongBan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
@@ -46,6 +41,12 @@ namespace TENTAC_HRM.Forms.User_control
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_add = new System.Windows.Forms.ToolStripButton();
+            this.btn_delete = new System.Windows.Forms.ToolStripButton();
+            this.btn_export = new System.Windows.Forms.ToolStripButton();
+            this.btn_import = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_departments)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,8 @@ namespace TENTAC_HRM.Forms.User_control
             // dgv_departments
             // 
             this.dgv_departments.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.dgv_departments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_departments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_departments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -64,14 +67,14 @@ namespace TENTAC_HRM.Forms.User_control
             this.NgayCapNhat,
             this.NguoiCapNhat,
             this.edit_column});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_departments.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_departments.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_departments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_departments.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_departments.Location = new System.Drawing.Point(0, 25);
@@ -79,63 +82,6 @@ namespace TENTAC_HRM.Forms.User_control
             this.dgv_departments.Size = new System.Drawing.Size(987, 588);
             this.dgv_departments.TabIndex = 9;
             this.dgv_departments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_departments_CellClick);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_add,
-            this.btn_delete,
-            this.btn_export,
-            this.btn_import});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(987, 25);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btn_add
-            // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
-            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(57, 22);
-            this.btn_add.Text = "Thêm";
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(47, 22);
-            this.btn_delete.Text = "Xóa";
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // btn_export
-            // 
-            this.btn_export.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
-            this.btn_export.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_export.Name = "btn_export";
-            this.btn_export.Size = new System.Drawing.Size(61, 22);
-            this.btn_export.Text = "Export";
-            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
-            // 
-            // btn_import
-            // 
-            this.btn_import.Image = global::TENTAC_HRM.Properties.Resources.update;
-            this.btn_import.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_import.Name = "btn_import";
-            this.btn_import.Size = new System.Drawing.Size(63, 22);
-            this.btn_import.Text = "Import";
-            this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 30;
             // 
             // Id
             // 
@@ -205,6 +151,63 @@ namespace TENTAC_HRM.Forms.User_control
             this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
             this.edit_column.Name = "edit_column";
             this.edit_column.Width = 50;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_add,
+            this.btn_delete,
+            this.btn_export,
+            this.btn_import});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(987, 25);
+            this.toolStrip1.TabIndex = 8;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btn_add
+            // 
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
+            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(57, 22);
+            this.btn_add.Text = "Thêm";
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
+            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(47, 22);
+            this.btn_delete.Text = "Xóa";
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_export
+            // 
+            this.btn_export.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_export.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(61, 22);
+            this.btn_export.Text = "Export";
+            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+            // 
+            // btn_import
+            // 
+            this.btn_import.Image = global::TENTAC_HRM.Properties.Resources.update;
+            this.btn_import.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_import.Name = "btn_import";
+            this.btn_import.Size = new System.Drawing.Size(63, 22);
+            this.btn_import.Text = "Import";
+            this.btn_import.Click += new System.EventHandler(this.btn_import_Click);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 30;
             // 
             // uc_departments
             // 

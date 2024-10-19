@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_leave_type = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
@@ -52,6 +53,8 @@
             // dgv_leave_type
             // 
             this.dgv_leave_type.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.dgv_leave_type.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_leave_type.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_leave_type.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -64,14 +67,14 @@
             this.NguoiCapNhat,
             this.TinhCong,
             this.edit_column});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_leave_type.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_leave_type.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_leave_type.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_leave_type.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_leave_type.Location = new System.Drawing.Point(0, 25);
@@ -154,7 +157,7 @@
             this.KyHieu.HeaderText = "Ký Hiệu";
             this.KyHieu.Name = "KyHieu";
             this.KyHieu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.KyHieu.Width = 100;
+            this.KyHieu.Width = 80;
             // 
             // SoCong
             // 
@@ -162,7 +165,7 @@
             this.SoCong.HeaderText = "Số Công";
             this.SoCong.Name = "SoCong";
             this.SoCong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SoCong.Width = 100;
+            this.SoCong.Width = 80;
             // 
             // NgayCapNhat
             // 
@@ -183,9 +186,9 @@
             // TinhCong
             // 
             this.TinhCong.DataPropertyName = "TinhCong";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = false;
-            this.TinhCong.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = false;
+            this.TinhCong.DefaultCellStyle = dataGridViewCellStyle2;
             this.TinhCong.FalseValue = null;
             this.TinhCong.HeaderText = "Tính Công";
             this.TinhCong.IndeterminateValue = null;

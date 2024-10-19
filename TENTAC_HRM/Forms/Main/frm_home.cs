@@ -8,6 +8,7 @@ using TENTAC_HRM.Forms.User_control;
 using NPOI.SS.Formula.Functions;
 using FontAwesome.Sharp;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace TENTAC_HRM.Forms.Main
 {
@@ -85,7 +86,7 @@ namespace TENTAC_HRM.Forms.Main
                     IconButton btn_chil = new IconButton()
                     {
                         IconColor = Color.FromArgb(211, 211, 211),
-                        IconSize = 25,
+                        IconSize = 22,
                         TextImageRelation = TextImageRelation.ImageBeforeText,
                         IconChar = GetUIFontAwesome(itemchil["MenuImage"].ToString()),
                         Padding = new Padding(10, 0, 0, 0),
@@ -608,6 +609,7 @@ namespace TENTAC_HRM.Forms.Main
                     {
                         foreach (Control childControl in item.Controls)
                         {
+                            int countChil = 0;
                             if (childControl is IconButton btn)
                             {
                                 btn.Size = new Size(30, 30);
@@ -615,11 +617,25 @@ namespace TENTAC_HRM.Forms.Main
                                 btn.ImageAlign = ContentAlignment.MiddleLeft;
                                 var chil = dt_MenuChild.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
                                 btn.Text = chil != null ? chil["MenuText"].ToString() : "";
+                                if (chil != null)
+                                {
+                                    countChil++;
+                                }
                                 var parent = dt_MenuParent.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
                                 if (parent != null)
                                 {
                                     btn.Text = parent["MenuText"].ToString();
-                                    btn.IconChar = IconChar.None;
+                                    if(countChil >= 1)
+                                    {
+                                        btn.IconChar = IconChar.ChevronUp;
+                                        btn.IconSize = 12;
+                                        btn.IconColor = Color.FromArgb(245, 245, 245);
+                                        btn.ImageAlign = ContentAlignment.MiddleRight;
+                                    }
+                                    else
+                                    {
+                                        btn.IconChar = IconChar.None;
+                                    }
                                 }
                             }
                         }

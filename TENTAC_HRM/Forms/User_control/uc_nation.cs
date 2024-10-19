@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
@@ -33,11 +34,29 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_dataDanToc()
         {
+            //dgv_nation.EnableHeadersVisualStyles = false;
+
+            //dgv_nation.EnableHeadersVisualStyles = false; // Tắt visual styles
+            //dgv_nation.CellPainting += gridView_CellPainting; // Đăng ký sự kiện vẽ tiêu đề
+
             string sql = "select Id, MaDanToc,TenDanToc, MoTa, NgayCapNhat, NguoiCapNhat from mst_DanToc where DelFlg = 0 order by MaDanToc";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_nation.DataSource = dt;
         }
+        //private void gridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        //{
+        //    if (e.RowIndex == -1 && e.ColumnIndex >= 0)
+        //    {
+        //        e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(81, 124, 255)), e.CellBounds); // Nền tiêu đề
+        //        e.Graphics.DrawRectangle(Pens.Gainsboro, e.CellBounds); // Đường viền
+
+        //        Font headerFont = new Font(Font.FontFamily, 11); // Font in đậm
+        //        TextRenderer.DrawText(e.Graphics, e.FormattedValue.ToString(), headerFont, e.CellBounds, Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+
+        //        e.Handled = true;
+        //    }
+        //}
         private void uc_nation_Load(object sender, EventArgs e)
         {
             //pl_nation.Width = 0;

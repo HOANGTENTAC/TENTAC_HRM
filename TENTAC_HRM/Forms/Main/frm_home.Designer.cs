@@ -246,6 +246,7 @@
             // pl_MenuLeft
             // 
             this.pl_MenuLeft.AutoScroll = true;
+            this.pl_MenuLeft.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.pl_MenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
             this.pl_MenuLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_MenuLeft.Location = new System.Drawing.Point(1, 29);
@@ -785,7 +786,6 @@
             // 
             this.btn_notifi.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btn_notifi.BackColor = System.Drawing.Color.Transparent;
-            this.btn_notifi.BackgroundImage = global::TENTAC_HRM.Properties.Resources.Background;
             this.btn_notifi.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.btn_notifi.ForeColor = System.Drawing.Color.Red;
             this.btn_notifi.IconChar = FontAwesome.Sharp.IconChar.Bell;
