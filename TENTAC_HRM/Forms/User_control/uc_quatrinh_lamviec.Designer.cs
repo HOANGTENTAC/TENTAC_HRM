@@ -261,7 +261,7 @@
             // cbo_nhanvien
             // 
             this.cbo_nhanvien.Name = "cbo_nhanvien";
-            this.cbo_nhanvien.Size = new System.Drawing.Size(121, 25);
+            this.cbo_nhanvien.Size = new System.Drawing.Size(180, 25);
             // 
             // toolStripSeparator17
             // 
@@ -453,7 +453,7 @@
             this.kryptonPage6,
             this.kryptonPage7,
             this.kryptonPage8});
-            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.SelectedIndex = 3;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1129, 471);
             this.kryptonNavigator1.TabIndex = 5;
             this.kryptonNavigator1.Text = "kryptonNavigator1";
@@ -493,7 +493,7 @@
             // 
             // id_qt_congtac
             // 
-            this.id_qt_congtac.DataPropertyName = "id_qt_congtac";
+            this.id_qt_congtac.DataPropertyName = "id";
             this.id_qt_congtac.HeaderText = "id_qt_congtac";
             this.id_qt_congtac.Name = "id_qt_congtac";
             this.id_qt_congtac.Visible = false;
@@ -508,7 +508,7 @@
             // 
             // tu_ngay_ct
             // 
-            this.tu_ngay_ct.DataPropertyName = "tu_ngay";
+            this.tu_ngay_ct.DataPropertyName = "tungay";
             this.tu_ngay_ct.HeaderText = "Từ ngày";
             this.tu_ngay_ct.Name = "tu_ngay_ct";
             this.tu_ngay_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -517,7 +517,7 @@
             // 
             // den_ngay_ct
             // 
-            this.den_ngay_ct.DataPropertyName = "den_ngay";
+            this.den_ngay_ct.DataPropertyName = "denngay";
             this.den_ngay_ct.HeaderText = "Đến ngày";
             this.den_ngay_ct.Name = "den_ngay_ct";
             this.den_ngay_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -526,7 +526,7 @@
             // 
             // so_quyet_dinh
             // 
-            this.so_quyet_dinh.DataPropertyName = "so_quyet_dinh";
+            this.so_quyet_dinh.DataPropertyName = "soquyetdinh";
             this.so_quyet_dinh.HeaderText = "Số quyết định";
             this.so_quyet_dinh.Name = "so_quyet_dinh";
             this.so_quyet_dinh.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -535,7 +535,7 @@
             // 
             // dia_diem_ct
             // 
-            this.dia_diem_ct.DataPropertyName = "dia_diem";
+            this.dia_diem_ct.DataPropertyName = "diadiem";
             this.dia_diem_ct.HeaderText = "Địa điểm";
             this.dia_diem_ct.Name = "dia_diem_ct";
             this.dia_diem_ct.Width = 100;
@@ -659,7 +659,7 @@
             // 
             // id_qt_khenthuong
             // 
-            this.id_qt_khenthuong.DataPropertyName = "id_qt_khenthuong";
+            this.id_qt_khenthuong.DataPropertyName = "id";
             this.id_qt_khenthuong.HeaderText = "id_qt_khenthuong";
             this.id_qt_khenthuong.Name = "id_qt_khenthuong";
             this.id_qt_khenthuong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -675,7 +675,7 @@
             // 
             // ngay_khen_thuong_kt
             // 
-            this.ngay_khen_thuong_kt.DataPropertyName = "ngay_khen_thuong_kt";
+            this.ngay_khen_thuong_kt.DataPropertyName = "ngaykhenthuong";
             this.ngay_khen_thuong_kt.HeaderText = "Ngày khen thưởng";
             this.ngay_khen_thuong_kt.Name = "ngay_khen_thuong_kt";
             this.ngay_khen_thuong_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -684,35 +684,35 @@
             // 
             // so_quyet_dinh_kt
             // 
-            this.so_quyet_dinh_kt.DataPropertyName = "so_quyet_dinh_kt";
+            this.so_quyet_dinh_kt.DataPropertyName = "soquyetdinh";
             this.so_quyet_dinh_kt.HeaderText = "Số quyết định";
             this.so_quyet_dinh_kt.Name = "so_quyet_dinh_kt";
             this.so_quyet_dinh_kt.Width = 110;
             // 
             // noi_dung_kt
             // 
-            this.noi_dung_kt.DataPropertyName = "noi_dung_kt";
+            this.noi_dung_kt.DataPropertyName = "noidung";
             this.noi_dung_kt.HeaderText = "Nội dung";
             this.noi_dung_kt.Name = "noi_dung_kt";
             this.noi_dung_kt.Width = 100;
             // 
             // hinh_thuc_kt
             // 
-            this.hinh_thuc_kt.DataPropertyName = "hinh_thuc_kt";
+            this.hinh_thuc_kt.DataPropertyName = "hinhthuc";
             this.hinh_thuc_kt.HeaderText = "Hình thức";
             this.hinh_thuc_kt.Name = "hinh_thuc_kt";
             this.hinh_thuc_kt.Width = 100;
             // 
             // so_tien_kt
             // 
-            this.so_tien_kt.DataPropertyName = "so_tien_kt";
+            this.so_tien_kt.DataPropertyName = "sotien";
             this.so_tien_kt.HeaderText = "Số tiền";
             this.so_tien_kt.Name = "so_tien_kt";
             this.so_tien_kt.Width = 100;
             // 
             // ly_do_kt
             // 
-            this.ly_do_kt.DataPropertyName = "ly_do_kt";
+            this.ly_do_kt.DataPropertyName = "lydo";
             this.ly_do_kt.HeaderText = "Lý do";
             this.ly_do_kt.Name = "ly_do_kt";
             this.ly_do_kt.Width = 100;
@@ -837,7 +837,7 @@
             // 
             // id_qt_kyluat
             // 
-            this.id_qt_kyluat.DataPropertyName = "id_qt_kyluat";
+            this.id_qt_kyluat.DataPropertyName = "id";
             this.id_qt_kyluat.HeaderText = "id_qt_kyluat";
             this.id_qt_kyluat.Name = "id_qt_kyluat";
             this.id_qt_kyluat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -853,42 +853,42 @@
             // 
             // ngay_ky_luat_kl
             // 
-            this.ngay_ky_luat_kl.DataPropertyName = "ngay_ky_luat_kl";
+            this.ngay_ky_luat_kl.DataPropertyName = "ngaykyluat";
             this.ngay_ky_luat_kl.HeaderText = "Ngày kỷ luật";
             this.ngay_ky_luat_kl.Name = "ngay_ky_luat_kl";
             this.ngay_ky_luat_kl.Width = 100;
             // 
             // so_quyet_dinh_kl
             // 
-            this.so_quyet_dinh_kl.DataPropertyName = "so_quyet_dinh_kl";
+            this.so_quyet_dinh_kl.DataPropertyName = "soquyetdinh";
             this.so_quyet_dinh_kl.HeaderText = "Số quyết định";
             this.so_quyet_dinh_kl.Name = "so_quyet_dinh_kl";
             this.so_quyet_dinh_kl.Width = 110;
             // 
             // noi_dung_kl
             // 
-            this.noi_dung_kl.DataPropertyName = "noi_dung_kl";
+            this.noi_dung_kl.DataPropertyName = "noidung";
             this.noi_dung_kl.HeaderText = "Nội dung";
             this.noi_dung_kl.Name = "noi_dung_kl";
             this.noi_dung_kl.Width = 100;
             // 
             // hinh_thuc_kl
             // 
-            this.hinh_thuc_kl.DataPropertyName = "hinh_thuc_kl";
+            this.hinh_thuc_kl.DataPropertyName = "hinhthuc";
             this.hinh_thuc_kl.HeaderText = "Hình thức";
             this.hinh_thuc_kl.Name = "hinh_thuc_kl";
             this.hinh_thuc_kl.Width = 100;
             // 
             // so_tien_kl
             // 
-            this.so_tien_kl.DataPropertyName = "so_tien_kl";
+            this.so_tien_kl.DataPropertyName = "sotien";
             this.so_tien_kl.HeaderText = "Số tiền";
             this.so_tien_kl.Name = "so_tien_kl";
             this.so_tien_kl.Width = 100;
             // 
             // ly_do_kl
             // 
-            this.ly_do_kl.DataPropertyName = "ly_do_kl";
+            this.ly_do_kl.DataPropertyName = "lydo";
             this.ly_do_kl.HeaderText = "Lý do";
             this.ly_do_kl.Name = "ly_do_kl";
             this.ly_do_kl.Width = 100;
@@ -984,7 +984,7 @@
             this.kryptonPage4.LastVisibleSet = true;
             this.kryptonPage4.MinimumSize = new System.Drawing.Size(50, 50);
             this.kryptonPage4.Name = "kryptonPage4";
-            this.kryptonPage4.Size = new System.Drawing.Size(1127, 269);
+            this.kryptonPage4.Size = new System.Drawing.Size(1127, 442);
             this.kryptonPage4.Text = "Đánh giá";
             this.kryptonPage4.ToolTipTitle = "Page ToolTip";
             this.kryptonPage4.UniqueName = "CC79B81B6B514B78E99DB3D2E7223CB3";
@@ -1003,14 +1003,14 @@
             this.dgv_qt_danhgia.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_qt_danhgia.Location = new System.Drawing.Point(0, 44);
             this.dgv_qt_danhgia.Name = "dgv_qt_danhgia";
-            this.dgv_qt_danhgia.Size = new System.Drawing.Size(1127, 225);
+            this.dgv_qt_danhgia.Size = new System.Drawing.Size(1127, 398);
             this.dgv_qt_danhgia.TabIndex = 7;
             this.dgv_qt_danhgia.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_danhgia_CellClick);
             this.dgv_qt_danhgia.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_qt_danhgia_RowPostPaint);
             // 
             // id_qt_danhgia
             // 
-            this.id_qt_danhgia.DataPropertyName = "id_qt_danhgia";
+            this.id_qt_danhgia.DataPropertyName = "id";
             this.id_qt_danhgia.HeaderText = "";
             this.id_qt_danhgia.Name = "id_qt_danhgia";
             this.id_qt_danhgia.Visible = false;
@@ -1025,28 +1025,28 @@
             // 
             // ngay_danh_gia
             // 
-            this.ngay_danh_gia.DataPropertyName = "ngay_danh_gia";
+            this.ngay_danh_gia.DataPropertyName = "ngaydanhgia";
             this.ngay_danh_gia.HeaderText = "Ngày đánh giá";
             this.ngay_danh_gia.Name = "ngay_danh_gia";
             this.ngay_danh_gia.Width = 125;
             // 
             // noi_dung_danhgia
             // 
-            this.noi_dung_danhgia.DataPropertyName = "noi_dung";
+            this.noi_dung_danhgia.DataPropertyName = "noidung";
             this.noi_dung_danhgia.HeaderText = "Nội dung";
             this.noi_dung_danhgia.Name = "noi_dung_danhgia";
             this.noi_dung_danhgia.Width = 100;
             // 
             // diem_danh_gia
             // 
-            this.diem_danh_gia.DataPropertyName = "diem_danh_gia";
+            this.diem_danh_gia.DataPropertyName = "diemdanhgia";
             this.diem_danh_gia.HeaderText = "Điểm đánh giá";
             this.diem_danh_gia.Name = "diem_danh_gia";
             this.diem_danh_gia.Width = 125;
             // 
             // xep_loai_danhgia
             // 
-            this.xep_loai_danhgia.DataPropertyName = "xep_loai";
+            this.xep_loai_danhgia.DataPropertyName = "xeploai";
             this.xep_loai_danhgia.HeaderText = "Xếp loại";
             this.xep_loai_danhgia.Name = "xep_loai_danhgia";
             this.xep_loai_danhgia.Width = 100;
@@ -1142,7 +1142,7 @@
             this.kryptonPage5.LastVisibleSet = true;
             this.kryptonPage5.MinimumSize = new System.Drawing.Size(50, 50);
             this.kryptonPage5.Name = "kryptonPage5";
-            this.kryptonPage5.Size = new System.Drawing.Size(1127, 444);
+            this.kryptonPage5.Size = new System.Drawing.Size(1127, 442);
             this.kryptonPage5.Text = "Đào tạo";
             this.kryptonPage5.ToolTipTitle = "Page ToolTip";
             this.kryptonPage5.UniqueName = "BCFBF6A2DCA445537A8802C8355511FC";
@@ -1162,14 +1162,14 @@
             this.dgv_qt_daotao.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_qt_daotao.Location = new System.Drawing.Point(0, 44);
             this.dgv_qt_daotao.Name = "dgv_qt_daotao";
-            this.dgv_qt_daotao.Size = new System.Drawing.Size(1127, 400);
+            this.dgv_qt_daotao.Size = new System.Drawing.Size(1127, 398);
             this.dgv_qt_daotao.TabIndex = 6;
             this.dgv_qt_daotao.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_daotao_CellClick);
             this.dgv_qt_daotao.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_qt_daotao_RowPostPaint);
             // 
             // id_qt_daotao
             // 
-            this.id_qt_daotao.DataPropertyName = "id_qt_daotao";
+            this.id_qt_daotao.DataPropertyName = "id";
             this.id_qt_daotao.HeaderText = "";
             this.id_qt_daotao.Name = "id_qt_daotao";
             this.id_qt_daotao.Visible = false;
@@ -1184,35 +1184,35 @@
             // 
             // tu_ngay_daotao
             // 
-            this.tu_ngay_daotao.DataPropertyName = "tu_ngay";
+            this.tu_ngay_daotao.DataPropertyName = "tungay";
             this.tu_ngay_daotao.HeaderText = "Từ ngày";
             this.tu_ngay_daotao.Name = "tu_ngay_daotao";
             this.tu_ngay_daotao.Width = 100;
             // 
             // den_ngay_daotao
             // 
-            this.den_ngay_daotao.DataPropertyName = "den_ngay";
+            this.den_ngay_daotao.DataPropertyName = "denngay";
             this.den_ngay_daotao.HeaderText = "Đến ngày";
             this.den_ngay_daotao.Name = "den_ngay_daotao";
             this.den_ngay_daotao.Width = 100;
             // 
             // so_quyet_dinh_daotao
             // 
-            this.so_quyet_dinh_daotao.DataPropertyName = "so_quyet_dinh";
+            this.so_quyet_dinh_daotao.DataPropertyName = "soquyetdinh";
             this.so_quyet_dinh_daotao.HeaderText = "Số quyết định";
             this.so_quyet_dinh_daotao.Name = "so_quyet_dinh_daotao";
             this.so_quyet_dinh_daotao.Width = 110;
             // 
             // noi_dung_daotao
             // 
-            this.noi_dung_daotao.DataPropertyName = "noi_dung";
+            this.noi_dung_daotao.DataPropertyName = "noidung";
             this.noi_dung_daotao.HeaderText = "Nội dung";
             this.noi_dung_daotao.Name = "noi_dung_daotao";
             this.noi_dung_daotao.Width = 100;
             // 
             // hinh_thuc_daotao
             // 
-            this.hinh_thuc_daotao.DataPropertyName = "hinh_thuc";
+            this.hinh_thuc_daotao.DataPropertyName = "hinhthuc";
             this.hinh_thuc_daotao.HeaderText = "Hình thức";
             this.hinh_thuc_daotao.Name = "hinh_thuc_daotao";
             this.hinh_thuc_daotao.Width = 100;
@@ -1308,7 +1308,7 @@
             this.kryptonPage6.LastVisibleSet = true;
             this.kryptonPage6.MinimumSize = new System.Drawing.Size(50, 50);
             this.kryptonPage6.Name = "kryptonPage6";
-            this.kryptonPage6.Size = new System.Drawing.Size(1127, 444);
+            this.kryptonPage6.Size = new System.Drawing.Size(1127, 442);
             this.kryptonPage6.Text = "Tai nạn";
             this.kryptonPage6.ToolTipTitle = "Page ToolTip";
             this.kryptonPage6.UniqueName = "5AF48A4192954D04FB9329B32867BEB6";
@@ -1328,14 +1328,14 @@
             this.dgv_tainan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_tainan.Location = new System.Drawing.Point(0, 44);
             this.dgv_tainan.Name = "dgv_tainan";
-            this.dgv_tainan.Size = new System.Drawing.Size(1127, 400);
+            this.dgv_tainan.Size = new System.Drawing.Size(1127, 398);
             this.dgv_tainan.TabIndex = 6;
             this.dgv_tainan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_tainan_CellClick);
             this.dgv_tainan.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_tainan_RowPostPaint);
             // 
             // id_qt_tainan
             // 
-            this.id_qt_tainan.DataPropertyName = "id_qt_tainan";
+            this.id_qt_tainan.DataPropertyName = "id";
             this.id_qt_tainan.HeaderText = "id_qt_tainan";
             this.id_qt_tainan.Name = "id_qt_tainan";
             this.id_qt_tainan.Visible = false;
@@ -1350,35 +1350,35 @@
             // 
             // ten_tai_nan
             // 
-            this.ten_tai_nan.DataPropertyName = "ten_tai_nan";
+            this.ten_tai_nan.DataPropertyName = "tentainan";
             this.ten_tai_nan.HeaderText = "Tên tai nạn";
             this.ten_tai_nan.Name = "ten_tai_nan";
             this.ten_tai_nan.Width = 200;
             // 
             // muc_do
             // 
-            this.muc_do.DataPropertyName = "muc_do";
+            this.muc_do.DataPropertyName = "mucdo";
             this.muc_do.HeaderText = "Mức độ";
             this.muc_do.Name = "muc_do";
             this.muc_do.Width = 150;
             // 
             // ngay_dien_ra
             // 
-            this.ngay_dien_ra.DataPropertyName = "ngay_dien_ra";
+            this.ngay_dien_ra.DataPropertyName = "ngaydienra";
             this.ngay_dien_ra.HeaderText = "Ngày diễn ra";
             this.ngay_dien_ra.Name = "ngay_dien_ra";
             this.ngay_dien_ra.Width = 110;
             // 
             // noi_dien_ra
             // 
-            this.noi_dien_ra.DataPropertyName = "noi_dien_ra";
+            this.noi_dien_ra.DataPropertyName = "noidienra";
             this.noi_dien_ra.HeaderText = "Nơi diễn ra";
             this.noi_dien_ra.Name = "noi_dien_ra";
             this.noi_dien_ra.Width = 110;
             // 
             // noi_dung
             // 
-            this.noi_dung.DataPropertyName = "noi_dung";
+            this.noi_dung.DataPropertyName = "noidung";
             this.noi_dung.HeaderText = "Nội dung";
             this.noi_dung.Name = "noi_dung";
             this.noi_dung.Width = 100;
@@ -1474,7 +1474,7 @@
             this.kryptonPage7.LastVisibleSet = true;
             this.kryptonPage7.MinimumSize = new System.Drawing.Size(50, 50);
             this.kryptonPage7.Name = "kryptonPage7";
-            this.kryptonPage7.Size = new System.Drawing.Size(1127, 444);
+            this.kryptonPage7.Size = new System.Drawing.Size(1127, 442);
             this.kryptonPage7.Text = "Nghỉ việc";
             this.kryptonPage7.ToolTipTitle = "Page ToolTip";
             this.kryptonPage7.UniqueName = "F0DDFD40C3F84859669CBF4BD15EA15B";
@@ -1495,14 +1495,14 @@
             this.dgv_qt_nghiviec.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_qt_nghiviec.Location = new System.Drawing.Point(0, 44);
             this.dgv_qt_nghiviec.Name = "dgv_qt_nghiviec";
-            this.dgv_qt_nghiviec.Size = new System.Drawing.Size(1127, 400);
+            this.dgv_qt_nghiviec.Size = new System.Drawing.Size(1127, 398);
             this.dgv_qt_nghiviec.TabIndex = 6;
             this.dgv_qt_nghiviec.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_nghiviec_CellClick);
             this.dgv_qt_nghiviec.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_qt_nghiviec_RowPostPaint);
             // 
             // id_qt_nghiviec
             // 
-            this.id_qt_nghiviec.DataPropertyName = "id_qt_nghiviec";
+            this.id_qt_nghiviec.DataPropertyName = "id";
             this.id_qt_nghiviec.HeaderText = "";
             this.id_qt_nghiviec.Name = "id_qt_nghiviec";
             this.id_qt_nghiviec.Visible = false;
@@ -1517,42 +1517,42 @@
             // 
             // tu_ngay_nghiviec
             // 
-            this.tu_ngay_nghiviec.DataPropertyName = "tu_ngay";
+            this.tu_ngay_nghiviec.DataPropertyName = "tungay";
             this.tu_ngay_nghiviec.HeaderText = "Từ ngày";
             this.tu_ngay_nghiviec.Name = "tu_ngay_nghiviec";
             this.tu_ngay_nghiviec.Width = 100;
             // 
             // den_ngay_nghiviec
             // 
-            this.den_ngay_nghiviec.DataPropertyName = "den_ngay";
+            this.den_ngay_nghiviec.DataPropertyName = "denngay";
             this.den_ngay_nghiviec.HeaderText = "Đến ngày";
             this.den_ngay_nghiviec.Name = "den_ngay_nghiviec";
             this.den_ngay_nghiviec.Width = 100;
             // 
             // ngay_quyet_dinh_nghiviec
             // 
-            this.ngay_quyet_dinh_nghiviec.DataPropertyName = "ngay_quyet_dinh";
+            this.ngay_quyet_dinh_nghiviec.DataPropertyName = "ngayquyetdinh";
             this.ngay_quyet_dinh_nghiviec.HeaderText = "Ngày quyết định";
             this.ngay_quyet_dinh_nghiviec.Name = "ngay_quyet_dinh_nghiviec";
             this.ngay_quyet_dinh_nghiviec.Width = 125;
             // 
             // so_quyet_dinh_nghiviec
             // 
-            this.so_quyet_dinh_nghiviec.DataPropertyName = "so_quyet_dinh";
+            this.so_quyet_dinh_nghiviec.DataPropertyName = "soquyetdinh";
             this.so_quyet_dinh_nghiviec.HeaderText = "Số quyết định";
             this.so_quyet_dinh_nghiviec.Name = "so_quyet_dinh_nghiviec";
             this.so_quyet_dinh_nghiviec.Width = 110;
             // 
             // noi_dung_nghiviec
             // 
-            this.noi_dung_nghiviec.DataPropertyName = "noi_dung";
+            this.noi_dung_nghiviec.DataPropertyName = "noidung";
             this.noi_dung_nghiviec.HeaderText = "Nội dung";
             this.noi_dung_nghiviec.Name = "noi_dung_nghiviec";
             this.noi_dung_nghiviec.Width = 100;
             // 
             // loai_nghi_viec
             // 
-            this.loai_nghi_viec.DataPropertyName = "loai_nghi_viec";
+            this.loai_nghi_viec.DataPropertyName = "loainghiviec";
             this.loai_nghi_viec.HeaderText = "Loại";
             this.loai_nghi_viec.Name = "loai_nghi_viec";
             this.loai_nghi_viec.Width = 100;
@@ -1680,7 +1680,7 @@
             // 
             // id_thai_san
             // 
-            this.id_thai_san.DataPropertyName = "id_thai_san";
+            this.id_thai_san.DataPropertyName = "id";
             this.id_thai_san.HeaderText = "";
             this.id_thai_san.Name = "id_thai_san";
             this.id_thai_san.Visible = false;
@@ -1688,21 +1688,21 @@
             // 
             // tu_ngay_thaisan
             // 
-            this.tu_ngay_thaisan.DataPropertyName = "tu_ngay";
+            this.tu_ngay_thaisan.DataPropertyName = "tungay";
             this.tu_ngay_thaisan.HeaderText = "Từ ngày";
             this.tu_ngay_thaisan.Name = "tu_ngay_thaisan";
             this.tu_ngay_thaisan.Width = 100;
             // 
             // den_ngay_thaisan
             // 
-            this.den_ngay_thaisan.DataPropertyName = "den_ngay";
+            this.den_ngay_thaisan.DataPropertyName = "denngay";
             this.den_ngay_thaisan.HeaderText = "Đến ngày";
             this.den_ngay_thaisan.Name = "den_ngay_thaisan";
             this.den_ngay_thaisan.Width = 100;
             // 
             // ghi_chu_thaisan
             // 
-            this.ghi_chu_thaisan.DataPropertyName = "ghi_chu";
+            this.ghi_chu_thaisan.DataPropertyName = "ghichu";
             this.ghi_chu_thaisan.HeaderText = "Ghi chú";
             this.ghi_chu_thaisan.Name = "ghi_chu_thaisan";
             this.ghi_chu_thaisan.Width = 100;
@@ -1909,12 +1909,6 @@
         private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPage1;
         private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPage2;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_congtac;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_congtac;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn dia_diem_ct;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStrip toolStrip2;
         private System.Windows.Forms.ToolStripButton btn_add_congtac;
@@ -1924,14 +1918,6 @@
         private System.Windows.Forms.ToolStripButton btn_print_ct;
         private System.Windows.Forms.ToolStripButton btn_export_ct;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_khenthuong;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_khenthuong;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_khen_thuong_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kt;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripButton btn_add_khenthuong;
@@ -1948,14 +1934,6 @@
         private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPage7;
         private ComponentFactory.Krypton.Navigator.KryptonPage kryptonPage8;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_kyluat;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_kyluat;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_ky_luat_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kl;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.ToolStrip toolStrip4;
         private System.Windows.Forms.ToolStripButton btn_add_kl;
@@ -2009,11 +1987,34 @@
         private System.Windows.Forms.ToolStripButton btn_print_ts;
         private System.Windows.Forms.ToolStripButton btn_export_ts;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_thaisai;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_ts;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_thai_san;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_thaisan;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_thaisan;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ghi_chu_thaisan;
+        private System.Windows.Forms.CheckBox chk_gioitinh;
+        private System.Windows.Forms.TextBox txt_ma_nhanvien;
+        private System.Windows.Forms.TextBox txt_sdt;
+        private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.MaskedTextBox txt_ngaysinh;
+        private System.Windows.Forms.TextBox txt_diachi;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_congtac;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_ct;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_ct;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_ct;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn dia_diem_ct;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_khenthuong;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_khen_thuong_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_kyluat;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_ky_luat_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kl;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_danhgia;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_danhgia;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_danh_gia;
@@ -2027,6 +2028,13 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_daotao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_daotao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_daotao;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_tainan;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_tn;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ten_tai_nan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn muc_do;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_dien_ra;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dien_ra;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_nghiviec;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_nghiviec;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_nghiviec;
@@ -2035,18 +2043,10 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_nghiviec;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_nghiviec;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn loai_nghi_viec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_tainan;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_tn;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ten_tai_nan;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn muc_do;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_dien_ra;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dien_ra;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung;
-        private System.Windows.Forms.CheckBox chk_gioitinh;
-        private System.Windows.Forms.TextBox txt_ma_nhanvien;
-        private System.Windows.Forms.TextBox txt_sdt;
-        private System.Windows.Forms.TextBox txt_email;
-        private System.Windows.Forms.MaskedTextBox txt_ngaysinh;
-        private System.Windows.Forms.TextBox txt_diachi;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_ts;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_thai_san;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_thaisan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_thaisan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ghi_chu_thaisan;
     }
 }

@@ -218,7 +218,7 @@
             // dgv_nhan_su
             // 
             this.dgv_nhan_su.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
             this.dgv_nhan_su.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_nhan_su.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_nhan_su.BorderStyle = System.Windows.Forms.BorderStyle.None;

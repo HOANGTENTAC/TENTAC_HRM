@@ -15,10 +15,11 @@ using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 using TENTAC_HRM.Properties;
 using TENTAC_HRM.Forms.User_control;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace TENTAC_HRM.Forms.Main
 {
-    public partial class frm_personnel : Form
+    public partial class frm_personnel : KryptonForm
     {
         DataProvider provider = new DataProvider();
         Nhanvien_model nhanvien = new Nhanvien_model();
