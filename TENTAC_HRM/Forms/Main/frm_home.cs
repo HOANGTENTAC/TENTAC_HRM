@@ -86,7 +86,7 @@ namespace TENTAC_HRM.Forms.Main
                     IconButton btn_chil = new IconButton()
                     {
                         IconColor = Color.FromArgb(211, 211, 211),
-                        IconSize = 22,
+                        IconSize = 25,
                         TextImageRelation = TextImageRelation.ImageBeforeText,
                         IconChar = GetUIFontAwesome(itemchil["MenuImage"].ToString()),
                         Padding = new Padding(10, 0, 0, 0),
@@ -134,7 +134,7 @@ namespace TENTAC_HRM.Forms.Main
                 if (children > 0)
                 {
                     // btn.Image = Properties.Resources.up_arrow;
-                    btn.IconChar = IconChar.ChevronUp;
+                    btn.IconChar = IconChar.ChevronDown;
                     btn.IconSize = 12;
                     btn.IconColor = Color.FromArgb(245, 245, 245);
                 }
@@ -144,7 +144,7 @@ namespace TENTAC_HRM.Forms.Main
                 btn.Click += Btn_Click;
                 panel.Controls.Add(btn);
                 Height += 32;
-                panel.Size = new Size(201, Height);
+                panel.Size = new Size(201, 30);
                 panel.MaximumSize = new Size(201, Height);
                 panel.MinimumSize = new Size(201, 30);
                 pl_MenuLeft.Controls.Add(panel);
@@ -596,6 +596,7 @@ namespace TENTAC_HRM.Forms.Main
                 //    item.Text = "  " + names["MenuText"].ToString();
                 //}
 
+                isMinisize = false;
                 isCollapsed = true;
                 _btn_show_menu_left = true;
 
@@ -607,35 +608,27 @@ namespace TENTAC_HRM.Forms.Main
                 {
                     if (item.HasChildren)
                     {
+                        int countChil = 0;
                         foreach (Control childControl in item.Controls)
                         {
-                            int countChil = 0;
                             if (childControl is IconButton btn)
                             {
                                 btn.Size = new Size(30, 30);
                                 var Id = btn.Tag?.ToString();
                                 btn.ImageAlign = ContentAlignment.MiddleLeft;
+
                                 var chil = dt_MenuChild.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
-                                btn.Text = chil != null ? chil["MenuText"].ToString() : "";
-                                if (chil != null)
-                                {
-                                    countChil++;
-                                }
+                                btn.Text = chil?["MenuText"].ToString() ?? "";
+                                if (chil != null) countChil++;
+
                                 var parent = dt_MenuParent.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
                                 if (parent != null)
                                 {
                                     btn.Text = parent["MenuText"].ToString();
-                                    if(countChil >= 1)
-                                    {
-                                        btn.IconChar = IconChar.ChevronUp;
-                                        btn.IconSize = 12;
-                                        btn.IconColor = Color.FromArgb(245, 245, 245);
-                                        btn.ImageAlign = ContentAlignment.MiddleRight;
-                                    }
-                                    else
-                                    {
-                                        btn.IconChar = IconChar.None;
-                                    }
+                                    btn.IconChar = countChil >= 1 ? IconChar.ChevronDown : IconChar.None;
+                                    btn.IconSize = 12;
+                                    btn.IconColor = Color.FromArgb(245, 245, 245);
+                                    btn.ImageAlign = ContentAlignment.MiddleRight;
                                 }
                             }
                         }
@@ -897,12 +890,13 @@ namespace TENTAC_HRM.Forms.Main
         {
             if (isCollapsedMenu)
             {
-                if(isMinisize == false)
+                if (isMinisize == false)
                 {
                     btn_menu.IconChar = IconChar.ChevronUp;
+                    btn_menu.IconSize = 12;
                 }
                 //btn_menu.Image = Resources.up_arrow;
-             
+
                 panel_menu.Height += 10;
                 if (panel_menu.Size == panel_menu.MaximumSize)
                 {
@@ -913,9 +907,10 @@ namespace TENTAC_HRM.Forms.Main
             else
             {
                 //btn_menu.Image = Resources.dow_arrow;
-                if(isMinisize == false)
+                if (isMinisize == false)
                 {
                     btn_menu.IconChar = IconChar.ChevronDown;
+                    btn_menu.IconSize = 12;
                 }
                 panel_menu.Height -= 10;
                 if (panel_menu.Size == panel_menu.MinimumSize)

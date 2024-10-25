@@ -127,7 +127,7 @@
             this.tb_main.Name = "tb_main";
             this.tb_main.SelectedIndex = 0;
             this.tb_main.ShowToolTips = true;
-            this.tb_main.Size = new System.Drawing.Size(1037, 805);
+            this.tb_main.Size = new System.Drawing.Size(1037, 783);
             this.tb_main.TabIndex = 1;
             this.tb_main.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tb_main_DrawItem);
             this.tb_main.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_main_MouseClick);
@@ -139,7 +139,7 @@
             this.tb_dashboard.Location = new System.Drawing.Point(4, 22);
             this.tb_dashboard.Name = "tb_dashboard";
             this.tb_dashboard.Padding = new System.Windows.Forms.Padding(3);
-            this.tb_dashboard.Size = new System.Drawing.Size(1029, 779);
+            this.tb_dashboard.Size = new System.Drawing.Size(1029, 757);
             this.tb_dashboard.TabIndex = 0;
             this.tb_dashboard.Text = "Bàn làm việc";
             this.tb_dashboard.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             this.pl_dashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_dashboard.Location = new System.Drawing.Point(3, 3);
             this.pl_dashboard.Name = "pl_dashboard";
-            this.pl_dashboard.Size = new System.Drawing.Size(1023, 773);
+            this.pl_dashboard.Size = new System.Drawing.Size(1023, 751);
             this.pl_dashboard.TabIndex = 0;
             // 
             // timer1
@@ -184,8 +184,8 @@
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.statusStrip1);
             this.panel7.Controls.Add(this.tb_main);
+            this.panel7.Controls.Add(this.statusStrip1);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(203, 0);
             this.panel7.Name = "panel7";
@@ -246,7 +246,6 @@
             // pl_MenuLeft
             // 
             this.pl_MenuLeft.AutoScroll = true;
-            this.pl_MenuLeft.AutoScrollMargin = new System.Drawing.Size(0, 20);
             this.pl_MenuLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
             this.pl_MenuLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_MenuLeft.Location = new System.Drawing.Point(1, 29);
