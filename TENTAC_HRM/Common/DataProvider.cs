@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM
 {
@@ -472,6 +473,30 @@ namespace TENTAC_HRM
                 hashSb.Append(b.ToString("X2"));
             }
             return hashSb.ToString();
+        }
+
+        public static bool add_CheckInOut_Backup(int machamcong, string ngaycham)
+        {
+            try
+            {
+                string sql = "Select * from CheckInOutBackup " +
+                            $"Where MaChamCong = '{machamcong}' and NgayCham = '{ngaycham}'";
+                DataTable dt_check = new DataTable();
+                dt_check = SQLHelper.ExecuteDt(sql);
+                if (dt_check.Rows.Count == 0)
+                {
+                    string sql_insert = "Insert into CheckInOutBackup " +
+                        $"Select MaChamCong,NgayCham,GioCham,KieuCham,NguonCham,MaSoMay,TenMay " +
+                        $"from CheckInOut where MaChamCong = '{machamcong}' and NgayCham = '{ngaycham}' and (update_flg = 0 or update_flg is null)";
+                    SQLHelper.ExecuteSql(sql_insert);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
     }
 }

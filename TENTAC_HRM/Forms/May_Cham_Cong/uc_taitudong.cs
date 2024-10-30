@@ -22,7 +22,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
 
         public int iMachineNumber;
 
-        private NhanVien_BLL _nhanVienBLL = new NhanVien_BLL();
+        private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
         private Nhanvien_model _nhanVienDTO = new Nhanvien_model();
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
         private MayChamCongDTO _mayChamCongDTO = new MayChamCongDTO();

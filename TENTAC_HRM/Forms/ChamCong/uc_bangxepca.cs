@@ -277,5 +277,20 @@ namespace TENTAC_HRM.Forms.ChamCong
             }
             Cursor.Current = Cursors.Default;
         }
+
+        private void dgv_xepca_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+            var centerFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            var textSize = TextRenderer.MeasureText(rowIdx, Font);
+            var headerBounds =
+                new System.Drawing.Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIdx, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+        }
     }
 }

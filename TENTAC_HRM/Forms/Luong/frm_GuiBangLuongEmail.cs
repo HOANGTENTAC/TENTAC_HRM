@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.CommonModel;
 using TENTAC_HRM.Custom;
 using Font = iTextSharp.text.Font;
 using Image = iTextSharp.text.Image;
@@ -66,6 +67,7 @@ namespace TENTAC_HRM.Forms.Luong
             try
             {
                 OpenFileDialog file = new OpenFileDialog();
+                file.InitialDirectory = PathModel.ExcelPathValue;
                 if (file.ShowDialog() == DialogResult.OK)
                 {
                     filepaths = file.FileName;
@@ -128,7 +130,6 @@ namespace TENTAC_HRM.Forms.Luong
             int countfalse = 0;
             string nhanvienloi = "";
             Cursor.Current = Cursors.WaitCursor;
-            MailKit.Net.Smtp.SmtpClient client = new MailKit.Net.Smtp.SmtpClient();
             var xlsBook = new XlsWorkBook(filepaths);
             try
             {
@@ -149,6 +150,7 @@ namespace TENTAC_HRM.Forms.Luong
                 {
                     if (Convert.ToBoolean(item.Cells["col_check"].Value) == true && !string.IsNullOrEmpty(item.Cells["Email"].Value.ToString()))
                     {
+                        MailKit.Net.Smtp.SmtpClient client = new MailKit.Net.Smtp.SmtpClient();
                         try
                         {
                             string html = html_template;
@@ -294,7 +296,7 @@ namespace TENTAC_HRM.Forms.Luong
                                 .Replace("[TyLeThuong]", TyLeThuong == "0" || string.IsNullOrEmpty(TyLeThuong) ? "--" : int.Parse(TyLeThuong).ToString("#.00"))
                                 .Replace("[HeSoTinh]", HeSoTinh == "0" || string.IsNullOrEmpty(HeSoTinh) ? "--" : int.Parse(HeSoTinh).ToString("#.00"))
                                 .Replace("[SoTienThuong]", SoTienThuong == "0" || string.IsNullOrEmpty(SoTienThuong) ? "--" : int.Parse(SoTienThuong).ToString("#,##0"))
-                                .Replace("[NgayTraLuong_Thuong]", NgayTraLuong_Thuong == "0" || string.IsNullOrEmpty(NgayTraLuong_Thuong) ? "--" : NgayTraLuong_Thuong)
+                                .Replace("[NgayTraThuong]", NgayTraLuong_Thuong == "0" || string.IsNullOrEmpty(NgayTraLuong_Thuong) ? "--" : NgayTraLuong_Thuong)
                                 .Replace("[Khac]", Khac == "0" || string.IsNullOrEmpty(Khac) ? "--" : Khac)
                                 .Replace("[GhiChu]", GhiChu == "0" || string.IsNullOrEmpty(GhiChu) ? "--" : GhiChu)
 
@@ -364,6 +366,11 @@ namespace TENTAC_HRM.Forms.Luong
                             countfalse++;
                             throw new Exception(ex.Message);
                         }
+                        finally
+                        {
+                            client.Disconnect(true);
+                            client.Dispose();
+                        }
                     }
                 }
                 txt_noti.Text = "Số mail gửi thành cong : " + count + Environment.NewLine +
@@ -384,8 +391,6 @@ namespace TENTAC_HRM.Forms.Luong
             {
                 xlsBook.Save();
                 xlsBook.Dispose();
-                client.Disconnect(true);
-                client.Dispose();
             }
             Cursor.Current = Cursors.Default;
         }

@@ -14,7 +14,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
     public partial class uc_TaiNhanVienLenMayChamCong2 : UserControl
     {
         DataProvider provider = new DataProvider();
-        private NhanVien_BLL _nhanVienBLL = new NhanVien_BLL();
+        private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
 
         private Nhanvien_model _nhanVienDTO = new Nhanvien_model();
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_bangxepca));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_month = new System.Windows.Forms.ToolStripComboBox();
@@ -49,9 +50,6 @@
             this.btn_refresh = new System.Windows.Forms.ToolStripButton();
             this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.dgv_xepca = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.txt_info = new System.Windows.Forms.ToolStripLabel();
-            this.lb_count_nv = new System.Windows.Forms.ToolStripLabel();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chk_col = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,6 +85,9 @@
             this.d29 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.d30 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.d31 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.txt_info = new System.Windows.Forms.ToolStripLabel();
+            this.lb_count_nv = new System.Windows.Forms.ToolStripLabel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_xepca)).BeginInit();
             this.toolStrip2.SuspendLayout();
@@ -299,37 +300,22 @@
             this.d29,
             this.d30,
             this.d31});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_xepca.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_xepca.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_xepca.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_xepca.Location = new System.Drawing.Point(0, 50);
             this.dgv_xepca.Name = "dgv_xepca";
             this.dgv_xepca.Size = new System.Drawing.Size(1293, 576);
             this.dgv_xepca.TabIndex = 1;
             this.dgv_xepca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_xepca_CellContentClick);
-            // 
-            // toolStrip2
-            // 
-            this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txt_info,
-            this.lb_count_nv});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 25);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1293, 25);
-            this.toolStrip2.TabIndex = 2;
-            this.toolStrip2.Text = "toolStrip2";
-            // 
-            // txt_info
-            // 
-            this.txt_info.Name = "txt_info";
-            this.txt_info.Size = new System.Drawing.Size(42, 22);
-            this.txt_info.Text = "ca HC:";
-            // 
-            // lb_count_nv
-            // 
-            this.lb_count_nv.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.lb_count_nv.Name = "lb_count_nv";
-            this.lb_count_nv.Size = new System.Drawing.Size(86, 22);
-            this.lb_count_nv.Text = "toolStripLabel5";
+            this.dgv_xepca.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_xepca_RowPostPaint);
             // 
             // id
             // 
@@ -576,6 +562,31 @@
             this.d31.HeaderText = "d31";
             this.d31.Name = "d31";
             this.d31.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.txt_info,
+            this.lb_count_nv});
+            this.toolStrip2.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(1293, 25);
+            this.toolStrip2.TabIndex = 2;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
+            // txt_info
+            // 
+            this.txt_info.Name = "txt_info";
+            this.txt_info.Size = new System.Drawing.Size(42, 22);
+            this.txt_info.Text = "ca HC:";
+            // 
+            // lb_count_nv
+            // 
+            this.lb_count_nv.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lb_count_nv.Name = "lb_count_nv";
+            this.lb_count_nv.Size = new System.Drawing.Size(86, 22);
+            this.lb_count_nv.Text = "toolStripLabel5";
             // 
             // uc_bangxepca
             // 
