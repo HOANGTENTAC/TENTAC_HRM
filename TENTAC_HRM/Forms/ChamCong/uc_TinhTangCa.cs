@@ -104,11 +104,11 @@ namespace TENTAC_HRM.Forms.ChamCong
                 int _year = int.Parse(cbo_year.Text.ToString());
                 int _month = int.Parse(cbo_month.Text.ToString());
 
-                string sql_tangca = $"Select * From DangKyTangCa Where year(NgayTangCa) = '{_year}' and month(NgayTangCa) = '{_month}'";
+                string sql_tangca = $"Select * From MITACOSQL.dbo.DangKyTangCa Where year(NgayTangCa) = '{_year}' and month(NgayTangCa) = '{_month}'";
                 DataTable dt_tangca = new DataTable();
                 dt_tangca = SQLHelper.ExecuteDt(sql_tangca);
 
-                string sql_ngaynghi = $"select * from NgayNghi where nam = '{_year}' and thang = '{_month}'";
+                string sql_ngaynghi = $"select * from MITACOSQL.dbo.NgayNghi where nam = '{_year}' and thang = '{_month}'";
                 dt_ngaynghi = SQLHelper.ExecuteDt(sql_ngaynghi);
                 DataTable ds_ca = new DataTable();
                 ds_ca = danhsachca();
@@ -118,23 +118,23 @@ namespace TENTAC_HRM.Forms.ChamCong
 
                 string sql_database = "select * " +
                                         "from( select a.MaChamCong,NgayCham,GioCham,b.TenNhanVien,b.MaNhanVien,case when b.MaKhuVuc = 'KV00003' then N'Thai sản' else case when b.MaKhuVuc is null then N'Nghỉ việc' else pb.TenPhongBan end end as TenPhongBan " +
-                                                "from CheckInOut a " +
-                                                "join NHANVIEN b on a.MaChamCong = b.MaChamCong " +
-                                                "left join PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan" +
+                                                "from MITACOSQL.dbo.CheckInOut a " +
+                                                "join MITACOSQL.dbo.NHANVIEN b on a.MaChamCong = b.MaChamCong " +
+                                                "left join MITACOSQL.dbo.PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan" +
                                                 ") a where MaNhanVien not like 'JP%' and MaNhanVien not like 'KC%' ";
                 if (chk_dulieuchuaquachinhsua.Checked == true)
                 {
                     sql_database = "select * from( " +
                                         "select a.MaChamCong,NgayCham,GioCham,b.TenNhanVien,b.MaNhanVien,case when b.MaKhuVuc = 'KV00003' then N'Thai sản' else case when b.MaKhuVuc is null then N'Nghỉ việc' else pb.TenPhongBan end end as TenPhongBan " +
-                                        "from CheckInOut a " +
-                                        "join NHANVIEN b on a.MaChamCong = b.MaChamCong " +
-                                        "left join PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
+                                        "from MITACOSQL.dbo.CheckInOut a " +
+                                        "join MITACOSQL.dbo.NHANVIEN b on a.MaChamCong = b.MaChamCong " +
+                                        "left join MITACOSQL.dbo.PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
                                         "where (update_flg = 0 or update_flg is null) " +
                                         "union " +
                                         "select a.MaChamCong,NgayCham,GioCham,b.TenNhanVien,b.MaNhanVien,case when b.MaKhuVuc = 'KV00003' then N'Thai sản' else case when b.MaKhuVuc is null then N'Nghỉ việc' else pb.TenPhongBan end end as TenPhongBan " +
-                                        "from CheckInOutBackup a " +
-                                        "join NHANVIEN b on a.MaChamCong = b.MaChamCong " +
-                                        "left join PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
+                                        "from MITACOSQL.dbo.CheckInOutBackup a " +
+                                        "join MITACOSQL.dbo.NHANVIEN b on a.MaChamCong = b.MaChamCong " +
+                                        "left join MITACOSQL.dbo.PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
                                     ") a where MaNhanVien not like 'JP%' and MaNhanVien not like 'KC%' ";
                 }
                 string sql_selectall = sql_database +
@@ -259,16 +259,17 @@ namespace TENTAC_HRM.Forms.ChamCong
                                 var max_giocham = DateTime.Parse(dt1.Rows.Cast<DataRow>().Max(x => x["GioCham"]).ToString()).ToString("yyyy/MM/dd HH:mm:00");
                                 var giora = TimeSpan.Parse(DateTime.Parse(max_giocham.ToString()).ToString("HH:mm:ss"));
 
-
+                                bool thieugiovaoca3 = false;
                                 // tăng ca
                                 if (tangca_nhanvien.Count > 0)
                                 {
                                     if (DateTime.Parse(min_giocham) > DateTime.Parse(_year.ToString() + "/" + month_new.ToString() + "/" + day_new.ToString() + " " + TimeSpan.Parse(DateTime.Parse(ca_nhanvien[1].ToString()).ToString("HH:mm:ss")))
                                         && ca == "CA3")
                                     {
+                                        thieugiovaoca3 = true;
                                         dt_dacbiet.Rows.Add(machamcong, list_nhanvien[0]["TenNhanVien"], DateTime.Parse(dt1.Rows.Cast<DataRow>().Min(x => x["GioCham"]).ToString()).ToString("yyyy/MM/dd HH:mm:ss"), "Thiếu giờ vào");
-                                        min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
-                                        giovao = TimeSpan.Parse(DateTime.Parse(min_giocham.ToString()).ToString("HH:mm:ss"));
+                                        //min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                        //giovao = TimeSpan.Parse(DateTime.Parse(min_giocham.ToString()).ToString("HH:mm:ss"));
                                     }
 
                                     if (tangca_nhanvien.Count == 2)
@@ -276,7 +277,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                                         // ra sớm về muộn hơn so với giờ tăng ca
                                         if (dt1.Rows.Count > 1)
                                         {
-                                            if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
+                                            if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
                                             {
                                                 dt_dacbiet.Rows.Add(machamcong, list_nhanvien[0]["TenNhanVien"], min_giocham.ToString(), "Giờ vào muộn hơn giờ đăng ký tăng ca");
                                             }
@@ -287,12 +288,14 @@ namespace TENTAC_HRM.Forms.ChamCong
                                         }
 
                                         // 2024/08/12
-                                        if (giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
-                                            giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
+                                        if (
+                                            //giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
+                                            giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
                                         {
                                             min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
                                         }
-                                        if (giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
+                                        if (
+                                            //giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
                                             giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[1]["GioTangCa"].ToString()).ToString("HH:mm:ss")))
                                         {
                                             max_giocham = tangca_nhanvien[1]["GioTangCa"].ToString();
@@ -307,24 +310,45 @@ namespace TENTAC_HRM.Forms.ChamCong
                                             // ra sớm về muộn hơn so với giờ tăng ca
                                             if (dt1.Rows.Count > 1)
                                             {
-                                                if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
+                                                if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
                                                 {
                                                     dt_dacbiet.Rows.Add(machamcong, list_nhanvien[0]["TenNhanVien"], min_giocham.ToString(), "Giờ vào muộn hơn giờ đăng ký tăng ca");
                                                 }
                                             }
                                             //min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
                                             // kiễm tra
-                                            if (giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[1].ToString()).ToString("HH:mm:ss")) ||
-                                                giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
-                                            {
-                                                min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
-                                            }
+                                            //if (
+                                            //    //giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[1].ToString()).ToString("HH:mm:ss")) ||
+                                            //    giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59"))
+                                            //    )
+                                            //{
+                                            //    min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                            //}
+
                                             if (ca == "CA3")
                                             {
-                                                max_giocham = DateTime.Parse(min_giocham.ToString()).AddDays(+1).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
+                                                if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59"))
+                                                    && giovao > TimeSpan.Parse("17:00:00"))
+                                                {
+                                                    min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                                }
+
+                                                if (thieugiovaoca3 == true)
+                                                {
+                                                    max_giocham = DateTime.Parse(max_giocham.ToString()).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
+                                                }
+                                                else
+                                                {
+                                                    max_giocham = DateTime.Parse(min_giocham.ToString()).AddDays(+1).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
+                                                }
                                             }
                                             else
                                             {
+                                                if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
+                                                {
+                                                    min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                                }
+
                                                 max_giocham = DateTime.Parse(min_giocham.ToString()).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
                                             }
                                         }
@@ -340,7 +364,8 @@ namespace TENTAC_HRM.Forms.ChamCong
                                             }
                                             //max_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
 
-                                            if (giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
+                                            if (
+                                                //giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
                                                 giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")))
                                             {
                                                 max_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
@@ -359,18 +384,22 @@ namespace TENTAC_HRM.Forms.ChamCong
                                         {
                                             //if (ngaynghi[0] == true)
                                             //{
-                                            if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss")) ||
-                                                giovao >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss")))
+                                            if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))
+                                                //|| giovao >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss"))
+                                                )
                                             {
                                                 min_giocham = DateTime.Parse(min_giocham.ToString()).ToString("yyyy/MM/dd") + " " + tangca_nhanvien[0]["GioBatDau"].ToString();
                                             }
-                                            if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss")) ||
-                                                giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))) && ca != "CA3")
+
+                                            if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss"))
+                                                //|| giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))
+                                                ) && ca != "CA3")
                                             {
                                                 max_giocham = DateTime.Parse(max_giocham.ToString()).ToString("yyyy/MM/dd") + " " + tangca_nhanvien[0]["GioKetThuc"].ToString();
                                             }
-                                            else if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss")) ||
-                                                giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))) && ca == "CA3")
+                                            else if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss"))
+                                                //|| giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))
+                                                ) && ca == "CA3")
                                             {
                                                 max_giocham = DateTime.Parse(max_giocham.ToString()).ToString("yyyy/MM/dd") + " " + tangca_nhanvien[0]["GioKetThuc"].ToString();
                                             }
@@ -520,16 +549,6 @@ namespace TENTAC_HRM.Forms.ChamCong
                     _quagio_tangca.Rows.Add(col_quagio_tangca);
                 }
                 dgv_dacbiet.DataSource = dt_dacbiet;
-                //int s = 0;
-                //foreach (DataRow item in _hoanchinh.Rows)
-                //{
-
-                //    if (decimal.Parse(item["Tong"].ToString()) > 40)
-                //    {
-                //        canbangthang(item, s);
-                //    }
-                //    s++;
-                //}
 
                 var _quagio_tangca_new = _quagio_tangca.Rows.Cast<DataRow>()
                     .Where(x => decimal.Parse(x.Field<string>("Tong").ToString()) > 0);
@@ -561,7 +580,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                 int _year = int.Parse(cbo_year.Text.ToString());
                 int _month = int.Parse(cbo_month.Text.ToString());
 
-                string sql_tangca = $"Select * From DangKyTangCa Where year(NgayTangCa) = '{_year}' and month(NgayTangCa) = '{_month}'";
+                string sql_tangca = $"Select * From MITACOSQL.dbo.DangKyTangCa Where year(NgayTangCa) = '{_year}' and month(NgayTangCa) = '{_month}'";
                 DataTable dt_tangca = new DataTable();
                 dt_tangca = SQLHelper.ExecuteDt(sql_tangca);
 
@@ -573,23 +592,23 @@ namespace TENTAC_HRM.Forms.ChamCong
 
                 string sql_database = "select * " +
                                         "from( select a.MaChamCong,NgayCham,GioCham,b.TenNhanVien,b.MaNhanVien,case when b.MaKhuVuc = 'KV00003' then N'Thai sản' else case when b.MaKhuVuc is null then N'Nghỉ việc' else pb.TenPhongBan end end as TenPhongBan " +
-                                                "from CheckInOut a " +
-                                                "join NHANVIEN b on a.MaChamCong = b.MaChamCong " +
-                                                "left join PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan" +
+                                                "from MITACOSQL.dbo.CheckInOut a " +
+                                                "join MITACOSQL.dbo.NHANVIEN b on a.MaChamCong = b.MaChamCong " +
+                                                "left join MITACOSQL.dbo.PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan" +
                                                 ") a where MaNhanVien not like 'JP%' and MaNhanVien like 'KC%' ";
                 if (chk_dulieuchuaquachinhsua.Checked == true)
                 {
                     sql_database = "select * from( " +
                                         "select a.MaChamCong,NgayCham,GioCham,b.TenNhanVien,b.MaNhanVien,case when b.MaKhuVuc = 'KV00003' then N'Thai sản' else case when b.MaKhuVuc is null then N'Nghỉ việc' else pb.TenPhongBan end end as TenPhongBan " +
-                                        "from CheckInOut a " +
-                                        "join NHANVIEN b on a.MaChamCong = b.MaChamCong " +
-                                        "left join PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
+                                        "from MITACOSQL.dbo.CheckInOut a " +
+                                        "join MITACOSQL.dbo.NHANVIEN b on a.MaChamCong = b.MaChamCong " +
+                                        "left join MITACOSQL.dbo.PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
                                         "where (update_flg = 0 or update_flg is null) " +
                                         "union " +
                                         "select a.MaChamCong,NgayCham,GioCham,b.TenNhanVien,b.MaNhanVien,case when b.MaKhuVuc = 'KV00003' then N'Thai sản' else case when b.MaKhuVuc is null then N'Nghỉ việc' else pb.TenPhongBan end end as TenPhongBan " +
-                                        "from CheckInOutBackup a " +
-                                        "join NHANVIEN b on a.MaChamCong = b.MaChamCong " +
-                                        "left join PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
+                                        "from MITACOSQL.dbo.CheckInOutBackup a " +
+                                        "join MITACOSQL.dbo.NHANVIEN b on a.MaChamCong = b.MaChamCong " +
+                                        "left join MITACOSQL.dbo.PHONGBAN pb on b.MaPhongBan = pb.MaPhongBan " +
                                     ") a where MaNhanVien not like 'JP%' and MaNhanVien like 'KC%' ";
                 }
                 string sql_selectall = sql_database +
@@ -684,16 +703,17 @@ namespace TENTAC_HRM.Forms.ChamCong
                                 var max_giocham = DateTime.Parse(dt1.Rows.Cast<DataRow>().Max(x => x["GioCham"]).ToString()).ToString("yyyy/MM/dd HH:mm:00");
                                 var giora = TimeSpan.Parse(DateTime.Parse(max_giocham.ToString()).ToString("HH:mm:ss"));
 
-
+                                bool thieugiovaoca3 = false;
                                 // tăng ca
                                 if (tangca_nhanvien.Count > 0)
                                 {
                                     if (DateTime.Parse(min_giocham) > DateTime.Parse(_year.ToString() + "/" + month_new.ToString() + "/" + day_new.ToString() + " " + TimeSpan.Parse(DateTime.Parse(ca_nhanvien[1].ToString()).ToString("HH:mm:ss")))
                                         && ca == "CA3")
                                     {
+                                        thieugiovaoca3 = true;
                                         dt_dacbiet.Rows.Add(machamcong, list_nhanvien[0]["TenNhanVien"], DateTime.Parse(dt1.Rows.Cast<DataRow>().Min(x => x["GioCham"]).ToString()).ToString("yyyy/MM/dd HH:mm:ss"), "Thiếu giờ vào");
-                                        min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
-                                        giovao = TimeSpan.Parse(DateTime.Parse(min_giocham.ToString()).ToString("HH:mm:ss"));
+                                        //min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                        //giovao = TimeSpan.Parse(DateTime.Parse(min_giocham.ToString()).ToString("HH:mm:ss"));
                                     }
 
                                     if (tangca_nhanvien.Count == 2)
@@ -701,7 +721,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                                         // ra sớm về muộn hơn so với giờ tăng ca
                                         if (dt1.Rows.Count > 1)
                                         {
-                                            if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
+                                            if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
                                             {
                                                 dt_dacbiet.Rows.Add(machamcong, list_nhanvien[0]["TenNhanVien"], min_giocham.ToString(), "Giờ vào muộn hơn giờ đăng ký tăng ca");
                                             }
@@ -712,12 +732,14 @@ namespace TENTAC_HRM.Forms.ChamCong
                                         }
 
                                         // 2024/08/12
-                                        if (giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
-                                            giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
+                                        if (
+                                            //giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
+                                            giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
                                         {
                                             min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
                                         }
-                                        if (giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
+                                        if (
+                                            //giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
                                             giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[1]["GioTangCa"].ToString()).ToString("HH:mm:ss")))
                                         {
                                             max_giocham = tangca_nhanvien[1]["GioTangCa"].ToString();
@@ -732,24 +754,45 @@ namespace TENTAC_HRM.Forms.ChamCong
                                             // ra sớm về muộn hơn so với giờ tăng ca
                                             if (dt1.Rows.Count > 1)
                                             {
-                                                if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
+                                                if (giovao > TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
                                                 {
                                                     dt_dacbiet.Rows.Add(machamcong, list_nhanvien[0]["TenNhanVien"], min_giocham.ToString(), "Giờ vào muộn hơn giờ đăng ký tăng ca");
                                                 }
                                             }
                                             //min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
                                             // kiễm tra
-                                            if (giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[1].ToString()).ToString("HH:mm:ss")) ||
-                                                giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:30")))
-                                            {
-                                                min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
-                                            }
+                                            //if (
+                                            //    //giovao > TimeSpan.Parse(DateTime.Parse(ca_nhanvien[1].ToString()).ToString("HH:mm:ss")) ||
+                                            //    giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59"))
+                                            //    )
+                                            //{
+                                            //    min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                            //}
+
                                             if (ca == "CA3")
                                             {
-                                                max_giocham = DateTime.Parse(min_giocham.ToString()).AddDays(+1).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
+                                                if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59"))
+                                                    && giovao > TimeSpan.Parse("17:00:00"))
+                                                {
+                                                    min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                                }
+
+                                                if (thieugiovaoca3 == true)
+                                                {
+                                                    max_giocham = DateTime.Parse(max_giocham.ToString()).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
+                                                }
+                                                else
+                                                {
+                                                    max_giocham = DateTime.Parse(min_giocham.ToString()).AddDays(+1).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
+                                                }
                                             }
                                             else
                                             {
+                                                if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")).Add(TimeSpan.Parse("00:01:59")))
+                                                {
+                                                    min_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
+                                                }
+
                                                 max_giocham = DateTime.Parse(min_giocham.ToString()).ToString("yyyy/MM/dd") + " " + DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss");
                                             }
                                         }
@@ -765,7 +808,8 @@ namespace TENTAC_HRM.Forms.ChamCong
                                             }
                                             //max_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
 
-                                            if (giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
+                                            if (
+                                                //giora < TimeSpan.Parse(DateTime.Parse(ca_nhanvien[2].ToString()).ToString("HH:mm:ss")) ||
                                                 giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioTangCa"].ToString()).ToString("HH:mm:ss")))
                                             {
                                                 max_giocham = tangca_nhanvien[0]["GioTangCa"].ToString();
@@ -784,18 +828,22 @@ namespace TENTAC_HRM.Forms.ChamCong
                                         {
                                             //if (ngaynghi[0] == true)
                                             //{
-                                            if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss")) ||
-                                                giovao >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss")))
+                                            if (giovao <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))
+                                                //|| giovao >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss"))
+                                                )
                                             {
                                                 min_giocham = DateTime.Parse(min_giocham.ToString()).ToString("yyyy/MM/dd") + " " + tangca_nhanvien[0]["GioBatDau"].ToString();
                                             }
-                                            if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss")) ||
-                                                giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))) && ca != "CA3")
+
+                                            if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss"))
+                                                //|| giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))
+                                                ) && ca != "CA3")
                                             {
                                                 max_giocham = DateTime.Parse(max_giocham.ToString()).ToString("yyyy/MM/dd") + " " + tangca_nhanvien[0]["GioKetThuc"].ToString();
                                             }
-                                            else if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss")) ||
-                                                giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))) && ca == "CA3")
+                                            else if ((giora >= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioKetThuc"].ToString()).ToString("HH:mm:ss"))
+                                                //|| giora <= TimeSpan.Parse(DateTime.Parse(tangca_nhanvien[0]["GioBatDau"].ToString()).ToString("HH:mm:ss"))
+                                                ) && ca == "CA3")
                                             {
                                                 max_giocham = DateTime.Parse(max_giocham.ToString()).ToString("yyyy/MM/dd") + " " + tangca_nhanvien[0]["GioKetThuc"].ToString();
                                             }
@@ -1335,7 +1383,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                 // 明細情報を設定する
                 var rowIndex = 5;
                 int index = 1;
-                foreach (DataGridViewRow item in dgv_tangca.Rows)
+                foreach (DataGridViewRow item in dgv_tangca.Rows.Cast<DataGridViewRow>().Where(x => !x.Cells["MaChamCong_TC"].Value.ToString().Contains("KC")))
                 {
                     // 明細情報を出力する
                     xlsSheet.Cell(rowIndex, 0).SetValue(index);
@@ -1896,7 +1944,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                         sql_insert.Add(delete);
                         foreach (DataRow item in _quagio_tangca.Rows)
                         {
-                            string sql = "insert into QuaGioTangCa(Nam,Thang,MaNhanVien,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10," +
+                            string sql = "insert into MITACOSQL.dbo.QuaGioTangCa(Nam,Thang,MaNhanVien,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10," +
                                "D11,D12,D13,D14,D15,D16,D17,D18,D19,D20," +
                                "D21,D22,D23,D24,D25,D26,D27,D28,D29,D30,D31)" +
                               "Values(" +
