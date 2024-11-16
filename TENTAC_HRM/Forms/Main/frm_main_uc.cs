@@ -31,7 +31,7 @@ namespace TENTAC_HRM.Forms.Main
             if (form != null)
                 form.load_diachi();
             else
-                uc_nhansu.load_diachi();
+                uc_nhansu.load_diachi(_ma_nhan_vien);
         }
         private void OnUCButtonClicked(object sender, EventArgs e)
         {
@@ -54,8 +54,11 @@ namespace TENTAC_HRM.Forms.Main
                 case "nation":
                     userControl = uc_nation.Instance;
                     break;
+                //case "nationality":
+                //    userControl = uc_nationality.Instance;
+                //    break;
                 case "nationality":
-                    userControl = uc_nationality.Instance;
+                    userControl = uc_dvhc.Instance;
                     break;
             }
 

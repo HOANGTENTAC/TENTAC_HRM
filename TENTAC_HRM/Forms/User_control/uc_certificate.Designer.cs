@@ -31,20 +31,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_certificate = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.MaChungChi = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TenChungChi = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.MoTa = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NguoiTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
             this.btn_export = new System.Windows.Forms.ToolStripButton();
             this.btn_import = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.MaChungChi = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.TenChungChi = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.MoTa = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_certificate)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,15 +60,17 @@
             this.dgv_certificate.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.check,
+            this.edit_column,
             this.MaChungChi,
             this.TenChungChi,
             this.MoTa,
+            this.NgayTao,
+            this.NguoiTao,
             this.NgayCapNhat,
-            this.NguoiCapNhat,
-            this.edit_column});
+            this.NguoiCapNhat});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -75,10 +79,91 @@
             this.dgv_certificate.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_certificate.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_certificate.Location = new System.Drawing.Point(0, 25);
+            this.dgv_certificate.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_certificate.Name = "dgv_certificate";
-            this.dgv_certificate.Size = new System.Drawing.Size(1175, 615);
+            this.dgv_certificate.Size = new System.Drawing.Size(987, 588);
             this.dgv_certificate.TabIndex = 7;
             this.dgv_certificate.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_certificate_CellClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            // 
+            // check
+            // 
+            this.check.HeaderText = "";
+            this.check.Name = "check";
+            this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.check.Width = 50;
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Width = 50;
+            // 
+            // MaChungChi
+            // 
+            this.MaChungChi.DataPropertyName = "MaChungChi";
+            this.MaChungChi.HeaderText = "Mã Chứng Chỉ";
+            this.MaChungChi.Name = "MaChungChi";
+            this.MaChungChi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MaChungChi.Width = 120;
+            // 
+            // TenChungChi
+            // 
+            this.TenChungChi.DataPropertyName = "TenChungChi";
+            this.TenChungChi.HeaderText = "Tên Chứng Chỉ";
+            this.TenChungChi.Name = "TenChungChi";
+            this.TenChungChi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TenChungChi.Width = 200;
+            // 
+            // MoTa
+            // 
+            this.MoTa.DataPropertyName = "MoTa";
+            this.MoTa.HeaderText = "Mô Tả";
+            this.MoTa.Name = "MoTa";
+            this.MoTa.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MoTa.Width = 250;
+            // 
+            // NgayTao
+            // 
+            this.NgayTao.DataPropertyName = "NgayTao";
+            this.NgayTao.HeaderText = "Ngày Tạo";
+            this.NgayTao.Name = "NgayTao";
+            this.NgayTao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayTao.Visible = false;
+            this.NgayTao.Width = 100;
+            // 
+            // NguoiTao
+            // 
+            this.NguoiTao.DataPropertyName = "NguoiTao";
+            this.NguoiTao.HeaderText = "Người Tạo";
+            this.NguoiTao.Name = "NguoiTao";
+            this.NguoiTao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NguoiTao.Visible = false;
+            this.NguoiTao.Width = 100;
+            // 
+            // NgayCapNhat
+            // 
+            this.NgayCapNhat.DataPropertyName = "NgayCapNhat";
+            this.NgayCapNhat.HeaderText = "Ngày Cập Nhật";
+            this.NgayCapNhat.Name = "NgayCapNhat";
+            this.NgayCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayCapNhat.Width = 150;
+            // 
+            // NguoiCapNhat
+            // 
+            this.NguoiCapNhat.DataPropertyName = "NguoiCapNhat";
+            this.NguoiCapNhat.HeaderText = "Người Cập Nhật";
+            this.NguoiCapNhat.Name = "NguoiCapNhat";
+            this.NguoiCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NguoiCapNhat.Width = 150;
             // 
             // toolStrip1
             // 
@@ -90,13 +175,13 @@
             this.btn_import});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1175, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(987, 25);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btn_add
             // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.plus;
             this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(57, 22);
@@ -123,7 +208,7 @@
             // 
             // btn_import
             // 
-            this.btn_import.Image = global::TENTAC_HRM.Properties.Resources.update;
+            this.btn_import.Image = global::TENTAC_HRM.Properties.Resources.importExcel;
             this.btn_import.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_import.Name = "btn_import";
             this.btn_import.Size = new System.Drawing.Size(63, 22);
@@ -137,76 +222,16 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 30;
             // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // check
-            // 
-            this.check.HeaderText = "";
-            this.check.Name = "check";
-            this.check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.check.Width = 50;
-            // 
-            // MaChungChi
-            // 
-            this.MaChungChi.DataPropertyName = "MaChungChi";
-            this.MaChungChi.HeaderText = "Mã Chứng Chỉ";
-            this.MaChungChi.Name = "MaChungChi";
-            this.MaChungChi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MaChungChi.Width = 120;
-            // 
-            // TenChungChi
-            // 
-            this.TenChungChi.DataPropertyName = "TenChungChi";
-            this.TenChungChi.HeaderText = "Tên Chứng Chỉ";
-            this.TenChungChi.Name = "TenChungChi";
-            this.TenChungChi.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TenChungChi.Width = 200;
-            // 
-            // MoTa
-            // 
-            this.MoTa.DataPropertyName = "MoTa";
-            this.MoTa.HeaderText = "Mô Tả";
-            this.MoTa.Name = "MoTa";
-            this.MoTa.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.MoTa.Width = 250;
-            // 
-            // NgayCapNhat
-            // 
-            this.NgayCapNhat.DataPropertyName = "NgayCapNhat";
-            this.NgayCapNhat.HeaderText = "Ngày Cập Nhật";
-            this.NgayCapNhat.Name = "NgayCapNhat";
-            this.NgayCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NgayCapNhat.Width = 150;
-            // 
-            // NguoiCapNhat
-            // 
-            this.NguoiCapNhat.DataPropertyName = "NguoiCapNhat";
-            this.NguoiCapNhat.HeaderText = "Người Cập Nhật";
-            this.NguoiCapNhat.Name = "NguoiCapNhat";
-            this.NguoiCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NguoiCapNhat.Width = 150;
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Width = 50;
-            // 
             // uc_certificate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_certificate);
             this.Controls.Add(this.toolStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "uc_certificate";
-            this.Size = new System.Drawing.Size(1175, 640);
+            this.Size = new System.Drawing.Size(987, 613);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_certificate)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -226,11 +251,13 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewCheckBoxColumn check;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaChungChi;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenChungChi;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MoTa;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayTao;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiTao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayCapNhat;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiCapNhat;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column;
     }
 }

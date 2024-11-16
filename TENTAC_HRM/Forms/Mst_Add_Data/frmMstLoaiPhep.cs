@@ -24,6 +24,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Loại Phép";
                 txtMaLoaiPhep.Text = maLoaiPhep;
                 txtTenLoaiPhep.Text = tenLoaiPhep;
                 txtKyHieu.Text = kyHieu;
@@ -32,7 +33,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             }
             else
             {
-                txtMaLoaiPhep.Text = autoCodeGenerator.GenerateNextCode("mst_LoaiPhep", "LP", "MaLoaiPhep");
+                load_null();
             }
          
             uc_leave_type = _uc_leave_type;
@@ -120,7 +121,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void chkTinhCong_CheckedChanged(object sender, EventArgs e)
@@ -132,6 +142,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             else
             {
                 txtSoCong.Enabled = false;
+                txtSoCong.Text = string.Empty;
             }
         }
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)

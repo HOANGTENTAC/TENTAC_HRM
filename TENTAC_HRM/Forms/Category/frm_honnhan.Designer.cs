@@ -28,118 +28,99 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_sogiay_chungnhan = new System.Windows.Forms.TextBox();
-            this.dtp_ngaydk = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_noidk = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btn_luu = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbo_nhanvien = new System.Windows.Forms.ComboBox();
-            this.pb_matsau = new System.Windows.Forms.PictureBox();
-            this.pb_mattruoc = new System.Windows.Forms.PictureBox();
             this.btn_delete = new System.Windows.Forms.Button();
-            this.btn_delete_pt1 = new RJButton.RJButton();
+            this.btn_update_pt2 = new FontAwesome.Sharp.IconButton();
+            this.btn_update_pt1 = new FontAwesome.Sharp.IconButton();
+            this.txt_NoiDK = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.dtp_NgayDK = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.txt_SoGiayChungNhan = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.cbo_NhanVien = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.btn_delete_pt2 = new RJButton.RJButton();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_matsau)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_mattruoc)).BeginInit();
+            this.btn_delete_pt1 = new RJButton.RJButton();
+            this.pb_MatSau = new System.Windows.Forms.PictureBox();
+            this.pb_MatTruoc = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayDK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MatSau)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MatTruoc)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // panel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 43);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Số giấy chứng nhận";
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.labelX7);
+            this.panel1.Controls.Add(this.labelX6);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.btn_update_pt2);
+            this.panel1.Controls.Add(this.btn_update_pt1);
+            this.panel1.Controls.Add(this.txt_NoiDK);
+            this.panel1.Controls.Add(this.labelX5);
+            this.panel1.Controls.Add(this.dtp_NgayDK);
+            this.panel1.Controls.Add(this.labelX4);
+            this.panel1.Controls.Add(this.txt_SoGiayChungNhan);
+            this.panel1.Controls.Add(this.labelX3);
+            this.panel1.Controls.Add(this.cbo_NhanVien);
+            this.panel1.Controls.Add(this.labelX2);
+            this.panel1.Controls.Add(this.labelX1);
+            this.panel1.Controls.Add(this.btn_delete_pt2);
+            this.panel1.Controls.Add(this.btn_delete_pt1);
+            this.panel1.Controls.Add(this.pb_MatSau);
+            this.panel1.Controls.Add(this.pb_MatTruoc);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(450, 598);
+            this.panel1.TabIndex = 0;
             // 
-            // txt_sogiay_chungnhan
+            // labelX7
             // 
-            this.txt_sogiay_chungnhan.Location = new System.Drawing.Point(165, 43);
-            this.txt_sogiay_chungnhan.Name = "txt_sogiay_chungnhan";
-            this.txt_sogiay_chungnhan.Size = new System.Drawing.Size(260, 23);
-            this.txt_sogiay_chungnhan.TabIndex = 1;
+            this.labelX7.Location = new System.Drawing.Point(291, 239);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(75, 23);
+            this.labelX7.TabIndex = 62;
+            this.labelX7.Text = "Mặt sau";
             // 
-            // dtp_ngaydk
+            // labelX6
             // 
-            this.dtp_ngaydk.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_ngaydk.Location = new System.Drawing.Point(165, 82);
-            this.dtp_ngaydk.Name = "dtp_ngaydk";
-            this.dtp_ngaydk.Size = new System.Drawing.Size(260, 23);
-            this.dtp_ngaydk.TabIndex = 2;
+            this.labelX6.Location = new System.Drawing.Point(95, 239);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(75, 23);
+            this.labelX6.TabIndex = 61;
+            this.labelX6.Text = "Mặt trước";
             // 
-            // label2
+            // panel2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 60);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = " ĐK kết hôn";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 87);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Ngày đăng ký";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 122);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Nơi đăng ký";
-            // 
-            // txt_noidk
-            // 
-            this.txt_noidk.Location = new System.Drawing.Point(165, 119);
-            this.txt_noidk.Name = "txt_noidk";
-            this.txt_noidk.Size = new System.Drawing.Size(260, 23);
-            this.txt_noidk.TabIndex = 3;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(50, 392);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(173, 17);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Mặt trước";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(253, 392);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(172, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Mặt sau";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel2.Controls.Add(this.btn_luu);
+            this.panel2.Controls.Add(this.btn_close);
+            this.panel2.Controls.Add(this.btn_delete);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 541);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(448, 55);
+            this.panel2.TabIndex = 60;
             // 
             // btn_luu
             // 
             this.btn_luu.Image = global::TENTAC_HRM.Properties.Resources.diskette;
             this.btn_luu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_luu.Location = new System.Drawing.Point(229, 428);
+            this.btn_luu.Location = new System.Drawing.Point(175, 16);
             this.btn_luu.Name = "btn_luu";
             this.btn_luu.Size = new System.Drawing.Size(106, 27);
-            this.btn_luu.TabIndex = 4;
+            this.btn_luu.TabIndex = 21;
             this.btn_luu.Text = "Lưu";
             this.btn_luu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_luu.UseVisualStyleBackColor = true;
@@ -149,88 +130,181 @@
             // 
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_close.Location = new System.Drawing.Point(341, 428);
+            this.btn_close.Location = new System.Drawing.Point(344, 16);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(84, 27);
-            this.btn_close.TabIndex = 5;
+            this.btn_close.TabIndex = 23;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 12);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 17);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Nhân viên";
-            // 
-            // cbo_nhanvien
-            // 
-            this.cbo_nhanvien.Enabled = false;
-            this.cbo_nhanvien.FormattingEnabled = true;
-            this.cbo_nhanvien.Location = new System.Drawing.Point(165, 9);
-            this.cbo_nhanvien.Name = "cbo_nhanvien";
-            this.cbo_nhanvien.Size = new System.Drawing.Size(260, 24);
-            this.cbo_nhanvien.TabIndex = 0;
-            // 
-            // pb_matsau
-            // 
-            this.pb_matsau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pb_matsau.Location = new System.Drawing.Point(229, 161);
-            this.pb_matsau.Name = "pb_matsau";
-            this.pb_matsau.Size = new System.Drawing.Size(196, 228);
-            this.pb_matsau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_matsau.TabIndex = 3;
-            this.pb_matsau.TabStop = false;
-            this.pb_matsau.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pb_matsau_MouseDoubleClick);
-            // 
-            // pb_mattruoc
-            // 
-            this.pb_mattruoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pb_mattruoc.Location = new System.Drawing.Point(27, 161);
-            this.pb_mattruoc.Name = "pb_mattruoc";
-            this.pb_mattruoc.Size = new System.Drawing.Size(196, 228);
-            this.pb_mattruoc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_mattruoc.TabIndex = 3;
-            this.pb_mattruoc.TabStop = false;
-            this.pb_mattruoc.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pb_mattruoc_MouseDoubleClick);
-            // 
             // btn_delete
             // 
             this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_delete.Location = new System.Drawing.Point(124, 428);
+            this.btn_delete.Location = new System.Drawing.Point(30, 16);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(99, 27);
-            this.btn_delete.TabIndex = 4;
+            this.btn_delete.TabIndex = 22;
             this.btn_delete.Text = "Xóa";
             this.btn_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_delete.UseVisualStyleBackColor = true;
             this.btn_delete.Visible = false;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
-            // btn_delete_pt1
+            // btn_update_pt2
             // 
-            this.btn_delete_pt1.BackColor = System.Drawing.SystemColors.Control;
-            this.btn_delete_pt1.BackGroundColor = System.Drawing.SystemColors.Control;
-            this.btn_delete_pt1.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btn_delete_pt1.BorderRadius = 24;
-            this.btn_delete_pt1.BorderSize = 0;
-            this.btn_delete_pt1.FlatAppearance.BorderSize = 0;
-            this.btn_delete_pt1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_delete_pt1.ForeColor = System.Drawing.Color.White;
-            this.btn_delete_pt1.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_delete_pt1.Location = new System.Drawing.Point(75, 389);
-            this.btn_delete_pt1.Name = "btn_delete_pt1";
-            this.btn_delete_pt1.Size = new System.Drawing.Size(26, 24);
-            this.btn_delete_pt1.TabIndex = 6;
-            this.btn_delete_pt1.TextColor = System.Drawing.Color.White;
-            this.btn_delete_pt1.UseVisualStyleBackColor = false;
-            this.btn_delete_pt1.Click += new System.EventHandler(this.btn_delete_pt1_Click);
+            this.btn_update_pt2.FlatAppearance.BorderSize = 0;
+            this.btn_update_pt2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_update_pt2.IconChar = FontAwesome.Sharp.IconChar.Upload;
+            this.btn_update_pt2.IconColor = System.Drawing.Color.Black;
+            this.btn_update_pt2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_update_pt2.IconSize = 20;
+            this.btn_update_pt2.Location = new System.Drawing.Point(283, 498);
+            this.btn_update_pt2.Name = "btn_update_pt2";
+            this.btn_update_pt2.Size = new System.Drawing.Size(41, 30);
+            this.btn_update_pt2.TabIndex = 59;
+            this.btn_update_pt2.UseVisualStyleBackColor = true;
+            this.btn_update_pt2.Click += new System.EventHandler(this.btn_update_pt2_Click);
+            // 
+            // btn_update_pt1
+            // 
+            this.btn_update_pt1.FlatAppearance.BorderSize = 0;
+            this.btn_update_pt1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_update_pt1.IconChar = FontAwesome.Sharp.IconChar.Upload;
+            this.btn_update_pt1.IconColor = System.Drawing.Color.Black;
+            this.btn_update_pt1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_update_pt1.IconSize = 20;
+            this.btn_update_pt1.Location = new System.Drawing.Point(86, 498);
+            this.btn_update_pt1.Name = "btn_update_pt1";
+            this.btn_update_pt1.Size = new System.Drawing.Size(41, 30);
+            this.btn_update_pt1.TabIndex = 58;
+            this.btn_update_pt1.UseVisualStyleBackColor = true;
+            this.btn_update_pt1.Click += new System.EventHandler(this.btn_update_pt1_Click);
+            // 
+            // txt_NoiDK
+            // 
+            // 
+            // 
+            // 
+            this.txt_NoiDK.Border.Class = "TextBoxBorder";
+            this.txt_NoiDK.Location = new System.Drawing.Point(26, 210);
+            this.txt_NoiDK.Name = "txt_NoiDK";
+            this.txt_NoiDK.Size = new System.Drawing.Size(398, 23);
+            this.txt_NoiDK.TabIndex = 57;
+            // 
+            // labelX5
+            // 
+            this.labelX5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX5.Location = new System.Drawing.Point(26, 181);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(101, 23);
+            this.labelX5.TabIndex = 56;
+            this.labelX5.Text = "Nơi đăng ký";
+            // 
+            // dtp_NgayDK
+            // 
+            // 
+            // 
+            // 
+            this.dtp_NgayDK.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NgayDK.ButtonDropDown.Visible = true;
+            this.dtp_NgayDK.Location = new System.Drawing.Point(283, 151);
+            // 
+            // 
+            // 
+            this.dtp_NgayDK.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgayDK.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NgayDK.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NgayDK.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NgayDK.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgayDK.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NgayDK.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NgayDK.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NgayDK.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NgayDK.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_NgayDK.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NgayDK.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgayDK.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NgayDK.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgayDK.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NgayDK.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NgayDK.Name = "dtp_NgayDK";
+            this.dtp_NgayDK.Size = new System.Drawing.Size(141, 23);
+            this.dtp_NgayDK.TabIndex = 55;
+            // 
+            // labelX4
+            // 
+            this.labelX4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX4.Location = new System.Drawing.Point(283, 122);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(101, 23);
+            this.labelX4.TabIndex = 54;
+            this.labelX4.Text = "Ngày đăng ký";
+            // 
+            // txt_SoGiayChungNhan
+            // 
+            // 
+            // 
+            // 
+            this.txt_SoGiayChungNhan.Border.Class = "TextBoxBorder";
+            this.txt_SoGiayChungNhan.Location = new System.Drawing.Point(26, 152);
+            this.txt_SoGiayChungNhan.Name = "txt_SoGiayChungNhan";
+            this.txt_SoGiayChungNhan.Size = new System.Drawing.Size(251, 23);
+            this.txt_SoGiayChungNhan.TabIndex = 53;
+            // 
+            // labelX3
+            // 
+            this.labelX3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX3.Location = new System.Drawing.Point(26, 122);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(232, 23);
+            this.labelX3.TabIndex = 52;
+            this.labelX3.Text = "Số giấy chứng nhận đăng ký kết hôn";
+            // 
+            // cbo_NhanVien
+            // 
+            this.cbo_NhanVien.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_NhanVien.Enabled = false;
+            this.cbo_NhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_NhanVien.FormattingEnabled = true;
+            this.cbo_NhanVien.ItemHeight = 16;
+            this.cbo_NhanVien.Location = new System.Drawing.Point(26, 94);
+            this.cbo_NhanVien.Name = "cbo_NhanVien";
+            this.cbo_NhanVien.Size = new System.Drawing.Size(398, 22);
+            this.cbo_NhanVien.TabIndex = 51;
+            // 
+            // labelX2
+            // 
+            this.labelX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX2.Location = new System.Drawing.Point(26, 69);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 50;
+            this.labelX2.Text = "Nhân viên";
+            // 
+            // labelX1
+            // 
+            this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.labelX1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.labelX1.Location = new System.Drawing.Point(0, 0);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(448, 54);
+            this.labelX1.TabIndex = 26;
+            this.labelX1.Text = "Nhân viên - Hôn nhân";
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // btn_delete_pt2
             // 
@@ -243,38 +317,61 @@
             this.btn_delete_pt2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_delete_pt2.ForeColor = System.Drawing.Color.White;
             this.btn_delete_pt2.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_delete_pt2.Location = new System.Drawing.Point(280, 389);
+            this.btn_delete_pt2.Location = new System.Drawing.Point(340, 498);
             this.btn_delete_pt2.Name = "btn_delete_pt2";
             this.btn_delete_pt2.Size = new System.Drawing.Size(26, 24);
-            this.btn_delete_pt2.TabIndex = 7;
+            this.btn_delete_pt2.TabIndex = 25;
             this.btn_delete_pt2.TextColor = System.Drawing.Color.White;
             this.btn_delete_pt2.UseVisualStyleBackColor = false;
             this.btn_delete_pt2.Click += new System.EventHandler(this.btn_delete_pt2_Click);
+            // 
+            // btn_delete_pt1
+            // 
+            this.btn_delete_pt1.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_delete_pt1.BackGroundColor = System.Drawing.SystemColors.Control;
+            this.btn_delete_pt1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btn_delete_pt1.BorderRadius = 24;
+            this.btn_delete_pt1.BorderSize = 0;
+            this.btn_delete_pt1.FlatAppearance.BorderSize = 0;
+            this.btn_delete_pt1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_delete_pt1.ForeColor = System.Drawing.Color.White;
+            this.btn_delete_pt1.Image = global::TENTAC_HRM.Properties.Resources.bin;
+            this.btn_delete_pt1.Location = new System.Drawing.Point(144, 498);
+            this.btn_delete_pt1.Name = "btn_delete_pt1";
+            this.btn_delete_pt1.Size = new System.Drawing.Size(26, 24);
+            this.btn_delete_pt1.TabIndex = 24;
+            this.btn_delete_pt1.TextColor = System.Drawing.Color.White;
+            this.btn_delete_pt1.UseVisualStyleBackColor = false;
+            this.btn_delete_pt1.Click += new System.EventHandler(this.btn_delete_pt1_Click);
+            // 
+            // pb_MatSau
+            // 
+            this.pb_MatSau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pb_MatSau.Location = new System.Drawing.Point(228, 267);
+            this.pb_MatSau.Name = "pb_MatSau";
+            this.pb_MatSau.Size = new System.Drawing.Size(196, 228);
+            this.pb_MatSau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_MatSau.TabIndex = 19;
+            this.pb_MatSau.TabStop = false;
+            // 
+            // pb_MatTruoc
+            // 
+            this.pb_MatTruoc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pb_MatTruoc.Location = new System.Drawing.Point(26, 267);
+            this.pb_MatTruoc.Name = "pb_MatTruoc";
+            this.pb_MatTruoc.Size = new System.Drawing.Size(196, 228);
+            this.pb_MatTruoc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_MatTruoc.TabIndex = 18;
+            this.pb_MatTruoc.TabStop = false;
             // 
             // frm_honnhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 464);
-            this.Controls.Add(this.btn_delete_pt2);
-            this.Controls.Add(this.btn_delete_pt1);
-            this.Controls.Add(this.cbo_nhanvien);
-            this.Controls.Add(this.btn_close);
-            this.Controls.Add(this.btn_delete);
-            this.Controls.Add(this.btn_luu);
-            this.Controls.Add(this.pb_matsau);
-            this.Controls.Add(this.pb_mattruoc);
-            this.Controls.Add(this.dtp_ngaydk);
-            this.Controls.Add(this.txt_noidk);
-            this.Controls.Add(this.txt_sogiay_chungnhan);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(450, 598);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_honnhan";
@@ -282,32 +379,38 @@
             this.Text = "Nhân viên - Hôn nhân";
             this.Load += new System.EventHandler(this.frm_honnhan_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_honnhan_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.pb_matsau)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_mattruoc)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayDK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MatSau)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_MatTruoc)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_sogiay_chungnhan;
-        private System.Windows.Forms.DateTimePicker dtp_ngaydk;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_noidk;
-        private System.Windows.Forms.PictureBox pb_mattruoc;
-        private System.Windows.Forms.PictureBox pb_matsau;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btn_luu;
-        private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbo_nhanvien;
-        private System.Windows.Forms.Button btn_delete;
-        private RJButton.RJButton btn_delete_pt1;
+        private System.Windows.Forms.Panel panel1;
         private RJButton.RJButton btn_delete_pt2;
+        private RJButton.RJButton btn_delete_pt1;
+        private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Button btn_luu;
+        private System.Windows.Forms.PictureBox pb_MatSau;
+        private System.Windows.Forms.PictureBox pb_MatTruoc;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_NhanVien;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtp_NgayDK;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_SoGiayChungNhan;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_NoiDK;
+        private FontAwesome.Sharp.IconButton btn_update_pt2;
+        private FontAwesome.Sharp.IconButton btn_update_pt1;
+        private System.Windows.Forms.Panel panel2;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.LabelX labelX7;
     }
 }

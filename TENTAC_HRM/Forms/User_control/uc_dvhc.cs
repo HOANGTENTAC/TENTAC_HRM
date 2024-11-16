@@ -10,9 +10,7 @@ namespace TENTAC_HRM.Forms.User_control
     public partial class uc_dvhc : UserControl
     {
         public static uc_dvhc _instance;
-        private int? IdTinhThanh = null;
-        private int? IdQuanHuyen = null;
-        private int? IdPhuongXa = null;
+        int? IdTinhThanh, IdQuanHuyen, IdPhuongXa = null;
         private List<CheckBox> checkBoxGroup;
         public static uc_dvhc Instance
         {

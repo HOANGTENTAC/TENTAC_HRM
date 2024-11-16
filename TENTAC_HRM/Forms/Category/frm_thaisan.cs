@@ -15,6 +15,8 @@ namespace TENTAC_HRM.Forms.Category
         public int _id_thai_san { get; set; }
         frm_personnel _Personnel;
         uc_quatrinh_lamviec _quatrinh;
+        string _GhiChu, _NguoiTao, _NguoiCapNhat;
+        DateTime? _TuNgay, _DenNgay;
         public frm_thaisan(Form form, UserControl user)
         {
             InitializeComponent();
@@ -23,10 +25,16 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void load_nhanvien()
         {
-            cbo_nhanvien.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.DisplayMember = "name";
-            cbo_nhanvien.ValueMember = "value";
-            cbo_nhanvien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.DataSource = provider.load_nhanvien();
+            cbo_NhanVien.DisplayMember = "name";
+            cbo_NhanVien.ValueMember = "value";
+            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+        }
+        private void LoadNull()
+        {
+            dtp_TuNgay.Text = string.Empty;
+            dtp_DenNgay.Text = string.Empty;
+            txt_GhiChu.Text = string.Empty;
         }
         private void frm_thaisan_Load(object sender, EventArgs e)
         {
@@ -34,20 +42,20 @@ namespace TENTAC_HRM.Forms.Category
             if (edit == true)
             {
                 btn_save.Text = "Cập nhật";
-                string sql = string.Format("select * from hrm_nhanvien_thaisan where id_thai_san='{0}'",_id_thai_san);
+                string sql = string.Format("select * from tbl_NhanVienThaiSan where Id='{0}'", _id_thai_san);
                 DataTable dt = SQLHelper.ExecuteDt(sql);
                 if(dt.Rows.Count>0)
                 {
-                    dtp_tungay.Text = dt.Rows[0]["tu_ngay"].ToString();
-                    dtp_denngay.Text = dt.Rows[0]["den_ngay"].ToString();
-                    txt_ghichu.Text = dt.Rows[0]["ghi_chu"].ToString();
+                    dtp_TuNgay.Text = dt.Rows[0]["TuNgay"].ToString();
+                    dtp_DenNgay.Text = dt.Rows[0]["DenNgay"].ToString();
+                    txt_GhiChu.Text = dt.Rows[0]["GhiChu"].ToString();
                 }
             }
         }
-
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if(edit == true)
+            SetValues();
+            if (edit == true)
             {
                 update_data();
             }
@@ -64,16 +72,19 @@ namespace TENTAC_HRM.Forms.Category
                 _Personnel.load_thaisan();
             }
         }
-
         private void insert_data()
         {
             try
             {
-                string sql = string.Format("insert into hrm_nhanvien_thaisan(ma_nhan_vien,tu_ngay,den_ngay,ghi_chu,id_nguoi_tao) " +
-                "values('{0}','{1}','{2}',N'{3}','{4}')", cbo_nhanvien.SelectedValue.ToString(), DateTime.Parse(dtp_tungay.Text).ToString("yyyy/MM/dd"), DateTime.Parse(dtp_denngay.Text).ToString("yyyy/MM/dd"), txt_ghichu.Text, SQLHelper.sIdUser);
+                string sql = string.Empty;
+                sql = $@"Insert into tbl_NhanVienThaiSan(MaNhanVien, TuNgay, DenNgay, GhiChu, NgayTao, NguoiTao, del_flg)
+                values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpDT(_TuNgay)}, {SQLHelper.rpDT(_DenNgay)}, 
+                {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _Personnel.load_thaisan();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
@@ -81,16 +92,19 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void update_data()
         {
             try
             {
-                string sql = string.Format("update hrm_nhanvien_thaisan set tu_ngay = '{1}', den_ngay = '{2}',ghi_chu = N'{3}' where id_thai_san = '{0}'",
-                    _id_thai_san, DateTime.Parse(dtp_tungay.Text).ToString("yyyy/MM/dd"), DateTime.Parse(dtp_denngay.Text).ToString("yyyy/MM/dd"),txt_ghichu.Text);
+               string sql = string.Empty;
+                sql = $@"Update tbl_NhanVienThaiSan Set TuNgay = {SQLHelper.rpDT(_TuNgay)}, DenNgay = {SQLHelper.rpDT(_DenNgay)},
+                GhiChu = {SQLHelper.rpStr(_GhiChu)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where Id = {SQLHelper.rpI(_id_thai_san)}";
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _Personnel.load_thaisan();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
@@ -98,7 +112,14 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private void SetValues()
+        {
+            _TuNgay = string.IsNullOrEmpty(dtp_TuNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_TuNgay.Text);
+            _DenNgay = string.IsNullOrEmpty(dtp_DenNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_DenNgay.Text);
+            _GhiChu = txt_GhiChu.Text.Trim();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
+        }
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();

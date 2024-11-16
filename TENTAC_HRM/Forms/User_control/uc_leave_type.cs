@@ -28,7 +28,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_LoaiPhep()
         {
-            string sql = "select Id, MaLoaiPhep, TenLoaiPhep, KyHieu, TinhCong, SoCong, NgayCapNhat, NguoiCapNhat from mst_LoaiPhep where DelFlg = 0 order by MaLoaiPhep";
+            string sql = "select Id, MaLoaiPhep, TenLoaiPhep, KyHieu, TinhCong, SoCong, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_LoaiPhep where DelFlg = 0 order by MaLoaiPhep";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_leave_type.DataSource = dt;

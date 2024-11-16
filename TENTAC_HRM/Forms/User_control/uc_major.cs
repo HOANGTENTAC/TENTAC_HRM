@@ -34,7 +34,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_dataChuyenNganh()
         {
-            string sql = "select Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayCapNhat, NguoiCapNhat from mst_ChuyenNganh where DelFlg = 0 order by MaChuyenNganh";
+            string sql = "select Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_ChuyenNganh where DelFlg = 0 order by MaChuyenNganh";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_major.DataSource = dt;
@@ -105,22 +105,22 @@ namespace TENTAC_HRM.Forms.User_control
                 headerRow.CreateCell(5).SetCellValue("Ngày Cập Nhật");
                 headerRow.CreateCell(6).SetCellValue("Người Cập Nhật");
 
-                string query = "SELECT Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_ChuyenNganh where DelFlg = 0";
-                SqlDataReader reader = SQLHelper.ExecuteReader(query);
-
-                int rowIndex = 1;
-                while (reader.Read())
+                int row = 1;
+                foreach (DataGridViewRow dgvRow in dgv_major.Rows)
                 {
-                    var row = worksheet.CreateRow(rowIndex++);
-                    row.CreateCell(0).SetCellValue(reader["MaChuyenNganh"].ToString());
-                    row.CreateCell(1).SetCellValue(reader["TenChuyenNganh"].ToString());
-                    row.CreateCell(2).SetCellValue(reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : "");
-                    row.CreateCell(3).SetCellValue(reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "");
-                    row.CreateCell(4).SetCellValue(reader["NguoiTao"].ToString());
-                    row.CreateCell(5).SetCellValue(reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "");
-                    row.CreateCell(6).SetCellValue(reader["NguoiCapNhat"].ToString());
+                    if (!dgvRow.IsNewRow)
+                    {
+                        IRow dataRow = worksheet.CreateRow(row);
+                        dataRow.CreateCell(0).SetCellValue(dgvRow.Cells["MaChuyenNganh"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(1).SetCellValue(dgvRow.Cells["TenChuyenNganh"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(2).SetCellValue(dgvRow.Cells["MoTa"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(3).SetCellValue(dgvRow.Cells["NgayTao"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(4).SetCellValue(dgvRow.Cells["NguoiTao"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(5).SetCellValue(dgvRow.Cells["NgayCapNhat"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(6).SetCellValue(dgvRow.Cells["NguoiCapNhat"].Value?.ToString() ?? "");
+                        row++;
+                    }
                 }
-                reader.Close();
 
                 for (int i = 0; i < 7; i++)
                 {

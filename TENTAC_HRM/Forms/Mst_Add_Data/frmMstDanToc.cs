@@ -25,13 +25,14 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Dân Tộc";
                 txtMaDanToc.Text = maDanToc;
                 txtTenDanToc.Text = tenDanToc;
                 txtMota.Text = moTa;
             }
             else
             {
-                txtMaDanToc.Text = autoCodeGenerator.GenerateNextCode("mst_DanToc", "DT", "MaDanToc");
+                load_null();
             }
             uc_nation = _uc_nation;
         }
@@ -106,7 +107,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

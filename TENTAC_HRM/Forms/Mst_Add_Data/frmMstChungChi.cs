@@ -18,13 +18,14 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Chứng Chỉ";
                 txtMaChungChi.Text = maChungChi;
                 txtTenChungChi.Text = tenChungChi;
                 txtMota.Text = moTa;
             }
             else
             {
-                txtMaChungChi.Text = autoCodeGenerator.GenerateNextCode("mst_ChungChi", "CC", "MaChungChi");
+                load_null();
             }
             uc_certificate = _uc_certificate;
         }
@@ -94,7 +95,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

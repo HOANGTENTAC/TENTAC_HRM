@@ -25,6 +25,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Phòng Ban";
                 txtMaPhongBan.Text = maPhongBan;
                 txtTenPhongBan.Text = tenPhongBan;
                 cbMaCongTy.SelectedValue = maCongTy;
@@ -32,14 +33,14 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             }
             else
             {
-                txtMaPhongBan.Text = autoCodeGenerator.GenerateNextMaPhongBan();
+                load_null();
             }
             uc_departments = _uc_departments;
           
         }
         private void load_cong_ty()
         {
-            string sql = @"select MaCongTy, TenCongTy from mst_CongTy";
+            string sql = @"select MaCongTy, TenCongTy from MITACOSQL.dbo.CONGTY";
             DataTable DT = SQLHelper.ExecuteDt(sql);
 
             DataRow row = DT.NewRow();
@@ -53,7 +54,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void load_khu_vuc(string maCongTy)
         {
-            string sql = $@"select MaKhuVuc, TenKhuVuc, MaCongTy from mst_KhuVuc where MaCongTy = '{maCongTy}'";
+            string sql = $@"select MaKhuVuc, TenKhuVuc, MaCongTy from MITACOSQL.dbo.KHUVUC where MaCongTy = '{maCongTy}'";
             DataTable DT = SQLHelper.ExecuteDt(sql);
 
             DataRow row = DT.NewRow();
@@ -79,22 +80,20 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
                     RJMessageBox.Show("Bạn chưa nhập tên phòng ban.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                sql = @"IF EXISTS (SELECT 1 FROM mst_PhongBan WHERE MaPhongBan = @MaPhongBan AND DelFlg = 0)
+                sql = @"IF EXISTS (SELECT 1 FROM MITACOSQL.dbo.PHONGBAN WHERE MaPhongBan = @MaPhongBan)
                         BEGIN
-                            UPDATE mst_PhongBan
+                            UPDATE MITACOSQL.dbo.PHONGBAN
                             SET 
                                 MaCongTy = @MaCongTy,
                                 MaKhuVuc = @MaKhuVuc,
-                                TenPhongBan = @TenPhongBan,
-                                NgayCapNhat = @NgayCapNhat,
-                                NguoiCapNhat = @NguoiCapNhat
+                                TenPhongBan = @TenPhongBan
                             WHERE 
-                                MaPhongBan = @MaPhongBan AND DelFlg = 0;
+                                MaPhongBan = @MaPhongBan;
                         END
                         ELSE
                         BEGIN
-                            INSERT INTO mst_PhongBan(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                            VALUES(@MaPhongBan, @MaCongTy, @MaKhuVuc, @TenPhongBan, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
+                            INSERT INTO MITACOSQL.dbo.PHONGBAN(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan)
+                            VALUES(@MaPhongBan, @MaCongTy, @MaKhuVuc, @TenPhongBan);
                         END";
 
                 var parameters = new List<SqlParameter>
@@ -102,11 +101,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
                     new SqlParameter("@MaPhongBan", MaPhongBan),
                     new SqlParameter("@MaCongTy", MaCongTy),
                     new SqlParameter("@MaKhuVuc", MaKhuVuc),
-                    new SqlParameter("@TenPhongBan", TenPhongBan),
-                    new SqlParameter("@NgayTao", DateTime.Now),
-                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
+                    new SqlParameter("@TenPhongBan", TenPhongBan)
                 };
 
                 int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
@@ -135,7 +130,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void cbMaCongTy_SelectedIndexChanged(object sender, EventArgs e)

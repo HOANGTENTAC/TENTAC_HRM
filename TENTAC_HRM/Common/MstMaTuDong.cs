@@ -10,7 +10,7 @@ namespace TENTAC_HRM.Common
     {
         public string GenerateNextMaPhongBan()
         {
-            string query = "SELECT COALESCE(MAX(MaPhongBan), 'PB00000') FROM mst_PhongBan WHERE MaPhongBan LIKE 'PB%'";
+            string query = "SELECT COALESCE(MAX(MaPhongBan), 'PB00000') FROM MITACOSQL.dbo.PHONGBAN WHERE MaPhongBan LIKE 'PB%'";
             var result = SQLHelper.ExecuteScalar(query);
 
             string currentMaxCode = result.ToString();
@@ -18,6 +18,19 @@ namespace TENTAC_HRM.Common
 
             int nextNumber = currentMaxNumber + 1;
             string newCode = $"PB{nextNumber:D5}";
+
+            return newCode;
+        }
+        public string GenerateNextMaChucVu()
+        {
+            string query = "SELECT COALESCE(MAX(MaChucVu), 'CV00000') FROM mst_ChucVu WHERE MaChucVu LIKE 'CV%'";
+            var result = SQLHelper.ExecuteScalar(query);
+
+            string currentMaxCode = result.ToString();
+            int currentMaxNumber = int.Parse(currentMaxCode.Substring(2));
+
+            int nextNumber = currentMaxNumber + 1;
+            string newCode = $"CV{nextNumber:D5}";
 
             return newCode;
         }

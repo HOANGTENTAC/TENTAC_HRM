@@ -25,13 +25,14 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Tôn Giáo";
                 txtMaTonGiao.Text = maTonGiao;
                 txtTenTonGiao.Text = tenTonGiao;
                 txtMota.Text = moTa;
             }
             else
             {
-                txtMaTonGiao.Text = autoCodeGenerator.GenerateNextCode("mst_TonGiao", "TG", "MaTonGiao");
+                load_null();
             }
             uc_staff_religion = _uc_staff_religion;
         }
@@ -102,7 +103,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

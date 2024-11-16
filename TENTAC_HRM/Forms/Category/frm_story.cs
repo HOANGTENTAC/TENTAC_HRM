@@ -11,7 +11,8 @@ namespace TENTAC_HRM.Forms.Category
     {
         public string _ma_nhan_vien { get; set; }
         public string _id_tieusu_value { get; set; }
-        string tunam_value, dennam_value, congviec_value, quocgia_value, ngaytao_value, nguoitao_value;
+        string tunam_value, dennam_value, congviec_value, nguoitao_value, nguoicapnhat_value;
+        int quocgia_value;
         frm_personnel personnel;
         public bool edit { get; set; }
         public frm_story(frm_personnel _personnel)
@@ -23,6 +24,7 @@ namespace TENTAC_HRM.Forms.Category
         private void frm_story_Load(object sender, EventArgs e)
         {
             load_quocgia();
+            load_comboBoxYear();
             if (edit == true)
             {
                 load_data();
@@ -53,28 +55,54 @@ namespace TENTAC_HRM.Forms.Category
                 this.Close();
             }
         }
-
+        private void LoadNull()
+        {
+            txt_cong_viec.Text = string.Empty;
+            cbo_QuocGia.SelectedIndex = 0;
+        }
         private void load_data()
         {
-            string sql = string.Format("select * from hrm_nhanvien_tieusu where id_tieu_su = {0}", _id_tieusu_value);
+            string sql = string.Format("select * from tbl_NhanVienTieuSu where Id = {0}", _id_tieusu_value);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                txt_tu_nam.Text = dt.Rows[0]["tu_nam"].ToString();
-                txt_den_nam.Text = dt.Rows[0]["den_nam"].ToString();
-                txt_cong_viec.Text = dt.Rows[0]["cong_viec"].ToString();
-                cbo_quoc_gia.SelectedValue = dt.Rows[0]["id_quoc_gia"].ToString();
+                cbo_TuNam.Text = dt.Rows[0]["TuNam"].ToString();
+                cbo_DenNam.Text = dt.Rows[0]["DenNam"].ToString();
+                txt_cong_viec.Text = dt.Rows[0]["CongViec"].ToString();
+                cbo_QuocGia.SelectedValue = dt.Rows[0]["Id_QuocGia"].ToString();
             }
         }
+        private void load_comboBoxYear()
+        {
+            for (int year = 1990; year <= DateTime.Now.Year; year++)
+            {
+                cbo_TuNam.Items.Add(year);
+                cbo_DenNam.Items.Add(year);
+            }
+        }
+
+        private void btn_save_close_Click(object sender, EventArgs e)
+        {
+            if (edit == true)
+            {
+                UpdateData();
+            }
+            else
+            {
+                InsertData();
+            }
+            this.Close();
+        }
+
         private void load_quocgia()
         {
-            string sql = "select id_dia_chi,ten_dia_chi from hrm_dia_chi where id_dia_chi_cha is null";
+            string sql = "select Id, TenDiaChi from mst_DonViHanhChinh where ParentId is null";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            cbo_quoc_gia.DataSource = dt;
-            cbo_quoc_gia.DisplayMember = "ten_dia_chi";
-            cbo_quoc_gia.ValueMember = "id_dia_chi";
+            cbo_QuocGia.DataSource = dt;
+            cbo_QuocGia.DisplayMember = "TenDiaChi";
+            cbo_QuocGia.ValueMember = "Id";
         }
         private void btn_close_Click(object sender, EventArgs e)
         {
@@ -83,16 +111,53 @@ namespace TENTAC_HRM.Forms.Category
 
         private void btn_save_add_Click(object sender, EventArgs e)
         {
+            if (edit == true)
+            {
+                UpdateData();
+            }
+            else
+            {
+                InsertData();
+            }
+        }
+        private void InsertData()
+        {
             try
             {
                 get_value_text();
-                string sql = string.Format("insert into hrm_nhanvien_tieusu(ma_nhan_vien,tu_nam,den_nam,cong_viec,id_quoc_gia,ngay_tao,id_nguoi_tao) " +
-                    "values('{0}','{1}','{2}',N'{3}',{4},'{5}','{6}')",
-                    _ma_nhan_vien, tunam_value, dennam_value, congviec_value, quocgia_value, ngaytao_value, nguoitao_value);
+                string sql = string.Empty;
+                sql = $@"Insert into tbl_NhanVienTieuSu(MaNhanVien, TuNam, DenNam, CongViec, Id_QuocGia, NgayTao, NguoiTao, del_flg)
+                    Values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpStr(tunam_value)}, {SQLHelper.rpStr(dennam_value)},
+                    {SQLHelper.rpStr(congviec_value)}, {SQLHelper.rpI(quocgia_value)}, '{DateTime.Now}', {SQLHelper.rpStr(nguoitao_value)}, 0)";
+
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     personnel.load_tieusu();
+                    LoadNull();
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void UpdateData()
+        {
+            try
+            {
+                get_value_text();
+                string sql = string.Empty;
+                sql = $@"Update tbl_NhanVienTieuSu set TuNam = {SQLHelper.rpStr(tunam_value)}, 
+                        DenNam = {SQLHelper.rpStr(dennam_value)}, CongViec = {SQLHelper.rpStr(congviec_value)},
+                        Id_QuocGia = {SQLHelper.rpI(quocgia_value)}, NgayCapNhat = '{DateTime.Now}', 
+                        NguoiCapNhat = {SQLHelper.rpStr(nguoicapnhat_value)}
+                        Where Id = '{_id_tieusu_value}'";
+                if (SQLHelper.ExecuteSql(sql) == 1)
+                {
+                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    personnel.load_tieusu();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
@@ -102,12 +167,12 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void get_value_text()
         {
-            tunam_value = txt_tu_nam.Text;
-            dennam_value = txt_den_nam.Text;
+            tunam_value = cbo_TuNam.Text;
+            dennam_value = cbo_DenNam.Text;
             congviec_value = txt_cong_viec.Text;
-            quocgia_value = cbo_quoc_gia.SelectedValue.ToString();
-            ngaytao_value = DateTime.Now.ToString("yyyy/MM/dd");
-            nguoitao_value = SQLHelper.sIdUser;
+            quocgia_value = Convert.ToInt32(cbo_QuocGia.SelectedValue);
+            nguoitao_value = SQLHelper.sUser;
+            nguoicapnhat_value = SQLHelper.sUser;
         }
     }
 }

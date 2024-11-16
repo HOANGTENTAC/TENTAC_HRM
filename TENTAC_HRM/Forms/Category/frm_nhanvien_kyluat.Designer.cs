@@ -28,295 +28,285 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btn_save = new System.Windows.Forms.Button();
-            this.btn_close = new System.Windows.Forms.Button();
-            this.dtp_kyluat = new System.Windows.Forms.DateTimePicker();
-            this.cbo_nguoiky = new System.Windows.Forms.ComboBox();
-            this.cbo_cap = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txt_sotien = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txt_noidung = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txt_lydo = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txt_hinhthuc = new System.Windows.Forms.TextBox();
-            this.txt_soquyetdinh = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbo_nhanvien = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_NoiDung = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX9 = new DevComponents.DotNetBar.LabelX();
+            this.txt_LyDo = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.cbo_HinhThuc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.txt_SoQuyetDinh = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.cbo_NhanVien = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lblName = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dtp_NgayKyLuat = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayKyLuat)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox2
+            // panel1
             // 
-            this.groupBox2.Controls.Add(this.btn_save);
-            this.groupBox2.Controls.Add(this.btn_close);
-            this.groupBox2.Controls.Add(this.dtp_kyluat);
-            this.groupBox2.Controls.Add(this.cbo_nguoiky);
-            this.groupBox2.Controls.Add(this.cbo_cap);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.txt_sotien);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.txt_noidung);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txt_lydo);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.txt_hinhthuc);
-            this.groupBox2.Controls.Add(this.txt_soquyetdinh);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 59);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(393, 447);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Thông tin";
+            this.panel1.Controls.Add(this.dtp_NgayKyLuat);
+            this.panel1.Controls.Add(this.txt_NoiDung);
+            this.panel1.Controls.Add(this.labelX9);
+            this.panel1.Controls.Add(this.txt_LyDo);
+            this.panel1.Controls.Add(this.labelX6);
+            this.panel1.Controls.Add(this.cbo_HinhThuc);
+            this.panel1.Controls.Add(this.labelX4);
+            this.panel1.Controls.Add(this.labelX3);
+            this.panel1.Controls.Add(this.txt_SoQuyetDinh);
+            this.panel1.Controls.Add(this.labelX1);
+            this.panel1.Controls.Add(this.cbo_NhanVien);
+            this.panel1.Controls.Add(this.labelX2);
+            this.panel1.Controls.Add(this.lblName);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(339, 605);
+            this.panel1.TabIndex = 0;
             // 
-            // btn_save
+            // txt_NoiDung
             // 
-            this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
-            this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_save.Location = new System.Drawing.Point(148, 400);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(122, 33);
-            this.btn_save.TabIndex = 4;
-            this.btn_save.Text = "Lưu";
-            this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_save.UseVisualStyleBackColor = true;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // btn_close
             // 
-            this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
-            this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_close.Location = new System.Drawing.Point(276, 400);
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(99, 33);
-            this.btn_close.TabIndex = 4;
-            this.btn_close.Text = "Đóng";
-            this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_close.UseVisualStyleBackColor = true;
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // dtp_kyluat
+            this.txt_NoiDung.Border.Class = "TextBoxBorder";
+            this.txt_NoiDung.Location = new System.Drawing.Point(23, 432);
+            this.txt_NoiDung.Multiline = true;
+            this.txt_NoiDung.Name = "txt_NoiDung";
+            this.txt_NoiDung.Size = new System.Drawing.Size(289, 87);
+            this.txt_NoiDung.TabIndex = 149;
             // 
-            this.dtp_kyluat.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_kyluat.Location = new System.Drawing.Point(148, 51);
-            this.dtp_kyluat.Name = "dtp_kyluat";
-            this.dtp_kyluat.Size = new System.Drawing.Size(227, 23);
-            this.dtp_kyluat.TabIndex = 3;
+            // labelX9
             // 
-            // cbo_nguoiky
+            this.labelX9.Location = new System.Drawing.Point(23, 403);
+            this.labelX9.Name = "labelX9";
+            this.labelX9.Size = new System.Drawing.Size(60, 23);
+            this.labelX9.TabIndex = 150;
+            this.labelX9.Text = "Nội dung";
             // 
-            this.cbo_nguoiky.FormattingEnabled = true;
-            this.cbo_nguoiky.Location = new System.Drawing.Point(148, 232);
-            this.cbo_nguoiky.Name = "cbo_nguoiky";
-            this.cbo_nguoiky.Size = new System.Drawing.Size(227, 24);
-            this.cbo_nguoiky.TabIndex = 1;
+            // txt_LyDo
             // 
-            // cbo_cap
             // 
-            this.cbo_cap.FormattingEnabled = true;
-            this.cbo_cap.Location = new System.Drawing.Point(148, 110);
-            this.cbo_cap.Name = "cbo_cap";
-            this.cbo_cap.Size = new System.Drawing.Size(227, 24);
-            this.cbo_cap.TabIndex = 1;
             // 
-            // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 113);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(33, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Cấp";
+            this.txt_LyDo.Border.Class = "TextBoxBorder";
+            this.txt_LyDo.Location = new System.Drawing.Point(23, 333);
+            this.txt_LyDo.Multiline = true;
+            this.txt_LyDo.Name = "txt_LyDo";
+            this.txt_LyDo.Size = new System.Drawing.Size(289, 64);
+            this.txt_LyDo.TabIndex = 147;
             // 
-            // label4
+            // labelX6
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 54);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Ngày kỷ luật";
+            this.labelX6.Location = new System.Drawing.Point(23, 304);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(42, 23);
+            this.labelX6.TabIndex = 148;
+            this.labelX6.Text = "Lý do";
             // 
-            // label5
+            // cbo_HinhThuc
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Hình thức";
+            this.cbo_HinhThuc.DisplayMember = "Text";
+            this.cbo_HinhThuc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_HinhThuc.FormattingEnabled = true;
+            this.cbo_HinhThuc.ItemHeight = 17;
+            this.cbo_HinhThuc.Location = new System.Drawing.Point(23, 275);
+            this.cbo_HinhThuc.Name = "cbo_HinhThuc";
+            this.cbo_HinhThuc.Size = new System.Drawing.Size(289, 23);
+            this.cbo_HinhThuc.TabIndex = 142;
             // 
-            // txt_sotien
+            // labelX4
             // 
-            this.txt_sotien.Location = new System.Drawing.Point(148, 203);
-            this.txt_sotien.Name = "txt_sotien";
-            this.txt_sotien.Size = new System.Drawing.Size(227, 23);
-            this.txt_sotien.TabIndex = 2;
-            this.txt_sotien.Text = "0";
-            this.txt_sotien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_sotien_KeyPress);
+            this.labelX4.Location = new System.Drawing.Point(23, 246);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(75, 23);
+            this.labelX4.TabIndex = 146;
+            this.labelX4.Text = "Hình Thức";
             // 
-            // label9
+            // labelX3
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 235);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 17);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Người ký";
+            this.labelX3.Location = new System.Drawing.Point(23, 188);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(119, 23);
+            this.labelX3.TabIndex = 145;
+            this.labelX3.Text = "Ngày kỷ luật";
             // 
-            // label8
+            // txt_SoQuyetDinh
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 206);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 17);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Số tiền";
             // 
-            // txt_noidung
             // 
-            this.txt_noidung.Location = new System.Drawing.Point(148, 262);
-            this.txt_noidung.Multiline = true;
-            this.txt_noidung.Name = "txt_noidung";
-            this.txt_noidung.Size = new System.Drawing.Size(227, 132);
-            this.txt_noidung.TabIndex = 2;
             // 
-            // label2
+            this.txt_SoQuyetDinh.Border.Class = "TextBoxBorder";
+            this.txt_SoQuyetDinh.Location = new System.Drawing.Point(23, 158);
+            this.txt_SoQuyetDinh.Name = "txt_SoQuyetDinh";
+            this.txt_SoQuyetDinh.Size = new System.Drawing.Size(289, 23);
+            this.txt_SoQuyetDinh.TabIndex = 140;
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 265);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Nội dung";
+            // labelX1
             // 
-            // txt_lydo
+            this.labelX1.Location = new System.Drawing.Point(23, 129);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(100, 23);
+            this.labelX1.TabIndex = 144;
+            this.labelX1.Text = "Số Quyết Định";
             // 
-            this.txt_lydo.Location = new System.Drawing.Point(148, 140);
-            this.txt_lydo.Multiline = true;
-            this.txt_lydo.Name = "txt_lydo";
-            this.txt_lydo.Size = new System.Drawing.Size(227, 57);
-            this.txt_lydo.TabIndex = 2;
+            // cbo_NhanVien
             // 
-            // label7
+            this.cbo_NhanVien.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_NhanVien.Enabled = false;
+            this.cbo_NhanVien.FormattingEnabled = true;
+            this.cbo_NhanVien.ItemHeight = 17;
+            this.cbo_NhanVien.Location = new System.Drawing.Point(23, 99);
+            this.cbo_NhanVien.Name = "cbo_NhanVien";
+            this.cbo_NhanVien.Size = new System.Drawing.Size(289, 23);
+            this.cbo_NhanVien.TabIndex = 139;
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 143);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(43, 17);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Lý do";
+            // labelX2
             // 
-            // txt_hinhthuc
+            this.labelX2.Location = new System.Drawing.Point(23, 70);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 143;
+            this.labelX2.Text = "Nhân viên";
             // 
-            this.txt_hinhthuc.Location = new System.Drawing.Point(148, 80);
-            this.txt_hinhthuc.Name = "txt_hinhthuc";
-            this.txt_hinhthuc.Size = new System.Drawing.Size(227, 23);
-            this.txt_hinhthuc.TabIndex = 2;
+            // lblName
             // 
-            // txt_soquyetdinh
+            this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.lblName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.lblName.Location = new System.Drawing.Point(0, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(339, 54);
+            this.lblName.TabIndex = 39;
+            this.lblName.Text = "Nhân viên - Kỷ luật";
+            this.lblName.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            this.txt_soquyetdinh.Location = new System.Drawing.Point(148, 22);
-            this.txt_soquyetdinh.Name = "txt_soquyetdinh";
-            this.txt_soquyetdinh.Size = new System.Drawing.Size(227, 23);
-            this.txt_soquyetdinh.TabIndex = 2;
+            // panel2
             // 
-            // label3
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 548);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(339, 57);
+            this.panel2.TabIndex = 1;
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 25);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Số quyết định";
+            // button1
             // 
-            // groupBox1
+            this.button1.Image = global::TENTAC_HRM.Properties.Resources.diskette;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(23, 16);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 28);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Lưu";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            this.groupBox1.Controls.Add(this.cbo_nhanvien);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(393, 59);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Nhân viên";
+            // button2
             // 
-            // cbo_nhanvien
+            this.button2.Image = global::TENTAC_HRM.Properties.Resources.clear;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.Location = new System.Drawing.Point(202, 14);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 28);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Đóng";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            this.cbo_nhanvien.Enabled = false;
-            this.cbo_nhanvien.FormattingEnabled = true;
-            this.cbo_nhanvien.Location = new System.Drawing.Point(148, 22);
-            this.cbo_nhanvien.Name = "cbo_nhanvien";
-            this.cbo_nhanvien.Size = new System.Drawing.Size(227, 24);
-            this.cbo_nhanvien.TabIndex = 1;
+            // dtp_NgayKyLuat
             // 
-            // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nhân viên";
+            // 
+            // 
+            this.dtp_NgayKyLuat.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NgayKyLuat.ButtonDropDown.Visible = true;
+            this.dtp_NgayKyLuat.Location = new System.Drawing.Point(23, 217);
+            // 
+            // 
+            // 
+            this.dtp_NgayKyLuat.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgayKyLuat.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NgayKyLuat.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NgayKyLuat.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NgayKyLuat.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgayKyLuat.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NgayKyLuat.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NgayKyLuat.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NgayKyLuat.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NgayKyLuat.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_NgayKyLuat.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NgayKyLuat.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgayKyLuat.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NgayKyLuat.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgayKyLuat.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NgayKyLuat.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NgayKyLuat.Name = "dtp_NgayKyLuat";
+            this.dtp_NgayKyLuat.Size = new System.Drawing.Size(289, 23);
+            this.dtp_NgayKyLuat.TabIndex = 151;
             // 
             // frm_nhanvien_kyluat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 506);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(339, 605);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_nhanvien_kyluat";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhân viên - Kỷ luật";
             this.Load += new System.EventHandler(this.frm_nhanvien_kyluat_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayKyLuat)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.Button btn_save;
-        private System.Windows.Forms.Button btn_close;
-        private System.Windows.Forms.DateTimePicker dtp_kyluat;
-        private System.Windows.Forms.ComboBox cbo_nguoiky;
-        private System.Windows.Forms.ComboBox cbo_cap;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txt_sotien;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txt_noidung;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txt_lydo;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txt_hinhthuc;
-        private System.Windows.Forms.TextBox txt_soquyetdinh;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox cbo_nhanvien;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private DevComponents.DotNetBar.LabelX lblName;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_HinhThuc;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_SoQuyetDinh;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_NhanVien;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_LyDo;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_NoiDung;
+        private DevComponents.DotNetBar.LabelX labelX9;
+        public System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtp_NgayKyLuat;
     }
 }

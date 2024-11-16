@@ -72,6 +72,7 @@
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
             this.btn_close = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_nhanvien_phongban)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.pl_donvi.SuspendLayout();
@@ -545,6 +546,13 @@
             this.btn_close.Text = "Đóng";
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 30;
+            // 
             // frm_department
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -620,5 +628,6 @@
         private System.Windows.Forms.ToolStripButton btn_add;
         private System.Windows.Forms.ToolStripButton btn_delete;
         private System.Windows.Forms.ToolStripButton btn_close;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

@@ -31,7 +31,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_dataTonGiao()
         {
-            string sql = "select Id, MaTonGiao, TenTonGiao, MoTa,NgayCapNhat, NguoiCapNhat from mst_TonGiao where DelFlg = 0";
+            string sql = "select Id, MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_TonGiao where DelFlg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_religion.DataSource = dt;
@@ -95,9 +95,6 @@ namespace TENTAC_HRM.Forms.User_control
                 IWorkbook workbook = new XSSFWorkbook();
                 ISheet worksheet = workbook.CreateSheet("TonGiao");
 
-                string query = "SELECT Id, MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_TonGiao WHERE DelFlg = 0";
-                SqlDataReader reader = SQLHelper.ExecuteReader(query);
-
                 IRow headerRow = worksheet.CreateRow(0);
                 headerRow.CreateCell(0).SetCellValue("Mã Tôn Giáo");
                 headerRow.CreateCell(1).SetCellValue("Tên Tôn Giáo");
@@ -108,19 +105,21 @@ namespace TENTAC_HRM.Forms.User_control
                 headerRow.CreateCell(6).SetCellValue("Người Cập Nhật");
 
                 int row = 1;
-                while (reader.Read())
+                foreach (DataGridViewRow dgvRow in dgv_religion.Rows)
                 {
-                    IRow dataRow = worksheet.CreateRow(row);
-                    dataRow.CreateCell(0).SetCellValue(reader["MaTonGiao"].ToString());
-                    dataRow.CreateCell(1).SetCellValue(reader["TenTonGiao"].ToString());
-                    dataRow.CreateCell(2).SetCellValue(reader["MoTa"] != DBNull.Value ? reader["MoTa"].ToString() : "");
-                    dataRow.CreateCell(3).SetCellValue(reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "");
-                    dataRow.CreateCell(4).SetCellValue(reader["NguoiTao"].ToString());
-                    dataRow.CreateCell(5).SetCellValue(reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "");
-                    dataRow.CreateCell(6).SetCellValue(reader["NguoiCapNhat"].ToString());
-                    row++;
+                    if (!dgvRow.IsNewRow)
+                    {
+                        IRow dataRow = worksheet.CreateRow(row);
+                        dataRow.CreateCell(0).SetCellValue(dgvRow.Cells["MaTonGiao"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(1).SetCellValue(dgvRow.Cells["TenTonGiao"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(2).SetCellValue(dgvRow.Cells["MoTa"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(3).SetCellValue(dgvRow.Cells["NgayTao"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(4).SetCellValue(dgvRow.Cells["NguoiTao"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(5).SetCellValue(dgvRow.Cells["NgayCapNhat"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(6).SetCellValue(dgvRow.Cells["NguoiCapNhat"].Value?.ToString() ?? "");
+                        row++;
+                    }
                 }
-                reader.Close();
 
                 for (int i = 0; i < 7; i++)
                 {

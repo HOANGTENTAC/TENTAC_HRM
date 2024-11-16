@@ -38,7 +38,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_data()
         {
-            string sql = "select Id, MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayCapNhat, NguoiCapNhat from mst_PhongBan where DelFlg = 0 order by MaPhongBan";
+            string sql = "select MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan from MITACOSQL.dbo.PHONGBAN order by MaPhongBan";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_departments.DataSource = dt;
@@ -61,7 +61,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string MaPhongBan = row.Cells["MaPhongBan"].Value?.ToString();
                         if (!string.IsNullOrEmpty(MaPhongBan))
                         {
-                            updateQueries.Add($@"UPDATE mst_PhongBan SET DelFlg = 1 WHERE MaPhongBan = N'{MaPhongBan}'");
+                            updateQueries.Add($@"Delete MITACOSQL.dbo.PHONGBAN WHERE MaPhongBan = N'{MaPhongBan}'");
                         }
                     }
                 }
@@ -95,8 +95,6 @@ namespace TENTAC_HRM.Forms.User_control
                 string fileName = $"MstPhongBan_{DateTime.Now.ToString("yyyyMMdd")}.xlsx";
                 string filePath = Path.Combine(desktopPath, fileName);
 
-                string query = "SELECT Id, MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg FROM mst_PhongBan WHERE DelFlg = 0";
-                SqlDataReader reader = SQLHelper.ExecuteReader(query);
 
                 IWorkbook workbook = new XSSFWorkbook();
                 ISheet worksheet = workbook.CreateSheet("PhongBan");
@@ -106,28 +104,23 @@ namespace TENTAC_HRM.Forms.User_control
                 headerRow.CreateCell(1).SetCellValue("Mã Công Ty");
                 headerRow.CreateCell(2).SetCellValue("Mã Khu Vục");
                 headerRow.CreateCell(3).SetCellValue("Tên Phòng Ban");
-                headerRow.CreateCell(4).SetCellValue("Ngày Tạo");
-                headerRow.CreateCell(5).SetCellValue("Người Tạo");
-                headerRow.CreateCell(6).SetCellValue("Ngày Cập Nhật");
-                headerRow.CreateCell(7).SetCellValue("Người Cập Nhật");
 
                 int row = 1;
-                while (reader.Read())
-                {
-                    IRow dataRow = worksheet.CreateRow(row);
-                    dataRow.CreateCell(0).SetCellValue(reader["MaPhongBan"].ToString());
-                    dataRow.CreateCell(1).SetCellValue(reader["MaCongTy"].ToString());
-                    dataRow.CreateCell(2).SetCellValue(reader["MaKhuVuc"].ToString());
-                    dataRow.CreateCell(3).SetCellValue(reader["TenPhongBan"].ToString());
-                    dataRow.CreateCell(4).SetCellValue(reader["NgayTao"] != DBNull.Value ? reader["NgayTao"].ToString() : "");
-                    dataRow.CreateCell(5).SetCellValue(reader["NguoiTao"].ToString());
-                    dataRow.CreateCell(6).SetCellValue(reader["NgayCapNhat"] != DBNull.Value ? reader["NgayCapNhat"].ToString() : "");
-                    dataRow.CreateCell(7).SetCellValue(reader["NguoiCapNhat"].ToString());
-                    row++;
-                }
-                reader.Close();
 
-                for (int i = 0; i < 8; i++)
+                foreach (DataGridViewRow dgvRow in dgv_departments.Rows)
+                {
+                    if (!dgvRow.IsNewRow)
+                    {
+                        IRow dataRow = worksheet.CreateRow(row);
+                        dataRow.CreateCell(0).SetCellValue(dgvRow.Cells["MaPhongBan"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(1).SetCellValue(dgvRow.Cells["MaCongTy"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(2).SetCellValue(dgvRow.Cells["MaKhuVuc"].Value?.ToString() ?? "");
+                        dataRow.CreateCell(3).SetCellValue(dgvRow.Cells["TenPhongBan"].Value?.ToString() ?? "");
+                        row++;
+                    }
+                }
+
+                for (int i = 0; i < 4; i++)
                 {
                     worksheet.AutoSizeColumn(i);
                 }
@@ -187,42 +180,36 @@ namespace TENTAC_HRM.Forms.User_control
                             string maKhuVuc = currentRow.GetCell(2)?.ToString() ?? "";
                             string tenPhongBan = currentRow.GetCell(3)?.ToString() ?? "";
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_PhongBan WHERE MaPhongBan = @MaPhongBan AND DelFlg = 0";
+                            string checkQuery = "SELECT COUNT(*) FROM MITACOSQL.dbo.PHONGBAN WHERE MaPhongBan = @MaPhongBan";
                             var checkParams = new List<SqlParameter> { new SqlParameter("@MaPhongBan", maPhongBan) };
                             int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_PhongBan SET MaCongTy = @MaCongTy, MaKhuVuc = @MaKhuVuc, 
-                                                    TenPhongBan = @TenPhongBan, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat 
-                                                    WHERE MaPhongBan = @MaPhongBan AND DelFlg = 0";
+                                string sqlUpdate = @"UPDATE MITACOSQL.dbo.PHONGBAN SET MaCongTy = @MaCongTy, MaKhuVuc = @MaKhuVuc, 
+                                                    TenPhongBan = @TenPhongBan
+                                                    WHERE MaPhongBan = @MaPhongBan";
                                 var updateParams = new List<SqlParameter>
                                 {
                                     new SqlParameter("@MaPhongBan", maPhongBan),
                                     new SqlParameter("@MaCongTy", maCongTy),
                                     new SqlParameter("@MaKhuVuc", maKhuVuc),
                                     new SqlParameter("@TenPhongBan", tenPhongBan),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
                                 };
                                 res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
                             }
                             else
                             {
                                 string newMaPhongBan = autoCodeGenerator.GenerateNextMaPhongBan();
-                                string sqlInsert = @"INSERT INTO mst_PhongBan(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg) 
-                                                VALUES(@MaPhongBan, @MaCongTy, @MaKhuVuc, @TenPhongBan, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                                string sqlInsert = @"INSERT INTO MITACOSQL.dbo.PHONGBAN(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan) 
+                                                VALUES(@MaPhongBan, @MaCongTy, @MaKhuVuc, @TenPhongBan)";
 
                                 var insertParams = new List<SqlParameter>
                                 {
                                     new SqlParameter("@MaPhongBan", newMaPhongBan),
                                     new SqlParameter("@MaCongTy", maCongTy),
                                     new SqlParameter("@MaKhuVuc", maKhuVuc),
-                                    new SqlParameter("@TenPhongBan", tenPhongBan),
-                                    new SqlParameter("@NgayTao", DateTime.Now),
-                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
+                                    new SqlParameter("@TenPhongBan", tenPhongBan)
                                 };
                                 res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
                             }

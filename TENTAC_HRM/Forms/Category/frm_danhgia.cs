@@ -15,6 +15,10 @@ namespace TENTAC_HRM.Forms.Category
         public bool _edit { get; set; }
         frm_personnel _personnel;
         uc_quatrinh_lamviec _quatrinh;
+        string _NoiDung, _XepLoai, _NguoiTao, _NguoiCapNhat;
+        decimal _DiemDanhGia;
+        DateTime? _NgayDanhGia;
+
         public frm_danhgia(Form form, UserControl user)
         {
             InitializeComponent();
@@ -23,38 +27,59 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void load_nhanvien()
         {
-            cbo_nhanvien.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.DisplayMember = "name";
-            cbo_nhanvien.ValueMember = "value";
-            cbo_nhanvien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.DataSource = provider.load_nhanvien();
+            cbo_NhanVien.DisplayMember = "name";
+            cbo_NhanVien.ValueMember = "value";
+            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+        }
+        private void load_xeploai()
+        {
+            cbo_XepLoai.DataSource = provider.load_xeploai();
+            cbo_XepLoai.DisplayMember = "name";
+            cbo_XepLoai.ValueMember = "id";
+        }
+        private void load_data()
+        {
+            string sql = string.Format("select * from tbl_QTDanhGia where Id = '{0}'", _id_danh_gia);
+            DataTable dataTable = new DataTable();
+            dataTable = SQLHelper.ExecuteDt(sql);
+            if (dataTable.Rows.Count > 0)
+            {
+                dtp_NgayDanhGia.Text = dataTable.Rows[0]["NgayDanhGia"].ToString();
+                nr_DiemDanhGia.Value = decimal.Parse(dataTable.Rows[0]["DiemDanhGia"].ToString());
+                cbo_XepLoai.SelectedValue = dataTable.Rows[0]["XepLoai"].ToString();
+                txt_NoiDung.Text = dataTable.Rows[0]["NoiDung"].ToString();
+            }
         }
         private void frm_danhgia_Load(object sender, EventArgs e)
         {
-            if(_edit == true)
-            {
-                string sql = string.Format("select * from hrm_qt_danhgia where id_qt_danhgia = '{0}'",_id_danh_gia);
-                DataTable dataTable = new DataTable();
-                dataTable = SQLHelper.ExecuteDt(sql);
-                if(dataTable.Rows.Count > 0)
-                {
-                    _ma_nhan_vien = dataTable.Rows[0]["ma_nhan_vien"].ToString();
-                    dtp_ngay_danhgia.Text = dataTable.Rows[0]["ngay_danh_gia"].ToString();
-                    nr_diem_danhgia.Value = decimal.Parse(dataTable.Rows[0]["diem_danh_gia"].ToString());
-                    txt_xep_loai.Text = dataTable.Rows[0]["xep_loai"].ToString();
-                    txt_noi_dung.Text = dataTable.Rows[0]["noi_dung"].ToString();
-                }
-            }
             load_nhanvien();
+            load_xeploai();
+            if (_edit == true)
+            {
+                load_data();
+            }
+        }
+        private void LoadNull()
+        {
+            dtp_NgayDanhGia.Text = string.Empty;
+            nr_DiemDanhGia.Value = 0;
+            txt_NoiDung.Text = string.Empty;
         }
         public void insert_data()
         {
             try
             {
-                string sql = string.Format("insert into hrm_qt_danhgia(ma_nhan_vien,ngay_danh_gia,noi_dung,diem_danh_gia,xep_loai,id_nguoi_tao) " +
-                "values('{0}','{1}',N'{2}','{3}',N'{4}','{5}')", cbo_nhanvien.SelectedValue.ToString(), DateTime.Parse(dtp_ngay_danhgia.Text).ToString("yyyy/MM/dd"), txt_noi_dung.Text, nr_diem_danhgia.Value, txt_xep_loai.Text, SQLHelper.sIdUser);
+                string sql = string.Empty;
+                sql = $@"Insert into tbl_QTDanhGia(MaNhanVien, NgayDanhGia, NoiDung, DiemDanhGia, XepLoai, NgayTao, NguoiTao, del_flg)
+                        values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpDT(_NgayDanhGia)}, {SQLHelper.rpStr(_NoiDung)},
+                        {SQLHelper.rpD(_DiemDanhGia)}, {SQLHelper.rpStr(_XepLoai)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
+
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _personnel.load_danhgia();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
@@ -66,26 +91,29 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-                string sql = string.Format("update hrm_qt_danhgia set ngay_danh_gia = '{1}',noi_dung = N'{2}',diem_danh_gia = '{3}',xep_loai = N'{4}' " +
-                    "where id_qt_danhgia = {0}", _id_danh_gia,
-                    DateTime.Parse(dtp_ngay_danhgia.Text).ToString("yyyy/MM/dd"), txt_noi_dung.Text, nr_diem_danhgia.Value, txt_xep_loai.Text);
+                string sql = string.Empty;
+                sql = $@"Update tbl_QTDanhGia Set NgayDanhGia = {SQLHelper.rpDT(_NgayDanhGia)}, NoiDung = {SQLHelper.rpStr(_NoiDung)},
+                DiemDanhGia = {SQLHelper.rpD(_DiemDanhGia)}, XepLoai = {SQLHelper.rpStr(_XepLoai)}, NgayCapNhat = '{DateTime.Now}', 
+                NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where Id = {SQLHelper.rpI(_id_danh_gia)}";
+
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _personnel.load_danhgia();
+                    LoadNull();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
+            SetValues();
             save_data();
-            dtp_ngay_danhgia.Text = DateTime.Now.ToString();
-            nr_diem_danhgia.Value = 0;
-            txt_xep_loai.Text = string.Empty;
-            txt_noi_dung.Text = string.Empty;
+            load_null();
         }
         private void save_data()
         {
@@ -106,6 +134,13 @@ namespace TENTAC_HRM.Forms.Category
                 _personnel.load_danhgia();
             }
         }
+        private void SetValues()
+        {
+            _NgayDanhGia = string.IsNullOrEmpty(dtp_NgayDanhGia.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayDanhGia.Text);
+            _NoiDung = txt_NoiDung.Text.Trim();
+            _DiemDanhGia = Convert.ToDecimal(nr_DiemDanhGia.Value);
+            _XepLoai = cbo_XepLoai.SelectedValue.ToString();
+        }
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -115,6 +150,12 @@ namespace TENTAC_HRM.Forms.Category
         {
             save_data();
             this.Close();
+        }
+        private void load_null()
+        {
+            txt_NoiDung.Text = string.Empty;
+            nr_DiemDanhGia.Value = 0;
+            dtp_NgayDanhGia.Text = string.Empty;
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
@@ -258,6 +260,78 @@ namespace TENTAC_HRM
             {
                 con.Dispose();
                 con = null;
+            }
+        }
+
+        public static string rpStr(string hiki)
+        {
+            if (hiki == null)
+            {
+                return "Null";
+            }
+            else if (hiki == "")
+            {
+                return "''";
+            }
+            else
+            {
+                return "N'" + hiki.Replace("'", "''") + "'";
+            }
+        }
+
+        public static string rpI(int? hiki)
+        {
+            string result = "";
+
+            if (hiki == null)
+            {
+                result = "Null";
+            }
+            else
+            {
+                result = hiki.ToString();
+            }
+            return result;
+        }
+
+        public static string rpD(decimal? hiki)
+        {
+            string result = "";
+
+            if (hiki == null)
+            {
+                result = "Null";
+            }
+            else
+            {
+                result = hiki.ToString();
+            }
+            return result;
+        }
+        public static string rpDT(DateTime? dateTimeValue)
+        {
+            string result = "";
+            if (dateTimeValue == null)
+            {
+                result = "Null";
+            }
+            else
+            {
+                result = $"'{dateTimeValue:yyyy/MM/dd}'";
+            }
+            return result;
+        }
+        public static byte[] ConvertImageToByteArray(Image image)
+        {
+            if (image == null)
+            {
+                return null;
+            }
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
             }
         }
     }

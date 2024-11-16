@@ -29,7 +29,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_data()
         {
-            string sql = "select Id, Vung, LuongToiThieuTheoThang, LuongToiThieuTheoGio, NgayCapNhat, NguoiCapNhat from tbl_MucLuongToiThieu where DelFlg = 0 order by Vung";
+            string sql = "select Id, Vung, LuongToiThieuTheoThang, LuongToiThieuTheoGio, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from tbl_MucLuongToiThieu where DelFlg = 0 order by Vung";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_minium_salary.DataSource = dt;

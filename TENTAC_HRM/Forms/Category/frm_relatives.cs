@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
@@ -15,11 +16,12 @@ namespace TENTAC_HRM.Forms.Category
 {
     public partial class frm_relatives : Form
     {
-        string quanhe_value, hoten_value, ngaysinh_value, namsinh_value, nghenghiep_value, noicutru_value, ghichu_value,
-            masothue_value, cccd_value, quoctich_value, ks_so_value, ks_quyen_value, ks_quocgia_value, ks_tinh_value,
-            ks_quan_value, ks_phuong_value, tuthang_value, denthang_value, ngaytao_value, nguoitao_value,
-            dien_thoai_value,di_dong_value,gioitinh_value;
-
+        string quanhe_value, hoten_value, namsinh_value, nghenghiep_value, noicutru_value, ghichu_value,
+            masothue_value, cccd_value, ks_so_value, ks_quyen_value, ks_quocgia_value, ks_tinh_value,
+            ks_quan_value, ks_phuong_value, tuthang_value, denthang_value, nguoitao_value, nguoicapnhat_value,
+            dien_thoai_value, di_dong_value, gioitinh_value;
+        DateTime? ngaysinh_value;
+        int quoctich_value;
         private void txt_dien_thoai_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!IsValidNumber(e.KeyChar))
@@ -27,6 +29,19 @@ namespace TENTAC_HRM.Forms.Category
                 e.Handled = true;
                 return;
             }
+        }
+
+        private void btn_save_close_Click(object sender, EventArgs e)
+        {
+            if (edit == true)
+            {
+                update_data();
+            }
+            else
+            {
+                save_data();
+            }
+            this.Close();
         }
 
         private void frm_relatives_KeyDown(object sender, KeyEventArgs e)
@@ -83,54 +98,60 @@ namespace TENTAC_HRM.Forms.Category
             InitializeComponent();
             this.personnel = _personnel;
         }
-
+        private void LoadNull()
+        {
+            txt_ho_ten.Text = string.Empty;
+            cbo_loai_quan_he.SelectedIndex = 0;
+            chk_is_phu_thuoc.Checked = false;
+            dtp_NgaySinh.Text = string.Empty;
+            cbo_gioi_tinh.SelectedIndex = 0;
+            txt_nghe_nghiep.Text = string.Empty;
+            txt_dien_thoai.Text = string.Empty;
+            txt_di_dong.Text = string.Empty;
+            txt_ma_so_thue.Text = string.Empty;
+            txt_cccd.Text = string.Empty;
+            cbo_QuocTich.SelectedIndex = 0;
+            txt_noi_cu_tru.Text = string.Empty;
+            txt_ghi_chu.Text = string.Empty;
+        }
         private void frm_relatives_Load(object sender, EventArgs e)
         {
             loai_quanhe();
             load_gender();
             load_nhanvien();
+            load_quoctich();
             if (edit == true)
             {
-                btn_save_add.Text = "Cập nhật";
-                btn_save_close.Text = "Cập nhật & Thoát";
-                loai_data();
+                load_data();
             }
         }
         private void load_nhanvien()
         {
-            cbo_nhanvien.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.DisplayMember = "name";
-            cbo_nhanvien.ValueMember = "value";
-            cbo_nhanvien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.DataSource = provider.load_nhanvien();
+            cbo_NhanVien.DisplayMember = "name";
+            cbo_NhanVien.ValueMember = "value";
+            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
         }
-        private void loai_data()
+        private void load_data()
         {
-            string sql = string.Format("select * from hrm_nhanvien_nguoithan where id_nguoi_than = {0}",id_nguoithan_value);
+            string sql = string.Format("select * from tbl_NhanVienNguoiThan where Id = {0}", id_nguoithan_value);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
-                cbo_loai_quan_he.SelectedValue = dt.Rows[0]["loai_quan_he"].ToString();
-                txt_ho_ten.Text = dt.Rows[0]["ho_ten"].ToString();
-                dtp_ngay_sinh.Text = dt.Rows[0]["ngaysinh"].ToString();
-                txt_nghe_nghiep.Text = dt.Rows[0]["nghe_nghiep"].ToString();
-                txt_noi_cu_tru.Text = dt.Rows[0]["noi_cu_tru"].ToString();
-                txt_ghi_chu.Text = dt.Rows[0]["ghi_chu"].ToString();
-                chk_is_phu_thuoc.Checked = bool.Parse(dt.Rows[0]["is_phu_thuoc"].ToString());
-                txt_ma_so_thue.Text = dt.Rows[0]["ma_so_thue"].ToString();
-                txt_cccd.Text = dt.Rows[0]["cccd"].ToString();
-                txt_quoc_tich.Text = dt.Rows[0]["quoc_tich"].ToString();
-                txt_so.Text = dt.Rows[0]["ks_so"].ToString();
-                txt_quyen.Text = dt.Rows[0]["ks_quyen"].ToString();
-                txt_quoc_gia.Text = dt.Rows[0]["ks_quoc_gia"].ToString();
-                txt_tinh.Text = dt.Rows[0]["ks_tinh"].ToString();
-                txt_quan.Text = dt.Rows[0]["ks_huyen"].ToString();
-                txt_phuong.Text = dt.Rows[0]["ks_xa"].ToString();
-                dtp_tu_thang.Text = dt.Rows[0]["tu_thang"].ToString();
-                dtp_den_thang.Text = dt.Rows[0]["den_thang"].ToString();
-                txt_dien_thoai.Text = dt.Rows[0]["dien_thoai"].ToString();
-                txt_di_dong.Text = dt.Rows[0]["di_dong"].ToString();
-                cbo_gioi_tinh.SelectedValue = (dt.Rows[0]["gioi_tinh"].ToString() == "True" ? 1 : 0);
+                cbo_loai_quan_he.SelectedValue = dt.Rows[0]["LoaiQuanHe"].ToString();
+                txt_ho_ten.Text = dt.Rows[0]["HoTen"].ToString();
+                dtp_NgaySinh.Text = dt.Rows[0]["NgaySinh"].ToString();
+                txt_nghe_nghiep.Text = dt.Rows[0]["NgheNghiep"].ToString();
+                txt_noi_cu_tru.Text = dt.Rows[0]["NoiCuTru"].ToString();
+                txt_ghi_chu.Text = dt.Rows[0]["GhiChu"].ToString();
+                chk_is_phu_thuoc.Checked = bool.Parse(dt.Rows[0]["IsPhuThuoc"].ToString());
+                txt_ma_so_thue.Text = dt.Rows[0]["MaSoThue"].ToString();
+                txt_cccd.Text = dt.Rows[0]["CCCD"].ToString();
+                cbo_QuocTich.SelectedValue = dt.Rows[0]["Id_QuocTich"];
+                txt_dien_thoai.Text = dt.Rows[0]["DienThoai"].ToString();
+                txt_di_dong.Text = dt.Rows[0]["DiDong"].ToString();
+                cbo_gioi_tinh.SelectedValue = (dt.Rows[0]["GioiTinh"].ToString() == "True" ? 1 : 0);
             }
         }
         private void loai_quanhe()
@@ -146,6 +167,15 @@ namespace TENTAC_HRM.Forms.Category
             cbo_gioi_tinh.ValueMember = "id";
 
         }
+        private void load_quoctich()
+        {
+            string sql = "select Id, TenDiaChi from mst_DonViHanhChinh where ParentId is null";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            cbo_QuocTich.DataSource = dt;
+            cbo_QuocTich.DisplayMember = "TenDiaChi";
+            cbo_QuocTich.ValueMember = "Id";
+        }
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -153,35 +183,40 @@ namespace TENTAC_HRM.Forms.Category
 
         private void btn_save_add_Click(object sender, EventArgs e)
         {
-            if(edit == true)
+            if (validateForm())
             {
-                update_data();
+                if (edit == true)
+                {
+                    update_data();
+                }
+                else
+                {
+                    save_data();
+                }
             }
-            else
-            {
-                save_data();
-            } 
         }
         private void update_data()
         {
             try
             {
                 load_value_text();
-                string sql = string.Format("update hrm_nhanvien_nguoithan " +
-                "set loai_quan_he = {1},ho_ten = N'{2}',nam_sinh = '{3}',nghe_nghiep = N'{4}',noi_cu_tru = N'{5}'," +
-                "is_phu_thuoc = {6},ngaysinh = '{7}', tu_thang = '{8}',den_thang = '{9}',ma_so_thue = '{10}',cccd = '{11}',quoc_tich = N'{12}'," +
-                "ks_so = '{13}',ks_quyen = '{14}',ks_quoc_gia = N'{15}',ks_tinh = N'{16}',ks_huyen = N'{17}',ks_xa = N'{18}',ghi_chu = N'{19}'," +
-                "dien_thoai = '{20}',di_dong = '{21}',gioi_tinh = '{22}',ngay_cap_nhat = GETDATE() " +
-                "where id_nguoi_than = {0}", id_nguoithan_value, quanhe_value, hoten_value, namsinh_value, nghenghiep_value, noicutru_value,
-                is_phuthuoc_value, ngaysinh_value, tuthang_value, denthang_value, masothue_value, cccd_value, quoctich_value,
-                ks_so_value, ks_quyen_value, ks_quocgia_value, ks_tinh_value, ks_quan_value, ks_phuong_value, ghichu_value,dien_thoai_value,di_dong_value,gioitinh_value);
+                string sql = string.Empty;
+                sql = $@"Update tbl_NhanVienNguoiThan Set LoaiQuanHe = {SQLHelper.rpStr(quanhe_value)}, HoTen = {SQLHelper.rpStr(hoten_value)}, 
+                        NgheNghiep = {SQLHelper.rpStr(nghenghiep_value)}, DienThoai = {SQLHelper.rpStr(dien_thoai_value)}, 
+                        DiDong = {SQLHelper.rpStr(di_dong_value)},NoiCuTru = {SQLHelper.rpStr(noicutru_value)}, 
+                        IsPhuThuoc = {SQLHelper.rpI(is_phuthuoc_value)}, NgaySinh = {SQLHelper.rpDT(ngaysinh_value)},
+                        GioiTinh = {SQLHelper.rpStr(gioitinh_value)}, MaSoThue = {SQLHelper.rpStr(masothue_value)},
+                        CCCD = {SQLHelper.rpStr(cccd_value)}, Id_QuocTich = {SQLHelper.rpI(quoctich_value)},
+                        NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(nguoicapnhat_value)}
+                        Where Id = {id_nguoithan_value}";
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
-                    RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     personnel.load_nguoithan();
+                    LoadNull();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -191,18 +226,21 @@ namespace TENTAC_HRM.Forms.Category
             try
             {
                 load_value_text();
-                string sql = string.Format("insert into hrm_nhanvien_nguoithan(manhanvien,loai_quan_he,hoten,nam_sinh,nghe_nghiep,noi_cu_tru,is_phu_thuoc,ngaysinh,tu_thang,den_thang, " +
-                "ma_so_thue,cccd,quoc_tich,ks_so,ks_quyen,ks_quoc_gia,ks_tinh,ks_huyen,ks_xa,ghi_chu,ngay_tao,id_nguoi_tao,dien_thoai,di_dong,gioi_tinh) " +
-                "values('{0}',{1},N'{2}','{3}',N'{4}',N'{5}',{6},'{7}','{8}','{9}'," +
-                "'{10}','{11}',N'{12}',N'{13}','{14}',N'{15}',N'{16}',N'{17}',N'{18}'," +
-                "N'{19}','{20}','{21}','{22}','{23}','{24}')",
-                _ma_nhan_vien, quanhe_value, hoten_value, namsinh_value, nghenghiep_value, noicutru_value, is_phuthuoc_value, ngaysinh_value, tuthang_value, denthang_value,
-                masothue_value, cccd_value, quoctich_value, ks_so_value, ks_quyen_value, ks_quocgia_value, ks_tinh_value,
-                ks_quan_value, ks_phuong_value, ghichu_value, ngaytao_value, nguoitao_value,dien_thoai_value,di_dong_value,gioitinh_value);
+                string sql = string.Empty;
+                sql = $@"Insert into tbl_NhanVienNguoiThan(MaNhanVien, LoaiQuanHe, HoTen, NgheNghiep, DienThoai, DiDong, NoiCuTru, IsPhuThuoc,
+                        NgaySinh, GioiTinh, MaSoThue, CCCD, Id_QuocTich, GhiChu, NgayTao, NguoiTao, del_flg)
+                        Values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpStr(quanhe_value)}, {SQLHelper.rpStr(hoten_value)},
+                        {SQLHelper.rpStr(nghenghiep_value)}, {SQLHelper.rpStr(dien_thoai_value)}, {SQLHelper.rpStr(di_dong_value)},
+                        {SQLHelper.rpStr(noicutru_value)}, {SQLHelper.rpI(is_phuthuoc_value)}, {SQLHelper.rpDT(ngaysinh_value)},
+                        {SQLHelper.rpStr(gioitinh_value)}, {SQLHelper.rpStr(masothue_value)}, {SQLHelper.rpStr(cccd_value)}, 
+                        {SQLHelper.rpI(quoctich_value)}, {SQLHelper.rpStr(ghichu_value)} ,'{DateTime.Now}', 
+                        {SQLHelper.rpStr(nguoitao_value)}, 0)";
+
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     personnel.load_nguoithan();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
@@ -214,28 +252,59 @@ namespace TENTAC_HRM.Forms.Category
         {
             quanhe_value = cbo_loai_quan_he.SelectedValue.ToString();
             hoten_value = txt_ho_ten.Text;
-            ngaysinh_value = dtp_ngay_sinh.Value.ToString("yyyy/MM/dd");
-            namsinh_value = DateTime.Parse(dtp_ngay_sinh.Text.ToString()).ToString("yyyy");
+            ngaysinh_value = string.IsNullOrEmpty(dtp_NgaySinh.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgaySinh.Text);
             nghenghiep_value = txt_nghe_nghiep.Text.ToString();
             noicutru_value = txt_noi_cu_tru.Text.ToString();
             ghichu_value = txt_ghi_chu.Text.ToString();
             is_phuthuoc_value = (chk_is_phu_thuoc.Checked == true ? 1 : 0);
             masothue_value = txt_ma_so_thue.Text;
             cccd_value = txt_cccd.Text;
-            quoctich_value = txt_quoc_gia.Text;
-            ks_so_value = txt_so.Text;
-            ks_quyen_value = txt_quyen.Text;
-            ks_quocgia_value = txt_quoc_gia.Text;
-            ks_tinh_value = txt_tinh.Text;
-            ks_quan_value = txt_quan.Text;
-            ks_phuong_value = txt_phuong.Text;
-            tuthang_value = dtp_tu_thang.Value.ToString("yyyy/MM/dd");
-            denthang_value = dtp_den_thang.Value.ToString("yyyy/MM/dd");
-            ngaytao_value = DateTime.Now.ToString("yyyy/MM/dd");
-            nguoitao_value = SQLHelper.sIdUser;
+            quoctich_value = Convert.ToInt32(cbo_QuocTich.SelectedValue);
+            nguoitao_value = SQLHelper.sUser;
             dien_thoai_value = txt_dien_thoai.Text;
             di_dong_value = txt_di_dong.Text;
             gioitinh_value = cbo_gioi_tinh.SelectedValue.ToString();
+            nguoicapnhat_value = SQLHelper.sUser;
+        }
+        private bool validateForm()
+        {
+            if (string.IsNullOrEmpty(txt_ho_ten.Text))
+            {
+                RJMessageBox.Show("Vui lòng nhập họ tên người thân.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_ho_ten.Focus();
+                return false;
+            }
+            if (!IsPhoneNumberValid(txt_dien_thoai.Text.Trim()) && !string.IsNullOrEmpty(txt_dien_thoai.Text.Trim()))
+            {
+                RJMessageBox.Show("Số điện thoại không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_dien_thoai.Focus();
+                return false;
+            }
+            if (!IsPhoneNumberValid(txt_di_dong.Text.Trim()) && !string.IsNullOrEmpty(txt_di_dong.Text.Trim()))
+            {
+                RJMessageBox.Show("Số điện thoại di động không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_di_dong.Focus();
+                return false;
+            }
+            if (!IsValidCCCD(txt_cccd.Text.Trim()) && !string.IsNullOrEmpty(txt_cccd.Text.Trim()))
+            {
+                RJMessageBox.Show("CCCD không hợp lệ. Vui lòng nhập số gồm 12 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_cccd.Focus();
+                return false;
+            }
+            return true;
+        }
+        private bool IsValidCCCD(string cccd)
+        {
+            string pattern = @"^\d{12}$";
+            return Regex.IsMatch(cccd, pattern);
+        }
+        private bool IsPhoneNumberValid(string phoneNumber)
+        {
+            // Biểu thức chính quy cho số điện thoại (chỉ cho phép số và có thể bắt đầu với 0)
+            string pattern = @"^(0|\+84)([0-9]{9})$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(phoneNumber);
         }
     }
 }

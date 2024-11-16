@@ -18,6 +18,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Vùng";
                 txtTenVung.Text = vung;
                 txtLuongToiThieuTheoThang.Text = mucLuongToiThieuTheoThang.ToString();
                 txtLuongToiThieuTheoGio.Text = MucLuongToiThieuTheoGio.ToString();
@@ -91,7 +92,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -102,6 +112,18 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             if (e.KeyChar == '.' && (txtLuongToiThieuTheoGio.Text.Contains(".") || txtLuongToiThieuTheoThang.Text.Contains(".")))
             {
                 e.Handled = true;
+            }
+        }
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            if (this.Parent != null) 
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this); 
+            }
+            else
+            {
+                this.Close();
             }
         }
     }

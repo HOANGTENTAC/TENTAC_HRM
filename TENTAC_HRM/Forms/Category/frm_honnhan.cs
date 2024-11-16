@@ -1,11 +1,15 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
+using DataTable = System.Data.DataTable;
 
 namespace TENTAC_HRM.Forms.Category
 {
@@ -16,9 +20,10 @@ namespace TENTAC_HRM.Forms.Category
         DataProvider provider = new DataProvider();
         byte[] pic_mattruoc;
         byte[] pic_matsau;
-        string sogiaychungnhan_value, ngaydangky_value, noidangky_value, nguoitao_value;
+        string _SoGiayChungNhan, _NoiDangKy, _NguoiTao, _NguoiCapNhat;
+        DateTime? _NgayDangKy;
         public bool edit { get; set; }
-        public string _ma_nhan_vien { get; set; }
+        public string _MaNhanVien { get; set; }
         public frm_honnhan()
         {
             InitializeComponent();
@@ -31,47 +36,52 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void load_nhanvien()
         {
-            cbo_nhanvien.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.DisplayMember = "name";
-            cbo_nhanvien.ValueMember = "value";
-            cbo_nhanvien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.DataSource = provider.load_nhanvien();
+            cbo_NhanVien.DisplayMember = "name";
+            cbo_NhanVien.ValueMember = "value";
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
         private void load_data()
         {
-            string sql = string.Format("select * from nhanvien_honnhan where ma_nhan_vien = '{0}' and del_flg = 0 ", _ma_nhan_vien);
+            string sql = string.Format("select * from tbl_NhanVienHonNhan where MaNhanVien = '{0}' and del_flg = 0 ", _MaNhanVien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
                 edit = true;
-                btn_luu.Text = "Cập nhật";
                 btn_delete.Visible = true;
-                txt_sogiay_chungnhan.Text = dt.Rows[0]["so_giay_chung_nhan"].ToString();
-                dtp_ngaydk.Text = dt.Rows[0]["ngay_dang_ky"].ToString();
-                txt_noidk.Text = dt.Rows[0]["noi_dang_ky"].ToString();
-                if (!string.IsNullOrEmpty(dt.Rows[0]["mat_truoc"].ToString()))
+                txt_SoGiayChungNhan.Text = dt.Rows[0]["SoGiayChungNhan"].ToString();
+                dtp_NgayDK.Text = dt.Rows[0]["NgayDangKy"].ToString();
+                txt_NoiDK.Text = dt.Rows[0]["NoiDangKy"].ToString();
+                if (!string.IsNullOrEmpty(dt.Rows[0]["MatTruoc"].ToString()))
                 {
                     Byte[] byteanh_nv = new Byte[0];
-                    byteanh_nv = (Byte[])(dt.Rows[0]["mat_truoc"]);
+                    byteanh_nv = (Byte[])(dt.Rows[0]["MatTruoc"]);
                     MemoryStream stmBLOBData = new MemoryStream(byteanh_nv);
-                    pb_mattruoc.Image = Image.FromStream(stmBLOBData);
+                    pb_MatTruoc.Image = Image.FromStream(stmBLOBData);
                 }
-                if (!string.IsNullOrEmpty(dt.Rows[0]["mat_sau"].ToString()))
+                if (!string.IsNullOrEmpty(dt.Rows[0]["MatSau"].ToString()))
                 {
                     Byte[] byteanh_nv = new Byte[0];
-                    byteanh_nv = (Byte[])(dt.Rows[0]["mat_sau"]);
+                    byteanh_nv = (Byte[])(dt.Rows[0]["MatSau"]);
                     MemoryStream stmBLOBData = new MemoryStream(byteanh_nv);
-                    pb_matsau.Image = Image.FromStream(stmBLOBData);
+                    pb_MatSau.Image = Image.FromStream(stmBLOBData);
                 }
             }
             else
             {
                 edit = false;
-                btn_luu.Text = "Lưu";
                 btn_delete.Visible = false;
             }
         }
-
+        private void LoadNull()
+        {
+            txt_NoiDK.Text = string.Empty;
+            txt_SoGiayChungNhan.Text = string.Empty;
+            dtp_NgayDK.Text = string.Empty;
+            pb_MatSau.Image = null;
+            pb_MatTruoc.Image = null;
+        }
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -86,7 +96,7 @@ namespace TENTAC_HRM.Forms.Category
             }
             else
             {
-                save_data();
+                insert_data();
             }
         }
 
@@ -102,7 +112,7 @@ namespace TENTAC_HRM.Forms.Category
                 b = new Byte[Fs.Length];
                 Fs.Read(b, 0, b.Length);
                 Fs.Close();
-                pb_mattruoc.Image = Image.FromFile(open.FileName);
+                pb_MatTruoc.Image = Image.FromFile(open.FileName);
             }
         }
 
@@ -118,7 +128,7 @@ namespace TENTAC_HRM.Forms.Category
                 b = new Byte[Fs.Length];
                 Fs.Read(b, 0, b.Length);
                 Fs.Close();
-                pb_matsau.Image = Image.FromFile(open.FileName);
+                pb_MatSau.Image = Image.FromFile(open.FileName);
             }
         }
 
@@ -129,10 +139,11 @@ namespace TENTAC_HRM.Forms.Category
                 DialogResult result = RJMessageBox.Show("Bạn có chác muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    string sql = string.Format("update nhanvien_honnhan set del_flg = 1 where ma_nhan_vien = '{0}'", _ma_nhan_vien);
+                    string sql = string.Format("update tbl_NhanVienHonNhan set del_flg = 1 where MaNhanVien = '{0}'", _MaNhanVien);
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadNull();
                     }
                 }
             }
@@ -144,12 +155,12 @@ namespace TENTAC_HRM.Forms.Category
 
         private void btn_delete_pt1_Click(object sender, EventArgs e)
         {
-            pb_mattruoc.Image = null;
+            pb_MatTruoc.Image = null;
         }
 
         private void btn_delete_pt2_Click(object sender, EventArgs e)
         {
-            pb_matsau.Image = null;
+            pb_MatSau.Image = null;
         }
 
         private void frm_honnhan_KeyDown(object sender, KeyEventArgs e)
@@ -160,56 +171,91 @@ namespace TENTAC_HRM.Forms.Category
             }
         }
 
+        private void btn_update_pt1_Click(object sender, EventArgs e)
+        {
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png" +
+                        "|All Files (*.*)|*.*";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                FileStream Fs = default(FileStream);
+                Fs = File.Open(open.FileName, FileMode.OpenOrCreate);
+                b = new Byte[Fs.Length];
+                Fs.Read(b, 0, b.Length);
+                Fs.Close();
+                pb_MatTruoc.Image = Image.FromFile(open.FileName);
+            }
+        }
+
+        private void btn_update_pt2_Click(object sender, EventArgs e)
+        {
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png" +
+                        "|All Files (*.*)|*.*";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                FileStream Fs = default(FileStream);
+                Fs = File.Open(open.FileName, FileMode.OpenOrCreate);
+                b = new Byte[Fs.Length];
+                Fs.Read(b, 0, b.Length);
+                Fs.Close();
+                pb_MatSau.Image = Image.FromFile(open.FileName);
+            }
+        }
+
         private void Update_data()
         {
             try
             {
-                string sql = "update nhanvien_honnhan set so_giay_chung_nhan = @sogiaychungnhan," +
-                        "ngay_dang_ky = @ngaydangky,noi_dang_ky = @noidangky,mat_truoc = @mattruoc,mat_sau = @matsau,ngay_cap_nhat = GETDATE() " +
-                        "where ma_nhan_vien = @ma_nhan_vien";
-                SqlParameter[] param = new SqlParameter[]
-                {
-                new SqlParameter("@ma_nhan_vien", SqlDbType.Int) {Value = _ma_nhan_vien},
-                new SqlParameter("@sogiaychungnhan", SqlDbType.VarChar) {Value = sogiaychungnhan_value},
-                new SqlParameter("@ngaydangky", SqlDbType.Date) {Value = ngaydangky_value},
-                new SqlParameter("@noidangky", SqlDbType.NVarChar) {Value = noidangky_value},
-                new SqlParameter("@mattruoc", SqlDbType.Image) {Value = (pic_mattruoc == null ? (object)DBNull.Value : pic_mattruoc)},
-                new SqlParameter("@matsau", SqlDbType.Image) {Value = (pic_matsau == null ? (object)DBNull.Value : pic_matsau)},
-                };
-                if (SQLHelper.ExecuteSql(sql, param) == 1)
+                string sql = string.Empty;
+                sql = $@"Update tbl_NhanVienHonNhan 
+                        Set SoGiayChungNhan = @SoGiayChungNhan, NgayDangKy = @NgayDangKy, NoiDangKy = @NoiDangKy, MatTruoc = @MatTruoc,
+                        MatSau = @MatSau, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat
+                    Where MaNhanVien = @MaNhanVien and del_flg = @DelFlg";
+                var parameters = new List<SqlParameter>
+                    {
+                        new SqlParameter("@MaNhanVien", _MaNhanVien),
+                        new SqlParameter("@SoGiayChungNhan", _SoGiayChungNhan ?? (object)DBNull.Value),
+                        new SqlParameter("@NgayDangKy", _NgayDangKy ?? (object)DBNull.Value),
+                        new SqlParameter("@NoiDangKy", _NoiDangKy ?? (object)DBNull.Value),
+                        new SqlParameter("@MatTruoc", SqlDbType.Image){Value = (object)(SQLHelper.ConvertImageToByteArray(pb_MatTruoc.Image) ?? (object)DBNull.Value)},
+                        new SqlParameter("@MatSau", SqlDbType.Image){Value = (object)(SQLHelper.ConvertImageToByteArray(pb_MatSau.Image) ?? (object)DBNull.Value)},
+                        new SqlParameter("@NgayCapNhat", DateTime.Now),
+                        new SqlParameter("@NguoiCapNhat", _NguoiTao ?? (object)DBNull.Value),
+                        new SqlParameter("@DelFlg", SqlDbType.Int) { Value = 0 }
+                    };
+                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
+                if (res > 0)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
-        private void save_data()
+        private void insert_data()
         {
             try
             {
-                string sql = "insert into nhanvien_honnhan(ma_nhan_vien,so_giay_chung_nhan,ngay_dang_ky,noi_dang_ky,mat_truoc,mat_sau,ngay_tao,id_nguoi_tao) " +
-                    "values(@nhanvien,@sogiaychungnhan,@ngaydangky,@noidangky,@mattruoc,@matsau,GETDATE(),@nguoitao)";
-                SqlParameter[] param = new SqlParameter[]
+                string sql = @"INSERT INTO tbl_NhanVienHonNhan (MaNhanVien, SoGiayChungNhan, NgayDangKy, NoiDangKy, MatTruoc, MatSau, NgayTao, NguoiTao, del_flg)
+                VALUES (@MaNhanVien, @SoGiayChungNhan, @NgayDangKy, @NoiDangKy, @MatTruoc, @MatSau, @NgayTao, @NguoiTao, @DelFlg)";
+                var parameters = new List<SqlParameter>
+                    {
+                        new SqlParameter("@MaNhanVien", _MaNhanVien),
+                        new SqlParameter("@SoGiayChungNhan", _SoGiayChungNhan ?? (object)DBNull.Value),
+                        new SqlParameter("@NgayDangKy", _NgayDangKy ?? (object)DBNull.Value),
+                        new SqlParameter("@NoiDangKy", _NoiDangKy ?? (object)DBNull.Value),
+                        new SqlParameter("@MatTruoc", SqlDbType.Image){Value = (object)(SQLHelper.ConvertImageToByteArray(pb_MatTruoc.Image) ?? (object)DBNull.Value)},
+                        new SqlParameter("@MatSau", SqlDbType.Image){Value = (object)(SQLHelper.ConvertImageToByteArray(pb_MatSau.Image) ?? (object)DBNull.Value)},
+                        new SqlParameter("@NgayTao", DateTime.Now),
+                        new SqlParameter("@NguoiTao", _NguoiTao ?? (object)DBNull.Value),
+                        new SqlParameter("@DelFlg", SqlDbType.Int) { Value = 0 }
+                    };
+                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
+                if (res > 0)
                 {
-                    new SqlParameter("@nhanvien", SqlDbType.Int) {Value = _ma_nhan_vien},
-                    new SqlParameter("@sogiaychungnhan", SqlDbType.VarChar) {Value = sogiaychungnhan_value},
-                    new SqlParameter("@ngaydangky", SqlDbType.Date) {Value = ngaydangky_value},
-                    new SqlParameter("@noidangky", SqlDbType.NVarChar) {Value = noidangky_value},
-                    new SqlParameter("@mattruoc", SqlDbType.Image) {Value = (pic_mattruoc == null ? (object)DBNull.Value : pic_mattruoc)},
-                    new SqlParameter("@matsau", SqlDbType.Image) {Value = (pic_matsau == null ? (object)DBNull.Value : pic_matsau)},
-                    new SqlParameter("@nguoitao", SqlDbType.VarChar) {Value = nguoitao_value},
-                };
-                if (SQLHelper.ExecuteSql(sql, param) == 1)
-                {
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (Exception ex)
             {
@@ -218,32 +264,32 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void set_value_text()
         {
-            pic_mattruoc = null;
-            if (pb_mattruoc.Image != null)
-            {
-                MemoryStream ms;
-                ms = new MemoryStream();
-                pb_mattruoc.Image.Save(ms, ImageFormat.Png);
-                pic_mattruoc = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(pic_mattruoc, 0, pic_mattruoc.Length);
-            }
-            pic_matsau = null;
-            if (pb_matsau.Image != null)
-            {
-                MemoryStream ms;
-                ms = new MemoryStream();
-                pb_matsau.Image.Save(ms, ImageFormat.Png);
-                pic_matsau = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(pic_matsau, 0, pic_matsau.Length);
-            }
+            _SoGiayChungNhan = txt_SoGiayChungNhan.Text.Trim();
+            _NgayDangKy = string.IsNullOrEmpty(dtp_NgayDK.Text) ? (DateTime?)null : Convert.ToDateTime(dtp_NgayDK.Text);
+            _NoiDangKy = txt_NoiDK.Text.Trim();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
 
-            sogiaychungnhan_value = txt_sogiay_chungnhan.Text;
-            ngaydangky_value = dtp_ngaydk.Value.ToString("yyyy/MM/dd");
-            noidangky_value = txt_noidk.Text.ToString();
-            nguoitao_value = SQLHelper.sIdUser;
-
+            //pic_mattruoc = null;
+            //if (pb_MatTruoc.Image != null)
+            //{
+            //    MemoryStream ms;
+            //    ms = new MemoryStream();
+            //    pb_MatTruoc.Image.Save(ms, ImageFormat.Png);
+            //    pic_mattruoc = new byte[ms.Length];
+            //    ms.Position = 0;
+            //    ms.Read(pic_mattruoc, 0, pic_mattruoc.Length);
+            //}
+            //pic_matsau = null;
+            //if (pb_MatSau.Image != null)
+            //{
+            //    MemoryStream ms;
+            //    ms = new MemoryStream();
+            //    pb_MatSau.Image.Save(ms, ImageFormat.Png);
+            //    pic_matsau = new byte[ms.Length];
+            //    ms.Position = 0;
+            //    ms.Read(pic_matsau, 0, pic_matsau.Length);
+            //}
         }
     }
 }

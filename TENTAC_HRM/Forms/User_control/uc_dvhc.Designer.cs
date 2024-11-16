@@ -77,7 +77,7 @@
             // 
             // btn_add
             // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.plus;
             this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(57, 22);
@@ -92,7 +92,7 @@
             this.btn_delete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1065, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(987, 25);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -155,7 +155,7 @@
             this.dgv_dvhc.Location = new System.Drawing.Point(0, 0);
             this.dgv_dvhc.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_dvhc.Name = "dgv_dvhc";
-            this.dgv_dvhc.Size = new System.Drawing.Size(1065, 623);
+            this.dgv_dvhc.Size = new System.Drawing.Size(987, 613);
             this.dgv_dvhc.TabIndex = 6;
             // 
             // ma_dan_toc
@@ -169,25 +169,25 @@
             this.treeView.Dock = System.Windows.Forms.DockStyle.Left;
             this.treeView.Location = new System.Drawing.Point(0, 25);
             this.treeView.Name = "treeView";
-            this.treeView.Size = new System.Drawing.Size(221, 598);
+            this.treeView.Size = new System.Drawing.Size(221, 588);
             this.treeView.TabIndex = 8;
             // 
             // TenDiaChi
             // 
             this.TenDiaChi.Text = "Tên Địa Chỉ";
-            this.TenDiaChi.Width = 250;
+            this.TenDiaChi.Width = 138;
             // 
             // MaVung
             // 
             this.MaVung.Text = "Vùng";
             this.MaVung.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.MaVung.Width = 100;
+            this.MaVung.Width = 97;
             // 
             // LuongToiThieuTheoThang
             // 
             this.LuongToiThieuTheoThang.Text = "Mức lương tối thiểu tháng (đồng/tháng)";
             this.LuongToiThieuTheoThang.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.LuongToiThieuTheoThang.Width = 250;
+            this.LuongToiThieuTheoThang.Width = 229;
             // 
             // LuongToiThieuTheoGio
             // 
@@ -204,9 +204,9 @@
             this.LuongToiThieuTheoGio});
             this.listView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView.HideSelection = false;
-            this.listView.Location = new System.Drawing.Point(221, 150);
+            this.listView.Location = new System.Drawing.Point(221, 140);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(844, 473);
+            this.listView.Size = new System.Drawing.Size(766, 473);
             this.listView.TabIndex = 9;
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
@@ -337,7 +337,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dgv_dvhc);
             this.Name = "uc_dvhc";
-            this.Size = new System.Drawing.Size(1065, 623);
+            this.Size = new System.Drawing.Size(987, 613);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dvhc)).EndInit();

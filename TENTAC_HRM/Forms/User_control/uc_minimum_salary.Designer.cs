@@ -39,12 +39,14 @@
             this.dgv_minium_salary = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.Vung = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.LuongToiThieuTheoThang = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.LuongToiThieuTheoGio = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NguoiTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_minium_salary)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +79,7 @@
             // 
             // btn_add
             // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.plus;
             this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(57, 22);
@@ -109,15 +111,17 @@
             this.dgv_minium_salary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.check,
+            this.edit_column,
             this.Vung,
             this.LuongToiThieuTheoThang,
             this.LuongToiThieuTheoGio,
+            this.NgayTao,
+            this.NguoiTao,
             this.NgayCapNhat,
-            this.NguoiCapNhat,
-            this.edit_column});
+            this.NguoiCapNhat});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -126,6 +130,7 @@
             this.dgv_minium_salary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_minium_salary.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_minium_salary.Location = new System.Drawing.Point(0, 25);
+            this.dgv_minium_salary.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_minium_salary.Name = "dgv_minium_salary";
             this.dgv_minium_salary.Size = new System.Drawing.Size(987, 588);
             this.dgv_minium_salary.TabIndex = 9;
@@ -146,6 +151,13 @@
             this.check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.check.Width = 50;
             // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Width = 50;
+            // 
             // Vung
             // 
             this.Vung.DataPropertyName = "Vung";
@@ -157,16 +169,32 @@
             // LuongToiThieuTheoThang
             // 
             this.LuongToiThieuTheoThang.DataPropertyName = "LuongToiThieuTheoThang";
-            this.LuongToiThieuTheoThang.HeaderText = "Lương Tối Thiểu Theo Tháng";
+            this.LuongToiThieuTheoThang.HeaderText = "Lương Tối Thiểu/Tháng";
             this.LuongToiThieuTheoThang.Name = "LuongToiThieuTheoThang";
-            this.LuongToiThieuTheoThang.Width = 170;
+            this.LuongToiThieuTheoThang.Width = 180;
             // 
             // LuongToiThieuTheoGio
             // 
             this.LuongToiThieuTheoGio.DataPropertyName = "LuongToiThieuTheoGio";
-            this.LuongToiThieuTheoGio.HeaderText = "Lương Tối Thiểu Theo Giờ";
+            this.LuongToiThieuTheoGio.HeaderText = "Lương Tối Thiểu/Giờ";
             this.LuongToiThieuTheoGio.Name = "LuongToiThieuTheoGio";
-            this.LuongToiThieuTheoGio.Width = 170;
+            this.LuongToiThieuTheoGio.Width = 180;
+            // 
+            // NgayTao
+            // 
+            this.NgayTao.DataPropertyName = "NgayTao";
+            this.NgayTao.HeaderText = "Ngày Tạo";
+            this.NgayTao.Name = "NgayTao";
+            this.NgayTao.Visible = false;
+            this.NgayTao.Width = 100;
+            // 
+            // NguoiTao
+            // 
+            this.NguoiTao.DataPropertyName = "NguoiTao";
+            this.NguoiTao.HeaderText = "Người Tạo";
+            this.NguoiTao.Name = "NguoiTao";
+            this.NguoiTao.Visible = false;
+            this.NguoiTao.Width = 100;
             // 
             // NgayCapNhat
             // 
@@ -184,19 +212,14 @@
             this.NguoiCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NguoiCapNhat.Width = 150;
             // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Width = 50;
-            // 
             // uc_minimum_salary
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_minium_salary);
             this.Controls.Add(this.toolStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "uc_minimum_salary";
             this.Size = new System.Drawing.Size(987, 613);
             this.toolStrip1.ResumeLayout(false);
@@ -218,11 +241,13 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_minium_salary;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewCheckBoxColumn check;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn Vung;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LuongToiThieuTheoThang;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LuongToiThieuTheoGio;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayTao;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiTao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayCapNhat;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiCapNhat;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
@@ -9,10 +11,13 @@ namespace TENTAC_HRM.Forms.Category
     public partial class frm_language : Form
     {
         DataProvider provider = new DataProvider();
-        public string _ma_nhanvien { get; set; } = "0";
+        public string _ma_nhanvien { get; set; }
         public int _id_ngoaingu { get; set; }
         public bool edit { get; set; }
         frm_personnel _Personnel;
+
+        string maNgoaiNgu, truongDaoTao, xepLoai, ghiChu, nguoiTao, nguoiCapNhat;
+        DateTime? ngayNhanBang;
         public frm_language(Form frm)
         {
             InitializeComponent();
@@ -26,7 +31,7 @@ namespace TENTAC_HRM.Forms.Category
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if(edit == true)
+            if (edit == true)
             {
                 update_data();
             }
@@ -41,46 +46,87 @@ namespace TENTAC_HRM.Forms.Category
         {
             load_nhanvien();
             load_xeploai();
+            load_NgoaiNgu();
             if (edit == true)
             {
                 load_data();
             }
         }
+        private void load_NgoaiNgu()
+        {
+            string sql = string.Empty;
+            sql = $@"select MaNgoaiNgu, TenNgoaiNgu from mst_NgoaiNgu";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            dt.Rows.Add("", "");
+            cbo_NgoaiNgu.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaNgoaiNgu")).CopyToDataTable();
+            cbo_NgoaiNgu.DisplayMember = "TenNgoaiNgu";
+            cbo_NgoaiNgu.ValueMember = "MaNgoaiNgu";
+        }
         private void load_xeploai()
         {
-            cbo_xeploai.DataSource = provider.load_xeploai();
-            cbo_xeploai.DisplayMember = "name";
-            cbo_xeploai.ValueMember = "id";
+            cbo_XepLoai.DataSource = provider.load_xeploai();
+            cbo_XepLoai.DisplayMember = "name";
+            cbo_XepLoai.ValueMember = "id";
         }
         private void load_data()
         {
-            string sql = string.Format("select * from ngoai_ngu where id_ngoai_ngu = '{0}'", _id_ngoaingu);
+            string sql = string.Empty;
+            sql = $@"select * from tbl_NhanVienNgoaiNgu where Id = {SQLHelper.rpI(_id_ngoaingu)}";
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                txt_tinhoc.Text = dt.Rows[0]["ngoai_ngu"].ToString();
-                txt_truong.Text = dt.Rows[0]["truong_dao_tao"].ToString();
-                dtp_nam.Text = dt.Rows[0]["nam_nhan_bang"].ToString();
-                cbo_xeploai.SelectedValue = dt.Rows[0]["xep_loai"].ToString();
+                cbo_NgoaiNgu.SelectedValue = dt.Rows[0]["MaNgoaiNgu"].ToString();
+                txt_Truong.Text = dt.Rows[0]["TruongDaoTao"].ToString();
+                dtp_NgayNhanBang.Text = dt.Rows[0]["NgayNhanBang"].ToString();
+                cbo_XepLoai.SelectedValue = dt.Rows[0]["XepLoai"].ToString();
+                txtGhiChu.Text = dt.Rows[0]["GhiChu"].ToString();
             }
+        }
+        private void LoadNull()
+        {
+            cbo_NgoaiNgu.SelectedValue = string.Empty;
+            txt_Truong.Text = string.Empty;
+            dtp_NgayNhanBang.Text= string.Empty;
+            cbo_XepLoai.SelectedIndex = 0;
+            txtGhiChu.Text= string.Empty;
         }
         private void load_nhanvien()
         {
-            cbo_nhanvien.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.DisplayMember = "name";
-            cbo_nhanvien.ValueMember = "value";
-            cbo_nhanvien.SelectedValue = _ma_nhanvien;
+            cbo_NhanVien.DataSource = provider.load_nhanvien();
+            cbo_NhanVien.DisplayMember = "name";
+            cbo_NhanVien.ValueMember = "value";
+            cbo_NhanVien.SelectedValue = _ma_nhanvien;
+        }
+        private void load_XepLoai()
+        {
+            cbo_XepLoai.DataSource = provider.load_xeploai();
+            cbo_XepLoai.DisplayMember = "name";
+            cbo_XepLoai.ValueMember = "id";
         }
         private void insert_data()
         {
             try
             {
-                string sql = string.Format("insert into ngoai_ngu(ma_nhan_vien,ngoai_ngu,truong_dao_tao,nam_nhan_bang,xep_loai,id_nguoi_tao) " +
-                    "values('{0}',N'{1}',N'{2}','{3}',N'{4}','{5}')",
-                    cbo_nhanvien.SelectedValue.ToString(), txt_tinhoc.Text, txt_truong.Text, DateTime.Parse(dtp_nam.Text).ToString("yyyy/MM/dd"), cbo_xeploai.SelectedValue.ToString(), SQLHelper.sIdUser);
+                if (cbo_NgoaiNgu.SelectedIndex == 0)
+                {
+                    RJMessageBox.Show("Vui lòng chọn Ngoại Ngữ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cbo_NgoaiNgu.Focus();
+                    return;
+                }
+                set_textvalue();
+                string sql = string.Empty;
+                sql = $@"Insert into tbl_NhanVienNgoaiNgu(MaNhanVien, MaNgoaiNgu, TruongDaoTao, NgayNhanBang, XepLoai, GhiChu,
+                    NgayTao, NguoiTao, del_flg)
+                    values({SQLHelper.rpStr(_ma_nhanvien)}, {SQLHelper.rpStr(maNgoaiNgu)}, {SQLHelper.rpStr(truongDaoTao)},
+                    {SQLHelper.rpDT(ngayNhanBang)}, {SQLHelper.rpStr(xepLoai)}, {SQLHelper.rpStr(ghiChu)}, '{DateTime.Now}', 
+                    {SQLHelper.rpStr(nguoiTao)}, 0)";
+
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _Personnel.load_ngoaingu();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
@@ -92,18 +138,35 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-                string sql = string.Format("update ngoai_ngu set ngoai_ngu = N'{1}', truong_dao_tao = N'{2}',nam_nhan_bang='{3}',xep_loai= N'{4}',ngay_cap_nhat = GETDATE() " +
-                    "where id_ngoai_ngu = '{0}'", _id_ngoaingu,
-                    txt_tinhoc.Text, txt_truong.Text, DateTime.Parse(dtp_nam.Text).ToString("yyyy/MM/dd"), cbo_xeploai.SelectedValue.ToString());
+                set_textvalue();
+                string sql = string.Empty;
+                sql = $@"Update tbl_NhanVienNgoaiNgu set TruongDaoTao = {SQLHelper.rpStr(truongDaoTao)}, 
+                        NgayNhanBang = {SQLHelper.rpDT(ngayNhanBang)}, XepLoai = {SQLHelper.rpStr(xepLoai)}, 
+                        GhiChu = {SQLHelper.rpStr(ghiChu)}, NgayCapNhat = '{DateTime.Now}', 
+                        NguoiCapNhat = {SQLHelper.rpStr(nguoiCapNhat)}
+                        Where Id = {SQLHelper.rpI(_id_ngoaingu)}";
+
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _Personnel.load_ngoaingu();
+                    LoadNull();
                 }
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void set_textvalue()
+        {
+            maNgoaiNgu = cbo_NgoaiNgu.SelectedValue.ToString();
+            truongDaoTao = txt_Truong.Text.Trim().ToString();
+            ngayNhanBang = string.IsNullOrEmpty(dtp_NgayNhanBang.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayNhanBang.Text);
+            xepLoai = cbo_XepLoai.SelectedValue.ToString();
+            ghiChu = txtGhiChu.Text;
+            nguoiTao = SQLHelper.sUser;
+            nguoiCapNhat = SQLHelper.sUser;
         }
     }
 }

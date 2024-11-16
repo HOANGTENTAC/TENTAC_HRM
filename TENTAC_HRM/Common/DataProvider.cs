@@ -30,7 +30,7 @@ namespace TENTAC_HRM
         }
         public DataTable load_tinh()
         {
-            string sql = "select MaDiaChi,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22";
+            string sql = "select Id,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;
@@ -64,6 +64,15 @@ namespace TENTAC_HRM
             dt.Rows.Add("0", "");
             return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("id")).CopyToDataTable();
         }
+        public DataTable LoadDiaChiNew(int id)
+        {
+            string sql = $@"select Id, TenDiaChi as Name from mst_DonViHanhChinh where delflg = 0 and LoaiDiaChi = {SQLHelper.rpI(id)}";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            dt.Rows.Add("0", "");
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+        }
+
         /// <summary>
         /// 1 trạng thái công việc
         /// 10 tình trạng hôn nhân
@@ -154,7 +163,7 @@ namespace TENTAC_HRM
         }
         public DataTable load_xeploai()
         {
-            string sql = string.Format("select type_name_short as id,type_name as name from sys_all_type where type_type = '174'");
+            string sql = string.Format("select TypeNameShort as id, TypeName as name from sys_AllType where TypeType = '174'");
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;

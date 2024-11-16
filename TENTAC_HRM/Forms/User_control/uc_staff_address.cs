@@ -12,7 +12,8 @@ namespace TENTAC_HRM.Forms.User_control
         Diachi_model model = new Diachi_model();
         DataProvider provider = new DataProvider();
         public bool edit { get; set; }
-        public string _ma_nhan_vien = "0";
+        public string _ma_nhan_vien { get; set; }
+
         public bool uc_controll = false;
         public static uc_staff_address _instance;
         public static uc_staff_address Instance
@@ -49,8 +50,10 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_nhanvien.DataSource = provider.load_nhanvien();
             cbo_nhanvien.DisplayMember = "name";
             cbo_nhanvien.ValueMember = "value";
-            if(!string.IsNullOrEmpty(_ma_nhan_vien))
+            if(_ma_nhan_vien != null)
+            {
                 cbo_nhanvien.SelectedValue = _ma_nhan_vien;
+            }
         }
         private void load_loai_dia_chi()
         {
@@ -60,55 +63,64 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void load_quoc_gia()
         {
-            cbo_quoc_gia.DataSource = provider.load_diachi(20);
+            cbo_quoc_gia.DataSource = provider.LoadDiaChiNew(20);
             cbo_quoc_gia.DisplayMember = "name";
             cbo_quoc_gia.ValueMember = "id";
         }
         private void cbo_tinh_SelectedValueChanged(object sender, EventArgs e)
         {
-            DataRowView vrow = (DataRowView)cbo_tinh.SelectedItem;
-            string row = vrow.Row.ItemArray[0].ToString();
-            if (row != "")
+            if (cbo_tinh.SelectedValue != null)
             {
-                string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
-                DataTable dt = new DataTable();
-                dt = SQLHelper.ExecuteDt(sql);
-                dt.Rows.Add("0", "");
-                cbo_quan.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
-                cbo_quan.DisplayMember = "tendiachi";
-                cbo_quan.ValueMember = "id";
+                DataRowView vrow = (DataRowView)cbo_tinh.SelectedItem;
+                string row = vrow.Row.ItemArray[0].ToString();
+                if (row != "")
+                {
+                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
+                    DataTable dt = new DataTable();
+                    dt = SQLHelper.ExecuteDt(sql);
+                    dt.Rows.Add("0", "");
+                    cbo_quan.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+                    cbo_quan.DisplayMember = "tendiachi";
+                    cbo_quan.ValueMember = "id";
+                }
             }
         }
 
         private void cbo_quan_SelectedValueChanged(object sender, EventArgs e)
         {
-            DataRowView vrow = (DataRowView)cbo_quan.SelectedItem;
-            string row = vrow.Row.ItemArray[0].ToString();
-            if (row != "")
+            if (cbo_quan.SelectedValue != null)
             {
-                string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
-                DataTable dt = new DataTable();
-                dt = SQLHelper.ExecuteDt(sql);
-                dt.Rows.Add("0", "");
-                cbo_phuong.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
-                cbo_phuong.DisplayMember = "tendiachi";
-                cbo_phuong.ValueMember = "id";
+                DataRowView vrow = (DataRowView)cbo_quan.SelectedItem;
+                string row = vrow.Row.ItemArray[0].ToString();
+                if (row != "")
+                {
+                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
+                    DataTable dt = new DataTable();
+                    dt = SQLHelper.ExecuteDt(sql);
+                    dt.Rows.Add("0", "");
+                    cbo_phuong.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+                    cbo_phuong.DisplayMember = "tendiachi";
+                    cbo_phuong.ValueMember = "id";
+                }
             }
         }
 
         private void cbo_quoc_gia_SelectedValueChanged(object sender, EventArgs e)
         {
-            DataRowView vrow = (DataRowView)cbo_quoc_gia.SelectedItem;
-            string row = vrow.Row.ItemArray[0].ToString();
-            if (row != "")
+            if (cbo_quoc_gia.SelectedValue != null)
             {
-                string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
-                DataTable dt = new DataTable();
-                dt = SQLHelper.ExecuteDt(sql);
-                dt.Rows.Add("0", "");
-                cbo_tinh.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
-                cbo_tinh.DisplayMember = "tendiachi";
-                cbo_tinh.ValueMember = "id";
+                DataRowView vrow = (DataRowView)cbo_quoc_gia.SelectedItem;
+                string row = vrow.Row.ItemArray[0].ToString();
+                if (row != "")
+                {
+                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
+                    DataTable dt = new DataTable();
+                    dt = SQLHelper.ExecuteDt(sql);
+                    dt.Rows.Add("0", "");
+                    cbo_tinh.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+                    cbo_tinh.DisplayMember = "tendiachi";
+                    cbo_tinh.ValueMember = "id";
+                }
             }
         }
         private void btn_add_Click(object sender, EventArgs e)
@@ -215,11 +227,17 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_data()
         {
-            string sql = string.Format("select c.manhanvien,c.TenNhanVien,c.TenNhanVien,a.id,b.typename,a.diachi,a.isactive " +
-                "from tbl_NhanVienDiaChi a " +
-                "join sys_alltype b on a.loaidiachi = b.typeid " +
-                "join MITACOSQL.dbo.NHANVIEN c on c.manhanvien = a.manhanvien ");
-            //"where a.ma_nhan_vien = '{0}'", cbo_nhanvien.SelectedValue.ToString());
+            //string sql = string.Format("select c.manhanvien,c.TenNhanVien,c.TenNhanVien,a.id,b.typename,a.diachi,a.isactive " +
+            //    "from tbl_NhanVienDiaChi a " +
+            //    "join sys_alltype b on a.loaidiachi = b.typeid " +
+            //    "join MITACOSQL.dbo.NHANVIEN c on c.manhanvien = a.manhanvien ");
+            //"where a.ma_nhan_vien = '{0}'", {ma_nhan_vien});
+
+            string sql = string.Empty;
+            sql = $@"select a.MaNhanVien, c.TenNhanVien, a.id,b.typename, a.diachi, a.isactive from tbl_NhanVienDiaChi a 
+                Left join sys_AllType b on a.LoaiDiaChi = b.TypeId
+                join MITACOSQL.dbo.NHANVIEN c on c.manhanvien = a.manhanvien
+                Where a.MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)}";
             DataTable dataTable = new DataTable();
             dataTable = SQLHelper.ExecuteDt(sql);
             dgv_nhanvien_diachi.DataSource = dataTable;
@@ -237,14 +255,15 @@ namespace TENTAC_HRM.Forms.User_control
                 string sql = string.Format("select * from tbl_NhanVienDiaChi where id = {0}", model.Id_diachi_value);
                 DataTable dataTable = new DataTable();
                 dataTable = SQLHelper.ExecuteDt(sql);
-                cbo_nhanvien.SelectedValue = dataTable.Rows[0]["manhanvien"].ToString();
-                cbo_loai_dia_chi.SelectedValue = dataTable.Rows[0]["loaidiachi"].ToString();
-                cbo_quoc_gia.SelectedValue = dataTable.Rows[0]["id_quocgia"].ToString();
-                cbo_tinh.SelectedValue = dataTable.Rows[0]["id_tinh"].ToString();
-                cbo_quan.SelectedValue = dataTable.Rows[0]["id_huyen"].ToString();
-                cbo_phuong.SelectedValue = dataTable.Rows[0]["id_xa"].ToString();
-                txt_so_nha.Text = dataTable.Rows[0]["thontosonha"].ToString();
-                chk_dang_hieu_luc.Checked = (dataTable.Rows[0]["isactive"].ToString() == "False" ? false : true);
+                cbo_nhanvien.SelectedValue = dataTable.Rows[0]["MaNhanVien"].ToString();
+                cbo_loai_dia_chi.SelectedValue = dataTable.Rows[0]["LoaiDiaChi"].ToString();
+                string QuocGia = dataTable.Rows[0]["Id_QuocGia"].ToString();
+                cbo_quoc_gia.SelectedValue = QuocGia;
+                cbo_tinh.SelectedValue = dataTable.Rows[0]["Id_Tinh"].ToString();
+                cbo_quan.SelectedValue = dataTable.Rows[0]["Id_Huyen"].ToString();
+                cbo_phuong.SelectedValue = dataTable.Rows[0]["Id_Xa"].ToString();
+                txt_so_nha.Text = dataTable.Rows[0]["ThonToSoNha"].ToString();
+                chk_dang_hieu_luc.Checked = (dataTable.Rows[0]["IsActive"].ToString() == "False" ? false : true);
                 pl_address.Enabled = true;
             }
         }

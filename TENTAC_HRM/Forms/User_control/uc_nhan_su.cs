@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Media;
 using TENTAC_HRM.Custom;
+using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Forms.Main;
 
 namespace TENTAC_HRM.Forms.User_control
@@ -105,7 +106,7 @@ namespace TENTAC_HRM.Forms.User_control
 
         private void load_treeview()
         {
-            DataTable dtCongTy = SQLHelper.ExecuteDt("select * from  dbo.[mst_CONGTY]");
+            DataTable dtCongTy = SQLHelper.ExecuteDt("select * from [MITACOSQL].[dbo].[CONGTY]");
             for (int i = 0; i < dtCongTy.Rows.Count; i++)
             {
                 TreeNode treeCongTy = new TreeNode()
@@ -115,7 +116,7 @@ namespace TENTAC_HRM.Forms.User_control
                 };
                 trv_sodoquanly.Nodes.Add(treeCongTy);
                 string MaCongTy = dtCongTy.Rows[i]["MaCongTy"].ToString();
-                DataTable dtKhuVuc = SQLHelper.ExecuteDt($"select * from  dbo.[mst_KHUVUC] where MaCongTy= '{MaCongTy}'");
+                DataTable dtKhuVuc = SQLHelper.ExecuteDt($"select * from [MITACOSQL].[dbo].[KHUVUC] where MaCongTy= '{MaCongTy}'");
                 for (int j = 0; j < dtKhuVuc.Rows.Count; j++)
                 {
                     TreeNode treeKhuVuc = new TreeNode()
@@ -125,7 +126,7 @@ namespace TENTAC_HRM.Forms.User_control
                     };
                     trv_sodoquanly.Nodes[i + 2].Nodes.Add(treeKhuVuc);
                     string MaKhuVuc = dtKhuVuc.Rows[j]["MaKhuVuc"].ToString();
-                    DataTable dtPhongBan = SQLHelper.ExecuteDt($"select * from  dbo.[mst_PHONGBAN] where MaKhuVuc='{MaKhuVuc}'");
+                    DataTable dtPhongBan = SQLHelper.ExecuteDt($"select * from [MITACOSQL].[dbo].[PHONGBAN] where MaKhuVuc='{MaKhuVuc}'");
 
                     for (int z = 0; z < dtPhongBan.Rows.Count; z++)
                     {
@@ -152,7 +153,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void load_bophan()
         {
-            string sql = "select MaKhuVuc,TenKhuVuc from mst_KhuVuc";
+            string sql = "select MaKhuVuc,TenKhuVuc from [MITACOSQL].[dbo].[KHUVUC]";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -165,23 +166,23 @@ namespace TENTAC_HRM.Forms.User_control
             string sql = "";
             if(search == true)
             {
-                sql = "select maphongban,tenphongban from mst_PhongBan where DelFlg = 0";
+                sql = "select MaPhongBan, TenPhongBan from [MITACOSQL].[dbo].[PHONGBAN]";
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 dt.Rows.Add("0", "");
                 cbo_phongban_search.ComboBox.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
-                cbo_phongban_search.ComboBox.DisplayMember = "tenphongban";
-                cbo_phongban_search.ComboBox.ValueMember = "maphongban";
+                cbo_phongban_search.ComboBox.DisplayMember = "TenPhongBan";
+                cbo_phongban_search.ComboBox.ValueMember = "MaPhongBan";
             }
             else
             {
-                sql = string.Format("select maphongban,tenphongban from mst_PhongBan where DelFlg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
+                sql = string.Format("select MaPhongBan,TenPhongBan from [MITACOSQL].[dbo].[PHONGBAN] where MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 dt.Rows.Add("0", "");
                 cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
-                cbo_phongban.DisplayMember = "tenphongban";
-                cbo_phongban.ValueMember = "maphongban";
+                cbo_phongban.DisplayMember = "TenPhongBan";
+                cbo_phongban.ValueMember = "MaPhongBan";
             }
             //sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
 
@@ -217,7 +218,7 @@ namespace TENTAC_HRM.Forms.User_control
         {
             string sql = "select ROW_NUMBER() OVER(ORDER BY MaNhanVien ASC)AS rownumber," +
                 "MaNhanVien, TenNhanVien, Ten, NgaySinh, GioiTinh, HonNhan, SoCCCD, SoHoChieu, DienThoaiDD," +
-                "Email, NgayVaoLamViec, SoTK, Workpermit, TenTonGiao, TenDanToc, Ngoai_Ngu, Tin_Hoc, TenBac, DiaChiFull," +
+                "Email, NgayVaoLamViec, SoTK, Workpermit, TenTonGiao, TenDanToc, TenNgoaiNgu, TenChungChi, TenBac, DiaChiFull," +
                 "TenPhongBan, TenChucVu, QuocTich, GhiChu " +
                 "into ##tblTemp from view_hoso_nhansu where 1=1 ";
             if (!string.IsNullOrEmpty(txt_search_ten.Text))
@@ -315,9 +316,9 @@ namespace TENTAC_HRM.Forms.User_control
                         "id_trangthai,d.machucvu,c.maphongban,e.MaKhuVuc,machamcong,a.LoaiNhanVien " +
                         "from tbl_NhanVien a " +
                         "left join MITACOSQL.dbo.NHANVIEN b on a.MaNhanVien = b.MaNhanVien " +
-                        "left join mst_PhongBan c on c.MaPhongBan = b.MaPhongBan " +
-                        "left join mst_ChucVu d on d.MaChucVu = b.MaChucVu " +
-                        "left join mst_khuVuc e on e.MaKhuVuc = b.MaKhuVuc " +
+                        "left join [MITACOSQL].[dbo].[PHONGBAN] c on c.MaPhongBan = b.MaPhongBan " +
+                        "left join [MITACOSQL].[dbo].[CHUCVU] d on d.MaChucVu = b.MaChucVu " +
+                        "left join [MITACOSQL].[dbo].[KHUVUC] e on e.MaKhuVuc = b.MaKhuVuc " +
                         "left join tbl_NhanvienDiachi f on f.manhanvien = a.manhanvien and f.loaidiachi = 41 and f.isactive = 1 " +
                         "left join sys_alltype g on a.id_trangthai = g.typeid " +
                         "left join tbl_NhanvienDiachi h on h.manhanvien = a.manhanvien and h.loaidiachi = 43 and h.isactive = 1 " +
@@ -352,7 +353,7 @@ namespace TENTAC_HRM.Forms.User_control
                         cbo_LoaiNhanVien.SelectedValue = dataTable.Rows[0]["LoaiNhanVien"].ToString();
                         _id_nhan_vien = int.Parse(dataTable.Rows[0]["id"].ToString());
                         _ma_nhan_vien = dataTable.Rows[0]["manhanvien"].ToString();
-                        load_diachi();
+                        load_diachi(_ma_nhan_vien);
                     }
                 }
             }
@@ -392,13 +393,13 @@ namespace TENTAC_HRM.Forms.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select maphongban,tenphongban from mst_phongban where MaKhuVuc = '{0}'",row);
+                    string sql = string.Format("select MaPhongBan, TenPhongBan from [MITACOSQL].[dbo].[PHONGBAN] where MaKhuVuc = '{0}'", row);
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");
-                    cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("maphongban")).CopyToDataTable();
-                    cbo_phongban.DisplayMember = "tenphongban";
-                    cbo_phongban.ValueMember = "maphongban";
+                    cbo_phongban.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaPhongBan")).CopyToDataTable();
+                    cbo_phongban.DisplayMember = "TenPhongBan";
+                    cbo_phongban.ValueMember = "MaPhongBan";
                 }
             }
         }
@@ -490,10 +491,16 @@ namespace TENTAC_HRM.Forms.User_control
         {
             if(dgv_nhan_su.Rows.Count > 0)
             {
-                frm_main_uc frm = new frm_main_uc(null, this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm.title_frm = "Nhân viên - Địa chỉ";
-                frm.type = "address";
+                //frm_main_uc frm = new frm_main_uc(null, this);
+                //frm._ma_nhan_vien = _ma_nhan_vien;
+                //frm.title_frm = "Nhân viên - Địa chỉ";
+                //frm.type = "address";
+                //frm.ShowDialog();
+
+                frm_address frm = new frm_address(this.FindForm());
+                frm._ma_nhanvien = _ma_nhan_vien;
+                frm._loai_diachi = 41;
+                frm._NameForm = "Địa chỉ nguyên quán";
                 frm.ShowDialog();
             }
         }
@@ -502,22 +509,31 @@ namespace TENTAC_HRM.Forms.User_control
         {
             if (dgv_nhan_su.Rows.Count > 0)
             {
-                frm_main_uc frm = new frm_main_uc(null,this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm.title_frm = "Nhân viên - Địa chỉ";
-                frm.type = "address";
+                //frm_main_uc frm = new frm_main_uc(null,this);
+                //frm._ma_nhan_vien = _ma_nhan_vien;
+                //frm.title_frm = "Nhân viên - Địa chỉ";
+                //frm.type = "address";
+                //frm.ShowDialog();
+
+                frm_address frm = new frm_address(this.FindForm());
+                frm._ma_nhanvien = _ma_nhan_vien;
+                frm._loai_diachi = 43;
+                frm._NameForm = "Địa chỉ thường trú";
                 frm.ShowDialog();
             }
         }
-        public void load_diachi()
+        public void load_diachi(string MaNhanVien)
         {
-            string sql_dia_chi = string.Format("select diachi,loaidiachi from tbl_nhanviendiachi where manhanvien = '{0}' and isactive = 1 and del_flg = 0", _ma_nhan_vien);
+            //string sql_dia_chi = string.Format("select diachi,loaidiachi from tbl_nhanviendiachi where manhanvien = '{0}' and isactive = 1 and del_flg = 0", _ma_nhan_vien);
+            string sql_dia_chi = string.Format("select diachi,loaidiachi from tbl_nhanviendiachi where MaNhanVien = '{0}' and del_flg = 0", MaNhanVien);
             DataTable dt_diachi = new DataTable();
             dt_diachi = SQLHelper.ExecuteDt(sql_dia_chi);
             DataRow quequan = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loaidiachi") == 41).FirstOrDefault();
             DataRow thuongtru = dt_diachi.AsEnumerable().Where(x => x.Field<int>("loaidiachi") == 43).FirstOrDefault();
+            DataRow tamtru = dt_diachi.AsEnumerable().Where((x) => x.Field<int>("loaidiachi") == 44).FirstOrDefault();
             txt_quequan.Text = (quequan != null ? quequan.ItemArray[0].ToString() : "");
-            txt_noio.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
+            txt_thuongtru.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
+            txt_tamtru.Text = (tamtru != null ? tamtru.ItemArray[0].ToString() : "");
         }
 
         private void dgv_nhan_su_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -537,6 +553,18 @@ namespace TENTAC_HRM.Forms.User_control
             var headerBounds =
                 new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
             e.Graphics.DrawString(rowIdx, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+        }
+
+        private void btn_tamtru_Click(object sender, EventArgs e)
+        {
+            if (dgv_nhan_su.Rows.Count > 0)
+            {
+                frm_address frm = new frm_address(this.FindForm());
+                frm._ma_nhanvien = _ma_nhan_vien;
+                frm._loai_diachi = 44;
+                frm._NameForm = "Địa chỉ tạm trú";
+                frm.ShowDialog();
+            }
         }
     }
 }

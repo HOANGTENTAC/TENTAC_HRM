@@ -29,7 +29,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_data()
         {
-            string sql = "select Id, MaBac, TenBac, MoTa, NgayCapNhat, NguoiCapNhat from mst_BacDaoTao where DelFlg = 0 order by MaBac";
+            string sql = "select Id, MaBac, TenBac, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_BacDaoTao where DelFlg = 0 order by MaBac";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_education_level.DataSource = dt;

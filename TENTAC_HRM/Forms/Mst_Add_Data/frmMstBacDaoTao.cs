@@ -15,17 +15,17 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         public frmMstBacDaoTao(string maTrinhDo, string tenTrinhDo, string moTa, bool addNew, uc_education_level _uc_education_level)
         {
             InitializeComponent();
-
             autoCodeGenerator = new MstMaTuDong();
             if (addNew == false)
             {
+                labelX1.Text = "Cập Nhật Thông Tin Bậc Đào Tạo";
                 txtMaTrinhDo.Text = maTrinhDo;
                 txtTenTrinhDo.Text = tenTrinhDo;
                 txtMota.Text = moTa;
             }
             else
             {
-                txtMaTrinhDo.Text = autoCodeGenerator.GenerateNextCode("mst_BacDaoTao", "TD", "MaBac");
+                load_null();
             }
             uc_education_level = _uc_education_level;
         }
@@ -95,7 +95,16 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            load_null();
+            //load_null();
+            if (this.Parent != null)
+            {
+                Control x = this.Parent;
+                x.Controls.Remove(this);
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

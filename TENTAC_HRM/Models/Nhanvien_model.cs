@@ -7,11 +7,11 @@ namespace TENTAC_HRM.Model
         public int Id_hoc_van { get; set; }
         public int Gioi_tinh_value { get; set; }
         public int Hon_nhan_value { get; set; }
-        public int Ton_giao_value { get; set; }
-        public int Dan_toc_value { get; set; }
+        public string Ton_giao_value { get; set; }
+        public string Dan_toc_value { get; set; }
         public int Quoc_tich_value { get; set; }
         public int Hoc_van_value { get; set; }
-        public int Chieu_cao_value { get; set; }
+        public float? Chieu_cao_value { get; set; }
         public int Nhan_tien_mat_value { get; set; }
         public int Ca_nhan_khong_cu_tru_value { get; set; }
         public int Khong_uy_quyen_value { get; set; }
@@ -33,6 +33,10 @@ namespace TENTAC_HRM.Model
         public string Noi_cap_hc_value { get; set; }
         public string Sdt_value { get; set; }
         public string Email_value { get; set; }
+        public string MaCongTy_value { get;set; }
+        public string MaKhuVuc_value { get; set; }
+        public string MaPhongBan_value { get; set; }
+        public string MaChucVu_value { get; set; }
         public string Suc_khoe_value { get; set; }
         public string Nhom_mau_value { get; set; }
         public string Luu_y_sk_value { get; set; }
