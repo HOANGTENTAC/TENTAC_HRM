@@ -175,7 +175,7 @@ namespace TENTAC_HRM.Forms.ChamCong
         }
         private void LoadData()
         {
-            string sql = $"proc_DanhSachDiSom {cbo_Nam.SelectedValue}, {cbo_Thang.SelectedValue}";
+            string sql = $"DB_MITACOSQL.dbo.proc_DanhSachDiSom {cbo_Nam.SelectedValue}, {cbo_Thang.SelectedValue}";
             DataTable data = SQLHelper.ExecuteDt(sql);
             dgv_Data.DataSource = data;
         }
