@@ -65,5 +65,19 @@ namespace TENTAC_HRM.Forms.Luong
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btn_show_pass_Click(object sender, EventArgs e)
+        {
+            if (txt_pass.PasswordChar == '*')
+            {
+                btn_show_pass.Image = Properties.Resources.eye;
+                txt_pass.PasswordChar = '\0';
+            }
+            else if (txt_pass.PasswordChar == '\0')
+            {
+                btn_show_pass.Image = Properties.Resources.close_eye;
+                txt_pass.PasswordChar = '*';
+            }
+        }
     }
 }

@@ -36,6 +36,8 @@
             this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.show_col = new System.Windows.Forms.DataGridViewImageColumn();
+            this.send_col = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_noti = new System.Windows.Forms.TextBox();
             this.Lbl_Count = new System.Windows.Forms.Label();
@@ -53,14 +55,16 @@
             // 
             this.DGV_NhanVien.AllowUserToAddRows = false;
             this.DGV_NhanVien.AllowUserToDeleteRows = false;
-            this.DGV_NhanVien.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.DGV_NhanVien.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.DGV_NhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_NhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_check,
             this.MaNhanVien,
             this.TenNhanVien,
             this.PhongBan,
-            this.Email});
+            this.Email,
+            this.show_col,
+            this.send_col});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -73,8 +77,9 @@
             this.DGV_NhanVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGV_NhanVien.Location = new System.Drawing.Point(0, 0);
             this.DGV_NhanVien.Name = "DGV_NhanVien";
-            this.DGV_NhanVien.Size = new System.Drawing.Size(651, 581);
+            this.DGV_NhanVien.Size = new System.Drawing.Size(727, 581);
             this.DGV_NhanVien.TabIndex = 1;
+            this.DGV_NhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_NhanVien_CellClick);
             // 
             // col_check
             // 
@@ -110,6 +115,18 @@
             this.Email.Name = "Email";
             this.Email.Width = 150;
             // 
+            // show_col
+            // 
+            this.show_col.HeaderText = "";
+            this.show_col.Name = "show_col";
+            this.show_col.Width = 24;
+            // 
+            // send_col
+            // 
+            this.send_col.HeaderText = "";
+            this.send_col.Name = "send_col";
+            this.send_col.Width = 24;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.txt_noti);
@@ -121,7 +138,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 507);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(651, 74);
+            this.panel1.Size = new System.Drawing.Size(727, 74);
             this.panel1.TabIndex = 3;
             // 
             // txt_noti
@@ -131,14 +148,14 @@
             this.txt_noti.Location = new System.Drawing.Point(0, 0);
             this.txt_noti.Multiline = true;
             this.txt_noti.Name = "txt_noti";
-            this.txt_noti.Size = new System.Drawing.Size(462, 69);
+            this.txt_noti.Size = new System.Drawing.Size(538, 69);
             this.txt_noti.TabIndex = 3;
             // 
             // Lbl_Count
             // 
             this.Lbl_Count.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Count.BackColor = System.Drawing.Color.Transparent;
-            this.Lbl_Count.Location = new System.Drawing.Point(468, 2);
+            this.Lbl_Count.Location = new System.Drawing.Point(544, 2);
             this.Lbl_Count.Name = "Lbl_Count";
             this.Lbl_Count.Size = new System.Drawing.Size(183, 13);
             this.Lbl_Count.TabIndex = 2;
@@ -150,7 +167,7 @@
             this.Btn_ImportExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Btn_ImportExcel.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.Btn_ImportExcel.Image = ((System.Drawing.Image)(resources.GetObject("Btn_ImportExcel.Image")));
-            this.Btn_ImportExcel.Location = new System.Drawing.Point(561, 17);
+            this.Btn_ImportExcel.Location = new System.Drawing.Point(637, 17);
             this.Btn_ImportExcel.Name = "Btn_ImportExcel";
             this.Btn_ImportExcel.Size = new System.Drawing.Size(87, 23);
             this.Btn_ImportExcel.TabIndex = 1;
@@ -163,7 +180,7 @@
             this.btn_TestMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_TestMail.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btn_TestMail.Image = ((System.Drawing.Image)(resources.GetObject("btn_TestMail.Image")));
-            this.btn_TestMail.Location = new System.Drawing.Point(561, 46);
+            this.btn_TestMail.Location = new System.Drawing.Point(637, 46);
             this.btn_TestMail.Name = "btn_TestMail";
             this.btn_TestMail.Size = new System.Drawing.Size(87, 23);
             this.btn_TestMail.TabIndex = 1;
@@ -176,7 +193,7 @@
             this.Btn_Setting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Btn_Setting.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.Btn_Setting.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Setting.Image")));
-            this.Btn_Setting.Location = new System.Drawing.Point(468, 17);
+            this.Btn_Setting.Location = new System.Drawing.Point(544, 17);
             this.Btn_Setting.Name = "Btn_Setting";
             this.Btn_Setting.Size = new System.Drawing.Size(87, 23);
             this.Btn_Setting.TabIndex = 1;
@@ -189,7 +206,7 @@
             this.Btn_SendMail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Btn_SendMail.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.Btn_SendMail.Image = ((System.Drawing.Image)(resources.GetObject("Btn_SendMail.Image")));
-            this.Btn_SendMail.Location = new System.Drawing.Point(468, 46);
+            this.Btn_SendMail.Location = new System.Drawing.Point(544, 46);
             this.Btn_SendMail.Name = "Btn_SendMail";
             this.Btn_SendMail.Size = new System.Drawing.Size(87, 23);
             this.Btn_SendMail.TabIndex = 1;
@@ -202,19 +219,20 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(651, 581);
+            this.panel2.Size = new System.Drawing.Size(727, 581);
             this.panel2.TabIndex = 4;
             // 
             // frm_GuiBangLuongEmail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 581);
+            this.ClientSize = new System.Drawing.Size(727, 581);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_GuiBangLuongEmail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Kyuyo Meisai";
+            this.Text = "Kyuyo Meisai- 給与明細書";
             this.Load += new System.EventHandler(this.frm_GuiBangLuongEmail_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV_NhanVien)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -227,11 +245,6 @@
         #endregion
 
         private DevComponents.DotNetBar.Controls.DataGridViewX DGV_NhanVien;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn col_check;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhongBan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txt_noti;
         private System.Windows.Forms.Label Lbl_Count;
@@ -240,5 +253,12 @@
         private DevComponents.DotNetBar.ButtonX Btn_Setting;
         private DevComponents.DotNetBar.ButtonX Btn_SendMail;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn col_check;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhongBan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewImageColumn show_col;
+        private System.Windows.Forms.DataGridViewImageColumn send_col;
     }
 }

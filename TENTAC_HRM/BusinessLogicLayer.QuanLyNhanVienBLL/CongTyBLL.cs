@@ -21,13 +21,13 @@ namespace TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL
 
         public DataTable showThongTinCongTy(CongTyDTO _congTyDTO)
         {
-            string sql = "select * from  DB_MITACOSQL.dbo.[CONGTY]";
+            string sql = "select * from  MITACOSQL.dbo.[CONGTY]";
             return SQLHelper.ExecuteDt(sql);
         }
 
         public DataTable CongTygetTreeView(CongTyDTO _congTyDTO)
         {
-            string sql = $"select * from  DB_MITACOSQL.dbo.[CongTy] where TenCongTy = '{_congTyDTO.TenCongTy}'";
+            string sql = $"select * from  MITACOSQL.dbo.[CongTy] where TenCongTy = '{_congTyDTO.TenCongTy}'";
             return SQLHelper.ExecuteDt(sql);
         }
     }

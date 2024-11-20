@@ -139,9 +139,9 @@ namespace TENTAC_HRM.Forms.ChamCong
                                select r.Cells[3].Value.ToString()).ToList();
 
             string sql = "select a.Id,b.MaNhanVien,b.TenNhanVien,a.NgayBatDau,a.NgayKetThuc,c.TenPhongBan " +
-                         "from DB_MITACOSQL.dbo.DanhSachNuoiConNho a " +
-                         "join DB_MITACOSQL.dbo.NhanVien b on a.MaChamCong = b.MaChamCong " +
-                         "join DB_MITACOSQL.dbo.PhongBan c on b.MaPhongBan = c.MaPhongBan " +
+                         "from MITACOSQL.dbo.DanhSachNuoiConNho a " +
+                         "join MITACOSQL.dbo.NhanVien b on a.MaChamCong = b.MaChamCong " +
+                         "join MITACOSQL.dbo.PhongBan c on b.MaPhongBan = c.MaPhongBan " +
                          $"where a.NgayBatDau >= '{dtp_TuNgaySearch.Text}' and a.NgayBatDau <= '{dtp_DenNgaySearch.Text}'";
             if (checkedRows.Count > 0)
             {
@@ -216,7 +216,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                 {
                     foreach (string item in checkedRows)
                     {
-                        string sql = "insert into DB_MITACOSQL.dbo.DanhSachNuoiConNho(MaChamCong,NgayBatDau,NgayKetThuc) " +
+                        string sql = "insert into MITACOSQL.dbo.DanhSachNuoiConNho(MaChamCong,NgayBatDau,NgayKetThuc) " +
                                      $"values('{item}','{dtp_TuNgay.Text}','{dtp_DenNgay.Text}')";
                         SQLHelper.ExecuteSql(sql);
                     }
@@ -245,7 +245,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                 {
                     foreach (string item in checkedRows)
                     {
-                        string sql = $"delete DB_MITACOSQL.dbo.DanhSachNuoiConNho where id = '{item}'";
+                        string sql = $"delete MITACOSQL.dbo.DanhSachNuoiConNho where id = '{item}'";
                         SQLHelper.ExecuteSql(sql);
                     }
                     RJMessageBox.Show("Xóa thành công");
@@ -268,7 +268,7 @@ namespace TENTAC_HRM.Forms.ChamCong
             {
                 try
                 {
-                    string sql = $"delete DB_MITACOSQL.dbo.DanhSachNuoiConNho where id = '{dgv_Data.CurrentRow.Cells["Id"].Value.ToString()}'";
+                    string sql = $"delete MITACOSQL.dbo.DanhSachNuoiConNho where id = '{dgv_Data.CurrentRow.Cells["Id"].Value.ToString()}'";
                     SQLHelper.ExecuteSql(sql);
                     RJMessageBox.Show("Xóa thành công");
                     LoadData();
@@ -369,8 +369,8 @@ namespace TENTAC_HRM.Forms.ChamCong
                                     DenNgay = NgayKetThucNew[2] + "/" + NgayKetThucNew[1].PadLeft(2, '0') + "/" + NgayKetThucNew[0].PadLeft(2, '0');
                                 }
                                 string MaChamCong = ma_nhanvien.Substring(2, ma_nhanvien.Length - 2);
-                                string sql = $"delete DB_MITACOSQL.dbo.DanhSachNuoiConNho where MaChamCong = '{int.Parse(MaChamCong)}' and NgayBatDau = '{TuNgay}' \r\n" +
-                                             "Insert into DB_MITACOSQL.dbo.DanhSachNuoiConNho(MaChamCong,NgayBatDau,NgayKetThuc)" +
+                                string sql = $"delete MITACOSQL.dbo.DanhSachNuoiConNho where MaChamCong = '{int.Parse(MaChamCong)}' and NgayBatDau = '{TuNgay}' \r\n" +
+                                             "Insert into MITACOSQL.dbo.DanhSachNuoiConNho(MaChamCong,NgayBatDau,NgayKetThuc)" +
                                              $" Values({int.Parse(MaChamCong)},'{TuNgay}','{DenNgay}')";
                                 SqlCommand sqlCommand = new SqlCommand()
                                 {

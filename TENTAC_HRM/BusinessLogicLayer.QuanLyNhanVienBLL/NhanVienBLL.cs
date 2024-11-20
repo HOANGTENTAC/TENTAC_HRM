@@ -56,11 +56,11 @@ namespace TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL
         }
         public DataTable NhanViengetFromTreeview(NhanVienDTO _nhanVienDTO)
         {
-            string sql = "select * from  DB_MITACOSQL.dbo.[NhanVien] " +
-                $"where (DB_MITACOSQL.dbo.[NhanVien].MaCongTy = '{_nhanVienDTO.MaCongTy}') " +
-                $"or (DB_MITACOSQL.dbo.[NhanVien].MaKhuVuc = '{_nhanVienDTO.MaKhuVuc}') " +
-                $"or (DB_MITACOSQL.dbo.[NhanVien].MaPhongBan = '{_nhanVienDTO.MaPhongBan}') " +
-                $"or (DB_MITACOSQL.dbo.[NhanVien].MaChucVu = '{_nhanVienDTO.MaChucVu}')  ";
+            string sql = "select * from  MITACOSQL.dbo.[NhanVien] " +
+                $"where (MITACOSQL.dbo.[NhanVien].MaCongTy = '{_nhanVienDTO.MaCongTy}') " +
+                $"or (MITACOSQL.dbo.[NhanVien].MaKhuVuc = '{_nhanVienDTO.MaKhuVuc}') " +
+                $"or (MITACOSQL.dbo.[NhanVien].MaPhongBan = '{_nhanVienDTO.MaPhongBan}') " +
+                $"or (MITACOSQL.dbo.[NhanVien].MaChucVu = '{_nhanVienDTO.MaChucVu}')  ";
             return SQLHelper.ExecuteDt(sql);
         }        
         public DataTable NhanVienSearch(NhanVienDTO _nhanVienDTO)

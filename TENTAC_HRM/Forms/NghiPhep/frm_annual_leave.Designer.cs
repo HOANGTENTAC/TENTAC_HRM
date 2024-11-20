@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Forms.Cham_Cong
+﻿namespace TENTAC_HRM.Forms.NghiPhep
 {
     partial class frm_annual_leave
     {

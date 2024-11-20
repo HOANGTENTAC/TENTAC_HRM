@@ -14,18 +14,18 @@ namespace TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL
     {
         public DataTable GETPHONGBANTREEVIEW(PhongBanDTO _phongBanDTO)
         {
-            string sql = $"select * from  DB_MITACOSQL.dbo.[PHONGBAN] where MaKhuVuc='{_phongBanDTO.MaKhuVuc}' ";
+            string sql = $"select * from  MITACOSQL.dbo.[PHONGBAN] where MaKhuVuc='{_phongBanDTO.MaKhuVuc}' ";
             return SQLHelper.ExecuteDt(sql);
         }
 
         public DataTable PhongBanGetTreeView(PhongBanDTO _phongBanDTO)
         {
-            string sql = $"select * from DB_MITACOSQL.dbo.[PhongBan] where TenPhongBan = '{_phongBanDTO.TenPhongBan}'";
+            string sql = $"select * from MITACOSQL.dbo.[PhongBan] where TenPhongBan = '{_phongBanDTO.TenPhongBan}'";
             return SQLHelper.ExecuteDt(sql);
         }
         public DataTable getTenPhongBanByMaPhongBan(PhongBanDTO _phongBanDTO)
         {
-            string sql = $"select * from DB_MITACOSQL.dbo.[PHONGBAN] where MaPhongBan = '{_phongBanDTO.MaPhongBan}'";
+            string sql = $"select * from MITACOSQL.dbo.[PHONGBAN] where MaPhongBan = '{_phongBanDTO.MaPhongBan}'";
             return SQLHelper.ExecuteDt(sql);
         }
     }
