@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.CommonModel;
 using TENTAC_HRM.Custom;
@@ -44,11 +39,30 @@ namespace TENTAC_HRM.Forms.Luong
                 string fileMailInfo = $@"{Path.GetDirectoryName(asm.Location)}\Template\InfoMail.txt";
                 MailInfo mailInfo = new MailInfo(txt_email.Text, txt_pass.Text, txt_subject.Text, txt_textbody.Text, txt_emailtest.Text);
                 System.IO.File.WriteAllText(fileMailInfo, mailInfo.ToString());
+                PathModel.WriteIniFile(PathModel.GroupSetting, PathModel.ExcelPathName, txt_PathExcel.Text);
                 RJMessageBox.Show("Sửa thành công");
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_ExcelOutputPath_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FolderBrowserDialog fbd_excel_output_path = new FolderBrowserDialog();
+                var result = fbd_excel_output_path.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    var path = fbd_excel_output_path.SelectedPath;
+                    txt_PathExcel.Text = path;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
     }

@@ -42,7 +42,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
 
         private MayChamCongDTO _mayChamCongDTO = new MayChamCongDTO();
 
-        private NhanVien_BLL _nhanVienBLL = new NhanVien_BLL();
+        private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
 
         private CommonBLL _commonBLL = new CommonBLL();
 

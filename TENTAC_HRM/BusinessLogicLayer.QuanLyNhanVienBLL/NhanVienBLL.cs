@@ -2,11 +2,12 @@
 using System.Data;
 using System.Data.SqlClient;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.DataTransferObject.QuanLyNhanVienDTO;
 using TENTAC_HRM.Model;
 
 namespace TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL
 {
-    internal class NhanVien_BLL : Provider
+    internal class NhanVienBLL : Provider
     {
         public DataTable NhanVienGetByMaChamCong(string ma_cham_cong)
         {
@@ -52,6 +53,22 @@ namespace TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL
             _sqlParameter.Add(new SqlParameter("@DienThoaiDD", _nhanVienDTO.Sdt_value));
             _sqlParameter.Add(new SqlParameter("@Email", _nhanVienDTO.Email_value));
             Procedure("nhanvien_add_tumaychamcong", _sqlParameter);
+        }
+        public DataTable NhanViengetFromTreeview(NhanVienDTO _nhanVienDTO)
+        {
+            string sql = "select * from  DB_MITACOSQL.dbo.[NhanVien] " +
+                $"where (DB_MITACOSQL.dbo.[NhanVien].MaCongTy = '{_nhanVienDTO.MaCongTy}') " +
+                $"or (DB_MITACOSQL.dbo.[NhanVien].MaKhuVuc = '{_nhanVienDTO.MaKhuVuc}') " +
+                $"or (DB_MITACOSQL.dbo.[NhanVien].MaPhongBan = '{_nhanVienDTO.MaPhongBan}') " +
+                $"or (DB_MITACOSQL.dbo.[NhanVien].MaChucVu = '{_nhanVienDTO.MaChucVu}')  ";
+            return SQLHelper.ExecuteDt(sql);
+        }        
+        public DataTable NhanVienSearch(NhanVienDTO _nhanVienDTO)
+        {
+            string sql = "select * " +
+                "from  MITACOSQL.dbo.[NHANVIEN] " +
+                $"where (TenNhanVien like '%{_nhanVienDTO.TenNhanVien}%' or MaNhanVien like '%{_nhanVienDTO.MaNhanVien}%'  ) and MaPhongBan is not null";
+            return SQLHelper.ExecuteDt(sql);
         }
     }
 }
