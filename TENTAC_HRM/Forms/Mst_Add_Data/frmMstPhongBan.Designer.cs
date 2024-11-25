@@ -31,133 +31,105 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtTenPhongBan = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.lblTenPhongBan = new DevComponents.DotNetBar.LabelX();
-            this.cbMaKhuVuc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.lblMaKhuVuc = new DevComponents.DotNetBar.LabelX();
-            this.cbMaCongTy = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.lblMaCongTy = new DevComponents.DotNetBar.LabelX();
-            this.lblMaPhongBan = new DevComponents.DotNetBar.LabelX();
             this.txtMaPhongBan = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.cbMaKhuVuc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.cbMaCongTy = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtTenPhongBan);
-            this.panel1.Controls.Add(this.lblTenPhongBan);
-            this.panel1.Controls.Add(this.cbMaKhuVuc);
-            this.panel1.Controls.Add(this.lblMaKhuVuc);
-            this.panel1.Controls.Add(this.cbMaCongTy);
-            this.panel1.Controls.Add(this.lblMaCongTy);
-            this.panel1.Controls.Add(this.lblMaPhongBan);
             this.panel1.Controls.Add(this.txtMaPhongBan);
+            this.panel1.Controls.Add(this.labelX5);
+            this.panel1.Controls.Add(this.labelX4);
+            this.panel1.Controls.Add(this.labelX3);
+            this.panel1.Controls.Add(this.labelX2);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.cbMaKhuVuc);
+            this.panel1.Controls.Add(this.cbMaCongTy);
             this.panel1.Controls.Add(this.labelX1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(367, 403);
+            this.panel1.Size = new System.Drawing.Size(362, 403);
             this.panel1.TabIndex = 1;
             // 
             // txtTenPhongBan
             // 
-            this.txtTenPhongBan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
             // 
             // 
             // 
             this.txtTenPhongBan.Border.Class = "TextBoxBorder";
-            this.txtTenPhongBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenPhongBan.Location = new System.Drawing.Point(33, 291);
-            this.txtTenPhongBan.Multiline = true;
+            this.txtTenPhongBan.Location = new System.Drawing.Point(33, 292);
             this.txtTenPhongBan.Name = "txtTenPhongBan";
-            this.txtTenPhongBan.Size = new System.Drawing.Size(295, 25);
-            this.txtTenPhongBan.TabIndex = 4;
-            // 
-            // lblTenPhongBan
-            // 
-            this.lblTenPhongBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenPhongBan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTenPhongBan.Location = new System.Drawing.Point(31, 262);
-            this.lblTenPhongBan.Name = "lblTenPhongBan";
-            this.lblTenPhongBan.Size = new System.Drawing.Size(122, 23);
-            this.lblTenPhongBan.TabIndex = 50;
-            this.lblTenPhongBan.Text = "Tên Phòng Ban:";
-            // 
-            // cbMaKhuVuc
-            // 
-            this.cbMaKhuVuc.DisplayMember = "Text";
-            this.cbMaKhuVuc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbMaKhuVuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMaKhuVuc.FormattingEnabled = true;
-            this.cbMaKhuVuc.ItemHeight = 16;
-            this.cbMaKhuVuc.Location = new System.Drawing.Point(33, 234);
-            this.cbMaKhuVuc.Name = "cbMaKhuVuc";
-            this.cbMaKhuVuc.Size = new System.Drawing.Size(295, 22);
-            this.cbMaKhuVuc.TabIndex = 3;
-            // 
-            // lblMaKhuVuc
-            // 
-            this.lblMaKhuVuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaKhuVuc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMaKhuVuc.Location = new System.Drawing.Point(33, 205);
-            this.lblMaKhuVuc.Name = "lblMaKhuVuc";
-            this.lblMaKhuVuc.Size = new System.Drawing.Size(101, 23);
-            this.lblMaKhuVuc.TabIndex = 48;
-            this.lblMaKhuVuc.Text = "Khu Vực:";
-            // 
-            // cbMaCongTy
-            // 
-            this.cbMaCongTy.DisplayMember = "Text";
-            this.cbMaCongTy.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbMaCongTy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMaCongTy.FormattingEnabled = true;
-            this.cbMaCongTy.ItemHeight = 16;
-            this.cbMaCongTy.Location = new System.Drawing.Point(31, 177);
-            this.cbMaCongTy.Name = "cbMaCongTy";
-            this.cbMaCongTy.Size = new System.Drawing.Size(295, 22);
-            this.cbMaCongTy.TabIndex = 2;
-            this.cbMaCongTy.SelectedIndexChanged += new System.EventHandler(this.cbMaCongTy_SelectedIndexChanged);
-            // 
-            // lblMaCongTy
-            // 
-            this.lblMaCongTy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaCongTy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMaCongTy.Location = new System.Drawing.Point(33, 148);
-            this.lblMaCongTy.Name = "lblMaCongTy";
-            this.lblMaCongTy.Size = new System.Drawing.Size(101, 23);
-            this.lblMaCongTy.TabIndex = 46;
-            this.lblMaCongTy.Text = "Công Ty:";
-            // 
-            // lblMaPhongBan
-            // 
-            this.lblMaPhongBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaPhongBan.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMaPhongBan.Location = new System.Drawing.Point(33, 88);
-            this.lblMaPhongBan.Name = "lblMaPhongBan";
-            this.lblMaPhongBan.Size = new System.Drawing.Size(101, 23);
-            this.lblMaPhongBan.TabIndex = 45;
-            this.lblMaPhongBan.Text = "Mã Phòng Ban:";
+            this.txtTenPhongBan.Size = new System.Drawing.Size(295, 22);
+            this.txtTenPhongBan.TabIndex = 57;
             // 
             // txtMaPhongBan
             // 
-            this.txtMaPhongBan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
             // 
             // 
             this.txtMaPhongBan.Border.Class = "TextBoxBorder";
-            this.txtMaPhongBan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaPhongBan.Location = new System.Drawing.Point(33, 117);
-            this.txtMaPhongBan.Multiline = true;
+            this.txtMaPhongBan.Location = new System.Drawing.Point(33, 116);
             this.txtMaPhongBan.Name = "txtMaPhongBan";
             this.txtMaPhongBan.ReadOnly = true;
-            this.txtMaPhongBan.Size = new System.Drawing.Size(295, 25);
-            this.txtMaPhongBan.TabIndex = 1;
+            this.txtMaPhongBan.Size = new System.Drawing.Size(295, 22);
+            this.txtMaPhongBan.TabIndex = 56;
+            // 
+            // labelX5
+            // 
+            this.labelX5.Location = new System.Drawing.Point(33, 262);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(101, 23);
+            this.labelX5.TabIndex = 55;
+            this.labelX5.Text = "Tên Phòng Ban";
+            // 
+            // labelX4
+            // 
+            this.labelX4.Location = new System.Drawing.Point(33, 205);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(67, 23);
+            this.labelX4.TabIndex = 54;
+            this.labelX4.Text = "Khu Vực";
+            // 
+            // labelX3
+            // 
+            this.labelX3.Location = new System.Drawing.Point(33, 148);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(67, 23);
+            this.labelX3.TabIndex = 53;
+            this.labelX3.Text = "Công Ty";
+            // 
+            // labelX2
+            // 
+            this.labelX2.Location = new System.Drawing.Point(33, 86);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(101, 23);
+            this.labelX2.TabIndex = 52;
+            this.labelX2.Text = "Mã Phòng Ban";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel2.Controls.Add(this.btn_save);
+            this.panel2.Controls.Add(this.btn_cancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 346);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(362, 57);
+            this.panel2.TabIndex = 51;
             // 
             // btn_save
             // 
@@ -174,6 +146,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             // 
             // btn_cancel
             // 
+            this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_cancel.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_cancel.Location = new System.Drawing.Point(201, 15);
@@ -185,6 +158,31 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
+            // cbMaKhuVuc
+            // 
+            this.cbMaKhuVuc.DisplayMember = "Text";
+            this.cbMaKhuVuc.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbMaKhuVuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMaKhuVuc.FormattingEnabled = true;
+            this.cbMaKhuVuc.ItemHeight = 16;
+            this.cbMaKhuVuc.Location = new System.Drawing.Point(33, 234);
+            this.cbMaKhuVuc.Name = "cbMaKhuVuc";
+            this.cbMaKhuVuc.Size = new System.Drawing.Size(295, 22);
+            this.cbMaKhuVuc.TabIndex = 3;
+            // 
+            // cbMaCongTy
+            // 
+            this.cbMaCongTy.DisplayMember = "Text";
+            this.cbMaCongTy.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbMaCongTy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMaCongTy.FormattingEnabled = true;
+            this.cbMaCongTy.ItemHeight = 16;
+            this.cbMaCongTy.Location = new System.Drawing.Point(33, 177);
+            this.cbMaCongTy.Name = "cbMaCongTy";
+            this.cbMaCongTy.Size = new System.Drawing.Size(295, 22);
+            this.cbMaCongTy.TabIndex = 2;
+            this.cbMaCongTy.SelectedIndexChanged += new System.EventHandler(this.cbMaCongTy_SelectedIndexChanged);
+            // 
             // labelX1
             // 
             this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
@@ -193,32 +191,25 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.labelX1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.labelX1.Location = new System.Drawing.Point(0, 0);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(367, 62);
+            this.labelX1.Size = new System.Drawing.Size(362, 62);
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "Thêm Thông Tin Phòng Ban";
             this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
-            this.panel2.Controls.Add(this.btn_save);
-            this.panel2.Controls.Add(this.btn_cancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 346);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(367, 57);
-            this.panel2.TabIndex = 51;
-            // 
             // frmMstPhongBan
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 403);
+            this.CancelButton = this.btn_cancel;
+            this.ClientSize = new System.Drawing.Size(362, 403);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMstPhongBan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Phòng Ban";
+            this.Load += new System.EventHandler(this.frmMstPhongBan_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -228,17 +219,17 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtTenPhongBan;
-        private DevComponents.DotNetBar.LabelX lblTenPhongBan;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbMaKhuVuc;
-        private DevComponents.DotNetBar.LabelX lblMaKhuVuc;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbMaCongTy;
-        private DevComponents.DotNetBar.LabelX lblMaCongTy;
-        private DevComponents.DotNetBar.LabelX lblMaPhongBan;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMaPhongBan;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_cancel;
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.Panel panel2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTenPhongBan;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMaPhongBan;
+        private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.LabelX labelX2;
     }
 }

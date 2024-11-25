@@ -25,11 +25,12 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_minimum_salary()
         {
             InitializeComponent();
-            load_data();
+            LoadData();
         }
-        public void load_data()
+        public void LoadData()
         {
-            string sql = "select Id, Vung, LuongToiThieuTheoThang, LuongToiThieuTheoGio, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from tbl_MucLuongToiThieu where DelFlg = 0 order by Vung";
+            string sql = "select Id, Vung, FORMAT(LuongToiThieuTheoThang, 'N0') as LuongToiThieuTheoThang, FORMAT(LuongToiThieuTheoGio, 'N0') as LuongToiThieuTheoGio, " +
+                "NamHienHanh, GhiChu, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from tbl_MucLuongToiThieu where del_flg = 0 order by Vung";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_minium_salary.DataSource = dt;
@@ -38,6 +39,14 @@ namespace TENTAC_HRM.Forms.User_control
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                                "Xác nhận",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_minium_salary.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -49,11 +58,8 @@ namespace TENTAC_HRM.Forms.User_control
 
                     if (isChecked)
                     {
-                        string Vung = row.Cells["Vung"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(Vung))
-                        {
-                            updateQueries.Add($@"UPDATE tbl_MucLuongToiThieu SET DelFlg = 1 WHERE Vung = N'{Vung}'");
-                        }
+                        int IdVung = int.Parse(row.Cells["Id"].Value.ToString());
+                        updateQueries.Add($@"UPDATE tbl_MucLuongToiThieu SET del_flg = 1 WHERE Id = {SQLHelper.rpI(IdVung)}");
                     }
                 }
 
@@ -70,7 +76,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_data();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -79,22 +85,18 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmLuongToiThieu frmLuongToiThieu = new frmLuongToiThieu(null, null, null, true, this);
+            frmLuongToiThieu frmLuongToiThieu = new frmLuongToiThieu(this);
+            frmLuongToiThieu._Edit = false;
             frmLuongToiThieu.ShowDialog();
         }
         private void dgv_minium_salary_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_minium_salary.Columns["edit_column"].Index)
             {
-                string Vung = dgv_minium_salary.CurrentRow.Cells["Vung"].Value.ToString();
-                double? LuongToiThieuTheoThang = dgv_minium_salary.CurrentRow.Cells["LuongToiThieuTheoThang"].Value != null
-                     ? Convert.ToDouble(dgv_minium_salary.CurrentRow.Cells["LuongToiThieuTheoThang"].Value)
-                     : (double?)null;
-
-                double? LuongToiThieuTheoGio = dgv_minium_salary.CurrentRow.Cells["LuongToiThieuTheoGio"].Value != null
-                    ? Convert.ToDouble(dgv_minium_salary.CurrentRow.Cells["LuongToiThieuTheoGio"].Value)
-                    : (double?)null;
-                frmLuongToiThieu frmLuongToiThieu = new frmLuongToiThieu(Vung, LuongToiThieuTheoThang, LuongToiThieuTheoGio, false, this);
+                int IDVung = int.Parse(dgv_minium_salary.CurrentRow.Cells["Id"].Value.ToString());
+                frmLuongToiThieu frmLuongToiThieu = new frmLuongToiThieu(this);
+                frmLuongToiThieu._Edit = true;
+                frmLuongToiThieu._IDVung = IDVung;
                 frmLuongToiThieu.ShowDialog();
             }
         }

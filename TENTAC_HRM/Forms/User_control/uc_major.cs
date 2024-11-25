@@ -30,11 +30,11 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_major()
         {
             InitializeComponent();
-            load_dataChuyenNganh();
+            LoadData();
         }
-        public void load_dataChuyenNganh()
+        public void LoadData()
         {
-            string sql = "select Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_ChuyenNganh where DelFlg = 0 order by MaChuyenNganh";
+            string sql = "select Id, MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_ChuyenNganh where del_flg = 0 order by MaChuyenNganh";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_major.DataSource = dt;
@@ -43,6 +43,15 @@ namespace TENTAC_HRM.Forms.User_control
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                               "Xác nhận",
+                                               MessageBoxButtons.YesNo,
+                                               MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_major.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -57,7 +66,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string MaNgoaiNgu = row.Cells["MaChuyenNganh"].Value?.ToString();
                         if (!string.IsNullOrEmpty(MaNgoaiNgu))
                         {
-                            updateQueries.Add($@"UPDATE mst_ChuyenNganh SET DelFlg = 1 WHERE MaChuyenNganh = N'{MaNgoaiNgu}'");
+                            updateQueries.Add($@"UPDATE mst_ChuyenNganh SET del_flg = 1 WHERE MaChuyenNganh = N'{MaNgoaiNgu}'");
                         }
                     }
                 }
@@ -75,7 +84,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_dataChuyenNganh();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -173,57 +182,35 @@ namespace TENTAC_HRM.Forms.User_control
                         for (int row = 1; row <= sheet.LastRowNum; row++)
                         {
                             IRow currentRow = sheet.GetRow(row);
-                            string maChuyenNganh = currentRow.GetCell(0)?.ToString() ?? "";
-                            string tenChuyenNganh = currentRow.GetCell(1)?.ToString() ?? "";
-                            string moTa = currentRow.GetCell(2)?.ToString() ?? "";
+                            string _MaChuyenNganh = currentRow.GetCell(0)?.ToString() ?? "";
+                            string _TenChuyenNganh = currentRow.GetCell(1)?.ToString() ?? "";
+                            string _MoTa = currentRow.GetCell(2)?.ToString() ?? "";
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_ChuyenNganh WHERE MaChuyenNganh = @MaChuyenNganh AND DelFlg = 0";
-                            var checkParams = new List<SqlParameter>
-                            {
-                                new SqlParameter("@MaChuyenNganh", maChuyenNganh)
-                            };
+                            string checkQuery = $@"SELECT COUNT(*) FROM mst_ChuyenNganh WHERE MaChuyenNganh = {SQLHelper.rpStr(_MaChuyenNganh)} AND del_flg = 0";
 
-                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
+                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery);
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_ChuyenNganh
+                                string sqlUpdate = $@"UPDATE mst_ChuyenNganh
                                 SET 
-                                    TenChuyenNganh = @TenChuyenNganh,
-                                    MoTa = @MoTa,
-                                    NgayCapNhat = @NgayCapNhat,
-                                    NguoiCapNhat = @NguoiCapNhat
+                                    TenChuyenNganh = {SQLHelper.rpStr(_TenChuyenNganh)},
+                                    MoTa = {SQLHelper.rpStr(_MoTa)},
+                                    NgayCapNhat = '{DateTime.Now}',
+                                    NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
                                 WHERE 
-                                    MaChuyenNganh = @MaChuyenNganh AND DelFlg = 0";
-
-                                var updateParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaChuyenNganh", maChuyenNganh),
-                                    new SqlParameter("@TenChuyenNganh", tenChuyenNganh),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
+                                    MaChuyenNganh = {SQLHelper.rpStr(_MaChuyenNganh)} AND del_flg = 0";
+                                res += SQLHelper.ExecuteSql(sqlUpdate);
                             }
                             else
                             {
                                 string newMaChuyenNganh = autoCodeGenerator.GenerateNextCode("mst_ChuyenNganh", "CN", "MaChuyenNganh");
 
-                                string sqlInsert = @"INSERT INTO mst_ChuyenNganh(MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                                    VALUES(@MaChuyenNganh, @TenChuyenNganh, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                                string sqlInsert = $@"INSERT INTO mst_ChuyenNganh(MaChuyenNganh, TenChuyenNganh, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                                    VALUES({SQLHelper.rpStr(newMaChuyenNganh)}, {SQLHelper.rpStr(_TenChuyenNganh)}, {SQLHelper.rpStr(_MoTa)}, 
+                                    '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
 
-                                var insertParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaChuyenNganh", newMaChuyenNganh),
-                                    new SqlParameter("@TenChuyenNganh", tenChuyenNganh),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayTao", DateTime.Now),
-                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
+                                res += SQLHelper.ExecuteSql(sqlInsert);
                             }
                         }
 
@@ -234,7 +221,7 @@ namespace TENTAC_HRM.Forms.User_control
                     }
                     Cursor.Current = Cursors.Default;
                 }
-                load_dataChuyenNganh();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -248,7 +235,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstChuyenNganh frmMstChuyenNganh = new frmMstChuyenNganh(null, null, null, true, this);
+            frmMstChuyenNganh frmMstChuyenNganh = new frmMstChuyenNganh(this);
+            frmMstChuyenNganh._Edit = false;
             frmMstChuyenNganh.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)
@@ -278,9 +266,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_major.Columns["edit_column"].Index)
             {
                 string MaChuyenNganh = dgv_major.CurrentRow.Cells["MaChuyenNganh"].Value.ToString();
-                string TenChuyenNganh = dgv_major.CurrentRow.Cells["TenChuyenNganh"].Value.ToString();
-                string MoTa = dgv_major.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstChuyenNganh frmMstChuyenNganh = new frmMstChuyenNganh(MaChuyenNganh, TenChuyenNganh, MoTa, false, this);
+                frmMstChuyenNganh frmMstChuyenNganh = new frmMstChuyenNganh(this);
+                frmMstChuyenNganh._MaChuyenNganh = MaChuyenNganh;
+                frmMstChuyenNganh._Edit = true;
                 frmMstChuyenNganh.ShowDialog();
             }
         }

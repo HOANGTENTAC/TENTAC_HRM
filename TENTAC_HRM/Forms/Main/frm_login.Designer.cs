@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_login));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btn_close = new FontAwesome.Sharp.IconButton();
             this.lb_error = new System.Windows.Forms.Label();
             this.btn_show_pass = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_password = new TENTAC_HRM.Custom.RJTextBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +63,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(384, 336);
             this.panel2.TabIndex = 1;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkLabel1.Location = new System.Drawing.Point(160, 199);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(197, 25);
+            this.linkLabel1.TabIndex = 10;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Quên mật khẩu?";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn_close
             // 
@@ -210,17 +221,6 @@
             this.txt_password.UnderlinedStyle = false;
             this.txt_password.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_password_KeyPress);
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkLabel1.Location = new System.Drawing.Point(160, 199);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(197, 25);
-            this.linkLabel1.TabIndex = 10;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Quên mật khẩu?";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // frm_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -232,7 +232,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.frm_login_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);

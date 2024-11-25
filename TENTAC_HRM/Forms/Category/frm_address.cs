@@ -1,4 +1,5 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using ComponentFactory.Krypton.Toolkit;
+using Microsoft.Office.Interop.Excel;
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Forms.Chart_Management;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.User_control;
 using DataTable = System.Data.DataTable;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_address : Form
+    public partial class frm_address : KryptonForm
     {
         public string _ma_nhanvien { get; set; }
         public int? _loai_diachi { get; set; }

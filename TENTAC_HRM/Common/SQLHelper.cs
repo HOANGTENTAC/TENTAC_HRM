@@ -321,6 +321,20 @@ namespace TENTAC_HRM
             }
             return result;
         }
+        public static string rpDouble(double? hiki)
+        {
+            string result = "";
+
+            if (hiki == null)
+            {
+                result = "Null";
+            }
+            else
+            {
+                result = hiki.ToString();
+            }
+            return result;
+        }
         public static byte[] ConvertImageToByteArray(Image image)
         {
             if (image == null)

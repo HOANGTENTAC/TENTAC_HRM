@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblMoTa = new DevComponents.DotNetBar.LabelX();
+            this.txtMoTa = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtTenNgoaiNgu = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.lblTenNgoaiNgu = new DevComponents.DotNetBar.LabelX();
-            this.lblMaNgoaiNgu = new DevComponents.DotNetBar.LabelX();
             this.txtMaNgoaiNgu = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.txtMota = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.lblMoTa);
+            this.panel1.Controls.Add(this.txtMoTa);
             this.panel1.Controls.Add(this.txtTenNgoaiNgu);
-            this.panel1.Controls.Add(this.lblTenNgoaiNgu);
-            this.panel1.Controls.Add(this.lblMaNgoaiNgu);
             this.panel1.Controls.Add(this.txtMaNgoaiNgu);
-            this.panel1.Controls.Add(this.txtMota);
+            this.panel1.Controls.Add(this.labelX4);
+            this.panel1.Controls.Add(this.labelX3);
+            this.panel1.Controls.Add(this.labelX2);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.labelX1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -60,64 +60,74 @@
             this.panel1.Size = new System.Drawing.Size(353, 402);
             this.panel1.TabIndex = 1;
             // 
-            // lblMoTa
+            // txtMoTa
             // 
-            this.lblMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoTa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMoTa.Location = new System.Drawing.Point(28, 199);
-            this.lblMoTa.Name = "lblMoTa";
-            this.lblMoTa.Size = new System.Drawing.Size(62, 23);
-            this.lblMoTa.TabIndex = 30;
-            this.lblMoTa.Text = "Mô Tả:";
+            // 
+            // 
+            // 
+            this.txtMoTa.Border.Class = "TextBoxBorder";
+            this.txtMoTa.Location = new System.Drawing.Point(28, 222);
+            this.txtMoTa.Multiline = true;
+            this.txtMoTa.Name = "txtMoTa";
+            this.txtMoTa.Size = new System.Drawing.Size(295, 90);
+            this.txtMoTa.TabIndex = 37;
             // 
             // txtTenNgoaiNgu
             // 
-            this.txtTenNgoaiNgu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
             // 
             // 
             // 
             this.txtTenNgoaiNgu.Border.Class = "TextBoxBorder";
-            this.txtTenNgoaiNgu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenNgoaiNgu.Location = new System.Drawing.Point(28, 168);
-            this.txtTenNgoaiNgu.Multiline = true;
+            this.txtTenNgoaiNgu.Location = new System.Drawing.Point(28, 165);
             this.txtTenNgoaiNgu.Name = "txtTenNgoaiNgu";
-            this.txtTenNgoaiNgu.Size = new System.Drawing.Size(295, 25);
-            this.txtTenNgoaiNgu.TabIndex = 2;
-            // 
-            // lblTenNgoaiNgu
-            // 
-            this.lblTenNgoaiNgu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenNgoaiNgu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTenNgoaiNgu.Location = new System.Drawing.Point(28, 139);
-            this.lblTenNgoaiNgu.Name = "lblTenNgoaiNgu";
-            this.lblTenNgoaiNgu.Size = new System.Drawing.Size(105, 23);
-            this.lblTenNgoaiNgu.TabIndex = 28;
-            this.lblTenNgoaiNgu.Text = "Tên Ngoại Ngữ :";
-            // 
-            // lblMaNgoaiNgu
-            // 
-            this.lblMaNgoaiNgu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaNgoaiNgu.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMaNgoaiNgu.Location = new System.Drawing.Point(28, 79);
-            this.lblMaNgoaiNgu.Name = "lblMaNgoaiNgu";
-            this.lblMaNgoaiNgu.Size = new System.Drawing.Size(105, 23);
-            this.lblMaNgoaiNgu.TabIndex = 27;
-            this.lblMaNgoaiNgu.Text = "Mã Ngoại Ngữ:";
+            this.txtTenNgoaiNgu.Size = new System.Drawing.Size(295, 22);
+            this.txtTenNgoaiNgu.TabIndex = 36;
             // 
             // txtMaNgoaiNgu
             // 
-            this.txtMaNgoaiNgu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
             // 
             // 
             this.txtMaNgoaiNgu.Border.Class = "TextBoxBorder";
-            this.txtMaNgoaiNgu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaNgoaiNgu.Location = new System.Drawing.Point(28, 108);
-            this.txtMaNgoaiNgu.Multiline = true;
             this.txtMaNgoaiNgu.Name = "txtMaNgoaiNgu";
-            this.txtMaNgoaiNgu.ReadOnly = true;
-            this.txtMaNgoaiNgu.Size = new System.Drawing.Size(295, 25);
-            this.txtMaNgoaiNgu.TabIndex = 1;
+            this.txtMaNgoaiNgu.Size = new System.Drawing.Size(295, 22);
+            this.txtMaNgoaiNgu.TabIndex = 35;
+            // 
+            // labelX4
+            // 
+            this.labelX4.Location = new System.Drawing.Point(28, 193);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(97, 23);
+            this.labelX4.TabIndex = 34;
+            this.labelX4.Text = "Mô Tả";
+            // 
+            // labelX3
+            // 
+            this.labelX3.Location = new System.Drawing.Point(28, 136);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(97, 23);
+            this.labelX3.TabIndex = 33;
+            this.labelX3.Text = "Tên Ngoại Ngữ";
+            // 
+            // labelX2
+            // 
+            this.labelX2.Location = new System.Drawing.Point(28, 79);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(97, 23);
+            this.labelX2.TabIndex = 32;
+            this.labelX2.Text = "Mã Ngoại Ngữ";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel2.Controls.Add(this.btn_save);
+            this.panel2.Controls.Add(this.btn_cancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 345);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(353, 57);
+            this.panel2.TabIndex = 31;
             // 
             // btn_save
             // 
@@ -134,6 +144,7 @@
             // 
             // btn_cancel
             // 
+            this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_cancel.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_cancel.Location = new System.Drawing.Point(196, 15);
@@ -144,21 +155,6 @@
             this.btn_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
-            // 
-            // txtMota
-            // 
-            this.txtMota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
-            // 
-            // 
-            // 
-            this.txtMota.Border.Class = "TextBoxBorder";
-            this.txtMota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMota.Location = new System.Drawing.Point(28, 229);
-            this.txtMota.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMota.Multiline = true;
-            this.txtMota.Name = "txtMota";
-            this.txtMota.Size = new System.Drawing.Size(295, 93);
-            this.txtMota.TabIndex = 3;
             // 
             // labelX1
             // 
@@ -173,27 +169,20 @@
             this.labelX1.Text = "Thêm Thông Tin Ngoại Ngữ";
             this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
-            this.panel2.Controls.Add(this.btn_save);
-            this.panel2.Controls.Add(this.btn_cancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 345);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(353, 57);
-            this.panel2.TabIndex = 31;
-            // 
             // frmMstNgoaiNgu
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(353, 402);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMstNgoaiNgu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Ngoại Ngữ";
+            this.Load += new System.EventHandler(this.frmMstNgoaiNgu_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -203,15 +192,15 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.LabelX lblMoTa;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtTenNgoaiNgu;
-        private DevComponents.DotNetBar.LabelX lblTenNgoaiNgu;
-        private DevComponents.DotNetBar.LabelX lblMaNgoaiNgu;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMaNgoaiNgu;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_cancel;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMota;
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.Panel panel2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMoTa;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTenNgoaiNgu;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMaNgoaiNgu;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.LabelX labelX2;
     }
 }

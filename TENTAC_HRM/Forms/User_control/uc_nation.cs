@@ -30,42 +30,32 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_nation()
         {
             InitializeComponent();
-            load_dataDanToc();
+            LoadData();
         }
-        public void load_dataDanToc()
+        public void LoadData()
         {
-            //dgv_nation.EnableHeadersVisualStyles = false;
-
-            //dgv_nation.EnableHeadersVisualStyles = false; // Tắt visual styles
-            //dgv_nation.CellPainting += gridView_CellPainting; // Đăng ký sự kiện vẽ tiêu đề
-
-            string sql = "select Id, MaDanToc,TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_DanToc where DelFlg = 0 order by MaDanToc";
+            string sql = "select Id, MaDanToc,TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_DanToc where del_flg = 0 order by MaDanToc";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_nation.DataSource = dt;
         }
-        //private void gridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        //{
-        //    if (e.RowIndex == -1 && e.ColumnIndex >= 0)
-        //    {
-        //        e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(81, 124, 255)), e.CellBounds); // Nền tiêu đề
-        //        e.Graphics.DrawRectangle(Pens.Gainsboro, e.CellBounds); // Đường viền
-
-        //        Font headerFont = new Font(Font.FontFamily, 11); // Font in đậm
-        //        TextRenderer.DrawText(e.Graphics, e.FormattedValue.ToString(), headerFont, e.CellBounds, Color.White, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-
-        //        e.Handled = true;
-        //    }
-        //}
         private void uc_nation_Load(object sender, EventArgs e)
         {
-            //pl_nation.Width = 0;
-            load_dataDanToc();
+            LoadData();
         }
         private void btn_delete_Click(object sender, EventArgs e)
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                                "Xác nhận",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_nation.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -80,7 +70,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string MaDanToc = row.Cells["MaDanToc"].Value?.ToString();
                         if (!string.IsNullOrEmpty(MaDanToc))
                         {
-                            updateQueries.Add($@"UPDATE mst_DanToc SET DelFlg = 1 WHERE MaDanToc = N'{MaDanToc}'");
+                            updateQueries.Add($@"UPDATE mst_DanToc SET del_flg = 1 WHERE MaDanToc = N'{MaDanToc}'");
                         }
                     }
                 }
@@ -98,7 +88,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_dataDanToc();
+                LoadData();
             }
             catch(Exception ex)
             {
@@ -200,57 +190,36 @@ namespace TENTAC_HRM.Forms.User_control
                             IRow currentRow = sheet.GetRow(row);
                             if (currentRow == null) continue;
 
-                            string maDanToc = currentRow.GetCell(0)?.ToString() ?? "";
-                            string tenDanToc = currentRow.GetCell(1)?.ToString() ?? "";
-                            string moTa = currentRow.GetCell(2)?.ToString() ?? "";
+                            string _MaDanToc = currentRow.GetCell(0)?.ToString() ?? "";
+                            string _TenDanToc = currentRow.GetCell(1)?.ToString() ?? "";
+                            string _MoTa = currentRow.GetCell(2)?.ToString() ?? "";
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_DanToc WHERE MaDanToc = @MaDanToc AND DelFlg = 0";
-                            var checkParams = new List<SqlParameter>
-                            {
-                                new SqlParameter("@MaDanToc", maDanToc)
-                            };
+                            string checkQuery = $@"SELECT COUNT(*) FROM mst_DanToc WHERE MaDanToc = {SQLHelper.rpStr(_MaDanToc)} AND del_flg = 0";
 
-                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
+                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery);
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_DanToc
+                                string sqlUpdate = $@"UPDATE mst_DanToc
                                         SET 
-                                            TenDanToc = @TenDanToc,
-                                            MoTa = @MoTa,
-                                            NgayCapNhat = @NgayCapNhat,
-                                            NguoiCapNhat = @NguoiCapNhat
+                                            TenDanToc = {SQLHelper.rpStr(_TenDanToc)},
+                                            MoTa = {SQLHelper.rpStr(_MoTa)},
+                                            NgayCapNhat = '{DateTime.Now}',
+                                            NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
                                         WHERE 
-                                            MaDanToc = @MaDanToc AND DelFlg = 0";
+                                            MaDanToc = {SQLHelper.rpStr(_MaDanToc)} AND del_flg = 0";
 
-                                var updateParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaDanToc", maDanToc),
-                                    new SqlParameter("@TenDanToc", tenDanToc),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
+                                res += SQLHelper.ExecuteSql(sqlUpdate);
                             }
                             else
                             {
                                 string newMaDanToc = autoCodeGenerator.GenerateNextCode("mst_DanToc", "DT", "MaDanToc");
 
-                                string sqlInsert = @"INSERT INTO mst_DanToc(MaDanToc, TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                                        VALUES(@MaDanToc, @TenDanToc, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                                string sqlInsert = $@"INSERT INTO mst_DanToc(MaDanToc, TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                                        VALUES({SQLHelper.rpStr(newMaDanToc)}, {SQLHelper.rpStr(_TenDanToc)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', 
+                                        {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
 
-                                var insertParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaDanToc", newMaDanToc),
-                                    new SqlParameter("@TenDanToc", tenDanToc),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayTao", DateTime.Now),
-                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
+                                res += SQLHelper.ExecuteSql(sqlInsert);
                             }
                         }
                         if (res > 0)
@@ -259,7 +228,7 @@ namespace TENTAC_HRM.Forms.User_control
                         }
                     }
                 }
-                load_dataDanToc();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -271,9 +240,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_nation.Columns["edit_column"].Index)
             {
                 string MaDanToc = dgv_nation.CurrentRow.Cells["MaDanToc"].Value.ToString();
-                string TenDanToc = dgv_nation.CurrentRow.Cells["TenDanToc"].Value.ToString();
-                string MoTa = dgv_nation.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstDanToc frmMstDanToc = new frmMstDanToc(MaDanToc, TenDanToc, MoTa, false, this);
+                frmMstDanToc frmMstDanToc = new frmMstDanToc(this);
+                frmMstDanToc._MaDanToc = MaDanToc;
+                frmMstDanToc._Edit = true;
                 frmMstDanToc.ShowDialog();
             }
         }
@@ -284,7 +253,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstDanToc frmMstDanToc = new frmMstDanToc(null, null, null, true, this);
+            frmMstDanToc frmMstDanToc = new frmMstDanToc(this);
+            frmMstDanToc._Edit = false;
             frmMstDanToc.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)

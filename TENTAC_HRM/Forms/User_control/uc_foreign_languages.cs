@@ -35,7 +35,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         public void load_data()
         {
-            string sql = "select Id, MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_NgoaiNgu where DelFlg = 0 order by MaNgoaiNgu";
+            string sql = "select Id, MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_NgoaiNgu where del_flg = 0 order by MaNgoaiNgu";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_foreign_languages.DataSource = dt;
@@ -58,7 +58,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string MaNgoaiNgu = row.Cells["MaNgoaiNgu"].Value?.ToString();
                         if (!string.IsNullOrEmpty(MaNgoaiNgu))
                         {
-                            updateQueries.Add($@"UPDATE mst_NgoaiNgu SET DelFlg = 1 WHERE MaNgoaiNgu = N'{MaNgoaiNgu}'");
+                            updateQueries.Add($@"UPDATE mst_NgoaiNgu SET del_flg = 1 WHERE MaNgoaiNgu = N'{MaNgoaiNgu}'");
                         }
                     }
                 }
@@ -179,57 +179,35 @@ namespace TENTAC_HRM.Forms.User_control
                             IRow dataRow = worksheet.GetRow(row);
                             if (dataRow == null) continue;
 
-                            string maNgoaiNgu = dataRow.GetCell(0)?.ToString() ?? "";
-                            string tenNgoaiNgu = dataRow.GetCell(1)?.ToString() ?? "";
-                            string moTa = dataRow.GetCell(2)?.ToString() ?? "";
+                            string _MaNgoaiNgu = dataRow.GetCell(0)?.ToString() ?? "";
+                            string _TenNgoaiNgu = dataRow.GetCell(1)?.ToString() ?? "";
+                            string _MoTa = dataRow.GetCell(2)?.ToString() ?? "";
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_NgoaiNgu WHERE MaNgoaiNgu = @MaNgoaiNgu AND DelFlg = 0";
-                            var checkParams = new List<SqlParameter>
-                            {
-                                new SqlParameter("@MaNgoaiNgu", maNgoaiNgu)
-                            };
-
-                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
+                            string checkQuery = $@"SELECT COUNT(*) FROM mst_NgoaiNgu WHERE MaNgoaiNgu = {SQLHelper.rpStr(_MaNgoaiNgu)} AND del_flg = 0";
+                            
+                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery);
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_NgoaiNgu
+                                string sqlUpdate = $@"UPDATE mst_NgoaiNgu
                                 SET 
-                                    TenNgoaiNgu = @TenNgoaiNgu,
-                                    MoTa = @MoTa,
-                                    NgayCapNhat = @NgayCapNhat,
-                                    NguoiCapNhat = @NguoiCapNhat
+                                    TenNgoaiNgu = {SQLHelper.rpStr(_TenNgoaiNgu)},
+                                    MoTa = {SQLHelper.rpStr(_MoTa)},
+                                    NgayCapNhat = '{DateTime.Now}',
+                                    NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
                                 WHERE 
-                                    MaNgoaiNgu = @MaNgoaiNgu AND DelFlg = 0";
-
-                                var updateParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaNgoaiNgu", maNgoaiNgu),
-                                    new SqlParameter("@TenNgoaiNgu", tenNgoaiNgu),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
+                                    MaNgoaiNgu = {SQLHelper.rpStr(_MaNgoaiNgu)} AND del_flg = 0";
+                                res += SQLHelper.ExecuteSql(sqlUpdate);
                             }
                             else
                             {
                                 string newMaNgoaiNgu = autoCodeGenerator.GenerateNextCode("mst_NgoaiNgu", "NN", "MaNgoaiNgu");
 
-                                string sqlInsert = @"INSERT INTO mst_NgoaiNgu(MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                                VALUES(@MaNgoaiNgu, @TenNgoaiNgu, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                                string sqlInsert = $@"INSERT INTO mst_NgoaiNgu(MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                                VALUES({SQLHelper.rpStr(newMaNgoaiNgu)}, {SQLHelper.rpStr(_TenNgoaiNgu)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', 
+                                {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
 
-                                var insertParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaNgoaiNgu", newMaNgoaiNgu),
-                                    new SqlParameter("@TenNgoaiNgu", tenNgoaiNgu),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayTao", DateTime.Now),
-                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
+                                res += SQLHelper.ExecuteSql(sqlInsert);
                             }
                         }
                         if (res > 0)
@@ -252,7 +230,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstNgoaiNgu frmMstNgoaiNgu = new frmMstNgoaiNgu(null, null, null, true, this);
+            frmMstNgoaiNgu frmMstNgoaiNgu = new frmMstNgoaiNgu(this);
+            frmMstNgoaiNgu._Edit = false;
             frmMstNgoaiNgu.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)
@@ -282,9 +261,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_foreign_languages.Columns["edit_column"].Index)
             {
                 string MaNgoaiNgu = dgv_foreign_languages.CurrentRow.Cells["MaNgoaiNgu"].Value.ToString();
-                string TenNgoaiNgu = dgv_foreign_languages.CurrentRow.Cells["TenNgoaiNgu"].Value.ToString();
-                string MoTa = dgv_foreign_languages.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstNgoaiNgu frmMstNgoaiNgu = new frmMstNgoaiNgu(MaNgoaiNgu, TenNgoaiNgu, MoTa, false, this);
+                frmMstNgoaiNgu frmMstNgoaiNgu = new frmMstNgoaiNgu(this);
+                frmMstNgoaiNgu._MaNgoaiNgu = MaNgoaiNgu;
+                frmMstNgoaiNgu._Edit = true;
                 frmMstNgoaiNgu.ShowDialog();
             }
         }

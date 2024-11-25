@@ -18,7 +18,10 @@ namespace TENTAC_HRM.Forms.Category
 
         private void txt_mucluong_Leave(object sender, EventArgs e)
         {
-            txt_MucLuong.Text = decimal.Parse(txt_MucLuong.Text).ToString("N2", CultureInfo.InvariantCulture);
+            if (!string.IsNullOrEmpty(txt_MucLuong.Text))
+            {
+                txt_MucLuong.Text = decimal.Parse(txt_MucLuong.Text).ToString("N0", CultureInfo.InvariantCulture);
+            }
         }
 
         DataProvider provider = new DataProvider();

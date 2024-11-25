@@ -29,30 +29,30 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.lblMoTa = new DevComponents.DotNetBar.LabelX();
+            this.txtMoTa = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtTenChungChi = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.lblTenChungChi = new DevComponents.DotNetBar.LabelX();
-            this.lblMaChungChi = new DevComponents.DotNetBar.LabelX();
             this.txtMaChungChi = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.txtMota = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtMoTa);
+            this.panel1.Controls.Add(this.txtTenChungChi);
+            this.panel1.Controls.Add(this.txtMaChungChi);
+            this.panel1.Controls.Add(this.labelX4);
+            this.panel1.Controls.Add(this.labelX3);
+            this.panel1.Controls.Add(this.labelX2);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.labelX1);
-            this.panel1.Controls.Add(this.lblMoTa);
-            this.panel1.Controls.Add(this.txtTenChungChi);
-            this.panel1.Controls.Add(this.lblTenChungChi);
-            this.panel1.Controls.Add(this.lblMaChungChi);
-            this.panel1.Controls.Add(this.txtMaChungChi);
-            this.panel1.Controls.Add(this.txtMota);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -60,77 +60,75 @@
             this.panel1.Size = new System.Drawing.Size(357, 422);
             this.panel1.TabIndex = 1;
             // 
-            // labelX1
+            // txtMoTa
             // 
-            this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
-            this.labelX1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.labelX1.Location = new System.Drawing.Point(0, 0);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(357, 62);
-            this.labelX1.TabIndex = 31;
-            this.labelX1.Text = "Thêm Thông Tin Chứng Chỉ";
-            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            // lblMoTa
             // 
-            this.lblMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoTa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMoTa.Location = new System.Drawing.Point(31, 214);
-            this.lblMoTa.Name = "lblMoTa";
-            this.lblMoTa.Size = new System.Drawing.Size(86, 23);
-            this.lblMoTa.TabIndex = 30;
-            this.lblMoTa.Text = "Mô Tả:";
+            // 
+            this.txtMoTa.Border.Class = "TextBoxBorder";
+            this.txtMoTa.Location = new System.Drawing.Point(31, 229);
+            this.txtMoTa.Multiline = true;
+            this.txtMoTa.Name = "txtMoTa";
+            this.txtMoTa.Size = new System.Drawing.Size(295, 95);
+            this.txtMoTa.TabIndex = 38;
             // 
             // txtTenChungChi
             // 
-            this.txtTenChungChi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
             // 
             // 
             // 
             this.txtTenChungChi.Border.Class = "TextBoxBorder";
-            this.txtTenChungChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenChungChi.Location = new System.Drawing.Point(31, 183);
-            this.txtTenChungChi.Multiline = true;
+            this.txtTenChungChi.Location = new System.Drawing.Point(31, 172);
             this.txtTenChungChi.Name = "txtTenChungChi";
-            this.txtTenChungChi.Size = new System.Drawing.Size(295, 25);
-            this.txtTenChungChi.TabIndex = 2;
-            // 
-            // lblTenChungChi
-            // 
-            this.lblTenChungChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenChungChi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTenChungChi.Location = new System.Drawing.Point(31, 148);
-            this.lblTenChungChi.Name = "lblTenChungChi";
-            this.lblTenChungChi.Size = new System.Drawing.Size(114, 23);
-            this.lblTenChungChi.TabIndex = 28;
-            this.lblTenChungChi.Text = "Tên Chứng Chỉ:";
-            // 
-            // lblMaChungChi
-            // 
-            this.lblMaChungChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaChungChi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMaChungChi.Location = new System.Drawing.Point(31, 88);
-            this.lblMaChungChi.Name = "lblMaChungChi";
-            this.lblMaChungChi.Size = new System.Drawing.Size(101, 23);
-            this.lblMaChungChi.TabIndex = 27;
-            this.lblMaChungChi.Text = "Mã Chứng Chỉ:";
+            this.txtTenChungChi.Size = new System.Drawing.Size(295, 22);
+            this.txtTenChungChi.TabIndex = 37;
             // 
             // txtMaChungChi
             // 
-            this.txtMaChungChi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
             // 
             // 
             this.txtMaChungChi.Border.Class = "TextBoxBorder";
-            this.txtMaChungChi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaChungChi.Location = new System.Drawing.Point(31, 117);
-            this.txtMaChungChi.Multiline = true;
+            this.txtMaChungChi.Location = new System.Drawing.Point(31, 114);
             this.txtMaChungChi.Name = "txtMaChungChi";
             this.txtMaChungChi.ReadOnly = true;
-            this.txtMaChungChi.Size = new System.Drawing.Size(295, 25);
-            this.txtMaChungChi.TabIndex = 1;
+            this.txtMaChungChi.Size = new System.Drawing.Size(295, 22);
+            this.txtMaChungChi.TabIndex = 36;
+            // 
+            // labelX4
+            // 
+            this.labelX4.Location = new System.Drawing.Point(31, 200);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(47, 23);
+            this.labelX4.TabIndex = 35;
+            this.labelX4.Text = "Mô Tả";
+            // 
+            // labelX3
+            // 
+            this.labelX3.Location = new System.Drawing.Point(31, 143);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(101, 23);
+            this.labelX3.TabIndex = 34;
+            this.labelX3.Text = "Tên Chứng Chỉ";
+            // 
+            // labelX2
+            // 
+            this.labelX2.Location = new System.Drawing.Point(31, 85);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(94, 23);
+            this.labelX2.TabIndex = 33;
+            this.labelX2.Text = "Mã Chứng Chỉ";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel2.Controls.Add(this.btn_save);
+            this.panel2.Controls.Add(this.btn_cancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 365);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(357, 57);
+            this.panel2.TabIndex = 32;
             // 
             // btn_save
             // 
@@ -147,6 +145,7 @@
             // 
             // btn_cancel
             // 
+            this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_cancel.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_cancel.Location = new System.Drawing.Point(199, 15);
@@ -158,42 +157,33 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // txtMota
+            // labelX1
             // 
-            this.txtMota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
-            // 
-            // 
-            // 
-            this.txtMota.Border.Class = "TextBoxBorder";
-            this.txtMota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMota.Location = new System.Drawing.Point(31, 244);
-            this.txtMota.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMota.Multiline = true;
-            this.txtMota.Name = "txtMota";
-            this.txtMota.Size = new System.Drawing.Size(295, 93);
-            this.txtMota.TabIndex = 3;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
-            this.panel2.Controls.Add(this.btn_save);
-            this.panel2.Controls.Add(this.btn_cancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 365);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(357, 57);
-            this.panel2.TabIndex = 32;
+            this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.labelX1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.labelX1.Location = new System.Drawing.Point(0, 0);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(357, 62);
+            this.labelX1.TabIndex = 31;
+            this.labelX1.Text = "Thêm Thông Tin Chứng Chỉ";
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // frmMstChungChi
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(357, 422);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMstChungChi";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Chứng Chỉ";
+            this.Load += new System.EventHandler(this.frmMstChungChi_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -202,15 +192,15 @@
 
         #endregion
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.LabelX lblMoTa;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtTenChungChi;
-        private DevComponents.DotNetBar.LabelX lblTenChungChi;
-        private DevComponents.DotNetBar.LabelX lblMaChungChi;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMaChungChi;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_cancel;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMota;
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.Panel panel2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTenChungChi;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMaChungChi;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMoTa;
     }
 }

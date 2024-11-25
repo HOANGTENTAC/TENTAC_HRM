@@ -27,21 +27,30 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_staff_religion()
         {
             InitializeComponent();
-            load_dataTonGiao();
+            LoadData();
         }
-        public void load_dataTonGiao()
+        public void LoadData()
         {
-            string sql = "select Id, MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_TonGiao where DelFlg = 0";
+            string sql = "select Id, MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_TonGiao where del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_religion.DataSource = dt;
         }
         private void uc_staff_religion_Load(object sender, EventArgs e)
         {
-            load_dataTonGiao();
+            LoadData();
         }
         private void btn_delete_Click(object sender, EventArgs e)
         {
+            DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                                "Xác nhận",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
             dgv_religion.EndEdit();
             try
             {
@@ -58,7 +67,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string MaTonGiao = row.Cells["MaTonGiao"].Value?.ToString();
                         if (!string.IsNullOrEmpty(MaTonGiao))
                         {
-                            updateQueries.Add($@"UPDATE mst_TonGiao SET DelFlg = 1 WHERE MaTonGiao = N'{MaTonGiao}'");
+                            updateQueries.Add($@"UPDATE mst_TonGiao SET del_flg = 1 WHERE MaTonGiao = N'{MaTonGiao}'");
                         }
                     }
                 }
@@ -76,7 +85,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_dataTonGiao();
+                LoadData();
             }
             catch(Exception ex)
             {
@@ -179,59 +188,36 @@ namespace TENTAC_HRM.Forms.User_control
                             IRow dataRow = sheet.GetRow(row);
                             if (dataRow == null) continue;
 
-                            string maTonGiao = dataRow.GetCell(0)?.ToString() ?? "";
-                            string tenTonGiao = dataRow.GetCell(1)?.ToString() ?? "";
-                            string moTa = dataRow.GetCell(2)?.ToString() ?? "";
+                            string _MaTonGiao = dataRow.GetCell(0)?.ToString() ?? "";
+                            string _TenTonGiao = dataRow.GetCell(1)?.ToString() ?? "";
+                            string _MoTa = dataRow.GetCell(2)?.ToString() ?? "";
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_TonGiao WHERE MaTonGiao = @MaTonGiao AND DelFlg = 0";
-                            var checkParams = new List<SqlParameter>
-                            {
-                                new SqlParameter("@MaTonGiao", maTonGiao)
-                            };
+                            string checkQuery = $@"SELECT COUNT(*) FROM mst_TonGiao WHERE MaTonGiao = {SQLHelper.rpStr(_MaTonGiao)} AND del_flg = 0";
 
-                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
+                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery);
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_TonGiao
+                                string sqlUpdate = $@"UPDATE mst_TonGiao
                                         SET 
-                                            TenTonGiao = @TenTonGiao,
-                                            MoTa = @MoTa,
-                                            NgayCapNhat = @NgayCapNhat,
-                                            NguoiCapNhat = @NguoiCapNhat
+                                            TenTonGiao = {SQLHelper.rpStr(_TenTonGiao)},
+                                            MoTa = {SQLHelper.rpStr(_MoTa)},
+                                            NgayCapNhat = '{DateTime.Now}',
+                                            NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
                                         WHERE 
-                                            MaTonGiao = @MaTonGiao AND DelFlg = 0";
+                                            MaTonGiao = {SQLHelper.rpStr(_MaTonGiao)} AND del_flg = 0";
 
-                                var updateParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaTonGiao", maTonGiao),
-                                    new SqlParameter("@TenTonGiao", tenTonGiao),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-
-                                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
+                                res += SQLHelper.ExecuteSql(sqlUpdate);
                             }
                             else
                             {
                                 string newMaTonGiao = autoCodeGenerator.GenerateNextCode("mst_TonGiao", "TG", "MaTonGiao");
 
-                                string sqlInsert = @"INSERT INTO mst_TonGiao(MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                                        VALUES(@MaTonGiao, @TenTonGiao, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
+                                string sqlInsert = $@"INSERT INTO mst_TonGiao(MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                                        VALUES({SQLHelper.rpStr(newMaTonGiao)}, {SQLHelper.rpStr(_TenTonGiao)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}',
+                                        {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
 
-                                var insertParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaTonGiao", newMaTonGiao),
-                                    new SqlParameter("@TenTonGiao", tenTonGiao),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayTao", DateTime.Now),
-                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-
-                                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
+                                res += SQLHelper.ExecuteSql(sqlInsert);
                             }
                         }
 
@@ -240,7 +226,7 @@ namespace TENTAC_HRM.Forms.User_control
                             RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-                    load_dataTonGiao();
+                    LoadData();
                 }
             }
             catch (Exception ex)
@@ -253,9 +239,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_religion.Columns["edit_column"].Index)
             {
                 string MaTonGiao = dgv_religion.CurrentRow.Cells["MaTonGiao"].Value.ToString();
-                string TenTonGiao = dgv_religion.CurrentRow.Cells["TenTonGiao"].Value.ToString();
-                string MoTa = dgv_religion.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstTonGiao frmMstTonGiao = new frmMstTonGiao(MaTonGiao, TenTonGiao, MoTa, false, this);
+                frmMstTonGiao frmMstTonGiao = new frmMstTonGiao(this);
+                frmMstTonGiao._MaTonGiao = MaTonGiao;
+                frmMstTonGiao._Edit = true;
                 frmMstTonGiao.ShowDialog();
             }
         }
@@ -266,7 +252,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstTonGiao frmMstTonGiao = new frmMstTonGiao(null, null, null, true, this);
+            frmMstTonGiao frmMstTonGiao = new frmMstTonGiao(this);
+            frmMstTonGiao._Edit = false;
             frmMstTonGiao.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)

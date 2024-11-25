@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
@@ -8,103 +10,127 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
-    public partial class frmMstNgoaiNgu : Form
+    public partial class frmMstNgoaiNgu : KryptonForm
     {
         private MstMaTuDong autoCodeGenerator;
         private uc_foreign_languages uc_foreign_languages;
-        public frmMstNgoaiNgu(string maNgoaiNgu, string tenNgoaiNgu, string moTa, bool addNew, uc_foreign_languages _uc_foreign_languages)
+        public string _MaNgoaiNgu {  get; set; }
+        public bool _Edit {  get; set; }
+        private string _TenNgoaiNgu, _MoTa, _NguoiTao, _NguoiCapNhat;
+        public frmMstNgoaiNgu(uc_foreign_languages _uc_foreign_languages)
         {
             InitializeComponent();
             autoCodeGenerator = new MstMaTuDong();
-            if (addNew == false)
+            uc_foreign_languages = _uc_foreign_languages;
+        }
+        private void frmMstNgoaiNgu_Load(object sender, EventArgs e)
+        {
+            if (_Edit == true)
             {
-                labelX1.Text = "Cập Nhật Thông Tin Ngoại Ngữ";
-                txtMaNgoaiNgu.Text = maNgoaiNgu;
-                txtTenNgoaiNgu.Text = tenNgoaiNgu;
-                txtMota.Text = moTa;
+                LoadData();
             }
             else
             {
-                load_null();
+                LoadNull();
             }
-            uc_foreign_languages = _uc_foreign_languages;
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
             try
             {
-                string MaNgoaiNgu = txtMaNgoaiNgu.Text.Trim().ToUpper().ToString();
-                string TenNgoaiNgu = txtTenNgoaiNgu.Text.Trim().ToString();
-                string Mota = txtMota.Text.Trim().ToString();
-                string sql = string.Empty;
-                if (string.IsNullOrEmpty(TenNgoaiNgu))
+                SetValues();
+                if(_Edit == true)
                 {
-                    RJMessageBox.Show("Bạn chưa nhập tên ngoại ngữ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                sql = @"IF EXISTS (SELECT 1 FROM mst_NgoaiNgu WHERE MaNgoaiNgu = @MaNgoaiNgu AND DelFlg = 0)
-                        BEGIN
-                            UPDATE mst_NgoaiNgu
-                            SET 
-                                TenNgoaiNgu = @TenNgoaiNgu,
-                                MoTa = @MoTa,
-                                NgayCapNhat = @NgayCapNhat,
-                                NguoiCapNhat = @NguoiCapNhat
-                            WHERE 
-                                MaNgoaiNgu = @MaNgoaiNgu AND DelFlg = 0;
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO mst_NgoaiNgu(MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                            VALUES(@MaNgoaiNgu, @TenNgoaiNgu, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
-                        END";
-
-                var parameters = new List<SqlParameter>
-                {
-                    new SqlParameter("@MaNgoaiNgu", MaNgoaiNgu),
-                    new SqlParameter("@TenNgoaiNgu", TenNgoaiNgu),
-                    new SqlParameter("@MoTa", Mota),
-                    new SqlParameter("@NgayTao", DateTime.Now),
-                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                };
-
-                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
-                if (res > 0)
-                {
-                    RJMessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateData();
                 }
                 else
                 {
-                    RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    InsertData();
                 }
                 uc_foreign_languages.load_data();
-                load_null();
+                LoadNull();
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void load_null()
+        private void SetValues()
+        {
+            _MaNgoaiNgu = txtMaNgoaiNgu.Text.Trim().ToString();
+            _TenNgoaiNgu = txtTenNgoaiNgu.Text.Trim().ToString();
+            _MoTa = txtMoTa.Text.Trim().ToString();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
+        }
+        private void LoadData()
+        {
+            labelX1.Text = "Cập Nhật Thông Tin Ngoại Ngữ";
+            string sql = string.Empty;
+            sql = $@"Select MaNgoaiNgu, TenNgoaiNgu, MoTa from mst_NgoaiNgu Where MaNgoaiNgu = {SQLHelper.rpStr(_MaNgoaiNgu)} del_flg = 0";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            if(dt.Rows.Count > 0)
+            {
+                txtMaNgoaiNgu.Text = dt.Rows[0]["MaNgoaiNgu"].ToString();
+                txtTenNgoaiNgu.Text = dt.Rows[0]["TenNgoaiNgu"].ToString();
+                txtMoTa.Text = dt.Rows[0]["MoTa"].ToString();
+            }
+        }
+        private void LoadNull()
         {
             txtMaNgoaiNgu.Text = autoCodeGenerator.GenerateNextCode("mst_NgoaiNgu", "NN", "MaNgoaiNgu");
             txtTenNgoaiNgu.Text = string.Empty;
-            txtMota.Text = string.Empty;
+            txtMoTa.Text = string.Empty;
+        }
+        private void InsertData()
+        {
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Insert into mst_NgoaiNgu(MaNgoaiNgu, TenNgoaiNgu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                Values({SQLHelper.rpStr(_MaNgoaiNgu)}, {SQLHelper.rpStr(_TenNgoaiNgu)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', 
+                {SQLHelper.rpStr(_NguoiTao)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiCapNhat)}, 0)";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Thêm dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void UpdateData()
+        {
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Update mst_NgoaiNgu Set MaNgoaiNgu = {SQLHelper.rpStr(_MaNgoaiNgu)}, TenNgoaiNgu = {SQLHelper.rpStr(_TenNgoaiNgu)},
+                MoTa = {SQLHelper.rpStr(_MoTa)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where MaNgoaiNgu = {SQLHelper.rpStr(_MaNgoaiNgu)} and del_flg = 0";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            //load_null();
-            if (this.Parent != null)
-            {
-                Control x = this.Parent;
-                x.Controls.Remove(this);
-            }
-            else
-            {
-                this.Close();
-            }
+            this.Close();
         }
     }
 }

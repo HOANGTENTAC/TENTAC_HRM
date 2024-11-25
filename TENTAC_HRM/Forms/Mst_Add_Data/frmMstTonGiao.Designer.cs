@@ -30,15 +30,15 @@
         {
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblMoTa = new DevComponents.DotNetBar.LabelX();
+            this.txtMoTa = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtTenTonGiao = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.lblTenDanToc = new DevComponents.DotNetBar.LabelX();
-            this.lblMaTonGiao = new DevComponents.DotNetBar.LabelX();
             this.txtMaTonGiao = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
-            this.txtMota = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -58,13 +58,13 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.lblMoTa);
+            this.panel1.Controls.Add(this.txtMoTa);
             this.panel1.Controls.Add(this.txtTenTonGiao);
-            this.panel1.Controls.Add(this.lblTenDanToc);
-            this.panel1.Controls.Add(this.lblMaTonGiao);
             this.panel1.Controls.Add(this.txtMaTonGiao);
-            this.panel1.Controls.Add(this.txtMota);
+            this.panel1.Controls.Add(this.labelX4);
+            this.panel1.Controls.Add(this.labelX3);
+            this.panel1.Controls.Add(this.labelX2);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.labelX1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -73,64 +73,75 @@
             this.panel1.Size = new System.Drawing.Size(356, 411);
             this.panel1.TabIndex = 1;
             // 
-            // lblMoTa
+            // txtMoTa
             // 
-            this.lblMoTa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMoTa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMoTa.Location = new System.Drawing.Point(30, 207);
-            this.lblMoTa.Name = "lblMoTa";
-            this.lblMoTa.Size = new System.Drawing.Size(86, 23);
-            this.lblMoTa.TabIndex = 30;
-            this.lblMoTa.Text = "Mô Tả:";
+            // 
+            // 
+            // 
+            this.txtMoTa.Border.Class = "TextBoxBorder";
+            this.txtMoTa.Location = new System.Drawing.Point(30, 236);
+            this.txtMoTa.Multiline = true;
+            this.txtMoTa.Name = "txtMoTa";
+            this.txtMoTa.Size = new System.Drawing.Size(295, 89);
+            this.txtMoTa.TabIndex = 37;
             // 
             // txtTenTonGiao
             // 
-            this.txtTenTonGiao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
             // 
             // 
             // 
             this.txtTenTonGiao.Border.Class = "TextBoxBorder";
-            this.txtTenTonGiao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenTonGiao.Location = new System.Drawing.Point(30, 176);
-            this.txtTenTonGiao.Multiline = true;
+            this.txtTenTonGiao.Location = new System.Drawing.Point(30, 174);
             this.txtTenTonGiao.Name = "txtTenTonGiao";
-            this.txtTenTonGiao.Size = new System.Drawing.Size(295, 25);
-            this.txtTenTonGiao.TabIndex = 2;
-            // 
-            // lblTenDanToc
-            // 
-            this.lblTenDanToc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenDanToc.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTenDanToc.Location = new System.Drawing.Point(30, 147);
-            this.lblTenDanToc.Name = "lblTenDanToc";
-            this.lblTenDanToc.Size = new System.Drawing.Size(100, 23);
-            this.lblTenDanToc.TabIndex = 28;
-            this.lblTenDanToc.Text = "Tên Tôn Giáo:";
-            // 
-            // lblMaTonGiao
-            // 
-            this.lblMaTonGiao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaTonGiao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMaTonGiao.Location = new System.Drawing.Point(29, 87);
-            this.lblMaTonGiao.Name = "lblMaTonGiao";
-            this.lblMaTonGiao.Size = new System.Drawing.Size(100, 23);
-            this.lblMaTonGiao.TabIndex = 27;
-            this.lblMaTonGiao.Text = "Mã Tôn Giáo:";
+            this.txtTenTonGiao.Size = new System.Drawing.Size(295, 22);
+            this.txtTenTonGiao.TabIndex = 36;
             // 
             // txtMaTonGiao
             // 
-            this.txtMaTonGiao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
             // 
             // 
             this.txtMaTonGiao.Border.Class = "TextBoxBorder";
-            this.txtMaTonGiao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaTonGiao.Location = new System.Drawing.Point(29, 116);
-            this.txtMaTonGiao.Multiline = true;
+            this.txtMaTonGiao.Location = new System.Drawing.Point(30, 116);
             this.txtMaTonGiao.Name = "txtMaTonGiao";
             this.txtMaTonGiao.ReadOnly = true;
-            this.txtMaTonGiao.Size = new System.Drawing.Size(295, 25);
-            this.txtMaTonGiao.TabIndex = 1;
+            this.txtMaTonGiao.Size = new System.Drawing.Size(295, 22);
+            this.txtMaTonGiao.TabIndex = 35;
+            // 
+            // labelX4
+            // 
+            this.labelX4.Location = new System.Drawing.Point(29, 207);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(51, 23);
+            this.labelX4.TabIndex = 34;
+            this.labelX4.Text = "Mô Tả";
+            // 
+            // labelX3
+            // 
+            this.labelX3.Location = new System.Drawing.Point(30, 144);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(94, 23);
+            this.labelX3.TabIndex = 33;
+            this.labelX3.Text = "Tên Tôn Giáo";
+            // 
+            // labelX2
+            // 
+            this.labelX2.Location = new System.Drawing.Point(30, 87);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(93, 23);
+            this.labelX2.TabIndex = 32;
+            this.labelX2.Text = "Mã Tôn Giáo";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel2.Controls.Add(this.btn_save);
+            this.panel2.Controls.Add(this.btn_cancel);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 354);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(356, 57);
+            this.panel2.TabIndex = 31;
             // 
             // btn_save
             // 
@@ -147,6 +158,7 @@
             // 
             // btn_cancel
             // 
+            this.btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_cancel.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_cancel.Location = new System.Drawing.Point(196, 15);
@@ -158,42 +170,20 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
-            // txtMota
-            // 
-            this.txtMota.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(247)))), ((int)(((byte)(254)))));
-            // 
-            // 
-            // 
-            this.txtMota.Border.Class = "TextBoxBorder";
-            this.txtMota.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMota.Location = new System.Drawing.Point(29, 237);
-            this.txtMota.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMota.Multiline = true;
-            this.txtMota.Name = "txtMota";
-            this.txtMota.Size = new System.Drawing.Size(294, 93);
-            this.txtMota.TabIndex = 3;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
-            this.panel2.Controls.Add(this.btn_save);
-            this.panel2.Controls.Add(this.btn_cancel);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 354);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(356, 57);
-            this.panel2.TabIndex = 31;
-            // 
             // frmMstTonGiao
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_cancel;
             this.ClientSize = new System.Drawing.Size(356, 411);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMstTonGiao";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Tôn Giáo";
+            this.Load += new System.EventHandler(this.frmMstTonGiao_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -204,14 +194,14 @@
 
         private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.LabelX lblMoTa;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtTenTonGiao;
-        private DevComponents.DotNetBar.LabelX lblTenDanToc;
-        private DevComponents.DotNetBar.LabelX lblMaTonGiao;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMaTonGiao;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_cancel;
-        private DevComponents.DotNetBar.Controls.TextBoxX txtMota;
         private System.Windows.Forms.Panel panel2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMaTonGiao;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtMoTa;
+        private DevComponents.DotNetBar.Controls.TextBoxX txtTenTonGiao;
     }
 }

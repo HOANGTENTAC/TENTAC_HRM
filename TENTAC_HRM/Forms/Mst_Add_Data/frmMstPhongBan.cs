@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,52 +15,69 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
-    public partial class frmMstPhongBan : Form
+    public partial class frmMstPhongBan : KryptonForm
     {
         private uc_departments uc_departments;
         private MstMaTuDong autoCodeGenerator;
-        public frmMstPhongBan(string maPhongBan, string maCongTy, string maKhuVuc, string tenPhongBan, bool addNew, uc_departments _uc_departments)
+        public string _MaPhongBan { get; set; }
+        public bool _Edit { get; set; }
+        private string _TenPhongBan, _CongTy, _KhuVuc, _NguoiTao, _NguoiCapNhat;
+        public frmMstPhongBan(uc_departments _uc_departments)
         {
             InitializeComponent();
-            load_cong_ty();
             autoCodeGenerator = new MstMaTuDong();
-            if (addNew == false)
+
+            uc_departments = _uc_departments;
+        }
+        private void frmMstPhongBan_Load(object sender, EventArgs e)
+        {
+            LoadCongTy();
+            LoadKhuVuc(null);
+            if (_Edit == true)
             {
-                labelX1.Text = "Cập Nhật Thông Tin Phòng Ban";
-                txtMaPhongBan.Text = maPhongBan;
-                txtTenPhongBan.Text = tenPhongBan;
-                cbMaCongTy.SelectedValue = maCongTy;
-                cbMaKhuVuc.SelectedValue = maKhuVuc;
+                LoadData();
             }
             else
             {
-                load_null();
+                LoadNull();
             }
-            uc_departments = _uc_departments;
-          
         }
-        private void load_cong_ty()
+        private void LoadData()
+        {
+            labelX1.Text = "Cập Nhật Thông Tin Phòng Ban";
+            string sql = string.Empty;
+            sql = $@"Select MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan from [MITACOSQL].[dbo].[PHONGBAN] where MaPhongBan = {SQLHelper.rpStr(_MaPhongBan)}";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            if (dt.Rows.Count > 0)
+            {
+                txtMaPhongBan.Text = dt.Rows[0]["MaPhongBan"].ToString();
+                txtTenPhongBan.Text = dt.Rows[0]["TenPhongBan"].ToString();
+                cbMaCongTy.SelectedValue = dt.Rows[0]["MaCongTy"].ToString();
+                cbMaKhuVuc.SelectedValue = dt.Rows[0]["MaKhuVuc"].ToString();
+            }
+        }
+        private void LoadCongTy()
         {
             string sql = @"select MaCongTy, TenCongTy from MITACOSQL.dbo.CONGTY";
             DataTable DT = SQLHelper.ExecuteDt(sql);
 
             DataRow row = DT.NewRow();
             row["MaCongTy"] = DBNull.Value;
-            row["TenCongTy"] = "---Chọn Công Ty---";
+            row["TenCongTy"] = "";
             DT.Rows.InsertAt(row, 0);
 
             cbMaCongTy.DataSource = DT;
             cbMaCongTy.DisplayMember = "TenCongTy";
             cbMaCongTy.ValueMember = "MaCongTy";
         }
-        private void load_khu_vuc(string maCongTy)
+        private void LoadKhuVuc(string maCongTy)
         {
-            string sql = $@"select MaKhuVuc, TenKhuVuc, MaCongTy from MITACOSQL.dbo.KHUVUC where MaCongTy = '{maCongTy}'";
+            string sql = $@"select MaKhuVuc, TenKhuVuc, MaCongTy from MITACOSQL.dbo.KHUVUC where MaCongTy = {SQLHelper.rpStr(maCongTy)}";
             DataTable DT = SQLHelper.ExecuteDt(sql);
 
             DataRow row = DT.NewRow();
             row["MaKhuVuc"] = DBNull.Value;
-            row["TenKhuVuc"] = "---Chọn Khu Vực---";
+            row["TenKhuVuc"] = "";
             DT.Rows.InsertAt(row, 0);
 
             cbMaKhuVuc.DataSource = DT;
@@ -68,78 +86,82 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
-            try
+            SetValues();
+            if (_Edit == true)
             {
-                string MaPhongBan = txtMaPhongBan.Text.Trim().ToUpper().ToString();
-                string MaCongTy = cbMaCongTy.SelectedValue.ToString();
-                string MaKhuVuc = cbMaKhuVuc.SelectedValue.ToString();
-                string TenPhongBan = txtTenPhongBan.Text.Trim().ToUpper().ToString();
-                string sql = string.Empty;
-                if (string.IsNullOrEmpty(TenPhongBan))
-                {
-                    RJMessageBox.Show("Bạn chưa nhập tên phòng ban.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                sql = @"IF EXISTS (SELECT 1 FROM MITACOSQL.dbo.PHONGBAN WHERE MaPhongBan = @MaPhongBan)
-                        BEGIN
-                            UPDATE MITACOSQL.dbo.PHONGBAN
-                            SET 
-                                MaCongTy = @MaCongTy,
-                                MaKhuVuc = @MaKhuVuc,
-                                TenPhongBan = @TenPhongBan
-                            WHERE 
-                                MaPhongBan = @MaPhongBan;
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO MITACOSQL.dbo.PHONGBAN(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan)
-                            VALUES(@MaPhongBan, @MaCongTy, @MaKhuVuc, @TenPhongBan);
-                        END";
-
-                var parameters = new List<SqlParameter>
-                {
-                    new SqlParameter("@MaPhongBan", MaPhongBan),
-                    new SqlParameter("@MaCongTy", MaCongTy),
-                    new SqlParameter("@MaKhuVuc", MaKhuVuc),
-                    new SqlParameter("@TenPhongBan", TenPhongBan)
-                };
-
-                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
-                if (res > 0)
-                {
-                    RJMessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                uc_departments.load_data();
-                load_null();
+                UpdateData();
             }
-            catch (Exception ex)
+            else
             {
-                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                InsertData();
             }
+            uc_departments.LoadData();
+            LoadNull();
         }
-        private void load_null()
+        private void LoadNull()
         {
             txtMaPhongBan.Text = autoCodeGenerator.GenerateNextMaPhongBan();
             cbMaCongTy.SelectedIndex = 0;
             cbMaKhuVuc.SelectedIndex = 0;
             txtTenPhongBan.Text = string.Empty;
         }
+        private void SetValues()
+        {
+            _MaPhongBan = txtMaPhongBan.Text.Trim().ToString();
+            _TenPhongBan = txtTenPhongBan.Text.Trim().ToString();
+            _CongTy = cbMaCongTy.SelectedValue.ToString();
+            _KhuVuc = cbMaKhuVuc.SelectedValue.ToString();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
+        }
+        private void InsertData()
+        {
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Insert into [MITACOSQL].[dbo].[PHONGBAN](MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan)
+                Values({SQLHelper.rpStr(_MaPhongBan)}, {SQLHelper.rpStr(_CongTy)}, {SQLHelper.rpStr(_KhuVuc)}, {SQLHelper.rpStr(_TenPhongBan)})";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Thêm dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void UpdateData()
+        {
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Update [MITACOSQL].[dbo].[PHONGBAN] Set MaPhongBan = {SQLHelper.rpStr(_MaPhongBan)}, MaCongTy = {SQLHelper.rpStr(_CongTy)},
+                MaKhuVuc = {SQLHelper.rpStr(_KhuVuc)}, TenPhongBan = {SQLHelper.rpStr(_TenPhongBan)}
+                Where MaPhongBan = {SQLHelper.rpStr(_MaPhongBan)}";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            //load_null();
-            if (this.Parent != null)
-            {
-                Control x = this.Parent;
-                x.Controls.Remove(this);
-            }
-            else
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
         private void cbMaCongTy_SelectedIndexChanged(object sender, EventArgs e)
@@ -148,9 +170,9 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             {
                 cbMaKhuVuc.Enabled = true;
                 string MaCongTy = cbMaCongTy.SelectedValue.ToString();
-                load_khu_vuc(MaCongTy);
+                LoadKhuVuc(MaCongTy);
             }
-            else 
+            else
             {
                 cbMaKhuVuc.Enabled = false;
             }

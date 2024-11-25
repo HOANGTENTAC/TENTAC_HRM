@@ -24,11 +24,11 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_leave_type()
         {
             InitializeComponent();
-            load_LoaiPhep();
+            LoadData();
         }
-        public void load_LoaiPhep()
+        public void LoadData()
         {
-            string sql = "select Id, MaLoaiPhep, TenLoaiPhep, KyHieu, TinhCong, SoCong, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_LoaiPhep where DelFlg = 0 order by MaLoaiPhep";
+            string sql = "select Id, MaLoaiPhep, TenLoaiPhep, KyHieu, SoCong, MoTa, NgayCapNhat, NguoiCapNhat from mst_LoaiPhep where del_flg = 0 order by MaLoaiPhep";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_leave_type.DataSource = dt;
@@ -36,12 +36,21 @@ namespace TENTAC_HRM.Forms.User_control
         private void uc_leave_type_Load(object sender, EventArgs e)
         {
             //pl_nation.Width = 0;
-            load_LoaiPhep();
+            LoadData();
         }
         private void btn_delete_Click(object sender, EventArgs e)
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                              "Xác nhận",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_leave_type.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -56,7 +65,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string MaLoaiPhep = row.Cells["MaLoaiPhep"].Value?.ToString();
                         if (!string.IsNullOrEmpty(MaLoaiPhep))
                         {
-                            updateQueries.Add($@"UPDATE mst_LoaiPhep SET DelFlg = 1 WHERE MaLoaiPhep = N'{MaLoaiPhep}'");
+                            updateQueries.Add($@"UPDATE mst_LoaiPhep SET del_flg = 1 WHERE MaLoaiPhep = N'{MaLoaiPhep}'");
                         }
                     }
                 }
@@ -74,7 +83,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_LoaiPhep();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -86,11 +95,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_leave_type.Columns["edit_column"].Index)
             {
                 string MaLoaiPhep = dgv_leave_type.CurrentRow.Cells["MaLoaiPhep"].Value.ToString();
-                string TenLoaiPhep = dgv_leave_type.CurrentRow.Cells["TenLoaiPhep"].Value.ToString();
-                string KyHieu = dgv_leave_type.CurrentRow.Cells["KyHieu"].Value.ToString();
-                bool TinhCong = Convert.ToBoolean(dgv_leave_type.CurrentRow.Cells["TinhCong"].Value);
-                double SoCong = dgv_leave_type.CurrentRow.Cells["SoCong"].Value != null ? Convert.ToDouble(dgv_leave_type.CurrentRow.Cells["SoCong"].Value): 0;
-                frmMstLoaiPhep frmMstLoaiPhep = new frmMstLoaiPhep(MaLoaiPhep, TenLoaiPhep, KyHieu, TinhCong, SoCong, false, this);
+                frmMstLoaiPhep frmMstLoaiPhep = new frmMstLoaiPhep(this);
+                frmMstLoaiPhep._Edit = true;
+                frmMstLoaiPhep._MaLoaiPhep = MaLoaiPhep;
                 frmMstLoaiPhep.ShowDialog();
             }
         }
@@ -101,7 +108,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstLoaiPhep frmMstLoaiPhep = new frmMstLoaiPhep(null, null, null, false, null, true, this);
+            frmMstLoaiPhep frmMstLoaiPhep = new frmMstLoaiPhep(this);
+            frmMstLoaiPhep._Edit = false;
             frmMstLoaiPhep.ShowDialog();
         }
     }

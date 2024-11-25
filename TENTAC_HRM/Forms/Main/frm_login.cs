@@ -57,18 +57,14 @@ namespace TENTAC_HRM.Forms.Main
             {
                 save_data();
                 frm_home frm = new frm_home();
-                frm.ShowDialog();
-                this.Close();
+                this.Hide();
+                frm.Show(); 
+                frm.FormClosed += (s, args) => this.Close(); 
             }
             else
             {
                 lb_error.Visible = true;
             }
-        }
-
-        private void frm_login_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void init_data()

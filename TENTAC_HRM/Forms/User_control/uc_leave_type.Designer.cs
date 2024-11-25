@@ -29,9 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgv_leave_type = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btn_add = new System.Windows.Forms.ToolStripButton();
+            this.btn_delete = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
@@ -39,15 +42,9 @@
             this.TenLoaiPhep = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.KyHieu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.SoCong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.NgayTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.NguoiTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.MoTa = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.TinhCong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btn_add = new System.Windows.Forms.ToolStripButton();
-            this.btn_delete = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_leave_type)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,19 +63,17 @@
             this.TenLoaiPhep,
             this.KyHieu,
             this.SoCong,
-            this.NgayTao,
-            this.NguoiTao,
+            this.MoTa,
             this.NgayCapNhat,
-            this.NguoiCapNhat,
-            this.TinhCong});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_leave_type.DefaultCellStyle = dataGridViewCellStyle3;
+            this.NguoiCapNhat});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_leave_type.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_leave_type.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_leave_type.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_leave_type.Location = new System.Drawing.Point(0, 25);
@@ -86,6 +81,43 @@
             this.dgv_leave_type.Size = new System.Drawing.Size(987, 588);
             this.dgv_leave_type.TabIndex = 9;
             this.dgv_leave_type.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_leave_type_CellClick);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btn_add,
+            this.btn_delete});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(987, 25);
+            this.toolStrip1.TabIndex = 8;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btn_add
+            // 
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.plus;
+            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(57, 22);
+            this.btn_add.Text = "Thêm";
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
+            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(47, 22);
+            this.btn_delete.Text = "Xóa";
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 30;
             // 
             // Id
             // 
@@ -141,20 +173,12 @@
             this.SoCong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.SoCong.Width = 80;
             // 
-            // NgayTao
+            // MoTa
             // 
-            this.NgayTao.HeaderText = "Ngày Tạo";
-            this.NgayTao.Name = "NgayTao";
-            this.NgayTao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NgayTao.Visible = false;
-            this.NgayTao.Width = 100;
-            // 
-            // NguoiTao
-            // 
-            this.NguoiTao.HeaderText = "Người Tạo";
-            this.NguoiTao.Name = "NguoiTao";
-            this.NguoiTao.Visible = false;
-            this.NguoiTao.Width = 100;
+            this.MoTa.DataPropertyName = "MoTa";
+            this.MoTa.HeaderText = "Mô Tả";
+            this.MoTa.Name = "MoTa";
+            this.MoTa.Width = 150;
             // 
             // NgayCapNhat
             // 
@@ -171,56 +195,6 @@
             this.NguoiCapNhat.Name = "NguoiCapNhat";
             this.NguoiCapNhat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NguoiCapNhat.Width = 150;
-            // 
-            // TinhCong
-            // 
-            this.TinhCong.DataPropertyName = "TinhCong";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = false;
-            this.TinhCong.DefaultCellStyle = dataGridViewCellStyle2;
-            this.TinhCong.FalseValue = null;
-            this.TinhCong.HeaderText = "Tính Công";
-            this.TinhCong.IndeterminateValue = null;
-            this.TinhCong.Name = "TinhCong";
-            this.TinhCong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TinhCong.TrueValue = null;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btn_add,
-            this.btn_delete});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(987, 25);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btn_add
-            // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(57, 22);
-            this.btn_add.Text = "Thêm";
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(47, 22);
-            this.btn_delete.Text = "Xóa";
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 30;
             // 
             // uc_leave_type
             // 
@@ -252,10 +226,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenLoaiPhep;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn KyHieu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoCong;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayTao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiTao;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MoTa;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayCapNhat;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiCapNhat;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn TinhCong;
     }
 }

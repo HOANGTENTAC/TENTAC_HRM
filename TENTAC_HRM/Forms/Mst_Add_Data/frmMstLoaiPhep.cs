@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,136 +15,128 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
-    public partial class frmMstLoaiPhep : Form
+    public partial class frmMstLoaiPhep : KryptonForm
     {
         private uc_leave_type uc_leave_type;
         private MstMaTuDong autoCodeGenerator;
-        public frmMstLoaiPhep(string maLoaiPhep, string tenLoaiPhep, string kyHieu, bool tinhCong, double? soCong, bool addNew, uc_leave_type _uc_leave_type)
+        public string _MaLoaiPhep;
+        public bool _Edit;
+        string _TenLoaiPhep, _KyHieu, _MoTa, _NguoiTao, _NguoiCapNhat;
+        double _SoCong = 0;
+        public frmMstLoaiPhep(uc_leave_type _uc_leave_type)
         {
             InitializeComponent();
             autoCodeGenerator = new MstMaTuDong();
-            if (addNew == false)
-            {
-                labelX1.Text = "Cập Nhật Thông Tin Loại Phép";
-                txtMaLoaiPhep.Text = maLoaiPhep;
-                txtTenLoaiPhep.Text = tenLoaiPhep;
-                txtKyHieu.Text = kyHieu;
-                txtSoCong.Text = soCong.ToString();
-                chkTinhCong.Checked = tinhCong;
-            }
-            else
-            {
-                load_null();
-            }
-         
             uc_leave_type = _uc_leave_type;
-
-            if (chkTinhCong.Checked == true)
+        }
+        private void frmMstLoaiPhep_Load(object sender, EventArgs e)
+        {
+            if (_Edit == true)
             {
-                txtSoCong.Enabled = true;
+                LoadData();
             }
             else
             {
-                txtSoCong.Enabled = false;
+                LoadNull();
+            }
+        }
+        private void LoadData()
+        {
+            labelX1.Text = "Cập Nhật Thông Tin Loại Phép";
+            string sql = string.Empty;
+            sql = $@"Select MaLoaiPhep, TenLoaiPhep, KyHieu, SoCong, MoTa, del_flg from mst_LoaiPhep where MaLoaiPhep = {SQLHelper.rpStr(_MaLoaiPhep)} and del_flg = 0";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            if (dt.Rows.Count > 0)
+            {
+                txtMaLoaiPhep.Text = dt.Rows[0]["MaLoaiPhep"].ToString();
+                txtTenLoaiPhep.Text = dt.Rows[0]["TenLoaiPhep"].ToString();
+                txtKyHieu.Text = dt.Rows[0]["KyHieu"].ToString();
+                txtSoNgayCong.Text = dt.Rows[0]["SoCong"].ToString();
+                txtMoTa.Text = dt.Rows[0]["MoTa"].ToString();
             }
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
+            SetValues();
+            if (_Edit == true)
+            {
+                UpdateData();
+            }
+            else
+            {
+                InsertData();
+            }
+            uc_leave_type.LoadData();
+            LoadNull();
+        }
+        private void LoadNull()
+        {
+            txtMaLoaiPhep.Text = autoCodeGenerator.GenerateNextCode("mst_LoaiPhep", "LP", "MaLoaiPhep");
+            txtTenLoaiPhep.Text = string.Empty;
+            txtKyHieu.Text = string.Empty;
+            txtSoNgayCong.Text = "0";
+            txtMoTa.Text = string.Empty;
+        }
+        private void SetValues()
+        {
+            _MaLoaiPhep = txtMaLoaiPhep.Text.Trim().ToString();
+            _TenLoaiPhep = txtTenLoaiPhep.Text.Trim().ToString();
+            _KyHieu = txtKyHieu.Text.Trim().ToString();
+            _SoCong = string.IsNullOrEmpty(txtSoNgayCong.Text.Trim()) ? 0 : double.Parse(txtSoNgayCong.Text.Trim());
+            _MoTa = txtMoTa.Text.Trim().ToString();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
+        }
+        private void InsertData()
+        {
             try
             {
-                string MaLoaiPhep = txtMaLoaiPhep.Text.Trim().ToUpper().ToString();
-                string TenLoaiPhep = txtTenLoaiPhep.Text.Trim().ToString();
-                string KyHieu = txtKyHieu.Text.Trim().ToString();
-                bool TinhCong = chkTinhCong.Checked;
-                double SoCong = Convert.ToDouble(txtSoCong.Text.Trim().ToString());
                 string sql = string.Empty;
-                if (string.IsNullOrEmpty(TenLoaiPhep))
-                {
-                    RJMessageBox.Show("Bạn chưa nhập tên loại phép.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                sql = @"IF EXISTS (SELECT 1 FROM mst_LoaiPhep WHERE MaLoaiPhep = @MaLoaiPhep AND DelFlg = 0)
-                        BEGIN
-                            UPDATE mst_LoaiPhep
-                            SET 
-                                TenLoaiPhep = @TenLoaiPhep,
-                                KyHieu = @KyHieu,
-                                TinhCong = @TinhCong,
-                                SoCong = @SoCong,
-                                NgayCapNhat = @NgayCapNhat,
-                                NguoiCapNhat = @NguoiCapNhat
-                            WHERE 
-                                MaLoaiPhep = @MaLoaiPhep AND DelFlg = 0;
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO mst_LoaiPhep(MaLoaiPhep, TenLoaiPhep, KyHieu, TinhCong, SoCong, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                            VALUES(@MaLoaiPhep, @TenLoaiPhep, @KyHieu, @TinhCong, @SoCong, @NgayTao ,@NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
-                        END";
-
-                var parameters = new List<SqlParameter>
-                {
-                    new SqlParameter("@MaLoaiPhep", MaLoaiPhep),
-                    new SqlParameter("@TenLoaiPhep", TenLoaiPhep),
-                    new SqlParameter("@KyHieu", KyHieu),
-                    new SqlParameter("@TinhCong", TinhCong),
-                    new SqlParameter("@SoCong", SoCong),
-                    new SqlParameter("@NgayTao", DateTime.Now),
-                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                };
-
-                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
+                sql = $@"Insert into mst_LoaiPhep(MaLoaiPhep, TenLoaiPhep, KyHieu, SoCong, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                Values({SQLHelper.rpStr(_MaLoaiPhep)}, {SQLHelper.rpStr(_TenLoaiPhep)}, {SQLHelper.rpStr(_KyHieu)}, {SQLHelper.rpDouble(_SoCong)}, 
+                {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiCapNhat)}, 0)";
+                int res = SQLHelper.ExecuteSql(sql);
                 if (res > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show("Thêm dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                uc_leave_type.load_LoaiPhep();
-                load_null();
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void load_null()
+        private void UpdateData()
         {
-            txtMaLoaiPhep.Text = autoCodeGenerator.GenerateNextCode("mst_LoaiPhep", "LP", "MaLoaiPhep");
-            txtTenLoaiPhep.Text = string.Empty;
-            txtKyHieu.Text = string.Empty;
-            txtSoCong.Text = string.Empty;
-            chkTinhCong.Checked = false;
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Update mst_LoaiPhep Set TenLoaiPhep = {SQLHelper.rpStr(_TenLoaiPhep)}, KyHieu = {SQLHelper.rpStr(_KyHieu)},
+                SoCong = {SQLHelper.rpDouble(_SoCong)}, MoTa = {SQLHelper.rpStr(_MoTa)}, NgayCapNhat = '{DateTime.Now}', 
+                NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where MaLoaiPhep = {SQLHelper.rpStr(_MaLoaiPhep)} and del_flg = 0";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            //load_null();
-            if (this.Parent != null)
-            {
-                Control x = this.Parent;
-                x.Controls.Remove(this);
-            }
-            else
-            {
-                this.Close();
-            }
-        }
-
-        private void chkTinhCong_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkTinhCong.Checked == true)
-            {
-                txtSoCong.Enabled = true;
-            }
-            else
-            {
-                txtSoCong.Enabled = false;
-                txtSoCong.Text = string.Empty;
-            }
+            this.Close();
         }
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -151,7 +144,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             {
                 e.Handled = true;
             }
-            if (e.KeyChar == '.' && txtSoCong.Text.Contains("."))
+            if (e.KeyChar == '.' && txtSoNgayCong.Text.Contains("."))
             {
                 e.Handled = true;
             }

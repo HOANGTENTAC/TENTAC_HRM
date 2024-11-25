@@ -47,6 +47,14 @@ namespace TENTAC_HRM.Forms.User_control
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                               "Xác nhận",
+                                               MessageBoxButtons.YesNo,
+                                               MessageBoxIcon.Question);
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_position.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -180,49 +188,30 @@ namespace TENTAC_HRM.Forms.User_control
                             IRow currentRow = sheet.GetRow(row);
                             if (currentRow == null) continue;
 
-                            string maChucVu = currentRow.GetCell(0)?.ToString() ?? "";
-                            string tenChucVu = currentRow.GetCell(1)?.ToString() ?? "";
-                            string moTa = currentRow.GetCell(2)?.ToString() ?? "";
+                            string _MaChucVu = currentRow.GetCell(0)?.ToString() ?? "";
+                            string _TenChucVu = currentRow.GetCell(1)?.ToString() ?? "";
+                            string _MoTa = currentRow.GetCell(2)?.ToString() ?? "";
 
-                            string checkQuery = "SELECT COUNT(*) FROM mst_ChucVu WHERE MaChucVu = @MaChucVu and del_flg = 0";
-                            var checkParams = new List<SqlParameter> { new SqlParameter("@MaChucVu", maChucVu) };
-                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery, checkParams.ToArray());
+                            string checkQuery = $@"SELECT COUNT(*) FROM mst_ChucVu WHERE MaChucVu = {SQLHelper.rpStr(_MaChucVu)} and del_flg = 0";
+                            int count = (int)SQLHelper.ExecuteScalarSql(checkQuery);
 
                             if (count > 0)
                             {
-                                string sqlUpdate = @"UPDATE mst_ChucVu 
-                                    SET TenChucVu = @TenChucVu, 
-                                    MoTa = @MoTa,
-                                    NgayCapNhat = @NgayCapNhat,
-                                    NguoiCapNhat = @NguoiCapNhat
-                                    WHERE MaChucVu = @MaChucVu and del_flg = 0";
-                                var updateParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaChucVu", maChucVu),
-                                    new SqlParameter("@TenChucVu", tenChucVu),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlUpdate, updateParams.ToArray());
+                                string sqlUpdate = $@"UPDATE mst_ChucVu 
+                                    SET TenChucVu = {SQLHelper.rpStr(_TenChucVu)}, 
+                                    MoTa = {SQLHelper.rpStr(_MoTa)},
+                                    NgayCapNhat = '{DateTime.Now}',
+                                    NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+                                    WHERE MaChucVu = {SQLHelper.rpStr(_MaChucVu)} and del_flg = 0";
+                                res += SQLHelper.ExecuteSql(sqlUpdate);
                             }
                             else
                             {
                                 string newMaChucVu = autoCodeGenerator.GenerateNextMaChucVu();
-                                string sqlInsert = @"INSERT INTO mst_ChucVu(MaChucVu, TenChucVu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg) 
-                                                VALUES(@MaChucVu, @TenChucVu, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0)";
-
-                                var insertParams = new List<SqlParameter>
-                                {
-                                    new SqlParameter("@MaChucVu", newMaChucVu),
-                                    new SqlParameter("@TenChucVu", tenChucVu),
-                                    new SqlParameter("@MoTa", moTa),
-                                    new SqlParameter("@NgayTao", DateTime.Now),
-                                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                                };
-                                res += SQLHelper.ExecuteSql(sqlInsert, insertParams.ToArray());
+                                string sqlInsert = $@"INSERT INTO mst_ChucVu(MaChucVu, TenChucVu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg) 
+                                                VALUES({SQLHelper.rpStr(newMaChucVu)}, {SQLHelper.rpStr(_TenChucVu)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}',
+                                                {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+                                res += SQLHelper.ExecuteSql(sqlInsert);
                             }
                         }
                         if (res > 0)
@@ -244,9 +233,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_position.Columns["edit_column"].Index)
             {
                 string MaChucVu = dgv_position.CurrentRow.Cells["MaChucVu"].Value.ToString();
-                string TenChucVu = dgv_position.CurrentRow.Cells["TenChucVu"].Value.ToString();
-                string MoTa = dgv_position.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstChucVu frmMstChucVu = new frmMstChucVu(MaChucVu, TenChucVu, MoTa, false, this);
+                frmMstChucVu frmMstChucVu = new frmMstChucVu(this);
+                frmMstChucVu._MaChucVu = MaChucVu;
+                frmMstChucVu._Edit = true;
                 frmMstChucVu.ShowDialog();
             }
         }
@@ -257,7 +246,8 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstChucVu frmMstChucVu = new frmMstChucVu(null, null, null, true, this);
+            frmMstChucVu frmMstChucVu = new frmMstChucVu(this);
+            frmMstChucVu._Edit = false;
             frmMstChucVu.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)

@@ -43,6 +43,8 @@
             this.Vung = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.LuongToiThieuTheoThang = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.LuongToiThieuTheoGio = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NamHienHanh = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.GhiChu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NgayTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NguoiTao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.NgayCapNhat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
@@ -115,6 +117,8 @@
             this.Vung,
             this.LuongToiThieuTheoThang,
             this.LuongToiThieuTheoGio,
+            this.NamHienHanh,
+            this.GhiChu,
             this.NgayTao,
             this.NguoiTao,
             this.NgayCapNhat,
@@ -179,6 +183,20 @@
             this.LuongToiThieuTheoGio.HeaderText = "Lương Tối Thiểu/Giờ";
             this.LuongToiThieuTheoGio.Name = "LuongToiThieuTheoGio";
             this.LuongToiThieuTheoGio.Width = 180;
+            // 
+            // NamHienHanh
+            // 
+            this.NamHienHanh.DataPropertyName = "NamHienHanh";
+            this.NamHienHanh.HeaderText = "Năm";
+            this.NamHienHanh.Name = "NamHienHanh";
+            this.NamHienHanh.Width = 100;
+            // 
+            // GhiChu
+            // 
+            this.GhiChu.DataPropertyName = "GhiChu";
+            this.GhiChu.HeaderText = "Ghi chú";
+            this.GhiChu.Name = "GhiChu";
+            this.GhiChu.Width = 100;
             // 
             // NgayTao
             // 
@@ -245,6 +263,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn Vung;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LuongToiThieuTheoThang;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LuongToiThieuTheoGio;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NamHienHanh;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn GhiChu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayTao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NguoiTao;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayCapNhat;

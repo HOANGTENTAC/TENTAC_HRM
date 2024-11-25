@@ -25,11 +25,11 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_education_level()
         {
             InitializeComponent();
-            load_data();
+            LoadData();
         }
-        public void load_data()
+        public void LoadData()
         {
-            string sql = "select Id, MaBac, TenBac, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_BacDaoTao where DelFlg = 0 order by MaBac";
+            string sql = "select Id, MaBac, TenBac, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat from mst_BacDaoTao where del_flg = 0 order by MaBac";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_education_level.DataSource = dt;
@@ -38,6 +38,15 @@ namespace TENTAC_HRM.Forms.User_control
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                                "Xác nhận",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_education_level.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -49,11 +58,8 @@ namespace TENTAC_HRM.Forms.User_control
 
                     if (isChecked)
                     {
-                        string MaBac = row.Cells["MaBac"].Value?.ToString();
-                        if (!string.IsNullOrEmpty(MaBac))
-                        {
-                            updateQueries.Add($@"UPDATE mst_BacDaoTao SET DelFlg = 1 WHERE MaBac = N'{MaBac}'");
-                        }
+                        int IDMaBac = int.Parse(row.Cells["Id"].Value.ToString());
+                        updateQueries.Add($@"UPDATE mst_BacDaoTao SET del_flg = 1 WHERE Id = {SQLHelper.rpI(IDMaBac)}");
                     }
                 }
 
@@ -70,7 +76,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_data();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -84,17 +90,18 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstBacDaoTao frmMstBacDaoTao = new frmMstBacDaoTao(null, null, null, true, this);
+            frmMstBacDaoTao frmMstBacDaoTao = new frmMstBacDaoTao(this);
+            frmMstBacDaoTao._Edit = false;
             frmMstBacDaoTao.ShowDialog();
         }
         private void dgv_education_level_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_education_level.Columns["edit_column"].Index)
             {
-                string MaBac = dgv_education_level.CurrentRow.Cells["MaBac"].Value.ToString();
-                string TenBac = dgv_education_level.CurrentRow.Cells["TenBac"].Value.ToString();
-                string MoTa = dgv_education_level.CurrentRow.Cells["MoTa"].Value.ToString();
-                frmMstBacDaoTao frmMstBacDaoTao = new frmMstBacDaoTao(MaBac, TenBac, MoTa, false, this);
+                int IdMaBac = int.Parse(dgv_education_level.CurrentRow.Cells["Id"].Value.ToString());
+                frmMstBacDaoTao frmMstBacDaoTao = new frmMstBacDaoTao(this);
+                frmMstBacDaoTao._IDTrinhDo = IdMaBac;
+                frmMstBacDaoTao._Edit = true;
                 frmMstBacDaoTao.ShowDialog();
             }
         }

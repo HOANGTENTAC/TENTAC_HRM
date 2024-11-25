@@ -30,9 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_personnel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.tabPage1 = new ComponentFactory.Krypton.Navigator.KryptonPage();
+            this.cbo_ReportTo = new TENTAC_HRM.Custom.MultiColumnComboBox();
             this.lb_validate_tuoi = new DevComponents.DotNetBar.LabelX();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btn_HonNhan = new FontAwesome.Sharp.IconButton();
@@ -433,7 +434,6 @@
             this.dataGridViewImageColumn13 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn14 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn15 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cbo_ReportTo = new TENTAC_HRM.Custom.MultiColumnComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl1)).BeginInit();
             this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPage1)).BeginInit();
@@ -556,7 +556,7 @@
             this.tp_giadinh,
             this.tabPage8,
             this.tabPage9});
-            this.tabControl1.SelectedIndex = 4;
+            this.tabControl1.SelectedIndex = 2;
             this.tabControl1.Size = new System.Drawing.Size(947, 617);
             this.tabControl1.TabIndex = 0;
             // 
@@ -582,6 +582,24 @@
             this.tabPage1.Text = "Cơ bản";
             this.tabPage1.ToolTipTitle = "Page ToolTip";
             this.tabPage1.UniqueName = "04A73DCB2E7B4FDD1B82898D83B28695";
+            // 
+            // cbo_ReportTo
+            // 
+            this.cbo_ReportTo.AutoComplete = false;
+            this.cbo_ReportTo.AutoDropdown = true;
+            this.cbo_ReportTo.BackColorEven = System.Drawing.Color.White;
+            this.cbo_ReportTo.BackColorOdd = System.Drawing.Color.White;
+            this.cbo_ReportTo.ColumnNames = "";
+            this.cbo_ReportTo.ColumnWidthDefault = 100;
+            this.cbo_ReportTo.ColumnWidths = "";
+            this.cbo_ReportTo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbo_ReportTo.FormattingEnabled = true;
+            this.cbo_ReportTo.LinkedColumnIndex = 0;
+            this.cbo_ReportTo.LinkedTextBox = null;
+            this.cbo_ReportTo.Location = new System.Drawing.Point(735, 478);
+            this.cbo_ReportTo.Name = "cbo_ReportTo";
+            this.cbo_ReportTo.Size = new System.Drawing.Size(174, 24);
+            this.cbo_ReportTo.TabIndex = 31;
             // 
             // lb_validate_tuoi
             // 
@@ -3829,9 +3847,9 @@
             // isphuthuoc
             // 
             this.isphuthuoc.DataPropertyName = "IsPhuThuoc";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = false;
-            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = false;
+            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle2;
             this.isphuthuoc.FalseValue = null;
             this.isphuthuoc.FillWeight = 67.00507F;
             this.isphuthuoc.HeaderText = "Phụ thuộc";
@@ -5256,24 +5274,6 @@
             this.dataGridViewImageColumn15.Image = global::TENTAC_HRM.Properties.Resources.pen;
             this.dataGridViewImageColumn15.Name = "dataGridViewImageColumn15";
             this.dataGridViewImageColumn15.Width = 30;
-            // 
-            // cbo_ReportTo
-            // 
-            this.cbo_ReportTo.AutoComplete = false;
-            this.cbo_ReportTo.AutoDropdown = true;
-            this.cbo_ReportTo.BackColorEven = System.Drawing.Color.White;
-            this.cbo_ReportTo.BackColorOdd = System.Drawing.Color.White;
-            this.cbo_ReportTo.ColumnNames = "";
-            this.cbo_ReportTo.ColumnWidthDefault = 100;
-            this.cbo_ReportTo.ColumnWidths = "";
-            this.cbo_ReportTo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbo_ReportTo.FormattingEnabled = true;
-            this.cbo_ReportTo.LinkedColumnIndex = 0;
-            this.cbo_ReportTo.LinkedTextBox = null;
-            this.cbo_ReportTo.Location = new System.Drawing.Point(735, 478);
-            this.cbo_ReportTo.Name = "cbo_ReportTo";
-            this.cbo_ReportTo.Size = new System.Drawing.Size(174, 24);
-            this.cbo_ReportTo.TabIndex = 31;
             // 
             // frm_personnel
             // 

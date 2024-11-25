@@ -1,122 +1,129 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Media.Animation;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.User_control;
 using TENTAC_HRM.Common;
+using ComponentFactory.Krypton.Toolkit;
+using System.Data;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
-    public partial class frmMstDanToc : Form
+    public partial class frmMstDanToc : KryptonForm
     {
         private uc_nation uc_nation;
         private MstMaTuDong autoCodeGenerator;
-        public frmMstDanToc(string maDanToc, string tenDanToc, string moTa, bool addNew, uc_nation _uc_nation)
+        public string _MaDanToc { get; set; }
+        public bool _Edit { get; set; }
+        string _TenDanToc, _MoTa, _NguoiTao, _NguoiCapNhat;
+        public frmMstDanToc(uc_nation _uc_nation)
         {
             InitializeComponent();
             autoCodeGenerator = new MstMaTuDong();
-            if (addNew == false)
-            {
-                labelX1.Text = "Cập Nhật Thông Tin Dân Tộc";
-                txtMaDanToc.Text = maDanToc;
-                txtTenDanToc.Text = tenDanToc;
-                txtMota.Text = moTa;
-            }
-            else
-            {
-                load_null();
-            }
             uc_nation = _uc_nation;
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
+            SetValues();
+            if (_Edit == true)
+            {
+                UpdateData();
+            }
+            else
+            {
+                InsertData();
+            }
+            LoadNull();
+            uc_nation.LoadData();
+        }
+
+        private void frmMstDanToc_Load(object sender, EventArgs e)
+        {
+            if (_Edit == true)
+            {
+                LoadData();
+            }
+            else
+            {
+                LoadNull();
+            }
+        }
+
+        private void LoadData()
+        {
+            labelX1.Text = "Cập Nhật Thông Tin Dân Tộc";
+            string sql = string.Empty;
+            sql = $@"Select MaDanToc, TenDanToc, MoTa, del_flg from mst_DanToc where MaDanToc = {SQLHelper.rpStr(_MaDanToc)}";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            if (dt.Rows.Count > 0)
+            {
+                txtMaDanToc.Text = dt.Rows[0]["MaDanToc"].ToString();
+                txtTenDanToc.Text = dt.Rows[0]["TenDanToc"].ToString();
+                txtMoTa.Text = dt.Rows[0]["MoTa"].ToString();
+            }
+        }
+        private void LoadNull()
+        {
+            txtMaDanToc.Text = autoCodeGenerator.GenerateNextCode("mst_DanToc", "DT", "MaDanToc");
+            txtTenDanToc.Text = string.Empty;
+            txtMoTa.Text = string.Empty;
+        }
+        private void SetValues()
+        {
+            _MaDanToc = txtMaDanToc.Text.Trim().ToString();
+            _TenDanToc = txtTenDanToc.Text.Trim().ToString();
+            _MoTa = txtMoTa.Text.Trim().ToString();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
+        }
+        private void InsertData()
+        {
             try
             {
-                string MaDanToc = txtMaDanToc.Text.Trim().ToUpper().ToString();
-                string TenDanToc = txtTenDanToc.Text.Trim().ToString();
-                string Mota = txtMota.Text.Trim().ToString();
                 string sql = string.Empty;
-                if (string.IsNullOrEmpty(MaDanToc))
-                {
-                    RJMessageBox.Show("Bạn chưa nhập mã dân tộc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrEmpty(TenDanToc))
-                {
-                    RJMessageBox.Show("Bạn chưa nhập tên dân tộc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                sql = @"IF EXISTS (SELECT 1 FROM mst_DanToc WHERE MaDanToc = @MaDanToc AND DelFlg = 0)
-                        BEGIN
-                            UPDATE mst_DanToc
-                            SET 
-                                TenDanToc = @TenDanToc,
-                                MoTa = @MoTa,
-                                NgayCapNhat = @NgayCapNhat,
-                                NguoiCapNhat = @NguoiCapNhat
-                            WHERE 
-                                MaDanToc = @MaDanToc AND DelFlg = 0;
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO mst_DanToc(MaDanToc, TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                            VALUES(@MaDanToc, @TenDanToc, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
-                        END";
-
-                var parameters = new List<SqlParameter>
-                {
-                    new SqlParameter("@MaDanToc", MaDanToc),
-                    new SqlParameter("@TenDanToc", TenDanToc),
-                    new SqlParameter("@MoTa", Mota),
-                    new SqlParameter("@NgayTao", DateTime.Now),
-                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                };
-
-                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
+                sql = $@"Insert into mst_DanToc(MaDanToc, TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                Values({SQLHelper.rpStr(_MaDanToc)}, {SQLHelper.rpStr(_TenDanToc)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', 
+                {SQLHelper.rpStr(_NguoiTao)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiCapNhat)}, 0)";
+                int res = SQLHelper.ExecuteSql(sql);
                 if (res > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show("Thêm dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                uc_nation.load_dataDanToc();
-                load_null();
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void load_null()
+        private void UpdateData()
         {
-            txtMaDanToc.Text = autoCodeGenerator.GenerateNextCode("mst_DanToc", "DT", "MaDanToc");
-            txtTenDanToc.Text = string.Empty;
-            txtMota.Text = string.Empty;
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Update mst_DanToc Set MaDanToc = {SQLHelper.rpStr(_MaDanToc)}, TenDanToc = {SQLHelper.rpStr(_TenDanToc)},
+                MoTa = {SQLHelper.rpStr(_MoTa)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where MaDanToc = {SQLHelper.rpStr(_MaDanToc)} and del_flg = 0";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            //load_null();
-            if (this.Parent != null)
-            {
-                Control x = this.Parent;
-                x.Controls.Remove(this);
-            }
-            else
-            {
-                this.Close();
-            }
+            this.Close();
         }
     }
 }

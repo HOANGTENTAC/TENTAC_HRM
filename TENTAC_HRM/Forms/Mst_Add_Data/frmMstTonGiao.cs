@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,86 +15,112 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
-    public partial class frmMstTonGiao : Form
+    public partial class frmMstTonGiao : KryptonForm
     {
         private uc_staff_religion uc_staff_religion;
         private static MstMaTuDong autoCodeGenerator = new MstMaTuDong();
-        public frmMstTonGiao(string maTonGiao, string tenTonGiao, string moTa, bool addNew, uc_staff_religion _uc_staff_religion)
+        public string _MaTonGiao { get; set; }
+        public bool _Edit { get; set; }
+        private string _TenTonGiao, _MoTa, _NguoiTao, _NguoiCapNhat;
+        public frmMstTonGiao(uc_staff_religion _uc_staff_religion)
         {
             InitializeComponent();
 
             autoCodeGenerator = new MstMaTuDong();
-            if (addNew == false)
+            uc_staff_religion = _uc_staff_religion;
+        }
+        private void frmMstTonGiao_Load(object sender, EventArgs e)
+        {
+            if (_Edit == true)
             {
-                labelX1.Text = "Cập Nhật Thông Tin Tôn Giáo";
-                txtMaTonGiao.Text = maTonGiao;
-                txtTenTonGiao.Text = tenTonGiao;
-                txtMota.Text = moTa;
+                LoadData();
             }
             else
             {
-                load_null();
+                LoadNull();
             }
-            uc_staff_religion = _uc_staff_religion;
         }
-        private void load_null()
+        private void LoadData()
+        {
+            labelX1.Text = "Cập Nhật Thông Tin Tôn Giáo";
+            string sql = string.Empty;
+            sql = $@"Select MaTonGiao, TenTonGiao, MoTa, del_flg from [TENTAC_HRM].[dbo].[mst_TonGiao] where MaTonGiao = {SQLHelper.rpStr(_MaTonGiao)} and del_flg = 0";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            if (dt.Rows.Count > 0)
+            {
+                txtMaTonGiao.Text = dt.Rows[0]["MaTonGiao"].ToString();
+                txtTenTonGiao.Text = dt.Rows[0]["TenTonGiao"].ToString();
+                txtMoTa.Text = dt.Rows[0]["MoTa"].ToString();
+            }
+        }
+        private void LoadNull()
         {
             txtMaTonGiao.Text = autoCodeGenerator.GenerateNextCode("mst_TonGiao", "TG", "MaTonGiao");
             txtTenTonGiao.Text = string.Empty;
-            txtMota.Text = string.Empty;
+            txtMoTa.Text = string.Empty;
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
+            SetValues();
+            if (_Edit == true)
+            {
+                UpdateData();
+            }
+            else
+            {
+                InsertData();
+            }
+            uc_staff_religion.LoadData();
+            LoadNull();
+        }
+        private void SetValues()
+        {
+            _MaTonGiao = txtMaTonGiao.Text.Trim().ToString();
+            _TenTonGiao = txtTenTonGiao.Text.Trim().ToString();
+            _MoTa = txtMoTa.Text.Trim().ToString();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
+        }
+        private void InsertData()
+        {
             try
             {
-                string MaTonGiao = txtMaTonGiao.Text.Trim().ToUpper().ToString();
-                string TenTonGiao = txtTenTonGiao.Text.Trim().ToString();
-                string Mota = txtMota.Text.Trim().ToString();
                 string sql = string.Empty;
-                if (string.IsNullOrEmpty(MaTonGiao))
-                {
-                    RJMessageBox.Show("Bạn chưa nhập tên tôn giáo.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                sql = @"IF EXISTS (SELECT 1 FROM mst_TonGiao WHERE MaTonGiao = @MaTonGiao AND DelFlg = 0)
-                        BEGIN
-                            UPDATE mst_TonGiao
-                            SET 
-                                TenTonGiao = @TenTonGiao,
-                                MoTa = @MoTa,
-                                NgayCapNhat = @NgayCapNhat,
-                                NguoiCapNhat = @NguoiCapNhat
-                            WHERE 
-                                MaTonGiao = @MaTonGiao AND DelFlg = 0;
-                        END
-                        ELSE
-                        BEGIN
-                            INSERT INTO mst_TonGiao(MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, DelFlg)
-                            VALUES(@MaTonGiao, @TenTonGiao, @MoTa, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat, 0);
-                        END";
-
-                var parameters = new List<SqlParameter>
-                {
-                    new SqlParameter("@MaTonGiao", MaTonGiao),
-                    new SqlParameter("@TenTonGiao", TenTonGiao),
-                    new SqlParameter("@MoTa", Mota),
-                    new SqlParameter("@NgayTao", DateTime.Now),
-                    new SqlParameter("@NguoiTao", SQLHelper.sUser),
-                    new SqlParameter("@NgayCapNhat", DateTime.Now),
-                    new SqlParameter("@NguoiCapNhat", SQLHelper.sUser)
-                };
-
-                int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
+                sql = $@"Insert into mst_TonGiao(MaTonGiao, TenTonGiao, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
+                Values({SQLHelper.rpStr(_MaTonGiao)}, {SQLHelper.rpStr(_TenTonGiao)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', 
+                {SQLHelper.rpStr(_NguoiTao)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiCapNhat)}, 0)";
+                int res = SQLHelper.ExecuteSql(sql);
                 if (res > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Thêm dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RJMessageBox.Show("Thêm dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                uc_staff_religion.load_dataTonGiao();
-                load_null();
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void UpdateData()
+        {
+            try
+            {
+                string sql = string.Empty;
+                sql = $@"Update mst_TonGiao Set MaTonGiao = {SQLHelper.rpStr(_MaTonGiao)}, TenTonGiao = {SQLHelper.rpStr(_TenTonGiao)},
+                MoTa = {SQLHelper.rpStr(_MoTa)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where MaTonGiao = {SQLHelper.rpStr(_MaTonGiao)} and del_flg = 0";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -103,16 +130,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
-            //load_null();
-            if (this.Parent != null)
-            {
-                Control x = this.Parent;
-                x.Controls.Remove(this);
-            }
-            else
-            {
-                this.Close();
-            }
+            this.Close();
         }
     }
 }

@@ -34,9 +34,9 @@ namespace TENTAC_HRM.Forms.User_control
         public uc_departments()
         {
             InitializeComponent();
-            load_data();
+            LoadData();
         }
-        public void load_data()
+        public void LoadData()
         {
             string sql = "select MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan from MITACOSQL.dbo.PHONGBAN order by MaPhongBan";
             DataTable dt = new DataTable();
@@ -47,6 +47,14 @@ namespace TENTAC_HRM.Forms.User_control
         {
             try
             {
+                DialogResult result = RJMessageBox.Show("Bạn có chắc chắn muốn xoá các mục đã chọn không?",
+                                              "Xác nhận",
+                                              MessageBoxButtons.YesNo,
+                                              MessageBoxIcon.Question);
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
                 dgv_departments.EndEdit();
                 List<string> updateQueries = new List<string>();
 
@@ -79,7 +87,7 @@ namespace TENTAC_HRM.Forms.User_control
                 {
                     RJMessageBox.Show("Cập nhật thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                load_data();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -221,7 +229,7 @@ namespace TENTAC_HRM.Forms.User_control
                     }
                     Cursor.Current = Cursors.Default;
                 }
-                load_data();
+                LoadData();
             }
             catch (Exception ex)
             {
@@ -233,10 +241,9 @@ namespace TENTAC_HRM.Forms.User_control
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_departments.Columns["edit_column"].Index)
             {
                 string MaPhongBan = dgv_departments.CurrentRow.Cells["MaPhongBan"].Value.ToString();
-                string MaCongTy = dgv_departments.CurrentRow.Cells["MaCongTy"].Value.ToString();
-                string MaKhuVuc = dgv_departments.CurrentRow.Cells["MaKhuVuc"].Value.ToString();
-                string TenPhongBan = dgv_departments.CurrentRow.Cells["TenPhongBan"].Value.ToString();
-                frmMstPhongBan frmMstPhongBan = new frmMstPhongBan(MaPhongBan, MaCongTy, MaKhuVuc, TenPhongBan, false, this);
+                frmMstPhongBan frmMstPhongBan = new frmMstPhongBan(this);
+                frmMstPhongBan._MaPhongBan = MaPhongBan;
+                frmMstPhongBan._Edit = true;
                 frmMstPhongBan.ShowDialog();
             }
         }
@@ -247,7 +254,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frmMstPhongBan frmMstPhongBan = new frmMstPhongBan(null, null, null, null, true, this);
+            frmMstPhongBan frmMstPhongBan = new frmMstPhongBan(this);
             frmMstPhongBan.ShowDialog();
         }
         private void KillExcelProcesses(string fileName)
