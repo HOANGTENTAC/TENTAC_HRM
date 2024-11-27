@@ -276,7 +276,7 @@ namespace TENTAC_HRM.Forms.Category
                 save_data();
             }
 
-            _Personnel.load_taisan();
+            _Personnel.LoadNhanVienThaiSan();
         }
         public void set_value_text()
         {

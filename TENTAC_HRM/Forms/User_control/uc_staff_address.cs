@@ -75,7 +75,7 @@ namespace TENTAC_HRM.Forms.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
+                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0} and del_flg = 0", row);
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");
@@ -94,7 +94,7 @@ namespace TENTAC_HRM.Forms.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
+                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0} and del_flg = 0", row);
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");
@@ -113,7 +113,7 @@ namespace TENTAC_HRM.Forms.User_control
                 string row = vrow.Row.ItemArray[0].ToString();
                 if (row != "")
                 {
-                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0}", row);
+                    string sql = string.Format("select id,tendiachi from mst_DonViHanhChinh where ParentId = {0} and del_flg = 0", row);
                     DataTable dt = new DataTable();
                     dt = SQLHelper.ExecuteDt(sql);
                     dt.Rows.Add("0", "");

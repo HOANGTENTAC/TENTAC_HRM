@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_personnel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.tabPage1 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.cbo_ReportTo = new TENTAC_HRM.Custom.MultiColumnComboBox();
@@ -79,6 +80,7 @@
             this.txt_CCCD = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label2 = new DevComponents.DotNetBar.LabelX();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_update_image = new FontAwesome.Sharp.IconButton();
             this.lb_Tuoi = new DevComponents.DotNetBar.LabelX();
             this.pb_Avata = new System.Windows.Forms.PictureBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -238,15 +240,17 @@
             this.tabPage5 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.pl_phu_cap = new System.Windows.Forms.Panel();
             this.dgv_PhuCap = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_phu_cap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdPhuCap = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_phucap = new System.Windows.Forms.DataGridViewImageColumn();
-            this.loaiphucap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tungaypc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.denngaypc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mucphucap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loaiphucap = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TuNgay_PC = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DenNgay_PC = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.MucPhuCap = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.IsActive = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
             this.btn_PhuCap = new System.Windows.Forms.Button();
             this.linkLabel5 = new System.Windows.Forms.LinkLabel();
             this.pl_luong = new System.Windows.Forms.Panel();
+            this.label30 = new System.Windows.Forms.Label();
             this.btn_show_salary = new System.Windows.Forms.Button();
             this.chk_PhanTramThueThuNhap = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
             this.chk_MienDongThue = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
@@ -556,7 +560,7 @@
             this.tp_giadinh,
             this.tabPage8,
             this.tabPage9});
-            this.tabControl1.SelectedIndex = 2;
+            this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(947, 617);
             this.tabControl1.TabIndex = 0;
             // 
@@ -1137,6 +1141,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.btn_update_image);
             this.groupBox1.Controls.Add(this.lb_Tuoi);
             this.groupBox1.Controls.Add(this.pb_Avata);
             this.groupBox1.Location = new System.Drawing.Point(741, 3);
@@ -1144,6 +1149,21 @@
             this.groupBox1.Size = new System.Drawing.Size(181, 227);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
+            // 
+            // btn_update_image
+            // 
+            this.btn_update_image.FlatAppearance.BorderSize = 0;
+            this.btn_update_image.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_update_image.IconChar = FontAwesome.Sharp.IconChar.Upload;
+            this.btn_update_image.IconColor = System.Drawing.Color.Black;
+            this.btn_update_image.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_update_image.IconSize = 20;
+            this.btn_update_image.Location = new System.Drawing.Point(83, 184);
+            this.btn_update_image.Name = "btn_update_image";
+            this.btn_update_image.Size = new System.Drawing.Size(19, 17);
+            this.btn_update_image.TabIndex = 11;
+            this.btn_update_image.UseVisualStyleBackColor = true;
+            this.btn_update_image.Click += new System.EventHandler(this.btn_update_image_Click);
             // 
             // lb_Tuoi
             // 
@@ -2415,7 +2435,6 @@
             this.txt_ChieuCao.Name = "txt_ChieuCao";
             this.txt_ChieuCao.Size = new System.Drawing.Size(177, 23);
             this.txt_ChieuCao.TabIndex = 0;
-            this.txt_ChieuCao.Text = "140";
             this.txt_ChieuCao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_chieu_cao_KeyPress);
             // 
             // txt_CanNang
@@ -2428,7 +2447,7 @@
             this.txt_CanNang.Name = "txt_CanNang";
             this.txt_CanNang.Size = new System.Drawing.Size(184, 23);
             this.txt_CanNang.TabIndex = 1;
-            this.txt_CanNang.Text = "30";
+            this.txt_CanNang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_can_nang_KeyPress);
             // 
             // label64
             // 
@@ -3098,12 +3117,13 @@
             this.dgv_PhuCap.AllowUserToAddRows = false;
             this.dgv_PhuCap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_PhuCap.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_phu_cap,
+            this.IdPhuCap,
             this.edit_column_phucap,
             this.loaiphucap,
-            this.tungaypc,
-            this.denngaypc,
-            this.mucphucap});
+            this.TuNgay_PC,
+            this.DenNgay_PC,
+            this.MucPhuCap,
+            this.IsActive});
             this.dgv_PhuCap.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_PhuCap.Location = new System.Drawing.Point(0, 25);
             this.dgv_PhuCap.Name = "dgv_PhuCap";
@@ -3111,12 +3131,13 @@
             this.dgv_PhuCap.TabIndex = 29;
             this.dgv_PhuCap.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_phucap_CellClick);
             // 
-            // id_phu_cap
+            // IdPhuCap
             // 
-            this.id_phu_cap.DataPropertyName = "id_phu_cap";
-            this.id_phu_cap.HeaderText = "Column1";
-            this.id_phu_cap.Name = "id_phu_cap";
-            this.id_phu_cap.Visible = false;
+            this.IdPhuCap.DataPropertyName = "ID";
+            this.IdPhuCap.HeaderText = "ID";
+            this.IdPhuCap.Name = "IdPhuCap";
+            this.IdPhuCap.Visible = false;
+            this.IdPhuCap.Width = 100;
             // 
             // edit_column_phucap
             // 
@@ -3131,31 +3152,46 @@
             this.loaiphucap.FillWeight = 149.6114F;
             this.loaiphucap.HeaderText = "Loại phụ cấp";
             this.loaiphucap.Name = "loaiphucap";
+            this.loaiphucap.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.loaiphucap.Width = 266;
             // 
-            // tungaypc
+            // TuNgay_PC
             // 
-            this.tungaypc.DataPropertyName = "tungaypc";
-            this.tungaypc.FillWeight = 80.6289F;
-            this.tungaypc.HeaderText = "Từ ngày";
-            this.tungaypc.Name = "tungaypc";
-            this.tungaypc.Width = 144;
+            this.TuNgay_PC.DataPropertyName = "TuNgay_PC";
+            this.TuNgay_PC.FillWeight = 80.6289F;
+            this.TuNgay_PC.HeaderText = "Từ ngày";
+            this.TuNgay_PC.Name = "TuNgay_PC";
+            this.TuNgay_PC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TuNgay_PC.Width = 144;
             // 
-            // denngaypc
+            // DenNgay_PC
             // 
-            this.denngaypc.DataPropertyName = "denngaypc";
-            this.denngaypc.FillWeight = 68.23684F;
-            this.denngaypc.HeaderText = "Đến ngày";
-            this.denngaypc.Name = "denngaypc";
-            this.denngaypc.Width = 121;
+            this.DenNgay_PC.DataPropertyName = "DenNgay_PC";
+            this.DenNgay_PC.FillWeight = 68.23684F;
+            this.DenNgay_PC.HeaderText = "Đến ngày";
+            this.DenNgay_PC.Name = "DenNgay_PC";
+            this.DenNgay_PC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DenNgay_PC.Width = 121;
             // 
-            // mucphucap
+            // MucPhuCap
             // 
-            this.mucphucap.DataPropertyName = "mucphucap";
-            this.mucphucap.FillWeight = 101.5228F;
-            this.mucphucap.HeaderText = "Mức phụ cấp";
-            this.mucphucap.Name = "mucphucap";
-            this.mucphucap.Width = 181;
+            this.MucPhuCap.DataPropertyName = "MucPhuCap";
+            this.MucPhuCap.HeaderText = "Mức phụ cấp";
+            this.MucPhuCap.Name = "MucPhuCap";
+            this.MucPhuCap.Width = 120;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = false;
+            this.IsActive.DefaultCellStyle = dataGridViewCellStyle3;
+            this.IsActive.FalseValue = null;
+            this.IsActive.HeaderText = "Hiệu lực";
+            this.IsActive.IndeterminateValue = null;
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.TrueValue = null;
             // 
             // btn_PhuCap
             // 
@@ -3188,6 +3224,7 @@
             // pl_luong
             // 
             this.pl_luong.BackColor = System.Drawing.Color.Transparent;
+            this.pl_luong.Controls.Add(this.label30);
             this.pl_luong.Controls.Add(this.btn_show_salary);
             this.pl_luong.Controls.Add(this.chk_PhanTramThueThuNhap);
             this.pl_luong.Controls.Add(this.chk_MienDongThue);
@@ -3212,17 +3249,27 @@
             this.pl_luong.Size = new System.Drawing.Size(945, 194);
             this.pl_luong.TabIndex = 1;
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Ivory;
+            this.label30.Location = new System.Drawing.Point(910, 147);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(20, 17);
+            this.label30.TabIndex = 44;
+            this.label30.Text = "%";
+            // 
             // btn_show_salary
             // 
-            this.btn_show_salary.BackColor = System.Drawing.Color.Transparent;
+            this.btn_show_salary.BackColor = System.Drawing.Color.Ivory;
             this.btn_show_salary.FlatAppearance.BorderSize = 0;
             this.btn_show_salary.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btn_show_salary.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_show_salary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_show_salary.Image = ((System.Drawing.Image)(resources.GetObject("btn_show_salary.Image")));
-            this.btn_show_salary.Location = new System.Drawing.Point(904, 67);
+            this.btn_show_salary.Location = new System.Drawing.Point(902, 69);
             this.btn_show_salary.Name = "btn_show_salary";
-            this.btn_show_salary.Size = new System.Drawing.Size(29, 23);
+            this.btn_show_salary.Size = new System.Drawing.Size(27, 17);
             this.btn_show_salary.TabIndex = 43;
             this.btn_show_salary.UseVisualStyleBackColor = false;
             this.btn_show_salary.Click += new System.EventHandler(this.btn_show_salary_Click);
@@ -3232,9 +3279,9 @@
             this.chk_PhanTramThueThuNhap.Enabled = false;
             this.chk_PhanTramThueThuNhap.Location = new System.Drawing.Point(199, 150);
             this.chk_PhanTramThueThuNhap.Name = "chk_PhanTramThueThuNhap";
-            this.chk_PhanTramThueThuNhap.Size = new System.Drawing.Size(222, 20);
+            this.chk_PhanTramThueThuNhap.Size = new System.Drawing.Size(213, 20);
             this.chk_PhanTramThueThuNhap.TabIndex = 37;
-            this.chk_PhanTramThueThuNhap.Values.Text = "Tính thuế thu nhập theo % cố định - ";
+            this.chk_PhanTramThueThuNhap.Values.Text = "Tính thuế thu nhập theo % cố định";
             // 
             // chk_MienDongThue
             // 
@@ -3293,7 +3340,7 @@
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(455, 151);
+            this.label66.Location = new System.Drawing.Point(505, 147);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(89, 19);
             this.label66.TabIndex = 30;
@@ -3360,10 +3407,10 @@
             // 
             // 
             this.txt_MucThue.Border.Class = "TextBoxBorder";
-            this.txt_MucThue.Location = new System.Drawing.Point(573, 145);
+            this.txt_MucThue.Location = new System.Drawing.Point(641, 145);
             this.txt_MucThue.Name = "txt_MucThue";
             this.txt_MucThue.ReadOnly = true;
-            this.txt_MucThue.Size = new System.Drawing.Size(358, 23);
+            this.txt_MucThue.Size = new System.Drawing.Size(290, 23);
             this.txt_MucThue.TabIndex = 35;
             // 
             // txt_TuNgayLuong
@@ -3572,7 +3619,7 @@
             this.dtp_NgayDKThue.MonthCalendar.MarkedDates = new System.DateTime[0];
             this.dtp_NgayDKThue.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
             this.dtp_NgayDKThue.Name = "dtp_NgayDKThue";
-            this.dtp_NgayDKThue.Size = new System.Drawing.Size(278, 23);
+            this.dtp_NgayDKThue.Size = new System.Drawing.Size(292, 23);
             this.dtp_NgayDKThue.TabIndex = 35;
             this.dtp_NgayDKThue.ValueChanged += new System.EventHandler(this.dtp_ngay_dk_thue_ValueChanged);
             // 
@@ -3603,7 +3650,7 @@
             this.tp_banthan.LastVisibleSet = true;
             this.tp_banthan.MinimumSize = new System.Drawing.Size(50, 50);
             this.tp_banthan.Name = "tp_banthan";
-            this.tp_banthan.Size = new System.Drawing.Size(945, 593);
+            this.tp_banthan.Size = new System.Drawing.Size(945, 590);
             this.tp_banthan.Text = "Bản thân";
             this.tp_banthan.ToolTipTitle = "Page ToolTip";
             this.tp_banthan.UniqueName = "15A7F13859E0449438A878B7E26D7043";
@@ -3616,7 +3663,7 @@
             this.pl_BanThan.Enabled = false;
             this.pl_BanThan.Location = new System.Drawing.Point(0, 0);
             this.pl_BanThan.Name = "pl_BanThan";
-            this.pl_BanThan.Size = new System.Drawing.Size(945, 593);
+            this.pl_BanThan.Size = new System.Drawing.Size(945, 590);
             this.pl_BanThan.TabIndex = 0;
             // 
             // dgv_TieuSu
@@ -3633,7 +3680,7 @@
             this.dgv_TieuSu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_TieuSu.Location = new System.Drawing.Point(0, 30);
             this.dgv_TieuSu.Name = "dgv_TieuSu";
-            this.dgv_TieuSu.Size = new System.Drawing.Size(945, 563);
+            this.dgv_TieuSu.Size = new System.Drawing.Size(945, 560);
             this.dgv_TieuSu.TabIndex = 10;
             this.dgv_TieuSu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_tieusu_CellClick);
             // 
@@ -3847,9 +3894,9 @@
             // isphuthuoc
             // 
             this.isphuthuoc.DataPropertyName = "IsPhuThuoc";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = false;
-            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = false;
+            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle4;
             this.isphuthuoc.FalseValue = null;
             this.isphuthuoc.FillWeight = 67.00507F;
             this.isphuthuoc.HeaderText = "Phụ thuộc";
@@ -5003,10 +5050,11 @@
             this.tabPage9.LastVisibleSet = true;
             this.tabPage9.MinimumSize = new System.Drawing.Size(50, 50);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(945, 593);
+            this.tabPage9.Size = new System.Drawing.Size(945, 590);
             this.tabPage9.Text = "Tài sản";
             this.tabPage9.ToolTipTitle = "Page ToolTip";
             this.tabPage9.UniqueName = "7CEA785C27D648B4D18521876AFF4224";
+            this.tabPage9.Visible = false;
             // 
             // pl_TaiSan
             // 
@@ -5016,7 +5064,7 @@
             this.pl_TaiSan.Enabled = false;
             this.pl_TaiSan.Location = new System.Drawing.Point(0, 0);
             this.pl_TaiSan.Name = "pl_TaiSan";
-            this.pl_TaiSan.Size = new System.Drawing.Size(945, 593);
+            this.pl_TaiSan.Size = new System.Drawing.Size(945, 590);
             this.pl_TaiSan.TabIndex = 0;
             // 
             // dgv_TaiSan
@@ -5034,7 +5082,7 @@
             this.dgv_TaiSan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_TaiSan.Location = new System.Drawing.Point(0, 30);
             this.dgv_TaiSan.Name = "dgv_TaiSan";
-            this.dgv_TaiSan.Size = new System.Drawing.Size(945, 563);
+            this.dgv_TaiSan.Size = new System.Drawing.Size(945, 560);
             this.dgv_TaiSan.TabIndex = 3;
             this.dgv_TaiSan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_taisan_CellClick);
             // 
@@ -5282,6 +5330,7 @@
             this.ClientSize = new System.Drawing.Size(947, 642);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_personnel";
@@ -5712,12 +5761,6 @@
         private System.Windows.Forms.Button btn_DeleteTS;
         private DevComponents.DotNetBar.LabelX label2;
         private Custom.MultiColumnComboBox cbo_ReportTo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_phu_cap;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_phucap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loaiphucap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tungaypc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn denngaypc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mucphucap;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_DanToc;
         private DevComponents.DotNetBar.LabelX label19;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_ngoai_ngu;
@@ -5827,5 +5870,14 @@
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_ChucVu;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_KhuVuc;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_PhongBan;
+        private System.Windows.Forms.Label label30;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn IdPhuCap;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_phucap;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn loaiphucap;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TuNgay_PC;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DenNgay_PC;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MucPhuCap;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn IsActive;
+        private FontAwesome.Sharp.IconButton btn_update_image;
     }
 }

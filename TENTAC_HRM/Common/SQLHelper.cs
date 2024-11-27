@@ -45,7 +45,7 @@ namespace TENTAC_HRM
             SqlConnection sqlConnection2 = new SqlConnection(sqlConnection);
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.Connection = sqlConnection2;
-            sqlCommand.CommandText = Sqlstr + ";SELECT SCOPE_IDENTITY();";
+            sqlCommand.CommandText = Sqlstr + ";SELECT CAST(SCOPE_IDENTITY() AS INT);";
             sqlConnection2.Open();
             int result = Convert.ToInt32(sqlCommand.ExecuteScalar());
             sqlConnection2.Close();

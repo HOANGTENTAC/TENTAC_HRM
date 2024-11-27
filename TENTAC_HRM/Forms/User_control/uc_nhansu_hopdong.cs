@@ -47,7 +47,7 @@ namespace TENTAC_HRM.Forms.User_control
             DataRowView vrow = (DataRowView)cbo_loai_hopdong.SelectedItem;
             string row = vrow.Row.ItemArray[0].ToString();
 
-            string sql = "select rownumber,Id,manhanvien,sohopdong,holot,ten,loaihopdong,thoigian,ngayky,tungay,denngay,nguoiky,ghichu,id_loaihopdong into ##tblTemp from view_nhanvien_hopdong";
+            string sql = "select rownumber, Id, manhanvien, sohopdong,holot,ten,loaihopdong,thoigian,ngayky,tungay,denngay,nguoiky,ghichu,id_loaihopdong into ##tblTemp from view_nhanvien_hopdong";
             if (row != "0")
             {
                 sql = sql + string.Format(" where id_loaihopdong = {0}", row);
@@ -91,8 +91,8 @@ namespace TENTAC_HRM.Forms.User_control
         {
             frm_contract frm = new frm_contract(null, this);
             frm.edit = true;
-            frm._ma_nhan_vien = dgv_nhanvien_hopdong.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
-            frm._id_hopdong = int.Parse(dgv_nhanvien_hopdong.CurrentRow.Cells["id_hop_dong"].Value.ToString());
+            frm._MaNhanVien = dgv_nhanvien_hopdong.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
+            frm._IdHopDong = int.Parse(dgv_nhanvien_hopdong.CurrentRow.Cells["id_hop_dong"].Value.ToString());
             frm.ShowDialog();
         }
 
@@ -102,8 +102,8 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 frm_contract frm = new frm_contract(null, this);
                 frm.edit = true;
-                frm._ma_nhan_vien = dgv_nhanvien_hopdong.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
-                frm._id_hopdong = int.Parse(dgv_nhanvien_hopdong.CurrentRow.Cells["id_hop_dong"].Value.ToString());
+                frm._MaNhanVien = dgv_nhanvien_hopdong.CurrentRow.Cells["ma_nhan_vien"].Value.ToString();
+                frm._IdHopDong = int.Parse(dgv_nhanvien_hopdong.CurrentRow.Cells["id_hop_dong"].Value.ToString());
                 frm.ShowDialog();
             }
         }

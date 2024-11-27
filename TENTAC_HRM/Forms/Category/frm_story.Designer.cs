@@ -78,6 +78,7 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_close.Location = new System.Drawing.Point(245, 11);
@@ -217,17 +218,20 @@
             // 
             // frm_story
             // 
+            this.AcceptButton = this.btn_save_add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(342, 382);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_story";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TIểu sử, Kinh nghiệm";
             this.Load += new System.EventHandler(this.frm_story_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_story_KeyDown);
             this.panel1.ResumeLayout(false);

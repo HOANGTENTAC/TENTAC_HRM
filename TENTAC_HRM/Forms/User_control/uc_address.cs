@@ -39,10 +39,10 @@ namespace TENTAC_HRM.Forms.User_control
             string sql = string.Empty;
             sql = $@" select QuocGia.TenDiaChi as QuocGia, TinhThanh.TenDiaChi as TinhThanh, QuanHuyen.TenDiaChi as QuanHuyen,
                  PhuongXa.TenDiaChi as PhuongXa from mst_DonViHanhChinh as QuocGia
-                 Inner join mst_DonViHanhChinh as TinhThanh on QuocGia.Id = TinhThanh.ParentId and TinhThanh.DelFlg = 0
-                 Inner join mst_DonViHanhChinh as QuanHuyen on TinhThanh.Id = QuanHuyen.ParentId and QuanHuyen.DelFlg = 0
-                 Inner join mst_DonViHanhChinh as PhuongXa on QuanHuyen.Id = PhuongXa.ParentId and PhuongXa.DelFlg = 0
-                 where QuocGia.CapBac = 0 and QuocGia.DelFlg = 0";
+                 Inner join mst_DonViHanhChinh as TinhThanh on QuocGia.Id = TinhThanh.ParentId and TinhThanh.del_flg = 0
+                 Inner join mst_DonViHanhChinh as QuanHuyen on TinhThanh.Id = QuanHuyen.ParentId and QuanHuyen.del_flg = 0
+                 Inner join mst_DonViHanhChinh as PhuongXa on QuanHuyen.Id = PhuongXa.ParentId and PhuongXa.del_flg = 0
+                 where QuocGia.CapBac = 0 and QuocGia.del_flg = 0";
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {

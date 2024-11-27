@@ -95,7 +95,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(293, 111);
-            this.txtMoTa.TabIndex = 43;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenTrinhDo
             // 
@@ -106,7 +106,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.txtTenTrinhDo.Location = new System.Drawing.Point(36, 164);
             this.txtTenTrinhDo.Name = "txtTenTrinhDo";
             this.txtTenTrinhDo.Size = new System.Drawing.Size(293, 22);
-            this.txtTenTrinhDo.TabIndex = 42;
+            this.txtTenTrinhDo.TabIndex = 2;
             // 
             // txtMaTrinhDo
             // 
@@ -118,7 +118,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.txtMaTrinhDo.Name = "txtMaTrinhDo";
             this.txtMaTrinhDo.ReadOnly = true;
             this.txtMaTrinhDo.Size = new System.Drawing.Size(293, 22);
-            this.txtMaTrinhDo.TabIndex = 41;
+            this.txtMaTrinhDo.TabIndex = 1;
             // 
             // panel2
             // 

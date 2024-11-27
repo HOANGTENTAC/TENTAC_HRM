@@ -1,19 +1,17 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using ComponentFactory.Krypton.Toolkit;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Web.UI.WebControls.WebParts;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using DataTable = System.Data.DataTable;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_honnhan : Form
+    public partial class frm_honnhan : KryptonForm
     {
         Byte[] b = null;
         OpenFileDialog open = new OpenFileDialog();
@@ -28,20 +26,22 @@ namespace TENTAC_HRM.Forms.Category
         {
             InitializeComponent();
         }
-
         private void frm_honnhan_Load(object sender, EventArgs e)
         {
-            load_data();
-            load_nhanvien();
+            LoadComboboxNhanVien();
+            if(edit == true)
+            {
+                LoadData();
+            }
         }
-        private void load_nhanvien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
             cbo_NhanVien.ValueMember = "value";
             cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
-        private void load_data()
+        private void LoadData()
         {
             string sql = string.Format("select * from tbl_NhanVienHonNhan where MaNhanVien = '{0}' and del_flg = 0 ", _MaNhanVien);
             DataTable dt = new DataTable();
@@ -86,20 +86,18 @@ namespace TENTAC_HRM.Forms.Category
         {
             this.Close();
         }
-
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            set_value_text();
+            SetValues();
             if (edit == true)
             {
-                Update_data();
+                UpdateData();
             }
             else
             {
-                insert_data();
+                InsertData();
             }
         }
-
         private void pb_mattruoc_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //OpenFileDialog open = new OpenFileDialog();
@@ -115,7 +113,6 @@ namespace TENTAC_HRM.Forms.Category
                 pb_MatTruoc.Image = Image.FromFile(open.FileName);
             }
         }
-
         private void pb_matsau_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             //OpenFileDialog open = new OpenFileDialog();
@@ -131,7 +128,6 @@ namespace TENTAC_HRM.Forms.Category
                 pb_MatSau.Image = Image.FromFile(open.FileName);
             }
         }
-
         private void btn_delete_Click(object sender, EventArgs e)
         {
             try
@@ -152,17 +148,14 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_delete_pt1_Click(object sender, EventArgs e)
         {
             pb_MatTruoc.Image = null;
         }
-
         private void btn_delete_pt2_Click(object sender, EventArgs e)
         {
             pb_MatSau.Image = null;
         }
-
         private void frm_honnhan_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -170,7 +163,6 @@ namespace TENTAC_HRM.Forms.Category
                 this.Close();
             }
         }
-
         private void btn_update_pt1_Click(object sender, EventArgs e)
         {
             open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png" +
@@ -185,7 +177,6 @@ namespace TENTAC_HRM.Forms.Category
                 pb_MatTruoc.Image = Image.FromFile(open.FileName);
             }
         }
-
         private void btn_update_pt2_Click(object sender, EventArgs e)
         {
             open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png" +
@@ -200,8 +191,7 @@ namespace TENTAC_HRM.Forms.Category
                 pb_MatSau.Image = Image.FromFile(open.FileName);
             }
         }
-
-        private void Update_data()
+        private void UpdateData()
         {
             try
             {
@@ -219,13 +209,18 @@ namespace TENTAC_HRM.Forms.Category
                         new SqlParameter("@MatTruoc", SqlDbType.Image){Value = (object)(SQLHelper.ConvertImageToByteArray(pb_MatTruoc.Image) ?? (object)DBNull.Value)},
                         new SqlParameter("@MatSau", SqlDbType.Image){Value = (object)(SQLHelper.ConvertImageToByteArray(pb_MatSau.Image) ?? (object)DBNull.Value)},
                         new SqlParameter("@NgayCapNhat", DateTime.Now),
-                        new SqlParameter("@NguoiCapNhat", _NguoiTao ?? (object)DBNull.Value),
+                        new SqlParameter("@NguoiCapNhat", _NguoiCapNhat ?? (object)DBNull.Value),
                         new SqlParameter("@DelFlg", SqlDbType.Int) { Value = 0 }
                     };
                 int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
                 if (res > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -233,7 +228,7 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void insert_data()
+        private void InsertData()
         {
             try
             {
@@ -254,7 +249,12 @@ namespace TENTAC_HRM.Forms.Category
                 int res = SQLHelper.ExecuteSql(sql, parameters.ToArray());
                 if (res > 0)
                 {
-                    RJMessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Thêm thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Thêm thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -262,7 +262,7 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void set_value_text()
+        private void SetValues()
         {
             _SoGiayChungNhan = txt_SoGiayChungNhan.Text.Trim();
             _NgayDangKy = string.IsNullOrEmpty(dtp_NgayDK.Text) ? (DateTime?)null : Convert.ToDateTime(dtp_NgayDK.Text);

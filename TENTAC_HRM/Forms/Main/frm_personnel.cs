@@ -32,19 +32,18 @@ namespace TENTAC_HRM.Forms.Main
             InitializeComponent();
             nhan_su = ns;
         }
-
         private void frm_personnel1_Load(object sender, EventArgs e)
         {
             txt_MaSo.Focus();
-            item_menustrip();
-            load_cbo_nation();
-            load_cbo_religion();
-            load_gender();
-            load_nationality();
-            load_trang_thai();
-            load_ngan_hang();
-            load_nhom_mau();
-            load_reportto();
+            ItemMenustrip();
+            LoadComboboxDanToc();
+            LoadComboboxTonGiao();
+            LoadComboboxGioiTinh();
+            LoadComboboxDiaChi();
+            LoadComboboxTrangThai();
+            LoadComboboxNganHang();
+            LoadComboboxNhomMau();
+            LoadComboboxReportTo();
             if (status_frm == true)
             {
                 btn_QueQuan.Enabled = true;
@@ -159,31 +158,29 @@ namespace TENTAC_HRM.Forms.Main
                     pb_Avata.Image = Image.FromStream(stmBLOBData);
                 }
                 cbo_ReportTo.SelectedValue = dt.Rows[0]["ReportTo"].ToString();
-                load_diachi();
-                LoadChucVu();
-                LoadDonVi();
+                LoadNhanVienDiaChi();
+                LoadComboboxChucVu();
+                LoadComboboxDonVi();
                 LoadComboboxPhongBan();
-                load_phongban();
-                //LoadPhongBanNew();
-                load_hopdong();
-                load_baohiem();
-                load_chuyenmon();
-                load_ngoaingu();
-                load_chungchi();
-                //load_tinhoc();
-                load_tieusu();
-                load_nguoithan();
-                load_phucap();
-                load_luong();
-                Load_congtac();
-                Load_khenthuong();
-                Load_kyluat();
-                load_tainan();
-                load_taisan();
-                load_thaisan();
-                load_danhgia();
-                load_nghiviec();
-                load_daotao();
+                LoadNhanVienPhongBan();
+                LoadNhanVienHopDong();
+                LoadNhanVienBaoHiem();
+                LoadNhanVienChuyenMon();
+                LoadNhanVienNgoaiNgu();
+                LoadNhanVienChungChi();
+                LoadNhanVienTieuSu();
+                LoadNhanVienNguoiThan();
+                LoadNhanVienPhuCap();
+                LoadNhanVienLuong();
+                LoadNhanVienCongTac();
+                LoadNhanVienKhenThuong();
+                LoadNhanVienKyLuat();
+                LoadNhanVienTaiNan();
+                LoadNhanVienTaiSan();
+                LoadNhanVienThaiSan();
+                LoadNhanVienDanhGia();
+                LoadNhanVienNghiViec();
+                LoadNhanVienDaoTao();
             }
         }
         private (string HoLot, string Ten) TachHoTen(string hoTen)
@@ -206,13 +203,13 @@ namespace TENTAC_HRM.Forms.Main
             return (hoLot, ten);
         }
         #region load_data        
-        private void load_reportto()
+        private void LoadComboboxReportTo()
         {
             cbo_ReportTo.DataSource = provider.load_report_to();
             cbo_ReportTo.DisplayMember = "name";
             cbo_ReportTo.ValueMember = "id";
         }
-        public void load_nghiviec()
+        public void LoadNhanVienNghiViec()
         {
             string sql = string.Format("select Id as IdNghiViec,TuNgay,DenNgay,NgayQuyetDinh,SoQuyetDinh,NoiDung,TypeName as LoaiNghiViec " +
                 "from tbl_QTNghiViec a " +
@@ -220,7 +217,7 @@ namespace TENTAC_HRM.Forms.Main
                 "where a.MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             dgv_qt_nghiviec.DataSource = SQLHelper.ExecuteDt(sql);
         }
-        public void load_daotao()
+        public void LoadNhanVienDaoTao()
         {
             string sql = string.Format("select Id as IdDaoTao,TuNgay,DenNgay,SoQuyetDinh,NoiDung, b.TypeName as HinhThuc " +
                 "from tbl_QTDaoTao a " +
@@ -228,7 +225,7 @@ namespace TENTAC_HRM.Forms.Main
                 "where MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             dgv_qt_daotao.DataSource = SQLHelper.ExecuteDt(sql);
         }
-        public void load_danhgia()
+        public void LoadNhanVienDanhGia()
         {
             string sql = string.Empty;
             sql = $@"Select Id, NgayDanhGia, NoiDung as NoiDung_DG, DiemDanhGia,b.TypeName as XepLoai_DG from tbl_QTDanhGia a 
@@ -241,7 +238,7 @@ namespace TENTAC_HRM.Forms.Main
                 dgv_qt_danhgia.DataSource = dt;
             }
         }
-        public void load_thaisan()
+        public void LoadNhanVienThaiSan()
         {
             string sql = string.Format("select Id, TuNgay, DenNgay,GhiChu from tbl_NhanVienThaiSan " +
                 "where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
@@ -251,7 +248,7 @@ namespace TENTAC_HRM.Forms.Main
                 dgv_ThaiSai.DataSource = dt;
             }
         }
-        public void load_taisan()
+        public void LoadNhanVienTaiSan()
         {
             string sql = string.Format("select Id as Id,SoPhieu,NgayVaoSo,DienGiai,TuNgay as TuNgayTS,DenNgay as DenNgayTS " +
                 "from tbl_NhanVienTaiSan a " +
@@ -260,7 +257,7 @@ namespace TENTAC_HRM.Forms.Main
             dt = SQLHelper.ExecuteDt(sql);
             dgv_TaiSan.DataSource = dt;
         }
-        public void load_tainan()
+        public void LoadNhanVienTaiNan()
         {
             string sql = string.Format("select a.Id as IdTaiNan,b.TypeName as LoaiTaiNan,c.TypeName as MucDo, NgayDienRa, NoiDienRa, NoiDung " +
                 "from tbl_QTTaiNan a " +
@@ -271,7 +268,7 @@ namespace TENTAC_HRM.Forms.Main
             dt = SQLHelper.ExecuteDt(sql);
             dgv_tainan.DataSource = dt;
         }
-        public void Load_kyluat()
+        public void LoadNhanVienKyLuat()
         {
             string sql = string.Format("select Id as IdKyLuat, NgayKyLuat, SoQuyetDinh as SoQuyetDinh_KL," +
                 "NoiDung as NoiDung_KL, b.TypeName as HinhThuc_KL, LyDo as LyDo_KL " +
@@ -282,7 +279,7 @@ namespace TENTAC_HRM.Forms.Main
             dt = SQLHelper.ExecuteDt(sql);
             dgv_kyluat.DataSource = dt;
         }
-        public void Load_congtac()
+        public void LoadNhanVienCongTac()
         {
             string sql = string.Format("select Id,TuNgay,DenNgay,SoQuyetDinh," +
                 "DiaDiem,NoiDung " +
@@ -292,7 +289,7 @@ namespace TENTAC_HRM.Forms.Main
             dt = SQLHelper.ExecuteDt(sql);
             dgv_congtac.DataSource = dt;
         }
-        public void Load_khenthuong()
+        public void LoadNhanVienKhenThuong()
         {
             string sql = string.Format("select Id,NgayKhenThuong as NgayKhenThuong_KT,SoQuyetDinh as SoQuyetDinh_KT," +
                 "NoiDung as NoiDung_KT,b.TypeName as HinhThuc_KT, SoTien as SoTien_KT,LyDo as LyDo_KT " +
@@ -303,15 +300,16 @@ namespace TENTAC_HRM.Forms.Main
             dt = SQLHelper.ExecuteDt(sql);
             dgv_khenthuong.DataSource = dt;
         }
-        public void load_luong()
+        public void LoadNhanVienLuong()
         {
-            string sql = string.Format("select * from tbl_NhanVienLuong where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
+            string sql = string.Empty;
+            sql = $@"select * from tbl_NhanVienLuong where MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and del_flg = 0 and IsActive = 1";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                txt_TuNgayLuong.Text = dt.Rows[0]["TuNgay"].ToString();
-                txt_DenNgayLuong.Text = dt.Rows[0]["DenNgay"].ToString();
+                txt_TuNgayLuong.Text = string.IsNullOrEmpty(dt.Rows[0]["TuNgay"].ToString()) ? "" : DateTime.Parse(dt.Rows[0]["TuNgay"].ToString()).ToString("yyyy/MM/dd");
+                txt_DenNgayLuong.Text = string.IsNullOrEmpty(dt.Rows[0]["DenNgay"].ToString()) ? "" : DateTime.Parse(dt.Rows[0]["DenNgay"].ToString()).ToString("yyyy/MM/dd");
                 txt_MucLuong.Text = decimal.Parse(dt.Rows[0]["MucLuong"].ToString()).ToString("N0", CultureInfo.InvariantCulture);
                 txt_MucThue.Text = dt.Rows[0]["PT_ThueTNCN"].ToString();
                 chk_DongBHXH.Checked = bool.Parse(dt.Rows[0]["is_DongBHXH"].ToString());
@@ -322,12 +320,13 @@ namespace TENTAC_HRM.Forms.Main
                 chk_PhanTramThueThuNhap.Checked = bool.Parse(dt.Rows[0]["is_ThueCoDinh"].ToString());
             }
         }
-        public void load_phucap()
+        public void LoadNhanVienPhuCap()
         {
-            string sql = string.Format("select a.TuNgay as TuNgay_PC,a.DenNgay as DenNgay_PC,b.TenLoaiPhuCap as LoaiPhuCap,a.MucPhuCap " +
-                "from tbl_NhanVienPhuCap a " +
-                "left join tbl_LoaiPhuCap b on a.id_LoaiPhuCap = b.Id " +
-                "where a.MaNhanVien = '{0}' and IsActive = 1 and a.del_flg = 0", _ma_nhan_vien);
+            string sql = string.Empty;
+            sql = $@"select a.ID, a.TuNgay as TuNgay_PC,a.DenNgay as DenNgay_PC,b.TenLoaiPhuCap as LoaiPhuCap, 
+                FORMAT(a.MucPhuCap,'N0') as MucPhuCap, IsActive from tbl_NhanVienPhuCap a 
+                left join mst_LoaiPhuCap b on a.Id_LoaiPhuCap = b.Id and b.del_flg = 0
+                where a.MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and a.del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -335,7 +334,7 @@ namespace TENTAC_HRM.Forms.Main
                 dgv_PhuCap.DataSource = dt;
             }
         }
-        public void load_diachi()
+        public void LoadNhanVienDiaChi()
         {
             //string sql_dia_chi = string.Format("select DiaChi,LoaiDiaChi from tbl_NhanVienDiaChi where MaNhanVien = '{0}' and IsActive = 1 and del_flg = 0", _ma_nhan_vien);
             string sql_dia_chi = string.Format("select DiaChi,LoaiDiaChi from tbl_NhanVienDiaChi where MaNhanVien = '{0}' and del_flg = 0", _ma_nhan_vien);
@@ -348,7 +347,7 @@ namespace TENTAC_HRM.Forms.Main
             txt_ThuongTru.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
             txt_TamTru.Text = (tamtru != null ? tamtru.ItemArray[0].ToString() : "");
         }
-        public void load_nguoithan()
+        public void LoadNhanVienNguoiThan()
         {
             string sql = string.Format("select Id,b.TypeName as MoiQuanHe,HoTen,NgaySinh,MaSoThue,CCCD, IsPhuThuoc " +
                 "from tbl_NhanVienNguoiThan a " +
@@ -358,17 +357,17 @@ namespace TENTAC_HRM.Forms.Main
             dt = SQLHelper.ExecuteDt(sql);
             dgv_NguoiThan.DataSource = dt;
         }
-        public void load_tieusu()
+        public void LoadNhanVienTieuSu()
         {
             string sql = string.Format("select a.Id,TuNam,DenNam,CongViec,TenDiaChi as QuocGia " +
                 "from tbl_NhanVienTieuSu a " +
-                "join mst_DonViHanhChinh b on a.id_QuocGia = b.Id and b.ParentId is null " +
+                "join mst_DonViHanhChinh b on a.id_QuocGia = b.Id and b.ParentId is null and b.del_flg = 0 " +
                 "where MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_TieuSu.DataSource = dt;
         }
-        public void load_phongban()
+        public void LoadNhanVienPhongBan()
         {
             string sql = string.Format("select b.TenCongTy,c.TenPhongBan,d.TenChucVu, e.TenKhuVuc " +
                 "from MITACOSQL.dbo.NhanVien a " +
@@ -389,7 +388,7 @@ namespace TENTAC_HRM.Forms.Main
                 //txt_denngay_dv.Text = DateTime.Parse(dt.Rows[0]["den_ngay"].ToString()).ToString("yyyy/MM/dd");
             }
         }
-        private void LoadDonVi()
+        private void LoadComboboxDonVi()
         {
             DataTable dtCongTy = SQLHelper.ExecuteDt("select MaCongTy, TenCongTy from [MITACOSQL].[dbo].[CONGTY]");
             dtCongTy.Rows.Add("", "");
@@ -405,7 +404,7 @@ namespace TENTAC_HRM.Forms.Main
             cbo_KhuVuc.DisplayMember = "TenKhuVuc";
             cbo_KhuVuc.ValueMember = "MaKhuVuc";
         }
-        private void LoadChucVu()
+        private void LoadComboboxChucVu()
         {
             string sql = string.Format("select MaChucVu,TenChucVu from mst_ChucVu");
             DataTable dtChucVu = SQLHelper.ExecuteDt(sql);
@@ -452,7 +451,7 @@ namespace TENTAC_HRM.Forms.Main
                 txt_DenNgayDV.Text = string.IsNullOrEmpty(dt.Rows[0]["DenNgay"].ToString()) ? "" : DateTime.Parse(dt.Rows[0]["DenNgay"].ToString()).ToString("yyyy/MM/dd");
             }
         }
-        public void load_chuyenmon()
+        public void LoadNhanVienChuyenMon()
         {
             string sql = string.Format("select b.Id,c.TenBac,d.TenHe,e.TenChuyenNganh, b.TruongDaoTao,TuNgay,DenNgay,NgayNhanBang,f.TypeName as XepLoaiBang " +
                 "from tbl_NhanVienDaoTao b " +
@@ -468,14 +467,14 @@ namespace TENTAC_HRM.Forms.Main
                 dgv_DaoTao.DataSource = dt;
             }
         }
-        public void load_ngoaingu()
+        public void LoadNhanVienNgoaiNgu()
         {
             string sql = string.Empty;
             sql = $@"select a.Id, a.MaNgoaiNgu, c.TenNgoaiNgu as NgoaiNgu, TruongDaoTao, NgayNhanBang, 
                 b.TypeName as XepLoaiNN, GhiChu from tbl_NhanVienNgoaiNgu a 
                 left join sys_AllType b on a.XepLoai = b.TypeNameShort
-                inner join mst_NgoaiNgu c on a.MaNgoaiNgu = c.MaNgoaiNgu
-                where MaNhanVien = '{_ma_nhan_vien}' and del_flg = 0";
+                inner join mst_NgoaiNgu c on a.MaNgoaiNgu = c.MaNgoaiNgu and c.del_flg = 0
+                where MaNhanVien = '{_ma_nhan_vien}' and a.del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -483,13 +482,13 @@ namespace TENTAC_HRM.Forms.Main
                 dgv_NgoaiNgu.DataSource = dt;
             }
         }
-        public void load_chungchi()
+        public void LoadNhanVienChungChi()
         {
             string sql = string.Empty;
             sql = $@"Select a.Id, a.MaChungChi, c.TenChungChi as ChungChi, TruongDaoTao, NgayNhanBang, b.TypeName as XepLoaiCC, GhiChu from tbl_NhanVienChungChi a 
                 Left join sys_AllType b on a.XepLoai = b.TypeNameShort 
-                Inner join mst_ChungChi c on a.MaChungChi = c.MaChungChi
-                Where MaNhanVien = '{_ma_nhan_vien}' and del_flg = 0";
+                Inner join mst_ChungChi c on a.MaChungChi = c.MaChungChi and c.del_flg = 0
+                Where MaNhanVien = '{_ma_nhan_vien}' and a.del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -510,7 +509,7 @@ namespace TENTAC_HRM.Forms.Main
         //        dgv_tinhoc.DataSource = dt;
         //    }
         //}
-        public void load_hopdong()
+        public void LoadNhanVienHopDong()
         {
             string sql = string.Format("select b.Id,c.TenLoai,b.SoHopDong,b.TuNgay,b.DenNgay " +
                 "from tbl_NhanVienHopDong b " +
@@ -527,14 +526,13 @@ namespace TENTAC_HRM.Forms.Main
                 txt_DeNgayHD.Text = string.IsNullOrEmpty(dt.Rows[0]["DenNgay"].ToString()) ? "" : DateTime.Parse(dt.Rows[0]["DenNgay"].ToString()).ToString("yyyy/MM/dd");
             }
         }
-
-        public void load_baohiem()
+        public void LoadNhanVienBaoHiem()
         {
             string sql = string.Format("select SoThe,TuNgay,DenNgay,NoiThucHien,TenDiaChi,LoaiBaoHiem " +
                 "from tbl_NhanVienBaoHiem a " +
                 "join sys_AllType b on a.LoaiBaoHiem = b.TypeId " +
-                " left join mst_DonViHanhChinh c on c.Id = a.id_tinh and c.LoaiDiaChi = 22 " +
-                "where a.IsActive = 1 and a.MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+                "left join mst_DonViHanhChinh c on c.Id = a.id_tinh and c.LoaiDiaChi = 22 and c.del_flg = 0 " +
+                "where a.IsActive = 1 and a.MaNhanVien = '{0}' and a.del_flg = 0 ", _ma_nhan_vien);
             DataTable dt = new DataTable(sql);
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -559,18 +557,17 @@ namespace TENTAC_HRM.Forms.Main
                 }
             }
         }
-
         private void btn_add_story_Click(object sender, EventArgs e)
         {
             frm_story frm = new frm_story(this);
-            frm._ma_nhan_vien = _ma_nhan_vien;
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
+            frm.edit = false;
             frm.ShowDialog();
         }
 
         #endregion
         #region combobox
-        private void load_nhom_mau()
+        private void LoadComboboxNhomMau()
         {
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
@@ -584,7 +581,7 @@ namespace TENTAC_HRM.Forms.Main
             cbo_NhomMau.DisplayMember = "name";
             cbo_NhomMau.ValueMember = "id";
         }
-        private void load_cbo_nation()
+        private void LoadComboboxDanToc()
         {
             string sql = "select MaDanToc,TenDanToc from mst_DanToc";
             DataTable dt = new DataTable();
@@ -593,7 +590,7 @@ namespace TENTAC_HRM.Forms.Main
             cbo_DanToc.DisplayMember = "TenDanToc";
             cbo_DanToc.ValueMember = "MaDanToc";
         }
-        private void load_cbo_religion()
+        private void LoadComboboxTonGiao()
         {
             string sql = "select MaTonGiao,TenTonGiao from mst_TonGiao";
             DataTable dt = new DataTable();
@@ -603,27 +600,27 @@ namespace TENTAC_HRM.Forms.Main
             cbo_TonGiao.ValueMember = "MaTonGiao";
         }
 
-        private void load_gender()
+        private void LoadComboboxGioiTinh()
         {
             cbo_GioiTinh.DataSource = provider.load_gioitinh();
             cbo_GioiTinh.DisplayMember = "name";
             cbo_GioiTinh.ValueMember = "id";
         }
 
-        private void load_nationality()
+        private void LoadComboboxDiaChi()
         {
             cbo_QuocTich.DataSource = provider.LoadDiaChiNew(20);
             cbo_QuocTich.DisplayMember = "name";
             cbo_QuocTich.ValueMember = "id";
 
         }
-        private void load_trang_thai()
+        private void LoadComboboxTrangThai()
         {
             cbo_TrangThai.DataSource = provider.load_all_type(1);
             cbo_TrangThai.DisplayMember = "name";
             cbo_TrangThai.ValueMember = "id";
         }
-        private void load_ngan_hang()
+        private void LoadComboboxNganHang()
         {
             string sql = "select Id,TenNganHang from mst_NganHang";
             DataTable dt = new DataTable();
@@ -855,13 +852,85 @@ namespace TENTAC_HRM.Forms.Main
             //    }
             //}
         }
-        private void txtCCCD_Leave(object sender, EventArgs e)
+        private string MaTinhThanh()
+        {
+            string sql = string.Empty;
+            sql = $@"Select MaNhanVien, Id_Tinh, del_flg, b.MaDiaChi FROM tbl_NhanVienDiaChi a
+                Inner join [TENTAC_HRM].[dbo].[mst_DonViHanhChinh] b on a.Id_Tinh = b.Id and b.del_flg = 0
+                Where a.MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and a.del_flg = 0 and a.LoaiDiaChi = 43";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            string MaTinhValue = dt.Rows[0]["MaDiaChi"].ToString();
+            return MaTinhValue;
+        }
+        private bool ValidateCCCD()
         {
             string cccd = txt_CCCD.Text.Trim();
-            if (!IsValidCCCD(cccd))
+            if (!string.IsNullOrEmpty(cccd))
             {
-                RJMessageBox.Show("CCCD không hợp lệ. Vui lòng nhập số gồm 12 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!IsValidCCCD(cccd))
+                {
+                    RJMessageBox.Show("CCCD không hợp lệ. Vui lòng nhập số gồm 12 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                string _MaTinhThanh = MaTinhThanh();
+                string maTinh = cccd.Substring(0, 3);
+                if (!_MaTinhThanh.Contains(maTinh))
+                {
+                    RJMessageBox.Show("Mã tỉnh thành không hợp lệ. Vui lòng kiểm tra lại CCCD.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(dtp_NgaySinh.Text))
+                {
+                    RJMessageBox.Show("Vui lòng chọn ngày tháng năm sinh.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                int gioiTinhTheKy = int.Parse(cccd.Substring(3, 1));
+                int theKy;
+                string gioiTinhCCCD;
+
+                if (gioiTinhTheKy == 0 || gioiTinhTheKy == 1)
+                {
+                    theKy = 20;
+                    gioiTinhCCCD = gioiTinhTheKy == 0 ? "Nam" : "Nu";
+                }
+                else if (gioiTinhTheKy == 2 || gioiTinhTheKy == 3)
+                {
+                    theKy = 21;
+                    gioiTinhCCCD = gioiTinhTheKy == 2 ? "Nam" : "Nu";
+                }
+                else if (gioiTinhTheKy == 4 || gioiTinhTheKy == 5)
+                {
+                    theKy = 22;
+                    gioiTinhCCCD = gioiTinhTheKy == 4 ? "Nam" : "Nu";
+                }
+                else
+                {
+                    RJMessageBox.Show("Ký tự xác định thế kỷ và giới tính không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                int namSinh = dtp_NgaySinh.Value.Year;
+                if (namSinh < (theKy - 1) * 100 || namSinh >= theKy * 100)
+                {
+                    RJMessageBox.Show($"Năm sinh {namSinh} không thuộc thế kỷ {theKy}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                int gioiTinhValue = int.Parse(cbo_GioiTinh.SelectedValue.ToString());
+                string gioiTinhSelected = gioiTinhValue == 0 ? "Nu" : "Nam";
+
+                if (gioiTinhCCCD != gioiTinhSelected)
+                {
+                    RJMessageBox.Show("Giới tính không khớp với thông tin CCCD.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                string NamSinhCCCD = cccd.Substring(4, 2);
+                if (!Convert.ToString(namSinh).Substring(2, 2).Contains(NamSinhCCCD))
+                {
+                    RJMessageBox.Show("Năm sinh không khớp với thông tin CCCD.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
+            return true;
         }
         private bool IsValidCCCD(string cccd)
         {
@@ -879,6 +948,10 @@ namespace TENTAC_HRM.Forms.Main
         }
 
         private void txt_chieu_cao_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            event_keypress(e);
+        }
+        private void txt_can_nang_KeyPress(object sender, KeyPressEventArgs e)
         {
             event_keypress(e);
         }
@@ -929,7 +1002,7 @@ namespace TENTAC_HRM.Forms.Main
         private void btn_add_congtac_Click(object sender, EventArgs e)
         {
             frm_congtac frm = new frm_congtac(this, null);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
@@ -938,21 +1011,21 @@ namespace TENTAC_HRM.Forms.Main
         private void btn_bao_hiem_Click(object sender, EventArgs e)
         {
             frm_insurance_new frm = new frm_insurance_new(this);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
         private void btn_luong_Click(object sender, EventArgs e)
         {
             frm_wage frm = new frm_wage(this);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
 
         private void btn_phu_cap_Click(object sender, EventArgs e)
         {
             frm_staff_allowance frm = new frm_staff_allowance(this);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
@@ -1004,11 +1077,11 @@ namespace TENTAC_HRM.Forms.Main
                 {
                     if (status_frm == true)
                     {
-                        update_ho_so();
+                        UpdateHoSo();
                     }
                     else
                     {
-                        insert_ho_so();
+                        InsertHoSo();
                     }
                 }
             }
@@ -1036,23 +1109,23 @@ namespace TENTAC_HRM.Forms.Main
         private void btn_hop_dong_Click(object sender, EventArgs e)
         {
             frm_contract frm = new frm_contract(this, null);
-            frm._id_hopdong = _id_hop_dong;
+            frm._IdHopDong = _id_hop_dong;
             //frm.edit = _id_hop_dong == 0 ? false : true;
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
         private void btn_add_dt_Click(object sender, EventArgs e)
         {
             frm_pecialize frm = new frm_pecialize(this);
             frm.edit = false;
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
         private void btn_them_ngoai_ngu_Click(object sender, EventArgs e)
         {
             frm_language frm = new frm_language(this);
             frm.edit = false;
-            frm._ma_nhanvien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
 
@@ -1060,7 +1133,7 @@ namespace TENTAC_HRM.Forms.Main
         {
             frm_certificate frm = new frm_certificate(this);
             frm.edit = false;
-            frm._ma_nhanvien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
         private void btn_gia_dinh_Click(object sender, EventArgs e)
@@ -1100,7 +1173,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_chungchi();
+                        LoadNhanVienChungChi();
                     }
                 }
             }
@@ -1120,7 +1193,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_ngoaingu();
+                        LoadNhanVienNgoaiNgu();
                     }
                 }
             }
@@ -1140,7 +1213,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_chuyenmon();
+                        LoadNhanVienChuyenMon();
                     }
                 }
             }
@@ -1152,21 +1225,21 @@ namespace TENTAC_HRM.Forms.Main
         private void btn_add_khenthuong_Click(object sender, EventArgs e)
         {
             frm_khenthuong frm = new frm_khenthuong(this, null);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
         private void btn_add_kyluat_Click(object sender, EventArgs e)
         {
             frm_nhanvien_kyluat frm = new frm_nhanvien_kyluat(this, null);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
         private void btn_tainan_Click(object sender, EventArgs e)
         {
             frm_nhanvien_tainan frm = new frm_nhanvien_tainan(this, null);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
@@ -1180,7 +1253,7 @@ namespace TENTAC_HRM.Forms.Main
         private void btn_thaisan_Click(object sender, EventArgs e)
         {
             frm_thaisan frm = new frm_thaisan(this, null);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }
@@ -1188,20 +1261,20 @@ namespace TENTAC_HRM.Forms.Main
         {
             frm_danhgia frm = new frm_danhgia(this, null);
             frm._edit = false;
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
         private void btn_daotao_Click(object sender, EventArgs e)
         {
             frm_daotao frm = new frm_daotao(this, null);
             frm._edit = false;
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
         private void btn_nghiviec_Click(object sender, EventArgs e)
         {
             frm_nghiviec frm = new frm_nghiviec(this, null);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm._edit = false;
             frm.ShowDialog();
         }
@@ -1209,12 +1282,11 @@ namespace TENTAC_HRM.Forms.Main
         #region datagridview
         private void dgv_ChungChi_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_ChungChi.CurrentCell.OwningColumn.Name == "edit_column_th")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_ChungChi.Columns["edit_column_th"].Index)
             {
                 frm_certificate frm = new frm_certificate(this);
-                frm._ma_nhanvien = _ma_nhan_vien;
-                frm._id_chungchi = int.Parse(dgv_ChungChi.CurrentRow.Cells["IdChungChi"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdChungChi = int.Parse(dgv_ChungChi.CurrentRow.Cells["IdChungChi"].Value.ToString());
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -1222,24 +1294,22 @@ namespace TENTAC_HRM.Forms.Main
 
         private void dgv_ngoaingu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_NgoaiNgu.CurrentCell.OwningColumn.Name == "edit_column_nn")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_NgoaiNgu.Columns["edit_column_nn"].Index)
             {
                 frm_language frm = new frm_language(this);
-                frm._ma_nhanvien = _ma_nhan_vien;
-                frm._id_ngoaingu = int.Parse(dgv_NgoaiNgu.CurrentRow.Cells["id_ngoai_ngu"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdNgoaiNgu = int.Parse(dgv_NgoaiNgu.CurrentRow.Cells["id_ngoai_ngu"].Value.ToString());
                 frm.edit = true;
                 frm.ShowDialog();
             }
         }
         private void dgv_tieusu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_TieuSu.CurrentCell.OwningColumn.Name == "edit_column")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_TieuSu.Columns["edit_column"].Index)
             {
                 frm_story frm = new frm_story(this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._id_tieusu_value = dgv_TieuSu.CurrentRow.Cells["IdTieuSu"].Value.ToString();
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdTieuSu = dgv_TieuSu.CurrentRow.Cells["IdTieuSu"].Value.ToString();
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -1247,7 +1317,6 @@ namespace TENTAC_HRM.Forms.Main
 
         private void dgv_nguoi_than_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_NguoiThan.CurrentCell.OwningColumn.Name == "edit_column_gd")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_NguoiThan.Columns["edit_column_gd"].Index)
             {
                 frm_relatives frm = new frm_relatives(this);
@@ -1259,60 +1328,56 @@ namespace TENTAC_HRM.Forms.Main
         }
         private void dgv_daotao_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_DaoTao.CurrentCell.OwningColumn.Name == "edit_column_dt")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_DaoTao.Columns["edit_column_dt"].Index)
             {
                 frm_pecialize frm = new frm_pecialize(this);
-                frm._id_daotao_value = Convert.ToInt32(dgv_DaoTao.CurrentRow.Cells["Id"].Value);
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdDaoTao = Convert.ToInt32(dgv_DaoTao.CurrentRow.Cells["Id"].Value);
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
         }
         private void dgv_congtac_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_congtac.CurrentCell.OwningColumn.Name == "edit_column_ct")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_congtac.Columns["edit_column_ct"].Index)
             {
                 frm_congtac frm = new frm_congtac(this, null);
-                frm._id_congtac = int.Parse(dgv_congtac.CurrentRow.Cells["id_qt_congtac"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdCongTac = int.Parse(dgv_congtac.CurrentRow.Cells["id_qt_congtac"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
         }
         private void dgv_khenthuong_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_khenthuong.CurrentCell.OwningColumn.Name == "edit_column_kt")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_khenthuong.Columns["edit_column_kt"].Index)
             {
                 frm_khenthuong frm = new frm_khenthuong(this, null);
-                frm._id_khenthuong = int.Parse(dgv_khenthuong.CurrentRow.Cells["id_qt_khenthuong"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdKhenThuong = int.Parse(dgv_khenthuong.CurrentRow.Cells["id_qt_khenthuong"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
         }
         private void dgv_kyluat_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_kyluat.CurrentCell.OwningColumn.Name == "edit_column_kl")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_kyluat.Columns["edit_column_kl"].Index)
             {
                 frm_nhanvien_kyluat frm = new frm_nhanvien_kyluat(this, null);
-                frm._id_qt_kyluat = int.Parse(dgv_kyluat.CurrentRow.Cells["id_qt_kyluat"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdKyLuat = int.Parse(dgv_kyluat.CurrentRow.Cells["id_qt_kyluat"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
         }
         private void dgv_qt_nghiviec_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_qt_nghiviec.CurrentCell.OwningColumn.Name == "edit_column_nghiviec")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_qt_nghiviec.Columns["edit_column_nghiviec"].Index)
             {
                 frm_nghiviec frm = new frm_nghiviec(this, null);
                 frm._edit = true;
-                frm._id_nghi_viec = int.Parse(dgv_qt_nghiviec.CurrentRow.Cells["id_qt_nghiviec"].Value.ToString());
+                frm._IdNghiViec = int.Parse(dgv_qt_nghiviec.CurrentRow.Cells["id_qt_nghiviec"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.ShowDialog();
             }
         }
@@ -1321,8 +1386,8 @@ namespace TENTAC_HRM.Forms.Main
             if (dgv_PhuCap.CurrentCell.OwningColumn.Name == "edit_column_phucap")
             {
                 frm_staff_allowance frm = new frm_staff_allowance(this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._id_phucap = dgv_PhuCap.CurrentRow.Cells["id_phu_cap"].Value.ToString();
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdPhuCap = int.Parse(dgv_PhuCap.CurrentRow.Cells["IdPhuCap"].Value.ToString());
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -1330,24 +1395,22 @@ namespace TENTAC_HRM.Forms.Main
 
         private void dgv_tainan_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_tainan.CurrentCell.OwningColumn.Name == "edit_column_tn")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_tainan.Columns["edit_column_tn"].Index)
             {
                 frm_nhanvien_tainan frm = new frm_nhanvien_tainan(this, null);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._id_qt_tainan = int.Parse(dgv_tainan.CurrentRow.Cells["id_qt_tainan"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdTaiNhan = int.Parse(dgv_tainan.CurrentRow.Cells["id_qt_tainan"].Value.ToString());
                 frm.edit = true;
                 frm.ShowDialog();
             }
         }
         private void dgv_thaisai_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_ThaiSai.CurrentCell.OwningColumn.Name == "edit_column_ts")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_ThaiSai.Columns["edit_column_ts"].Index)
             {
                 frm_thaisan frm = new frm_thaisan(this, null);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._id_thai_san = int.Parse(dgv_ThaiSai.CurrentRow.Cells["id_thai_san"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdThaiSan = int.Parse(dgv_ThaiSai.CurrentRow.Cells["id_thai_san"].Value.ToString());
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -1365,30 +1428,28 @@ namespace TENTAC_HRM.Forms.Main
         }
         private void dgv_qt_danhgia_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_qt_danhgia.CurrentCell.OwningColumn.Name == "edit_column_danhgia")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_qt_danhgia.Columns["edit_column_danhgia"].Index)
             {
                 frm_danhgia frm = new frm_danhgia(this, null);
                 frm._edit = true;
-                frm._id_danh_gia = int.Parse(dgv_qt_danhgia.CurrentRow.Cells["id_qt_danhgia"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdDanhGia = int.Parse(dgv_qt_danhgia.CurrentRow.Cells["id_qt_danhgia"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.ShowDialog();
             }
         }
         private void dgv_qt_daotao_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (dgv_qt_daotao.CurrentCell.OwningColumn.Name == "edit_column_daotao")
             if (e.RowIndex >= 0 && e.ColumnIndex == dgv_qt_daotao.Columns["edit_column_daotao"].Index)
             {
                 frm_daotao frm = new frm_daotao(this, null);
                 frm._edit = true;
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._id_dao_tao = int.Parse(dgv_qt_daotao.CurrentRow.Cells["id_qt_daotao"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdDaoTao = int.Parse(dgv_qt_daotao.CurrentRow.Cells["id_qt_daotao"].Value.ToString());
                 frm.ShowDialog();
             }
         }
         #endregion
-        private void item_menustrip()
+        private void ItemMenustrip()
         {
             ContextMenuStrip cm = new ContextMenuStrip();
             cm.Items.Add("Delete");
@@ -1437,24 +1498,251 @@ namespace TENTAC_HRM.Forms.Main
         }
         private bool check_validate()
         {
+            bool flag = false;
             if (string.IsNullOrEmpty(txt_MaSo.Text))
             {
                 RJMessageBox.Show("Mã nhân viên không được trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txt_MaSo.Focus();
-                return false;
+                return flag;
             }
-            return true;
+            flag = ValidateCCCD();
+            return flag;
         }
-        private void update_ho_so()
+        private void UpdateHoSo()
         {
-            set_txt_value();
-            string sqlMita = "update MITACOSQL.dbo.NHANVIEN set TenNhanVien = @TenNhanVien, TenChamCong = @TenChamCong, " +
-                    "MaThe = @MaThe, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, Email = @Email, MaCongTy = @MaCongTy, MaKhuVuc = @MaKhuVuc," +
-                    "MaPhongBan = @MaPhongBan, MaChucVu = @MaChucVu, GhiChu = @GhiChu, " +
+            try
+            {
+                Setvalues();
+                int resMitacol = UpdateMITACOSQL();
+                if (resMitacol > 0)
+                {
+                    UpdateHRM();
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void InsertHoSo()
+        {
+            try
+            {
+                Setvalues();
+                int resMiata = InsertMITACOSQL();
+                if (resMiata > 0)
+                {
+                    InsertHRM();
+                }
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //string sqlMita = $@"";
+            //SqlParameter[] paramMita = new SqlParameter[]
+            //{
+            //        new SqlParameter("@MaNhanVien", SqlDbType.NVarChar) {Value = _ma_nhan_vien},
+            //        new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.Ho_lot_value) ? "" : nhanvien.Ho_lot_value + " ") + (string.IsNullOrEmpty(nhanvien.Ten_value) ? "" : nhanvien.Ten_value)},
+            //        new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
+            //        new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
+            //        new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value},
+            //        new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
+            //        new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
+            //        new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //        new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //        new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
+            //        new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
+            //};
+
+
+            //string sql = "insert into tbl_NhanVien(id_TrangThai,MaNhanVien,HoTen,Ten,HoLot,NgaySinh,GioiTinh,HonNhan,TonGiao,DanToc,QuocTich," +
+            //             "SoCCCD,NgayCapCCCD,NoiCapCCCD,SoHoChieu,NgayCapHoChieu,NoiCapHoChieu,NgayHetHanHoChieu," +
+            //             "DienThoaiDD,Email,GhiChu,NgayThuViec,ThoiGianThuViec,NgayKetThucThuViec," +
+            //             "NgayVaoLam,NgayKetThuc,MaSoThue,NgayDKThue,NoiDKThue,SoTK,NganHang,NhanTienMat,CaNhanKhongCuTru," +
+            //             "KhongUyQuyenQT,Id_NganHangCK,WorkPermit,NgayCapWP,NgayHetHanWP,HinhAnh,ChieuCao,CanNang,NhomMau,SucKhoe,LuuYSK,KhuyetTat," +
+            //             "MaChamCong,TenChamCong,MaThe,NguoiTao) " +
+            //             "values(@trang_thai,@ma_so,@ho_ten,@ten,@ho_lot,@ngaysinh,@gioi_tinh,@hon_nhan,@ton_giao,@dan_toc,@quoc_tich," +
+            //             "@cccd,@ngay_cap_cc,@noi_cap_cc,@so_ho_chieu,@ngay_cap_hc,@noi_cap_hc,@ngay_het_han_hc," +
+            //             "@sdt,@email,@ghi_chu,@ngay_thu_viec,@tg_thu_viec,@ngay_kt_thu_viec," +
+            //             "@ngay_vao_lam,@ngay_ket_thuc,@ma_so_thue,@ngay_dk_thue,@noi_dk_thue,@so_tk,@ngan_hang,@tien_mat,@ca_nhan_khong_cu_tru," +
+            //             "@khong_uy_quyen,@ngan_hang_ck,@work_permit,@ngay_cap_work_permit,@ngay_het_han_work_permit,@hinh_anh,@chieu_cao,@can_nang,@nhom_mau,@suc_khoe,@luu_y_sk,@khuyet_tat," +
+            //             "@ma_cham_cong,@ten_cham_cong,@ma_the,@id_nguoi_tao)";
+            //SqlParameter[] param = new SqlParameter[]
+            //{
+            //    new SqlParameter("@trang_thai", SqlDbType.Int) {Value = nhanvien.Trang_thai_value},
+            //    new SqlParameter("@ma_so", SqlDbType.VarChar) {Value = nhanvien.Ma_so_value},
+            //    new SqlParameter("@ho_ten", SqlDbType.NVarChar) {Value = nhanvien.Ho_ten_value},
+            //    new SqlParameter("@ten", SqlDbType.NVarChar) {Value = nhanvien.Ten_value},
+            //    new SqlParameter("@ho_lot", SqlDbType.NVarChar) {Value = nhanvien.Ho_lot_value},
+            //    new SqlParameter("@ngaysinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value,IsNullable = true},
+            //    new SqlParameter("@gioi_tinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
+            //    new SqlParameter("@hon_nhan", SqlDbType.Int) {Value = nhanvien.Hon_nhan_value},
+            //    new SqlParameter("@ton_giao", SqlDbType.Int) {Value = nhanvien.Ton_giao_value},
+            //    new SqlParameter("@dan_toc", SqlDbType.Int) {Value = nhanvien.Dan_toc_value},
+            //    new SqlParameter("@quoc_tich", SqlDbType.Int) {Value = nhanvien.Quoc_tich_value},
+            //    new SqlParameter("@cccd", SqlDbType.VarChar) {Value = nhanvien.Cccd_value},
+            //    new SqlParameter("@ngay_cap_cc", SqlDbType.Date) {Value = nhanvien.Ngay_cap_cccd_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_cccd_value.Value.ToString("yyyy/MM/dd")),IsNullable = true},
+            //    new SqlParameter("@noi_cap_cc", SqlDbType.NVarChar) {Value = nhanvien.Noi_cap_cccd_value},
+            //    new SqlParameter("@so_ho_chieu", SqlDbType.NVarChar) {Value = nhanvien.So_hc_value},
+            //    new SqlParameter("@ngay_cap_hc", SqlDbType.Date) {Value =(nhanvien.Ngay_cap_hc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_hc_value.Value.ToString("yyyy/MM/dd"))), IsNullable = true},
+            //    new SqlParameter("@noi_cap_hc", SqlDbType.NVarChar) {Value = nhanvien.Noi_cap_hc_value},
+            //    new SqlParameter("@ngay_het_han_hc", SqlDbType.Date) {Value =(nhanvien.Ngay_het_han_hc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_het_han_hc_value.Value.ToString("yyyy/MM/dd"))), IsNullable = true},
+            //    new SqlParameter("@sdt", SqlDbType.VarChar) {Value = nhanvien.Sdt_value},
+            //    new SqlParameter("@email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
+            //    new SqlParameter("@ghi_chu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
+            //    new SqlParameter("@ngay_thu_viec", SqlDbType.Date) {Value =nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@tg_thu_viec", SqlDbType.Int) {Value = nhanvien.Thoi_gan_tv_value},
+            //    new SqlParameter("@ngay_kt_thu_viec", SqlDbType.Date) {Value =nhanvien.Ngay_ket_thuc_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_ket_thuc_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@ngay_vao_lam", SqlDbType.Date) {Value =nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@ngay_ket_thuc", SqlDbType.Date) {Value =nhanvien.Ngay_ket_thuc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_ket_thuc_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@ma_so_thue", SqlDbType.NVarChar) {Value = nhanvien.Ma_so_thue_value},
+            //    new SqlParameter("@ngay_dk_thue", SqlDbType.Date) {Value =nhanvien.Ngay_dk_thue_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_dk_thue_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@noi_dk_thue", SqlDbType.NVarChar) {Value = nhanvien.Noi_dk_thue_value},
+            //    new SqlParameter("@so_tk", SqlDbType.VarChar) {Value = nhanvien.So_tk_value},
+            //    new SqlParameter("@ngan_hang", SqlDbType.NVarChar) {Value = nhanvien.Ngan_hang_value},
+            //    new SqlParameter("@tien_mat", SqlDbType.Bit) {Value = nhanvien.Nhan_tien_mat_value},
+            //    new SqlParameter("@ca_nhan_khong_cu_tru", SqlDbType.Bit) {Value = nhanvien.Ca_nhan_khong_cu_tru_value},
+            //    new SqlParameter("@khong_uy_quyen", SqlDbType.Bit) {Value = nhanvien.Khong_uy_quyen_value},
+            //    new SqlParameter("@ngan_hang_ck", SqlDbType.Int) {Value = nhanvien.Ngan_hang_ck_value},
+            //    new SqlParameter("@work_permit", SqlDbType.NVarChar) {Value = nhanvien.Work_permit_value},
+            //    new SqlParameter("@ngay_cap_work_permit", SqlDbType.Date) {Value =nhanvien.Ngay_cap_work_permit_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_work_permit_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@ngay_het_han_work_permit", SqlDbType.Date) {Value =nhanvien.Ngay_het_han_work_permit_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_het_han_work_permit_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+            //    new SqlParameter("@hinh_anh", SqlDbType.Image) {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
+            //    new SqlParameter("@chieu_cao", SqlDbType.Int) {Value = nhanvien.Chieu_cao_value},
+            //    new SqlParameter("@can_nang", SqlDbType.VarChar) {Value = nhanvien.Can_nang_value},
+            //    new SqlParameter("@nhom_mau", SqlDbType.VarChar) {Value = nhanvien.Nhom_mau_value},
+            //    new SqlParameter("@suc_khoe", SqlDbType.NVarChar) {Value = nhanvien.Suc_khoe_value},
+            //    new SqlParameter("@luu_y_sk", SqlDbType.NVarChar) {Value = nhanvien.Luu_y_sk_value},
+            //    new SqlParameter("@khuyet_tat", SqlDbType.NVarChar) {Value = nhanvien.Khuyet_tat_value},
+            //    new SqlParameter("@ma_cham_cong", SqlDbType.NVarChar) {Value = nhanvien.Ma_Cham_Cong},
+            //    new SqlParameter("@ten_cham_cong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
+            //    new SqlParameter("@ma_the", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
+            //    new SqlParameter("@id_nguoi_tao", SqlDbType.VarChar) {Value = SQLHelper.sIdUser},
+            //};
+            //SQLHelper.ExecuteSql(sql, param);
+            //_ma_nhan_vien = txt_MaSo.Text;
+            //pl_don_vi.Enabled = true;
+            //pl_hop_dong.Enabled = true;
+            //pl_bao_hiem.Enabled = true;
+            //pl_luong.Enabled = true;
+            //pl_phu_cap.Enabled = true;
+            //pl_chuyen_mon.Enabled = true;
+            //pl_ngoai_ngu.Enabled = true;
+            //pl_tin_hoc.Enabled = true;
+            //btn_ThuongTru.Enabled = true;
+            //btn_QueQuan.Enabled = true;
+            //pl_tin_hoc.Enabled = true;
+            //pl_BanThan.Enabled = true;
+            //pl_GiaDinh.Enabled = true;
+            //pl_TaiSan.Enabled = true;
+            //tc_qtlv.Enabled = true;
+            //nhan_su.load_data(1);
+            //RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private int InsertMITACOSQL()
+        {
+            SqlParameter[] param = new SqlParameter[]
+           {
+                    new SqlParameter("@MaNhanVien", SqlDbType.NVarChar) {Value = _ma_nhan_vien},
+                    new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.Ho_lot_value) ? "" : nhanvien.Ho_lot_value + " ") + (string.IsNullOrEmpty(nhanvien.Ten_value) ? "" : nhanvien.Ten_value)},
+                    new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
+                    new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
+                    new SqlParameter("PhanQuyen", SqlDbType.Int) {Value = 0},
+                    new SqlParameter("UserEnable", SqlDbType.NVarChar) {Value = "True"},
+                    new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
+                    new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_sinh_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
+                    new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@ThoiHanHopDong", SqlDbType.Float) {Value = 0},
+                    new SqlParameter("@CMND", SqlDbType.Int) {Value = 0},
+                    new SqlParameter("@NgayCap", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@NgayPhep", SqlDbType.Float) {Value = 12},
+                    new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
+                    new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
+                    new SqlParameter("@TienLuong", SqlDbType.Money) {Value = 0},
+                    new SqlParameter("@LuongHopDong", SqlDbType.Money) {Value = 0},
+                    new SqlParameter("@MaCongTy", SqlDbType.NVarChar) {Value = nhanvien.MaCongTy_value},
+                    new SqlParameter("@MaKhuVuc", SqlDbType.NVarChar) {Value = nhanvien.MaKhuVuc_value},
+                    new SqlParameter("@MaPhongBan", SqlDbType.NVarChar){Value = nhanvien.MaPhongBan_value},
+                    new SqlParameter("@MaChucVu", SqlDbType.NVarChar) {Value = nhanvien.MaChucVu_value},
+                    new SqlParameter("@DangThamGiaBaoHiem", SqlDbType.Bit) {Value = true},
+                    new SqlParameter("@NghiViecTamThoi", SqlDbType.Bit) {Value = false},
+                    new SqlParameter("@TinhLuongTheo", SqlDbType.Bit) {Value = false},
+                    new SqlParameter("@SanPhamOrCongDoan", SqlDbType.Bit) {Value = false},
+                    new SqlParameter("@NhanVienMoi", SqlDbType.Bit) {Value = false},
+           };
+            string sql = string.Empty;
+            sql = @"Insert into [MITACOSQL].[dbo].[NHANVIEN](MaNhanVien, TenNhanVien, TenChamCong, MaThe, PhanQuyen, UserEnable,
+            GioiTinh, NgayVaoLamViec, NgaySinh, NgayKyHopDong, ThoiHanHopDong, CMND, NgayCap, Email, NgayPhep, HinhAnh, TienLuong,
+            LuongHopDong, MaCongTy, MaKhuVuc, MaPhongBan, MaChucVu, DangThamGiaBaoHiem, NghiViecTamThoi, TinhLuongTheo, SanPhamOrCongDoan
+            NhanVienMoi, GhiChu)
+            Values(@MaNhanVien, @TenNhanVien, @TenChamCong, @MaThe, @PhanQuyen, @UserEnable, @GioiTinh, @NgayVaoLamViec, @NgaySinh,
+            @NgayKyHopDong, @ThoiHanHopDong, @CMND, @NgayCap, @Email, @NgayPhep, @HinhAnh, @TienLuong, @LuongHopDong, @MaCongTy,
+            @MaKhuVuc, @MaPhongBan, @MaChucVu, @DangThamGiaBaoHiem, @NghiViecTamThoi, @TinhLuongTheo, @SanPhamOrCongDoan, @NhanVienMoi, @GhiChu)";
+            int res = SQLHelper.ExecuteSql(sql, param);
+            return res;
+        }
+        private void InsertHRM()
+        {
+            string sql = string.Empty;
+            sql = $@"Insert into [TENTAC_HRM].[dbo].[tbl_NhanVien](MaNhanVien, Id_TrangThai, Ten, HonNhan, TonGiao, DanToc
+            QuocTich, SoCCCD, NgayCapCCCD, NoiCapCCCD, SoHoChieu, NgayCapHoChieu, NoiCapHoChieu, NgayHetHanHoChieu, DienThoaiDD, NgayThuViec,
+            ThoiGianThuViec, NgayKetThucThuViec, NgayKetThuc, MaSoThue, NgayDKThue, NoiDKThue, SoTK, NganHang, NhanTienMat, CaNhanKhongCuTru,
+            KhongUyQuyenQT, Id_NganHangCK, WorkPermit, NgayCapWP, NgayHetHanWP, ChieuCao, CanNang, NhomMau, SucKhoe, LuuYSK, KhuyetTat,
+            ReportTo, NgayTao, NguoiTao, Del_Flg)
+            Values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpI(nhanvien.Trang_thai_value)}, {SQLHelper.rpStr(nhanvien.Ten_value)}, 
+            {SQLHelper.rpI(nhanvien.Hon_nhan_value)}, {SQLHelper.rpStr(nhanvien.Ton_giao_value)}, {SQLHelper.rpStr(nhanvien.Dan_toc_value)},
+            {SQLHelper.rpStr(nhanvien.Quoc_tich_value)}, {SQLHelper.rpStr(nhanvien.Cccd_value)}, {SQLHelper.rpDT(nhanvien.Ngay_cap_cccd_value)},
+            {SQLHelper.rpStr(nhanvien.Noi_cap_cccd_value)}, {SQLHelper.rpStr(nhanvien.So_hc_value)}, {SQLHelper.rpDT(nhanvien.Ngay_cap_hc_value)},
+            {SQLHelper.rpStr(nhanvien.Noi_cap_hc_value)}, {SQLHelper.rpDT(nhanvien.Ngay_het_han_hc_value)}, {SQLHelper.rpStr(nhanvien.Sdt_value)},
+            {SQLHelper.rpDT(nhanvien.Ngay_tv_value)}, {SQLHelper.rpI(nhanvien.Thoi_gan_tv_value)}, {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_tv_value)},
+            {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_value)}, {SQLHelper.rpStr(nhanvien.Ma_so_thue_value)}, {SQLHelper.rpDT(nhanvien.Ngay_dk_thue_value)},
+            {SQLHelper.rpStr(nhanvien.Noi_dk_thue_value)}, {SQLHelper.rpStr(nhanvien.So_tk_value)}, {SQLHelper.rpStr(nhanvien.Ngan_hang_value)},
+            {SQLHelper.rpI(nhanvien.Nhan_tien_mat_value)}, {SQLHelper.rpI(nhanvien.Ca_nhan_khong_cu_tru_value)}, {SQLHelper.rpI(nhanvien.Khong_uy_quyen_value)},
+            {SQLHelper.rpI(nhanvien.Ngan_hang_ck_value)}, {SQLHelper.rpStr(nhanvien.Work_permit_value)}, {SQLHelper.rpDT(nhanvien.Ngay_cap_work_permit_value)},
+            {SQLHelper.rpDT(nhanvien.Ngay_het_han_work_permit_value)}, {SQLHelper.rpDouble(nhanvien.Chieu_cao_value)}, {SQLHelper.rpDouble(nhanvien.Can_nang_value)},
+            {SQLHelper.rpStr(nhanvien.Nhom_mau_value)}, {SQLHelper.rpStr(nhanvien.Suc_khoe_value)}, {SQLHelper.rpStr(nhanvien.Luu_y_sk_value)},
+            {SQLHelper.rpI(nhanvien.Khuyet_tat_value)}, {SQLHelper.rpStr(nhanvien.ReportTo)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+            int res = SQLHelper.ExecuteSql(sql);
+            if (res > 0)
+            {
+                RJMessageBox.Show("Thêm thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                _ma_nhan_vien = txt_MaSo.Text;
+                pl_don_vi.Enabled = true;
+                pl_hop_dong.Enabled = true;
+                pl_bao_hiem.Enabled = true;
+                pl_luong.Enabled = true;
+                pl_phu_cap.Enabled = true;
+                pl_chuyen_mon.Enabled = true;
+                pl_ngoai_ngu.Enabled = true;
+                pl_tin_hoc.Enabled = true;
+                btn_ThuongTru.Enabled = true;
+                btn_QueQuan.Enabled = true;
+                pl_tin_hoc.Enabled = true;
+                pl_BanThan.Enabled = true;
+                pl_GiaDinh.Enabled = true;
+                pl_TaiSan.Enabled = true;
+                tc_qtlv.Enabled = true;
+                nhan_su.LoadData(1);
+            }
+            else
+            {
+                RJMessageBox.Show("Thêm dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+        private int UpdateMITACOSQL()
+        {
+            string sql = string.Empty;
+            sql = "update [MITACOSQL].[dbo].[NHANVIEN] set TenNhanVien = @TenNhanVien, TenChamCong = @TenChamCong, " +
+                    "MaThe = @MaThe, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, Email = @Email, MaCongTy = @MaCongTy, " +
+                    "MaKhuVuc = @MaKhuVuc, MaPhongBan = @MaPhongBan, MaChucVu = @MaChucVu, GhiChu = @GhiChu, " +
                     "NgayVaoLamViec = @NgayVaoLamViec, NgayKyHopDong = @NgayKyHopDong, HinhAnh = @HinhAnh " +
-                    //"MaKhuVuc = @makhuvuc, MaPhongBan = @maphongban " +
                     "where MaNhanVien = @MaNhanVien";
-            SqlParameter[] paramMita = new SqlParameter[]
+            SqlParameter[] param = new SqlParameter[]
             {
                     new SqlParameter("@MaNhanVien", SqlDbType.NVarChar) {Value = _ma_nhan_vien},
                     new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.Ho_lot_value) ? "" : nhanvien.Ho_lot_value + " ") + (string.IsNullOrEmpty(nhanvien.Ten_value) ? "" : nhanvien.Ten_value)},
@@ -1472,176 +1760,46 @@ namespace TENTAC_HRM.Forms.Main
                     new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
                     new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
             };
-            SQLHelper.ExecuteSql(sqlMita, paramMita);
-
-            string sql = "update tbl_NhanVien " +
-                "set Id_TrangThai = @trang_thai, MaNhanVien = @ma_so, " +
-                "HonNhan = @hon_nhan,TonGiao = @ton_giao,DanToc = @dan_toc, QuocTich = @quoc_tich, " +
-                "SoCCCD = @cccd, NgayCapCCCD = @ngay_cap_cc,NoiCapCCCD = @noi_cap_cc, SoHoChieu = @so_ho_chieu,NgayCapHoChieu = @ngay_cap_hc, " +
-                "NoiCapHoChieu = @noi_cap_hc,NgayHetHanHoChieu = @ngay_het_han_hc, " +
-                "DienThoaiDD = @sdt,NgayThuViec = @ngay_thu_viec, ThoiGianThuViec = @tg_thu_viec, " +
-                "NgayKetThucThuViec = @ngay_kt_thu_viec, NgayKetThuc = @ngay_ket_thuc, " +
-                "MaSoThue = @ma_so_thue, NgayDKThue = @ngay_dk_thue,NoiDKThue = @noi_dk_thue, " +
-                "SoTK = @so_tk, NganHang = @ngan_hang,NhanTienMat = @tien_mat,CaNhanKhongCuTru = @khong_cu_tru,KhongUyQuyenQT= @khong_uy_quyen, " +
-                "Id_NganHangCK = @ngan_hang_ck, WorkPermit = @work_permit, NgayCapWP = @ngay_cap_wp,NgayHetHanWP = @ngay_het_han_wp, " +
-                "ChieuCao = @chieu_cao, CanNang = @can_nang, NhomMau = @nhom_mau, SucKhoe = @suc_khoe,LuuYSK = @luu_y_sk,KhuyetTat = @khuyet_tat, " +
-                "NgayCapNhat = GETDATE(),NguoiCapNhat = @NguoiCapNhat " +
-                "where MaNhanVien = @ma_nhan_vien";
-
-            SqlParameter[] param = new SqlParameter[]
+            int res = SQLHelper.ExecuteSql(sql, param);
+            return res;
+        }
+        private void UpdateHRM()
+        {
+            string sql = string.Empty;
+            sql = $@"Update [TENTAC_HRM].[dbo].[tbl_NhanVien] Set Id_TrangThai = {SQLHelper.rpI(nhanvien.Trang_thai_value)},
+            Ten = {SQLHelper.rpStr(nhanvien.Ten_value)}, HonNhan = {SQLHelper.rpI(nhanvien.Hon_nhan_value)}, TonGiao = {SQLHelper.rpStr(nhanvien.Ton_giao_value)},
+            DanToc = {SQLHelper.rpStr(nhanvien.Dan_toc_value)}, QuocTich = {SQLHelper.rpStr(nhanvien.Quoc_tich_value)}, SoCCCD = {SQLHelper.rpStr(nhanvien.Cccd_value)},
+            NgayCapCCCD = {SQLHelper.rpDT(nhanvien.Ngay_cap_cccd_value)}, NoiCapCCCD = {SQLHelper.rpStr(nhanvien.Noi_cap_cccd_value)},
+            SoHoChieu = {SQLHelper.rpStr(nhanvien.So_hc_value)}, NgayCapHoChieu = {SQLHelper.rpDT(nhanvien.Ngay_cap_hc_value)}, 
+            NoiCapHoChieu = {SQLHelper.rpStr(nhanvien.Noi_cap_hc_value)}, NgayHetHanHoChieu = {SQLHelper.rpDT(nhanvien.Ngay_het_han_hc_value)},
+            DienThoaiDD = {SQLHelper.rpStr(nhanvien.Sdt_value)}, NgayThuViec = {SQLHelper.rpDT(nhanvien.Ngay_tv_value)}, 
+            ThoiGianThuViec = {SQLHelper.rpI(nhanvien.Thoi_gan_tv_value)}, NgayKetThucThuViec = {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_tv_value)}, 
+            NgayKetThuc = {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_value)}, MaSoThue = {SQLHelper.rpStr(nhanvien.Ma_so_value)},
+            NgayDKThue = {SQLHelper.rpDT(nhanvien.Ngay_dk_thue_value)}, NoiDKThue = {SQLHelper.rpStr(nhanvien.Noi_dk_thue_value)}, 
+            SoTK = {SQLHelper.rpStr(nhanvien.So_tk_value)}, NganHang = {SQLHelper.rpStr(nhanvien.Ngan_hang_value)}, 
+            NhanTienMat = {SQLHelper.rpI(nhanvien.Nhan_tien_mat_value)}, CaNhanKhongCuTru = {SQLHelper.rpI(nhanvien.Ca_nhan_khong_cu_tru_value)},
+            KhongUyQuyenQT = {SQLHelper.rpI(nhanvien.Khong_uy_quyen_value)}, Id_NganHang = {SQLHelper.rpI(nhanvien.Ngan_hang_ck_value)},
+            WorkPermit = {SQLHelper.rpStr(nhanvien.Work_permit_value)}, NgayCapWP = {SQLHelper.rpDT(nhanvien.Ngay_cap_work_permit_value)},
+            NgayHetHanWP = {SQLHelper.rpDT(nhanvien.Ngay_het_han_work_permit_value)}, ChieuCao = {SQLHelper.rpDouble(nhanvien.Chieu_cao_value)},
+            CanNang = {SQLHelper.rpDouble(nhanvien.Can_nang_value)}, NhomMau = {SQLHelper.rpStr(nhanvien.Nhom_mau_value)},
+            SucKhoe = {SQLHelper.rpStr(nhanvien.Suc_khoe_value)}, LuuYSK = {SQLHelper.rpStr(nhanvien.Luu_y_sk_value)}, 
+            KhuyetTat = {SQLHelper.rpI(nhanvien.Khuyet_tat_value)}, MaCongTy = {SQLHelper.rpStr(nhanvien.MaCongTy_value)}, 
+            MaKhuVuc = {SQLHelper.rpStr(nhanvien.MaKhuVuc_value)}, MaPhongBan = {SQLHelper.rpStr(nhanvien.MaPhongBan_value)},
+            MaChucVu = {SQLHelper.rpStr(nhanvien.MaChucVu_value)}, ReportTo = {SQLHelper.rpStr(nhanvien.ReportTo)}, NgayCapNhat = '{DateTime.Now}',
+            NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+            Where MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and Del_Flg = 0";
+            if (SQLHelper.ExecuteSql(sql) > 0)
             {
-                new SqlParameter("@ma_nhan_vien", SqlDbType.VarChar) {Value = _ma_nhan_vien},
-                new SqlParameter("@trang_thai", SqlDbType.Int) {Value = nhanvien.Trang_thai_value},
-                new SqlParameter("@ma_so", SqlDbType.VarChar) {Value = nhanvien.Ma_so_value},
-                //new SqlParameter("@ten", SqlDbType.NVarChar) {Value = nhanvien.Ten_value},
-                //new SqlParameter("@ho_lot", SqlDbType.NVarChar) {Value = nhanvien.Ho_lot_value},
-                new SqlParameter("@hon_nhan", SqlDbType.Int) {Value = nhanvien.Hon_nhan_value},
-                new SqlParameter("@ton_giao", SqlDbType.NVarChar) {Value = nhanvien.Ton_giao_value ?? (object)DBNull.Value},
-                new SqlParameter("@dan_toc", SqlDbType.NVarChar) {Value = nhanvien.Dan_toc_value ?? (object)DBNull.Value},
-                new SqlParameter("@quoc_tich", SqlDbType.Int) {Value = nhanvien.Quoc_tich_value},
-                new SqlParameter("@cccd", SqlDbType.VarChar) {Value = nhanvien.Cccd_value},
-                new SqlParameter("@ngay_cap_cc", SqlDbType.Date) {Value = nhanvien.Ngay_cap_cccd_value == null ? (object)DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_cccd_value.Value.ToString("yyyy/MM/dd")),IsNullable = true},
-                new SqlParameter("@noi_cap_cc", SqlDbType.NVarChar) {Value = nhanvien.Noi_cap_cccd_value},
-                new SqlParameter("@so_ho_chieu", SqlDbType.NVarChar) {Value = nhanvien.So_hc_value},
-                new SqlParameter("@ngay_cap_hc", SqlDbType.Date) {Value = nhanvien.Ngay_cap_hc_value == null ? (object)DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_hc_value.Value.ToString("yyyy/MM/dd")),IsNullable = true},
-                new SqlParameter("@noi_cap_hc", SqlDbType.NVarChar) {Value = nhanvien.Noi_cap_hc_value},
-                new SqlParameter("@ngay_het_han_hc", SqlDbType.Date) {Value = nhanvien.Ngay_het_han_hc_value == null ? (object)DBNull.Value : DateTime.Parse(nhanvien.Ngay_het_han_hc_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@sdt", SqlDbType.VarChar) {Value = nhanvien.Sdt_value},
-                new SqlParameter("@ngay_thu_viec", SqlDbType.Date) {Value = nhanvien.Ngay_tv_value == null ? (object)DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@tg_thu_viec", SqlDbType.Int) {Value = nhanvien.Thoi_gan_tv_value},
-                new SqlParameter("@ngay_kt_thu_viec", SqlDbType.Date) {Value = nhanvien.Ngay_ket_thuc_tv_value == null ? (object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_ket_thuc_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ngay_ket_thuc", SqlDbType.Date) {Value = nhanvien.Ngay_ket_thuc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_ket_thuc_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ma_so_thue", SqlDbType.NVarChar) {Value = nhanvien.Ma_so_thue_value},
-                new SqlParameter("@ngay_dk_thue", SqlDbType.Date) {Value = nhanvien.Ngay_dk_thue_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_dk_thue_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@noi_dk_thue", SqlDbType.NVarChar) {Value = nhanvien.Noi_dk_thue_value},
-                new SqlParameter("@so_tk", SqlDbType.VarChar) {Value = nhanvien.So_tk_value},
-                new SqlParameter("@ngan_hang", SqlDbType.NVarChar) {Value = nhanvien.Ngan_hang_value},
-                new SqlParameter("@tien_mat", SqlDbType.Bit) {Value = nhanvien.Nhan_tien_mat_value},
-                new SqlParameter("@khong_cu_tru", SqlDbType.Bit) {Value = nhanvien.Ca_nhan_khong_cu_tru_value},
-                new SqlParameter("@khong_uy_quyen", SqlDbType.Bit) {Value = nhanvien.Khong_uy_quyen_value},
-                new SqlParameter("@ngan_hang_ck", SqlDbType.Int) {Value = nhanvien.Ngan_hang_ck_value},
-                new SqlParameter("@work_permit", SqlDbType.NVarChar) {Value = nhanvien.Work_permit_value},
-                new SqlParameter("@ngay_cap_wp", SqlDbType.Date) {Value = nhanvien.Ngay_cap_work_permit_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_work_permit_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ngay_het_han_wp", SqlDbType.Date) {Value = nhanvien.Ngay_het_han_work_permit_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_het_han_work_permit_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@chieu_cao", SqlDbType.Float) { Value = nhanvien.Chieu_cao_value.HasValue ? (object)nhanvien.Chieu_cao_value.Value : DBNull.Value },
-                new SqlParameter("@can_nang", SqlDbType.VarChar) {Value = nhanvien.Can_nang_value},
-                new SqlParameter("@nhom_mau", SqlDbType.VarChar) {Value = nhanvien.Nhom_mau_value},
-                new SqlParameter("@suc_khoe", SqlDbType.NVarChar) {Value = nhanvien.Suc_khoe_value},
-                new SqlParameter("@luu_y_sk", SqlDbType.NVarChar) {Value = nhanvien.Luu_y_sk_value},
-                new SqlParameter("@khuyet_tat", SqlDbType.NVarChar) {Value = nhanvien.Khuyet_tat_value},
-                new SqlParameter("@NguoiCapNhat", SqlDbType.VarChar) {Value = SQLHelper.sUser},
-            };
-            if (SQLHelper.ExecuteSql(sql, param) == 1)
-            {
-                nhan_su.load_data(1);
+                nhan_su.LoadData(1);
                 RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-        private void insert_ho_so()
-        {
-            set_txt_value();
-            string sqlMita = $@"";
-            SqlParameter[] paramMita = new SqlParameter[]
+            else
             {
-                    new SqlParameter("@MaNhanVien", SqlDbType.NVarChar) {Value = _ma_nhan_vien},
-                    new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.Ho_lot_value) ? "" : nhanvien.Ho_lot_value + " ") + (string.IsNullOrEmpty(nhanvien.Ten_value) ? "" : nhanvien.Ten_value)},
-                    new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
-                    new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
-                    new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value},
-                    new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
-                    new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
-                    new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                    new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                    new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
-                    new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
-            };
-
-
-            string sql = "insert into tbl_NhanVien(id_TrangThai,MaNhanVien,HoTen,Ten,HoLot,NgaySinh,GioiTinh,HonNhan,TonGiao,DanToc,QuocTich," +
-                         "SoCCCD,NgayCapCCCD,NoiCapCCCD,SoHoChieu,NgayCapHoChieu,NoiCapHoChieu,NgayHetHanHoChieu," +
-                         "DienThoaiDD,Email,GhiChu,NgayThuViec,ThoiGianThuViec,NgayKetThucThuViec," +
-                         "NgayVaoLam,NgayKetThuc,MaSoThue,NgayDKThue,NoiDKThue,SoTK,NganHang,NhanTienMat,CaNhanKhongCuTru," +
-                         "KhongUyQuyenQT,Id_NganHangCK,WorkPermit,NgayCapWP,NgayHetHanWP,HinhAnh,ChieuCao,CanNang,NhomMau,SucKhoe,LuuYSK,KhuyetTat," +
-                         "MaChamCong,TenChamCong,MaThe,NguoiTao) " +
-                         "values(@trang_thai,@ma_so,@ho_ten,@ten,@ho_lot,@ngaysinh,@gioi_tinh,@hon_nhan,@ton_giao,@dan_toc,@quoc_tich," +
-                         "@cccd,@ngay_cap_cc,@noi_cap_cc,@so_ho_chieu,@ngay_cap_hc,@noi_cap_hc,@ngay_het_han_hc," +
-                         "@sdt,@email,@ghi_chu,@ngay_thu_viec,@tg_thu_viec,@ngay_kt_thu_viec," +
-                         "@ngay_vao_lam,@ngay_ket_thuc,@ma_so_thue,@ngay_dk_thue,@noi_dk_thue,@so_tk,@ngan_hang,@tien_mat,@ca_nhan_khong_cu_tru," +
-                         "@khong_uy_quyen,@ngan_hang_ck,@work_permit,@ngay_cap_work_permit,@ngay_het_han_work_permit,@hinh_anh,@chieu_cao,@can_nang,@nhom_mau,@suc_khoe,@luu_y_sk,@khuyet_tat," +
-                         "@ma_cham_cong,@ten_cham_cong,@ma_the,@id_nguoi_tao)";
-            SqlParameter[] param = new SqlParameter[]
-            {
-                new SqlParameter("@trang_thai", SqlDbType.Int) {Value = nhanvien.Trang_thai_value},
-                new SqlParameter("@ma_so", SqlDbType.VarChar) {Value = nhanvien.Ma_so_value},
-                new SqlParameter("@ho_ten", SqlDbType.NVarChar) {Value = nhanvien.Ho_ten_value},
-                new SqlParameter("@ten", SqlDbType.NVarChar) {Value = nhanvien.Ten_value},
-                new SqlParameter("@ho_lot", SqlDbType.NVarChar) {Value = nhanvien.Ho_lot_value},
-                new SqlParameter("@ngaysinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value,IsNullable = true},
-                new SqlParameter("@gioi_tinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
-                new SqlParameter("@hon_nhan", SqlDbType.Int) {Value = nhanvien.Hon_nhan_value},
-                new SqlParameter("@ton_giao", SqlDbType.Int) {Value = nhanvien.Ton_giao_value},
-                new SqlParameter("@dan_toc", SqlDbType.Int) {Value = nhanvien.Dan_toc_value},
-                new SqlParameter("@quoc_tich", SqlDbType.Int) {Value = nhanvien.Quoc_tich_value},
-                new SqlParameter("@cccd", SqlDbType.VarChar) {Value = nhanvien.Cccd_value},
-                new SqlParameter("@ngay_cap_cc", SqlDbType.Date) {Value = nhanvien.Ngay_cap_cccd_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_cccd_value.Value.ToString("yyyy/MM/dd")),IsNullable = true},
-                new SqlParameter("@noi_cap_cc", SqlDbType.NVarChar) {Value = nhanvien.Noi_cap_cccd_value},
-                new SqlParameter("@so_ho_chieu", SqlDbType.NVarChar) {Value = nhanvien.So_hc_value},
-                new SqlParameter("@ngay_cap_hc", SqlDbType.Date) {Value =(nhanvien.Ngay_cap_hc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_hc_value.Value.ToString("yyyy/MM/dd"))), IsNullable = true},
-                new SqlParameter("@noi_cap_hc", SqlDbType.NVarChar) {Value = nhanvien.Noi_cap_hc_value},
-                new SqlParameter("@ngay_het_han_hc", SqlDbType.Date) {Value =(nhanvien.Ngay_het_han_hc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_het_han_hc_value.Value.ToString("yyyy/MM/dd"))), IsNullable = true},
-                new SqlParameter("@sdt", SqlDbType.VarChar) {Value = nhanvien.Sdt_value},
-                new SqlParameter("@email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
-                new SqlParameter("@ghi_chu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
-                new SqlParameter("@ngay_thu_viec", SqlDbType.Date) {Value =nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@tg_thu_viec", SqlDbType.Int) {Value = nhanvien.Thoi_gan_tv_value},
-                new SqlParameter("@ngay_kt_thu_viec", SqlDbType.Date) {Value =nhanvien.Ngay_ket_thuc_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_ket_thuc_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ngay_vao_lam", SqlDbType.Date) {Value =nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ngay_ket_thuc", SqlDbType.Date) {Value =nhanvien.Ngay_ket_thuc_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_ket_thuc_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ma_so_thue", SqlDbType.NVarChar) {Value = nhanvien.Ma_so_thue_value},
-                new SqlParameter("@ngay_dk_thue", SqlDbType.Date) {Value =nhanvien.Ngay_dk_thue_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_dk_thue_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@noi_dk_thue", SqlDbType.NVarChar) {Value = nhanvien.Noi_dk_thue_value},
-                new SqlParameter("@so_tk", SqlDbType.VarChar) {Value = nhanvien.So_tk_value},
-                new SqlParameter("@ngan_hang", SqlDbType.NVarChar) {Value = nhanvien.Ngan_hang_value},
-                new SqlParameter("@tien_mat", SqlDbType.Bit) {Value = nhanvien.Nhan_tien_mat_value},
-                new SqlParameter("@ca_nhan_khong_cu_tru", SqlDbType.Bit) {Value = nhanvien.Ca_nhan_khong_cu_tru_value},
-                new SqlParameter("@khong_uy_quyen", SqlDbType.Bit) {Value = nhanvien.Khong_uy_quyen_value},
-                new SqlParameter("@ngan_hang_ck", SqlDbType.Int) {Value = nhanvien.Ngan_hang_ck_value},
-                new SqlParameter("@work_permit", SqlDbType.NVarChar) {Value = nhanvien.Work_permit_value},
-                new SqlParameter("@ngay_cap_work_permit", SqlDbType.Date) {Value =nhanvien.Ngay_cap_work_permit_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_cap_work_permit_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@ngay_het_han_work_permit", SqlDbType.Date) {Value =nhanvien.Ngay_het_han_work_permit_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_het_han_work_permit_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                new SqlParameter("@hinh_anh", SqlDbType.Image) {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
-                new SqlParameter("@chieu_cao", SqlDbType.Int) {Value = nhanvien.Chieu_cao_value},
-                new SqlParameter("@can_nang", SqlDbType.VarChar) {Value = nhanvien.Can_nang_value},
-                new SqlParameter("@nhom_mau", SqlDbType.VarChar) {Value = nhanvien.Nhom_mau_value},
-                new SqlParameter("@suc_khoe", SqlDbType.NVarChar) {Value = nhanvien.Suc_khoe_value},
-                new SqlParameter("@luu_y_sk", SqlDbType.NVarChar) {Value = nhanvien.Luu_y_sk_value},
-                new SqlParameter("@khuyet_tat", SqlDbType.NVarChar) {Value = nhanvien.Khuyet_tat_value},
-                new SqlParameter("@ma_cham_cong", SqlDbType.NVarChar) {Value = nhanvien.Ma_Cham_Cong},
-                new SqlParameter("@ten_cham_cong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
-                new SqlParameter("@ma_the", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
-                new SqlParameter("@id_nguoi_tao", SqlDbType.VarChar) {Value = SQLHelper.sIdUser},
-            };
-            SQLHelper.ExecuteSql(sql, param);
-            _ma_nhan_vien = txt_MaSo.Text;
-            pl_don_vi.Enabled = true;
-            pl_hop_dong.Enabled = true;
-            pl_bao_hiem.Enabled = true;
-            pl_luong.Enabled = true;
-            pl_phu_cap.Enabled = true;
-            pl_chuyen_mon.Enabled = true;
-            pl_ngoai_ngu.Enabled = true;
-            pl_tin_hoc.Enabled = true;
-            btn_ThuongTru.Enabled = true;
-            btn_QueQuan.Enabled = true;
-            pl_tin_hoc.Enabled = true;
-            pl_BanThan.Enabled = true;
-            pl_GiaDinh.Enabled = true;
-            pl_TaiSan.Enabled = true;
-            tc_qtlv.Enabled = true;
-            nhan_su.load_data(1);
-            RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RJMessageBox.Show("Cập nhật dữ liệu thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
-        private void set_txt_value()
+        private void Setvalues()
         {
             nhanvien.Trang_thai_value = int.Parse(cbo_TrangThai.SelectedValue.ToString());
             nhanvien.Ma_so_value = txt_MaSo.Text;
@@ -1653,7 +1811,7 @@ namespace TENTAC_HRM.Forms.Main
             nhanvien.Hon_nhan_value = rb_DaKetHon.Checked == true ? 1 : 0;
             nhanvien.Ton_giao_value = cbo_TonGiao.SelectedValue == null ? null : cbo_TonGiao.SelectedValue.ToString();
             nhanvien.Dan_toc_value = cbo_DanToc.SelectedValue == null ? null : cbo_DanToc.SelectedValue.ToString();
-            nhanvien.Quoc_tich_value = cbo_QuocTich.SelectedValue == null ? 0 : int.Parse(cbo_QuocTich.SelectedValue.ToString());
+            nhanvien.Quoc_tich_value = cbo_QuocTich.SelectedValue == null ? "" : cbo_QuocTich.SelectedValue.ToString();
             nhanvien.Cccd_value = txt_CCCD.Text;
             nhanvien.Ngay_cap_cccd_value = string.IsNullOrWhiteSpace(dtp_NgayCapCCCD.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapCCCD.Text.ToString());
             nhanvien.Noi_cap_cccd_value = txt_NoiCapCC.Text;
@@ -1664,8 +1822,8 @@ namespace TENTAC_HRM.Forms.Main
             nhanvien.Sdt_value = txt_DiDong.Text;
             nhanvien.Email_value = txt_Email.Text;
             nhanvien.Suc_khoe_value = txt_SucKhoe.Text;
-            nhanvien.Chieu_cao_value = (string.IsNullOrEmpty(txt_ChieuCao.Text) ? 0 : int.Parse(txt_ChieuCao.Text));
-            nhanvien.Can_nang_value = txt_CanNang.Text;
+            nhanvien.Chieu_cao_value = string.IsNullOrEmpty(txt_ChieuCao.Text) ? (float?)null : float.Parse(txt_ChieuCao.Text);
+            nhanvien.Can_nang_value = (string.IsNullOrEmpty(txt_CanNang.Text) ? (float?)null : float.Parse(txt_CanNang.Text));
             nhanvien.Luu_y_sk_value = txt_LuuYSK.Text;
             nhanvien.Nhom_mau_value = cbo_NhomMau.SelectedValue == null ? "" : cbo_NhomMau.SelectedValue.ToString();
             nhanvien.Khuyet_tat_value = chk_KhuyetTat.Checked == true ? 1 : 0;
@@ -1687,7 +1845,6 @@ namespace TENTAC_HRM.Forms.Main
             nhanvien.Work_permit_value = txt_WorkPermit.Text;
             nhanvien.Ngay_cap_work_permit_value = string.IsNullOrWhiteSpace(dtp_NgayCapWorkPermit.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapWorkPermit.Text.ToString());
             nhanvien.Ngay_het_han_work_permit_value = string.IsNullOrWhiteSpace(dtp_NgayHetWorkPermit.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayHetWorkPermit.Text.ToString());
-            nhanvien.Chieu_cao_value = string.IsNullOrEmpty(txt_ChieuCao.Text) ? (float?)null : float.Parse(txt_ChieuCao.Text);
             nhanvien.Picbyte = null;
             nhanvien.Ma_Cham_Cong = txt_MaChamCong.Text;
             nhanvien.Ten_Cham_Cong = txt_TenChamCong.Text;
@@ -1696,6 +1853,7 @@ namespace TENTAC_HRM.Forms.Main
             nhanvien.MaKhuVuc_value = cbo_KhuVuc.SelectedValue == null ? null : cbo_KhuVuc.SelectedValue.ToString();
             nhanvien.MaPhongBan_value = cbo_PhongBan.SelectedValue == null ? null : cbo_PhongBan.SelectedValue.ToString();
             nhanvien.MaChucVu_value = cbo_ChucVu.SelectedValue == null ? null : cbo_ChucVu.SelectedValue.ToString();
+            nhanvien.ReportTo = cbo_ReportTo.SelectedValue == null ? null : cbo_ReportTo.SelectedValue.ToString();
             if (pb_Avata.Image != null)
             {
                 MemoryStream ms;
@@ -1841,7 +1999,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_tieusu();
+                        LoadNhanVienTieuSu();
                     }
                 }
             }
@@ -1862,7 +2020,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_nguoithan();
+                        LoadNhanVienNguoiThan();
                     }
                 }
             }
@@ -1883,7 +2041,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Load_congtac();
+                        LoadNhanVienCongTac();
                     }
                 }
             }
@@ -1903,7 +2061,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Load_khenthuong();
+                        LoadNhanVienKhenThuong();
                     }
                 }
             }
@@ -1912,7 +2070,6 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_DeleteKL_Click(object sender, EventArgs e)
         {
             try
@@ -1924,7 +2081,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Load_kyluat();
+                        LoadNhanVienKyLuat();
                     }
                 }
             }
@@ -1933,7 +2090,6 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_DeleteDG_Click(object sender, EventArgs e)
         {
             try
@@ -1945,7 +2101,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_danhgia();
+                        LoadNhanVienDanhGia();
                     }
                 }
             }
@@ -1954,7 +2110,6 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_DeleteDT_Click(object sender, EventArgs e)
         {
             try
@@ -1966,7 +2121,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_daotao();
+                        LoadNhanVienDaoTao();
                     }
                 }
             }
@@ -1975,7 +2130,6 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_DeleteTN_Click(object sender, EventArgs e)
         {
             try
@@ -1987,7 +2141,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_tainan();
+                        LoadNhanVienTaiNan();
                     }
                 }
             }
@@ -1996,7 +2150,6 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_DeleteTS_Click(object sender, EventArgs e)
         {
             try
@@ -2008,7 +2161,7 @@ namespace TENTAC_HRM.Forms.Main
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        load_thaisan();
+                        LoadNhanVienThaiSan();
                     }
                 }
             }
@@ -2017,21 +2170,19 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_show_salary_Click(object sender, EventArgs e)
         {
             if (txt_MucLuong.PasswordChar == '\0')
             {
-                btn_show_salary.Image = Properties.Resources.eye;
+                btn_show_salary.Image = Properties.Resources.close_eye2;
                 txt_MucLuong.PasswordChar = '*';
             }
             else
             {
-                btn_show_salary.Image = Properties.Resources.close_eye;
+                btn_show_salary.Image = Properties.Resources.eye;
                 txt_MucLuong.PasswordChar = '\0';
             }
         }
-
         private void btn_DeleteVC_Click(object sender, EventArgs e)
         {
             try
@@ -2046,7 +2197,7 @@ namespace TENTAC_HRM.Forms.Main
                         string sql_nhanvien = string.Empty;
                         sql_nhanvien = $@"Update tbl_NhanVien set Id_TrangThai = 1 where MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)}";
                         SQLHelper.ExecuteSql(sql_nhanvien);
-                        load_nghiviec();
+                        LoadNhanVienNghiViec();
                     }
                 }
             }
@@ -2055,7 +2206,6 @@ namespace TENTAC_HRM.Forms.Main
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_TamTru_Click(object sender, EventArgs e)
         {
             frm_address frm = new frm_address(this);
@@ -2063,6 +2213,19 @@ namespace TENTAC_HRM.Forms.Main
             frm._loai_diachi = 44;
             frm._NameForm = "Địa chỉ tạm trú";
             frm.ShowDialog();
+        }
+        private void btn_update_image_Click(object sender, EventArgs e)
+        {
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg; *.jpeg; *.gif; *.bmp; *.png" +
+                                "|All Files (*.*)|*.*";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                Fs = File.Open(open.FileName, FileMode.OpenOrCreate);
+                b = new Byte[Fs.Length];
+                Fs.Read(b, 0, b.Length);
+                Fs.Close();
+                pb_Avata.Image = Image.FromFile(open.FileName);
+            }
         }
     }
 }

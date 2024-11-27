@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Media;
 using TENTAC_HRM.Custom;
@@ -41,12 +42,12 @@ namespace TENTAC_HRM.Forms.User_control
 
         private void cbo_phongban_search_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            load_data(1);
+            LoadData(1);
         }
 
         private void cbo_trang_thai_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            load_data(1);
+            LoadData(1);
         }
 
         private void HienThiThanhDieuHuong(int recordCount, int currentPage)
@@ -58,24 +59,23 @@ namespace TENTAC_HRM.Forms.User_control
         private void Page_Click(object sender, EventArgs e)
         {
             DevComponents.DotNetBar.ButtonX btnPager = (sender as DevComponents.DotNetBar.ButtonX);
-            this.load_data(int.Parse(btnPager.Name));
+            this.LoadData(int.Parse(btnPager.Name));
             lb_totalsize.Text = int.Parse(btnPager.Name) + "/" + pageCount.ToString();
         }
         private void uc_nhan_su_Load(object sender, EventArgs e)
         {
-            load_gioitinh();
-            load_trang_thai1();
-            load_trang_thai();
+            LoadGioiTinh();
+            LoadTrangThai();
 
-            datagrid_click();
-            load_treeview();
+            DatagridClick();
+            LoadTreeView();
             trv_sodoquanly.Nodes[0].ExpandAll();
             trv_sodoquanly.SelectedNode = trv_sodoquanly.Nodes[2].Nodes[1];
-            load_bophan();
-            load_phongban();
-            load_chucvu();
-            load_phongban(true);
-            Load_LoaiNhanVien();
+            LoadBoPhan();
+            LoadPhongBan();
+            LoadChucVu();
+            LoadPhongBan(true);
+            LoadLoaiNhanVien();
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
             datatable.Columns.Add("name");
@@ -90,11 +90,10 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_pagenumber.ComboBox.SelectedIndex = 1;
             //trv_sodoquanly.SelectedNode = trv_sodoquanly.Nodes[0];
             treeview_select = trv_sodoquanly.SelectedNode.Tag.ToString();
-            load_data(1);
+            LoadData(1);
 
         }
-
-        private void Load_LoaiNhanVien()
+        private void LoadLoaiNhanVien()
         {
             string sql = "select MaPhanLoai,TenPhanLoai from mst_phanloaiNhanvien";
             DataTable dt = new DataTable();
@@ -103,8 +102,7 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_LoaiNhanVien.DisplayMember = "TenPhanLoai";
             cbo_LoaiNhanVien.ValueMember = "MaPhanLoai";
         }
-
-        private void load_treeview()
+        private void LoadTreeView()
         {
             DataTable dtCongTy = SQLHelper.ExecuteDt("select * from [MITACOSQL].[dbo].[CONGTY]");
             for (int i = 0; i < dtCongTy.Rows.Count; i++)
@@ -141,7 +139,7 @@ namespace TENTAC_HRM.Forms.User_control
                 }
             }
         }
-        private void load_trang_thai()
+        private void LoadTrangThai()
         {
             string sql = "select typeid,typename from sys_alltype where typetype = 1";
             DataTable dt = new DataTable();
@@ -151,7 +149,7 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_trang_thai.ComboBox.DisplayMember = "typename";
             cbo_trang_thai.ComboBox.ValueMember = "typeid";
         }
-        private void load_bophan()
+        private void LoadBoPhan()
         {
             string sql = "select MaKhuVuc,TenKhuVuc from [MITACOSQL].[dbo].[KHUVUC]";
             DataTable dt = new DataTable();
@@ -161,10 +159,10 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_bophan.DisplayMember = "TenKhuVuc";
             cbo_bophan.ValueMember = "MaKhuVuc";
         }
-        private void load_phongban(bool search = false)
+        private void LoadPhongBan(bool search = false)
         {
             string sql = "";
-            if(search == true)
+            if (search == true)
             {
                 sql = "select MaPhongBan, TenPhongBan from [MITACOSQL].[dbo].[PHONGBAN]";
                 DataTable dt = new DataTable();
@@ -185,10 +183,8 @@ namespace TENTAC_HRM.Forms.User_control
                 cbo_phongban.ValueMember = "MaPhongBan";
             }
             //sql = string.Format("select maphongban,tenphongban from mst_PhongBan where del_flg = 0 and MaKhuVuc = '{0}'", cbo_bophan.SelectedValue);
-
-
         }
-        private void load_chucvu()
+        private void LoadChucVu()
         {
             string sql = string.Format("select machucvu,tenchucvu from mst_ChucVu where del_flg = 0");
             DataTable dt = new DataTable();
@@ -198,23 +194,13 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_chucvu.DisplayMember = "tenchucvu";
             cbo_chucvu.ValueMember = "machucvu";
         }
-        private void load_trang_thai1()
-        {
-            string sql = "select typeid,typename from sys_AllType where TypeType = 1";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            dt.Rows.Add("0", "");
-            cbo_trangthai.DataSource = dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("typeid")).CopyToDataTable();
-            cbo_trangthai.DisplayMember = "typename";
-            cbo_trangthai.ValueMember = "typeid";
-        }
-        private void load_gioitinh()
+        private void LoadGioiTinh()
         {
             cbo_gioitinh.DataSource = provider.load_gioitinh();
             cbo_gioitinh.DisplayMember = "name";
             cbo_gioitinh.ValueMember = "id";
         }
-        public void load_data(int pageIndex)
+        public void LoadData(int pageIndex)
         {
             string sql = "select ROW_NUMBER() OVER(ORDER BY MaNhanVien ASC)AS rownumber," +
                 "MaNhanVien, TenNhanVien, Ten, NgaySinh, GioiTinh, HonNhan, SoCCCD, SoHoChieu, DienThoaiDD," +
@@ -231,7 +217,7 @@ namespace TENTAC_HRM.Forms.User_control
                 sql = sql + string.Format(" and Id_TrangThai = {0}", cbo_trang_thai.ComboBox.SelectedValue.ToString());
             }
 
-            if(cbo_phongban_search.ComboBox.SelectedValue.ToString() != "0")
+            if (cbo_phongban_search.ComboBox.SelectedValue.ToString() != "0")
             {
                 sql = sql + string.Format(" and MaPhongBan = ''{0}'' ", cbo_phongban_search.ComboBox.SelectedValue.ToString());
             }
@@ -270,9 +256,9 @@ namespace TENTAC_HRM.Forms.User_control
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if(dgv_nhan_su.Rows.Count > 0)
+            if (dgv_nhan_su.Rows.Count > 0)
             {
-                datagrid_click();
+                DatagridClick();
                 frm_personnel frm = new frm_personnel(this);
                 frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
                 frm.status_frm = true;
@@ -289,12 +275,12 @@ namespace TENTAC_HRM.Forms.User_control
 
         private void txt_search_ten_TextChanged(object sender, EventArgs e)
         {
-            load_data(1);
+            LoadData(1);
         }
 
         private void dgv_nhan_su_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            datagrid_click();
+            DatagridClick();
             if (dgv_nhan_su.CurrentCell.OwningColumn.Name == "edit_column")
             {
                 frm_personnel frm = new frm_personnel(this);
@@ -303,7 +289,7 @@ namespace TENTAC_HRM.Forms.User_control
                 frm.ShowDialog();
             }
         }
-        private void datagrid_click()
+        private void DatagridClick()
         {
             if (dgv_nhan_su.Rows.Count > 0)
             {
@@ -353,38 +339,32 @@ namespace TENTAC_HRM.Forms.User_control
                         cbo_LoaiNhanVien.SelectedValue = dataTable.Rows[0]["LoaiNhanVien"].ToString();
                         _id_nhan_vien = int.Parse(dataTable.Rows[0]["id"].ToString());
                         _ma_nhan_vien = dataTable.Rows[0]["manhanvien"].ToString();
-                        load_diachi(_ma_nhan_vien);
+                        LoadDiaChiByNhanVien(_ma_nhan_vien);
                     }
                 }
             }
-
         }
-
         private void trv_sodoquanly_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             treeview_select = e.Node.Tag.ToString();
-            load_data(1);
+            LoadData(1);
         }
-
         private void btn_transfer_Click(object sender, EventArgs e)
         {
             frm_staff_transfer frm = new frm_staff_transfer();
             frm._ma_nhan_vien = dgv_nhan_su.CurrentRow.Cells["manhanvien"].Value.ToString();
             frm.ShowDialog();
         }
-
         private void cbo_pagenumber_SelectionChangeCommitted(object sender, EventArgs e)
         {
             PageSize = int.Parse(cbo_pagenumber.ComboBox.SelectedValue.ToString());
-            load_data(1);
+            LoadData(1);
         }
-
         private void dgv_nhan_su_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             DataGridViewCell cell = this.dgv_nhan_su.Rows[e.RowIndex].Cells["edit_column"];
             cell.ToolTipText = "Sửa";
         }
-
         private void cbo_bophan_SelectedValueChanged(object sender, EventArgs e)
         {
             DataRowView vrow = (DataRowView)cbo_bophan.SelectedItem;
@@ -403,7 +383,6 @@ namespace TENTAC_HRM.Forms.User_control
                 }
             }
         }
-
         private void cbo_phongban_SelectedValueChanged(object sender, EventArgs e)
         {
             DataRowView vrow = (DataRowView)cbo_phongban.SelectedItem;
@@ -428,26 +407,28 @@ namespace TENTAC_HRM.Forms.User_control
         {
             try
             {
-                if (pb_avata.Image != null)
+                if (ValidateCCCD() == true)
                 {
-                    MemoryStream ms;
-                    ms = new MemoryStream();
-                    pb_avata.Image.Save(ms, ImageFormat.Png);
-                    _Picbyte = new byte[ms.Length];
-                    ms.Position = 0;
-                    ms.Read(_Picbyte, 0, _Picbyte.Length);
-                }
-                string sql_new = $"update tbl_NhanVien set socccd = '{txt_cccd.Text}', dienthoaidd = '{txt_dienthoai.Text}'," +
-                    $"id_trangthai = '{int.Parse(cbo_trangthai.SelectedValue.ToString())}' " +
-                    $"where MaNhanVien = '{_ma_nhan_vien}'";
-                SQLHelper.ExecuteSql(sql_new);
+                    if (pb_avata.Image != null)
+                    {
+                        MemoryStream ms;
+                        ms = new MemoryStream();
+                        pb_avata.Image.Save(ms, ImageFormat.Png);
+                        _Picbyte = new byte[ms.Length];
+                        ms.Position = 0;
+                        ms.Read(_Picbyte, 0, _Picbyte.Length);
+                    }
+                    string sql_new = $@"update tbl_NhanVien set SoCCCD = {SQLHelper.rpStr(txt_cccd.Text)}, DienThoaiDD = {SQLHelper.rpStr(txt_dienthoai.Text)}, " +
+                        $"Id_TrangThai = {SQLHelper.rpI(int.Parse(cbo_trangthai.SelectedValue.ToString()))} " +
+                        $"where MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)}";
+                    SQLHelper.ExecuteSql(sql_new);
 
-                string sql = "update MITACOSQL.dbo.NHANVIEN set machamcong = @ma_cham_cong, ngaysinh = @ngay_sinh," +
-                    "gioitinh = @gioi_tinh, email = @email,ghichu = @ghi_chu,hinhanh = @hinh_anh," +
-                    "MaKhuVuc = @makhuvuc, MaPhongBan = @maphongban " +
-                    "where MaNhanVien = @manhanvien";
-                SqlParameter[] param = new SqlParameter[]
-                {
+                    string sql = "update MITACOSQL.dbo.NHANVIEN set machamcong = @ma_cham_cong, ngaysinh = @ngay_sinh, " +
+                        "gioitinh = @gioi_tinh, email = @email,ghichu = @ghi_chu, hinhanh = @hinh_anh, " +
+                        "MaKhuVuc = @makhuvuc, MaPhongBan = @maphongban, MaChucVu = @machucvu " +
+                        "where MaNhanVien = @manhanvien";
+                    SqlParameter[] param = new SqlParameter[]
+                    {
                     new SqlParameter("@manhanvien", SqlDbType.VarChar) {Value = _ma_nhan_vien},
                     new SqlParameter("@ma_cham_cong", SqlDbType.Int) {Value = int.Parse(txt_machancong.Text)},
                     new SqlParameter("@ngay_sinh", SqlDbType.Date) {Value = dtp_ngaysinh.Value},
@@ -457,12 +438,18 @@ namespace TENTAC_HRM.Forms.User_control
                     new SqlParameter("@hinh_anh", SqlDbType.Image) {Value = _Picbyte == null ? (object)DBNull.Value : _Picbyte},
                     new SqlParameter("@makhuvuc", SqlDbType.VarChar) {Value = cbo_bophan.SelectedValue},
                     new SqlParameter("@maphongban", SqlDbType.VarChar) {Value = cbo_phongban.SelectedValue},
-                    //new SqlParameter("@machucvu", SqlDbType.VarChar) {Value = cbo_chucvu.SelectedValue},
-                };
+                    new SqlParameter("@machucvu", SqlDbType.VarChar) {Value = cbo_chucvu.SelectedValue}
+                    };
 
-                if (SQLHelper.ExecuteSql(sql,param) == 1)
-                {
-                    RJMessageBox.Show("cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (SQLHelper.ExecuteSql(sql, param) > 0)
+                    {
+                        RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
             }
             catch (Exception ex)
@@ -486,17 +473,15 @@ namespace TENTAC_HRM.Forms.User_control
                 pb_avata.Image = Image.FromFile(open.FileName);
             }
         }
-
         private void btn_que_quan_Click(object sender, EventArgs e)
         {
-            if(dgv_nhan_su.Rows.Count > 0)
+            if (dgv_nhan_su.Rows.Count > 0)
             {
                 //frm_main_uc frm = new frm_main_uc(null, this);
                 //frm._ma_nhan_vien = _ma_nhan_vien;
                 //frm.title_frm = "Nhân viên - Địa chỉ";
                 //frm.type = "address";
                 //frm.ShowDialog();
-
                 frm_address frm = new frm_address(this.FindForm());
                 frm._ma_nhanvien = _ma_nhan_vien;
                 frm._loai_diachi = 41;
@@ -522,7 +507,7 @@ namespace TENTAC_HRM.Forms.User_control
                 frm.ShowDialog();
             }
         }
-        public void load_diachi(string MaNhanVien)
+        public void LoadDiaChiByNhanVien(string MaNhanVien)
         {
             //string sql_dia_chi = string.Format("select diachi,loaidiachi from tbl_nhanviendiachi where manhanvien = '{0}' and isactive = 1 and del_flg = 0", _ma_nhan_vien);
             string sql_dia_chi = string.Format("select diachi,loaidiachi from tbl_nhanviendiachi where MaNhanVien = '{0}' and del_flg = 0", MaNhanVien);
@@ -535,7 +520,91 @@ namespace TENTAC_HRM.Forms.User_control
             txt_thuongtru.Text = (thuongtru != null ? thuongtru.ItemArray[0].ToString() : "");
             txt_tamtru.Text = (tamtru != null ? tamtru.ItemArray[0].ToString() : "");
         }
+        private string MaTinhThanh()
+        {
+            string sql = string.Empty;
+            sql = $@"Select MaNhanVien, Id_Tinh, del_flg, b.MaDiaChi FROM tbl_NhanVienDiaChi a
+                Inner join [TENTAC_HRM].[dbo].[mst_DonViHanhChinh] b on a.Id_Tinh = b.Id and b.del_flg = 0
+                Where a.MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and a.del_flg = 0 and a.LoaiDiaChi = 43";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            string MaTinhValue = dt.Rows[0]["MaDiaChi"].ToString();
+            return MaTinhValue;
+        }
+        private bool IsValidCCCD(string cccd)
+        {
+            string pattern = @"^\d{12}$";
+            return Regex.IsMatch(cccd, pattern);
+        }
+        private bool ValidateCCCD()
+        {
+            string cccd = txt_cccd.Text.Trim();
+            if (!string.IsNullOrEmpty(cccd))
+            {
+                if (!IsValidCCCD(cccd))
+                {
+                    RJMessageBox.Show("CCCD không hợp lệ. Vui lòng nhập số gồm 12 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                string _MaTinhThanh = MaTinhThanh();
+                string maTinh = cccd.Substring(0, 3);
+                if (!_MaTinhThanh.Contains(maTinh))
+                {
+                    RJMessageBox.Show("Mã tỉnh thành không hợp lệ. Vui lòng kiểm tra lại CCCD.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                if (string.IsNullOrEmpty(dtp_ngaysinh.Text))
+                {
+                    RJMessageBox.Show("Vui lòng chọn ngày tháng năm sinh.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                int gioiTinhTheKy = int.Parse(cccd.Substring(3, 1));
+                int theKy;
+                string gioiTinhCCCD = string.Empty;
 
+                if (gioiTinhTheKy == 0 || gioiTinhTheKy == 1)
+                {
+                    theKy = 20;
+                    gioiTinhCCCD = gioiTinhTheKy == 0 ? "Nam" : "Nu";
+                }
+                else if (gioiTinhTheKy == 2 || gioiTinhTheKy == 3)
+                {
+                    theKy = 21;
+                    gioiTinhCCCD = gioiTinhTheKy == 2 ? "Nam" : "Nu";
+                }
+                else if (gioiTinhTheKy == 4 || gioiTinhTheKy == 5)
+                {
+                    theKy = 22;
+                    gioiTinhCCCD = gioiTinhTheKy == 4 ? "Nam" : "Nu";
+                }
+                else
+                {
+                    RJMessageBox.Show("Ký tự xác định thế kỷ và giới tính không hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                int namSinh = dtp_ngaysinh.Value.Year;
+                if (namSinh < (theKy - 1) * 100 || namSinh >= theKy * 100)
+                {
+                    RJMessageBox.Show($"Năm sinh {namSinh} không thuộc thế kỷ {theKy}.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                int gioiTinhValue = int.Parse(cbo_gioitinh.SelectedValue.ToString());
+                string gioiTinhSelected = gioiTinhValue == 0 ? "Nu" : "Nam";
+
+                if (gioiTinhCCCD != gioiTinhSelected)
+                {
+                    RJMessageBox.Show("Giới tính không khớp với thông tin CCCD.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                string NamSinhCCCD = cccd.Substring(4, 2);
+                if (!Convert.ToString(namSinh).Substring(2, 2).Contains(NamSinhCCCD))
+                {
+                    RJMessageBox.Show("Năm sinh không khớp với thông tin CCCD.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
         private void dgv_nhan_su_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             var grid = sender as DataGridView;
@@ -554,7 +623,6 @@ namespace TENTAC_HRM.Forms.User_control
                 new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
             e.Graphics.DrawString(rowIdx, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
-
         private void btn_tamtru_Click(object sender, EventArgs e)
         {
             if (dgv_nhan_su.Rows.Count > 0)
@@ -565,6 +633,19 @@ namespace TENTAC_HRM.Forms.User_control
                 frm._NameForm = "Địa chỉ tạm trú";
                 frm.ShowDialog();
             }
+        }
+        private void event_keypress(KeyPressEventArgs e)
+        {
+            if (!provider.IsValidChar(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+            base.OnKeyPress(e);
+        }
+        private void txt_dienthoai_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            event_keypress(e);
         }
     }
 }

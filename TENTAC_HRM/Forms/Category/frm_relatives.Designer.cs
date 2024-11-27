@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtp_NgaySinh = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_save_add = new System.Windows.Forms.Button();
             this.btn_save_close = new System.Windows.Forms.Button();
@@ -60,10 +61,9 @@
             this.label24 = new DevComponents.DotNetBar.LabelX();
             this.label8 = new DevComponents.DotNetBar.LabelX();
             this.label1 = new DevComponents.DotNetBar.LabelX();
-            this.dtp_NgaySinh = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -103,6 +103,46 @@
             this.panel1.Size = new System.Drawing.Size(397, 885);
             this.panel1.TabIndex = 0;
             // 
+            // dtp_NgaySinh
+            // 
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NgaySinh.ButtonDropDown.Visible = true;
+            this.dtp_NgaySinh.Location = new System.Drawing.Point(24, 245);
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NgaySinh.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NgaySinh.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_NgaySinh.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NgaySinh.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NgaySinh.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NgaySinh.Name = "dtp_NgaySinh";
+            this.dtp_NgaySinh.Size = new System.Drawing.Size(153, 23);
+            this.dtp_NgaySinh.TabIndex = 5;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
@@ -122,7 +162,7 @@
             this.btn_save_add.Location = new System.Drawing.Point(31, 14);
             this.btn_save_add.Name = "btn_save_add";
             this.btn_save_add.Size = new System.Drawing.Size(116, 31);
-            this.btn_save_add.TabIndex = 15;
+            this.btn_save_add.TabIndex = 16;
             this.btn_save_add.Text = "Lưu và Thêm";
             this.btn_save_add.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save_add.UseMnemonic = false;
@@ -136,7 +176,7 @@
             this.btn_save_close.Location = new System.Drawing.Point(153, 14);
             this.btn_save_close.Name = "btn_save_close";
             this.btn_save_close.Size = new System.Drawing.Size(123, 31);
-            this.btn_save_close.TabIndex = 16;
+            this.btn_save_close.TabIndex = 17;
             this.btn_save_close.Text = "Lưu và Thoát";
             this.btn_save_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save_close.UseMnemonic = false;
@@ -145,12 +185,13 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_close.Location = new System.Drawing.Point(282, 14);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(88, 31);
-            this.btn_close.TabIndex = 17;
+            this.btn_close.TabIndex = 18;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
@@ -165,7 +206,7 @@
             this.cbo_NhanVien.Location = new System.Drawing.Point(24, 90);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(346, 23);
-            this.cbo_NhanVien.TabIndex = 126;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // txt_ho_ten
             // 
@@ -197,7 +238,7 @@
             this.cbo_QuocTich.Location = new System.Drawing.Point(25, 567);
             this.cbo_QuocTich.Name = "cbo_QuocTich";
             this.cbo_QuocTich.Size = new System.Drawing.Size(343, 23);
-            this.cbo_QuocTich.TabIndex = 12;
+            this.cbo_QuocTich.TabIndex = 13;
             // 
             // chk_is_phu_thuoc
             // 
@@ -217,7 +258,7 @@
             this.cbo_gioi_tinh.Location = new System.Drawing.Point(206, 245);
             this.cbo_gioi_tinh.Name = "cbo_gioi_tinh";
             this.cbo_gioi_tinh.Size = new System.Drawing.Size(166, 23);
-            this.cbo_gioi_tinh.TabIndex = 6;
+            this.cbo_gioi_tinh.TabIndex = 7;
             // 
             // cbo_loai_quan_he
             // 
@@ -253,7 +294,7 @@
             this.txt_ghi_chu.Multiline = true;
             this.txt_ghi_chu.Name = "txt_ghi_chu";
             this.txt_ghi_chu.Size = new System.Drawing.Size(339, 80);
-            this.txt_ghi_chu.TabIndex = 14;
+            this.txt_ghi_chu.TabIndex = 15;
             // 
             // txt_noi_cu_tru
             // 
@@ -265,7 +306,7 @@
             this.txt_noi_cu_tru.Multiline = true;
             this.txt_noi_cu_tru.Name = "txt_noi_cu_tru";
             this.txt_noi_cu_tru.Size = new System.Drawing.Size(339, 80);
-            this.txt_noi_cu_tru.TabIndex = 13;
+            this.txt_noi_cu_tru.TabIndex = 14;
             // 
             // txt_di_dong
             // 
@@ -276,7 +317,7 @@
             this.txt_di_dong.Location = new System.Drawing.Point(24, 405);
             this.txt_di_dong.Name = "txt_di_dong";
             this.txt_di_dong.Size = new System.Drawing.Size(344, 23);
-            this.txt_di_dong.TabIndex = 9;
+            this.txt_di_dong.TabIndex = 10;
             this.txt_di_dong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_di_dong_KeyPress);
             // 
             // txt_dien_thoai
@@ -288,7 +329,7 @@
             this.txt_dien_thoai.Location = new System.Drawing.Point(23, 351);
             this.txt_dien_thoai.Name = "txt_dien_thoai";
             this.txt_dien_thoai.Size = new System.Drawing.Size(344, 23);
-            this.txt_dien_thoai.TabIndex = 8;
+            this.txt_dien_thoai.TabIndex = 9;
             this.txt_dien_thoai.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_dien_thoai_KeyPress);
             // 
             // txt_nghe_nghiep
@@ -300,7 +341,7 @@
             this.txt_nghe_nghiep.Location = new System.Drawing.Point(23, 297);
             this.txt_nghe_nghiep.Name = "txt_nghe_nghiep";
             this.txt_nghe_nghiep.Size = new System.Drawing.Size(344, 23);
-            this.txt_nghe_nghiep.TabIndex = 7;
+            this.txt_nghe_nghiep.TabIndex = 8;
             // 
             // txt_cccd
             // 
@@ -312,7 +353,7 @@
             this.txt_cccd.MaxLength = 12;
             this.txt_cccd.Name = "txt_cccd";
             this.txt_cccd.Size = new System.Drawing.Size(347, 23);
-            this.txt_cccd.TabIndex = 11;
+            this.txt_cccd.TabIndex = 12;
             this.txt_cccd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_cccd_KeyPress);
             // 
             // txt_ma_so_thue
@@ -324,7 +365,7 @@
             this.txt_ma_so_thue.Location = new System.Drawing.Point(24, 459);
             this.txt_ma_so_thue.Name = "txt_ma_so_thue";
             this.txt_ma_so_thue.Size = new System.Drawing.Size(344, 23);
-            this.txt_ma_so_thue.TabIndex = 10;
+            this.txt_ma_so_thue.TabIndex = 11;
             this.txt_ma_so_thue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_ma_so_thue_KeyPress);
             // 
             // label7
@@ -435,65 +476,28 @@
             this.label1.TabIndex = 94;
             this.label1.Text = "Quan hệ";
             // 
-            // dtp_NgaySinh
-            // 
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_NgaySinh.ButtonDropDown.Visible = true;
-            this.dtp_NgaySinh.Location = new System.Drawing.Point(24, 245);
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_NgaySinh.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_NgaySinh.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
-            this.dtp_NgaySinh.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_NgaySinh.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_NgaySinh.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_NgaySinh.Name = "dtp_NgaySinh";
-            this.dtp_NgaySinh.Size = new System.Drawing.Size(153, 23);
-            this.dtp_NgaySinh.TabIndex = 129;
-            // 
             // frm_relatives
             // 
+            this.AcceptButton = this.btn_save_add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(397, 885);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_relatives";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhân viên - Người thân";
             this.Load += new System.EventHandler(this.frm_relatives_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_relatives_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

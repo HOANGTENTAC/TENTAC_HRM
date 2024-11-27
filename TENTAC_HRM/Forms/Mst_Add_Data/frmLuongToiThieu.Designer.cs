@@ -78,7 +78,7 @@
             this.txtGhiChu.Multiline = true;
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(297, 82);
-            this.txtGhiChu.TabIndex = 63;
+            this.txtGhiChu.TabIndex = 5;
             // 
             // labelX6
             // 
@@ -105,7 +105,7 @@
             this.cbo_NamHienHanh.Location = new System.Drawing.Point(220, 108);
             this.cbo_NamHienHanh.Name = "cbo_NamHienHanh";
             this.cbo_NamHienHanh.Size = new System.Drawing.Size(95, 22);
-            this.cbo_NamHienHanh.TabIndex = 60;
+            this.cbo_NamHienHanh.TabIndex = 2;
             // 
             // labelX4
             // 
@@ -149,7 +149,7 @@
             this.btn_save.Location = new System.Drawing.Point(20, 15);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(127, 30);
-            this.btn_save.TabIndex = 4;
+            this.btn_save.TabIndex = 6;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -163,7 +163,7 @@
             this.btn_cancel.Location = new System.Drawing.Point(188, 15);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(127, 30);
-            this.btn_cancel.TabIndex = 5;
+            this.btn_cancel.TabIndex = 7;
             this.btn_cancel.Text = "Đóng";
             this.btn_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancel.UseVisualStyleBackColor = true;
@@ -206,7 +206,7 @@
             this.txtLuongToiThieuTheoGio.Location = new System.Drawing.Point(20, 225);
             this.txtLuongToiThieuTheoGio.Name = "txtLuongToiThieuTheoGio";
             this.txtLuongToiThieuTheoGio.Size = new System.Drawing.Size(295, 22);
-            this.txtLuongToiThieuTheoGio.TabIndex = 3;
+            this.txtLuongToiThieuTheoGio.TabIndex = 4;
             this.txtLuongToiThieuTheoGio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.txtLuongToiThieuTheoGio.Leave += new System.EventHandler(this.txt_mucluong_Leave);
             // 
@@ -221,7 +221,7 @@
             this.txtLuongToiThieuTheoThang.Location = new System.Drawing.Point(20, 168);
             this.txtLuongToiThieuTheoThang.Name = "txtLuongToiThieuTheoThang";
             this.txtLuongToiThieuTheoThang.Size = new System.Drawing.Size(295, 22);
-            this.txtLuongToiThieuTheoThang.TabIndex = 2;
+            this.txtLuongToiThieuTheoThang.TabIndex = 3;
             this.txtLuongToiThieuTheoThang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             this.txtLuongToiThieuTheoThang.Leave += new System.EventHandler(this.txt_mucluong_Leave);
             // 

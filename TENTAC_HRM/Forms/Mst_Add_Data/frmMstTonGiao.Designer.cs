@@ -83,7 +83,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(295, 89);
-            this.txtMoTa.TabIndex = 37;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenTonGiao
             // 
@@ -94,7 +94,7 @@
             this.txtTenTonGiao.Location = new System.Drawing.Point(30, 174);
             this.txtTenTonGiao.Name = "txtTenTonGiao";
             this.txtTenTonGiao.Size = new System.Drawing.Size(295, 22);
-            this.txtTenTonGiao.TabIndex = 36;
+            this.txtTenTonGiao.TabIndex = 2;
             // 
             // txtMaTonGiao
             // 
@@ -106,7 +106,7 @@
             this.txtMaTonGiao.Name = "txtMaTonGiao";
             this.txtMaTonGiao.ReadOnly = true;
             this.txtMaTonGiao.Size = new System.Drawing.Size(295, 22);
-            this.txtMaTonGiao.TabIndex = 35;
+            this.txtMaTonGiao.TabIndex = 1;
             // 
             // labelX4
             // 

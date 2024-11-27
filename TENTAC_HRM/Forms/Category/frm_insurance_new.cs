@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_insurance_new : Form
+    public partial class frm_insurance_new : KryptonForm
     {
         DataProvider provider = new DataProvider();
-        public string _ma_nhan_vien { get; set; }
-        public int id_baohiem_value { get; set; }
+        public string _MaNhanVien { get; set; }
+        public int _IdBaoHiem { get; set; }
         public bool edit { get; set; } = false;
         frm_personnel personnel;
         int? _LoaiBaoHiem, _IsActive, _Id_Tinh;
@@ -27,7 +23,7 @@ namespace TENTAC_HRM.Forms.Category
             InitializeComponent();
             personnel = _personnel;
         }
-        private void load_loaibaohiem()
+        private void LoadComboboxLoaiBaoHiem()
         {
             DataTable dt = new DataTable();
             dt = provider.load_all_type(50);
@@ -40,22 +36,20 @@ namespace TENTAC_HRM.Forms.Category
             string sql = string.Format("select a.Id,b.TypeName as LoaiBaoHiem, a.SoThe, a.TuNgay, a.DenNgay, c.TenDiaChi as TinhThanh, a.IsActive, a.NoiThucHien " +
                 "from tbl_NhanVienBaoHiem a " +
                 "left join sys_AllType b on b.TypeId = a.LoaiBaoHiem " +
-                "left join mst_DonViHanhChinh c on c.Id = a.Id_Tinh and LoaiDiaChi = 22 " +
-                "where a.MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+                "left join mst_DonViHanhChinh c on c.Id = a.Id_Tinh and LoaiDiaChi = 22 and c.del_flg = 0 " +
+                "where a.MaNhanVien = '{0}' and a.del_flg = 0", _MaNhanVien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_BaoHiem.DataSource = dt;
         }
-
-        private void LoadNhanVien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
             cbo_NhanVien.ValueMember = "value";
-            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
-
-        private void load_tinh()
+        private void LoadComboboxTinhThanh()
         {
             DataTable dt = new DataTable();
             dt = provider.load_tinh();
@@ -64,15 +58,13 @@ namespace TENTAC_HRM.Forms.Category
             cbo_TinhThanh.DisplayMember = "TenDiaChi";
             cbo_TinhThanh.ValueMember = "Id";
         }
-
         private void frm_insurance_new_Load(object sender, EventArgs e)
         {
             LoadData();
-            LoadNhanVien();
-            load_loaibaohiem();
-            load_tinh();
+            LoadComboboxNhanVien();
+            LoadComboboxLoaiBaoHiem();
+            LoadComboboxTinhThanh();
         }
-
         private void LoadNull()
         {
             edit = false;
@@ -90,45 +82,48 @@ namespace TENTAC_HRM.Forms.Category
         {
             LoadNull();
         }
-
         private void btn_luu_Click(object sender, EventArgs e)
         {
+            SetValues();
             if (edit == true)
             {
-                update_data();
+                UpdateData();
             }
             else
             {
-                insert_data();
+                InsertData();
             }
+            LoadData();
+            personnel.LoadNhanVienBaoHiem();
+            LoadNull();
         }
-
-        private void update_data()
+        private void UpdateData()
         {
             try
             {
-                set_value_text();
                 string sql = string.Empty;
                 sql = $@"Update tbl_NhanVienBaoHiem Set IsActive = {SQLHelper.rpI(_IsActive)}, LoaiBaoHiem = {SQLHelper.rpI(_LoaiBaoHiem)},
                 SoThe = {SQLHelper.rpStr(_SoThe)}, TuNgay = {SQLHelper.rpDT(_TuNgay)}, DenNgay = {SQLHelper.rpDT(_DenNgay)}, Id_Tinh = {SQLHelper.rpI(_Id_Tinh)},
                 NoiThucHien = {SQLHelper.rpStr(_NoiThucHien)}, GhiChu = {SQLHelper.rpStr(_GhiChu)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
-                Where Id = {id_baohiem_value}";
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                Where Id = {_IdBaoHiem}";
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
                     if (chk_Active.Checked == true)
                     {
-                        string sql_check = string.Format("select * from tbl_NhanVienBaoHiem where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, id_baohiem_value);
+                        string sql_check = string.Format("select * from tbl_NhanVienBaoHiem where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, _IdBaoHiem);
                         DataTable dt = SQLHelper.ExecuteDt(sql_check);
                         if (dt.Rows.Count > 0)
                         {
-                            string update_sql = string.Format("update tbl_NhanVienBaoHiem set IsActive = 0 where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, id_baohiem_value);
+                            string update_sql = string.Format("update tbl_NhanVienBaoHiem set IsActive = 0 where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, _IdBaoHiem);
                             SQLHelper.ExecuteSql(update_sql);
                         }
                     }
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                    personnel.load_baohiem();
-                    LoadNull();
+                    RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -136,38 +131,42 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void insert_data()
+        private void InsertData()
         {
             try
             {
-                set_value_text();
                 string sql = string.Empty;
                 sql = $@"Insert into tbl_NhanVienBaoHiem(MaNhanVien, IsActive, LoaiBaoHiem, SoThe, TuNgay, DenNgay, Id_Tinh, NoiThucHien, GhiChu, NgayTao, NguoiTao, del_flg)
-                values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpI(_IsActive)}, {SQLHelper.rpI(_LoaiBaoHiem)}, {SQLHelper.rpStr(_SoThe)},
+                values({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpI(_IsActive)}, {SQLHelper.rpI(_LoaiBaoHiem)}, {SQLHelper.rpStr(_SoThe)},
                 {SQLHelper.rpDT(_TuNgay)}, {SQLHelper.rpDT(_DenNgay)}, {SQLHelper.rpI(_Id_Tinh)}, {SQLHelper.rpStr(_NoiThucHien)}, 
                 {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
                 int id = SQLHelper.ExecuteScalarSql(sql);
-                if (chk_Active.Checked == true)
+                if(id != 0)
                 {
-                    string sql_check = string.Format("select * from tbl_NhanVienBaoHiem where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, id);
-                    DataTable dt = SQLHelper.ExecuteDt(sql_check);
-                    if (dt.Rows.Count > 0)
+                    if (chk_Active.Checked == true)
                     {
-                        string update_sql = string.Format("update tbl_NhanVienBaoHiem set IsActive = 0 where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, id);
-                        SQLHelper.ExecuteSql(update_sql);
+                        string sql_check = string.Format("select * from tbl_NhanVienBaoHiem where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, id);
+                        DataTable dt = SQLHelper.ExecuteDt(sql_check);
+                        if (dt.Rows.Count > 0)
+                        {
+                            string update_sql = string.Format("update tbl_NhanVienBaoHiem set IsActive = 0 where LoaiBaoHiem = {0} and Id <> {1}", _LoaiBaoHiem, id);
+                            SQLHelper.ExecuteSql(update_sql);
+                        }
                     }
+                    RJMessageBox.Show("Thêm thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadData();
-                personnel.load_baohiem();
-                LoadNull();
+                else
+                {
+                    RJMessageBox.Show("Thêm thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
             catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void set_value_text()
+        private void SetValues()
         {
             _IsActive = (chk_Active.Checked == true ? 1 : 0);
             _LoaiBaoHiem = Convert.ToInt32(cbo_LoaiBaoHiem.SelectedValue);
@@ -178,22 +177,20 @@ namespace TENTAC_HRM.Forms.Category
             _NoiThucHien = txt_NoiDangKy.Text.Trim();
             _GhiChu = txt_GhiChu.Text.Trim();
             _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat= SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
         }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void dgv_BaoHiem_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgv_BaoHiem.CurrentCell.OwningColumn.Name == "edit_column")
             {
-                id_baohiem_value = Convert.ToInt32(dgv_BaoHiem.CurrentRow.Cells["Id"].Value);
+                _IdBaoHiem = Convert.ToInt32(dgv_BaoHiem.CurrentRow.Cells["Id"].Value);
                 edit = true;
                 string sql = string.Empty;
-                sql = $@"Select * from tbl_NhanVienBaoHiem where Id = {SQLHelper.rpI(id_baohiem_value)}";
+                sql = $@"Select * from tbl_NhanVienBaoHiem where Id = {SQLHelper.rpI(_IdBaoHiem)}";
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 cbo_LoaiBaoHiem.SelectedValue = dt.Rows[0]["LoaiBaoHiem"].ToString();
@@ -217,7 +214,7 @@ namespace TENTAC_HRM.Forms.Category
                         {
                             RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadData();
-                            personnel.load_baohiem();
+                            personnel.LoadNhanVienBaoHiem();
                         }
                     }
                 }
@@ -227,7 +224,6 @@ namespace TENTAC_HRM.Forms.Category
                 }
             }
         }
-
         private void frm_insurance_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

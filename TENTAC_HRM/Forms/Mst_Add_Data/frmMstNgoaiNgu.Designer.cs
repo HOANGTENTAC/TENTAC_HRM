@@ -70,7 +70,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(295, 90);
-            this.txtMoTa.TabIndex = 37;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenNgoaiNgu
             // 
@@ -81,7 +81,7 @@
             this.txtTenNgoaiNgu.Location = new System.Drawing.Point(28, 165);
             this.txtTenNgoaiNgu.Name = "txtTenNgoaiNgu";
             this.txtTenNgoaiNgu.Size = new System.Drawing.Size(295, 22);
-            this.txtTenNgoaiNgu.TabIndex = 36;
+            this.txtTenNgoaiNgu.TabIndex = 2;
             // 
             // txtMaNgoaiNgu
             // 
@@ -92,7 +92,7 @@
             this.txtMaNgoaiNgu.Location = new System.Drawing.Point(28, 108);
             this.txtMaNgoaiNgu.Name = "txtMaNgoaiNgu";
             this.txtMaNgoaiNgu.Size = new System.Drawing.Size(295, 22);
-            this.txtMaNgoaiNgu.TabIndex = 35;
+            this.txtMaNgoaiNgu.TabIndex = 1;
             // 
             // labelX4
             // 

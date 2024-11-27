@@ -39,12 +39,12 @@
             this.label3 = new DevComponents.DotNetBar.LabelX();
             this.label1 = new DevComponents.DotNetBar.LabelX();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dtp_TuNgay = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.dtp_DenNgay = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.dtp_TuNgay = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -62,11 +62,11 @@
             // 
             this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
             this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_save.Location = new System.Drawing.Point(15, 14);
+            this.btn_save.Location = new System.Drawing.Point(20, 14);
             this.btn_save.Margin = new System.Windows.Forms.Padding(4);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(119, 28);
-            this.btn_save.TabIndex = 7;
+            this.btn_save.Size = new System.Drawing.Size(110, 28);
+            this.btn_save.TabIndex = 5;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -74,13 +74,14 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_close.Location = new System.Drawing.Point(197, 14);
+            this.btn_close.Location = new System.Drawing.Point(192, 14);
             this.btn_close.Margin = new System.Windows.Forms.Padding(4);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(100, 28);
-            this.btn_close.TabIndex = 8;
+            this.btn_close.Size = new System.Drawing.Size(110, 28);
+            this.btn_close.TabIndex = 6;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
@@ -120,7 +121,7 @@
             this.txt_GhiChu.Multiline = true;
             this.txt_GhiChu.Name = "txt_GhiChu";
             this.txt_GhiChu.Size = new System.Drawing.Size(282, 148);
-            this.txt_GhiChu.TabIndex = 6;
+            this.txt_GhiChu.TabIndex = 4;
             // 
             // label5
             // 
@@ -176,46 +177,6 @@
             this.panel1.Size = new System.Drawing.Size(327, 444);
             this.panel1.TabIndex = 1;
             // 
-            // dtp_TuNgay
-            // 
-            // 
-            // 
-            // 
-            this.dtp_TuNgay.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_TuNgay.ButtonDropDown.Visible = true;
-            this.dtp_TuNgay.Location = new System.Drawing.Point(20, 152);
-            // 
-            // 
-            // 
-            this.dtp_TuNgay.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_TuNgay.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_TuNgay.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_TuNgay.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
-            this.dtp_TuNgay.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_TuNgay.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_TuNgay.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_TuNgay.Name = "dtp_TuNgay";
-            this.dtp_TuNgay.Size = new System.Drawing.Size(132, 23);
-            this.dtp_TuNgay.TabIndex = 130;
-            // 
             // dtp_DenNgay
             // 
             // 
@@ -254,26 +215,69 @@
             this.dtp_DenNgay.MonthCalendar.TodayButtonVisible = true;
             this.dtp_DenNgay.Name = "dtp_DenNgay";
             this.dtp_DenNgay.Size = new System.Drawing.Size(132, 23);
-            this.dtp_DenNgay.TabIndex = 131;
+            this.dtp_DenNgay.TabIndex = 3;
+            // 
+            // dtp_TuNgay
+            // 
+            // 
+            // 
+            // 
+            this.dtp_TuNgay.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_TuNgay.ButtonDropDown.Visible = true;
+            this.dtp_TuNgay.Location = new System.Drawing.Point(20, 152);
+            // 
+            // 
+            // 
+            this.dtp_TuNgay.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_TuNgay.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_TuNgay.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_TuNgay.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_TuNgay.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_TuNgay.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_TuNgay.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_TuNgay.Name = "dtp_TuNgay";
+            this.dtp_TuNgay.Size = new System.Drawing.Size(132, 23);
+            this.dtp_TuNgay.TabIndex = 2;
             // 
             // frm_thaisan
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(327, 444);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_thaisan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhân viên - Thai sản";
             this.Load += new System.EventHandler(this.frm_thaisan_Load);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -5,17 +5,18 @@ using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 using TENTAC_HRM.Forms.User_control;
 using TENTAC_HRM.Forms.Main;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_nhanvien_tainan : Form
+    public partial class frm_nhanvien_tainan : KryptonForm
     {
         int _Id_LoaiTaiNan, _Id_MucDo;
         DateTime? _NgayDienRa;
         string _NoiDienRa, _NoiDung, _NguoiTao, _NguoiCapNhat;
         public bool edit { get; set; }
-        public string _ma_nhan_vien { get; set; }
-        public int _id_qt_tainan { get; set; }
+        public string _MaNhanVien { get; set; }
+        public int _IdTaiNhan { get; set; }
         DataProvider provider = new DataProvider();
         Tainan_model model = new Tainan_model();
         frm_personnel _Personnel;
@@ -37,11 +38,11 @@ namespace TENTAC_HRM.Forms.Category
             SetValues();
             if (edit == true)
             {
-                update_date();
+                UpdateData();
             }
             else
             {
-                save_data();
+                InsertData();
             }
 
             if (_quatrinh != null)
@@ -50,18 +51,18 @@ namespace TENTAC_HRM.Forms.Category
             }
             else
             {
-                _Personnel.load_tainan();
+                _Personnel.LoadNhanVienTaiNan();
             }
+            LoadNull();
         }
-
         private void frm_nhanvien_tainan_Load(object sender, EventArgs e)
         {
-            load_nhanvien();
-            Load_loatainan();
-            load_mucdo_tainan();
+            LoadComboboxNhanVien();
+            LoadComboboxLoaiTaiNan();
+            LoadComboboxMucDoTaiNan();
             if (edit == true)
             {
-                load_data();
+                LoadData();
             }
         }
         private void LoadNull()
@@ -72,29 +73,28 @@ namespace TENTAC_HRM.Forms.Category
             dtp_NgayDienRa.Text = string.Empty;
             txt_NoiDung.Text = string.Empty;
         }
-        private void load_mucdo_tainan()
+        private void LoadComboboxMucDoTaiNan()
         {
             cbo_MucDo.DataSource = provider.load_all_type(158);
             cbo_MucDo.DisplayMember = "name";
             cbo_MucDo.ValueMember = "id";
         }
-        private void Load_loatainan()
+        private void LoadComboboxLoaiTaiNan()
         {
             cbo_LoaiTaiNan.DataSource = provider.load_all_type(150);
             cbo_LoaiTaiNan.DisplayMember = "name";
             cbo_LoaiTaiNan.ValueMember = "id";
         }
-        private void load_nhanvien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
             cbo_NhanVien.ValueMember = "value";
-            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
-
-        private void load_data()
+        private void LoadData()
         {
-            string sql = string.Format("select * from tbl_QTTaiNan where Id='{0}'", _id_qt_tainan);
+            string sql = string.Format("select * from tbl_QTTaiNan where Id='{0}'", _IdTaiNhan);
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
@@ -105,20 +105,23 @@ namespace TENTAC_HRM.Forms.Category
                 txt_NoiDung.Text = dt.Rows[0]["NoiDung"].ToString();
             }
         }
-        private void save_data()
+        private void InsertData()
         {
             try
             {
                 string sql = string.Empty;
                 sql = $@"Insert into tbl_QTTaiNan(MaNhanVien, Id_LoaiTaiNan, Id_MucDo, NgayDienRa, NoiDienRa, NoiDung, NgayTao, NguoiTao, del_flg)
-                values ({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpI(_Id_LoaiTaiNan)}, {SQLHelper.rpI(_Id_MucDo)}, {SQLHelper.rpDT(_NgayDienRa)},
+                values ({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpI(_Id_LoaiTaiNan)}, {SQLHelper.rpI(_Id_MucDo)}, {SQLHelper.rpDT(_NgayDienRa)},
                 {SQLHelper.rpStr(_NoiDienRa)}, {SQLHelper.rpStr(_NoiDung)}, '{DateTime.Now}' ,{SQLHelper.rpStr(_NguoiTao)}, 0)";
 
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
-                    RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Personnel.load_tainan();
-                    LoadNull();
+                    RJMessageBox.Show("Thêm thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Thêm thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -126,8 +129,7 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void update_date()
+        private void UpdateData()
         {
             try
             {
@@ -135,13 +137,16 @@ namespace TENTAC_HRM.Forms.Category
                 sql = $@"Update tbl_QTTaiNan Set Id_LoaiTaiNan = {SQLHelper.rpI(_Id_LoaiTaiNan)}, Id_MucDo = {SQLHelper.rpI(_Id_MucDo)},
                 NgayDienRa = {SQLHelper.rpDT(_NgayDienRa)}, NoiDienRa = {SQLHelper.rpStr(_NoiDienRa)}, NoiDung = {SQLHelper.rpStr(_NoiDung)},
                 NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
-                Where Id = {SQLHelper.rpI(_id_qt_tainan)}";
+                Where Id = {SQLHelper.rpI(_IdTaiNhan)}";
 
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Personnel.load_tainan();
-                    LoadNull();
+                    RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -149,7 +154,6 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void SetValues()
         {
             _Id_LoaiTaiNan = Convert.ToInt32(cbo_LoaiTaiNan.SelectedValue);

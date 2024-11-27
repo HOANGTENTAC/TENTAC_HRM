@@ -110,7 +110,7 @@
             this.dtp_NgayNhanBang.MonthCalendar.TodayButtonVisible = true;
             this.dtp_NgayNhanBang.Name = "dtp_NgayNhanBang";
             this.dtp_NgayNhanBang.Size = new System.Drawing.Size(254, 23);
-            this.dtp_NgayNhanBang.TabIndex = 44;
+            this.dtp_NgayNhanBang.TabIndex = 4;
             // 
             // panel2
             // 
@@ -125,12 +125,13 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_close.Location = new System.Drawing.Point(171, 14);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(110, 27);
-            this.btn_close.TabIndex = 17;
+            this.btn_close.TabIndex = 8;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
@@ -143,7 +144,7 @@
             this.btn_save.Location = new System.Drawing.Point(27, 14);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(110, 27);
-            this.btn_save.TabIndex = 15;
+            this.btn_save.TabIndex = 7;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -158,7 +159,7 @@
             this.cbo_NhanVien.Location = new System.Drawing.Point(27, 96);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(254, 23);
-            this.cbo_NhanVien.TabIndex = 42;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // labelX2
             // 
@@ -178,7 +179,7 @@
             this.txtGhiChu.Multiline = true;
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(254, 87);
-            this.txtGhiChu.TabIndex = 5;
+            this.txtGhiChu.TabIndex = 6;
             // 
             // lblGhiChu
             // 
@@ -196,7 +197,7 @@
             this.cbo_ChungChi.Location = new System.Drawing.Point(27, 142);
             this.cbo_ChungChi.Name = "cbo_ChungChi";
             this.cbo_ChungChi.Size = new System.Drawing.Size(254, 23);
-            this.cbo_ChungChi.TabIndex = 1;
+            this.cbo_ChungChi.TabIndex = 2;
             // 
             // cbo_XepLoai
             // 
@@ -206,7 +207,7 @@
             this.cbo_XepLoai.Location = new System.Drawing.Point(27, 304);
             this.cbo_XepLoai.Name = "cbo_XepLoai";
             this.cbo_XepLoai.Size = new System.Drawing.Size(254, 23);
-            this.cbo_XepLoai.TabIndex = 4;
+            this.cbo_XepLoai.TabIndex = 5;
             // 
             // labelX1
             // 
@@ -230,7 +231,7 @@
             this.txt_Truong.Location = new System.Drawing.Point(27, 196);
             this.txt_Truong.Name = "txt_Truong";
             this.txt_Truong.Size = new System.Drawing.Size(254, 23);
-            this.txt_Truong.TabIndex = 2;
+            this.txt_Truong.TabIndex = 3;
             // 
             // label5
             // 
@@ -270,16 +271,19 @@
             // 
             // frm_certificate
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(312, 534);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_certificate";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Chứng Chỉ";
             this.Load += new System.EventHandler(this.frm_certificate_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

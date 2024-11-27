@@ -1,71 +1,105 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_staff_allowance : Form
+    public partial class frm_staff_allowance : KryptonForm
     {
-        string loaiphucap_value, mucphucap_value, tungay_value, denngay_value, ghichu_value, nguoitao_value;
-        bool active_value;
+        string _GhiChu, _NguoiTao, _NguoiCapNhat;
+        int _LoaiPhuCap, _Active;
+        decimal? _MucPhuCap;
+        DateTime? _TuNgay, _DenNgay;
         public bool edit { get; set; }
-        public string _ma_nhan_vien { get; set; }
-        public string _id_phucap { get; set; }
+        public string _MaNhanVien { get; set; }
+        public int _IdPhuCap { get; set; }
         DataProvider provider = new DataProvider();
         frm_personnel frm_personnel;
-        public frm_staff_allowance(frm_personnel frm_)
+        public frm_staff_allowance(frm_personnel personnel)
         {
             InitializeComponent();
-            frm_personnel = frm_;
+            frm_personnel = personnel;
         }
-
-        private void frm_allowance_Load(object sender, EventArgs e)
+        private void Textbox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            load_nhanvien();
-            load_loaiphucap();
-            if(edit == true)
+            event_keypress(e);
+        }
+        private void event_keypress(KeyPressEventArgs e)
+        {
+            if (!provider.IsValidNumber(e.KeyChar))
             {
-                load_data();
+                e.Handled = true;
+                return;
+            }
+            base.OnKeyPress(e);
+        }
+        private void txt_MucPhuCap_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_MucPhuCap.Text))
+            {
+                txt_MucPhuCap.Text = decimal.Parse(txt_MucPhuCap.Text).ToString("N0", CultureInfo.InvariantCulture);
             }
         }
-        private void load_data()
+        private void frm_allowance_Load(object sender, EventArgs e)
         {
-            btn_save.Text = "Cập nhật";
-            edit = true;
-            string sql = string.Format("select * from hrm_nhanvien_phucap where id_phu_cap = {0}", _id_phucap);
+            LoadComboboxNhanVien();
+            LoadComboboxLoaiPhuCap();
+            if (edit == true)
+            {
+                LoadData();
+            }
+            else
+            {
+                LoadNull();
+            }
+        }
+        private void LoadData()
+        {
+            string sql = string.Empty;
+            sql = $@"Select IsActive, Id_LoaiPhuCap, TuNgay, DenNgay,FORMAT(MucPhuCap,'N0') as MucPhuCap, GhiChu, del_flg from tbl_NhanVienPhuCap 
+            where Id = {SQLHelper.rpI(_IdPhuCap)} and del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                cbo_loaiphucap.SelectedValue = dt.Rows[0]["id_loai_phu_cap"].ToString();
-                txt_mucphucap.Text = dt.Rows[0]["muc_phu_cap"].ToString();
-                dtp_tungay.Text = dt.Rows[0]["tu_ngay"].ToString();
-                dtp_denngay.Text = dt.Rows[0]["den_ngay"].ToString();
-                txt_ghichu.Text = dt.Rows[0]["ghi_chu"].ToString();
-                chk_active.Checked = bool.Parse(dt.Rows[0]["is_active"].ToString());
+                cbo_LoaiPhuCap.SelectedValue = dt.Rows[0]["Id_LoaiPhuCap"].ToString();
+                txt_MucPhuCap.Text = dt.Rows[0]["MucPhuCap"].ToString();
+                dtp_TuNgay.Text = dt.Rows[0]["TuNgay"].ToString();
+                dtp_DenNgay.Text = dt.Rows[0]["DenNgay"].ToString();
+                txt_GhiChu.Text = dt.Rows[0]["GhiChu"].ToString();
+                chk_HieuLuc.Checked = bool.Parse(dt.Rows[0]["IsActive"].ToString());
             }
         }
-        private void load_nhanvien()
+        private void LoadNull()
         {
-            cbo_nhanvien.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.DisplayMember = "name";
-            cbo_nhanvien.ValueMember = "value";
-            cbo_nhanvien.SelectedValue = _ma_nhan_vien;
+            cbo_LoaiPhuCap.SelectedIndex = 0;
+            chk_HieuLuc.Checked = false;
+            txt_MucPhuCap.Text = string.Empty;
+            dtp_TuNgay.Text = string.Empty;
+            dtp_DenNgay.Text = string.Empty;
+            txt_GhiChu.Text = string.Empty;
         }
-        private void load_loaiphucap()
+        private void LoadComboboxNhanVien()
         {
-            cbo_loaiphucap.DataSource = provider.load_loaiphucap();
-            cbo_loaiphucap.DisplayMember = "ten_loai_phu_cap";
-            cbo_loaiphucap.ValueMember = "id_loai_phu_cap";
+            cbo_NhanVien.DataSource = provider.load_nhanvien();
+            cbo_NhanVien.DisplayMember = "name";
+            cbo_NhanVien.ValueMember = "value";
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
-
+        private void LoadComboboxLoaiPhuCap()
+        {
+            cbo_LoaiPhuCap.DataSource = provider.load_loaiphucap();
+            cbo_LoaiPhuCap.DisplayMember = "TenLoaiPhuCap";
+            cbo_LoaiPhuCap.ValueMember = "Id";
+        }
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void frm_allowance_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -73,30 +107,48 @@ namespace TENTAC_HRM.Forms.Category
                 this.Close();
             }
         }
-        private void set_text_value()
+        private void SetValues()
         {
-            _ma_nhan_vien = cbo_nhanvien.SelectedValue.ToString();
-            loaiphucap_value = cbo_loaiphucap.SelectedValue.ToString();
-            mucphucap_value = txt_mucphucap.Text.ToString();
-            tungay_value = DateTime.Parse(dtp_tungay.Text).ToString("yyyy/MM/dd");
-            denngay_value = DateTime.Parse(dtp_denngay.Text).ToString("yyyy/MM/dd");
-            active_value = chk_active.Checked;
-            ghichu_value = txt_ghichu.Text.ToString();
-            nguoitao_value = SQLHelper.sIdUser;
+            _MaNhanVien = cbo_NhanVien.SelectedValue.ToString();
+            _LoaiPhuCap = int.Parse(cbo_LoaiPhuCap.SelectedValue.ToString());
+            _MucPhuCap = string.IsNullOrEmpty(txt_MucPhuCap.Text.Trim()) ? (decimal?)null : decimal.Parse(txt_MucPhuCap.Text.Trim());
+            _TuNgay = string.IsNullOrEmpty(dtp_TuNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_TuNgay.Text.ToString());
+            _DenNgay = string.IsNullOrEmpty(dtp_DenNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_DenNgay.Text.ToString());
+            _Active = chk_HieuLuc.Checked == true ? 1 : 0;
+            _GhiChu = txt_GhiChu.Text.Trim().ToString();
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
         }
-
-        private void save_data()
+        private void InsertData()
         {
             try
             {
-                string sql = string.Format("insert into hrm_nhanvien_phucap(ma_nhan_vien,is_active,id_loai_phu_cap,tu_ngay," +
-                         "den_ngay,muc_phu_cap,ghi_chu,ngay_tao,id_nguoi_tao) " +
-                         "values('{0}','{1}',{2},'{3}','{4}','{5}',N'{6}',GETDATE(),'{7}')", _ma_nhan_vien, active_value, loaiphucap_value, tungay_value
-                         , denngay_value, mucphucap_value, ghichu_value, nguoitao_value);
-                int id_new = SQLHelper.ExecuteScalarSql(sql);
-                if (id_new != 0)
+                string sql = string.Empty;
+                sql = $@"Insert into tbl_NhanVienPhuCap(MaNhanVien, IsActive, Id_LoaiPhuCap, TuNgay, DenNgay, MucPhuCap, GhiChu, NgayTao, 
+                NguoiTao, del_flg)
+                Values({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpI(_Active)}, {SQLHelper.rpI(_LoaiPhuCap)}, {SQLHelper.rpDT(_TuNgay)},
+                {SQLHelper.rpDT(_DenNgay)}, {SQLHelper.rpD(_MucPhuCap)}, {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
+                int IDPhuCapNew = SQLHelper.ExecuteScalarSql(sql);
+                if(IDPhuCapNew > 0)
                 {
-                    RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RJMessageBox.Show("Thêm thông tin thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    if (chk_HieuLuc.Checked == true)
+                    {
+                        string sql_check = $@"select * from tbl_NhanVienPhuCap where Id_LoaiPhuCap = {SQLHelper.rpI(_LoaiPhuCap)} 
+                        and MaNhanVien = {SQLHelper.rpStr(_MaNhanVien)} and Id <> {SQLHelper.rpI(IDPhuCapNew)} and del_flg = 0";
+                        DataTable dt = SQLHelper.ExecuteDt(sql_check);
+                        if (dt.Rows.Count > 0)
+                        {
+                            string update_sql = $@"update tbl_NhanVienPhuCap set IsActive = 0 where Id_LoaiPhuCap = {SQLHelper.rpI(_LoaiPhuCap)} 
+                            and MaNhanVien = {SQLHelper.rpStr(_MaNhanVien)} and Id <> {SQLHelper.rpI(IDPhuCapNew)} and del_flg = 0";
+                            SQLHelper.ExecuteSql(update_sql);
+                        }
+                    }
+                    RJMessageBox.Show("Thêm thông tin thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -104,18 +156,36 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void update_data()
+        public void UpdateData()
         {
             try
             {
-                string sql = string.Format("update hrm_nhanvien_phucap set is_active = '{2}',id_loai_phu_cap = {3},tu_ngay = '{4}',den_ngay = '{5}'," +
-                    "muc_phu_cap = '{6}',ghi_chu = N'{7}',ngay_cap_nhat = GETDATE() " +
-                    "where id_phu_cap = {0} and ma_nhan_vien = '{1}'", _id_phucap, _ma_nhan_vien,
-                    active_value, loaiphucap_value, tungay_value, denngay_value,
-                    mucphucap_value, ghichu_value);
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                string sql = string.Empty;
+                sql = $@"Update tbl_NhanVienPhuCap Set IsActive = {SQLHelper.rpI(_Active)}, Id_LoaiPhuCap = {SQLHelper.rpI(_LoaiPhuCap)},
+                TuNgay = {SQLHelper.rpDT(_TuNgay)}, DenNgay = {SQLHelper.rpDT(_DenNgay)}, MucPhuCap = {SQLHelper.rpD(_MucPhuCap)},
+                GhiChu = {SQLHelper.rpStr(_GhiChu)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                Where Id = {SQLHelper.rpI(_IdPhuCap)} and del_flg = 0";
+                int res = SQLHelper.ExecuteSql(sql);
+                if (res > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (chk_HieuLuc.Checked == true)
+                    {
+                        string sql_check = $@"select * from tbl_NhanVienPhuCap where Id_LoaiPhuCap = {SQLHelper.rpI(_LoaiPhuCap)} 
+                        and Id <> {SQLHelper.rpI(_IdPhuCap)} and del_flg = 0 and MaNhanVien = {SQLHelper.rpStr(_MaNhanVien)}";
+                        DataTable dt = SQLHelper.ExecuteDt(sql_check);
+                        if (dt.Rows.Count > 0)
+                        {
+                            string update_sql = $@"update tbl_NhanVienPhuCap set IsActive = 0 where Id_LoaiPhuCap = {SQLHelper.rpI(_LoaiPhuCap)} 
+                            and Id <> {SQLHelper.rpI(_IdPhuCap)} and del_flg = 0 and MaNhanVien = {SQLHelper.rpStr(_MaNhanVien)}";
+                            SQLHelper.ExecuteSql(update_sql);
+                        }
+                    }
+                    RJMessageBox.Show("Cập nhật thông tin thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -125,31 +195,17 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if (cbo_loaiphucap.Text == "" || string.IsNullOrEmpty(txt_mucphucap.Text))
+            SetValues();
+            if (edit == true)
             {
-                if (cbo_loaiphucap.Text == "")
-                {
-                    cbo_loaiphucap.Focus();
-                }
-                else
-                {
-                    txt_mucphucap.Focus();
-                }
-                RJMessageBox.Show("Loại phụ cấp hoặc mức phụ cấp không được để rỗng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                UpdateData();
             }
             else
             {
-                set_text_value();
-                if (edit == true)
-                {
-                    update_data();
-                }
-                else
-                {
-                    save_data();
-                }
-                frm_personnel.load_phucap();
+                InsertData();
             }
+            LoadNull();
+            frm_personnel.LoadNhanVienPhuCap();
         }
     }
 }

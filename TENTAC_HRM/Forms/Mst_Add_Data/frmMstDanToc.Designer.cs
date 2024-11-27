@@ -70,7 +70,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(295, 90);
-            this.txtMoTa.TabIndex = 29;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenDanToc
             // 
@@ -81,7 +81,7 @@
             this.txtTenDanToc.Location = new System.Drawing.Point(30, 165);
             this.txtTenDanToc.Name = "txtTenDanToc";
             this.txtTenDanToc.Size = new System.Drawing.Size(295, 22);
-            this.txtTenDanToc.TabIndex = 28;
+            this.txtTenDanToc.TabIndex = 2;
             // 
             // txtMaDanToc
             // 
@@ -93,7 +93,7 @@
             this.txtMaDanToc.Name = "txtMaDanToc";
             this.txtMaDanToc.ReadOnly = true;
             this.txtMaDanToc.Size = new System.Drawing.Size(295, 22);
-            this.txtMaDanToc.TabIndex = 27;
+            this.txtMaDanToc.TabIndex = 1;
             // 
             // labelX4
             // 

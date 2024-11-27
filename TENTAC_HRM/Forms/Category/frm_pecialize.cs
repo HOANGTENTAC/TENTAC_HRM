@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,34 +8,31 @@ using TENTAC_HRM.Forms.Main;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_pecialize : Form
+    public partial class frm_pecialize : KryptonForm
     {
         frm_personnel personnel;
-        public int _id_daotao_value { get; set; }
-        public string _ma_nhan_vien { get; set; }
+        public int _IdDaoTao { get; set; }
+        public string _MaNhanVien { get; set; }
         public bool edit { get; set; }
         DataProvider provider = new DataProvider();
-        int Active_value, HeDaoTao_value;
-        string LoaiDaoTao_value, BacDaoTao_value,NganhDaoTao_value, TruongDaoTao_value, XepLoai_value, GhiChu_value, NguoiTao_value = SQLHelper.sUser, NguoiCapNhat_value = SQLHelper.sUser;
+        int _Active, _HeDaoTao;
+        string _LoaiDaoTao, _BacDaoTao, _NganhDaoTao, _TruongDaoTao, _XepLoai, _GhiChu, _NguoiTao = SQLHelper.sUser, _NguoiCapNhat = SQLHelper.sUser;
         DateTime? TuNam_value, DenNam_value, NgayNhanBang_value;
         public frm_pecialize(frm_personnel _personnel)
         {
             InitializeComponent();
             personnel = _personnel;
         }
-
         private void frm_train_Load(object sender, EventArgs e)
         {
-            //load_loaidaotao();
-            load_nhanvien();
-            load_bacdaotao();
-            load_nganhdaotao();
-            load_hedaotao();
-            load_XepLoai();
+            LoadComboboxNhanVien();
+            LoadComboboxBacDaoTao();
+            LoadComboboxNganhDaoTao();
+            LoadComboboxHeDaoTao();
+            LoadComboboxXepLoai();
             if (edit == true)
             {
-                load_data();
-            //    cbo_LoaiDaoTao.Enabled = false;
+                LoadData();
             }
         }
         private void LoadNull()
@@ -50,9 +48,9 @@ namespace TENTAC_HRM.Forms.Category
             cbo_XepLoai.SelectedIndex = 0;
             txt_ghichu.Text = string.Empty;
         }
-        private void load_data()
+        private void LoadData()
         {
-            string sql = string.Format("select * from tbl_NhanVienDaoTao where Id = {0}", _id_daotao_value);
+            string sql = string.Format("select * from tbl_NhanVienDaoTao where Id = {0}", _IdDaoTao);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -70,14 +68,14 @@ namespace TENTAC_HRM.Forms.Category
                 chk_active.Checked = bool.Parse(dt.Rows[0]["IsActive"].ToString());
             }
         }
-        private void load_nhanvien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
             cbo_NhanVien.ValueMember = "value";
-            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
-        private void load_hedaotao()
+        private void LoadComboboxHeDaoTao()
         {
             string sql = "select Id, TenHe from mst_HeDaoTao";
             DataTable dt = new DataTable();
@@ -87,8 +85,7 @@ namespace TENTAC_HRM.Forms.Category
             cbo_HeDaoTao.DisplayMember = "TenHe";
             cbo_HeDaoTao.ValueMember = "Id";
         }
-
-        private void load_nganhdaotao()
+        private void LoadComboboxNganhDaoTao()
         {
             string sql = "select MaChuyenNganh, TenChuyenNganh from mst_ChuyenNganh";
             DataTable dt = new DataTable();
@@ -98,8 +95,7 @@ namespace TENTAC_HRM.Forms.Category
             cbo_NganhDaoTao.DisplayMember = "TenChuyenNganh";
             cbo_NganhDaoTao.ValueMember = "MaChuyenNganh";
         }
-
-        private void load_bacdaotao()
+        private void LoadComboboxBacDaoTao()
         {
             string sql = "select MaBac,TenBac from mst_BacDaoTao";
             DataTable dt = new DataTable();
@@ -109,7 +105,7 @@ namespace TENTAC_HRM.Forms.Category
             cbo_BacDaoTao.DisplayMember = "TenBac";
             cbo_BacDaoTao.ValueMember = "MaBac";
         }
-        private void load_XepLoai()
+        private void LoadComboboxXepLoai()
         {
             cbo_XepLoai.DataSource = provider.load_xeploai();
             cbo_XepLoai.DisplayMember = "name";
@@ -127,32 +123,36 @@ namespace TENTAC_HRM.Forms.Category
         {
             if (edit == true)
             {
-                update_data();
+                UpdateData();
             }
             else
             {
-                insert_data();
+                InsertData();
             }
+            LoadNull();
+            personnel.LoadNhanVienChuyenMon();
         }
-
-        private void update_data()
+        private void UpdateData()
         {
             try
             {
-                set_textvalue();
+                SetValues();
                 string sql = string.Empty;
                 sql = $@"Update tbl_NhanVienDaoTao 
-                    set MaBacDaoTao = {SQLHelper.rpStr(BacDaoTao_value)}, Id_HeDaoTao = {SQLHelper.rpI(HeDaoTao_value)}, 
-                    MaNganhDaoTao = {SQLHelper.rpStr(NganhDaoTao_value)}, TruongDaoTao = {SQLHelper.rpStr(TruongDaoTao_value)},
+                    set MaBacDaoTao = {SQLHelper.rpStr(_BacDaoTao)}, Id_HeDaoTao = {SQLHelper.rpI(_HeDaoTao)}, 
+                    MaNganhDaoTao = {SQLHelper.rpStr(_NganhDaoTao)}, TruongDaoTao = {SQLHelper.rpStr(_TruongDaoTao)},
                     TuNgay = {SQLHelper.rpDT(TuNam_value)}, DenNgay = {SQLHelper.rpDT(DenNam_value)}, NgayNhanBang = {SQLHelper.rpDT(NgayNhanBang_value)}, 
-                    XepLoaiBang = {SQLHelper.rpStr(XepLoai_value)}, GhiChu = {SQLHelper.rpStr(GhiChu_value)},
-                    NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(NguoiCapNhat_value)}
-                    where Id = {SQLHelper.rpI(_id_daotao_value)}";
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                    XepLoaiBang = {SQLHelper.rpStr(_XepLoai)}, GhiChu = {SQLHelper.rpStr(_GhiChu)},
+                    NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+                    where Id = {SQLHelper.rpI(_IdDaoTao)}";
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    personnel.load_chuyenmon();
-                    LoadNull();
+                    RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -160,38 +160,40 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_save_close_Click(object sender, EventArgs e)
         {
             if (edit == true)
             {
-                update_data();
+                UpdateData();
             }
             else
             {
-                insert_data();
+                InsertData();
             }
+            LoadNull();
+            personnel.LoadNhanVienChuyenMon();
             this.Close();
         }
-        private void insert_data()
+        private void InsertData()
         {
             try
             {
-                set_textvalue();
+                SetValues();
                 string sql = string.Empty;
                 sql = $@"insert into tbl_NhanVienDaoTao(MaNhanVien, IsActive, MaBacDaoTao, Id_HeDaoTao, 
                     MaNganhDaoTao, TruongDaoTao, TuNgay, DenNgay, NgayNhanBang, XepLoaiBang, GhiChu, NgayTao, NguoiTao) 
-                    values ({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpI(Active_value)}, {SQLHelper.rpStr(BacDaoTao_value)},
-                    {SQLHelper.rpI(HeDaoTao_value)}, {SQLHelper.rpStr(NganhDaoTao_value)}, {SQLHelper.rpStr(TruongDaoTao_value)}, 
+                    values ({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpI(_Active)}, {SQLHelper.rpStr(_BacDaoTao)},
+                    {SQLHelper.rpI(_HeDaoTao)}, {SQLHelper.rpStr(_NganhDaoTao)}, {SQLHelper.rpStr(_TruongDaoTao)}, 
                     {SQLHelper.rpDT(TuNam_value)}, {SQLHelper.rpDT(DenNam_value)},{SQLHelper.rpDT(NgayNhanBang_value)}, 
-                    {SQLHelper.rpStr(XepLoai_value)}, {SQLHelper.rpStr(GhiChu_value)}, '{DateTime.Now}', {SQLHelper.rpStr(NguoiTao_value)})";
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                    {SQLHelper.rpStr(_XepLoai)}, {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)})";
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
-                    RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadNull();
-
-                    personnel.load_chuyenmon();
-
+                    RJMessageBox.Show("Thêm thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Thêm thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -199,28 +201,26 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        private void set_textvalue()
+        private void SetValues()
         {
-            Active_value = (chk_active.Checked == true ? 1 : 0);
-            //LoaiDaoTao_value = cbo_LoaiDaoTao.SelectedValue.ToString();
-            BacDaoTao_value = cbo_BacDaoTao.SelectedValue.ToString();
-            HeDaoTao_value = Convert.ToInt32(cbo_HeDaoTao.SelectedValue);
-            NganhDaoTao_value = cbo_NganhDaoTao.SelectedValue?.ToString() ?? "";
-            TruongDaoTao_value = txt_truongdaotao.Text;
+            _Active = (chk_active.Checked == true ? 1 : 0);
+            //_LoaiDaoTao = cbo_LoaiDaoTao.SelectedValue.ToString();
+            _BacDaoTao = cbo_BacDaoTao.SelectedValue.ToString();
+            _HeDaoTao = Convert.ToInt32(cbo_HeDaoTao.SelectedValue);
+            _NganhDaoTao = cbo_NganhDaoTao.SelectedValue?.ToString() ?? "";
+            _TruongDaoTao = txt_truongdaotao.Text;
             TuNam_value = string.IsNullOrEmpty(dtp_TuNam.Text) ? (DateTime?)null : DateTime.Parse(dtp_TuNam.Text);
             DenNam_value = string.IsNullOrEmpty(dtp_DenNam.Text) ? (DateTime?)null : DateTime.Parse(dtp_DenNam.Text);
             NgayNhanBang_value = string.IsNullOrEmpty(dtp_NamNhanBang.Text) ? (DateTime?)null : DateTime.Parse(dtp_NamNhanBang.Text);
-            XepLoai_value = cbo_XepLoai.SelectedValue.ToString();
-            GhiChu_value = txt_ghichu.Text;
-            NguoiTao_value = SQLHelper.sUser;
-            NguoiCapNhat_value = SQLHelper.sUser;
+            _XepLoai = cbo_XepLoai.SelectedValue.ToString();
+            _GhiChu = txt_ghichu.Text;
+            _NguoiTao = SQLHelper.sUser;
+            _NguoiCapNhat = SQLHelper.sUser;
         }
-
         private void frm_pecialize_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

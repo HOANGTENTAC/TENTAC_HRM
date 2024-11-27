@@ -1,16 +1,10 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
-using Microsoft.Office.Interop.Excel;
 using NHibernate.Util;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
@@ -24,6 +18,7 @@ namespace TENTAC_HRM.Forms.Category
         public string _ma_nhanvien { get; set; }
         public int? _loai_diachi { get; set; }
         public string _NameForm { get; set; }
+        private bool isLoading = true;
         uc_nhan_su uc_nhan_su;
         frm_personnel _Personnel;
         DataProvider provider = new DataProvider();
@@ -35,19 +30,33 @@ namespace TENTAC_HRM.Forms.Category
         public frm_address(Form frm)
         {
             InitializeComponent();
-            _Personnel = (frm_personnel)frm;
+            if (frm is frm_personnel)
+            {
+                _Personnel = (frm_personnel)frm;
+            }
         }
         private void frm_address_Load(object sender, EventArgs e)
         {
             labelX1.Text = _NameForm;
+
+            cbo_TinhThanh.DroppedDown = false;
+            cbo_PhuongXa.DroppedDown = false;
+            cbo_QuanHuyen.DroppedDown = false;
+
+            isLoading = true;
+
             LoadDonViHanhChinh();
-            LoadNhanVien();
-            LoadLoaiDiaChi();
-            LoadQuocGia();
-            LoadTinhThanh(null);
-            LoadQuanHuyen(null);
-            LoadPhuongXa(null);
+            LoadComboboxNhanVien();
+            LoadComboboxLoaiDiaChi();
+            LoadComboboxQuocGia();
+
+            LoadComboboxTinhThanh(null);
+            LoadComboboxQuanHuyen(null);
+            LoadComboboxPhuongXa(null);
+
             LoadData();
+
+            isLoading = false;
         }
         private void LoadData()
         {
@@ -66,10 +75,10 @@ namespace TENTAC_HRM.Forms.Category
         private void LoadDonViHanhChinh()
         {
             string sql = string.Empty;
-            sql = $@"Select * from mst_DonViHanhChinh where DelFlg = 0";
+            sql = $@"Select * from mst_DonViHanhChinh where del_flg = 0";
             dtDonViHanhChinh = SQLHelper.ExecuteDt(sql);
         }
-        private void LoadLoaiDiaChi()
+        private void LoadComboboxLoaiDiaChi()
         {
             cbo_LoaiDiaChi.DataSource = provider.load_all_type(40);
             cbo_LoaiDiaChi.DisplayMember = "name";
@@ -79,7 +88,7 @@ namespace TENTAC_HRM.Forms.Category
                 cbo_LoaiDiaChi.SelectedValue = _loai_diachi;
             }
         }
-        private void LoadNhanVien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
@@ -89,13 +98,13 @@ namespace TENTAC_HRM.Forms.Category
                 cbo_NhanVien.SelectedValue = _ma_nhanvien;
             }
         }
-        private void LoadQuocGia()
+        private void LoadComboboxQuocGia()
         {
             cbo_QuocGia.DataSource = provider.LoadDiaChiNew(20);
             cbo_QuocGia.DisplayMember = "name";
             cbo_QuocGia.ValueMember = "id";
         }
-        private void LoadTinhThanh(int? IdParent)
+        private void LoadComboboxTinhThanh(int? IdParent)
         {
             IEnumerable<DataRow> RowsTinhThanh = Enumerable.Empty<DataRow>();
             if (IdParent == null)
@@ -113,10 +122,10 @@ namespace TENTAC_HRM.Forms.Category
             cbo_TinhThanh.DisplayMember = "TenDiaChi";
             cbo_TinhThanh.ValueMember = "Id";
         }
-        private void LoadQuanHuyen(int? IdParent)
+        private void LoadComboboxQuanHuyen(int? IdParent)
         {
             IEnumerable<DataRow> RowsQuanHuyen = Enumerable.Empty<DataRow>();
-            if(IdParent == null)
+            if (IdParent == null)
             {
                 RowsQuanHuyen = dtDonViHanhChinh.AsEnumerable().Where(row => row.Field<int?>("CapBac") == 2);
             }
@@ -131,7 +140,7 @@ namespace TENTAC_HRM.Forms.Category
             cbo_QuanHuyen.DisplayMember = "TenDiaChi";
             cbo_QuanHuyen.ValueMember = "Id";
         }
-        private void LoadPhuongXa(int? IdParent)
+        private void LoadComboboxPhuongXa(int? IdParent)
         {
             IEnumerable<DataRow> RowsPhuongXa = Enumerable.Empty<DataRow>();
             if (IdParent == null)
@@ -143,7 +152,7 @@ namespace TENTAC_HRM.Forms.Category
                 RowsPhuongXa = dtDonViHanhChinh.AsEnumerable().Where(row => row.Field<int?>("CapBac") == 3 && row.Field<int?>("ParentId") == IdParent);
             }
 
-            DataTable dtPhuongXa = RowsPhuongXa.Any()? RowsPhuongXa.CopyToDataTable() : null;
+            DataTable dtPhuongXa = RowsPhuongXa.Any() ? RowsPhuongXa.CopyToDataTable() : null;
             dtPhuongXa.Rows.Add("0", "");
             cbo_PhuongXa.DataSource = dtPhuongXa.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
             cbo_PhuongXa.DisplayMember = "TenDiaChi";
@@ -151,34 +160,53 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void cbo_QuocGia_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isLoading)
+                return;
             if (cbo_QuocGia.SelectedValue != null && cbo_QuocGia.SelectedIndex != 0)
             {
                 int IdParent = Convert.ToInt32(cbo_QuocGia.SelectedValue);
-                LoadTinhThanh(IdParent);
+                LoadComboboxTinhThanh(IdParent);
+                cbo_TinhThanh.DroppedDown = true;
+            }
+            else
+            {
+                cbo_TinhThanh.DroppedDown = false;
             }
         }
         private void cbo_TinhThanh_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isLoading)
+                return;
             if (cbo_TinhThanh.SelectedValue != null && cbo_TinhThanh.SelectedIndex != 0)
             {
                 int IdParent = Convert.ToInt32(cbo_TinhThanh.SelectedValue);
-                LoadQuanHuyen(IdParent);
+                LoadComboboxQuanHuyen(IdParent);
+                cbo_QuanHuyen.DroppedDown = true;
+            }
+            else
+            {
+                cbo_QuanHuyen.DroppedDown = false;
             }
         }
         private void cbo_QuanHuyen_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (isLoading)
+                return;
             if (cbo_QuanHuyen.SelectedValue != null && cbo_QuanHuyen.SelectedIndex != 0)
             {
                 int IdParent = Convert.ToInt32(cbo_QuanHuyen.SelectedValue);
-                LoadPhuongXa(IdParent);
+                LoadComboboxPhuongXa(IdParent);
+                cbo_PhuongXa.DroppedDown = true;
+            }
+            else
+            {
+                cbo_PhuongXa.DroppedDown = false;
             }
         }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btn_save_Click(object sender, EventArgs e)
         {
             try
@@ -215,9 +243,13 @@ namespace TENTAC_HRM.Forms.Category
                 int res = SQLHelper.ExecuteSql(sql);
                 if (res >= 0)
                 {
-                    RJMessageBox.Show("Lưu địa chỉ thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Personnel.load_diachi();
+                    RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _Personnel.LoadNhanVienDiaChi();
                     this.Close();
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

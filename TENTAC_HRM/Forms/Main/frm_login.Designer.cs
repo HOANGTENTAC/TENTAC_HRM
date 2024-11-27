@@ -36,10 +36,10 @@
             this.btn_show_pass = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_user = new RJTextBox.RJTextBox();
-            this.btn_login = new TENTAC_HRM.Custom.RJButton();
             this.chk_remember_me = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_login = new TENTAC_HRM.Custom.RJButton();
             this.txt_password = new TENTAC_HRM.Custom.RJTextBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -149,25 +149,6 @@
             this.txt_user.UnderlinedStyle = false;
             this.txt_user.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_user_KeyPress);
             // 
-            // btn_login
-            // 
-            this.btn_login.BackColor = System.Drawing.Color.RoyalBlue;
-            this.btn_login.BackGroundColor = System.Drawing.Color.RoyalBlue;
-            this.btn_login.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btn_login.BorderRadius = 10;
-            this.btn_login.BorderSize = 0;
-            this.btn_login.FlatAppearance.BorderSize = 0;
-            this.btn_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_login.ForeColor = System.Drawing.Color.White;
-            this.btn_login.Location = new System.Drawing.Point(26, 229);
-            this.btn_login.Name = "btn_login";
-            this.btn_login.Size = new System.Drawing.Size(331, 44);
-            this.btn_login.TabIndex = 4;
-            this.btn_login.Text = "Đăng nhập";
-            this.btn_login.TextColor = System.Drawing.Color.White;
-            this.btn_login.UseVisualStyleBackColor = false;
-            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
-            // 
             // chk_remember_me
             // 
             this.chk_remember_me.AutoSize = true;
@@ -197,6 +178,25 @@
             this.label1.Size = new System.Drawing.Size(80, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tài khoản";
+            // 
+            // btn_login
+            // 
+            this.btn_login.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btn_login.BackGroundColor = System.Drawing.Color.RoyalBlue;
+            this.btn_login.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btn_login.BorderRadius = 10;
+            this.btn_login.BorderSize = 0;
+            this.btn_login.FlatAppearance.BorderSize = 0;
+            this.btn_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_login.ForeColor = System.Drawing.Color.White;
+            this.btn_login.Location = new System.Drawing.Point(26, 229);
+            this.btn_login.Name = "btn_login";
+            this.btn_login.Size = new System.Drawing.Size(331, 44);
+            this.btn_login.TabIndex = 4;
+            this.btn_login.Text = "Đăng nhập";
+            this.btn_login.TextColor = System.Drawing.Color.White;
+            this.btn_login.UseVisualStyleBackColor = false;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
             // txt_password
             // 
@@ -230,6 +230,8 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel2.ResumeLayout(false);

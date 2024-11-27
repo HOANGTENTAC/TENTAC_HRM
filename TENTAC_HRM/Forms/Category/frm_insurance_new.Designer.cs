@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chk_Active = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.txt_GhiChu = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -61,10 +61,10 @@
             this.NoiThucHien = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.IsActive = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btn_clear = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.btn_clear = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).BeginInit();
@@ -121,7 +121,7 @@
             this.txt_GhiChu.Multiline = true;
             this.txt_GhiChu.Name = "txt_GhiChu";
             this.txt_GhiChu.Size = new System.Drawing.Size(303, 83);
-            this.txt_GhiChu.TabIndex = 170;
+            this.txt_GhiChu.TabIndex = 8;
             // 
             // labelX7
             // 
@@ -142,7 +142,7 @@
             this.cbo_TinhThanh.Location = new System.Drawing.Point(837, 384);
             this.cbo_TinhThanh.Name = "cbo_TinhThanh";
             this.cbo_TinhThanh.Size = new System.Drawing.Size(303, 22);
-            this.cbo_TinhThanh.TabIndex = 169;
+            this.cbo_TinhThanh.TabIndex = 7;
             // 
             // labelX6
             // 
@@ -164,7 +164,7 @@
             this.txt_NoiDangKy.Multiline = true;
             this.txt_NoiDangKy.Name = "txt_NoiDangKy";
             this.txt_NoiDangKy.Size = new System.Drawing.Size(303, 58);
-            this.txt_NoiDangKy.TabIndex = 168;
+            this.txt_NoiDangKy.TabIndex = 6;
             // 
             // labelX5
             // 
@@ -215,7 +215,7 @@
             this.dtp_DenNgay.MonthCalendar.TodayButtonVisible = true;
             this.dtp_DenNgay.Name = "dtp_DenNgay";
             this.dtp_DenNgay.Size = new System.Drawing.Size(135, 22);
-            this.dtp_DenNgay.TabIndex = 167;
+            this.dtp_DenNgay.TabIndex = 5;
             // 
             // dtp_TuNgay
             // 
@@ -256,7 +256,7 @@
             this.dtp_TuNgay.MonthCalendar.TodayButtonVisible = true;
             this.dtp_TuNgay.Name = "dtp_TuNgay";
             this.dtp_TuNgay.Size = new System.Drawing.Size(135, 22);
-            this.dtp_TuNgay.TabIndex = 166;
+            this.dtp_TuNgay.TabIndex = 4;
             // 
             // label4
             // 
@@ -286,7 +286,7 @@
             this.txt_SoThe.Location = new System.Drawing.Point(837, 192);
             this.txt_SoThe.Name = "txt_SoThe";
             this.txt_SoThe.Size = new System.Drawing.Size(225, 22);
-            this.txt_SoThe.TabIndex = 164;
+            this.txt_SoThe.TabIndex = 3;
             // 
             // labelX4
             // 
@@ -307,7 +307,7 @@
             this.cbo_LoaiBaoHiem.Location = new System.Drawing.Point(837, 138);
             this.cbo_LoaiBaoHiem.Name = "cbo_LoaiBaoHiem";
             this.cbo_LoaiBaoHiem.Size = new System.Drawing.Size(303, 22);
-            this.cbo_LoaiBaoHiem.TabIndex = 163;
+            this.cbo_LoaiBaoHiem.TabIndex = 2;
             // 
             // labelX3
             // 
@@ -329,7 +329,7 @@
             this.cbo_NhanVien.Location = new System.Drawing.Point(837, 85);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(303, 22);
-            this.cbo_NhanVien.TabIndex = 162;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // labelX2
             // 
@@ -364,14 +364,14 @@
             this.TinhThanh,
             this.NoiThucHien,
             this.IsActive});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_BaoHiem.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_BaoHiem.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_BaoHiem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_BaoHiem.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_BaoHiem.Location = new System.Drawing.Point(0, 0);
@@ -447,9 +447,9 @@
             // IsActive
             // 
             this.IsActive.DataPropertyName = "IsActive";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = false;
-            this.IsActive.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.IsActive.DefaultCellStyle = dataGridViewCellStyle1;
             this.IsActive.FalseValue = null;
             this.IsActive.HeaderText = "Hiệu lực";
             this.IsActive.IndeterminateValue = null;
@@ -469,8 +469,24 @@
             this.panel3.Size = new System.Drawing.Size(1166, 55);
             this.panel3.TabIndex = 160;
             // 
+            // btn_clear
+            // 
+            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clear.Image = global::TENTAC_HRM.Properties.Resources.ClearContent;
+            this.btn_clear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_clear.Location = new System.Drawing.Point(944, 17);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(90, 27);
+            this.btn_clear.TabIndex = 10;
+            this.btn_clear.Text = "Đặt lại";
+            this.btn_clear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
+            // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -491,7 +507,7 @@
             this.btn_save.Location = new System.Drawing.Point(837, 17);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(90, 27);
-            this.btn_save.TabIndex = 10;
+            this.btn_save.TabIndex = 9;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -510,31 +526,19 @@
             this.labelX1.Text = "Nhân viên - Bảo hiểm";
             this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            // btn_clear
-            // 
-            this.btn_clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Image = global::TENTAC_HRM.Properties.Resources.ClearContent;
-            this.btn_clear.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_clear.Location = new System.Drawing.Point(944, 17);
-            this.btn_clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(90, 27);
-            this.btn_clear.TabIndex = 19;
-            this.btn_clear.Text = "Đặt lại";
-            this.btn_clear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_clear.UseVisualStyleBackColor = true;
-            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
-            // 
             // frm_insurance_new
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(1168, 608);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_insurance_new";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frm_insurance_new";
             this.Load += new System.EventHandler(this.frm_insurance_new_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

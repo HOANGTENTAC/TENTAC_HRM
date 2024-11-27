@@ -85,7 +85,7 @@
             this.txt_ThonSoNha.Multiline = true;
             this.txt_ThonSoNha.Name = "txt_ThonSoNha";
             this.txt_ThonSoNha.Size = new System.Drawing.Size(255, 97);
-            this.txt_ThonSoNha.TabIndex = 138;
+            this.txt_ThonSoNha.TabIndex = 7;
             // 
             // labelX7
             // 
@@ -106,7 +106,7 @@
             this.cbo_PhuongXa.Location = new System.Drawing.Point(24, 344);
             this.cbo_PhuongXa.Name = "cbo_PhuongXa";
             this.cbo_PhuongXa.Size = new System.Drawing.Size(254, 22);
-            this.cbo_PhuongXa.TabIndex = 59;
+            this.cbo_PhuongXa.TabIndex = 6;
             // 
             // labelX6
             // 
@@ -127,7 +127,7 @@
             this.cbo_QuanHuyen.Location = new System.Drawing.Point(24, 292);
             this.cbo_QuanHuyen.Name = "cbo_QuanHuyen";
             this.cbo_QuanHuyen.Size = new System.Drawing.Size(254, 22);
-            this.cbo_QuanHuyen.TabIndex = 57;
+            this.cbo_QuanHuyen.TabIndex = 5;
             this.cbo_QuanHuyen.SelectedIndexChanged += new System.EventHandler(this.cbo_QuanHuyen_SelectedIndexChanged);
             // 
             // labelX5
@@ -149,7 +149,7 @@
             this.cbo_TinhThanh.Location = new System.Drawing.Point(26, 240);
             this.cbo_TinhThanh.Name = "cbo_TinhThanh";
             this.cbo_TinhThanh.Size = new System.Drawing.Size(254, 22);
-            this.cbo_TinhThanh.TabIndex = 55;
+            this.cbo_TinhThanh.TabIndex = 4;
             this.cbo_TinhThanh.SelectedIndexChanged += new System.EventHandler(this.cbo_TinhThanh_SelectedIndexChanged);
             // 
             // labelX4
@@ -171,7 +171,7 @@
             this.cbo_QuocGia.Location = new System.Drawing.Point(27, 188);
             this.cbo_QuocGia.Name = "cbo_QuocGia";
             this.cbo_QuocGia.Size = new System.Drawing.Size(254, 22);
-            this.cbo_QuocGia.TabIndex = 53;
+            this.cbo_QuocGia.TabIndex = 3;
             this.cbo_QuocGia.SelectedIndexChanged += new System.EventHandler(this.cbo_QuocGia_SelectedIndexChanged);
             // 
             // label2
@@ -194,7 +194,7 @@
             this.cbo_LoaiDiaChi.Location = new System.Drawing.Point(25, 138);
             this.cbo_LoaiDiaChi.Name = "cbo_LoaiDiaChi";
             this.cbo_LoaiDiaChi.Size = new System.Drawing.Size(254, 22);
-            this.cbo_LoaiDiaChi.TabIndex = 51;
+            this.cbo_LoaiDiaChi.TabIndex = 2;
             // 
             // labelX3
             // 
@@ -216,7 +216,7 @@
             this.cbo_NhanVien.Location = new System.Drawing.Point(25, 85);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(254, 22);
-            this.cbo_NhanVien.TabIndex = 47;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // labelX2
             // 
@@ -240,13 +240,14 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.cancel;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_close.Location = new System.Drawing.Point(171, 14);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(110, 27);
-            this.btn_close.TabIndex = 17;
+            this.btn_close.TabIndex = 9;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
@@ -260,7 +261,7 @@
             this.btn_save.Location = new System.Drawing.Point(27, 14);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(110, 27);
-            this.btn_save.TabIndex = 15;
+            this.btn_save.TabIndex = 8;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -281,8 +282,10 @@
             // 
             // frm_address
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(306, 584);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

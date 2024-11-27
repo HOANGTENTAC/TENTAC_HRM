@@ -28,88 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.gb_thongtin = new System.Windows.Forms.GroupBox();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.labelX5 = new DevComponents.DotNetBar.LabelX();
+            this.labelX6 = new DevComponents.DotNetBar.LabelX();
+            this.labelX7 = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
-            this.dtp_denngay = new System.Windows.Forms.DateTimePicker();
-            this.dtp_tungay = new System.Windows.Forms.DateTimePicker();
-            this.chk_active = new System.Windows.Forms.CheckBox();
-            this.txt_ghichu = new System.Windows.Forms.TextBox();
-            this.txt_mucphucap = new System.Windows.Forms.TextBox();
-            this.cbo_loaiphucap = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.gb_nhanvien = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.cbo_nhanvien = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2.SuspendLayout();
-            this.gb_thongtin.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.gb_nhanvien.SuspendLayout();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.cbo_LoaiPhuCap = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.dtp_TuNgay = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.dtp_DenNgay = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.txt_GhiChu = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.cbo_NhanVien = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.txt_MucPhuCap = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.chk_HieuLuc = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel2
+            // labelX5
             // 
-            this.panel2.Controls.Add(this.gb_thongtin);
-            this.panel2.Controls.Add(this.gb_nhanvien);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(408, 423);
-            this.panel2.TabIndex = 1;
+            this.labelX5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX5.Location = new System.Drawing.Point(16, 230);
+            this.labelX5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX5.Name = "labelX5";
+            this.labelX5.Size = new System.Drawing.Size(58, 23);
+            this.labelX5.TabIndex = 154;
+            this.labelX5.Text = "Từ ngày";
             // 
-            // gb_thongtin
+            // labelX6
             // 
-            this.gb_thongtin.Controls.Add(this.panel4);
-            this.gb_thongtin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gb_thongtin.Location = new System.Drawing.Point(0, 69);
-            this.gb_thongtin.Margin = new System.Windows.Forms.Padding(4);
-            this.gb_thongtin.Name = "gb_thongtin";
-            this.gb_thongtin.Padding = new System.Windows.Forms.Padding(4);
-            this.gb_thongtin.Size = new System.Drawing.Size(408, 354);
-            this.gb_thongtin.TabIndex = 1;
-            this.gb_thongtin.TabStop = false;
-            this.gb_thongtin.Text = "Thông tin";
+            this.labelX6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX6.Location = new System.Drawing.Point(170, 230);
+            this.labelX6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX6.Name = "labelX6";
+            this.labelX6.Size = new System.Drawing.Size(67, 23);
+            this.labelX6.TabIndex = 155;
+            this.labelX6.Text = "Đến ngày";
             // 
-            // panel4
+            // labelX7
             // 
-            this.panel4.Controls.Add(this.btn_save);
-            this.panel4.Controls.Add(this.btn_close);
-            this.panel4.Controls.Add(this.dtp_denngay);
-            this.panel4.Controls.Add(this.dtp_tungay);
-            this.panel4.Controls.Add(this.chk_active);
-            this.panel4.Controls.Add(this.txt_ghichu);
-            this.panel4.Controls.Add(this.txt_mucphucap);
-            this.panel4.Controls.Add(this.cbo_loaiphucap);
-            this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(4, 20);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(400, 330);
-            this.panel4.TabIndex = 1;
+            this.labelX7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX7.Location = new System.Drawing.Point(17, 287);
+            this.labelX7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX7.Name = "labelX7";
+            this.labelX7.Size = new System.Drawing.Size(57, 23);
+            this.labelX7.TabIndex = 159;
+            this.labelX7.Text = "Ghi chú";
+            // 
+            // labelX1
+            // 
+            this.labelX1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.labelX1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelX1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX1.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.labelX1.Location = new System.Drawing.Point(0, 0);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(320, 58);
+            this.labelX1.TabIndex = 120;
+            this.labelX1.Text = "Nhân viên - Phụ Cấp";
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
+            this.panel3.Controls.Add(this.btn_save);
+            this.panel3.Controls.Add(this.btn_close);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 448);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(320, 55);
+            this.panel3.TabIndex = 146;
             // 
             // btn_save
             // 
             this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
             this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_save.Location = new System.Drawing.Point(116, 286);
+            this.btn_save.Location = new System.Drawing.Point(13, 13);
             this.btn_save.Margin = new System.Windows.Forms.Padding(4);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(138, 31);
-            this.btn_save.TabIndex = 6;
+            this.btn_save.Size = new System.Drawing.Size(110, 28);
+            this.btn_save.TabIndex = 17;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -119,199 +123,236 @@
             // 
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_close.Location = new System.Drawing.Point(262, 286);
+            this.btn_close.Location = new System.Drawing.Point(186, 13);
             this.btn_close.Margin = new System.Windows.Forms.Padding(4);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(114, 31);
-            this.btn_close.TabIndex = 7;
+            this.btn_close.Size = new System.Drawing.Size(110, 28);
+            this.btn_close.TabIndex = 18;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // dtp_denngay
+            // labelX2
             // 
-            this.dtp_denngay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_denngay.Location = new System.Drawing.Point(116, 106);
-            this.dtp_denngay.Name = "dtp_denngay";
-            this.dtp_denngay.Size = new System.Drawing.Size(260, 23);
-            this.dtp_denngay.TabIndex = 5;
+            this.labelX2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX2.Location = new System.Drawing.Point(16, 63);
+            this.labelX2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 149;
+            this.labelX2.Text = "Nhân viên";
             // 
-            // dtp_tungay
+            // labelX3
             // 
-            this.dtp_tungay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_tungay.Location = new System.Drawing.Point(116, 77);
-            this.dtp_tungay.Name = "dtp_tungay";
-            this.dtp_tungay.Size = new System.Drawing.Size(260, 23);
-            this.dtp_tungay.TabIndex = 5;
+            this.labelX3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX3.Location = new System.Drawing.Point(16, 116);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(96, 23);
+            this.labelX3.TabIndex = 150;
+            this.labelX3.Text = "Loại phụ cấp";
             // 
-            // chk_active
+            // cbo_LoaiPhuCap
             // 
-            this.chk_active.AutoSize = true;
-            this.chk_active.Location = new System.Drawing.Point(116, 258);
-            this.chk_active.Name = "chk_active";
-            this.chk_active.Size = new System.Drawing.Size(114, 21);
-            this.chk_active.TabIndex = 3;
-            this.chk_active.Text = "Đang hiệu lực";
-            this.chk_active.UseVisualStyleBackColor = true;
+            this.cbo_LoaiPhuCap.DisplayMember = "Text";
+            this.cbo_LoaiPhuCap.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_LoaiPhuCap.FormattingEnabled = true;
+            this.cbo_LoaiPhuCap.ItemHeight = 17;
+            this.cbo_LoaiPhuCap.Location = new System.Drawing.Point(17, 145);
+            this.cbo_LoaiPhuCap.Name = "cbo_LoaiPhuCap";
+            this.cbo_LoaiPhuCap.Size = new System.Drawing.Size(202, 23);
+            this.cbo_LoaiPhuCap.TabIndex = 151;
             // 
-            // txt_ghichu
+            // labelX4
             // 
-            this.txt_ghichu.Location = new System.Drawing.Point(116, 135);
-            this.txt_ghichu.Multiline = true;
-            this.txt_ghichu.Name = "txt_ghichu";
-            this.txt_ghichu.Size = new System.Drawing.Size(260, 115);
-            this.txt_ghichu.TabIndex = 2;
+            this.labelX4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelX4.Location = new System.Drawing.Point(17, 173);
+            this.labelX4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(96, 23);
+            this.labelX4.TabIndex = 152;
+            this.labelX4.Text = "Mức phụ cấp";
             // 
-            // txt_mucphucap
+            // dtp_TuNgay
             // 
-            this.txt_mucphucap.Location = new System.Drawing.Point(116, 48);
-            this.txt_mucphucap.Name = "txt_mucphucap";
-            this.txt_mucphucap.Size = new System.Drawing.Size(260, 23);
-            this.txt_mucphucap.TabIndex = 2;
             // 
-            // cbo_loaiphucap
             // 
-            this.cbo_loaiphucap.FormattingEnabled = true;
-            this.cbo_loaiphucap.Location = new System.Drawing.Point(116, 18);
-            this.cbo_loaiphucap.Name = "cbo_loaiphucap";
-            this.cbo_loaiphucap.Size = new System.Drawing.Size(260, 24);
-            this.cbo_loaiphucap.TabIndex = 1;
             // 
-            // label6
+            this.dtp_TuNgay.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_TuNgay.ButtonDropDown.Visible = true;
+            this.dtp_TuNgay.Location = new System.Drawing.Point(17, 259);
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 140);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(43, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Mô tả";
             // 
-            // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 110);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 17);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Đến ngày";
+            this.dtp_TuNgay.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
             // 
-            // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Từ ngày";
             // 
-            // label3
+            this.dtp_TuNgay.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_TuNgay.MonthCalendar.ClearButtonVisible = true;
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Mức phụ cấp";
             // 
-            // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Loại phụ cấp";
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_TuNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_TuNgay.MonthCalendar.DisplayMonth = new System.DateTime(2024, 11, 1, 0, 0, 0, 0);
+            this.dtp_TuNgay.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_TuNgay.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
             // 
-            // gb_nhanvien
             // 
-            this.gb_nhanvien.Controls.Add(this.panel3);
-            this.gb_nhanvien.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gb_nhanvien.Location = new System.Drawing.Point(0, 0);
-            this.gb_nhanvien.Margin = new System.Windows.Forms.Padding(4);
-            this.gb_nhanvien.Name = "gb_nhanvien";
-            this.gb_nhanvien.Padding = new System.Windows.Forms.Padding(4);
-            this.gb_nhanvien.Size = new System.Drawing.Size(408, 69);
-            this.gb_nhanvien.TabIndex = 0;
-            this.gb_nhanvien.TabStop = false;
-            this.gb_nhanvien.Text = "Nhân viên";
             // 
-            // panel3
+            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_TuNgay.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_TuNgay.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_TuNgay.Name = "dtp_TuNgay";
+            this.dtp_TuNgay.Size = new System.Drawing.Size(130, 23);
+            this.dtp_TuNgay.TabIndex = 156;
             // 
-            this.panel3.Controls.Add(this.cbo_nhanvien);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(4, 20);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(400, 45);
-            this.panel3.TabIndex = 0;
+            // dtp_DenNgay
             // 
-            // cbo_nhanvien
             // 
-            this.cbo_nhanvien.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.cbo_nhanvien.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cbo_nhanvien.Enabled = false;
-            this.cbo_nhanvien.FormattingEnabled = true;
-            this.cbo_nhanvien.Location = new System.Drawing.Point(116, 10);
-            this.cbo_nhanvien.Name = "cbo_nhanvien";
-            this.cbo_nhanvien.Size = new System.Drawing.Size(260, 24);
-            this.cbo_nhanvien.TabIndex = 3;
             // 
-            // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Nhân viên";
+            this.dtp_DenNgay.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_DenNgay.ButtonDropDown.Visible = true;
+            this.dtp_DenNgay.Location = new System.Drawing.Point(170, 259);
+            // 
+            // 
+            // 
+            this.dtp_DenNgay.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_DenNgay.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_DenNgay.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_DenNgay.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_DenNgay.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_DenNgay.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_DenNgay.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_DenNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_DenNgay.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_DenNgay.MonthCalendar.DisplayMonth = new System.DateTime(2024, 11, 1, 0, 0, 0, 0);
+            this.dtp_DenNgay.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_DenNgay.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_DenNgay.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_DenNgay.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_DenNgay.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_DenNgay.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_DenNgay.Name = "dtp_DenNgay";
+            this.dtp_DenNgay.Size = new System.Drawing.Size(130, 23);
+            this.dtp_DenNgay.TabIndex = 157;
+            // 
+            // txt_GhiChu
+            // 
+            // 
+            // 
+            // 
+            this.txt_GhiChu.Border.Class = "TextBoxBorder";
+            this.txt_GhiChu.Location = new System.Drawing.Point(17, 315);
+            this.txt_GhiChu.Multiline = true;
+            this.txt_GhiChu.Name = "txt_GhiChu";
+            this.txt_GhiChu.Size = new System.Drawing.Size(283, 103);
+            this.txt_GhiChu.TabIndex = 158;
+            // 
+            // cbo_NhanVien
+            // 
+            this.cbo_NhanVien.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_NhanVien.Enabled = false;
+            this.cbo_NhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbo_NhanVien.FormattingEnabled = true;
+            this.cbo_NhanVien.ItemHeight = 16;
+            this.cbo_NhanVien.Location = new System.Drawing.Point(16, 90);
+            this.cbo_NhanVien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbo_NhanVien.Name = "cbo_NhanVien";
+            this.cbo_NhanVien.Size = new System.Drawing.Size(284, 22);
+            this.cbo_NhanVien.TabIndex = 148;
+            // 
+            // txt_MucPhuCap
+            // 
+            // 
+            // 
+            // 
+            this.txt_MucPhuCap.Border.Class = "TextBoxBorder";
+            this.txt_MucPhuCap.Location = new System.Drawing.Point(17, 202);
+            this.txt_MucPhuCap.Name = "txt_MucPhuCap";
+            this.txt_MucPhuCap.Size = new System.Drawing.Size(283, 23);
+            this.txt_MucPhuCap.TabIndex = 160;
+            this.txt_MucPhuCap.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Textbox_KeyPress);
+            this.txt_MucPhuCap.Leave += new System.EventHandler(this.txt_MucPhuCap_Leave);
+            // 
+            // chk_HieuLuc
+            // 
+            this.chk_HieuLuc.Location = new System.Drawing.Point(225, 145);
+            this.chk_HieuLuc.Name = "chk_HieuLuc";
+            this.chk_HieuLuc.Size = new System.Drawing.Size(75, 23);
+            this.chk_HieuLuc.TabIndex = 161;
+            this.chk_HieuLuc.Text = "Hiệu lực";
             // 
             // frm_staff_allowance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 423);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(320, 503);
+            this.Controls.Add(this.chk_HieuLuc);
+            this.Controls.Add(this.txt_MucPhuCap);
+            this.Controls.Add(this.labelX7);
+            this.Controls.Add(this.txt_GhiChu);
+            this.Controls.Add(this.dtp_DenNgay);
+            this.Controls.Add(this.dtp_TuNgay);
+            this.Controls.Add(this.labelX6);
+            this.Controls.Add(this.labelX5);
+            this.Controls.Add(this.labelX4);
+            this.Controls.Add(this.cbo_LoaiPhuCap);
+            this.Controls.Add(this.labelX3);
+            this.Controls.Add(this.cbo_NhanVien);
+            this.Controls.Add(this.labelX2);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.labelX1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_staff_allowance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Phụ cấp";
             this.Load += new System.EventHandler(this.frm_allowance_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_allowance_KeyDown);
-            this.panel2.ResumeLayout(false);
-            this.gb_thongtin.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.gb_nhanvien.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox gb_thongtin;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.GroupBox gb_nhanvien;
+
+        private DevComponents.DotNetBar.LabelX labelX5;
+        private DevComponents.DotNetBar.LabelX labelX6;
+        private DevComponents.DotNetBar.LabelX labelX7;
+        private DevComponents.DotNetBar.LabelX labelX1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ComboBox cbo_nhanvien;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox chk_active;
-        private System.Windows.Forms.TextBox txt_ghichu;
-        private System.Windows.Forms.TextBox txt_mucphucap;
-        private System.Windows.Forms.ComboBox cbo_loaiphucap;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dtp_denngay;
-        private System.Windows.Forms.DateTimePicker dtp_tungay;
         public System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_close;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_LoaiPhuCap;
+        private DevComponents.DotNetBar.LabelX labelX4;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtp_TuNgay;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtp_DenNgay;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_GhiChu;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_NhanVien;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_MucPhuCap;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chk_HieuLuc;
     }
 }

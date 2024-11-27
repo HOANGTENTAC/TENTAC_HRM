@@ -78,7 +78,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(293, 81);
-            this.txtMoTa.TabIndex = 67;
+            this.txtMoTa.TabIndex = 5;
             // 
             // labelX6
             // 
@@ -97,7 +97,7 @@
             this.txtSoNgayCong.Location = new System.Drawing.Point(29, 223);
             this.txtSoNgayCong.Name = "txtSoNgayCong";
             this.txtSoNgayCong.Size = new System.Drawing.Size(133, 22);
-            this.txtSoNgayCong.TabIndex = 65;
+            this.txtSoNgayCong.TabIndex = 3;
             this.txtSoNgayCong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // txtKyHieu
@@ -109,7 +109,7 @@
             this.txtKyHieu.Location = new System.Drawing.Point(187, 223);
             this.txtKyHieu.Name = "txtKyHieu";
             this.txtKyHieu.Size = new System.Drawing.Size(133, 22);
-            this.txtKyHieu.TabIndex = 64;
+            this.txtKyHieu.TabIndex = 4;
             // 
             // labelX3
             // 
@@ -136,7 +136,7 @@
             this.txtTenLoaiPhep.Location = new System.Drawing.Point(29, 166);
             this.txtTenLoaiPhep.Name = "txtTenLoaiPhep";
             this.txtTenLoaiPhep.Size = new System.Drawing.Size(295, 22);
-            this.txtTenLoaiPhep.TabIndex = 61;
+            this.txtTenLoaiPhep.TabIndex = 2;
             // 
             // labelX4
             // 
@@ -156,7 +156,7 @@
             this.txtMaLoaiPhep.Name = "txtMaLoaiPhep";
             this.txtMaLoaiPhep.ReadOnly = true;
             this.txtMaLoaiPhep.Size = new System.Drawing.Size(290, 22);
-            this.txtMaLoaiPhep.TabIndex = 57;
+            this.txtMaLoaiPhep.TabIndex = 1;
             // 
             // labelX2
             // 

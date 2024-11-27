@@ -70,7 +70,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(295, 95);
-            this.txtMoTa.TabIndex = 38;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenChungChi
             // 
@@ -81,7 +81,7 @@
             this.txtTenChungChi.Location = new System.Drawing.Point(31, 172);
             this.txtTenChungChi.Name = "txtTenChungChi";
             this.txtTenChungChi.Size = new System.Drawing.Size(295, 22);
-            this.txtTenChungChi.TabIndex = 37;
+            this.txtTenChungChi.TabIndex = 2;
             // 
             // txtMaChungChi
             // 
@@ -93,7 +93,7 @@
             this.txtMaChungChi.Name = "txtMaChungChi";
             this.txtMaChungChi.ReadOnly = true;
             this.txtMaChungChi.Size = new System.Drawing.Size(295, 22);
-            this.txtMaChungChi.TabIndex = 36;
+            this.txtMaChungChi.TabIndex = 1;
             // 
             // labelX4
             // 

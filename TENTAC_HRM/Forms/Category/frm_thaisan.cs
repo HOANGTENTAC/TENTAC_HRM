@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
@@ -7,12 +8,12 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_thaisan : Form
+    public partial class frm_thaisan : KryptonForm
     {
         public bool edit;
         DataProvider provider = new DataProvider();
-        public string _ma_nhan_vien { get; set; }
-        public int _id_thai_san { get; set; }
+        public string _MaNhanVien { get; set; }
+        public int _IdThaiSan { get; set; }
         frm_personnel _Personnel;
         uc_quatrinh_lamviec _quatrinh;
         string _GhiChu, _NguoiTao, _NguoiCapNhat;
@@ -23,12 +24,12 @@ namespace TENTAC_HRM.Forms.Category
             _quatrinh = (uc_quatrinh_lamviec)user;
             _Personnel = (frm_personnel)form;
         }
-        private void load_nhanvien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
             cbo_NhanVien.ValueMember = "value";
-            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
         private void LoadNull()
         {
@@ -38,11 +39,11 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void frm_thaisan_Load(object sender, EventArgs e)
         {
-            load_nhanvien();
+            LoadComboboxNhanVien();
             if (edit == true)
             {
                 btn_save.Text = "Cập nhật";
-                string sql = string.Format("select * from tbl_NhanVienThaiSan where Id='{0}'", _id_thai_san);
+                string sql = string.Format("select * from tbl_NhanVienThaiSan where Id='{0}'", _IdThaiSan);
                 DataTable dt = SQLHelper.ExecuteDt(sql);
                 if(dt.Rows.Count>0)
                 {
@@ -57,11 +58,11 @@ namespace TENTAC_HRM.Forms.Category
             SetValues();
             if (edit == true)
             {
-                update_data();
+                UpdateData();
             }
             else
             {
-                insert_data();
+                InsertData();
             }
             if (_quatrinh != null)
             {
@@ -69,22 +70,26 @@ namespace TENTAC_HRM.Forms.Category
             }
             else
             {
-                _Personnel.load_thaisan();
+                _Personnel.LoadNhanVienThaiSan();
             }
+            LoadNull();
         }
-        private void insert_data()
+        private void InsertData()
         {
             try
             {
                 string sql = string.Empty;
                 sql = $@"Insert into tbl_NhanVienThaiSan(MaNhanVien, TuNgay, DenNgay, GhiChu, NgayTao, NguoiTao, del_flg)
-                values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpDT(_TuNgay)}, {SQLHelper.rpDT(_DenNgay)}, 
+                values({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpDT(_TuNgay)}, {SQLHelper.rpDT(_DenNgay)}, 
                 {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
-                    RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Personnel.load_thaisan();
-                    LoadNull();
+                    RJMessageBox.Show("Thêm thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Thêm thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)
@@ -92,19 +97,22 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void update_data()
+        private void UpdateData()
         {
             try
             {
                string sql = string.Empty;
                 sql = $@"Update tbl_NhanVienThaiSan Set TuNgay = {SQLHelper.rpDT(_TuNgay)}, DenNgay = {SQLHelper.rpDT(_DenNgay)},
                 GhiChu = {SQLHelper.rpStr(_GhiChu)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
-                Where Id = {SQLHelper.rpI(_id_thai_san)}";
-                if (SQLHelper.ExecuteSql(sql) == 1)
+                Where Id = {SQLHelper.rpI(_IdThaiSan)}";
+                if (SQLHelper.ExecuteSql(sql) > 0)
                 {
-                    RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Personnel.load_thaisan();
-                    LoadNull();
+                    RJMessageBox.Show("Cập nhật thông tin thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    RJMessageBox.Show("Cập nhật thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
             catch (Exception ex)

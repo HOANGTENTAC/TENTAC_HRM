@@ -40,11 +40,11 @@
             this.btn_close = new System.Windows.Forms.Button();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtp_NgayDienRa = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.cbo_MucDo = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.cbo_LoaiTaiNan = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.dtp_NgayDienRa = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayDienRa)).BeginInit();
@@ -60,7 +60,7 @@
             this.txt_NoiDung.Multiline = true;
             this.txt_NoiDung.Name = "txt_NoiDung";
             this.txt_NoiDung.Size = new System.Drawing.Size(288, 148);
-            this.txt_NoiDung.TabIndex = 137;
+            this.txt_NoiDung.TabIndex = 6;
             // 
             // txt_NoiDienRa
             // 
@@ -71,7 +71,7 @@
             this.txt_NoiDienRa.Location = new System.Drawing.Point(24, 264);
             this.txt_NoiDienRa.Name = "txt_NoiDienRa";
             this.txt_NoiDienRa.Size = new System.Drawing.Size(285, 23);
-            this.txt_NoiDienRa.TabIndex = 134;
+            this.txt_NoiDienRa.TabIndex = 4;
             // 
             // label5
             // 
@@ -89,7 +89,7 @@
             this.btn_save.Location = new System.Drawing.Point(24, 14);
             this.btn_save.Margin = new System.Windows.Forms.Padding(4);
             this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(119, 28);
+            this.btn_save.Size = new System.Drawing.Size(110, 28);
             this.btn_save.TabIndex = 6;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -123,7 +123,7 @@
             this.cbo_NhanVien.Location = new System.Drawing.Point(24, 102);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(285, 23);
-            this.cbo_NhanVien.TabIndex = 132;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // label1
             // 
@@ -147,12 +147,13 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_close.Location = new System.Drawing.Point(209, 14);
+            this.btn_close.Location = new System.Drawing.Point(202, 14);
             this.btn_close.Margin = new System.Windows.Forms.Padding(4);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(100, 28);
+            this.btn_close.Size = new System.Drawing.Size(110, 28);
             this.btn_close.TabIndex = 7;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -194,46 +195,6 @@
             this.panel1.Size = new System.Drawing.Size(337, 602);
             this.panel1.TabIndex = 1;
             // 
-            // cbo_MucDo
-            // 
-            this.cbo_MucDo.DisplayMember = "Text";
-            this.cbo_MucDo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbo_MucDo.FormattingEnabled = true;
-            this.cbo_MucDo.ItemHeight = 17;
-            this.cbo_MucDo.Location = new System.Drawing.Point(24, 210);
-            this.cbo_MucDo.Name = "cbo_MucDo";
-            this.cbo_MucDo.Size = new System.Drawing.Size(285, 23);
-            this.cbo_MucDo.TabIndex = 147;
-            // 
-            // labelX3
-            // 
-            this.labelX3.AutoSize = true;
-            this.labelX3.Location = new System.Drawing.Point(24, 185);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(97, 19);
-            this.labelX3.TabIndex = 146;
-            this.labelX3.Text = "Mức độ tai nạn";
-            // 
-            // cbo_LoaiTaiNan
-            // 
-            this.cbo_LoaiTaiNan.DisplayMember = "Text";
-            this.cbo_LoaiTaiNan.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbo_LoaiTaiNan.FormattingEnabled = true;
-            this.cbo_LoaiTaiNan.ItemHeight = 17;
-            this.cbo_LoaiTaiNan.Location = new System.Drawing.Point(24, 156);
-            this.cbo_LoaiTaiNan.Name = "cbo_LoaiTaiNan";
-            this.cbo_LoaiTaiNan.Size = new System.Drawing.Size(285, 23);
-            this.cbo_LoaiTaiNan.TabIndex = 145;
-            // 
-            // labelX2
-            // 
-            this.labelX2.AutoSize = true;
-            this.labelX2.Location = new System.Drawing.Point(24, 131);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(122, 19);
-            this.labelX2.TabIndex = 144;
-            this.labelX2.Text = "Trường hợp tai nạn";
-            // 
             // dtp_NgayDienRa
             // 
             // 
@@ -272,20 +233,63 @@
             this.dtp_NgayDienRa.MonthCalendar.TodayButtonVisible = true;
             this.dtp_NgayDienRa.Name = "dtp_NgayDienRa";
             this.dtp_NgayDienRa.Size = new System.Drawing.Size(282, 23);
-            this.dtp_NgayDienRa.TabIndex = 148;
+            this.dtp_NgayDienRa.TabIndex = 5;
+            // 
+            // cbo_MucDo
+            // 
+            this.cbo_MucDo.DisplayMember = "Text";
+            this.cbo_MucDo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_MucDo.FormattingEnabled = true;
+            this.cbo_MucDo.ItemHeight = 17;
+            this.cbo_MucDo.Location = new System.Drawing.Point(24, 210);
+            this.cbo_MucDo.Name = "cbo_MucDo";
+            this.cbo_MucDo.Size = new System.Drawing.Size(285, 23);
+            this.cbo_MucDo.TabIndex = 3;
+            // 
+            // labelX3
+            // 
+            this.labelX3.AutoSize = true;
+            this.labelX3.Location = new System.Drawing.Point(24, 185);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(97, 19);
+            this.labelX3.TabIndex = 146;
+            this.labelX3.Text = "Mức độ tai nạn";
+            // 
+            // cbo_LoaiTaiNan
+            // 
+            this.cbo_LoaiTaiNan.DisplayMember = "Text";
+            this.cbo_LoaiTaiNan.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_LoaiTaiNan.FormattingEnabled = true;
+            this.cbo_LoaiTaiNan.ItemHeight = 17;
+            this.cbo_LoaiTaiNan.Location = new System.Drawing.Point(24, 156);
+            this.cbo_LoaiTaiNan.Name = "cbo_LoaiTaiNan";
+            this.cbo_LoaiTaiNan.Size = new System.Drawing.Size(285, 23);
+            this.cbo_LoaiTaiNan.TabIndex = 2;
+            // 
+            // labelX2
+            // 
+            this.labelX2.AutoSize = true;
+            this.labelX2.Location = new System.Drawing.Point(24, 131);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(122, 19);
+            this.labelX2.TabIndex = 144;
+            this.labelX2.Text = "Trường hợp tai nạn";
             // 
             // frm_nhanvien_tainan
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(337, 602);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_nhanvien_tainan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhân viên - Tai nạn";
             this.Load += new System.EventHandler(this.frm_nhanvien_tainan_Load);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);

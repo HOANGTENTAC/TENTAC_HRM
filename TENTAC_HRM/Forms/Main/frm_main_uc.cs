@@ -11,7 +11,7 @@ namespace TENTAC_HRM.Forms.Main
         public uc_nhan_su uc_nhansu = null;
         public string name_frm;
         public string title_frm;
-        public string _ma_nhan_vien { get; set; }
+        public string _MaNhanVien { get; set; }
         public string type { get; set; }
         public frm_main_uc(Form _frm = null, UserControl _userControl = null)
         {
@@ -29,9 +29,9 @@ namespace TENTAC_HRM.Forms.Main
         private void uc_staff_address_saveClick(object sender, EventArgs e)
         {
             if (form != null)
-                form.load_diachi();
+                form.LoadNhanVienDiaChi();
             else
-                uc_nhansu.load_diachi(_ma_nhan_vien);
+                uc_nhansu.LoadDiaChiByNhanVien(_MaNhanVien);
         }
         private void OnUCButtonClicked(object sender, EventArgs e)
         {
@@ -44,7 +44,7 @@ namespace TENTAC_HRM.Forms.Main
             {
                 case "address":
                     userControl = uc_staff_address.Instance;
-                    uc_staff_address.Instance._ma_nhan_vien = _ma_nhan_vien;
+                    uc_staff_address.Instance._ma_nhan_vien = _MaNhanVien;
                     uc_staff_address.Instance.uc_controll = false;
                     uc_staff_address.Instance.btn_save.Click += uc_staff_address_saveClick;
                     break;

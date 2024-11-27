@@ -70,7 +70,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(298, 92);
-            this.txtMoTa.TabIndex = 45;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenChuyenNganh
             // 
@@ -81,7 +81,7 @@
             this.txtTenChuyenNganh.Location = new System.Drawing.Point(27, 175);
             this.txtTenChuyenNganh.Name = "txtTenChuyenNganh";
             this.txtTenChuyenNganh.Size = new System.Drawing.Size(298, 22);
-            this.txtTenChuyenNganh.TabIndex = 44;
+            this.txtTenChuyenNganh.TabIndex = 2;
             // 
             // txtMaChuyenNganh
             // 
@@ -93,7 +93,7 @@
             this.txtMaChuyenNganh.Name = "txtMaChuyenNganh";
             this.txtMaChuyenNganh.ReadOnly = true;
             this.txtMaChuyenNganh.Size = new System.Drawing.Size(298, 22);
-            this.txtMaChuyenNganh.TabIndex = 43;
+            this.txtMaChuyenNganh.TabIndex = 1;
             // 
             // labelX4
             // 

@@ -74,7 +74,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.txtTenPhongBan.Location = new System.Drawing.Point(33, 292);
             this.txtTenPhongBan.Name = "txtTenPhongBan";
             this.txtTenPhongBan.Size = new System.Drawing.Size(295, 22);
-            this.txtTenPhongBan.TabIndex = 57;
+            this.txtTenPhongBan.TabIndex = 4;
             // 
             // txtMaPhongBan
             // 
@@ -86,7 +86,7 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             this.txtMaPhongBan.Name = "txtMaPhongBan";
             this.txtMaPhongBan.ReadOnly = true;
             this.txtMaPhongBan.Size = new System.Drawing.Size(295, 22);
-            this.txtMaPhongBan.TabIndex = 56;
+            this.txtMaPhongBan.TabIndex = 1;
             // 
             // labelX5
             // 

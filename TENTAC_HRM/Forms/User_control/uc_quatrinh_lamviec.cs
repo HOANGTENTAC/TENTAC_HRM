@@ -209,7 +209,7 @@ namespace TENTAC_HRM.Forms.User_control
             if (!string.IsNullOrEmpty(_ma_nhan_vien))
             {
                 frm_congtac frm = new frm_congtac(null, this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = false;
                 frm.ShowDialog();
             }
@@ -220,8 +220,8 @@ namespace TENTAC_HRM.Forms.User_control
             if (dgv_congtac.CurrentCell.OwningColumn.Name == "edit_column_ct")
             {
                 frm_congtac frm = new frm_congtac(null, this);
-                frm._id_congtac = int.Parse(dgv_congtac.CurrentRow.Cells["id"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdCongTac = int.Parse(dgv_congtac.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -232,8 +232,8 @@ namespace TENTAC_HRM.Forms.User_control
             if (dgv_khenthuong.CurrentCell.OwningColumn.Name == "edit_column_kt")
             {
                 frm_khenthuong frm = new frm_khenthuong(null, this);
-                frm._id_khenthuong = int.Parse(dgv_khenthuong.CurrentRow.Cells["id"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdKhenThuong = int.Parse(dgv_khenthuong.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -244,7 +244,7 @@ namespace TENTAC_HRM.Forms.User_control
             if (!string.IsNullOrEmpty(_ma_nhan_vien))
             {
                 frm_khenthuong frm = new frm_khenthuong(null, this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = false;
                 frm.ShowDialog();
             }
@@ -255,8 +255,8 @@ namespace TENTAC_HRM.Forms.User_control
             if (dgv_kyluat.CurrentCell.OwningColumn.Name == "edit_column_kl")
             {
                 frm_nhanvien_kyluat frm = new frm_nhanvien_kyluat(null, this);
-                frm._id_qt_kyluat = int.Parse(dgv_kyluat.CurrentRow.Cells["id"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdKyLuat = int.Parse(dgv_kyluat.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -267,7 +267,7 @@ namespace TENTAC_HRM.Forms.User_control
             if (!string.IsNullOrEmpty(_ma_nhan_vien))
             {
                 frm_nhanvien_kyluat frm = new frm_nhanvien_kyluat(null, this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = false;
                 frm.ShowDialog();
             }
@@ -278,7 +278,7 @@ namespace TENTAC_HRM.Forms.User_control
             if (!string.IsNullOrEmpty(_ma_nhan_vien))
             {
                 frm_nhanvien_tainan frm = new frm_nhanvien_tainan(null, this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = false;
                 frm.ShowDialog();
             }
@@ -289,8 +289,8 @@ namespace TENTAC_HRM.Forms.User_control
             if (dgv_tainan.CurrentCell.OwningColumn.Name == "edit_column_tn")
             {
                 frm_nhanvien_tainan frm = new frm_nhanvien_tainan(null, this);
-                frm._id_qt_tainan = int.Parse(dgv_tainan.CurrentRow.Cells["id"].Value.ToString());
-                frm._ma_nhan_vien = _ma_nhan_vien;
+                frm._IdTaiNhan = int.Parse(dgv_tainan.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -322,7 +322,8 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 frm_daotao frm = new frm_daotao(null, this);
                 frm._edit = true;
-                frm._id_dao_tao = int.Parse(dgv_qt_daotao.CurrentRow.Cells["id"].Value.ToString());
+                frm._IdDaoTao = int.Parse(dgv_qt_daotao.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.ShowDialog();
             }
         }
@@ -331,14 +332,14 @@ namespace TENTAC_HRM.Forms.User_control
         {
             frm_daotao frm = new frm_daotao(null, this);
             frm._edit = false;
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.ShowDialog();
         }
 
         private void btn_add_nv_Click(object sender, EventArgs e)
         {
             frm_nghiviec frm = new frm_nghiviec(null, this);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm._edit = false;
             frm.ShowDialog();
         }
@@ -349,7 +350,8 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 frm_nghiviec frm = new frm_nghiviec(null, this);
                 frm._edit = true;
-                frm._id_nghi_viec = int.Parse(dgv_qt_nghiviec.CurrentRow.Cells["id"].Value.ToString());
+                frm._IdNghiViec = int.Parse(dgv_qt_nghiviec.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
                 frm.ShowDialog();
             }
         }
@@ -359,8 +361,8 @@ namespace TENTAC_HRM.Forms.User_control
             if (dgv_thaisai.CurrentCell.OwningColumn.Name == "edit_column_ts")
             {
                 frm_thaisan frm = new frm_thaisan(null, this);
-                frm._ma_nhan_vien = _ma_nhan_vien;
-                frm._id_thai_san = int.Parse(dgv_thaisai.CurrentRow.Cells["id"].Value.ToString());
+                frm._MaNhanVien = _ma_nhan_vien;
+                frm._IdThaiSan = int.Parse(dgv_thaisai.CurrentRow.Cells["id"].Value.ToString());
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -369,7 +371,7 @@ namespace TENTAC_HRM.Forms.User_control
         private void btn_add_ts_Click(object sender, EventArgs e)
         {
             frm_thaisan frm = new frm_thaisan(null, this);
-            frm._ma_nhan_vien = _ma_nhan_vien;
+            frm._MaNhanVien = _ma_nhan_vien;
             frm.edit = false;
             frm.ShowDialog();
         }

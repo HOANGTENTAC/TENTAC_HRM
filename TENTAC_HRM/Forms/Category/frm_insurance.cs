@@ -130,7 +130,7 @@ namespace TENTAC_HRM.Forms.Category
                     }
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     load_data();
-                    personnel.load_baohiem();
+                    personnel.LoadNhanVienBaoHiem();
                 }
             }
             catch (Exception ex)
@@ -162,7 +162,7 @@ namespace TENTAC_HRM.Forms.Category
                 }
                 RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 load_data();
-                personnel.load_baohiem();
+                personnel.LoadNhanVienBaoHiem();
             }
             catch (Exception ex)
             {

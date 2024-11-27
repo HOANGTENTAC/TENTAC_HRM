@@ -31,7 +31,7 @@ namespace TENTAC_HRM
         }
         public DataTable load_tinh()
         {
-            string sql = "select Id,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22";
+            string sql = "select Id,TenDiaChi from mst_DonViHanhChinh where LoaiDiaChi = 22 and del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;
@@ -59,7 +59,7 @@ namespace TENTAC_HRM
         /// <returns></returns>
         public DataTable load_diachi(int id)
         {
-            string sql = string.Format("select MaDiaChi as id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where delflg = 0 and LoaiDiaChi = '{0}'", id);
+            string sql = string.Format("select MaDiaChi as id, MaDiaChi + ' - ' + TenDiaChi as name from mst_DonViHanhChinh where del_flg = 0 and LoaiDiaChi = '{0}'", id);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -67,7 +67,7 @@ namespace TENTAC_HRM
         }
         public DataTable LoadDiaChiNew(int id)
         {
-            string sql = $@"select Id, TenDiaChi as Name from mst_DonViHanhChinh where delflg = 0 and LoaiDiaChi = {SQLHelper.rpI(id)}";
+            string sql = $@"select Id, TenDiaChi as Name from mst_DonViHanhChinh where del_flg = 0 and LoaiDiaChi = {SQLHelper.rpI(id)}";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -108,19 +108,19 @@ namespace TENTAC_HRM
         }
         public DataTable load_loaiphep()
         {
-            string sql = string.Format("SELECT id_nghi_phep as id,ten_nghi_phep as name,ky_hieu FROM tas_nghi_phep");
+            string sql = string.Format("SELECT MaLoaiPhep as id,TenLoaiPhep as name, KyHieu FROM mst_LoaiPhep");
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            dt.Rows.Add("0", "");
-            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
+            dt.Rows.Add("", "");
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaLoaiPhep")).CopyToDataTable();
         }
         public DataTable load_loaiphucap()
         {
-            string sql = "select id_loai_phu_cap,ten_loai_phu_cap from hrm_loai_phu_cap";
+            string sql = "select Id, TenLoaiPhuCap from mst_LoaiPhuCap";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
-            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id_loai_phu_cap")).CopyToDataTable();
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("Id")).CopyToDataTable();
         }
         public DataTable load_loaihopdong()
         {

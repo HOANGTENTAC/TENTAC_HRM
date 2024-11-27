@@ -94,7 +94,7 @@
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
             this.txtMoTa.Size = new System.Drawing.Size(295, 105);
-            this.txtMoTa.TabIndex = 35;
+            this.txtMoTa.TabIndex = 3;
             // 
             // txtTenChucVu
             // 
@@ -105,7 +105,7 @@
             this.txtTenChucVu.Location = new System.Drawing.Point(31, 175);
             this.txtTenChucVu.Name = "txtTenChucVu";
             this.txtTenChucVu.Size = new System.Drawing.Size(295, 22);
-            this.txtTenChucVu.TabIndex = 34;
+            this.txtTenChucVu.TabIndex = 2;
             // 
             // txtMaChucVu
             // 
@@ -117,7 +117,7 @@
             this.txtMaChucVu.Name = "txtMaChucVu";
             this.txtMaChucVu.ReadOnly = true;
             this.txtMaChucVu.Size = new System.Drawing.Size(295, 22);
-            this.txtMaChucVu.TabIndex = 33;
+            this.txtMaChucVu.TabIndex = 1;
             // 
             // panel2
             // 

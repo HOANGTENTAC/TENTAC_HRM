@@ -59,7 +59,6 @@
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.labelX7);
             this.panel1.Controls.Add(this.labelX6);
             this.panel1.Controls.Add(this.panel2);
@@ -108,9 +107,9 @@
             this.panel2.Controls.Add(this.btn_close);
             this.panel2.Controls.Add(this.btn_delete);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 541);
+            this.panel2.Location = new System.Drawing.Point(0, 543);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(448, 55);
+            this.panel2.Size = new System.Drawing.Size(450, 55);
             this.panel2.TabIndex = 60;
             // 
             // btn_luu
@@ -128,6 +127,7 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_close.Location = new System.Drawing.Point(344, 16);
@@ -301,7 +301,7 @@
             this.labelX1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.labelX1.Location = new System.Drawing.Point(0, 0);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(448, 54);
+            this.labelX1.Size = new System.Drawing.Size(450, 54);
             this.labelX1.TabIndex = 26;
             this.labelX1.Text = "Nhân viên - Hôn nhân";
             this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -366,17 +366,20 @@
             // 
             // frm_honnhan
             // 
+            this.AcceptButton = this.btn_luu;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(450, 598);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_honnhan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhân viên - Hôn nhân";
             this.Load += new System.EventHandler(this.frm_honnhan_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_honnhan_KeyDown);
             this.panel1.ResumeLayout(false);

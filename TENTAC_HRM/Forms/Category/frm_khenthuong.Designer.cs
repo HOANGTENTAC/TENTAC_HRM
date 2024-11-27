@@ -30,6 +30,7 @@
         {
             this.pl_khenthuong = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtp_NgayKhenThuong = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.cbo_HinhThuc = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.txt_NoiDung = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
@@ -48,14 +49,13 @@
             this.cbo_NhanVien = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_save = new System.Windows.Forms.Button();
+            this.btn_close = new System.Windows.Forms.Button();
             this.lblName = new DevComponents.DotNetBar.LabelX();
-            this.dtp_NgayKhenThuong = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.pl_khenthuong.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayKhenThuong)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pl_khenthuong
@@ -93,6 +93,46 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(346, 740);
             this.panel1.TabIndex = 0;
+            // 
+            // dtp_NgayKhenThuong
+            // 
+            // 
+            // 
+            // 
+            this.dtp_NgayKhenThuong.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NgayKhenThuong.ButtonDropDown.Visible = true;
+            this.dtp_NgayKhenThuong.Location = new System.Drawing.Point(29, 213);
+            // 
+            // 
+            // 
+            this.dtp_NgayKhenThuong.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgayKhenThuong.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NgayKhenThuong.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NgayKhenThuong.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_NgayKhenThuong.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NgayKhenThuong.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgayKhenThuong.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NgayKhenThuong.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgayKhenThuong.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NgayKhenThuong.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NgayKhenThuong.Name = "dtp_NgayKhenThuong";
+            this.dtp_NgayKhenThuong.Size = new System.Drawing.Size(289, 23);
+            this.dtp_NgayKhenThuong.TabIndex = 3;
             // 
             // cbo_HinhThuc
             // 
@@ -260,41 +300,42 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(39)))), ((int)(((byte)(75)))));
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.btn_save);
+            this.panel2.Controls.Add(this.btn_close);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 685);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(346, 55);
             this.panel2.TabIndex = 131;
             // 
-            // button1
+            // btn_save
             // 
-            this.button1.Image = global::TENTAC_HRM.Properties.Resources.diskette;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(29, 14);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 28);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Lưu";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btn_save_Click);
+            this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
+            this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_save.Location = new System.Drawing.Point(29, 14);
+            this.btn_save.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(110, 28);
+            this.btn_save.TabIndex = 10;
+            this.btn_save.Text = "Lưu";
+            this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // button2
+            // btn_close
             // 
-            this.button2.Image = global::TENTAC_HRM.Properties.Resources.clear;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(208, 14);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 28);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Đóng";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btn_cancel_Click);
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
+            this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_close.Location = new System.Drawing.Point(208, 14);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_close.Name = "btn_close";
+            this.btn_close.Size = new System.Drawing.Size(110, 28);
+            this.btn_close.TabIndex = 11;
+            this.btn_close.Text = "Đóng";
+            this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_close.UseVisualStyleBackColor = true;
+            this.btn_close.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // lblName
             // 
@@ -309,63 +350,26 @@
             this.lblName.Text = "Nhân viên - Khen thưởng";
             this.lblName.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            // dtp_NgayKhenThuong
-            // 
-            // 
-            // 
-            // 
-            this.dtp_NgayKhenThuong.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_NgayKhenThuong.ButtonDropDown.Visible = true;
-            this.dtp_NgayKhenThuong.Location = new System.Drawing.Point(29, 213);
-            // 
-            // 
-            // 
-            this.dtp_NgayKhenThuong.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NgayKhenThuong.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_NgayKhenThuong.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_NgayKhenThuong.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_NgayKhenThuong.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
-            this.dtp_NgayKhenThuong.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_NgayKhenThuong.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NgayKhenThuong.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_NgayKhenThuong.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NgayKhenThuong.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_NgayKhenThuong.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_NgayKhenThuong.Name = "dtp_NgayKhenThuong";
-            this.dtp_NgayKhenThuong.Size = new System.Drawing.Size(289, 23);
-            this.dtp_NgayKhenThuong.TabIndex = 149;
-            // 
             // frm_khenthuong
             // 
+            this.AcceptButton = this.btn_save;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(346, 740);
             this.Controls.Add(this.pl_khenthuong);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_khenthuong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nhân viên - Khen thưởng";
             this.Load += new System.EventHandler(this.frm_khenthuong_Load);
             this.pl_khenthuong.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NgayKhenThuong)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -376,8 +380,8 @@
         private System.Windows.Forms.Panel panel1;
         private DevComponents.DotNetBar.LabelX lblName;
         private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button btn_close;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_SoQuyetDinh;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_NhanVien;

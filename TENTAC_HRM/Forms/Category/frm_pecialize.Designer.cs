@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dtp_NamNhanBang = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.dtp_DenNam = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.dtp_TuNam = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_save_add = new System.Windows.Forms.Button();
             this.btn_save_close = new System.Windows.Forms.Button();
@@ -56,14 +59,11 @@
             this.label4 = new DevComponents.DotNetBar.LabelX();
             this.label3 = new DevComponents.DotNetBar.LabelX();
             this.label2 = new DevComponents.DotNetBar.LabelX();
-            this.dtp_TuNam = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-            this.dtp_DenNam = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-            this.dtp_NamNhanBang = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNam)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NamNhanBang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNam)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -100,6 +100,126 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(395, 668);
             this.panel1.TabIndex = 0;
+            // 
+            // dtp_NamNhanBang
+            // 
+            // 
+            // 
+            // 
+            this.dtp_NamNhanBang.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NamNhanBang.ButtonDropDown.Visible = true;
+            this.dtp_NamNhanBang.Location = new System.Drawing.Point(26, 390);
+            // 
+            // 
+            // 
+            this.dtp_NamNhanBang.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NamNhanBang.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NamNhanBang.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NamNhanBang.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_NamNhanBang.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NamNhanBang.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NamNhanBang.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NamNhanBang.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NamNhanBang.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NamNhanBang.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NamNhanBang.Name = "dtp_NamNhanBang";
+            this.dtp_NamNhanBang.Size = new System.Drawing.Size(161, 23);
+            this.dtp_NamNhanBang.TabIndex = 8;
+            // 
+            // dtp_DenNam
+            // 
+            // 
+            // 
+            // 
+            this.dtp_DenNam.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_DenNam.ButtonDropDown.Visible = true;
+            this.dtp_DenNam.Location = new System.Drawing.Point(205, 342);
+            // 
+            // 
+            // 
+            this.dtp_DenNam.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_DenNam.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_DenNam.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_DenNam.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_DenNam.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_DenNam.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_DenNam.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_DenNam.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_DenNam.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_DenNam.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_DenNam.Name = "dtp_DenNam";
+            this.dtp_DenNam.Size = new System.Drawing.Size(161, 23);
+            this.dtp_DenNam.TabIndex = 7;
+            // 
+            // dtp_TuNam
+            // 
+            // 
+            // 
+            // 
+            this.dtp_TuNam.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_TuNam.ButtonDropDown.Visible = true;
+            this.dtp_TuNam.Location = new System.Drawing.Point(28, 342);
+            // 
+            // 
+            // 
+            this.dtp_TuNam.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_TuNam.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_TuNam.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_TuNam.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
+            this.dtp_TuNam.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_TuNam.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_TuNam.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_TuNam.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_TuNam.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_TuNam.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_TuNam.Name = "dtp_TuNam";
+            this.dtp_TuNam.Size = new System.Drawing.Size(161, 23);
+            this.dtp_TuNam.TabIndex = 6;
             // 
             // panel2
             // 
@@ -161,7 +281,7 @@
             this.cbo_NhanVien.Location = new System.Drawing.Point(26, 99);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(338, 23);
-            this.cbo_NhanVien.TabIndex = 40;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // labelX1
             // 
@@ -382,148 +502,31 @@
             this.label2.TabIndex = 11;
             this.label2.Text = "Bậc đào tạo";
             // 
-            // dtp_TuNam
-            // 
-            // 
-            // 
-            // 
-            this.dtp_TuNam.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_TuNam.ButtonDropDown.Visible = true;
-            this.dtp_TuNam.Location = new System.Drawing.Point(28, 342);
-            // 
-            // 
-            // 
-            this.dtp_TuNam.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_TuNam.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_TuNam.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_TuNam.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_TuNam.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
-            this.dtp_TuNam.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_TuNam.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_TuNam.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_TuNam.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_TuNam.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_TuNam.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_TuNam.Name = "dtp_TuNam";
-            this.dtp_TuNam.Size = new System.Drawing.Size(161, 23);
-            this.dtp_TuNam.TabIndex = 45;
-            // 
-            // dtp_DenNam
-            // 
-            // 
-            // 
-            // 
-            this.dtp_DenNam.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_DenNam.ButtonDropDown.Visible = true;
-            this.dtp_DenNam.Location = new System.Drawing.Point(205, 342);
-            // 
-            // 
-            // 
-            this.dtp_DenNam.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_DenNam.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_DenNam.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_DenNam.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_DenNam.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
-            this.dtp_DenNam.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_DenNam.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_DenNam.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_DenNam.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_DenNam.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_DenNam.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_DenNam.Name = "dtp_DenNam";
-            this.dtp_DenNam.Size = new System.Drawing.Size(161, 23);
-            this.dtp_DenNam.TabIndex = 46;
-            // 
-            // dtp_NamNhanBang
-            // 
-            // 
-            // 
-            // 
-            this.dtp_NamNhanBang.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_NamNhanBang.ButtonDropDown.Visible = true;
-            this.dtp_NamNhanBang.Location = new System.Drawing.Point(26, 390);
-            // 
-            // 
-            // 
-            this.dtp_NamNhanBang.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NamNhanBang.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_NamNhanBang.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_NamNhanBang.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_NamNhanBang.MonthCalendar.DisplayMonth = new System.DateTime(2024, 10, 1, 0, 0, 0, 0);
-            this.dtp_NamNhanBang.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_NamNhanBang.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NamNhanBang.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_NamNhanBang.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NamNhanBang.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_NamNhanBang.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_NamNhanBang.Name = "dtp_NamNhanBang";
-            this.dtp_NamNhanBang.Size = new System.Drawing.Size(161, 23);
-            this.dtp_NamNhanBang.TabIndex = 47;
-            // 
             // frm_pecialize
             // 
+            this.AcceptButton = this.btn_save_add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(395, 668);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_pecialize";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Đào tạo";
             this.Load += new System.EventHandler(this.frm_train_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_pecialize_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNam)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NamNhanBang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNam)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

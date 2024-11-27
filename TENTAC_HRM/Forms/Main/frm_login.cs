@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.Main
 {
-    public partial class frm_login : Form
+    public partial class frm_login : KryptonForm
     {
         DataProvider provider = new DataProvider();
 

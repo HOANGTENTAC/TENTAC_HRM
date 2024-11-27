@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btn_clear = new System.Windows.Forms.Button();
@@ -56,6 +56,7 @@
             this.txt_GhiChu = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_Luong = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.label1 = new System.Windows.Forms.Label();
             this.ID = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.delete_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
@@ -64,7 +65,6 @@
             this.MucLuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.PT_ThueTNCN = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.IsActive = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).BeginInit();
@@ -108,7 +108,7 @@
             this.btn_clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(91, 27);
-            this.btn_clear.TabIndex = 18;
+            this.btn_clear.TabIndex = 15;
             this.btn_clear.Text = "Đặt lại";
             this.btn_clear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_clear.UseVisualStyleBackColor = true;
@@ -123,7 +123,7 @@
             this.btn_close.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(91, 27);
-            this.btn_close.TabIndex = 17;
+            this.btn_close.TabIndex = 16;
             this.btn_close.Text = "Đóng";
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_close.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.btn_save.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(91, 27);
-            this.btn_save.TabIndex = 15;
+            this.btn_save.TabIndex = 14;
             this.btn_save.Text = "Lưu";
             this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save.UseVisualStyleBackColor = true;
@@ -155,7 +155,7 @@
             this.cbo_NhanVien.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbo_NhanVien.Name = "cbo_NhanVien";
             this.cbo_NhanVien.Size = new System.Drawing.Size(321, 22);
-            this.cbo_NhanVien.TabIndex = 148;
+            this.cbo_NhanVien.TabIndex = 1;
             // 
             // labelX2
             // 
@@ -187,7 +187,7 @@
             this.txt_MucLuong.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_MucLuong.Name = "txt_MucLuong";
             this.txt_MucLuong.Size = new System.Drawing.Size(205, 23);
-            this.txt_MucLuong.TabIndex = 150;
+            this.txt_MucLuong.TabIndex = 2;
             this.txt_MucLuong.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Textbox_KeyPress);
             this.txt_MucLuong.Leave += new System.EventHandler(this.txt_mucluong_Leave);
             // 
@@ -197,7 +197,7 @@
             this.chk_HieuLuc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_HieuLuc.Name = "chk_HieuLuc";
             this.chk_HieuLuc.Size = new System.Drawing.Size(115, 23);
-            this.chk_HieuLuc.TabIndex = 151;
+            this.chk_HieuLuc.TabIndex = 3;
             this.chk_HieuLuc.Text = "Đang hiệu lực";
             // 
             // chk_BHXH
@@ -206,7 +206,7 @@
             this.chk_BHXH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_BHXH.Name = "chk_BHXH";
             this.chk_BHXH.Size = new System.Drawing.Size(115, 23);
-            this.chk_BHXH.TabIndex = 152;
+            this.chk_BHXH.TabIndex = 4;
             this.chk_BHXH.Text = "Đóng BHXH";
             // 
             // chk_BHYT
@@ -215,7 +215,7 @@
             this.chk_BHYT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_BHYT.Name = "chk_BHYT";
             this.chk_BHYT.Size = new System.Drawing.Size(115, 23);
-            this.chk_BHYT.TabIndex = 153;
+            this.chk_BHYT.TabIndex = 5;
             this.chk_BHYT.Text = "Đóng BHYT";
             // 
             // chk_BHTN
@@ -224,7 +224,7 @@
             this.chk_BHTN.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_BHTN.Name = "chk_BHTN";
             this.chk_BHTN.Size = new System.Drawing.Size(115, 23);
-            this.chk_BHTN.TabIndex = 154;
+            this.chk_BHTN.TabIndex = 6;
             this.chk_BHTN.Text = "Đóng BHTN";
             // 
             // chk_PhiCD
@@ -233,7 +233,7 @@
             this.chk_PhiCD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_PhiCD.Name = "chk_PhiCD";
             this.chk_PhiCD.Size = new System.Drawing.Size(115, 23);
-            this.chk_PhiCD.TabIndex = 155;
+            this.chk_PhiCD.TabIndex = 7;
             this.chk_PhiCD.Text = "Đóng Phí CĐ";
             // 
             // chk_MienThue
@@ -242,7 +242,7 @@
             this.chk_MienThue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_MienThue.Name = "chk_MienThue";
             this.chk_MienThue.Size = new System.Drawing.Size(191, 23);
-            this.chk_MienThue.TabIndex = 156;
+            this.chk_MienThue.TabIndex = 8;
             this.chk_MienThue.Text = "Miễn đóng thuế thu nhập";
             // 
             // chk_ThueTheoThuNhapCD
@@ -251,7 +251,7 @@
             this.chk_ThueTheoThuNhapCD.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chk_ThueTheoThuNhapCD.Name = "chk_ThueTheoThuNhapCD";
             this.chk_ThueTheoThuNhapCD.Size = new System.Drawing.Size(211, 23);
-            this.chk_ThueTheoThuNhapCD.TabIndex = 157;
+            this.chk_ThueTheoThuNhapCD.TabIndex = 9;
             this.chk_ThueTheoThuNhapCD.Text = "Tính thuế theo thu nhập % CĐ";
             // 
             // labelX4
@@ -274,7 +274,7 @@
             this.txt_PhiThuNhapCaNhan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_PhiThuNhapCaNhan.Name = "txt_PhiThuNhapCaNhan";
             this.txt_PhiThuNhapCaNhan.Size = new System.Drawing.Size(165, 23);
-            this.txt_PhiThuNhapCaNhan.TabIndex = 159;
+            this.txt_PhiThuNhapCaNhan.TabIndex = 10;
             this.txt_PhiThuNhapCaNhan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Textbox_KeyPress);
             // 
             // labelX5
@@ -336,7 +336,7 @@
             this.dtp_TuNgay.MonthCalendar.TodayButtonVisible = true;
             this.dtp_TuNgay.Name = "dtp_TuNgay";
             this.dtp_TuNgay.Size = new System.Drawing.Size(157, 23);
-            this.dtp_TuNgay.TabIndex = 162;
+            this.dtp_TuNgay.TabIndex = 11;
             // 
             // dtp_DenNgay
             // 
@@ -377,7 +377,7 @@
             this.dtp_DenNgay.MonthCalendar.TodayButtonVisible = true;
             this.dtp_DenNgay.Name = "dtp_DenNgay";
             this.dtp_DenNgay.Size = new System.Drawing.Size(157, 23);
-            this.dtp_DenNgay.TabIndex = 163;
+            this.dtp_DenNgay.TabIndex = 12;
             // 
             // labelX7
             // 
@@ -400,7 +400,7 @@
             this.txt_GhiChu.Multiline = true;
             this.txt_GhiChu.Name = "txt_GhiChu";
             this.txt_GhiChu.Size = new System.Drawing.Size(329, 89);
-            this.txt_GhiChu.TabIndex = 165;
+            this.txt_GhiChu.TabIndex = 13;
             // 
             // panel1
             // 
@@ -425,14 +425,14 @@
             this.MucLuong,
             this.PT_ThueTNCN,
             this.IsActive});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_Luong.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_Luong.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_Luong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Luong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_Luong.Location = new System.Drawing.Point(0, 0);
@@ -441,6 +441,16 @@
             this.dgv_Luong.Size = new System.Drawing.Size(761, 445);
             this.dgv_Luong.TabIndex = 147;
             this.dgv_Luong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_luong_CellClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(1080, 270);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 17);
+            this.label1.TabIndex = 167;
+            this.label1.Text = "%";
             // 
             // ID
             // 
@@ -488,31 +498,21 @@
             // PT_ThueTNCN
             // 
             this.PT_ThueTNCN.DataPropertyName = "PT_ThueTNCN";
-            this.PT_ThueTNCN.HeaderText = "Thuế TNCN";
+            this.PT_ThueTNCN.HeaderText = "Thuế TNCN (%)";
             this.PT_ThueTNCN.Name = "PT_ThueTNCN";
-            this.PT_ThueTNCN.Width = 100;
+            this.PT_ThueTNCN.Width = 110;
             // 
             // IsActive
             // 
             this.IsActive.DataPropertyName = "IsActive";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = false;
-            this.IsActive.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.IsActive.DefaultCellStyle = dataGridViewCellStyle1;
             this.IsActive.FalseValue = null;
             this.IsActive.HeaderText = "Hiệu lực";
             this.IsActive.IndeterminateValue = null;
             this.IsActive.Name = "IsActive";
             this.IsActive.TrueValue = null;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(1080, 270);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 17);
-            this.label1.TabIndex = 167;
-            this.label1.Text = "%";
             // 
             // frm_wage
             // 
@@ -544,12 +544,13 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.labelX1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_wage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Lương";
             this.Load += new System.EventHandler(this.frm_wage_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_wage_KeyDown);
             this.panel3.ResumeLayout(false);
@@ -590,6 +591,7 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txt_GhiChu;
         private System.Windows.Forms.Panel panel1;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_Luong;
+        private System.Windows.Forms.Label label1;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewImageColumn delete_column;
         private System.Windows.Forms.DataGridViewImageColumn edit_column;
@@ -598,6 +600,5 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MucLuong;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn PT_ThueTNCN;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn IsActive;
-        private System.Windows.Forms.Label label1;
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
@@ -13,7 +9,7 @@ using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_department_new : Form
+    public partial class frm_department_new : KryptonForm
     {
         DataProvider provider = new DataProvider();
         frm_personnel personnel;
@@ -29,14 +25,16 @@ namespace TENTAC_HRM.Forms.Category
             InitializeComponent();
             personnel = _personnel;
         }
-
         private void frm_department_new_Load(object sender, EventArgs e)
         {
             LoadNhanVien();
             LoadChucVu();
             LoadCongTy();
             LoadPhongBan();
-            LoadData();
+            if(edit == true)
+            {
+                LoadData();
+            }
         }
         private void LoadNhanVien()
         {
@@ -74,7 +72,6 @@ namespace TENTAC_HRM.Forms.Category
                 LoadKhuVuc(MaCongTy);
             }
         }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -96,7 +93,6 @@ namespace TENTAC_HRM.Forms.Category
         {
            LoadNull();
         }
-
         private void LoadKhuVuc(string MaCongTy)
         {
             DataTable dtPhongBan = SQLHelper.ExecuteDt($"select MaKhuVuc, TenKhuVuc from  dbo.[mst_KhuVuc] where MaCongTy = {SQLHelper.rpStr(MaCongTy)}");
@@ -137,7 +133,7 @@ namespace TENTAC_HRM.Forms.Category
 
             if (personnel != null)
             {
-                personnel.load_phongban();
+                personnel.LoadNhanVienPhongBan();
             }
         }
         private void UpdateData()
@@ -174,7 +170,6 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void InsertData()
         {
             try
@@ -255,7 +250,7 @@ namespace TENTAC_HRM.Forms.Category
                         {
                             RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             LoadData();
-                            personnel.load_phongban();
+                            personnel.LoadNhanVienPhongBan();
                         }
                     }
                 }

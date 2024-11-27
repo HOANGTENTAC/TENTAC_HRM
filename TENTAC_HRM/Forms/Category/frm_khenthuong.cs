@@ -1,18 +1,18 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.User_control;
-using TENTAC_HRM.Model;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_khenthuong : Form
+    public partial class frm_khenthuong : KryptonForm
     {
         public bool edit { get; set; }
-        public string _ma_nhan_vien { get; set; }
-        public int _id_khenthuong { get; set; }
+        public string _MaNhanVien { get; set; }
+        public int _IdKhenThuong { get; set; }
         DataProvider provider = new DataProvider();
         //Khenthuong_model model = new Khenthuong_model();
         frm_personnel _Personnel;
@@ -27,33 +27,30 @@ namespace TENTAC_HRM.Forms.Category
             _quatrinh = (uc_quatrinh_lamviec)user;
             _Personnel = (frm_personnel)form;
         }
-
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void btn_save_Click(object sender, EventArgs e)
         {
-            //set_value_text();
-            SetValuesIndex();
+            SetValues();
             if (edit == true)
             {
-                update_date();
+                UpdateData();
             }
             else
             {
-                insert_data();
+                InsertData();
             }
-
             if (_Personnel != null)
             {
-                _Personnel.Load_khenthuong();
+                _Personnel.LoadNhanVienKhenThuong();
             }
             else
             {
                 _quatrinh.Load_khenthuong();
             }
+            LoadNull();
         }
         private void LoadNull()
         {
@@ -68,18 +65,18 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void frm_khenthuong_Load(object sender, EventArgs e)
         {
-            load_nhanvien();
-            load_hinhThuc();
-            load_capkhenthuong();
-            load_nguoiky();
+            LoadComboboxNhanVien();
+            LoadComboboxHinhThuc();
+            LoadComboboxCapKhenThuong();
+            LoadComboboxNguoiKy();
             if (edit == true)
             {
-                load_data();
+                LoadData();
             }
         }
-        private void load_data()
+        private void LoadData()
         {
-            string sql = string.Format("select * from tbl_QTKhenThuong where Id='{0}' and del_flg = 0", _id_khenthuong);
+            string sql = string.Format("select * from tbl_QTKhenThuong where Id='{0}' and del_flg = 0", _IdKhenThuong);
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
@@ -93,58 +90,39 @@ namespace TENTAC_HRM.Forms.Category
                 txt_NoiDung.Text = dt.Rows[0]["NoiDung"].ToString();
             }
         }
-        private void load_nhanvien()
+        private void LoadComboboxNhanVien()
         {
             cbo_NhanVien.DataSource = provider.load_nhanvien();
             cbo_NhanVien.DisplayMember = "name";
             cbo_NhanVien.ValueMember = "value";
-            cbo_NhanVien.SelectedValue = _ma_nhan_vien;
+            cbo_NhanVien.SelectedValue = _MaNhanVien;
         }
-        private void load_hinhThuc()
+        private void LoadComboboxHinhThuc()
         {
             cbo_HinhThuc.DataSource = provider.load_all_type(179);
             cbo_HinhThuc.DisplayMember = "name";
             cbo_HinhThuc.ValueMember = "id";
         }
-        private void load_nguoiky()
+        private void LoadComboboxNguoiKy()
         {
             cbo_NguoiKy.DataSource = provider.load_nhanvien();
             cbo_NguoiKy.DisplayMember = "name";
             cbo_NguoiKy.ValueMember = "value";
         }
-        private void load_capkhenthuong()
+        private void LoadComboboxCapKhenThuong()
         {
             cbo_Cap.DataSource = provider.load_all_type(147);
             cbo_Cap.DisplayMember = "name";
             cbo_Cap.ValueMember = "id";
         }
-        //private void set_value_text()
-        //{
-        //    model.So_quyet_dinh = txt_SoQuyetDinh.Text;
-        //    model.Ngay_khen_thuong = DateTime.Parse(dtp_NgayKhenThuong.Text.ToString()).ToString("yyyy/MM/dd");
-        //    model.Noi_dung = txt_NoiDung.Text;
-        //    model.Hinh_thuc = txt_HinhThuc.Text;
-        //    model.So_tien = txt_SoTien.Text;
-        //    model.Ly_do = txt_LyDo.Text;
-        //    model.Id_cap = int.Parse(cbo_Cap.SelectedValue.ToString());
-        //    model.Id_nguoi_ky = 0;
-        //    model.Id_nguoi_tao = SQLHelper.sIdUser;
-        //}
-
-        private void insert_data()
+        private void InsertData()
         {
             try
             {
-                //    string sql = string.Format("insert into hrm_qt_khenthuong(ma_nhan_vien,ngay_khen_thuong,so_quyet_dinh,noi_dung,hinh_thuc," +
-                //"so_tien,ly_do,id_cap,id_nguoi_ky,ngay_tao,id_nguoi_tao) " +
-                //"values('{0}','{1}','{2}',N'{3}',N'{4}','{5}',N'{6}','{7}','{8}',GETDATE(),'{9}')",
-                //_ma_nhan_vien, model.Ngay_khen_thuong, model.So_quyet_dinh, model.Noi_dung, model.Hinh_thuc,
-                //model.So_tien, model.Ly_do, model.Id_cap, model.Id_nguoi_ky, model.Id_nguoi_tao);
-
                 string sql = string.Empty;
                 sql = $@"Insert into tbl_QTKhenThuong(MaNhanVien, NgayKhenThuong, SoQuyetDinh, NoiDung, HinhThuc, SoTien,
                         LyDo, Id_Cap, MaNhanVienKy, NgayTao, NguoiTao, del_flg)
-                        values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpDT(_NgayKhenThuong)}, {SQLHelper.rpStr(_SoQuyetDinh)},
+                        values({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpDT(_NgayKhenThuong)}, {SQLHelper.rpStr(_SoQuyetDinh)},
                         {SQLHelper.rpStr(_NoiDung)}, {SQLHelper.rpI(_HinhThuc)}, {SQLHelper.rpD(_SoTien)}, {SQLHelper.rpStr(_LyDo)},
                         {SQLHelper.rpI(_Cap)}, {SQLHelper.rpStr(_NguoiKy)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
 
@@ -159,23 +137,16 @@ namespace TENTAC_HRM.Forms.Category
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void update_date()
+        private void UpdateData()
         {
             try
             {
-                //string sql = string.Format("update hrm_qt_khenthuong set ngay_khen_thuong = '{1}',so_quyet_dinh = '{2}',noi_dung = N'{3}',hinh_thuc = N'{4}'," +
-                //    "so_tien = '{5}',ly_do = N'{6}',id_cap = '{7}',id_nguoi_ky= '{8}',ngay_cap_nhat = GETDATE() " +
-                //    "where id_qt_khenthuong= {0}",
-                //_id_khenthuong, model.Ngay_khen_thuong, model.So_quyet_dinh, model.Noi_dung, model.Hinh_thuc,
-                //model.So_tien, model.Ly_do, model.Id_cap, model.Id_nguoi_ky);
-
                 string sql = string.Empty;
                 sql = $@"Update tbl_QTKhenThuong Set NgayKhenThuong = {SQLHelper.rpDT(_NgayKhenThuong)}, SoQuyetDinh = {SQLHelper.rpStr(_SoQuyetDinh)}, 
                     NoiDung = {SQLHelper.rpStr(_NoiDung)}, HinhThuc = {SQLHelper.rpI(_HinhThuc)}, SoTien =  {SQLHelper.rpD(_SoTien)}, 
                     LyDo = {SQLHelper.rpStr(_LyDo)}, Id_Cap = {SQLHelper.rpI(_Cap)}, MaNhanVienKy = {SQLHelper.rpStr(_NguoiKy)}, 
                     NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
-                    Where Id = {_id_khenthuong}";
+                    Where Id = {_IdKhenThuong}";
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -196,7 +167,7 @@ namespace TENTAC_HRM.Forms.Category
             }
             base.OnKeyPress(e);
         }
-        private void SetValuesIndex()
+        private void SetValues()
         {
             _NgayKhenThuong = string.IsNullOrEmpty(dtp_NgayKhenThuong.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayKhenThuong.Text);
             _SoQuyetDinh = txt_SoQuyetDinh.Text.Trim();

@@ -34,20 +34,20 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void uc_dvhc_Load(object sender, EventArgs e)
         {
-            load_data();
-            load_Vung();
-            load_null();
+            LoadData();
+            LoadVung();
+            LoadNull();
         }
-        private void load_null()
+        private void LoadNull()
         {
             txtPhuongXa.Text = string.Empty;
             txtTinhThanh.Text = string.Empty;
             txtQuanHuyen.Text = string.Empty;
             cboVung.SelectedIndex = 0;
         }
-        private void load_Vung()
+        private void LoadVung()
         {
-            string sql = @"Select Id, Vung from tbl_MucLuongToiThieu where DelFlg = 0";
+            string sql = @"Select Id, Vung from tbl_MucLuongToiThieu where del_flg = 0";
             DataTable DT = SQLHelper.ExecuteDt(sql);
             DataRow row = DT.NewRow();
             row["Vung"] = "---Chọn Vùng---";
@@ -56,12 +56,12 @@ namespace TENTAC_HRM.Forms.User_control
             cboVung.DisplayMember = "Vung";
             cboVung.ValueMember = "Id";
         }
-        private void load_data()
+        private void LoadData()
         {
             listView.View = View.Details;
             listView.FullRowSelect = true;
 
-            string SQL = $@"Select * from mst_DonViHanhChinh WHERE DelFlg = 0";
+            string SQL = $@"Select * from mst_DonViHanhChinh WHERE del_flg = 0";
             DataTable DT = SQLHelper.ExecuteDt(SQL);
 
             var filteredRowsTinhThanh = DT.AsEnumerable().Where(row => row.Field<int?>("CapBac") == 1);
@@ -150,7 +150,7 @@ namespace TENTAC_HRM.Forms.User_control
                         string sqlDetail = $@"SELECT DVHC.Id, TenDiaChi, Vung, LuongToiThieuTheoThang, LuongToiThieuTheoGio
                                   FROM mst_DonViHanhChinh DVHC
                                   LEFT JOIN tbl_MucLuongToiThieu V ON DVHC.MaKhuVuc = V.Id
-                                  WHERE DVHC.Id = {selectedId}";
+                                  WHERE DVHC.Id = {selectedId} and DVHC.del_flg = 0";
                         DataTable dtDetail = SQLHelper.ExecuteDt(sqlDetail);
 
                         foreach (DataRow rowDetail in dtDetail.Rows)
@@ -204,7 +204,7 @@ namespace TENTAC_HRM.Forms.User_control
                     TenDiaChi = txtTinhThanh.Text.Trim();
                     sql = @"INSERT INTO mst_DonViHanhChinh (TenDiaChi, CapBac, ParentId, MaKhuVuc, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat)
                     SELECT @TenDiaChi, @CapBac, @ParentId, NULL, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat
-                    WHERE NOT EXISTS (SELECT 1 FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = 1)";
+                    WHERE NOT EXISTS (SELECT 1 FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = 1 and del_flg = 0)";
 
                     var parameters = new List<SqlParameter>
                     {
@@ -237,7 +237,7 @@ namespace TENTAC_HRM.Forms.User_control
                     }
                     sql = @"INSERT INTO mst_DonViHanhChinh (TenDiaChi, CapBac, ParentId, MaKhuVuc, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat)
                     SELECT @TenDiaChi, @CapBac, @ParentId, @MaKhuVuc, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat
-                    WHERE NOT EXISTS (SELECT 1 FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = @CapBac)";
+                    WHERE NOT EXISTS (SELECT 1 FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = @CapBac and del_flg = 0)";
 
                     var parameters = new List<SqlParameter>
                     {
@@ -268,7 +268,7 @@ namespace TENTAC_HRM.Forms.User_control
                         TenDiaChi = txtPhuongXa.Text.Trim();
                         sql = @"INSERT INTO mst_DonViHanhChinh (TenDiaChi, CapBac, ParentId, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat)
                         SELECT @TenDiaChi, @CapBac, @ParentId, @NgayTao, @NguoiTao, @NgayCapNhat, @NguoiCapNhat
-                        WHERE NOT EXISTS (SELECT 1 FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = @CapBac)";
+                        WHERE NOT EXISTS (SELECT 1 FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = @CapBac and del_flg = 0)";
 
                         var parameters = new List<SqlParameter>
                         {
@@ -296,7 +296,7 @@ namespace TENTAC_HRM.Forms.User_control
                     TenDiaChi = txtTinhThanh.Text.Trim();
                     sql = $@"UPDATE mst_DonViHanhChinh 
                     SET TenDiaChi = @TenDiaChi, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat
-                    WHERE Id = {IdTinhThanh}";
+                    WHERE Id = {IdTinhThanh} and del_flg = 0";
 
                     var parameters = new List<SqlParameter>
                     {
@@ -312,7 +312,7 @@ namespace TENTAC_HRM.Forms.User_control
                     TenDiaChi = txtQuanHuyen.Text.Trim();
                     sql = $@"UPDATE mst_DonViHanhChinh 
                         SET TenDiaChi = @TenDiaChi, MaKhuVuc = @MaKhuVuc ,NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat
-                        WHERE Id = {IdQuanHuyen}";
+                        WHERE Id = {IdQuanHuyen} and del_flg = 0";
 
                     if (cboVung.SelectedIndex != 0)
                     {
@@ -332,7 +332,7 @@ namespace TENTAC_HRM.Forms.User_control
                     TenDiaChi = txtPhuongXa.Text.Trim();
                     sql = $@"UPDATE mst_DonViHanhChinh 
                         SET TenDiaChi = @TenDiaChi, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat
-                        WHERE Id = {IdPhuongXa}";
+                        WHERE Id = {IdPhuongXa} and del_flg = 0";
                     var parameters = new List<SqlParameter>
                     {
                         new SqlParameter("@TenDiaChi", TenDiaChi),
@@ -342,12 +342,12 @@ namespace TENTAC_HRM.Forms.User_control
                     SQLHelper.ExecuteSql(sql, parameters.ToArray());
                 }
             }
-            load_data();
-            load_Vung();
+            LoadData();
+            LoadVung();
         }
         private int? GetParentId(string tenDiaChi, int capBac)
         {
-            string sql = $@"SELECT Id FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = @CapBac";
+            string sql = $@"SELECT Id FROM mst_DonViHanhChinh WHERE TenDiaChi = @TenDiaChi AND CapBac = @CapBac and del_flg = 0";
             var parameters = new List<SqlParameter>
             {
                 new SqlParameter("@TenDiaChi", tenDiaChi),
@@ -370,8 +370,8 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 UpdateDelFlag(Convert.ToInt32(IdPhuongXa));
             }
-            load_data();
-            load_Vung();
+            LoadData();
+            LoadVung();
         }
 
         private void UpdateDelFlag(int id)
@@ -383,7 +383,7 @@ namespace TENTAC_HRM.Forms.User_control
                 INNER JOIN RecursiveDel parent ON child.ParentId = parent.Id
             )
             UPDATE mst_DonViHanhChinh 
-            SET DelFlg = 1, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat
+            SET del_flg = 1, NgayCapNhat = @NgayCapNhat, NguoiCapNhat = @NguoiCapNhat
             WHERE Id IN (SELECT Id FROM RecursiveDel)";
 
             var parameters = new List<SqlParameter>
@@ -393,8 +393,8 @@ namespace TENTAC_HRM.Forms.User_control
                 new SqlParameter("@NguoiCapNhat", "")
             };
             SQLHelper.ExecuteSql(sql, parameters.ToArray());
-            load_data();
-            load_null();
+            LoadData();
+            LoadNull();
         }
     }
 }
