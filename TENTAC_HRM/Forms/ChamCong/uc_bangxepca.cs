@@ -10,6 +10,7 @@ namespace TENTAC_HRM.Forms.ChamCong
 {
     public partial class uc_bangxepca : UserControl
     {
+        DataTable dt_Ngaynghi = new DataTable();
         CheckBox headerCheckBox = new CheckBox();
         DataTable dt_bangchamcong = new DataTable();
         DateTime dtResult;
@@ -183,9 +184,16 @@ namespace TENTAC_HRM.Forms.ChamCong
             cbo_year.ComboBox.ValueMember = "id";
             cbo_year.ComboBox.SelectedValue = DateTime.Now.Year.ToString();
         }
+        private void Load_NgayNghi()
+        {
+            string sql = $"select * from [MITACOSQL].[dbo].[NgayNghi] where Nam = {cbo_year.Text} and Thang = {cbo_month.Text}";
+            dt_Ngaynghi = SQLHelper.ExecuteDt(sql);
+        }
         private void add_column()
         {
-            dtResult = DateTime.Parse(cbo_year.ComboBox.SelectedValue.ToString() + "/" + cbo_month.ComboBox.SelectedItem.ToString() + "/01");
+            Load_NgayNghi();
+
+            dtResult = DateTime.Parse(cbo_year.ComboBox.SelectedValue.ToString() + "/" + cbo_month.Text.ToString() + "/01");
             dtResult = dtResult.AddMonths(1);
             dtResult = dtResult.AddDays(-dtResult.Day);
 
@@ -197,33 +205,27 @@ namespace TENTAC_HRM.Forms.ChamCong
                 dgv_xepca.Columns[i + 3].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgv_xepca.Columns[i + 3].Width = 50;
 
-                //if (i % 2 == 0)
-                //{
-                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.MistyRose;
-                //}
-                //else
-                //{
-                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.Cornsilk;
-                //}
-                //if (date.DayOfWeek == DayOfWeek.Sunday)
-                //{
-                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.Azure;
-                //}
                 dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.Cornsilk;
-                if (date.DayOfWeek == DayOfWeek.Sunday)
+
+                var ngaynghi = dt_Ngaynghi.Rows.Cast<DataRow>().Select(x => bool.Parse(x["D" + i].ToString())).FirstOrDefault();
+                if (ngaynghi == true)
                 {
                     dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.SlateGray;
                 }
-                else if (date.DayOfWeek == DayOfWeek.Saturday)
-                {
-                    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.LightSalmon;
-                }
+                //if (date.DayOfWeek == DayOfWeek.Sunday)
+                //{
+                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.SlateGray;
+                //}
+                //else if (date.DayOfWeek == DayOfWeek.Saturday)
+                //{
+                //    dgv_xepca.Columns[i + 3].DefaultCellStyle.BackColor = Color.LightSalmon;
+                //}
             }
             if (dtResult.Day < 31)
             {
                 for (int i = dtResult.Day + 1; i <= 31; i++)
                 {
-                    dgv_xepca.Columns[i + 6].Visible = false;
+                    dgv_xepca.Columns[i + 3].Visible = false;
                 }
             }
             else
