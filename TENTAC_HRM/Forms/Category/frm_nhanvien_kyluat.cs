@@ -81,14 +81,7 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-            if (_quatrinh != null)
-            {
-                _quatrinh.Load_kyluat();
-            }
-            else
-            {
-                _Personnel.LoadNhanVienKyLuat();
-            }
+            _quatrinh.LoadQTKyLuat();
             LoadNull();
         }
         private void SetValues()

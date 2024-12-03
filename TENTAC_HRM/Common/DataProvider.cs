@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,6 +16,14 @@ namespace TENTAC_HRM
         public DataTable load_nhanvien()
         {
             string sql = "select MaNhanVien as value,TenNhanVien as name from MITACOSQL.dbo.NHANVIEN";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            dt.Rows.Add("0", "");
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("value")).CopyToDataTable();
+        }
+        public DataTable load_nhanvien_by_phongban(string MaPhongBan)
+        {
+            string sql = $@" SELECT MaNhanVien AS value, TenNhanVien AS name FROM MITACOSQL.dbo.NHANVIEN WHERE MaPhongBan = {SQLHelper.rpStr(MaPhongBan)}";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -440,26 +449,48 @@ namespace TENTAC_HRM
             return dt;
         }
 
-        public bool check_login(string user_name,string pass_word)
+        //public bool check_login(string user_name, string pass_word)
+        //{
+        //    bool resual = false;
+        //    string sql = "select * from sys_user where username = '" + user_name + "' and active = 1";
+        //    DataTable dt = SQLHelper.ExecuteDt(sql);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        bool isPasswordMatch = BCrypt.Net.BCrypt.Verify(pass_word, dt.Rows[0]["password"].ToString());
+        //        if (isPasswordMatch)
+        //        {
+        //            resual = true;
+        //            SQLHelper.sUser = user_name;
+        //            SQLHelper.sIdUser = dt.Rows[0]["userid"].ToString();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        resual = false;
+        //    }
+        //    return resual;
+        //}
+
+        //SHA1Managed
+        public bool check_login(string user_name, string pass_word)
         {
-            bool resual = false;
-            string sql = "select * from sys_user where username = '"+ user_name + "' and active = 1";
+            bool result = false;
+            string sql = $@"SELECT * FROM mst_Users WHERE MaNhanVien = {SQLHelper.rpStr(user_name)} AND del_flg = 0";
             DataTable dt = SQLHelper.ExecuteDt(sql);
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
-                bool isPasswordMatch = BCrypt.Net.BCrypt.Verify(pass_word, dt.Rows[0]["password"].ToString());
-                if(isPasswordMatch)
+                string storedPasswordHashSHA1 = dt.Rows[0]["MatKhau"].ToString();
+                string enteredPasswordHashSHA1 = Hash_sha(pass_word);
+
+                if (storedPasswordHashSHA1 == enteredPasswordHashSHA1)
                 {
-                    resual = true;
+                    result = true;
                     SQLHelper.sUser = user_name;
-                    SQLHelper.sIdUser = dt.Rows[0]["userid"].ToString();
+                    SQLHelper.sIdUser = dt.Rows[0]["Id"].ToString();
                 }
             }
-            else
-            {
-                resual = false;
-            }
-            return resual;
+
+            return result;
         }
         public string Hash_md5(string text)
         {

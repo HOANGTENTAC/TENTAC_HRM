@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
@@ -42,14 +43,7 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-            if (_Personnel != null)
-            {
-                _Personnel.LoadNhanVienKhenThuong();
-            }
-            else
-            {
-                _quatrinh.Load_khenthuong();
-            }
+            _quatrinh.LoadQTKhenThuong();
             LoadNull();
         }
         private void LoadNull()
@@ -74,9 +68,18 @@ namespace TENTAC_HRM.Forms.Category
                 LoadData();
             }
         }
+        private void txt_SoTien_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_SoTien.Text))
+            {
+                txt_SoTien.Text = decimal.Parse(txt_SoTien.Text).ToString("N0", CultureInfo.InvariantCulture);
+            }
+        }
         private void LoadData()
         {
-            string sql = string.Format("select * from tbl_QTKhenThuong where Id='{0}' and del_flg = 0", _IdKhenThuong);
+            string sql = string.Format("select Id, NgayKhenThuong, SoQuyetDinh, NoiDung, HinhThuc, FORMAT(SoTien,'N0') as SoTien, " +
+                "LyDo, MaNhanVienKy, Id_Cap from tbl_QTKhenThuong " +
+                "where Id='{0}' and del_flg = 0", _IdKhenThuong);
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {

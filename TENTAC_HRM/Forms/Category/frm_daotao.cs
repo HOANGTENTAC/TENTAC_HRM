@@ -69,14 +69,8 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-            if (_personnel != null)
-            {
-                _personnel.LoadNhanVienDaoTao();
-            }
-            else
-            {
-                _quatrinh.load_daotao();
-            }
+
+            _quatrinh.LoadQTDaoTao();
             LoadNull();
         }
         private void LoadNull()

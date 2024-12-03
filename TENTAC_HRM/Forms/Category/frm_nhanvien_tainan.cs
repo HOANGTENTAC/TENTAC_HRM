@@ -44,15 +44,7 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-
-            if (_quatrinh != null)
-            {
-                _quatrinh.load_tainan();
-            }
-            else
-            {
-                _Personnel.LoadNhanVienTaiNan();
-            }
+            _quatrinh.LoadQTTaiNan();
             LoadNull();
         }
         private void frm_nhanvien_tainan_Load(object sender, EventArgs e)

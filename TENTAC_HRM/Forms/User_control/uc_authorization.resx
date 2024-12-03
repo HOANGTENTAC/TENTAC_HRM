@@ -117,64 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>122, 17</value>
+  </metadata>
+  <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADw
+        BwAAAk1TRnQBSQFMAgEBAgEAAUABAAFAAQABEAEAARABAAT/AREBAAj/AUIBTQE2BwABNgMAASgDAAFA
+        AwABEAMAAQEBAAEQBgABCBoAAf4BewGXAVsBcAEzAUwBHwFMAR8BcAEzAZcBWwH+AXsQAAH+AXsBlwFb
+        AXABMwFMAR8BTAEfAXABMwGXAVsB/gF7TAAB/wF/AZcBVwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFK
+        ARcBSgEXAZcBVwH/AX8IAAH/AX8BlwFXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBlwFX
+        Af8Bf0YAAf8BfwFzAUMBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAXMBQwH/
+        AX8EAAH/AX8BcwFDAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFzAUMB/wF/
+        RAABlwFXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAZcBVwQA
+        AZcBVwFKARcBSgEbAUoBFwFKARcBTAEfAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwGXAVdCAAHc
+        AXMBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwH+
+        AXsB3QFzAW8BNwFvATsBbwE7AW8BOwG3AVsB/wF/AfwBbwFMASMBSgEXAUoBFwFKARcBSgEXAUoBFwFK
+        ARcB/gF7QAABcQE3AUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEX
+        AUoBFwFKARcBlwFbAXMBRwFvATsBbwE7AW8BOwG3AVsB/wF/Af8BfwH/AX8B/QFzAUwBHwFKARcBSgEX
+        AUoBFwFKARcBSgEXAZcBW0AAAUsBGwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFK
+        ARcBSgEXAUoBFwFKARcBSgEXAXABMwFwATsBbwE7AW8BOwG3AVsB/wF/Af8BfwH/AX8B/wF/Af8BfwHc
+        AW8BSwEbAUoBFwFKARcBSgEXAUoBFwFwATNAAAFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEX
+        AUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFMAR8BbwE7AW8BOwFyAUcB/wF/Af8BfwH/AX8B2QFj
+        Af4BewH/AX8B/wF/AdsBawFLARsBSgEXAUoBFwFKARcBTAEfQAABSgEXAUoBFwFKARcBSgEXAUoBFwFK
+        ARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBTAEfAW8BOwFvATsBcQFDAf8BfwH/
+        AX8BuAFfAW8BOwGSAUcB/gF7Af8BfwH/AX8B2gFnAUsBGwFKARcBSgEXAUwBH0AAAUsBGwFKARcBSgEX
+        AUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAXABMwFvATsBbwE7
+        AW8BOwFxAUMBkwFLAW8BOwFvATsBbwE7AZMBSwH/AX8B/wF/Af8BfwHYAVsBSgEXAUoBFwFwATNAAAFw
+        ATcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwGX
+        AVsBcwFHAW8BOwFvATsBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBkwFLAf8BfwH/AX8B/QF3AUoBFwFK
+        ARcBlwFbQAAB3AFvAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEX
+        AUoBFwFKARcB/gF7AdwBcwFvATsBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBbwE7AW8BOwGTAUsB2gFr
+        AZABNwFKARcBSgEXAf4Be0IAAXABMwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFK
+        ARcBSgEXAUoBFwGXAVcEAAFyAUcBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBbwE7
+        AUoBGwFKARcBlwFXRAAB/wF/AUwBIwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFK
+        ARcBcwFDAf8BfwQAAf8BfwFwATsBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBSgEX
+        AXMBQwH/AX9GAAH/AX8BcAEzAUoBFwFKARcBSgEXAUoBFwFKARcBSgEXAUoBFwFKARcBlwFXAf8BfwgA
+        Af8BfwFzAUcBbwE7AW8BOwFvATsBbwE7AW8BOwFvATsBbwE7AW8BNwGXAVcB/wF/TAAB3AFvAXABNwFL
+        ARsBSgEXAUoBFwFLARsBcQE3AdwBcxAAAdwCcwFHAW8BOwFvATsBbwE7AXABOwFzAUcB3AFzSAABQgFN
+        AT4HAAE+AwABKAMAAUADAAEQAwABAQEAAQEFAAGAFwAD/wEAAfABDwHwAQ8EAAHAAQMBwAEDBAABgAEB
+        AYABAQQAAYABAQGAAQFEAAGAAQEBgAEBBAABgAEBAYABAQQAAcABAwHAAQMEAAHwAQ8B8AEPBAAL
+</value>
+  </data>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>13, 8</value>
-  </metadata>
-  <metadata name="edit_column_ct.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>958, 8</value>
-  </metadata>
-  <metadata name="edit_column_kt.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1187, 8</value>
-  </metadata>
-  <metadata name="edit_column_kl.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip4.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1292, 8</value>
-  </metadata>
-  <metadata name="edit_column_danhgia.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip5.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 45</value>
-  </metadata>
-  <metadata name="edit_column_daotao.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip6.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>122, 45</value>
-  </metadata>
-  <metadata name="edit_column_tn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip7.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>227, 45</value>
-  </metadata>
-  <metadata name="edit_column_nghiviec.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip8.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>332, 45</value>
-  </metadata>
-  <metadata name="edit_column_ts.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="toolStrip9.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>437, 45</value>
-  </metadata>
-  <metadata name="miniToolStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1063, 8</value>
-  </metadata>
-  <metadata name="printDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>542, 45</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>41</value>
+    <value>17, 17</value>
   </metadata>
 </root>

@@ -195,6 +195,7 @@
             this.txt_SoTien.Size = new System.Drawing.Size(289, 23);
             this.txt_SoTien.TabIndex = 7;
             this.txt_SoTien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_sotien_KeyPress);
+            this.txt_SoTien.Leave += new System.EventHandler(this.txt_SoTien_Leave);
             // 
             // labelX7
             // 

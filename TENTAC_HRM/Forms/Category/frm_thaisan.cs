@@ -45,7 +45,7 @@ namespace TENTAC_HRM.Forms.Category
                 btn_save.Text = "Cập nhật";
                 string sql = string.Format("select * from tbl_NhanVienThaiSan where Id='{0}'", _IdThaiSan);
                 DataTable dt = SQLHelper.ExecuteDt(sql);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     dtp_TuNgay.Text = dt.Rows[0]["TuNgay"].ToString();
                     dtp_DenNgay.Text = dt.Rows[0]["DenNgay"].ToString();
@@ -64,14 +64,7 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-            if (_quatrinh != null)
-            {
-                _quatrinh.load_thaisan();
-            }
-            else
-            {
-                _Personnel.LoadNhanVienThaiSan();
-            }
+            _quatrinh.LoadQTThaiSan();
             LoadNull();
         }
         private void InsertData()
@@ -101,7 +94,7 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-               string sql = string.Empty;
+                string sql = string.Empty;
                 sql = $@"Update tbl_NhanVienThaiSan Set TuNgay = {SQLHelper.rpDT(_TuNgay)}, DenNgay = {SQLHelper.rpDT(_DenNgay)},
                 GhiChu = {SQLHelper.rpStr(_GhiChu)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
                 Where Id = {SQLHelper.rpI(_IdThaiSan)}";

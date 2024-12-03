@@ -63,7 +63,7 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void cbo_LoaiNghiViec_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(Convert.ToString(cbo_LoaiNghiViec.SelectedValue) == "3")
+            if (Convert.ToString(cbo_LoaiNghiViec.SelectedValue) == "3")
             {
                 dtp_TuNgay.Enabled = true;
                 dtp_DenNgay.Enabled = true;
@@ -106,14 +106,7 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-            if (_quatrinh != null)
-            {
-                _quatrinh.load_nghiviec();
-            }
-            else
-            {
-                _Personnel.LoadNhanVienNghiViec();
-            }
+            _quatrinh.LoadQTNghiViec();
         }
         private void InsertData()
         {

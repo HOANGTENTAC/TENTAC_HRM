@@ -35,16 +35,10 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_hienthi = new System.Windows.Forms.ToolStripComboBox();
             this.panel = new System.Windows.Forms.Panel();
-            this.txt_ngaysinh = new System.Windows.Forms.MaskedTextBox();
-            this.chk_gioitinh = new System.Windows.Forms.CheckBox();
-            this.txt_diachi = new System.Windows.Forms.TextBox();
-            this.txt_email = new System.Windows.Forms.TextBox();
-            this.txt_sdt = new System.Windows.Forms.TextBox();
-            this.txt_ma_nhanvien = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new DevComponents.DotNetBar.LabelX();
+            this.label5 = new DevComponents.DotNetBar.LabelX();
+            this.label3 = new DevComponents.DotNetBar.LabelX();
+            this.label2 = new DevComponents.DotNetBar.LabelX();
             this.pb_avata = new System.Windows.Forms.PictureBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -57,138 +51,154 @@
             this.dgv_congtac = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_congtac = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_ct = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tu_ngay_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.den_ngay_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.dia_diem_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TuNgayCT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DenNgayCT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.SoQuyetDinhCT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DiaDiemCT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungCT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btn_add_congtac = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_ct = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_ct = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_ct = new System.Windows.Forms.ToolStripButton();
             this.btn_export_ct = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_ct = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxCTPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage2 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_khenthuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_khenthuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_kt = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ngay_khen_thuong_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.hinh_thuc_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_tien_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.ly_do_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayKhenThuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.SoQuyetDinhKT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungKT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.HinhThucKT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.SoTienKT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.LyDoKT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.btn_add_khenthuong = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_kt = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_kt = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_kt = new System.Windows.Forms.ToolStripButton();
             this.btn_export_kt = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_kt = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxKTPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage3 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_kyluat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_kyluat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_kl = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ngay_ky_luat_kl = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh_kl = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_kl = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.hinh_thuc_kl = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_tien_kl = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.ly_do_kl = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayKyLuat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.SoQuyetDinhKL = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungKL = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.HinhThucKL = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.LyDoKL = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel9 = new System.Windows.Forms.Panel();
             this.toolStrip4 = new System.Windows.Forms.ToolStrip();
             this.btn_add_kl = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_kl = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_kl = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_kl = new System.Windows.Forms.ToolStripButton();
             this.btn_export_kl = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_kl = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxKLPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage4 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_qt_danhgia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_danhgia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_danhgia = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ngay_danh_gia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_danhgia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.diem_danh_gia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.xep_loai_danhgia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayDanhGia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungDG = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DiemDanhGia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.XepLoaiDG = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.toolStrip5 = new System.Windows.Forms.ToolStrip();
             this.btn_add_dg = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_dg = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_dg = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_dg = new System.Windows.Forms.ToolStripButton();
             this.btn_export_dg = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_dg = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxDGPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage5 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_qt_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_daotao = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tu_ngay_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.den_ngay_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.hinh_thuc_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TuNgayDT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DenNgayDT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.SoQuyetDinhDT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungDT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.HinhThucDT = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel11 = new System.Windows.Forms.Panel();
             this.toolStrip6 = new System.Windows.Forms.ToolStrip();
             this.btn_add_dt = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_dt = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_dt = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_dt = new System.Windows.Forms.ToolStripButton();
             this.btn_export_dt = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_dt = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxDTPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage6 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_tainan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_tainan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_tn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ten_tai_nan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.muc_do = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.ngay_dien_ra = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dien_ra = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.LoaiTaiNan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.MucDoTN = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayDienRaTN = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDienRaTN = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungTN = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel12 = new System.Windows.Forms.Panel();
             this.toolStrip7 = new System.Windows.Forms.ToolStrip();
             this.btn_add_tainan = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_tn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_tn = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_tn = new System.Windows.Forms.ToolStripButton();
             this.btn_export_tn = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_tn = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxTNPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage7 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_qt_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.id_qt_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.edit_column_nghiviec = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tu_ngay_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.den_ngay_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.ngay_quyet_dinh_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.loai_nghi_viec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TuNgayNV = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DenNgayNV = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NgayQuyetDinhNV = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.SoQuyetDinhNV = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.NoiDungNV = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.LoaiNghiViec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel13 = new System.Windows.Forms.Panel();
             this.toolStrip8 = new System.Windows.Forms.ToolStrip();
             this.btn_add_nv = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_nv = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_nv = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_nv = new System.Windows.Forms.ToolStripButton();
             this.btn_export_nv = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_nv = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxNVPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.kryptonPage8 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.dgv_thaisai = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.edit_column_ts = new System.Windows.Forms.DataGridViewImageColumn();
-            this.id_thai_san = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.tu_ngay_thaisan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.den_ngay_thaisan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.ghi_chu_thaisan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.id_qt_thaisan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TuNgayTS = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.DenNgayTS = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.GhiChuTS = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel16 = new System.Windows.Forms.Panel();
             this.toolStrip9 = new System.Windows.Forms.ToolStrip();
             this.btn_add_ts = new System.Windows.Forms.ToolStripButton();
             this.btn_delete_ts = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh_ts = new System.Windows.Forms.ToolStripButton();
-            this.btn_print_ts = new System.Windows.Forms.ToolStripButton();
             this.btn_export_ts = new System.Windows.Forms.ToolStripButton();
+            this.btn_print_ts = new System.Windows.Forms.ToolStripButton();
+            this.comboBoxTSPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.txt_MaNhanVien = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txt_SDT = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txt_DiaChi = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txt_Email = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.dtp_NgaySinh = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.chk_GioiTinh = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.toolStrip1.SuspendLayout();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_avata)).BeginInit();
@@ -234,6 +244,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thaisai)).BeginInit();
             this.panel16.SuspendLayout();
             this.toolStrip9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -281,12 +292,13 @@
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.txt_ngaysinh);
-            this.panel.Controls.Add(this.chk_gioitinh);
-            this.panel.Controls.Add(this.txt_diachi);
-            this.panel.Controls.Add(this.txt_email);
-            this.panel.Controls.Add(this.txt_sdt);
-            this.panel.Controls.Add(this.txt_ma_nhanvien);
+            this.panel.Controls.Add(this.chk_GioiTinh);
+            this.panel.Controls.Add(this.dtp_NgaySinh);
+            this.panel.Controls.Add(this.labelX1);
+            this.panel.Controls.Add(this.txt_Email);
+            this.panel.Controls.Add(this.txt_DiaChi);
+            this.panel.Controls.Add(this.txt_SDT);
+            this.panel.Controls.Add(this.txt_MaNhanVien);
             this.panel.Controls.Add(this.label4);
             this.panel.Controls.Add(this.label5);
             this.panel.Controls.Add(this.label3);
@@ -298,82 +310,30 @@
             this.panel.Size = new System.Drawing.Size(1129, 118);
             this.panel.TabIndex = 1;
             // 
-            // txt_ngaysinh
-            // 
-            this.txt_ngaysinh.Enabled = false;
-            this.txt_ngaysinh.Location = new System.Drawing.Point(453, 12);
-            this.txt_ngaysinh.Mask = "0000/00/00";
-            this.txt_ngaysinh.Name = "txt_ngaysinh";
-            this.txt_ngaysinh.Size = new System.Drawing.Size(130, 23);
-            this.txt_ngaysinh.TabIndex = 4;
-            // 
-            // chk_gioitinh
-            // 
-            this.chk_gioitinh.AutoSize = true;
-            this.chk_gioitinh.Enabled = false;
-            this.chk_gioitinh.Location = new System.Drawing.Point(589, 14);
-            this.chk_gioitinh.Name = "chk_gioitinh";
-            this.chk_gioitinh.Size = new System.Drawing.Size(56, 21);
-            this.chk_gioitinh.TabIndex = 3;
-            this.chk_gioitinh.Text = "Nam";
-            this.chk_gioitinh.UseVisualStyleBackColor = true;
-            // 
-            // txt_diachi
-            // 
-            this.txt_diachi.Enabled = false;
-            this.txt_diachi.Location = new System.Drawing.Point(237, 70);
-            this.txt_diachi.Name = "txt_diachi";
-            this.txt_diachi.Size = new System.Drawing.Size(408, 23);
-            this.txt_diachi.TabIndex = 2;
-            // 
-            // txt_email
-            // 
-            this.txt_email.Enabled = false;
-            this.txt_email.Location = new System.Drawing.Point(443, 41);
-            this.txt_email.Name = "txt_email";
-            this.txt_email.Size = new System.Drawing.Size(202, 23);
-            this.txt_email.TabIndex = 2;
-            // 
-            // txt_sdt
-            // 
-            this.txt_sdt.Enabled = false;
-            this.txt_sdt.Location = new System.Drawing.Point(237, 41);
-            this.txt_sdt.Name = "txt_sdt";
-            this.txt_sdt.Size = new System.Drawing.Size(148, 23);
-            this.txt_sdt.TabIndex = 2;
-            // 
-            // txt_ma_nhanvien
-            // 
-            this.txt_ma_nhanvien.Enabled = false;
-            this.txt_ma_nhanvien.Location = new System.Drawing.Point(237, 12);
-            this.txt_ma_nhanvien.Name = "txt_ma_nhanvien";
-            this.txt_ma_nhanvien.Size = new System.Drawing.Size(210, 23);
-            this.txt_ma_nhanvien.TabIndex = 2;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(124, 73);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 17);
+            this.label4.Size = new System.Drawing.Size(53, 19);
             this.label4.TabIndex = 1;
             this.label4.Text = "Địa chỉ:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(391, 44);
+            this.label5.Location = new System.Drawing.Point(391, 47);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 17);
+            this.label5.Size = new System.Drawing.Size(45, 19);
             this.label5.TabIndex = 1;
             this.label5.Text = "Email:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(124, 44);
+            this.label3.Location = new System.Drawing.Point(124, 47);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 17);
+            this.label3.Size = new System.Drawing.Size(91, 19);
             this.label3.TabIndex = 1;
             this.label3.Text = "Số điện thoại:";
             // 
@@ -382,7 +342,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(124, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 17);
+            this.label2.Size = new System.Drawing.Size(93, 19);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã nhân viên:";
             // 
@@ -453,7 +413,7 @@
             this.kryptonPage6,
             this.kryptonPage7,
             this.kryptonPage8});
-            this.kryptonNavigator1.SelectedIndex = 3;
+            this.kryptonNavigator1.SelectedIndex = 0;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1129, 471);
             this.kryptonNavigator1.TabIndex = 5;
             this.kryptonNavigator1.Text = "kryptonNavigator1";
@@ -479,23 +439,25 @@
             this.dgv_congtac.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_congtac,
             this.edit_column_ct,
-            this.tu_ngay_ct,
-            this.den_ngay_ct,
-            this.so_quyet_dinh,
-            this.dia_diem_ct});
+            this.TuNgayCT,
+            this.DenNgayCT,
+            this.SoQuyetDinhCT,
+            this.DiaDiemCT,
+            this.NoiDungCT});
             this.dgv_congtac.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_congtac.Location = new System.Drawing.Point(0, 44);
+            this.dgv_congtac.Location = new System.Drawing.Point(0, 32);
             this.dgv_congtac.Name = "dgv_congtac";
-            this.dgv_congtac.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_congtac.Size = new System.Drawing.Size(1127, 410);
             this.dgv_congtac.TabIndex = 4;
             this.dgv_congtac.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_congtac_CellClick);
             this.dgv_congtac.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_congtac_RowPostPaint);
             // 
             // id_qt_congtac
             // 
-            this.id_qt_congtac.DataPropertyName = "id";
+            this.id_qt_congtac.DataPropertyName = "Id";
             this.id_qt_congtac.HeaderText = "id_qt_congtac";
             this.id_qt_congtac.Name = "id_qt_congtac";
+            this.id_qt_congtac.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.id_qt_congtac.Visible = false;
             this.id_qt_congtac.Width = 100;
             // 
@@ -506,39 +468,48 @@
             this.edit_column_ct.Name = "edit_column_ct";
             this.edit_column_ct.Width = 30;
             // 
-            // tu_ngay_ct
+            // TuNgayCT
             // 
-            this.tu_ngay_ct.DataPropertyName = "tungay";
-            this.tu_ngay_ct.HeaderText = "Từ ngày";
-            this.tu_ngay_ct.Name = "tu_ngay_ct";
-            this.tu_ngay_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tu_ngay_ct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tu_ngay_ct.Width = 100;
+            this.TuNgayCT.DataPropertyName = "TuNgay";
+            this.TuNgayCT.HeaderText = "Từ ngày";
+            this.TuNgayCT.Name = "TuNgayCT";
+            this.TuNgayCT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TuNgayCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TuNgayCT.Width = 100;
             // 
-            // den_ngay_ct
+            // DenNgayCT
             // 
-            this.den_ngay_ct.DataPropertyName = "denngay";
-            this.den_ngay_ct.HeaderText = "Đến ngày";
-            this.den_ngay_ct.Name = "den_ngay_ct";
-            this.den_ngay_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.den_ngay_ct.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.den_ngay_ct.Width = 100;
+            this.DenNgayCT.DataPropertyName = "DenNgay";
+            this.DenNgayCT.HeaderText = "Đến ngày";
+            this.DenNgayCT.Name = "DenNgayCT";
+            this.DenNgayCT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DenNgayCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DenNgayCT.Width = 100;
             // 
-            // so_quyet_dinh
+            // SoQuyetDinhCT
             // 
-            this.so_quyet_dinh.DataPropertyName = "soquyetdinh";
-            this.so_quyet_dinh.HeaderText = "Số quyết định";
-            this.so_quyet_dinh.Name = "so_quyet_dinh";
-            this.so_quyet_dinh.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.so_quyet_dinh.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.so_quyet_dinh.Width = 100;
+            this.SoQuyetDinhCT.DataPropertyName = "SoQuyetDinh";
+            this.SoQuyetDinhCT.HeaderText = "Số quyết định";
+            this.SoQuyetDinhCT.Name = "SoQuyetDinhCT";
+            this.SoQuyetDinhCT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoQuyetDinhCT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SoQuyetDinhCT.Width = 100;
             // 
-            // dia_diem_ct
+            // DiaDiemCT
             // 
-            this.dia_diem_ct.DataPropertyName = "diadiem";
-            this.dia_diem_ct.HeaderText = "Địa điểm";
-            this.dia_diem_ct.Name = "dia_diem_ct";
-            this.dia_diem_ct.Width = 100;
+            this.DiaDiemCT.DataPropertyName = "DiaDiem";
+            this.DiaDiemCT.HeaderText = "Địa điểm";
+            this.DiaDiemCT.Name = "DiaDiemCT";
+            this.DiaDiemCT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DiaDiemCT.Width = 100;
+            // 
+            // NoiDungCT
+            // 
+            this.NoiDungCT.DataPropertyName = "NoiDung";
+            this.NoiDungCT.HeaderText = "Nội dung";
+            this.NoiDungCT.Name = "NoiDungCT";
+            this.NoiDungCT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungCT.Width = 100;
             // 
             // panel3
             // 
@@ -546,7 +517,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1127, 44);
+            this.panel3.Size = new System.Drawing.Size(1127, 32);
             this.panel3.TabIndex = 3;
             // 
             // toolStrip2
@@ -560,12 +531,13 @@
             this.btn_delete_ct,
             this.toolStripSeparator1,
             this.btn_refresh_ct,
+            this.btn_export_ct,
             this.btn_print_ct,
-            this.btn_export_ct});
+            this.comboBoxCTPrinters});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip2.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip2.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip2.TabIndex = 0;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -574,9 +546,8 @@
             this.btn_add_congtac.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_congtac.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_congtac.Name = "btn_add_congtac";
-            this.btn_add_congtac.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_congtac.Size = new System.Drawing.Size(57, 29);
             this.btn_add_congtac.Text = "Thêm";
-            this.btn_add_congtac.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_congtac.Click += new System.EventHandler(this.btn_add_congtac_Click);
             // 
             // btn_delete_ct
@@ -584,43 +555,47 @@
             this.btn_delete_ct.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_ct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_ct.Name = "btn_delete_ct";
-            this.btn_delete_ct.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_ct.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_ct.Text = "Xóa";
-            this.btn_delete_ct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_ct.Click += new System.EventHandler(this.btn_delete_ct_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_ct
             // 
             this.btn_refresh_ct.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_ct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_ct.Name = "btn_refresh_ct";
-            this.btn_refresh_ct.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_ct.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_ct.Text = "Nạp lại";
-            this.btn_refresh_ct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_ct.Click += new System.EventHandler(this.btn_refresh_ct_Click);
-            // 
-            // btn_print_ct
-            // 
-            this.btn_print_ct.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_ct.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_ct.Name = "btn_print_ct";
-            this.btn_print_ct.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_ct.Text = "In";
-            this.btn_print_ct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_ct
             // 
             this.btn_export_ct.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_ct.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_ct.Name = "btn_export_ct";
-            this.btn_export_ct.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_ct.Size = new System.Drawing.Size(51, 29);
             this.btn_export_ct.Text = "Xuất";
-            this.btn_export_ct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_ct.Click += new System.EventHandler(this.btn_export_ct_Click);
+            // 
+            // btn_print_ct
+            // 
+            this.btn_print_ct.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_ct.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_ct.Name = "btn_print_ct";
+            this.btn_print_ct.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_ct.Text = "In";
+            this.btn_print_ct.Click += new System.EventHandler(this.btn_print_ct_Click);
+            // 
+            // comboBoxCTPrinters
+            // 
+            this.comboBoxCTPrinters.Name = "comboBoxCTPrinters";
+            this.comboBoxCTPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxCTPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage2
             // 
@@ -643,23 +618,23 @@
             this.dgv_khenthuong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_khenthuong,
             this.edit_column_kt,
-            this.ngay_khen_thuong_kt,
-            this.so_quyet_dinh_kt,
-            this.noi_dung_kt,
-            this.hinh_thuc_kt,
-            this.so_tien_kt,
-            this.ly_do_kt});
+            this.NgayKhenThuong,
+            this.SoQuyetDinhKT,
+            this.NoiDungKT,
+            this.HinhThucKT,
+            this.SoTienKT,
+            this.LyDoKT});
             this.dgv_khenthuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_khenthuong.Location = new System.Drawing.Point(0, 44);
+            this.dgv_khenthuong.Location = new System.Drawing.Point(0, 32);
             this.dgv_khenthuong.Name = "dgv_khenthuong";
-            this.dgv_khenthuong.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_khenthuong.Size = new System.Drawing.Size(1127, 410);
             this.dgv_khenthuong.TabIndex = 6;
             this.dgv_khenthuong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_khenthuong_CellClick);
             this.dgv_khenthuong.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_khenthuong_RowPostPaint);
             // 
             // id_qt_khenthuong
             // 
-            this.id_qt_khenthuong.DataPropertyName = "id";
+            this.id_qt_khenthuong.DataPropertyName = "Id";
             this.id_qt_khenthuong.HeaderText = "id_qt_khenthuong";
             this.id_qt_khenthuong.Name = "id_qt_khenthuong";
             this.id_qt_khenthuong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -673,49 +648,54 @@
             this.edit_column_kt.Name = "edit_column_kt";
             this.edit_column_kt.Width = 30;
             // 
-            // ngay_khen_thuong_kt
+            // NgayKhenThuong
             // 
-            this.ngay_khen_thuong_kt.DataPropertyName = "ngaykhenthuong";
-            this.ngay_khen_thuong_kt.HeaderText = "Ngày khen thưởng";
-            this.ngay_khen_thuong_kt.Name = "ngay_khen_thuong_kt";
-            this.ngay_khen_thuong_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ngay_khen_thuong_kt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ngay_khen_thuong_kt.Width = 130;
+            this.NgayKhenThuong.DataPropertyName = "NgayKhenThuong";
+            this.NgayKhenThuong.HeaderText = "Ngày khen thưởng";
+            this.NgayKhenThuong.Name = "NgayKhenThuong";
+            this.NgayKhenThuong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayKhenThuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NgayKhenThuong.Width = 130;
             // 
-            // so_quyet_dinh_kt
+            // SoQuyetDinhKT
             // 
-            this.so_quyet_dinh_kt.DataPropertyName = "soquyetdinh";
-            this.so_quyet_dinh_kt.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_kt.Name = "so_quyet_dinh_kt";
-            this.so_quyet_dinh_kt.Width = 110;
+            this.SoQuyetDinhKT.DataPropertyName = "SoQuyetDinh";
+            this.SoQuyetDinhKT.HeaderText = "Số quyết định";
+            this.SoQuyetDinhKT.Name = "SoQuyetDinhKT";
+            this.SoQuyetDinhKT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoQuyetDinhKT.Width = 110;
             // 
-            // noi_dung_kt
+            // NoiDungKT
             // 
-            this.noi_dung_kt.DataPropertyName = "noidung";
-            this.noi_dung_kt.HeaderText = "Nội dung";
-            this.noi_dung_kt.Name = "noi_dung_kt";
-            this.noi_dung_kt.Width = 100;
+            this.NoiDungKT.DataPropertyName = "NoiDung";
+            this.NoiDungKT.HeaderText = "Nội dung";
+            this.NoiDungKT.Name = "NoiDungKT";
+            this.NoiDungKT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungKT.Width = 100;
             // 
-            // hinh_thuc_kt
+            // HinhThucKT
             // 
-            this.hinh_thuc_kt.DataPropertyName = "hinhthuc";
-            this.hinh_thuc_kt.HeaderText = "Hình thức";
-            this.hinh_thuc_kt.Name = "hinh_thuc_kt";
-            this.hinh_thuc_kt.Width = 100;
+            this.HinhThucKT.DataPropertyName = "HinhThuc";
+            this.HinhThucKT.HeaderText = "Hình thức";
+            this.HinhThucKT.Name = "HinhThucKT";
+            this.HinhThucKT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HinhThucKT.Width = 100;
             // 
-            // so_tien_kt
+            // SoTienKT
             // 
-            this.so_tien_kt.DataPropertyName = "sotien";
-            this.so_tien_kt.HeaderText = "Số tiền";
-            this.so_tien_kt.Name = "so_tien_kt";
-            this.so_tien_kt.Width = 100;
+            this.SoTienKT.DataPropertyName = "SoTien";
+            this.SoTienKT.HeaderText = "Số tiền";
+            this.SoTienKT.Name = "SoTienKT";
+            this.SoTienKT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoTienKT.Width = 100;
             // 
-            // ly_do_kt
+            // LyDoKT
             // 
-            this.ly_do_kt.DataPropertyName = "lydo";
-            this.ly_do_kt.HeaderText = "Lý do";
-            this.ly_do_kt.Name = "ly_do_kt";
-            this.ly_do_kt.Width = 100;
+            this.LyDoKT.DataPropertyName = "LyDo";
+            this.LyDoKT.HeaderText = "Lý do";
+            this.LyDoKT.Name = "LyDoKT";
+            this.LyDoKT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LyDoKT.Width = 100;
             // 
             // panel4
             // 
@@ -723,7 +703,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1127, 44);
+            this.panel4.Size = new System.Drawing.Size(1127, 32);
             this.panel4.TabIndex = 5;
             // 
             // toolStrip3
@@ -737,12 +717,13 @@
             this.btn_delete_kt,
             this.toolStripSeparator3,
             this.btn_refresh_kt,
+            this.btn_export_kt,
             this.btn_print_kt,
-            this.btn_export_kt});
+            this.comboBoxKTPrinters});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip3.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip3.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip3.TabIndex = 1;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -751,9 +732,8 @@
             this.btn_add_khenthuong.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_khenthuong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_khenthuong.Name = "btn_add_khenthuong";
-            this.btn_add_khenthuong.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_khenthuong.Size = new System.Drawing.Size(57, 29);
             this.btn_add_khenthuong.Text = "Thêm";
-            this.btn_add_khenthuong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_khenthuong.Click += new System.EventHandler(this.btn_add_khenthuong_Click);
             // 
             // btn_delete_kt
@@ -761,43 +741,47 @@
             this.btn_delete_kt.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_kt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_kt.Name = "btn_delete_kt";
-            this.btn_delete_kt.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_kt.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_kt.Text = "Xóa";
-            this.btn_delete_kt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_kt.Click += new System.EventHandler(this.btn_delete_kt_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_kt
             // 
             this.btn_refresh_kt.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_kt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_kt.Name = "btn_refresh_kt";
-            this.btn_refresh_kt.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_kt.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_kt.Text = "Nạp lại";
-            this.btn_refresh_kt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_kt.Click += new System.EventHandler(this.btn_refresh_kt_Click);
-            // 
-            // btn_print_kt
-            // 
-            this.btn_print_kt.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_kt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_kt.Name = "btn_print_kt";
-            this.btn_print_kt.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_kt.Text = "In";
-            this.btn_print_kt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_kt
             // 
             this.btn_export_kt.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_kt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_kt.Name = "btn_export_kt";
-            this.btn_export_kt.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_kt.Size = new System.Drawing.Size(51, 29);
             this.btn_export_kt.Text = "Xuất";
-            this.btn_export_kt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_kt.Click += new System.EventHandler(this.btn_export_kt_Click);
+            // 
+            // btn_print_kt
+            // 
+            this.btn_print_kt.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_kt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_kt.Name = "btn_print_kt";
+            this.btn_print_kt.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_kt.Text = "In";
+            this.btn_print_kt.Click += new System.EventHandler(this.btn_print_kt_Click);
+            // 
+            // comboBoxKTPrinters
+            // 
+            this.comboBoxKTPrinters.Name = "comboBoxKTPrinters";
+            this.comboBoxKTPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxKTPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage3
             // 
@@ -820,24 +804,23 @@
             this.dgv_kyluat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_kyluat,
             this.edit_column_kl,
-            this.ngay_ky_luat_kl,
-            this.so_quyet_dinh_kl,
-            this.noi_dung_kl,
-            this.hinh_thuc_kl,
-            this.so_tien_kl,
-            this.ly_do_kl});
+            this.NgayKyLuat,
+            this.SoQuyetDinhKL,
+            this.NoiDungKL,
+            this.HinhThucKL,
+            this.LyDoKL});
             this.dgv_kyluat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_kyluat.Location = new System.Drawing.Point(0, 44);
+            this.dgv_kyluat.Location = new System.Drawing.Point(0, 32);
             this.dgv_kyluat.Name = "dgv_kyluat";
             this.dgv_kyluat.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue;
-            this.dgv_kyluat.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_kyluat.Size = new System.Drawing.Size(1127, 410);
             this.dgv_kyluat.TabIndex = 6;
             this.dgv_kyluat.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_kyluat_CellClick);
             this.dgv_kyluat.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_kyluat_RowPostPaint);
             // 
             // id_qt_kyluat
             // 
-            this.id_qt_kyluat.DataPropertyName = "id";
+            this.id_qt_kyluat.DataPropertyName = "Id";
             this.id_qt_kyluat.HeaderText = "id_qt_kyluat";
             this.id_qt_kyluat.Name = "id_qt_kyluat";
             this.id_qt_kyluat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -851,47 +834,45 @@
             this.edit_column_kl.Name = "edit_column_kl";
             this.edit_column_kl.Width = 30;
             // 
-            // ngay_ky_luat_kl
+            // NgayKyLuat
             // 
-            this.ngay_ky_luat_kl.DataPropertyName = "ngaykyluat";
-            this.ngay_ky_luat_kl.HeaderText = "Ngày kỷ luật";
-            this.ngay_ky_luat_kl.Name = "ngay_ky_luat_kl";
-            this.ngay_ky_luat_kl.Width = 100;
+            this.NgayKyLuat.DataPropertyName = "NgayKyLuat";
+            this.NgayKyLuat.HeaderText = "Ngày kỷ luật";
+            this.NgayKyLuat.Name = "NgayKyLuat";
+            this.NgayKyLuat.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayKyLuat.Width = 100;
             // 
-            // so_quyet_dinh_kl
+            // SoQuyetDinhKL
             // 
-            this.so_quyet_dinh_kl.DataPropertyName = "soquyetdinh";
-            this.so_quyet_dinh_kl.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_kl.Name = "so_quyet_dinh_kl";
-            this.so_quyet_dinh_kl.Width = 110;
+            this.SoQuyetDinhKL.DataPropertyName = "SoQuyetDinh";
+            this.SoQuyetDinhKL.HeaderText = "Số quyết định";
+            this.SoQuyetDinhKL.Name = "SoQuyetDinhKL";
+            this.SoQuyetDinhKL.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoQuyetDinhKL.Width = 110;
             // 
-            // noi_dung_kl
+            // NoiDungKL
             // 
-            this.noi_dung_kl.DataPropertyName = "noidung";
-            this.noi_dung_kl.HeaderText = "Nội dung";
-            this.noi_dung_kl.Name = "noi_dung_kl";
-            this.noi_dung_kl.Width = 100;
+            this.NoiDungKL.DataPropertyName = "NoiDung";
+            this.NoiDungKL.HeaderText = "Nội dung";
+            this.NoiDungKL.Name = "NoiDungKL";
+            this.NoiDungKL.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungKL.Width = 100;
             // 
-            // hinh_thuc_kl
+            // HinhThucKL
             // 
-            this.hinh_thuc_kl.DataPropertyName = "hinhthuc";
-            this.hinh_thuc_kl.HeaderText = "Hình thức";
-            this.hinh_thuc_kl.Name = "hinh_thuc_kl";
-            this.hinh_thuc_kl.Width = 100;
+            this.HinhThucKL.DataPropertyName = "HinhThuc";
+            this.HinhThucKL.HeaderText = "Hình thức";
+            this.HinhThucKL.Name = "HinhThucKL";
+            this.HinhThucKL.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HinhThucKL.Width = 100;
             // 
-            // so_tien_kl
+            // LyDoKL
             // 
-            this.so_tien_kl.DataPropertyName = "sotien";
-            this.so_tien_kl.HeaderText = "Số tiền";
-            this.so_tien_kl.Name = "so_tien_kl";
-            this.so_tien_kl.Width = 100;
-            // 
-            // ly_do_kl
-            // 
-            this.ly_do_kl.DataPropertyName = "lydo";
-            this.ly_do_kl.HeaderText = "Lý do";
-            this.ly_do_kl.Name = "ly_do_kl";
-            this.ly_do_kl.Width = 100;
+            this.LyDoKL.DataPropertyName = "LyDo";
+            this.LyDoKL.HeaderText = "Lý do";
+            this.LyDoKL.Name = "LyDoKL";
+            this.LyDoKL.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LyDoKL.Width = 100;
             // 
             // panel9
             // 
@@ -899,7 +880,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1127, 44);
+            this.panel9.Size = new System.Drawing.Size(1127, 32);
             this.panel9.TabIndex = 5;
             // 
             // toolStrip4
@@ -913,12 +894,13 @@
             this.btn_delete_kl,
             this.toolStripSeparator5,
             this.btn_refresh_kl,
+            this.btn_export_kl,
             this.btn_print_kl,
-            this.btn_export_kl});
+            this.comboBoxKLPrinters});
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip4.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip4.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip4.TabIndex = 1;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -927,9 +909,8 @@
             this.btn_add_kl.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_kl.Name = "btn_add_kl";
-            this.btn_add_kl.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_kl.Size = new System.Drawing.Size(57, 29);
             this.btn_add_kl.Text = "Thêm";
-            this.btn_add_kl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_kl.Click += new System.EventHandler(this.btn_add_kl_Click);
             // 
             // btn_delete_kl
@@ -937,43 +918,47 @@
             this.btn_delete_kl.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_kl.Name = "btn_delete_kl";
-            this.btn_delete_kl.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_kl.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_kl.Text = "Xóa";
-            this.btn_delete_kl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_kl.Click += new System.EventHandler(this.btn_delete_kl_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_kl
             // 
             this.btn_refresh_kl.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_kl.Name = "btn_refresh_kl";
-            this.btn_refresh_kl.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_kl.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_kl.Text = "Nạp lại";
-            this.btn_refresh_kl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_kl.Click += new System.EventHandler(this.btn_refresh_kl_Click);
-            // 
-            // btn_print_kl
-            // 
-            this.btn_print_kl.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_kl.Name = "btn_print_kl";
-            this.btn_print_kl.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_kl.Text = "In";
-            this.btn_print_kl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_kl
             // 
             this.btn_export_kl.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_kl.Name = "btn_export_kl";
-            this.btn_export_kl.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_kl.Size = new System.Drawing.Size(51, 29);
             this.btn_export_kl.Text = "Xuất";
-            this.btn_export_kl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_kl.Click += new System.EventHandler(this.btn_export_kl_Click);
+            // 
+            // btn_print_kl
+            // 
+            this.btn_print_kl.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_kl.Name = "btn_print_kl";
+            this.btn_print_kl.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_kl.Text = "In";
+            this.btn_print_kl.Click += new System.EventHandler(this.btn_print_kl_Click);
+            // 
+            // comboBoxKLPrinters
+            // 
+            this.comboBoxKLPrinters.Name = "comboBoxKLPrinters";
+            this.comboBoxKLPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxKLPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage4
             // 
@@ -996,23 +981,24 @@
             this.dgv_qt_danhgia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_danhgia,
             this.edit_column_danhgia,
-            this.ngay_danh_gia,
-            this.noi_dung_danhgia,
-            this.diem_danh_gia,
-            this.xep_loai_danhgia});
+            this.NgayDanhGia,
+            this.NoiDungDG,
+            this.DiemDanhGia,
+            this.XepLoaiDG});
             this.dgv_qt_danhgia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_qt_danhgia.Location = new System.Drawing.Point(0, 44);
+            this.dgv_qt_danhgia.Location = new System.Drawing.Point(0, 32);
             this.dgv_qt_danhgia.Name = "dgv_qt_danhgia";
-            this.dgv_qt_danhgia.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_qt_danhgia.Size = new System.Drawing.Size(1127, 410);
             this.dgv_qt_danhgia.TabIndex = 7;
             this.dgv_qt_danhgia.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_danhgia_CellClick);
             this.dgv_qt_danhgia.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_qt_danhgia_RowPostPaint);
             // 
             // id_qt_danhgia
             // 
-            this.id_qt_danhgia.DataPropertyName = "id";
-            this.id_qt_danhgia.HeaderText = "";
+            this.id_qt_danhgia.DataPropertyName = "Id";
+            this.id_qt_danhgia.HeaderText = "id_qt_danhgia";
             this.id_qt_danhgia.Name = "id_qt_danhgia";
+            this.id_qt_danhgia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.id_qt_danhgia.Visible = false;
             this.id_qt_danhgia.Width = 100;
             // 
@@ -1023,33 +1009,37 @@
             this.edit_column_danhgia.Name = "edit_column_danhgia";
             this.edit_column_danhgia.Width = 30;
             // 
-            // ngay_danh_gia
+            // NgayDanhGia
             // 
-            this.ngay_danh_gia.DataPropertyName = "ngaydanhgia";
-            this.ngay_danh_gia.HeaderText = "Ngày đánh giá";
-            this.ngay_danh_gia.Name = "ngay_danh_gia";
-            this.ngay_danh_gia.Width = 125;
+            this.NgayDanhGia.DataPropertyName = "NgayDanhGia";
+            this.NgayDanhGia.HeaderText = "Ngày đánh giá";
+            this.NgayDanhGia.Name = "NgayDanhGia";
+            this.NgayDanhGia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayDanhGia.Width = 125;
             // 
-            // noi_dung_danhgia
+            // NoiDungDG
             // 
-            this.noi_dung_danhgia.DataPropertyName = "noidung";
-            this.noi_dung_danhgia.HeaderText = "Nội dung";
-            this.noi_dung_danhgia.Name = "noi_dung_danhgia";
-            this.noi_dung_danhgia.Width = 100;
+            this.NoiDungDG.DataPropertyName = "NoiDung";
+            this.NoiDungDG.HeaderText = "Nội dung";
+            this.NoiDungDG.Name = "NoiDungDG";
+            this.NoiDungDG.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungDG.Width = 100;
             // 
-            // diem_danh_gia
+            // DiemDanhGia
             // 
-            this.diem_danh_gia.DataPropertyName = "diemdanhgia";
-            this.diem_danh_gia.HeaderText = "Điểm đánh giá";
-            this.diem_danh_gia.Name = "diem_danh_gia";
-            this.diem_danh_gia.Width = 125;
+            this.DiemDanhGia.DataPropertyName = "DiemDanhGia";
+            this.DiemDanhGia.HeaderText = "Điểm đánh giá";
+            this.DiemDanhGia.Name = "DiemDanhGia";
+            this.DiemDanhGia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DiemDanhGia.Width = 125;
             // 
-            // xep_loai_danhgia
+            // XepLoaiDG
             // 
-            this.xep_loai_danhgia.DataPropertyName = "xeploai";
-            this.xep_loai_danhgia.HeaderText = "Xếp loại";
-            this.xep_loai_danhgia.Name = "xep_loai_danhgia";
-            this.xep_loai_danhgia.Width = 100;
+            this.XepLoaiDG.DataPropertyName = "XepLoai";
+            this.XepLoaiDG.HeaderText = "Xếp loại";
+            this.XepLoaiDG.Name = "XepLoaiDG";
+            this.XepLoaiDG.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.XepLoaiDG.Width = 100;
             // 
             // panel10
             // 
@@ -1057,7 +1047,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1127, 44);
+            this.panel10.Size = new System.Drawing.Size(1127, 32);
             this.panel10.TabIndex = 6;
             // 
             // toolStrip5
@@ -1071,12 +1061,13 @@
             this.btn_delete_dg,
             this.toolStripSeparator7,
             this.btn_refresh_dg,
+            this.btn_export_dg,
             this.btn_print_dg,
-            this.btn_export_dg});
+            this.comboBoxDGPrinters});
             this.toolStrip5.Location = new System.Drawing.Point(0, 0);
             this.toolStrip5.Name = "toolStrip5";
             this.toolStrip5.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip5.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip5.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip5.TabIndex = 1;
             this.toolStrip5.Text = "toolStrip5";
             // 
@@ -1085,9 +1076,8 @@
             this.btn_add_dg.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_dg.Name = "btn_add_dg";
-            this.btn_add_dg.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_dg.Size = new System.Drawing.Size(57, 29);
             this.btn_add_dg.Text = "Thêm";
-            this.btn_add_dg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_dg.Click += new System.EventHandler(this.btn_add_dg_Click);
             // 
             // btn_delete_dg
@@ -1095,43 +1085,47 @@
             this.btn_delete_dg.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_dg.Name = "btn_delete_dg";
-            this.btn_delete_dg.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_dg.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_dg.Text = "Xóa";
-            this.btn_delete_dg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_dg.Click += new System.EventHandler(this.btn_delete_dg_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_dg
             // 
             this.btn_refresh_dg.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_dg.Name = "btn_refresh_dg";
-            this.btn_refresh_dg.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_dg.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_dg.Text = "Nạp lại";
-            this.btn_refresh_dg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_dg.Click += new System.EventHandler(this.btn_refresh_dg_Click);
-            // 
-            // btn_print_dg
-            // 
-            this.btn_print_dg.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_dg.Name = "btn_print_dg";
-            this.btn_print_dg.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_dg.Text = "In";
-            this.btn_print_dg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_dg
             // 
             this.btn_export_dg.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_dg.Name = "btn_export_dg";
-            this.btn_export_dg.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_dg.Size = new System.Drawing.Size(51, 29);
             this.btn_export_dg.Text = "Xuất";
-            this.btn_export_dg.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_dg.Click += new System.EventHandler(this.btn_export_dg_Click);
+            // 
+            // btn_print_dg
+            // 
+            this.btn_print_dg.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_dg.Name = "btn_print_dg";
+            this.btn_print_dg.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_dg.Text = "In";
+            this.btn_print_dg.Click += new System.EventHandler(this.btn_print_dg_Click);
+            // 
+            // comboBoxDGPrinters
+            // 
+            this.comboBoxDGPrinters.Name = "comboBoxDGPrinters";
+            this.comboBoxDGPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxDGPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage5
             // 
@@ -1154,15 +1148,15 @@
             this.dgv_qt_daotao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_daotao,
             this.edit_column_daotao,
-            this.tu_ngay_daotao,
-            this.den_ngay_daotao,
-            this.so_quyet_dinh_daotao,
-            this.noi_dung_daotao,
-            this.hinh_thuc_daotao});
+            this.TuNgayDT,
+            this.DenNgayDT,
+            this.SoQuyetDinhDT,
+            this.NoiDungDT,
+            this.HinhThucDT});
             this.dgv_qt_daotao.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_qt_daotao.Location = new System.Drawing.Point(0, 44);
+            this.dgv_qt_daotao.Location = new System.Drawing.Point(0, 32);
             this.dgv_qt_daotao.Name = "dgv_qt_daotao";
-            this.dgv_qt_daotao.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_qt_daotao.Size = new System.Drawing.Size(1127, 410);
             this.dgv_qt_daotao.TabIndex = 6;
             this.dgv_qt_daotao.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_daotao_CellClick);
             this.dgv_qt_daotao.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_qt_daotao_RowPostPaint);
@@ -1170,7 +1164,7 @@
             // id_qt_daotao
             // 
             this.id_qt_daotao.DataPropertyName = "id";
-            this.id_qt_daotao.HeaderText = "";
+            this.id_qt_daotao.HeaderText = "id_qt_daotao";
             this.id_qt_daotao.Name = "id_qt_daotao";
             this.id_qt_daotao.Visible = false;
             this.id_qt_daotao.Width = 100;
@@ -1182,40 +1176,45 @@
             this.edit_column_daotao.Name = "edit_column_daotao";
             this.edit_column_daotao.Width = 30;
             // 
-            // tu_ngay_daotao
+            // TuNgayDT
             // 
-            this.tu_ngay_daotao.DataPropertyName = "tungay";
-            this.tu_ngay_daotao.HeaderText = "Từ ngày";
-            this.tu_ngay_daotao.Name = "tu_ngay_daotao";
-            this.tu_ngay_daotao.Width = 100;
+            this.TuNgayDT.DataPropertyName = "TuNgay";
+            this.TuNgayDT.HeaderText = "Từ ngày";
+            this.TuNgayDT.Name = "TuNgayDT";
+            this.TuNgayDT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TuNgayDT.Width = 100;
             // 
-            // den_ngay_daotao
+            // DenNgayDT
             // 
-            this.den_ngay_daotao.DataPropertyName = "denngay";
-            this.den_ngay_daotao.HeaderText = "Đến ngày";
-            this.den_ngay_daotao.Name = "den_ngay_daotao";
-            this.den_ngay_daotao.Width = 100;
+            this.DenNgayDT.DataPropertyName = "DenNgay";
+            this.DenNgayDT.HeaderText = "Đến ngày";
+            this.DenNgayDT.Name = "DenNgayDT";
+            this.DenNgayDT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DenNgayDT.Width = 100;
             // 
-            // so_quyet_dinh_daotao
+            // SoQuyetDinhDT
             // 
-            this.so_quyet_dinh_daotao.DataPropertyName = "soquyetdinh";
-            this.so_quyet_dinh_daotao.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_daotao.Name = "so_quyet_dinh_daotao";
-            this.so_quyet_dinh_daotao.Width = 110;
+            this.SoQuyetDinhDT.DataPropertyName = "SoQuyetDinh";
+            this.SoQuyetDinhDT.HeaderText = "Số quyết định";
+            this.SoQuyetDinhDT.Name = "SoQuyetDinhDT";
+            this.SoQuyetDinhDT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoQuyetDinhDT.Width = 110;
             // 
-            // noi_dung_daotao
+            // NoiDungDT
             // 
-            this.noi_dung_daotao.DataPropertyName = "noidung";
-            this.noi_dung_daotao.HeaderText = "Nội dung";
-            this.noi_dung_daotao.Name = "noi_dung_daotao";
-            this.noi_dung_daotao.Width = 100;
+            this.NoiDungDT.DataPropertyName = "NoiDung";
+            this.NoiDungDT.HeaderText = "Nội dung";
+            this.NoiDungDT.Name = "NoiDungDT";
+            this.NoiDungDT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungDT.Width = 100;
             // 
-            // hinh_thuc_daotao
+            // HinhThucDT
             // 
-            this.hinh_thuc_daotao.DataPropertyName = "hinhthuc";
-            this.hinh_thuc_daotao.HeaderText = "Hình thức";
-            this.hinh_thuc_daotao.Name = "hinh_thuc_daotao";
-            this.hinh_thuc_daotao.Width = 100;
+            this.HinhThucDT.DataPropertyName = "HinhThuc";
+            this.HinhThucDT.HeaderText = "Hình thức";
+            this.HinhThucDT.Name = "HinhThucDT";
+            this.HinhThucDT.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.HinhThucDT.Width = 100;
             // 
             // panel11
             // 
@@ -1223,7 +1222,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1127, 44);
+            this.panel11.Size = new System.Drawing.Size(1127, 32);
             this.panel11.TabIndex = 5;
             // 
             // toolStrip6
@@ -1237,12 +1236,13 @@
             this.btn_delete_dt,
             this.toolStripSeparator9,
             this.btn_refresh_dt,
+            this.btn_export_dt,
             this.btn_print_dt,
-            this.btn_export_dt});
+            this.comboBoxDTPrinters});
             this.toolStrip6.Location = new System.Drawing.Point(0, 0);
             this.toolStrip6.Name = "toolStrip6";
             this.toolStrip6.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip6.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip6.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip6.TabIndex = 1;
             this.toolStrip6.Text = "toolStrip6";
             // 
@@ -1251,9 +1251,8 @@
             this.btn_add_dt.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_dt.Name = "btn_add_dt";
-            this.btn_add_dt.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_dt.Size = new System.Drawing.Size(57, 29);
             this.btn_add_dt.Text = "Thêm";
-            this.btn_add_dt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_dt.Click += new System.EventHandler(this.btn_add_dt_Click);
             // 
             // btn_delete_dt
@@ -1261,43 +1260,47 @@
             this.btn_delete_dt.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_dt.Name = "btn_delete_dt";
-            this.btn_delete_dt.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_dt.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_dt.Text = "Xóa";
-            this.btn_delete_dt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_dt.Click += new System.EventHandler(this.btn_delete_dt_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_dt
             // 
             this.btn_refresh_dt.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_dt.Name = "btn_refresh_dt";
-            this.btn_refresh_dt.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_dt.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_dt.Text = "Nạp lại";
-            this.btn_refresh_dt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_dt.Click += new System.EventHandler(this.btn_refresh_dt_Click);
-            // 
-            // btn_print_dt
-            // 
-            this.btn_print_dt.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_dt.Name = "btn_print_dt";
-            this.btn_print_dt.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_dt.Text = "In";
-            this.btn_print_dt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_dt
             // 
             this.btn_export_dt.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_dt.Name = "btn_export_dt";
-            this.btn_export_dt.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_dt.Size = new System.Drawing.Size(51, 29);
             this.btn_export_dt.Text = "Xuất";
-            this.btn_export_dt.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_dt.Click += new System.EventHandler(this.btn_export_dt_Click);
+            // 
+            // btn_print_dt
+            // 
+            this.btn_print_dt.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_dt.Name = "btn_print_dt";
+            this.btn_print_dt.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_dt.Text = "In";
+            this.btn_print_dt.Click += new System.EventHandler(this.btn_print_dt_Click);
+            // 
+            // comboBoxDTPrinters
+            // 
+            this.comboBoxDTPrinters.Name = "comboBoxDTPrinters";
+            this.comboBoxDTPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxDTPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage6
             // 
@@ -1320,15 +1323,15 @@
             this.dgv_tainan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_tainan,
             this.edit_column_tn,
-            this.ten_tai_nan,
-            this.muc_do,
-            this.ngay_dien_ra,
-            this.noi_dien_ra,
-            this.noi_dung});
+            this.LoaiTaiNan,
+            this.MucDoTN,
+            this.NgayDienRaTN,
+            this.NoiDienRaTN,
+            this.NoiDungTN});
             this.dgv_tainan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_tainan.Location = new System.Drawing.Point(0, 44);
+            this.dgv_tainan.Location = new System.Drawing.Point(0, 32);
             this.dgv_tainan.Name = "dgv_tainan";
-            this.dgv_tainan.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_tainan.Size = new System.Drawing.Size(1127, 410);
             this.dgv_tainan.TabIndex = 6;
             this.dgv_tainan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_tainan_CellClick);
             this.dgv_tainan.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_tainan_RowPostPaint);
@@ -1348,40 +1351,45 @@
             this.edit_column_tn.Name = "edit_column_tn";
             this.edit_column_tn.Width = 30;
             // 
-            // ten_tai_nan
+            // LoaiTaiNan
             // 
-            this.ten_tai_nan.DataPropertyName = "tentainan";
-            this.ten_tai_nan.HeaderText = "Tên tai nạn";
-            this.ten_tai_nan.Name = "ten_tai_nan";
-            this.ten_tai_nan.Width = 200;
+            this.LoaiTaiNan.DataPropertyName = "LoaiTaiNan";
+            this.LoaiTaiNan.HeaderText = "Loại tai nạn";
+            this.LoaiTaiNan.Name = "LoaiTaiNan";
+            this.LoaiTaiNan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LoaiTaiNan.Width = 200;
             // 
-            // muc_do
+            // MucDoTN
             // 
-            this.muc_do.DataPropertyName = "mucdo";
-            this.muc_do.HeaderText = "Mức độ";
-            this.muc_do.Name = "muc_do";
-            this.muc_do.Width = 150;
+            this.MucDoTN.DataPropertyName = "MucDo";
+            this.MucDoTN.HeaderText = "Mức độ";
+            this.MucDoTN.Name = "MucDoTN";
+            this.MucDoTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MucDoTN.Width = 150;
             // 
-            // ngay_dien_ra
+            // NgayDienRaTN
             // 
-            this.ngay_dien_ra.DataPropertyName = "ngaydienra";
-            this.ngay_dien_ra.HeaderText = "Ngày diễn ra";
-            this.ngay_dien_ra.Name = "ngay_dien_ra";
-            this.ngay_dien_ra.Width = 110;
+            this.NgayDienRaTN.DataPropertyName = "NgayDienRa";
+            this.NgayDienRaTN.HeaderText = "Ngày diễn ra";
+            this.NgayDienRaTN.Name = "NgayDienRaTN";
+            this.NgayDienRaTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayDienRaTN.Width = 110;
             // 
-            // noi_dien_ra
+            // NoiDienRaTN
             // 
-            this.noi_dien_ra.DataPropertyName = "noidienra";
-            this.noi_dien_ra.HeaderText = "Nơi diễn ra";
-            this.noi_dien_ra.Name = "noi_dien_ra";
-            this.noi_dien_ra.Width = 110;
+            this.NoiDienRaTN.DataPropertyName = "NoiDienRa";
+            this.NoiDienRaTN.HeaderText = "Nơi diễn ra";
+            this.NoiDienRaTN.Name = "NoiDienRaTN";
+            this.NoiDienRaTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDienRaTN.Width = 110;
             // 
-            // noi_dung
+            // NoiDungTN
             // 
-            this.noi_dung.DataPropertyName = "noidung";
-            this.noi_dung.HeaderText = "Nội dung";
-            this.noi_dung.Name = "noi_dung";
-            this.noi_dung.Width = 100;
+            this.NoiDungTN.DataPropertyName = "NoiDung";
+            this.NoiDungTN.HeaderText = "Nội dung";
+            this.NoiDungTN.Name = "NoiDungTN";
+            this.NoiDungTN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungTN.Width = 100;
             // 
             // panel12
             // 
@@ -1389,7 +1397,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1127, 44);
+            this.panel12.Size = new System.Drawing.Size(1127, 32);
             this.panel12.TabIndex = 5;
             // 
             // toolStrip7
@@ -1403,12 +1411,13 @@
             this.btn_delete_tn,
             this.toolStripSeparator11,
             this.btn_refresh_tn,
+            this.btn_export_tn,
             this.btn_print_tn,
-            this.btn_export_tn});
+            this.comboBoxTNPrinters});
             this.toolStrip7.Location = new System.Drawing.Point(0, 0);
             this.toolStrip7.Name = "toolStrip7";
             this.toolStrip7.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip7.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip7.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip7.TabIndex = 1;
             this.toolStrip7.Text = "toolStrip7";
             // 
@@ -1417,9 +1426,8 @@
             this.btn_add_tainan.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_tainan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_tainan.Name = "btn_add_tainan";
-            this.btn_add_tainan.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_tainan.Size = new System.Drawing.Size(57, 29);
             this.btn_add_tainan.Text = "Thêm";
-            this.btn_add_tainan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_tainan.Click += new System.EventHandler(this.btn_add_tainan_Click);
             // 
             // btn_delete_tn
@@ -1427,43 +1435,47 @@
             this.btn_delete_tn.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_tn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_tn.Name = "btn_delete_tn";
-            this.btn_delete_tn.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_tn.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_tn.Text = "Xóa";
-            this.btn_delete_tn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_tn.Click += new System.EventHandler(this.btn_delete_tn_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_tn
             // 
             this.btn_refresh_tn.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_tn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_tn.Name = "btn_refresh_tn";
-            this.btn_refresh_tn.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_tn.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_tn.Text = "Nạp lại";
-            this.btn_refresh_tn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_tn.Click += new System.EventHandler(this.btn_refresh_tn_Click);
-            // 
-            // btn_print_tn
-            // 
-            this.btn_print_tn.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_tn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_tn.Name = "btn_print_tn";
-            this.btn_print_tn.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_tn.Text = "In";
-            this.btn_print_tn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_tn
             // 
             this.btn_export_tn.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_tn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_tn.Name = "btn_export_tn";
-            this.btn_export_tn.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_tn.Size = new System.Drawing.Size(51, 29);
             this.btn_export_tn.Text = "Xuất";
-            this.btn_export_tn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_tn.Click += new System.EventHandler(this.btn_export_tn_Click);
+            // 
+            // btn_print_tn
+            // 
+            this.btn_print_tn.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_tn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_tn.Name = "btn_print_tn";
+            this.btn_print_tn.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_tn.Text = "In";
+            this.btn_print_tn.Click += new System.EventHandler(this.btn_print_tn_Click);
+            // 
+            // comboBoxTNPrinters
+            // 
+            this.comboBoxTNPrinters.Name = "comboBoxTNPrinters";
+            this.comboBoxTNPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxTNPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage7
             // 
@@ -1486,16 +1498,16 @@
             this.dgv_qt_nghiviec.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_qt_nghiviec,
             this.edit_column_nghiviec,
-            this.tu_ngay_nghiviec,
-            this.den_ngay_nghiviec,
-            this.ngay_quyet_dinh_nghiviec,
-            this.so_quyet_dinh_nghiviec,
-            this.noi_dung_nghiviec,
-            this.loai_nghi_viec});
+            this.TuNgayNV,
+            this.DenNgayNV,
+            this.NgayQuyetDinhNV,
+            this.SoQuyetDinhNV,
+            this.NoiDungNV,
+            this.LoaiNghiViec});
             this.dgv_qt_nghiviec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_qt_nghiviec.Location = new System.Drawing.Point(0, 44);
+            this.dgv_qt_nghiviec.Location = new System.Drawing.Point(0, 32);
             this.dgv_qt_nghiviec.Name = "dgv_qt_nghiviec";
-            this.dgv_qt_nghiviec.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_qt_nghiviec.Size = new System.Drawing.Size(1127, 410);
             this.dgv_qt_nghiviec.TabIndex = 6;
             this.dgv_qt_nghiviec.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_nghiviec_CellClick);
             this.dgv_qt_nghiviec.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_qt_nghiviec_RowPostPaint);
@@ -1515,47 +1527,53 @@
             this.edit_column_nghiviec.Name = "edit_column_nghiviec";
             this.edit_column_nghiviec.Width = 30;
             // 
-            // tu_ngay_nghiviec
+            // TuNgayNV
             // 
-            this.tu_ngay_nghiviec.DataPropertyName = "tungay";
-            this.tu_ngay_nghiviec.HeaderText = "Từ ngày";
-            this.tu_ngay_nghiviec.Name = "tu_ngay_nghiviec";
-            this.tu_ngay_nghiviec.Width = 100;
+            this.TuNgayNV.DataPropertyName = "TuNgay";
+            this.TuNgayNV.HeaderText = "Từ ngày";
+            this.TuNgayNV.Name = "TuNgayNV";
+            this.TuNgayNV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TuNgayNV.Width = 100;
             // 
-            // den_ngay_nghiviec
+            // DenNgayNV
             // 
-            this.den_ngay_nghiviec.DataPropertyName = "denngay";
-            this.den_ngay_nghiviec.HeaderText = "Đến ngày";
-            this.den_ngay_nghiviec.Name = "den_ngay_nghiviec";
-            this.den_ngay_nghiviec.Width = 100;
+            this.DenNgayNV.DataPropertyName = "DenNgay";
+            this.DenNgayNV.HeaderText = "Đến ngày";
+            this.DenNgayNV.Name = "DenNgayNV";
+            this.DenNgayNV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DenNgayNV.Width = 100;
             // 
-            // ngay_quyet_dinh_nghiviec
+            // NgayQuyetDinhNV
             // 
-            this.ngay_quyet_dinh_nghiviec.DataPropertyName = "ngayquyetdinh";
-            this.ngay_quyet_dinh_nghiviec.HeaderText = "Ngày quyết định";
-            this.ngay_quyet_dinh_nghiviec.Name = "ngay_quyet_dinh_nghiviec";
-            this.ngay_quyet_dinh_nghiviec.Width = 125;
+            this.NgayQuyetDinhNV.DataPropertyName = "NgayQuyetDinh";
+            this.NgayQuyetDinhNV.HeaderText = "Ngày quyết định";
+            this.NgayQuyetDinhNV.Name = "NgayQuyetDinhNV";
+            this.NgayQuyetDinhNV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NgayQuyetDinhNV.Width = 125;
             // 
-            // so_quyet_dinh_nghiviec
+            // SoQuyetDinhNV
             // 
-            this.so_quyet_dinh_nghiviec.DataPropertyName = "soquyetdinh";
-            this.so_quyet_dinh_nghiviec.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_nghiviec.Name = "so_quyet_dinh_nghiviec";
-            this.so_quyet_dinh_nghiviec.Width = 110;
+            this.SoQuyetDinhNV.DataPropertyName = "SoQuyetDinh";
+            this.SoQuyetDinhNV.HeaderText = "Số quyết định";
+            this.SoQuyetDinhNV.Name = "SoQuyetDinhNV";
+            this.SoQuyetDinhNV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SoQuyetDinhNV.Width = 110;
             // 
-            // noi_dung_nghiviec
+            // NoiDungNV
             // 
-            this.noi_dung_nghiviec.DataPropertyName = "noidung";
-            this.noi_dung_nghiviec.HeaderText = "Nội dung";
-            this.noi_dung_nghiviec.Name = "noi_dung_nghiviec";
-            this.noi_dung_nghiviec.Width = 100;
+            this.NoiDungNV.DataPropertyName = "NoiDung";
+            this.NoiDungNV.HeaderText = "Nội dung";
+            this.NoiDungNV.Name = "NoiDungNV";
+            this.NoiDungNV.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NoiDungNV.Width = 100;
             // 
-            // loai_nghi_viec
+            // LoaiNghiViec
             // 
-            this.loai_nghi_viec.DataPropertyName = "loainghiviec";
-            this.loai_nghi_viec.HeaderText = "Loại";
-            this.loai_nghi_viec.Name = "loai_nghi_viec";
-            this.loai_nghi_viec.Width = 100;
+            this.LoaiNghiViec.DataPropertyName = "LoaiNghiViec";
+            this.LoaiNghiViec.HeaderText = "Loại nghỉ việc";
+            this.LoaiNghiViec.Name = "LoaiNghiViec";
+            this.LoaiNghiViec.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.LoaiNghiViec.Width = 150;
             // 
             // panel13
             // 
@@ -1563,7 +1581,7 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel13.Location = new System.Drawing.Point(0, 0);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1127, 44);
+            this.panel13.Size = new System.Drawing.Size(1127, 32);
             this.panel13.TabIndex = 5;
             // 
             // toolStrip8
@@ -1577,12 +1595,13 @@
             this.btn_delete_nv,
             this.toolStripSeparator13,
             this.btn_refresh_nv,
+            this.btn_export_nv,
             this.btn_print_nv,
-            this.btn_export_nv});
+            this.comboBoxNVPrinters});
             this.toolStrip8.Location = new System.Drawing.Point(0, 0);
             this.toolStrip8.Name = "toolStrip8";
             this.toolStrip8.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip8.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip8.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip8.TabIndex = 1;
             this.toolStrip8.Text = "toolStrip8";
             // 
@@ -1591,9 +1610,8 @@
             this.btn_add_nv.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_nv.Name = "btn_add_nv";
-            this.btn_add_nv.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_nv.Size = new System.Drawing.Size(57, 29);
             this.btn_add_nv.Text = "Thêm";
-            this.btn_add_nv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_nv.Click += new System.EventHandler(this.btn_add_nv_Click);
             // 
             // btn_delete_nv
@@ -1601,43 +1619,47 @@
             this.btn_delete_nv.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_nv.Name = "btn_delete_nv";
-            this.btn_delete_nv.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_nv.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_nv.Text = "Xóa";
-            this.btn_delete_nv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_nv.Click += new System.EventHandler(this.btn_delete_nv_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_nv
             // 
             this.btn_refresh_nv.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_nv.Name = "btn_refresh_nv";
-            this.btn_refresh_nv.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_nv.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_nv.Text = "Nạp lại";
-            this.btn_refresh_nv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_nv.Click += new System.EventHandler(this.btn_refresh_nv_Click);
-            // 
-            // btn_print_nv
-            // 
-            this.btn_print_nv.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_nv.Name = "btn_print_nv";
-            this.btn_print_nv.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_nv.Text = "In";
-            this.btn_print_nv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_nv
             // 
             this.btn_export_nv.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_nv.Name = "btn_export_nv";
-            this.btn_export_nv.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_nv.Size = new System.Drawing.Size(51, 29);
             this.btn_export_nv.Text = "Xuất";
-            this.btn_export_nv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_nv.Click += new System.EventHandler(this.btn_export_nv_Click);
+            // 
+            // btn_print_nv
+            // 
+            this.btn_print_nv.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_nv.Name = "btn_print_nv";
+            this.btn_print_nv.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_nv.Text = "In";
+            this.btn_print_nv.Click += new System.EventHandler(this.btn_print_nv_Click);
+            // 
+            // comboBoxNVPrinters
+            // 
+            this.comboBoxNVPrinters.Name = "comboBoxNVPrinters";
+            this.comboBoxNVPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxNVPrinters.Text = "Chọn máy in";
             // 
             // kryptonPage8
             // 
@@ -1659,14 +1681,14 @@
             this.dgv_thaisai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_thaisai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.edit_column_ts,
-            this.id_thai_san,
-            this.tu_ngay_thaisan,
-            this.den_ngay_thaisan,
-            this.ghi_chu_thaisan});
+            this.id_qt_thaisan,
+            this.TuNgayTS,
+            this.DenNgayTS,
+            this.GhiChuTS});
             this.dgv_thaisai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_thaisai.Location = new System.Drawing.Point(0, 44);
+            this.dgv_thaisai.Location = new System.Drawing.Point(0, 32);
             this.dgv_thaisai.Name = "dgv_thaisai";
-            this.dgv_thaisai.Size = new System.Drawing.Size(1127, 398);
+            this.dgv_thaisai.Size = new System.Drawing.Size(1127, 410);
             this.dgv_thaisai.TabIndex = 6;
             this.dgv_thaisai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_thaisai_CellClick);
             this.dgv_thaisai.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_thaisai_RowPostPaint);
@@ -1678,34 +1700,37 @@
             this.edit_column_ts.Name = "edit_column_ts";
             this.edit_column_ts.Width = 30;
             // 
-            // id_thai_san
+            // id_qt_thaisan
             // 
-            this.id_thai_san.DataPropertyName = "id";
-            this.id_thai_san.HeaderText = "";
-            this.id_thai_san.Name = "id_thai_san";
-            this.id_thai_san.Visible = false;
-            this.id_thai_san.Width = 100;
+            this.id_qt_thaisan.DataPropertyName = "Id";
+            this.id_qt_thaisan.HeaderText = "id_qt_thaisan";
+            this.id_qt_thaisan.Name = "id_qt_thaisan";
+            this.id_qt_thaisan.Visible = false;
+            this.id_qt_thaisan.Width = 100;
             // 
-            // tu_ngay_thaisan
+            // TuNgayTS
             // 
-            this.tu_ngay_thaisan.DataPropertyName = "tungay";
-            this.tu_ngay_thaisan.HeaderText = "Từ ngày";
-            this.tu_ngay_thaisan.Name = "tu_ngay_thaisan";
-            this.tu_ngay_thaisan.Width = 100;
+            this.TuNgayTS.DataPropertyName = "TuNgay";
+            this.TuNgayTS.HeaderText = "Từ ngày";
+            this.TuNgayTS.Name = "TuNgayTS";
+            this.TuNgayTS.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TuNgayTS.Width = 100;
             // 
-            // den_ngay_thaisan
+            // DenNgayTS
             // 
-            this.den_ngay_thaisan.DataPropertyName = "denngay";
-            this.den_ngay_thaisan.HeaderText = "Đến ngày";
-            this.den_ngay_thaisan.Name = "den_ngay_thaisan";
-            this.den_ngay_thaisan.Width = 100;
+            this.DenNgayTS.DataPropertyName = "DenNgay";
+            this.DenNgayTS.HeaderText = "Đến ngày";
+            this.DenNgayTS.Name = "DenNgayTS";
+            this.DenNgayTS.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DenNgayTS.Width = 100;
             // 
-            // ghi_chu_thaisan
+            // GhiChuTS
             // 
-            this.ghi_chu_thaisan.DataPropertyName = "ghichu";
-            this.ghi_chu_thaisan.HeaderText = "Ghi chú";
-            this.ghi_chu_thaisan.Name = "ghi_chu_thaisan";
-            this.ghi_chu_thaisan.Width = 100;
+            this.GhiChuTS.DataPropertyName = "GhiChu";
+            this.GhiChuTS.HeaderText = "Ghi chú";
+            this.GhiChuTS.Name = "GhiChuTS";
+            this.GhiChuTS.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.GhiChuTS.Width = 100;
             // 
             // panel16
             // 
@@ -1713,7 +1738,7 @@
             this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel16.Location = new System.Drawing.Point(0, 0);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(1127, 44);
+            this.panel16.Size = new System.Drawing.Size(1127, 32);
             this.panel16.TabIndex = 5;
             // 
             // toolStrip9
@@ -1727,12 +1752,13 @@
             this.btn_delete_ts,
             this.toolStripSeparator15,
             this.btn_refresh_ts,
+            this.btn_export_ts,
             this.btn_print_ts,
-            this.btn_export_ts});
+            this.comboBoxTSPrinters});
             this.toolStrip9.Location = new System.Drawing.Point(0, 0);
             this.toolStrip9.Name = "toolStrip9";
             this.toolStrip9.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip9.Size = new System.Drawing.Size(1127, 44);
+            this.toolStrip9.Size = new System.Drawing.Size(1127, 32);
             this.toolStrip9.TabIndex = 1;
             this.toolStrip9.Text = "toolStrip9";
             // 
@@ -1741,9 +1767,8 @@
             this.btn_add_ts.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_ts.Name = "btn_add_ts";
-            this.btn_add_ts.Size = new System.Drawing.Size(41, 41);
+            this.btn_add_ts.Size = new System.Drawing.Size(57, 29);
             this.btn_add_ts.Text = "Thêm";
-            this.btn_add_ts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_add_ts.Click += new System.EventHandler(this.btn_add_ts_Click);
             // 
             // btn_delete_ts
@@ -1751,43 +1776,47 @@
             this.btn_delete_ts.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_delete_ts.Name = "btn_delete_ts";
-            this.btn_delete_ts.Size = new System.Drawing.Size(31, 41);
+            this.btn_delete_ts.Size = new System.Drawing.Size(47, 29);
             this.btn_delete_ts.Text = "Xóa";
-            this.btn_delete_ts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete_ts.Click += new System.EventHandler(this.btn_delete_ts_Click);
             // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(6, 44);
+            this.toolStripSeparator15.Size = new System.Drawing.Size(6, 32);
             // 
             // btn_refresh_ts
             // 
             this.btn_refresh_ts.Image = global::TENTAC_HRM.Properties.Resources.refresh;
             this.btn_refresh_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_refresh_ts.Name = "btn_refresh_ts";
-            this.btn_refresh_ts.Size = new System.Drawing.Size(48, 41);
+            this.btn_refresh_ts.Size = new System.Drawing.Size(64, 29);
             this.btn_refresh_ts.Text = "Nạp lại";
-            this.btn_refresh_ts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_refresh_ts.Click += new System.EventHandler(this.btn_refresh_ts_Click);
-            // 
-            // btn_print_ts
-            // 
-            this.btn_print_ts.Image = global::TENTAC_HRM.Properties.Resources.printer;
-            this.btn_print_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_print_ts.Name = "btn_print_ts";
-            this.btn_print_ts.Size = new System.Drawing.Size(23, 41);
-            this.btn_print_ts.Text = "In";
-            this.btn_print_ts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // btn_export_ts
             // 
             this.btn_export_ts.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_export_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_export_ts.Name = "btn_export_ts";
-            this.btn_export_ts.Size = new System.Drawing.Size(35, 41);
+            this.btn_export_ts.Size = new System.Drawing.Size(51, 29);
             this.btn_export_ts.Text = "Xuất";
-            this.btn_export_ts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_export_ts.Click += new System.EventHandler(this.btn_export_ts_Click);
+            // 
+            // btn_print_ts
+            // 
+            this.btn_print_ts.Image = global::TENTAC_HRM.Properties.Resources.printer;
+            this.btn_print_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_print_ts.Name = "btn_print_ts";
+            this.btn_print_ts.Size = new System.Drawing.Size(37, 29);
+            this.btn_print_ts.Text = "In";
+            this.btn_print_ts.Click += new System.EventHandler(this.btn_print_ts_Click);
+            // 
+            // comboBoxTSPrinters
+            // 
+            this.comboBoxTSPrinters.Name = "comboBoxTSPrinters";
+            this.comboBoxTSPrinters.Size = new System.Drawing.Size(121, 32);
+            this.comboBoxTSPrinters.Text = "Chọn máy in";
             // 
             // miniToolStrip
             // 
@@ -1805,6 +1834,116 @@
             this.miniToolStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.miniToolStrip.Size = new System.Drawing.Size(1121, 44);
             this.miniToolStrip.TabIndex = 1;
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // txt_MaNhanVien
+            // 
+            // 
+            // 
+            // 
+            this.txt_MaNhanVien.Border.Class = "TextBoxBorder";
+            this.txt_MaNhanVien.Enabled = false;
+            this.txt_MaNhanVien.Location = new System.Drawing.Point(237, 14);
+            this.txt_MaNhanVien.Name = "txt_MaNhanVien";
+            this.txt_MaNhanVien.Size = new System.Drawing.Size(148, 23);
+            this.txt_MaNhanVien.TabIndex = 5;
+            // 
+            // txt_SDT
+            // 
+            // 
+            // 
+            // 
+            this.txt_SDT.Border.Class = "TextBoxBorder";
+            this.txt_SDT.Enabled = false;
+            this.txt_SDT.Location = new System.Drawing.Point(237, 43);
+            this.txt_SDT.Name = "txt_SDT";
+            this.txt_SDT.Size = new System.Drawing.Size(148, 23);
+            this.txt_SDT.TabIndex = 6;
+            // 
+            // txt_DiaChi
+            // 
+            // 
+            // 
+            // 
+            this.txt_DiaChi.Border.Class = "TextBoxBorder";
+            this.txt_DiaChi.Enabled = false;
+            this.txt_DiaChi.Location = new System.Drawing.Point(237, 72);
+            this.txt_DiaChi.Name = "txt_DiaChi";
+            this.txt_DiaChi.Size = new System.Drawing.Size(453, 23);
+            this.txt_DiaChi.TabIndex = 7;
+            // 
+            // txt_Email
+            // 
+            // 
+            // 
+            // 
+            this.txt_Email.Border.Class = "TextBoxBorder";
+            this.txt_Email.Enabled = false;
+            this.txt_Email.Location = new System.Drawing.Point(467, 42);
+            this.txt_Email.Name = "txt_Email";
+            this.txt_Email.Size = new System.Drawing.Size(223, 23);
+            this.txt_Email.TabIndex = 8;
+            // 
+            // labelX1
+            // 
+            this.labelX1.Location = new System.Drawing.Point(391, 11);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 9;
+            this.labelX1.Text = "Ngày sinh:";
+            // 
+            // dtp_NgaySinh
+            // 
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NgaySinh.ButtonDropDown.Visible = true;
+            this.dtp_NgaySinh.Enabled = false;
+            this.dtp_NgaySinh.Location = new System.Drawing.Point(467, 11);
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NgaySinh.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NgaySinh.MonthCalendar.DisplayMonth = new System.DateTime(2024, 11, 1, 0, 0, 0, 0);
+            this.dtp_NgaySinh.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NgaySinh.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NgaySinh.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NgaySinh.Name = "dtp_NgaySinh";
+            this.dtp_NgaySinh.Size = new System.Drawing.Size(149, 23);
+            this.dtp_NgaySinh.TabIndex = 10;
+            // 
+            // chk_GioiTinh
+            // 
+            this.chk_GioiTinh.Enabled = false;
+            this.chk_GioiTinh.Location = new System.Drawing.Point(623, 11);
+            this.chk_GioiTinh.Name = "chk_GioiTinh";
+            this.chk_GioiTinh.Size = new System.Drawing.Size(67, 23);
+            this.chk_GioiTinh.TabIndex = 11;
+            this.chk_GioiTinh.Text = "Nam";
             // 
             // uc_quatrinh_lamviec
             // 
@@ -1881,6 +2020,7 @@
             this.panel16.PerformLayout();
             this.toolStrip9.ResumeLayout(false);
             this.toolStrip9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1890,10 +2030,10 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.PictureBox pb_avata;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
+        private DevComponents.DotNetBar.LabelX label4;
+        private DevComponents.DotNetBar.LabelX label3;
+        private DevComponents.DotNetBar.LabelX label2;
+        private DevComponents.DotNetBar.LabelX label5;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
@@ -1987,66 +2127,76 @@
         private System.Windows.Forms.ToolStripButton btn_print_ts;
         private System.Windows.Forms.ToolStripButton btn_export_ts;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_thaisai;
-        private System.Windows.Forms.CheckBox chk_gioitinh;
-        private System.Windows.Forms.TextBox txt_ma_nhanvien;
-        private System.Windows.Forms.TextBox txt_sdt;
-        private System.Windows.Forms.TextBox txt_email;
-        private System.Windows.Forms.MaskedTextBox txt_ngaysinh;
-        private System.Windows.Forms.TextBox txt_diachi;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_congtac;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn dia_diem_ct;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TuNgayCT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DenNgayCT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoQuyetDinhCT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DiaDiemCT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungCT;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_khenthuong;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_khen_thuong_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kt;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayKhenThuong;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoQuyetDinhKT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungKT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn HinhThucKT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoTienKT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LyDoKT;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_kyluat;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_ky_luat_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kl;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kl;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayKyLuat;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoQuyetDinhKL;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungKL;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn HinhThucKL;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LyDoKL;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_danhgia;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_danhgia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_danh_gia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_danhgia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn diem_danh_gia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn xep_loai_danhgia;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayDanhGia;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungDG;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DiemDanhGia;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn XepLoaiDG;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_daotao;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_daotao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_daotao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_daotao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_daotao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_daotao;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_daotao;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TuNgayDT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DenNgayDT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoQuyetDinhDT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungDT;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn HinhThucDT;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_tainan;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_tn;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ten_tai_nan;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn muc_do;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_dien_ra;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dien_ra;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LoaiTaiNan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MucDoTN;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayDienRaTN;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDienRaTN;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungTN;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_ts;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_thaisan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TuNgayTS;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DenNgayTS;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn GhiChuTS;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_nghiviec;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_nghiviec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_nghiviec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_nghiviec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_quyet_dinh_nghiviec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_nghiviec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_nghiviec;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn loai_nghi_viec;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_ts;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_thai_san;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_thaisan;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_thaisan;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ghi_chu_thaisan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TuNgayNV;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DenNgayNV;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayQuyetDinhNV;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoQuyetDinhNV;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDungNV;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn LoaiNghiViec;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.ToolStripComboBox comboBoxCTPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxKTPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxKLPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxDGPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxDTPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxTNPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxNVPrinters;
+        private System.Windows.Forms.ToolStripComboBox comboBoxTSPrinters;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_MaNhanVien;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_SDT;
+        private DevComponents.Editors.DateTimeAdv.DateTimeInput dtp_NgaySinh;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_Email;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_DiaChi;
+        private DevComponents.DotNetBar.Controls.CheckBoxX chk_GioiTinh;
     }
 }

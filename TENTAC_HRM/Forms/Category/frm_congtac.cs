@@ -45,10 +45,10 @@ namespace TENTAC_HRM.Forms.Category
         private void LoadNull()
         {
             txt_DiaDiem.Text = string.Empty;
-            txt_SoQuyetDinh.Text= string.Empty;
+            txt_SoQuyetDinh.Text = string.Empty;
             dtp_TuNgay.Text = string.Empty;
-            dtp_DenNgay.Text= string.Empty;
-            txt_NoiDung.Text= string.Empty;
+            dtp_DenNgay.Text = string.Empty;
+            txt_NoiDung.Text = string.Empty;
         }
         private void btn_close_Click(object sender, EventArgs e)
         {
@@ -152,16 +152,8 @@ namespace TENTAC_HRM.Forms.Category
             {
                 UpdateData();
             }
-            _Personnel.LoadNhanVienCongTac();
             LoadNull();
-            if (_quatrinh != null)
-            {
-                _quatrinh.Load_congtac();
-            }
-            else
-            {
-                _Personnel.LoadNhanVienCongTac();
-            }
+            _quatrinh.LoadQTCongTac();
         }
     }
 }

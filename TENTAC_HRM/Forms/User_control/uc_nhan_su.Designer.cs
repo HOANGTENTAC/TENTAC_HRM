@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Danh sách nhân viên mới");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Nhân viên nghỉ việc");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Danh sách nhân viên mới");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Nhân viên nghỉ việc");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_nhan_su));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.trv_sodoquanly = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -73,8 +73,6 @@
             this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.pnlDieuHuong = new System.Windows.Forms.Panel();
-            this.lb_totalsize = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -132,6 +130,8 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lb_totalsize = new System.Windows.Forms.Label();
+            this.pnlDieuHuong = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -176,15 +176,15 @@
             this.trv_sodoquanly.ImageList = this.imageList1;
             this.trv_sodoquanly.Location = new System.Drawing.Point(0, 32);
             this.trv_sodoquanly.Name = "trv_sodoquanly";
-            treeNode1.Name = "Node0";
-            treeNode1.Tag = "nv_moi";
-            treeNode1.Text = "Danh sách nhân viên mới";
-            treeNode2.Name = "Node0";
-            treeNode2.Tag = "nv_nv";
-            treeNode2.Text = "Nhân viên nghỉ việc";
+            treeNode3.Name = "Node0";
+            treeNode3.Tag = "nv_moi";
+            treeNode3.Text = "Danh sách nhân viên mới";
+            treeNode4.Name = "Node0";
+            treeNode4.Tag = "nv_nv";
+            treeNode4.Text = "Nhân viên nghỉ việc";
             this.trv_sodoquanly.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.trv_sodoquanly.SelectedImageIndex = 1;
             this.trv_sodoquanly.Size = new System.Drawing.Size(207, 681);
             this.trv_sodoquanly.TabIndex = 2;
@@ -221,18 +221,18 @@
             // dgv_nhan_su
             // 
             this.dgv_nhan_su.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
-            this.dgv_nhan_su.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LemonChiffon;
+            this.dgv_nhan_su.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_nhan_su.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_nhan_su.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_nhan_su.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_nhan_su.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_nhan_su.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_nhan_su.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.edit_column,
@@ -263,28 +263,28 @@
             this.quoctich,
             this.ghichu,
             this.rownumber});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_nhan_su.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_nhan_su.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_nhan_su.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_nhan_su.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_nhan_su.Location = new System.Drawing.Point(0, 0);
             this.dgv_nhan_su.Name = "dgv_nhan_su";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_nhan_su.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            this.dgv_nhan_su.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_nhan_su.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            this.dgv_nhan_su.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_nhan_su.Size = new System.Drawing.Size(1162, 396);
             this.dgv_nhan_su.TabIndex = 12;
             this.dgv_nhan_su.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_nhan_su_CellClick);
@@ -488,24 +488,6 @@
             this.panel7.Size = new System.Drawing.Size(1162, 25);
             this.panel7.TabIndex = 1;
             // 
-            // pnlDieuHuong
-            // 
-            this.pnlDieuHuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDieuHuong.Location = new System.Drawing.Point(0, 0);
-            this.pnlDieuHuong.Name = "pnlDieuHuong";
-            this.pnlDieuHuong.Size = new System.Drawing.Size(1100, 25);
-            this.pnlDieuHuong.TabIndex = 1;
-            // 
-            // lb_totalsize
-            // 
-            this.lb_totalsize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lb_totalsize.Location = new System.Drawing.Point(1100, 0);
-            this.lb_totalsize.Name = "lb_totalsize";
-            this.lb_totalsize.Size = new System.Drawing.Size(62, 25);
-            this.lb_totalsize.TabIndex = 0;
-            this.lb_totalsize.Text = "label9";
-            this.lb_totalsize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // panel1
             // 
             this.panel1.AutoSize = true;
@@ -582,8 +564,8 @@
             // toolStripLabel4
             // 
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(36, 29);
-            this.toolStripLabel4.Text = "Show";
+            this.toolStripLabel4.Size = new System.Drawing.Size(97, 29);
+            this.toolStripLabel4.Text = "Số lượng hiển thị";
             // 
             // cbo_pagenumber
             // 
@@ -1135,6 +1117,24 @@
             this.dataGridViewImageColumn1.ToolTipText = "Sửa";
             this.dataGridViewImageColumn1.Width = 30;
             // 
+            // lb_totalsize
+            // 
+            this.lb_totalsize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lb_totalsize.Location = new System.Drawing.Point(1100, 0);
+            this.lb_totalsize.Name = "lb_totalsize";
+            this.lb_totalsize.Size = new System.Drawing.Size(62, 25);
+            this.lb_totalsize.TabIndex = 0;
+            this.lb_totalsize.Text = "label9";
+            this.lb_totalsize.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // pnlDieuHuong
+            // 
+            this.pnlDieuHuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDieuHuong.Location = new System.Drawing.Point(0, 0);
+            this.pnlDieuHuong.Name = "pnlDieuHuong";
+            this.pnlDieuHuong.Size = new System.Drawing.Size(1100, 25);
+            this.pnlDieuHuong.TabIndex = 1;
+            // 
             // uc_nhan_su
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1204,8 +1204,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel pnlDieuHuong;
-        private System.Windows.Forms.Label lb_totalsize;
         private System.Windows.Forms.Panel panel2;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_dienthoai;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_email;
@@ -1261,5 +1259,7 @@
         private FontAwesome.Sharp.IconButton btn_tamtru;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_tamtru;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel pnlDieuHuong;
+        private System.Windows.Forms.Label lb_totalsize;
     }
 }

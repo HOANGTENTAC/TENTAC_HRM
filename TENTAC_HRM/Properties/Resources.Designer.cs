@@ -593,6 +593,16 @@ namespace TENTAC_HRM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap closeForm {
+            get {
+                object obj = ResourceManager.GetObject("closeForm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cloud_32X32 {
             get {
                 object obj = ResourceManager.GetObject("cloud_32X32", resourceCulture);

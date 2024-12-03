@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.User_control
 {
@@ -220,7 +221,7 @@ namespace TENTAC_HRM.Forms.User_control
                 }
                 else
                 {
-                    MessageBox.Show("Bạn chưa nhập tên Tỉnh/Thành");
+                    RJMessageBox.Show("Bạn chưa nhập tên Tỉnh/Thành");
                     return;
                 }
             }
@@ -254,7 +255,7 @@ namespace TENTAC_HRM.Forms.User_control
                 }
                 else
                 {
-                    MessageBox.Show("Bạn chưa nhập tên Tỉnh/Thành và Quận/Huyện");
+                    RJMessageBox.Show("Bạn chưa nhập tên Tỉnh/Thành và Quận/Huyện");
                     return;
                 }
             }
@@ -285,7 +286,7 @@ namespace TENTAC_HRM.Forms.User_control
                 }
                 else
                 {
-                    MessageBox.Show("Bạn chưa nhập tên Quận/Huyện và Phường/Xã");
+                    RJMessageBox.Show("Bạn chưa nhập tên Quận/Huyện và Phường/Xã");
                     return;
                 }
             }

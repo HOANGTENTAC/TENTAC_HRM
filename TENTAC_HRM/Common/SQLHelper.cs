@@ -237,6 +237,35 @@ namespace TENTAC_HRM
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
+        public static DataTable DataTableByProcedure(string procedureName, SqlParameter[] prams)
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                string sqlConnection = GetSqlConnection();
+                using (SqlConnection conn = new SqlConnection(sqlConnection))
+                {
+                    using (SqlCommand cmd = new SqlCommand(procedureName, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        if (prams != null)
+                        {
+                            cmd.Parameters.AddRange(prams);
+                        }
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                }
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return null;
+            }
+        }
         private void Open()
         {
             if (con == null)

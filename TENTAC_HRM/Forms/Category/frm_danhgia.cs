@@ -126,14 +126,7 @@ namespace TENTAC_HRM.Forms.Category
             {
                 InsertData();
             }
-            if (_quatrinh != null)
-            {
-                _quatrinh.load_danhgia();
-            }
-            else
-            {
-                _personnel.LoadNhanVienDanhGia();
-            }
+            _quatrinh.LoadQTDanhGia();
             LoadNull();
         }
         private void SetValues()
