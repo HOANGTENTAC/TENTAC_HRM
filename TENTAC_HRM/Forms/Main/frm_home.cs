@@ -58,16 +58,32 @@ namespace TENTAC_HRM.Forms.Main
         private void load_menu()
         {
             //splitContainer1.Panel2.Controls.Clear();
-            string sql = "select a.*,b.FrmType,b.FrmText " +
-                         "from mst_Menu a " +
-                         "left join mst_from b on a.FromName = b.FrmName " +
-                         "where a.ParentId = 0 order by a.MenuNumber desc";
+            string sql = $@"SELECT a.*, b.FrmType, b.FrmText FROM mst_Menu a
+            LEFT JOIN mst_from b ON a.FromName = b.FrmName 
+            WHERE a.ParentId = 0 
+                  AND (
+                      EXISTS (
+                          SELECT * FROM mst_Menu c
+                          INNER JOIN mst_UserRoles ur_child 
+                              ON c.Id = ur_child.Id_Menu 
+                              AND ur_child.del_flg = 0 
+                              AND ur_child.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+                          WHERE c.ParentId = a.Id
+                      )
+                      OR EXISTS (
+                          SELECT * FROM mst_UserRoles ur_parent
+                          WHERE ur_parent.Id_Menu = a.Id 
+                            AND ur_parent.del_flg = 0 
+                            AND ur_parent.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+                      )
+                  )
+            ORDER BY a.MenuNumber DESC;";
             dt_MenuParent = SQLHelper.ExecuteDt(sql);
 
-            string sql_chil = $"select a.*,b.FrmType,b.FrmText " +
-             $"from mst_menu a " +
-             "left join mst_from b on a.FromName = b.FrmName " +
-             $"where ParentId != 0 order by a.MenuNumber desc";
+            string sql_chil = $@"select a.*,b.FrmType,b.FrmText from mst_menu a
+                left join mst_from b on a.FromName = b.FrmName 
+                inner join mst_UserRoles ur on a.Id = ur.Id_Menu and ur.del_flg = 0
+                where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} order by a.MenuNumber desc";
             dt_MenuChild = SQLHelper.ExecuteDt(sql_chil);
 
             foreach (DataRow item in dt_MenuParent.Rows)
@@ -360,7 +376,7 @@ namespace TENTAC_HRM.Forms.Main
                     UserControl user = new UserControl();
                     //user = uc_nhan_su.Instance;
 
-                    user = Activator.CreateInstance(Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"].ToString() + name_parent["FromName"].ToString())) as UserControl;
+                    user = Activator.CreateInstance(Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"]?.ToString() + name_parent["FromName"]?.ToString())) as UserControl;
 
                     for (int i = 0; i < tb_main.TabPages.Count; i++)
                     {

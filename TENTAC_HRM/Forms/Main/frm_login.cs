@@ -1,5 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using System;
+using System.Drawing.Drawing2D;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
@@ -24,21 +26,30 @@ namespace TENTAC_HRM.Forms.Main
         {
             InitializeComponent();
             init_data();
-            this.FormBorderStyle = FormBorderStyle.None;
+            //this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
-
         private void btn_show_pass_Click(object sender, EventArgs e)
         {
             if (txt_password.PasswordChar == false)
             {
-                btn_show_pass.Image = Properties.Resources.eye;
+                btn_show_pass.Image = Properties.Resources.close_eye;
                 txt_password.PasswordChar = true;
             }
             else
             {
-                btn_show_pass.Image = Properties.Resources.close_eye;
+                btn_show_pass.Image = Properties.Resources.eye;
                 txt_password.PasswordChar = false;
+            }
+        }
+        private void txtUser_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                int selectionStart = textBox.SelectionStart;
+                textBox.Text = textBox.Text.ToUpper();
+                textBox.SelectionStart = selectionStart;
             }
         }
         private void btn_login_Click(object sender, EventArgs e)
@@ -54,7 +65,7 @@ namespace TENTAC_HRM.Forms.Main
                 return;
             }
 
-            if (provider.check_login(txt_user.Texts, txt_password.Texts))
+            if (provider.check_login(txt_user.Texts.Trim().ToUpper(), txt_password.Texts))
             {
                 save_data();
                 frm_home frm = new frm_home();
@@ -123,6 +134,11 @@ namespace TENTAC_HRM.Forms.Main
             {
                 btn_login.PerformClick();
             }
+        }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

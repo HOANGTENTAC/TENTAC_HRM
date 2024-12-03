@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_personnel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.tabPage1 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.cbo_ReportTo = new TENTAC_HRM.Custom.MultiColumnComboBox();
@@ -309,103 +309,6 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.btn_DeleteGD = new System.Windows.Forms.Button();
             this.btn_GiaDinh = new System.Windows.Forms.Button();
-            this.tabPage8 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.tc_qtlv = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
-            this.tabPage20 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_congtac = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_congtac = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.edit_column_ct = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tu_ngay_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.den_ngay_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.dia_diem_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_ct = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btn_DeleteCT = new System.Windows.Forms.Button();
-            this.btn_add_congtac = new System.Windows.Forms.Button();
-            this.tabPage21 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_khenthuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_khenthuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.edit_column_kt = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ngay_khen_thuong_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_quyet_dinh_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.noi_dung_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.hinh_thuc_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.so_tien_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.ly_do_kt = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btn_DeleteKT = new System.Windows.Forms.Button();
-            this.btn_add_khenthuong = new System.Windows.Forms.Button();
-            this.tabPage22 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_kyluat = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_kyluat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column_kl = new System.Windows.Forms.DataGridViewImageColumn();
-            this.NgayKyLuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoQuyetDinh_KL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoiDung_KL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HinhThuc_KL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LyDo_KL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.btn_DeleteKL = new System.Windows.Forms.Button();
-            this.btn_add_kyluat = new System.Windows.Forms.Button();
-            this.tabPage23 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_qt_danhgia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_danhgia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.edit_column_danhgia = new System.Windows.Forms.DataGridViewImageColumn();
-            this.NgayDanhGia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.NoiDung_DG = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.DiemDanhGia = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.XepLoai_DG = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.btn_DeleteDG = new System.Windows.Forms.Button();
-            this.btn_danhgia = new System.Windows.Forms.Button();
-            this.tabPage24 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_qt_daotao = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_daotao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column_daotao = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tu_ngay_daotao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.den_ngay_daotao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_quyet_dinh_daotao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noi_dung_daotao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hinh_thuc_daotao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.btn_DeleteDT = new System.Windows.Forms.Button();
-            this.btn_daotao = new System.Windows.Forms.Button();
-            this.tabPage25 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_tainan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_tainan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column_tn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ten_tai_nan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.muc_do = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_dien_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noi_dien_ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noi_dung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.btn_DeleteTN = new System.Windows.Forms.Button();
-            this.btn_tainan = new System.Windows.Forms.Button();
-            this.tabPage26 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_qt_nghiviec = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_qt_nghiviec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column_nghiviec = new System.Windows.Forms.DataGridViewImageColumn();
-            this.loai_nghi_viec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tu_ngay_nghiviec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.den_ngay_nghiviec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_quyet_dinh_nghiviec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.so_quyet_dinh_nghiviec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noi_dung_nghiviec = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.btn_DeleteVC = new System.Windows.Forms.Button();
-            this.btn_nghiviec = new System.Windows.Forms.Button();
-            this.tabPage2 = new ComponentFactory.Krypton.Navigator.KryptonPage();
-            this.dgv_ThaiSai = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.id_thai_san = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column_ts = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tu_ngay_thaisan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.den_ngay_thaisan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ghi_chu_thaisan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel16 = new System.Windows.Forms.Panel();
-            this.btn_DeleteTS = new System.Windows.Forms.Button();
-            this.btn_ThaiSan = new System.Windows.Forms.Button();
             this.tabPage9 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.pl_TaiSan = new System.Windows.Forms.Panel();
             this.dgv_TaiSan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -499,42 +402,6 @@
             this.pl_GiaDinh.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_NguoiThan)).BeginInit();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage8)).BeginInit();
-            this.tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tc_qtlv)).BeginInit();
-            this.tc_qtlv.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage20)).BeginInit();
-            this.tabPage20.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_congtac)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage21)).BeginInit();
-            this.tabPage21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_khenthuong)).BeginInit();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage22)).BeginInit();
-            this.tabPage22.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_kyluat)).BeginInit();
-            this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage23)).BeginInit();
-            this.tabPage23.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_qt_danhgia)).BeginInit();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage24)).BeginInit();
-            this.tabPage24.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_qt_daotao)).BeginInit();
-            this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage25)).BeginInit();
-            this.tabPage25.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_tainan)).BeginInit();
-            this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage26)).BeginInit();
-            this.tabPage26.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_qt_nghiviec)).BeginInit();
-            this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage2)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ThaiSai)).BeginInit();
-            this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPage9)).BeginInit();
             this.tabPage9.SuspendLayout();
             this.pl_TaiSan.SuspendLayout();
@@ -558,7 +425,6 @@
             this.tabPage5,
             this.tp_banthan,
             this.tp_giadinh,
-            this.tabPage8,
             this.tabPage9});
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(947, 617);
@@ -3183,9 +3049,9 @@
             // IsActive
             // 
             this.IsActive.DataPropertyName = "IsActive";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.NullValue = false;
-            this.IsActive.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.IsActive.DefaultCellStyle = dataGridViewCellStyle1;
             this.IsActive.FalseValue = null;
             this.IsActive.HeaderText = "Hiệu lực";
             this.IsActive.IndeterminateValue = null;
@@ -3794,7 +3660,7 @@
             this.tp_giadinh.LastVisibleSet = true;
             this.tp_giadinh.MinimumSize = new System.Drawing.Size(50, 50);
             this.tp_giadinh.Name = "tp_giadinh";
-            this.tp_giadinh.Size = new System.Drawing.Size(945, 593);
+            this.tp_giadinh.Size = new System.Drawing.Size(945, 590);
             this.tp_giadinh.Text = "Gia đình";
             this.tp_giadinh.ToolTipTitle = "Page ToolTip";
             this.tp_giadinh.UniqueName = "083A1BAD6A7441548EBB849FD65CCFFC";
@@ -3807,7 +3673,7 @@
             this.pl_GiaDinh.Enabled = false;
             this.pl_GiaDinh.Location = new System.Drawing.Point(0, 0);
             this.pl_GiaDinh.Name = "pl_GiaDinh";
-            this.pl_GiaDinh.Size = new System.Drawing.Size(945, 593);
+            this.pl_GiaDinh.Size = new System.Drawing.Size(945, 590);
             this.pl_GiaDinh.TabIndex = 0;
             // 
             // dgv_NguoiThan
@@ -3826,7 +3692,7 @@
             this.dgv_NguoiThan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_NguoiThan.Location = new System.Drawing.Point(0, 30);
             this.dgv_NguoiThan.Name = "dgv_NguoiThan";
-            this.dgv_NguoiThan.Size = new System.Drawing.Size(945, 563);
+            this.dgv_NguoiThan.Size = new System.Drawing.Size(945, 560);
             this.dgv_NguoiThan.TabIndex = 12;
             this.dgv_NguoiThan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_nguoi_than_CellClick);
             // 
@@ -3853,7 +3719,7 @@
             this.moiquanhe.HeaderText = "Mối quan hệ";
             this.moiquanhe.Name = "moiquanhe";
             this.moiquanhe.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.moiquanhe.Width = 88;
+            this.moiquanhe.Width = 120;
             // 
             // HoTen
             // 
@@ -3894,9 +3760,9 @@
             // isphuthuoc
             // 
             this.isphuthuoc.DataPropertyName = "IsPhuThuoc";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = false;
-            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = false;
+            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle2;
             this.isphuthuoc.FalseValue = null;
             this.isphuthuoc.FillWeight = 67.00507F;
             this.isphuthuoc.HeaderText = "Phụ thuộc";
@@ -3956,1091 +3822,6 @@
             this.btn_GiaDinh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_GiaDinh.UseVisualStyleBackColor = false;
             this.btn_GiaDinh.Click += new System.EventHandler(this.btn_gia_dinh_Click);
-            // 
-            // tabPage8
-            // 
-            this.tabPage8.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage8.Controls.Add(this.tc_qtlv);
-            this.tabPage8.Flags = 65534;
-            this.tabPage8.LastVisibleSet = true;
-            this.tabPage8.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(945, 593);
-            this.tabPage8.Text = "Quá trình làm việc";
-            this.tabPage8.ToolTipTitle = "Page ToolTip";
-            this.tabPage8.UniqueName = "0863D9112785438F46B2EF2E1D238535";
-            // 
-            // tc_qtlv
-            // 
-            this.tc_qtlv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tc_qtlv.Enabled = false;
-            this.tc_qtlv.Location = new System.Drawing.Point(3, 3);
-            this.tc_qtlv.Name = "tc_qtlv";
-            this.tc_qtlv.Pages.AddRange(new ComponentFactory.Krypton.Navigator.KryptonPage[] {
-            this.tabPage20,
-            this.tabPage21,
-            this.tabPage22,
-            this.tabPage23,
-            this.tabPage24,
-            this.tabPage25,
-            this.tabPage26,
-            this.tabPage2});
-            this.tc_qtlv.SelectedIndex = 6;
-            this.tc_qtlv.Size = new System.Drawing.Size(939, 587);
-            this.tc_qtlv.TabIndex = 2;
-            // 
-            // tabPage20
-            // 
-            this.tabPage20.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage20.Controls.Add(this.dgv_congtac);
-            this.tabPage20.Controls.Add(this.panel3);
-            this.tabPage20.Flags = 65534;
-            this.tabPage20.LastVisibleSet = true;
-            this.tabPage20.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage20.Name = "tabPage20";
-            this.tabPage20.Size = new System.Drawing.Size(937, 560);
-            this.tabPage20.Text = "Đi công tác";
-            this.tabPage20.ToolTipTitle = "Page ToolTip";
-            this.tabPage20.UniqueName = "A166465AD38F42C01E8E0171AB91D5E6";
-            // 
-            // dgv_congtac
-            // 
-            this.dgv_congtac.AllowUserToAddRows = false;
-            this.dgv_congtac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_congtac.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_congtac,
-            this.edit_column_ct,
-            this.tu_ngay_ct,
-            this.den_ngay_ct,
-            this.so_quyet_dinh,
-            this.dia_diem_ct,
-            this.noi_dung_ct});
-            this.dgv_congtac.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_congtac.Location = new System.Drawing.Point(0, 30);
-            this.dgv_congtac.Name = "dgv_congtac";
-            this.dgv_congtac.Size = new System.Drawing.Size(937, 530);
-            this.dgv_congtac.TabIndex = 1;
-            this.dgv_congtac.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_congtac_CellClick);
-            // 
-            // id_qt_congtac
-            // 
-            this.id_qt_congtac.DataPropertyName = "Id";
-            this.id_qt_congtac.HeaderText = "id_congtac";
-            this.id_qt_congtac.Name = "id_qt_congtac";
-            this.id_qt_congtac.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id_qt_congtac.Visible = false;
-            this.id_qt_congtac.Width = 100;
-            // 
-            // edit_column_ct
-            // 
-            this.edit_column_ct.HeaderText = "";
-            this.edit_column_ct.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_ct.Name = "edit_column_ct";
-            this.edit_column_ct.Width = 30;
-            // 
-            // tu_ngay_ct
-            // 
-            this.tu_ngay_ct.DataPropertyName = "TuNgay";
-            this.tu_ngay_ct.HeaderText = "Từ ngày";
-            this.tu_ngay_ct.Name = "tu_ngay_ct";
-            this.tu_ngay_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.tu_ngay_ct.Width = 100;
-            // 
-            // den_ngay_ct
-            // 
-            this.den_ngay_ct.DataPropertyName = "DenNgay";
-            this.den_ngay_ct.HeaderText = "Đến ngày";
-            this.den_ngay_ct.Name = "den_ngay_ct";
-            this.den_ngay_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.den_ngay_ct.Width = 100;
-            // 
-            // so_quyet_dinh
-            // 
-            this.so_quyet_dinh.DataPropertyName = "SoQuyetDinh";
-            this.so_quyet_dinh.HeaderText = "Số quyết định";
-            this.so_quyet_dinh.Name = "so_quyet_dinh";
-            this.so_quyet_dinh.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.so_quyet_dinh.Width = 100;
-            // 
-            // dia_diem_ct
-            // 
-            this.dia_diem_ct.DataPropertyName = "DiaDiem";
-            this.dia_diem_ct.HeaderText = "Địa điểm";
-            this.dia_diem_ct.Name = "dia_diem_ct";
-            this.dia_diem_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dia_diem_ct.Width = 100;
-            // 
-            // noi_dung_ct
-            // 
-            this.noi_dung_ct.DataPropertyName = "NoiDung";
-            this.noi_dung_ct.HeaderText = "Nội dung";
-            this.noi_dung_ct.Name = "noi_dung_ct";
-            this.noi_dung_ct.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.noi_dung_ct.Width = 100;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btn_DeleteCT);
-            this.panel3.Controls.Add(this.btn_add_congtac);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(937, 30);
-            this.panel3.TabIndex = 2;
-            // 
-            // btn_DeleteCT
-            // 
-            this.btn_DeleteCT.AutoSize = true;
-            this.btn_DeleteCT.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteCT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteCT.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteCT.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteCT.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteCT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteCT.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteCT.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteCT.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteCT.Name = "btn_DeleteCT";
-            this.btn_DeleteCT.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteCT.TabIndex = 14;
-            this.btn_DeleteCT.Text = "Xóa";
-            this.btn_DeleteCT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteCT.UseVisualStyleBackColor = false;
-            this.btn_DeleteCT.Click += new System.EventHandler(this.btn_DeleteCT_Click);
-            // 
-            // btn_add_congtac
-            // 
-            this.btn_add_congtac.AutoSize = true;
-            this.btn_add_congtac.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_add_congtac.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_add_congtac.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_add_congtac.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_add_congtac.FlatAppearance.BorderSize = 0;
-            this.btn_add_congtac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_add_congtac.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_add_congtac.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_add_congtac.Location = new System.Drawing.Point(0, 0);
-            this.btn_add_congtac.Name = "btn_add_congtac";
-            this.btn_add_congtac.Size = new System.Drawing.Size(70, 30);
-            this.btn_add_congtac.TabIndex = 13;
-            this.btn_add_congtac.Text = "Thêm";
-            this.btn_add_congtac.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_add_congtac.UseVisualStyleBackColor = false;
-            this.btn_add_congtac.Click += new System.EventHandler(this.btn_add_congtac_Click);
-            // 
-            // tabPage21
-            // 
-            this.tabPage21.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage21.Controls.Add(this.dgv_khenthuong);
-            this.tabPage21.Controls.Add(this.panel4);
-            this.tabPage21.Flags = 65534;
-            this.tabPage21.LastVisibleSet = true;
-            this.tabPage21.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage21.Name = "tabPage21";
-            this.tabPage21.Size = new System.Drawing.Size(937, 560);
-            this.tabPage21.Text = "Khen thưởng";
-            this.tabPage21.ToolTipTitle = "Page ToolTip";
-            this.tabPage21.UniqueName = "226BD3EF4F9B4B5A56BF2876CE8F34AC";
-            // 
-            // dgv_khenthuong
-            // 
-            this.dgv_khenthuong.AllowUserToAddRows = false;
-            this.dgv_khenthuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_khenthuong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_khenthuong,
-            this.edit_column_kt,
-            this.ngay_khen_thuong_kt,
-            this.so_quyet_dinh_kt,
-            this.noi_dung_kt,
-            this.hinh_thuc_kt,
-            this.so_tien_kt,
-            this.ly_do_kt});
-            this.dgv_khenthuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_khenthuong.Location = new System.Drawing.Point(0, 30);
-            this.dgv_khenthuong.Name = "dgv_khenthuong";
-            this.dgv_khenthuong.Size = new System.Drawing.Size(937, 530);
-            this.dgv_khenthuong.TabIndex = 3;
-            this.dgv_khenthuong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_khenthuong_CellClick);
-            // 
-            // id_qt_khenthuong
-            // 
-            this.id_qt_khenthuong.DataPropertyName = "Id";
-            this.id_qt_khenthuong.HeaderText = "id_qt_khenthuong";
-            this.id_qt_khenthuong.Name = "id_qt_khenthuong";
-            this.id_qt_khenthuong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id_qt_khenthuong.Visible = false;
-            this.id_qt_khenthuong.Width = 100;
-            // 
-            // edit_column_kt
-            // 
-            this.edit_column_kt.HeaderText = "";
-            this.edit_column_kt.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_kt.Name = "edit_column_kt";
-            this.edit_column_kt.Width = 30;
-            // 
-            // ngay_khen_thuong_kt
-            // 
-            this.ngay_khen_thuong_kt.DataPropertyName = "NgayKhenThuong_KT";
-            this.ngay_khen_thuong_kt.HeaderText = "Ngày khen thưởng";
-            this.ngay_khen_thuong_kt.Name = "ngay_khen_thuong_kt";
-            this.ngay_khen_thuong_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ngay_khen_thuong_kt.Width = 100;
-            // 
-            // so_quyet_dinh_kt
-            // 
-            this.so_quyet_dinh_kt.DataPropertyName = "SoQuyetDinh_KT";
-            this.so_quyet_dinh_kt.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_kt.Name = "so_quyet_dinh_kt";
-            this.so_quyet_dinh_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.so_quyet_dinh_kt.Width = 100;
-            // 
-            // noi_dung_kt
-            // 
-            this.noi_dung_kt.DataPropertyName = "NoiDung_KT";
-            this.noi_dung_kt.HeaderText = "Nội dung";
-            this.noi_dung_kt.Name = "noi_dung_kt";
-            this.noi_dung_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.noi_dung_kt.Width = 100;
-            // 
-            // hinh_thuc_kt
-            // 
-            this.hinh_thuc_kt.DataPropertyName = "HinhThuc_KT";
-            this.hinh_thuc_kt.HeaderText = "Hình thức";
-            this.hinh_thuc_kt.Name = "hinh_thuc_kt";
-            this.hinh_thuc_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.hinh_thuc_kt.Width = 100;
-            // 
-            // so_tien_kt
-            // 
-            this.so_tien_kt.DataPropertyName = "SoTien_KT";
-            this.so_tien_kt.HeaderText = "Số tiền";
-            this.so_tien_kt.Name = "so_tien_kt";
-            this.so_tien_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.so_tien_kt.Width = 100;
-            // 
-            // ly_do_kt
-            // 
-            this.ly_do_kt.DataPropertyName = "LyDo_KT";
-            this.ly_do_kt.HeaderText = "Lý do";
-            this.ly_do_kt.Name = "ly_do_kt";
-            this.ly_do_kt.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ly_do_kt.Width = 100;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.btn_DeleteKT);
-            this.panel4.Controls.Add(this.btn_add_khenthuong);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(937, 30);
-            this.panel4.TabIndex = 4;
-            // 
-            // btn_DeleteKT
-            // 
-            this.btn_DeleteKT.AutoSize = true;
-            this.btn_DeleteKT.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteKT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteKT.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteKT.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteKT.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteKT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteKT.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteKT.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteKT.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteKT.Name = "btn_DeleteKT";
-            this.btn_DeleteKT.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteKT.TabIndex = 15;
-            this.btn_DeleteKT.Text = "Xóa";
-            this.btn_DeleteKT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteKT.UseVisualStyleBackColor = false;
-            this.btn_DeleteKT.Click += new System.EventHandler(this.btn_DeleteKT_Click);
-            // 
-            // btn_add_khenthuong
-            // 
-            this.btn_add_khenthuong.AutoSize = true;
-            this.btn_add_khenthuong.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_add_khenthuong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_add_khenthuong.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_add_khenthuong.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_add_khenthuong.FlatAppearance.BorderSize = 0;
-            this.btn_add_khenthuong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_add_khenthuong.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_add_khenthuong.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_add_khenthuong.Location = new System.Drawing.Point(0, 0);
-            this.btn_add_khenthuong.Name = "btn_add_khenthuong";
-            this.btn_add_khenthuong.Size = new System.Drawing.Size(70, 30);
-            this.btn_add_khenthuong.TabIndex = 13;
-            this.btn_add_khenthuong.Text = "Thêm";
-            this.btn_add_khenthuong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_add_khenthuong.UseVisualStyleBackColor = false;
-            this.btn_add_khenthuong.Click += new System.EventHandler(this.btn_add_khenthuong_Click);
-            // 
-            // tabPage22
-            // 
-            this.tabPage22.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage22.Controls.Add(this.dgv_kyluat);
-            this.tabPage22.Controls.Add(this.panel9);
-            this.tabPage22.Flags = 65534;
-            this.tabPage22.LastVisibleSet = true;
-            this.tabPage22.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage22.Name = "tabPage22";
-            this.tabPage22.Size = new System.Drawing.Size(937, 560);
-            this.tabPage22.Text = "Kỷ luật";
-            this.tabPage22.ToolTipTitle = "Page ToolTip";
-            this.tabPage22.UniqueName = "6B0CC2F11D554C282AB6FDCCB22D2474";
-            // 
-            // dgv_kyluat
-            // 
-            this.dgv_kyluat.AllowUserToAddRows = false;
-            this.dgv_kyluat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_kyluat.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_kyluat,
-            this.edit_column_kl,
-            this.NgayKyLuat,
-            this.SoQuyetDinh_KL,
-            this.NoiDung_KL,
-            this.HinhThuc_KL,
-            this.LyDo_KL});
-            this.dgv_kyluat.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_kyluat.Location = new System.Drawing.Point(0, 30);
-            this.dgv_kyluat.Name = "dgv_kyluat";
-            this.dgv_kyluat.Size = new System.Drawing.Size(937, 530);
-            this.dgv_kyluat.TabIndex = 3;
-            this.dgv_kyluat.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_kyluat_CellClick);
-            // 
-            // id_qt_kyluat
-            // 
-            this.id_qt_kyluat.DataPropertyName = "IdKyLuat";
-            this.id_qt_kyluat.HeaderText = "id_qt_kyluat";
-            this.id_qt_kyluat.Name = "id_qt_kyluat";
-            this.id_qt_kyluat.Visible = false;
-            // 
-            // edit_column_kl
-            // 
-            this.edit_column_kl.HeaderText = "";
-            this.edit_column_kl.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_kl.Name = "edit_column_kl";
-            this.edit_column_kl.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.edit_column_kl.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.edit_column_kl.Width = 30;
-            // 
-            // NgayKyLuat
-            // 
-            this.NgayKyLuat.DataPropertyName = "NgayKyLuat";
-            this.NgayKyLuat.HeaderText = "Ngày kỷ luật";
-            this.NgayKyLuat.Name = "NgayKyLuat";
-            // 
-            // SoQuyetDinh_KL
-            // 
-            this.SoQuyetDinh_KL.DataPropertyName = "SoQuyetDinh_KL";
-            this.SoQuyetDinh_KL.HeaderText = "Số quyết định";
-            this.SoQuyetDinh_KL.Name = "SoQuyetDinh_KL";
-            // 
-            // NoiDung_KL
-            // 
-            this.NoiDung_KL.DataPropertyName = "NoiDung_KL";
-            this.NoiDung_KL.HeaderText = "Nội dung";
-            this.NoiDung_KL.Name = "NoiDung_KL";
-            // 
-            // HinhThuc_KL
-            // 
-            this.HinhThuc_KL.DataPropertyName = "HinhThuc_KL";
-            this.HinhThuc_KL.HeaderText = "Hình thức";
-            this.HinhThuc_KL.Name = "HinhThuc_KL";
-            // 
-            // LyDo_KL
-            // 
-            this.LyDo_KL.DataPropertyName = "LyDo_KL";
-            this.LyDo_KL.HeaderText = "Lý do";
-            this.LyDo_KL.Name = "LyDo_KL";
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.btn_DeleteKL);
-            this.panel9.Controls.Add(this.btn_add_kyluat);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(937, 30);
-            this.panel9.TabIndex = 4;
-            // 
-            // btn_DeleteKL
-            // 
-            this.btn_DeleteKL.AutoSize = true;
-            this.btn_DeleteKL.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteKL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteKL.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteKL.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteKL.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteKL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteKL.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteKL.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteKL.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteKL.Name = "btn_DeleteKL";
-            this.btn_DeleteKL.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteKL.TabIndex = 15;
-            this.btn_DeleteKL.Text = "Xóa";
-            this.btn_DeleteKL.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteKL.UseVisualStyleBackColor = false;
-            this.btn_DeleteKL.Click += new System.EventHandler(this.btn_DeleteKL_Click);
-            // 
-            // btn_add_kyluat
-            // 
-            this.btn_add_kyluat.AutoSize = true;
-            this.btn_add_kyluat.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_add_kyluat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_add_kyluat.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_add_kyluat.FlatAppearance.BorderSize = 0;
-            this.btn_add_kyluat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_add_kyluat.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_add_kyluat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_add_kyluat.Location = new System.Drawing.Point(0, 0);
-            this.btn_add_kyluat.Name = "btn_add_kyluat";
-            this.btn_add_kyluat.Size = new System.Drawing.Size(70, 30);
-            this.btn_add_kyluat.TabIndex = 13;
-            this.btn_add_kyluat.Text = "Thêm";
-            this.btn_add_kyluat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_add_kyluat.UseVisualStyleBackColor = false;
-            this.btn_add_kyluat.Click += new System.EventHandler(this.btn_add_kyluat_Click);
-            // 
-            // tabPage23
-            // 
-            this.tabPage23.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage23.Controls.Add(this.dgv_qt_danhgia);
-            this.tabPage23.Controls.Add(this.panel10);
-            this.tabPage23.Flags = 65534;
-            this.tabPage23.LastVisibleSet = true;
-            this.tabPage23.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage23.Name = "tabPage23";
-            this.tabPage23.Size = new System.Drawing.Size(937, 560);
-            this.tabPage23.Text = "Đánh giá";
-            this.tabPage23.ToolTipTitle = "Page ToolTip";
-            this.tabPage23.UniqueName = "D2C463E4203A400523A0F73C6D30F47F";
-            // 
-            // dgv_qt_danhgia
-            // 
-            this.dgv_qt_danhgia.AllowUserToAddRows = false;
-            this.dgv_qt_danhgia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_qt_danhgia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_danhgia,
-            this.edit_column_danhgia,
-            this.NgayDanhGia,
-            this.NoiDung_DG,
-            this.DiemDanhGia,
-            this.XepLoai_DG});
-            this.dgv_qt_danhgia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_qt_danhgia.Location = new System.Drawing.Point(0, 30);
-            this.dgv_qt_danhgia.Name = "dgv_qt_danhgia";
-            this.dgv_qt_danhgia.Size = new System.Drawing.Size(937, 530);
-            this.dgv_qt_danhgia.TabIndex = 3;
-            this.dgv_qt_danhgia.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_danhgia_CellClick);
-            // 
-            // id_qt_danhgia
-            // 
-            this.id_qt_danhgia.DataPropertyName = "Id";
-            this.id_qt_danhgia.HeaderText = "id_qt_danhgia";
-            this.id_qt_danhgia.Name = "id_qt_danhgia";
-            this.id_qt_danhgia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.id_qt_danhgia.Visible = false;
-            this.id_qt_danhgia.Width = 99;
-            // 
-            // edit_column_danhgia
-            // 
-            this.edit_column_danhgia.HeaderText = "";
-            this.edit_column_danhgia.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_danhgia.Name = "edit_column_danhgia";
-            this.edit_column_danhgia.Width = 30;
-            // 
-            // NgayDanhGia
-            // 
-            this.NgayDanhGia.DataPropertyName = "NgayDanhGia";
-            this.NgayDanhGia.HeaderText = "Ngày đánh giá";
-            this.NgayDanhGia.Name = "NgayDanhGia";
-            this.NgayDanhGia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NgayDanhGia.Width = 125;
-            // 
-            // NoiDung_DG
-            // 
-            this.NoiDung_DG.DataPropertyName = "NoiDung_DG";
-            this.NoiDung_DG.HeaderText = "Nội dung";
-            this.NoiDung_DG.Name = "NoiDung_DG";
-            this.NoiDung_DG.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.NoiDung_DG.Width = 90;
-            // 
-            // DiemDanhGia
-            // 
-            this.DiemDanhGia.DataPropertyName = "DiemDanhGia";
-            this.DiemDanhGia.HeaderText = "Điểm đánh giá";
-            this.DiemDanhGia.Name = "DiemDanhGia";
-            this.DiemDanhGia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DiemDanhGia.Width = 124;
-            // 
-            // XepLoai_DG
-            // 
-            this.XepLoai_DG.DataPropertyName = "XepLoai_DG";
-            this.XepLoai_DG.HeaderText = "Xếp loại";
-            this.XepLoai_DG.Name = "XepLoai_DG";
-            this.XepLoai_DG.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.XepLoai_DG.Width = 84;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.btn_DeleteDG);
-            this.panel10.Controls.Add(this.btn_danhgia);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(937, 30);
-            this.panel10.TabIndex = 4;
-            // 
-            // btn_DeleteDG
-            // 
-            this.btn_DeleteDG.AutoSize = true;
-            this.btn_DeleteDG.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteDG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteDG.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteDG.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteDG.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteDG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteDG.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteDG.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteDG.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteDG.Name = "btn_DeleteDG";
-            this.btn_DeleteDG.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteDG.TabIndex = 15;
-            this.btn_DeleteDG.Text = "Xóa";
-            this.btn_DeleteDG.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteDG.UseVisualStyleBackColor = false;
-            this.btn_DeleteDG.Click += new System.EventHandler(this.btn_DeleteDG_Click);
-            // 
-            // btn_danhgia
-            // 
-            this.btn_danhgia.AutoSize = true;
-            this.btn_danhgia.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_danhgia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_danhgia.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_danhgia.FlatAppearance.BorderSize = 0;
-            this.btn_danhgia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_danhgia.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_danhgia.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_danhgia.Location = new System.Drawing.Point(0, 0);
-            this.btn_danhgia.Name = "btn_danhgia";
-            this.btn_danhgia.Size = new System.Drawing.Size(70, 30);
-            this.btn_danhgia.TabIndex = 13;
-            this.btn_danhgia.Text = "Thêm";
-            this.btn_danhgia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_danhgia.UseVisualStyleBackColor = false;
-            this.btn_danhgia.Click += new System.EventHandler(this.btn_danhgia_Click);
-            // 
-            // tabPage24
-            // 
-            this.tabPage24.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage24.Controls.Add(this.dgv_qt_daotao);
-            this.tabPage24.Controls.Add(this.panel11);
-            this.tabPage24.Flags = 65534;
-            this.tabPage24.LastVisibleSet = true;
-            this.tabPage24.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage24.Name = "tabPage24";
-            this.tabPage24.Size = new System.Drawing.Size(937, 560);
-            this.tabPage24.Text = "Đào tạo";
-            this.tabPage24.ToolTipTitle = "Page ToolTip";
-            this.tabPage24.UniqueName = "EBDF5775E1C641914AA8C0AEA085611F";
-            // 
-            // dgv_qt_daotao
-            // 
-            this.dgv_qt_daotao.AllowUserToAddRows = false;
-            this.dgv_qt_daotao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_qt_daotao.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_daotao,
-            this.edit_column_daotao,
-            this.tu_ngay_daotao,
-            this.den_ngay_daotao,
-            this.so_quyet_dinh_daotao,
-            this.noi_dung_daotao,
-            this.hinh_thuc_daotao});
-            this.dgv_qt_daotao.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_qt_daotao.Location = new System.Drawing.Point(0, 30);
-            this.dgv_qt_daotao.Name = "dgv_qt_daotao";
-            this.dgv_qt_daotao.Size = new System.Drawing.Size(937, 530);
-            this.dgv_qt_daotao.TabIndex = 3;
-            this.dgv_qt_daotao.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_daotao_CellClick);
-            // 
-            // id_qt_daotao
-            // 
-            this.id_qt_daotao.DataPropertyName = "IdDaoTao";
-            this.id_qt_daotao.HeaderText = "id_qt_daotao";
-            this.id_qt_daotao.Name = "id_qt_daotao";
-            this.id_qt_daotao.Visible = false;
-            this.id_qt_daotao.Width = 116;
-            // 
-            // edit_column_daotao
-            // 
-            this.edit_column_daotao.HeaderText = "";
-            this.edit_column_daotao.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_daotao.Name = "edit_column_daotao";
-            this.edit_column_daotao.Width = 30;
-            // 
-            // tu_ngay_daotao
-            // 
-            this.tu_ngay_daotao.DataPropertyName = "TuNgay";
-            this.tu_ngay_daotao.HeaderText = "Từ ngày";
-            this.tu_ngay_daotao.Name = "tu_ngay_daotao";
-            this.tu_ngay_daotao.Width = 85;
-            // 
-            // den_ngay_daotao
-            // 
-            this.den_ngay_daotao.DataPropertyName = "DenNgay";
-            this.den_ngay_daotao.HeaderText = "Đến ngày";
-            this.den_ngay_daotao.Name = "den_ngay_daotao";
-            this.den_ngay_daotao.Width = 94;
-            // 
-            // so_quyet_dinh_daotao
-            // 
-            this.so_quyet_dinh_daotao.DataPropertyName = "SoQuyetDinh";
-            this.so_quyet_dinh_daotao.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_daotao.Name = "so_quyet_dinh_daotao";
-            this.so_quyet_dinh_daotao.Width = 120;
-            // 
-            // noi_dung_daotao
-            // 
-            this.noi_dung_daotao.DataPropertyName = "NoiDung";
-            this.noi_dung_daotao.HeaderText = "Nội dung";
-            this.noi_dung_daotao.Name = "noi_dung_daotao";
-            this.noi_dung_daotao.Width = 90;
-            // 
-            // hinh_thuc_daotao
-            // 
-            this.hinh_thuc_daotao.DataPropertyName = "HinhThuc";
-            this.hinh_thuc_daotao.HeaderText = "Hình thức";
-            this.hinh_thuc_daotao.Name = "hinh_thuc_daotao";
-            this.hinh_thuc_daotao.Width = 93;
-            // 
-            // panel11
-            // 
-            this.panel11.Controls.Add(this.btn_DeleteDT);
-            this.panel11.Controls.Add(this.btn_daotao);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(937, 30);
-            this.panel11.TabIndex = 4;
-            // 
-            // btn_DeleteDT
-            // 
-            this.btn_DeleteDT.AutoSize = true;
-            this.btn_DeleteDT.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteDT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteDT.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteDT.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteDT.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteDT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteDT.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteDT.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteDT.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteDT.Name = "btn_DeleteDT";
-            this.btn_DeleteDT.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteDT.TabIndex = 15;
-            this.btn_DeleteDT.Text = "Xóa";
-            this.btn_DeleteDT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteDT.UseVisualStyleBackColor = false;
-            this.btn_DeleteDT.Click += new System.EventHandler(this.btn_DeleteDT_Click);
-            // 
-            // btn_daotao
-            // 
-            this.btn_daotao.AutoSize = true;
-            this.btn_daotao.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_daotao.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_daotao.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_daotao.FlatAppearance.BorderSize = 0;
-            this.btn_daotao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_daotao.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_daotao.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_daotao.Location = new System.Drawing.Point(0, 0);
-            this.btn_daotao.Name = "btn_daotao";
-            this.btn_daotao.Size = new System.Drawing.Size(70, 30);
-            this.btn_daotao.TabIndex = 13;
-            this.btn_daotao.Text = "Thêm";
-            this.btn_daotao.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_daotao.UseVisualStyleBackColor = false;
-            this.btn_daotao.Click += new System.EventHandler(this.btn_daotao_Click);
-            // 
-            // tabPage25
-            // 
-            this.tabPage25.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage25.Controls.Add(this.dgv_tainan);
-            this.tabPage25.Controls.Add(this.panel12);
-            this.tabPage25.Flags = 65534;
-            this.tabPage25.LastVisibleSet = true;
-            this.tabPage25.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage25.Name = "tabPage25";
-            this.tabPage25.Size = new System.Drawing.Size(937, 560);
-            this.tabPage25.Text = "Tai nạn";
-            this.tabPage25.ToolTipTitle = "Page ToolTip";
-            this.tabPage25.UniqueName = "2797E23A861D4A184D8CF8B199501D28";
-            // 
-            // dgv_tainan
-            // 
-            this.dgv_tainan.AllowUserToAddRows = false;
-            this.dgv_tainan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_tainan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_tainan,
-            this.edit_column_tn,
-            this.ten_tai_nan,
-            this.muc_do,
-            this.ngay_dien_ra,
-            this.noi_dien_ra,
-            this.noi_dung});
-            this.dgv_tainan.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_tainan.Location = new System.Drawing.Point(0, 30);
-            this.dgv_tainan.Name = "dgv_tainan";
-            this.dgv_tainan.Size = new System.Drawing.Size(937, 530);
-            this.dgv_tainan.TabIndex = 3;
-            this.dgv_tainan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_tainan_CellClick);
-            // 
-            // id_qt_tainan
-            // 
-            this.id_qt_tainan.DataPropertyName = "IdTaiNan";
-            this.id_qt_tainan.HeaderText = "id_qt_tainan";
-            this.id_qt_tainan.Name = "id_qt_tainan";
-            this.id_qt_tainan.Visible = false;
-            // 
-            // edit_column_tn
-            // 
-            this.edit_column_tn.HeaderText = "";
-            this.edit_column_tn.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_tn.Name = "edit_column_tn";
-            this.edit_column_tn.Width = 30;
-            // 
-            // ten_tai_nan
-            // 
-            this.ten_tai_nan.DataPropertyName = "LoaiTaiNan";
-            this.ten_tai_nan.HeaderText = "Trường hợp tai nạn";
-            this.ten_tai_nan.Name = "ten_tai_nan";
-            this.ten_tai_nan.Width = 200;
-            // 
-            // muc_do
-            // 
-            this.muc_do.DataPropertyName = "MucDo";
-            this.muc_do.HeaderText = "Mức dộ";
-            this.muc_do.Name = "muc_do";
-            // 
-            // ngay_dien_ra
-            // 
-            this.ngay_dien_ra.DataPropertyName = "NgayDienRa";
-            this.ngay_dien_ra.HeaderText = "Ngày diễn ra";
-            this.ngay_dien_ra.Name = "ngay_dien_ra";
-            // 
-            // noi_dien_ra
-            // 
-            this.noi_dien_ra.DataPropertyName = "NoiDienRa";
-            this.noi_dien_ra.HeaderText = "Nơi diễn ra";
-            this.noi_dien_ra.Name = "noi_dien_ra";
-            // 
-            // noi_dung
-            // 
-            this.noi_dung.DataPropertyName = "NoiDung";
-            this.noi_dung.HeaderText = "Nội dung";
-            this.noi_dung.Name = "noi_dung";
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.btn_DeleteTN);
-            this.panel12.Controls.Add(this.btn_tainan);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(937, 30);
-            this.panel12.TabIndex = 4;
-            // 
-            // btn_DeleteTN
-            // 
-            this.btn_DeleteTN.AutoSize = true;
-            this.btn_DeleteTN.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteTN.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteTN.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteTN.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteTN.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteTN.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteTN.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteTN.Name = "btn_DeleteTN";
-            this.btn_DeleteTN.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteTN.TabIndex = 15;
-            this.btn_DeleteTN.Text = "Xóa";
-            this.btn_DeleteTN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteTN.UseVisualStyleBackColor = false;
-            this.btn_DeleteTN.Click += new System.EventHandler(this.btn_DeleteTN_Click);
-            // 
-            // btn_tainan
-            // 
-            this.btn_tainan.AutoSize = true;
-            this.btn_tainan.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_tainan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_tainan.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_tainan.FlatAppearance.BorderSize = 0;
-            this.btn_tainan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_tainan.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_tainan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_tainan.Location = new System.Drawing.Point(0, 0);
-            this.btn_tainan.Name = "btn_tainan";
-            this.btn_tainan.Size = new System.Drawing.Size(70, 30);
-            this.btn_tainan.TabIndex = 13;
-            this.btn_tainan.Text = "Thêm";
-            this.btn_tainan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_tainan.UseVisualStyleBackColor = false;
-            this.btn_tainan.Click += new System.EventHandler(this.btn_tainan_Click);
-            // 
-            // tabPage26
-            // 
-            this.tabPage26.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage26.Controls.Add(this.dgv_qt_nghiviec);
-            this.tabPage26.Controls.Add(this.panel13);
-            this.tabPage26.Flags = 65534;
-            this.tabPage26.LastVisibleSet = true;
-            this.tabPage26.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage26.Name = "tabPage26";
-            this.tabPage26.Size = new System.Drawing.Size(937, 560);
-            this.tabPage26.Text = "Nghỉ việc";
-            this.tabPage26.ToolTipTitle = "Page ToolTip";
-            this.tabPage26.UniqueName = "96B7D5EAA299470216B0F3611AA76BCA";
-            // 
-            // dgv_qt_nghiviec
-            // 
-            this.dgv_qt_nghiviec.AllowUserToAddRows = false;
-            this.dgv_qt_nghiviec.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_qt_nghiviec.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_qt_nghiviec,
-            this.edit_column_nghiviec,
-            this.loai_nghi_viec,
-            this.tu_ngay_nghiviec,
-            this.den_ngay_nghiviec,
-            this.ngay_quyet_dinh_nghiviec,
-            this.so_quyet_dinh_nghiviec,
-            this.noi_dung_nghiviec});
-            this.dgv_qt_nghiviec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_qt_nghiviec.Location = new System.Drawing.Point(0, 30);
-            this.dgv_qt_nghiviec.Name = "dgv_qt_nghiviec";
-            this.dgv_qt_nghiviec.Size = new System.Drawing.Size(937, 530);
-            this.dgv_qt_nghiviec.TabIndex = 3;
-            this.dgv_qt_nghiviec.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_qt_nghiviec_CellClick);
-            // 
-            // id_qt_nghiviec
-            // 
-            this.id_qt_nghiviec.DataPropertyName = "IdNghiViec";
-            this.id_qt_nghiviec.HeaderText = "id_qt_nghiviec";
-            this.id_qt_nghiviec.Name = "id_qt_nghiviec";
-            this.id_qt_nghiviec.Visible = false;
-            this.id_qt_nghiviec.Width = 101;
-            // 
-            // edit_column_nghiviec
-            // 
-            this.edit_column_nghiviec.HeaderText = "";
-            this.edit_column_nghiviec.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_nghiviec.Name = "edit_column_nghiviec";
-            this.edit_column_nghiviec.Width = 30;
-            // 
-            // loai_nghi_viec
-            // 
-            this.loai_nghi_viec.DataPropertyName = "LoaiNghiViec";
-            this.loai_nghi_viec.HeaderText = "Loại nghỉ việc";
-            this.loai_nghi_viec.Name = "loai_nghi_viec";
-            this.loai_nghi_viec.Width = 130;
-            // 
-            // tu_ngay_nghiviec
-            // 
-            this.tu_ngay_nghiviec.DataPropertyName = "TuNgay";
-            this.tu_ngay_nghiviec.HeaderText = "Từ ngày";
-            this.tu_ngay_nghiviec.Name = "tu_ngay_nghiviec";
-            // 
-            // den_ngay_nghiviec
-            // 
-            this.den_ngay_nghiviec.DataPropertyName = "DenNgay";
-            this.den_ngay_nghiviec.HeaderText = "Đến ngày";
-            this.den_ngay_nghiviec.Name = "den_ngay_nghiviec";
-            // 
-            // ngay_quyet_dinh_nghiviec
-            // 
-            this.ngay_quyet_dinh_nghiviec.DataPropertyName = "NgayQuyetDinh";
-            this.ngay_quyet_dinh_nghiviec.HeaderText = "Ngày quyết định";
-            this.ngay_quyet_dinh_nghiviec.Name = "ngay_quyet_dinh_nghiviec";
-            this.ngay_quyet_dinh_nghiviec.Width = 150;
-            // 
-            // so_quyet_dinh_nghiviec
-            // 
-            this.so_quyet_dinh_nghiviec.DataPropertyName = "SoQuyetDinh";
-            this.so_quyet_dinh_nghiviec.HeaderText = "Số quyết định";
-            this.so_quyet_dinh_nghiviec.Name = "so_quyet_dinh_nghiviec";
-            this.so_quyet_dinh_nghiviec.Width = 130;
-            // 
-            // noi_dung_nghiviec
-            // 
-            this.noi_dung_nghiviec.DataPropertyName = "NoiDung";
-            this.noi_dung_nghiviec.HeaderText = "Nội dung";
-            this.noi_dung_nghiviec.Name = "noi_dung_nghiviec";
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.btn_DeleteVC);
-            this.panel13.Controls.Add(this.btn_nghiviec);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel13.Location = new System.Drawing.Point(0, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(937, 30);
-            this.panel13.TabIndex = 4;
-            // 
-            // btn_DeleteVC
-            // 
-            this.btn_DeleteVC.AutoSize = true;
-            this.btn_DeleteVC.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteVC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteVC.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteVC.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteVC.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteVC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteVC.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteVC.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteVC.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteVC.Name = "btn_DeleteVC";
-            this.btn_DeleteVC.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteVC.TabIndex = 15;
-            this.btn_DeleteVC.Text = "Xóa";
-            this.btn_DeleteVC.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteVC.UseVisualStyleBackColor = false;
-            this.btn_DeleteVC.Click += new System.EventHandler(this.btn_DeleteVC_Click);
-            // 
-            // btn_nghiviec
-            // 
-            this.btn_nghiviec.AutoSize = true;
-            this.btn_nghiviec.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_nghiviec.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_nghiviec.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_nghiviec.FlatAppearance.BorderSize = 0;
-            this.btn_nghiviec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nghiviec.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_nghiviec.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_nghiviec.Location = new System.Drawing.Point(0, 0);
-            this.btn_nghiviec.Name = "btn_nghiviec";
-            this.btn_nghiviec.Size = new System.Drawing.Size(70, 30);
-            this.btn_nghiviec.TabIndex = 13;
-            this.btn_nghiviec.Text = "Thêm";
-            this.btn_nghiviec.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_nghiviec.UseVisualStyleBackColor = false;
-            this.btn_nghiviec.Click += new System.EventHandler(this.btn_nghiviec_Click);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.AutoHiddenSlideSize = new System.Drawing.Size(200, 200);
-            this.tabPage2.Controls.Add(this.dgv_ThaiSai);
-            this.tabPage2.Controls.Add(this.panel16);
-            this.tabPage2.Flags = 65534;
-            this.tabPage2.LastVisibleSet = true;
-            this.tabPage2.MinimumSize = new System.Drawing.Size(50, 50);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(937, 560);
-            this.tabPage2.Text = "Thai sản";
-            this.tabPage2.ToolTipTitle = "Page ToolTip";
-            this.tabPage2.UniqueName = "CDADBB88EDF541FFEA9103169087E772";
-            // 
-            // dgv_ThaiSai
-            // 
-            this.dgv_ThaiSai.AllowUserToAddRows = false;
-            this.dgv_ThaiSai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ThaiSai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_thai_san,
-            this.edit_column_ts,
-            this.tu_ngay_thaisan,
-            this.den_ngay_thaisan,
-            this.ghi_chu_thaisan});
-            this.dgv_ThaiSai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_ThaiSai.Location = new System.Drawing.Point(0, 30);
-            this.dgv_ThaiSai.Name = "dgv_ThaiSai";
-            this.dgv_ThaiSai.Size = new System.Drawing.Size(937, 530);
-            this.dgv_ThaiSai.TabIndex = 3;
-            this.dgv_ThaiSai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_thaisai_CellClick);
-            // 
-            // id_thai_san
-            // 
-            this.id_thai_san.DataPropertyName = "Id";
-            this.id_thai_san.HeaderText = "id_thai_san";
-            this.id_thai_san.Name = "id_thai_san";
-            this.id_thai_san.Visible = false;
-            // 
-            // edit_column_ts
-            // 
-            this.edit_column_ts.HeaderText = "";
-            this.edit_column_ts.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column_ts.Name = "edit_column_ts";
-            this.edit_column_ts.Width = 30;
-            // 
-            // tu_ngay_thaisan
-            // 
-            this.tu_ngay_thaisan.DataPropertyName = "TuNgay";
-            this.tu_ngay_thaisan.HeaderText = "Từ ngày";
-            this.tu_ngay_thaisan.Name = "tu_ngay_thaisan";
-            // 
-            // den_ngay_thaisan
-            // 
-            this.den_ngay_thaisan.DataPropertyName = "DenNgay";
-            this.den_ngay_thaisan.HeaderText = "Đến ngày";
-            this.den_ngay_thaisan.Name = "den_ngay_thaisan";
-            // 
-            // ghi_chu_thaisan
-            // 
-            this.ghi_chu_thaisan.DataPropertyName = "GhiChu";
-            this.ghi_chu_thaisan.HeaderText = "Ghi chú";
-            this.ghi_chu_thaisan.Name = "ghi_chu_thaisan";
-            // 
-            // panel16
-            // 
-            this.panel16.Controls.Add(this.btn_DeleteTS);
-            this.panel16.Controls.Add(this.btn_ThaiSan);
-            this.panel16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel16.Location = new System.Drawing.Point(0, 0);
-            this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(937, 30);
-            this.panel16.TabIndex = 4;
-            // 
-            // btn_DeleteTS
-            // 
-            this.btn_DeleteTS.AutoSize = true;
-            this.btn_DeleteTS.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_DeleteTS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_DeleteTS.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_DeleteTS.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_DeleteTS.FlatAppearance.BorderSize = 0;
-            this.btn_DeleteTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_DeleteTS.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_DeleteTS.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_DeleteTS.Location = new System.Drawing.Point(70, 0);
-            this.btn_DeleteTS.Name = "btn_DeleteTS";
-            this.btn_DeleteTS.Size = new System.Drawing.Size(70, 30);
-            this.btn_DeleteTS.TabIndex = 15;
-            this.btn_DeleteTS.Text = "Xóa";
-            this.btn_DeleteTS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_DeleteTS.UseVisualStyleBackColor = false;
-            this.btn_DeleteTS.Click += new System.EventHandler(this.btn_DeleteTS_Click);
-            // 
-            // btn_ThaiSan
-            // 
-            this.btn_ThaiSan.AutoSize = true;
-            this.btn_ThaiSan.BackColor = System.Drawing.SystemColors.Window;
-            this.btn_ThaiSan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_ThaiSan.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btn_ThaiSan.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_ThaiSan.FlatAppearance.BorderSize = 0;
-            this.btn_ThaiSan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_ThaiSan.Image = global::TENTAC_HRM.Properties.Resources.plus;
-            this.btn_ThaiSan.Location = new System.Drawing.Point(0, 0);
-            this.btn_ThaiSan.Name = "btn_ThaiSan";
-            this.btn_ThaiSan.Size = new System.Drawing.Size(70, 30);
-            this.btn_ThaiSan.TabIndex = 13;
-            this.btn_ThaiSan.Text = "Thêm";
-            this.btn_ThaiSan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_ThaiSan.UseVisualStyleBackColor = false;
-            this.btn_ThaiSan.Click += new System.EventHandler(this.btn_thaisan_Click);
             // 
             // tabPage9
             // 
@@ -5415,50 +4196,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_NguoiThan)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage8)).EndInit();
-            this.tabPage8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tc_qtlv)).EndInit();
-            this.tc_qtlv.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage20)).EndInit();
-            this.tabPage20.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_congtac)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage21)).EndInit();
-            this.tabPage21.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_khenthuong)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage22)).EndInit();
-            this.tabPage22.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_kyluat)).EndInit();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage23)).EndInit();
-            this.tabPage23.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_qt_danhgia)).EndInit();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage24)).EndInit();
-            this.tabPage24.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_qt_daotao)).EndInit();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage25)).EndInit();
-            this.tabPage25.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_tainan)).EndInit();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage26)).EndInit();
-            this.tabPage26.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_qt_nghiviec)).EndInit();
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tabPage2)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ThaiSai)).EndInit();
-            this.panel16.ResumeLayout(false);
-            this.panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabPage9)).EndInit();
             this.tabPage9.ResumeLayout(false);
             this.pl_TaiSan.ResumeLayout(false);
@@ -5627,15 +4364,6 @@
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_NganHang;
         private ComponentFactory.Krypton.Navigator.KryptonPage tp_banthan;
         private ComponentFactory.Krypton.Navigator.KryptonPage tp_giadinh;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage8;
-        private ComponentFactory.Krypton.Navigator.KryptonNavigator tc_qtlv;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage20;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage21;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage22;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage23;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage24;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage25;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage26;
         private System.Windows.Forms.GroupBox groupBox11;
         private DevComponents.DotNetBar.LabelX label85;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_GhiChu;
@@ -5650,18 +4378,6 @@
         private System.Windows.Forms.Button btn_HopDong;
         private System.Windows.Forms.Button btn_PhuCap;
         private System.Windows.Forms.Button btn_Luong;
-        private System.Windows.Forms.Panel panel4;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_khenthuong;
-        private System.Windows.Forms.Panel panel9;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_kyluat;
-        private System.Windows.Forms.Panel panel10;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_qt_danhgia;
-        private System.Windows.Forms.Panel panel11;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_qt_daotao;
-        private System.Windows.Forms.Panel panel12;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_tainan;
-        private System.Windows.Forms.Panel panel13;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_qt_nghiviec;
         private System.Windows.Forms.Panel pl_suc_khoe;
         private DevComponents.DotNetBar.LabelX label28;
         private DevComponents.DotNetBar.LabelX label27;
@@ -5691,33 +4407,20 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button btn_AddNgoaiNgu;
         private System.Windows.Forms.Button btn_XoaNgoaiNgu;
-        private System.Windows.Forms.Button btn_add_khenthuong;
-        private System.Windows.Forms.Button btn_add_kyluat;
-        private System.Windows.Forms.Button btn_danhgia;
-        private System.Windows.Forms.Button btn_daotao;
-        private System.Windows.Forms.Button btn_tainan;
-        private System.Windows.Forms.Button btn_nghiviec;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn5;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_PhuCap;
-        private ComponentFactory.Krypton.Navigator.KryptonPage tabPage2;
         private DevComponents.DotNetBar.LabelX label20;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_MaThe;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_congtac;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btn_add_congtac;
         private ComponentFactory.Krypton.Navigator.KryptonPage tabPage9;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rb_DaKetHon;
         private ComponentFactory.Krypton.Toolkit.KryptonRadioButton rb_DocThan;
         private FontAwesome.Sharp.IconButton btn_HonNhan;
         private FontAwesome.Sharp.IconButton btn_QueQuan;
         private FontAwesome.Sharp.IconButton btn_ThuongTru;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_ThaiSai;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Button btn_ThaiSan;
         private System.Windows.Forms.Panel pl_BanThan;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView dgv_TieuSu;
         private System.Windows.Forms.Panel panel5;
@@ -5751,14 +4454,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn den_ngay_ts;
         private System.Windows.Forms.Button btn_DeleteBT;
         private System.Windows.Forms.Button btn_DeleteGD;
-        private System.Windows.Forms.Button btn_DeleteCT;
-        private System.Windows.Forms.Button btn_DeleteKT;
-        private System.Windows.Forms.Button btn_DeleteKL;
-        private System.Windows.Forms.Button btn_DeleteDG;
-        private System.Windows.Forms.Button btn_DeleteDT;
-        private System.Windows.Forms.Button btn_DeleteTN;
-        private System.Windows.Forms.Button btn_DeleteVC;
-        private System.Windows.Forms.Button btn_DeleteTS;
         private DevComponents.DotNetBar.LabelX label2;
         private Custom.MultiColumnComboBox cbo_ReportTo;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_DanToc;
@@ -5787,69 +4482,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DenNam;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn CongViec;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn QuocGia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_nguoi_than;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_gd;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn moiquanhe;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn HoTen;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngaysinh;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn masothue;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn cccd;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn isphuthuoc;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_congtac;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn tu_ngay_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn den_ngay_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn dia_diem_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_ct;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_khenthuong;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngay_khen_thuong_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_quyet_dinh_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn noi_dung_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn hinh_thuc_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn so_tien_kt;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ly_do_kt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_qt_kyluat;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_kl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayKyLuat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoQuyetDinh_KL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoiDung_KL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HinhThuc_KL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LyDo_KL;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_qt_danhgia;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_danhgia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NgayDanhGia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn NoiDung_DG;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn DiemDanhGia;
-        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn XepLoai_DG;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_qt_daotao;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_daotao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tu_ngay_daotao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn den_ngay_daotao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_quyet_dinh_daotao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noi_dung_daotao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hinh_thuc_daotao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_qt_tainan;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_tn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_tai_nan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn muc_do;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_dien_ra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noi_dien_ra;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noi_dung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_thai_san;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_ts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tu_ngay_thaisan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn den_ngay_thaisan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ghi_chu_thaisan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_qt_nghiviec;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column_nghiviec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loai_nghi_viec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tu_ngay_nghiviec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn den_ngay_nghiviec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_quyet_dinh_nghiviec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn so_quyet_dinh_nghiviec;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noi_dung_nghiviec;
         private System.Windows.Forms.Button btn_show_salary;
         private System.Windows.Forms.DataGridViewImageColumn edit_column_th;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn IdChungChi;
@@ -5879,5 +4511,13 @@
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MucPhuCap;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn IsActive;
         private FontAwesome.Sharp.IconButton btn_update_image;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn id_nguoi_than;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column_gd;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn moiquanhe;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn HoTen;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn ngaysinh;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn masothue;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn cccd;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn isphuthuoc;
     }
 }
