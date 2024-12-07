@@ -31,6 +31,7 @@ namespace TENTAC_HRM.Forms.User_control
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_authorization));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_save = new System.Windows.Forms.Button();
@@ -54,6 +55,12 @@ namespace TENTAC_HRM.Forms.User_control
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgv_MenuPhanQuyen = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.pnlDieuHuong = new System.Windows.Forms.Panel();
+            this.MaNhanVien = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TenNhanVien = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TenPhongBan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.TenChucVu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
+            this.Is_active = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
+            this.SoLanDangNhap = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -198,7 +205,6 @@ namespace TENTAC_HRM.Forms.User_control
             this.cbo_BoPhan.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cbo_BoPhan.Name = "cbo_BoPhan";
             this.cbo_BoPhan.Size = new System.Drawing.Size(160, 27);
-            this.cbo_BoPhan.SelectedIndexChanged += new System.EventHandler(this.cbo_BoPhan_SelectedIndexChanged);
             // 
             // toolStripLabel1
             // 
@@ -279,14 +285,21 @@ namespace TENTAC_HRM.Forms.User_control
             // 
             this.dgv_MenuPhanQuyen.AllowUserToAddRows = false;
             this.dgv_MenuPhanQuyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_MenuPhanQuyen.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_MenuPhanQuyen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaNhanVien,
+            this.TenNhanVien,
+            this.TenPhongBan,
+            this.TenChucVu,
+            this.Is_active,
+            this.SoLanDangNhap});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_MenuPhanQuyen.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_MenuPhanQuyen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_MenuPhanQuyen.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_MenuPhanQuyen.Location = new System.Drawing.Point(0, 0);
@@ -302,6 +315,56 @@ namespace TENTAC_HRM.Forms.User_control
             this.pnlDieuHuong.Name = "pnlDieuHuong";
             this.pnlDieuHuong.Size = new System.Drawing.Size(780, 25);
             this.pnlDieuHuong.TabIndex = 12;
+            // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.Name = "MaNhanVien";
+            this.MaNhanVien.Width = 120;
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            this.TenNhanVien.Width = 250;
+            // 
+            // TenPhongBan
+            // 
+            this.TenPhongBan.DataPropertyName = "TenPhongBan";
+            this.TenPhongBan.HeaderText = "Tên phòng ban";
+            this.TenPhongBan.Name = "TenPhongBan";
+            this.TenPhongBan.Width = 150;
+            // 
+            // TenChucVu
+            // 
+            this.TenChucVu.DataPropertyName = "TenChucVu";
+            this.TenChucVu.HeaderText = "Tên chức vụ";
+            this.TenChucVu.Name = "TenChucVu";
+            this.TenChucVu.Width = 150;
+            // 
+            // Is_active
+            // 
+            this.Is_active.DataPropertyName = "Is_active";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.NullValue = false;
+            this.Is_active.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Is_active.FalseValue = null;
+            this.Is_active.HeaderText = "Hiệu lực";
+            this.Is_active.IndeterminateValue = null;
+            this.Is_active.Name = "Is_active";
+            this.Is_active.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Is_active.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Is_active.TrueValue = null;
+            this.Is_active.Width = 80;
+            // 
+            // SoLanDangNhap
+            // 
+            this.SoLanDangNhap.DataPropertyName = "SoLanDangNhap";
+            this.SoLanDangNhap.HeaderText = "Số lần đăng nhập";
+            this.SoLanDangNhap.Name = "SoLanDangNhap";
+            this.SoLanDangNhap.Width = 140;
             // 
             // uc_authorization
             // 
@@ -352,5 +415,11 @@ namespace TENTAC_HRM.Forms.User_control
         private System.Windows.Forms.SplitContainer splitContainer1;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_MenuPhanQuyen;
         private System.Windows.Forms.Panel pnlDieuHuong;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn MaNhanVien;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenNhanVien;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenPhongBan;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenChucVu;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn Is_active;
+        private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoLanDangNhap;
     }
 }
