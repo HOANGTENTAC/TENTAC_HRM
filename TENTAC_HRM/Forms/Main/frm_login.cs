@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
+using System.Data;
+using TENTAC_HRM.Consts;
 
 namespace TENTAC_HRM.Forms.Main
 {
@@ -99,6 +101,26 @@ namespace TENTAC_HRM.Forms.Main
 
         private void save_data()
         {
+            string sql = "";
+            if (txt_user.Texts.ToUpper() != "ADMIN" && txt_user.Texts != "HR")
+            {
+                sql = $"select * from MITACOSQL.dbo.NhanVien where MaChamCong = '{int.Parse(txt_user.Texts.Remove(0, 2))}'";
+                DataTable dt = new DataTable();
+                dt = SQLHelper.ExecuteDt(sql);
+
+                LoginInfo.UserCd = txt_user.Texts;
+                LoginInfo.ChucVu = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChucVu"].ToString(): "";
+                LoginInfo.ChucVu = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChamCong"].ToString(): "";
+                LoginInfo.LoaiUser = "NhanVien";
+            }
+            else
+            {
+                LoginInfo.UserCd = txt_user.Texts;
+                LoginInfo.ChucVu = "";
+                LoginInfo.LoaiUser = "NhanVien";
+            }
+
+
             if (chk_remember_me.Checked)
             {
                 Properties.Settings.Default.UserName = txt_user.Texts;

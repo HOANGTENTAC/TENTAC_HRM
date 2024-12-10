@@ -30,9 +30,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_annual_leave));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_annual_leave));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -51,6 +53,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_search = new RJTextBox.RJTextBox();
             this.btn_refresh = new System.Windows.Forms.Button();
@@ -61,33 +64,36 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.pnlDieuHuong = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lb_totalsize = new System.Windows.Forms.Label();
-            this.dgv_annual_leave = new TENTAC_HRM.Custom.RowMergeView();
+            this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ho_ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.don_vi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chuc_vu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_vao_lam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phep_qd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phep_trong_nam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phep_doc_hai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phep_tham_nien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ton_nam_truoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.th_12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phep_da_dung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phep_con_lai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.show_col = new System.Windows.Forms.DataGridViewImageColumn();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayVaoLam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhepQD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhepTrongNam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhepDocHai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhepThamNien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TonNamTruoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Th12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhepDaDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhepConLai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btn_Excel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -97,6 +103,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             // panel1
             // 
             this.panel1.Controls.Add(this.txt_search);
+            this.panel1.Controls.Add(this.btn_Excel);
             this.panel1.Controls.Add(this.btn_refresh);
             this.panel1.Controls.Add(this.btn_edit);
             this.panel1.Controls.Add(this.cbo_year);
@@ -136,7 +143,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.btn_refresh.FlatAppearance.BorderSize = 0;
             this.btn_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_refresh.Image = global::TENTAC_HRM.Properties.Resources.refresh;
-            this.btn_refresh.Location = new System.Drawing.Point(148, 10);
+            this.btn_refresh.Location = new System.Drawing.Point(148, 11);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(23, 24);
             this.btn_refresh.TabIndex = 6;
@@ -159,7 +166,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             // 
             this.cbo_year.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cbo_year.FormattingEnabled = true;
-            this.cbo_year.Location = new System.Drawing.Point(53, 10);
+            this.cbo_year.Location = new System.Drawing.Point(53, 11);
             this.cbo_year.Name = "cbo_year";
             this.cbo_year.Size = new System.Drawing.Size(62, 24);
             this.cbo_year.TabIndex = 4;
@@ -214,271 +221,363 @@ namespace TENTAC_HRM.Forms.NghiPhep
             // dgv_annual_leave
             // 
             this.dgv_annual_leave.AllowUserToAddRows = false;
-            this.dgv_annual_leave.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.dgv_annual_leave.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_annual_leave.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgv_annual_leave.ColumnHeadersHeight = 70;
-            this.dgv_annual_leave.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_annual_leave.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_annual_leave.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_annual_leave.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rownumber,
-            this.id_nhan_vien,
-            this.ma_nhan_vien,
-            this.ho_ten,
-            this.don_vi,
-            this.chuc_vu,
-            this.ngay_vao_lam,
-            this.phep_qd,
-            this.phep_trong_nam,
-            this.phep_doc_hai,
-            this.phep_tham_nien,
-            this.ton_nam_truoc,
-            this.th_1,
-            this.th_2,
-            this.th_3,
-            this.th_4,
-            this.th_5,
-            this.th_6,
-            this.th_7,
-            this.th_8,
-            this.th_9,
-            this.th_10,
-            this.th_11,
-            this.th_12,
-            this.phep_da_dung,
-            this.phep_con_lai});
+            this.show_col,
+            this.MaNhanVien,
+            this.HoTen,
+            this.DonVi,
+            this.ChucVu,
+            this.NgayVaoLam,
+            this.PhepQD,
+            this.PhepTrongNam,
+            this.PhepDocHai,
+            this.PhepThamNien,
+            this.TonNamTruoc,
+            this.Th1,
+            this.Th2,
+            this.Th3,
+            this.Th4,
+            this.Th5,
+            this.Th6,
+            this.Th7,
+            this.Th8,
+            this.Th9,
+            this.Th10,
+            this.Th11,
+            this.Th12,
+            this.PhepDaDung,
+            this.PhepConLai,
+            this.MaChamCong});
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle22;
             this.dgv_annual_leave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_annual_leave.GridColor = System.Drawing.SystemColors.AppWorkspace;
+            this.dgv_annual_leave.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_annual_leave.Location = new System.Drawing.Point(0, 43);
-            this.dgv_annual_leave.MergeColumnHeaderBackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgv_annual_leave.MergeColumnNames = ((System.Collections.Generic.List<string>)(resources.GetObject("dgv_annual_leave.MergeColumnNames")));
             this.dgv_annual_leave.Name = "dgv_annual_leave";
-            this.dgv_annual_leave.RowTemplate.Height = 23;
+            this.dgv_annual_leave.ReadOnly = true;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.White;
+            this.dgv_annual_leave.RowsDefaultCellStyle = dataGridViewCellStyle23;
             this.dgv_annual_leave.Size = new System.Drawing.Size(1146, 486);
             this.dgv_annual_leave.TabIndex = 3;
+            this.dgv_annual_leave.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_annual_leave_CellMouseDoubleClick);
+            this.dgv_annual_leave.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_annual_leave_RowPostPaint);
             // 
             // rownumber
             // 
             this.rownumber.DataPropertyName = "rownumber";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.rownumber.DefaultCellStyle = dataGridViewCellStyle1;
-            this.rownumber.HeaderText = "Stt";
+            this.rownumber.Frozen = true;
+            this.rownumber.HeaderText = "rownumber";
             this.rownumber.Name = "rownumber";
-            this.rownumber.Width = 50;
+            this.rownumber.ReadOnly = true;
+            this.rownumber.Visible = false;
             // 
-            // id_nhan_vien
+            // show_col
             // 
-            this.id_nhan_vien.DataPropertyName = "id_nhan_vien";
-            this.id_nhan_vien.HeaderText = "Column1";
-            this.id_nhan_vien.Name = "id_nhan_vien";
-            this.id_nhan_vien.Visible = false;
-            this.id_nhan_vien.Width = 73;
+            this.show_col.Frozen = true;
+            this.show_col.HeaderText = "";
+            this.show_col.Image = ((System.Drawing.Image)(resources.GetObject("show_col.Image")));
+            this.show_col.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.show_col.Name = "show_col";
+            this.show_col.ReadOnly = true;
+            this.show_col.Width = 24;
             // 
-            // ma_nhan_vien
+            // MaNhanVien
             // 
-            this.ma_nhan_vien.DataPropertyName = "ma_nhan_vien";
-            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.ma_nhan_vien.Name = "ma_nhan_vien";
-            this.ma_nhan_vien.Width = 85;
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.Frozen = true;
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.Name = "MaNhanVien";
+            this.MaNhanVien.ReadOnly = true;
+            this.MaNhanVien.Width = 90;
             // 
-            // ho_ten
+            // HoTen
             // 
-            this.ho_ten.DataPropertyName = "ho_ten";
-            this.ho_ten.HeaderText = "Họ tên";
-            this.ho_ten.Name = "ho_ten";
-            this.ho_ten.Width = 70;
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.Frozen = true;
+            this.HoTen.HeaderText = "Tên nhân viên";
+            this.HoTen.Name = "HoTen";
+            this.HoTen.ReadOnly = true;
+            this.HoTen.Width = 200;
             // 
-            // don_vi
+            // DonVi
             // 
-            this.don_vi.DataPropertyName = "don_vi";
-            this.don_vi.HeaderText = "Đơn vị";
-            this.don_vi.Name = "don_vi";
-            this.don_vi.Width = 59;
+            this.DonVi.DataPropertyName = "DonVi";
+            this.DonVi.Frozen = true;
+            this.DonVi.HeaderText = "Đơn vị";
+            this.DonVi.Name = "DonVi";
+            this.DonVi.ReadOnly = true;
             // 
-            // chuc_vu
+            // ChucVu
             // 
-            this.chuc_vu.DataPropertyName = "chuc_vu";
-            this.chuc_vu.HeaderText = "Chức vụ";
-            this.chuc_vu.Name = "chuc_vu";
-            this.chuc_vu.Width = 78;
+            this.ChucVu.DataPropertyName = "ChucVu";
+            this.ChucVu.HeaderText = "Chức vụ";
+            this.ChucVu.Name = "ChucVu";
+            this.ChucVu.ReadOnly = true;
             // 
-            // ngay_vao_lam
+            // NgayVaoLam
             // 
-            this.ngay_vao_lam.DataPropertyName = "ngay_vao_lam";
-            this.ngay_vao_lam.HeaderText = "Ngày vào làm";
-            this.ngay_vao_lam.Name = "ngay_vao_lam";
-            this.ngay_vao_lam.Width = 76;
+            this.NgayVaoLam.DataPropertyName = "NgayVaoLam";
+            this.NgayVaoLam.HeaderText = "Ngày vào làm";
+            this.NgayVaoLam.Name = "NgayVaoLam";
+            this.NgayVaoLam.ReadOnly = true;
+            this.NgayVaoLam.Width = 90;
             // 
-            // phep_qd
+            // PhepQD
             // 
-            this.phep_qd.DataPropertyName = "phep_qd";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.phep_qd.DefaultCellStyle = dataGridViewCellStyle2;
-            this.phep_qd.HeaderText = "Phép quy định";
-            this.phep_qd.Name = "phep_qd";
-            this.phep_qd.Width = 80;
-            // 
-            // phep_trong_nam
-            // 
-            this.phep_trong_nam.DataPropertyName = "phep_trong_nam";
+            this.PhepQD.DataPropertyName = "PhepQD";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.phep_trong_nam.DefaultCellStyle = dataGridViewCellStyle3;
-            this.phep_trong_nam.HeaderText = "Phép trong năm";
-            this.phep_trong_nam.Name = "phep_trong_nam";
-            this.phep_trong_nam.Width = 89;
+            this.PhepQD.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PhepQD.HeaderText = "Phép quy định";
+            this.PhepQD.Name = "PhepQD";
+            this.PhepQD.ReadOnly = true;
+            this.PhepQD.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PhepQD.Width = 90;
             // 
-            // phep_doc_hai
+            // PhepTrongNam
             // 
-            this.phep_doc_hai.DataPropertyName = "phep_doc_hai";
+            this.PhepTrongNam.DataPropertyName = "PhepTrongNam";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.phep_doc_hai.DefaultCellStyle = dataGridViewCellStyle4;
-            this.phep_doc_hai.HeaderText = "Phép độc hại";
-            this.phep_doc_hai.Name = "phep_doc_hai";
-            this.phep_doc_hai.Width = 73;
+            this.PhepTrongNam.DefaultCellStyle = dataGridViewCellStyle4;
+            this.PhepTrongNam.HeaderText = "Phép trong năm";
+            this.PhepTrongNam.Name = "PhepTrongNam";
+            this.PhepTrongNam.ReadOnly = true;
+            this.PhepTrongNam.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // phep_tham_nien
+            // PhepDocHai
             // 
-            this.phep_tham_nien.DataPropertyName = "phep_tham_nien";
+            this.PhepDocHai.DataPropertyName = "PhepDocHai";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.phep_tham_nien.DefaultCellStyle = dataGridViewCellStyle5;
-            this.phep_tham_nien.HeaderText = "Phép thâm niên";
-            this.phep_tham_nien.Name = "phep_tham_nien";
-            this.phep_tham_nien.Width = 88;
+            this.PhepDocHai.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PhepDocHai.HeaderText = "Phép độc hại";
+            this.PhepDocHai.Name = "PhepDocHai";
+            this.PhepDocHai.ReadOnly = true;
+            this.PhepDocHai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PhepDocHai.Width = 90;
             // 
-            // ton_nam_truoc
+            // PhepThamNien
             // 
-            this.ton_nam_truoc.DataPropertyName = "ton_nam_truoc";
+            this.PhepThamNien.DataPropertyName = "PhepThamNien";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ton_nam_truoc.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ton_nam_truoc.HeaderText = "Tồn năm trước";
-            this.ton_nam_truoc.Name = "ton_nam_truoc";
-            this.ton_nam_truoc.Width = 86;
+            this.PhepThamNien.DefaultCellStyle = dataGridViewCellStyle6;
+            this.PhepThamNien.HeaderText = "Phép thâm niên";
+            this.PhepThamNien.Name = "PhepThamNien";
+            this.PhepThamNien.ReadOnly = true;
+            this.PhepThamNien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PhepThamNien.Width = 95;
             // 
-            // th_1
+            // TonNamTruoc
             // 
-            this.th_1.DataPropertyName = "th_1";
+            this.TonNamTruoc.DataPropertyName = "TonNamTruoc";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_1.DefaultCellStyle = dataGridViewCellStyle7;
-            this.th_1.HeaderText = "1";
-            this.th_1.Name = "th_1";
-            this.th_1.Width = 41;
+            this.TonNamTruoc.DefaultCellStyle = dataGridViewCellStyle7;
+            this.TonNamTruoc.HeaderText = "Tồn năm trước";
+            this.TonNamTruoc.Name = "TonNamTruoc";
+            this.TonNamTruoc.ReadOnly = true;
+            this.TonNamTruoc.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TonNamTruoc.Width = 90;
             // 
-            // th_2
+            // Th1
             // 
-            this.th_2.DataPropertyName = "th_2";
+            this.Th1.DataPropertyName = "Th1";
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_2.DefaultCellStyle = dataGridViewCellStyle8;
-            this.th_2.HeaderText = "2";
-            this.th_2.Name = "th_2";
-            this.th_2.Width = 41;
+            this.Th1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Th1.HeaderText = "Tháng 1";
+            this.Th1.Name = "Th1";
+            this.Th1.ReadOnly = true;
+            this.Th1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th1.Width = 60;
             // 
-            // th_3
+            // Th2
             // 
-            this.th_3.DataPropertyName = "th_3";
+            this.Th2.DataPropertyName = "Th2";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_3.DefaultCellStyle = dataGridViewCellStyle9;
-            this.th_3.HeaderText = "3";
-            this.th_3.Name = "th_3";
-            this.th_3.Width = 41;
+            this.Th2.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Th2.HeaderText = "Tháng 2";
+            this.Th2.Name = "Th2";
+            this.Th2.ReadOnly = true;
+            this.Th2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th2.Width = 60;
             // 
-            // th_4
+            // Th3
             // 
-            this.th_4.DataPropertyName = "th_4";
+            this.Th3.DataPropertyName = "Th3";
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_4.DefaultCellStyle = dataGridViewCellStyle10;
-            this.th_4.HeaderText = "4";
-            this.th_4.Name = "th_4";
-            this.th_4.Width = 41;
+            this.Th3.DefaultCellStyle = dataGridViewCellStyle10;
+            this.Th3.HeaderText = "Tháng 3";
+            this.Th3.Name = "Th3";
+            this.Th3.ReadOnly = true;
+            this.Th3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th3.Width = 60;
             // 
-            // th_5
+            // Th4
             // 
-            this.th_5.DataPropertyName = "th_5";
+            this.Th4.DataPropertyName = "Th4";
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_5.DefaultCellStyle = dataGridViewCellStyle11;
-            this.th_5.HeaderText = "5";
-            this.th_5.Name = "th_5";
-            this.th_5.Width = 41;
+            this.Th4.DefaultCellStyle = dataGridViewCellStyle11;
+            this.Th4.HeaderText = "Tháng 4";
+            this.Th4.Name = "Th4";
+            this.Th4.ReadOnly = true;
+            this.Th4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th4.Width = 60;
             // 
-            // th_6
+            // Th5
             // 
-            this.th_6.DataPropertyName = "th_6";
+            this.Th5.DataPropertyName = "Th5";
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_6.DefaultCellStyle = dataGridViewCellStyle12;
-            this.th_6.HeaderText = "6";
-            this.th_6.Name = "th_6";
-            this.th_6.Width = 41;
+            this.Th5.DefaultCellStyle = dataGridViewCellStyle12;
+            this.Th5.HeaderText = "Tháng 5";
+            this.Th5.Name = "Th5";
+            this.Th5.ReadOnly = true;
+            this.Th5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th5.Width = 60;
             // 
-            // th_7
+            // Th6
             // 
-            this.th_7.DataPropertyName = "th_7";
+            this.Th6.DataPropertyName = "Th6";
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_7.DefaultCellStyle = dataGridViewCellStyle13;
-            this.th_7.HeaderText = "7";
-            this.th_7.Name = "th_7";
-            this.th_7.Width = 41;
+            this.Th6.DefaultCellStyle = dataGridViewCellStyle13;
+            this.Th6.HeaderText = "Tháng 6";
+            this.Th6.Name = "Th6";
+            this.Th6.ReadOnly = true;
+            this.Th6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th6.Width = 60;
             // 
-            // th_8
+            // Th7
             // 
-            this.th_8.DataPropertyName = "th_8";
+            this.Th7.DataPropertyName = "Th7";
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_8.DefaultCellStyle = dataGridViewCellStyle14;
-            this.th_8.HeaderText = "8";
-            this.th_8.Name = "th_8";
-            this.th_8.Width = 41;
+            this.Th7.DefaultCellStyle = dataGridViewCellStyle14;
+            this.Th7.HeaderText = "Tháng 7";
+            this.Th7.Name = "Th7";
+            this.Th7.ReadOnly = true;
+            this.Th7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th7.Width = 60;
             // 
-            // th_9
+            // Th8
             // 
-            this.th_9.DataPropertyName = "th_9";
+            this.Th8.DataPropertyName = "Th8";
             dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_9.DefaultCellStyle = dataGridViewCellStyle15;
-            this.th_9.HeaderText = "9";
-            this.th_9.Name = "th_9";
-            this.th_9.Width = 41;
+            this.Th8.DefaultCellStyle = dataGridViewCellStyle15;
+            this.Th8.HeaderText = "Tháng 8";
+            this.Th8.Name = "Th8";
+            this.Th8.ReadOnly = true;
+            this.Th8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th8.Width = 60;
             // 
-            // th_10
+            // Th9
             // 
-            this.th_10.DataPropertyName = "th_10";
+            this.Th9.DataPropertyName = "Th9";
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_10.DefaultCellStyle = dataGridViewCellStyle16;
-            this.th_10.HeaderText = "10";
-            this.th_10.Name = "th_10";
-            this.th_10.Width = 49;
+            this.Th9.DefaultCellStyle = dataGridViewCellStyle16;
+            this.Th9.HeaderText = "Tháng 9";
+            this.Th9.Name = "Th9";
+            this.Th9.ReadOnly = true;
+            this.Th9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th9.Width = 60;
             // 
-            // th_11
+            // Th10
             // 
-            this.th_11.DataPropertyName = "th_11";
+            this.Th10.DataPropertyName = "Th10";
             dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_11.DefaultCellStyle = dataGridViewCellStyle17;
-            this.th_11.HeaderText = "11";
-            this.th_11.Name = "th_11";
-            this.th_11.Width = 49;
+            this.Th10.DefaultCellStyle = dataGridViewCellStyle17;
+            this.Th10.HeaderText = "Tháng 10";
+            this.Th10.Name = "Th10";
+            this.Th10.ReadOnly = true;
+            this.Th10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th10.Width = 60;
             // 
-            // th_12
+            // Th11
             // 
-            this.th_12.DataPropertyName = "th_12";
+            this.Th11.DataPropertyName = "Th11";
             dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.th_12.DefaultCellStyle = dataGridViewCellStyle18;
-            this.th_12.HeaderText = "12";
-            this.th_12.Name = "th_12";
-            this.th_12.Width = 49;
+            this.Th11.DefaultCellStyle = dataGridViewCellStyle18;
+            this.Th11.HeaderText = "Tháng 11";
+            this.Th11.Name = "Th11";
+            this.Th11.ReadOnly = true;
+            this.Th11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th11.Width = 60;
             // 
-            // phep_da_dung
+            // Th12
             // 
-            this.phep_da_dung.DataPropertyName = "phep_da_dung";
+            this.Th12.DataPropertyName = "Th12";
             dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.PapayaWhip;
-            this.phep_da_dung.DefaultCellStyle = dataGridViewCellStyle19;
-            this.phep_da_dung.HeaderText = "Phép đã dùng";
-            this.phep_da_dung.Name = "phep_da_dung";
-            this.phep_da_dung.Width = 83;
+            this.Th12.DefaultCellStyle = dataGridViewCellStyle19;
+            this.Th12.HeaderText = "Tháng 12";
+            this.Th12.Name = "Th12";
+            this.Th12.ReadOnly = true;
+            this.Th12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Th12.Width = 60;
             // 
-            // phep_con_lai
+            // PhepDaDung
             // 
-            this.phep_con_lai.DataPropertyName = "phep_con_lai";
+            this.PhepDaDung.DataPropertyName = "PhepDaDung";
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.PapayaWhip;
-            this.phep_con_lai.DefaultCellStyle = dataGridViewCellStyle20;
-            this.phep_con_lai.HeaderText = "Phép còn lại";
-            this.phep_con_lai.Name = "phep_con_lai";
-            this.phep_con_lai.Width = 69;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.PhepDaDung.DefaultCellStyle = dataGridViewCellStyle20;
+            this.PhepDaDung.HeaderText = "Phép đã dùng";
+            this.PhepDaDung.Name = "PhepDaDung";
+            this.PhepDaDung.ReadOnly = true;
+            this.PhepDaDung.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PhepDaDung.Width = 85;
+            // 
+            // PhepConLai
+            // 
+            this.PhepConLai.DataPropertyName = "PhepConLai";
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.PhepConLai.DefaultCellStyle = dataGridViewCellStyle21;
+            this.PhepConLai.HeaderText = "Phép còn lại";
+            this.PhepConLai.Name = "PhepConLai";
+            this.PhepConLai.ReadOnly = true;
+            this.PhepConLai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.PhepConLai.Width = 85;
+            // 
+            // MaChamCong
+            // 
+            this.MaChamCong.DataPropertyName = "MaChamCong";
+            this.MaChamCong.HeaderText = "Mã chấm công";
+            this.MaChamCong.Name = "MaChamCong";
+            this.MaChamCong.ReadOnly = true;
+            this.MaChamCong.Visible = false;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 24;
+            // 
+            // btn_Excel
+            // 
+            this.btn_Excel.FlatAppearance.BorderSize = 0;
+            this.btn_Excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_Excel.Location = new System.Drawing.Point(177, 11);
+            this.btn_Excel.Name = "btn_Excel";
+            this.btn_Excel.Size = new System.Drawing.Size(23, 24);
+            this.btn_Excel.TabIndex = 6;
+            this.btn_Excel.UseVisualStyleBackColor = true;
+            this.btn_Excel.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // uc_annual_leave
             // 
@@ -512,33 +611,36 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private System.Windows.Forms.Panel pnlDieuHuong;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lb_totalsize;
-        private RowMergeView dgv_annual_leave;
         private RJTextBox.RJTextBox txt_search;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgv_annual_leave;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn rownumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ho_ten;
-        private System.Windows.Forms.DataGridViewTextBoxColumn don_vi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn chuc_vu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_vao_lam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phep_qd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phep_trong_nam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phep_doc_hai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phep_tham_nien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ton_nam_truoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn th_12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phep_da_dung;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phep_con_lai;
+        private System.Windows.Forms.DataGridViewImageColumn show_col;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoTen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonVi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChucVu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayVaoLam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhepQD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhepTrongNam;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhepDocHai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhepThamNien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TonNamTruoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Th12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhepDaDung;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhepConLai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaChamCong;
+        private System.Windows.Forms.Button btn_Excel;
     }
 }

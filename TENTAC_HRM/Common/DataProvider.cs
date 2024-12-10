@@ -13,9 +13,13 @@ namespace TENTAC_HRM
 {
     class DataProvider
     {
-        public DataTable load_nhanvien()
+        public DataTable load_nhanvien(string MaChamCong = "")
         {
-            string sql = "select MaNhanVien as value,TenNhanVien as name from MITACOSQL.dbo.NHANVIEN";
+            string sql = "select MaNhanVien as value,TenNhanVien as name from MITACOSQL.dbo.NHANVIEN where 1=1 ";
+            if(!string.IsNullOrEmpty(MaChamCong))
+            {
+                sql += $" and MaChamCong = '{MaChamCong}'";
+            }
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("0", "");
@@ -121,7 +125,7 @@ namespace TENTAC_HRM
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("", "");
-            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("MaLoaiPhep")).CopyToDataTable();
+            return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<string>("id")).CopyToDataTable();
         }
         public DataTable load_loaiphucap()
         {

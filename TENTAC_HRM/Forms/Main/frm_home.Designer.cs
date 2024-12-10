@@ -813,7 +813,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "frm_home";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TENTAC HỒ CHÍ MINH";
             this.Load += new System.EventHandler(this.frm_home_Load);

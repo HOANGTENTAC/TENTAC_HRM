@@ -10,7 +10,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
     public partial class frm_nghiphepnam : KryptonForm
     {
         public int year { get; set; }
-        public string _ma_nhanvien { get; set; }
+        public string _MaChamCong { get; set; }
         uc_annual_leave annual_leave = new uc_annual_leave();
         public frm_nghiphepnam(uc_annual_leave _annual_leave)
         {
@@ -20,7 +20,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void frm_nghiphepnam_Load(object sender, EventArgs e)
         {
-            string sql = string.Format("select hoten from tbl_nhanvien where manhanvien = '{0}'", _ma_nhanvien);
+            string sql = string.Format("select TenNhanVien from MITACOSQL.dbo.NHANVIEN where MaChamCong = '{0}'", _MaChamCong);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -32,16 +32,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
         }
         private void load_data()
         {
-            string sql = string.Format("select * from tas_ngay_phep_nam where ma_nhan_vien = '{0}' and nam = '{1}'", _ma_nhanvien, year);
+            string sql = string.Format("select * from tbl_NgayPhepNam where MaChamCong = '{0}' and Nam = '{1}'", _MaChamCong, year);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if(dt.Rows.Count > 0)
             {
-                txt_phep_qd.Text = dt.Rows[0]["tong_ngay_qd"].ToString();
-                txt_tong_ngayphep.Text = dt.Rows[0]["tong_ngay_phep"].ToString();
-                txt_tong_ngayton.Text = dt.Rows[0]["tong_ngay_ton"].ToString();
-                txt_phep_dochai.Text = dt.Rows[0]["phep_doc_hai"].ToString();
-                txt_phep_thamnien.Text = dt.Rows[0]["phep_tham_nien"].ToString();
+                txt_phep_qd.Text = dt.Rows[0]["TongNgayQD"].ToString();
+                txt_tong_ngayphep.Text = dt.Rows[0]["TongNgayPhep"].ToString();
+                txt_tong_ngayton.Text = dt.Rows[0]["TongNgayTon"].ToString();
+                txt_phep_dochai.Text = dt.Rows[0]["PhepDocHai"].ToString();
+                txt_phep_thamnien.Text = dt.Rows[0]["PhepThamNien"].ToString();
             }
         }
         private void txt_phep_qd_Leave(object sender, EventArgs e)
@@ -64,13 +64,13 @@ namespace TENTAC_HRM.Forms.NghiPhep
         {
             try
             {
-                string sql = string.Format("select * from tas_ngay_phep_nam where ma_nhan_vien = '{0}' and nam = {1}", _ma_nhanvien, txt_nam_nghiphep.Text);
+                string sql = string.Format("select * from tbl_NgayPhepNam where MaChamCong = '{0}' and Nam = {1}", _MaChamCong, txt_nam_nghiphep.Text);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 if (dt.Rows.Count > 0)
                 {
-                    string sql_update = string.Format("update tas_ngay_phep_nam set tong_ngay_qd = '{2}',tong_ngay_phep = '{3}',tong_ngay_ton = '{4}',ngay_cap_nhat = GETDATE(),phep_tham_nien = '{5}', phep_doc_hai = '{6}' " +
-                        "where ma_nhan_vien = '{0}' and nam = {1}", _ma_nhanvien, txt_nam_nghiphep.Text,
+                    string sql_update = string.Format("update tbl_NgayPhepNam set TongNgayQD = '{2}',TongNgayPhep = '{3}',TongNgayTon = '{4}',NgayCapNhat = GETDATE(),PhepThamNien = '{5}', PhepDocHai = '{6}' " +
+                        "where MaChamCong = '{0}' and Nam = {1}", _MaChamCong, txt_nam_nghiphep.Text,
                         txt_phep_qd.Text, txt_tong_ngayphep.Text, txt_tong_ngayton.Text,txt_phep_thamnien.Text,txt_phep_dochai.Text);
                     if (SQLHelper.ExecuteSql(sql_update) == 1)
                     {
@@ -79,15 +79,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 }
                 else
                 {
-                    string sql_insert = string.Format("insert into tas_ngay_phep_nam(ma_nhan_vien,nam,tong_ngay_qd,tong_ngay_phep,tong_ngay_ton,id_nguoi_tao,phep_tham_nien,phep_doc_hai) " +
+                    string sql_insert = string.Format("insert into tbl_NgayPhepNam(MaChamCong,Nam,TongNgayQD,TongNgayPhep,TongNgayTon,NguoiTao,PhepThamNien,PhepDocHai) " +
                         "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')",
-                        _ma_nhanvien, txt_nam_nghiphep.Text, txt_phep_qd.Text, txt_tong_ngayphep.Text, txt_tong_ngayton.Text, SQLHelper.sIdUser, txt_phep_thamnien.Text,txt_phep_dochai.Text);
+                        _MaChamCong, txt_nam_nghiphep.Text, txt_phep_qd.Text, txt_tong_ngayphep.Text, txt_tong_ngayton.Text, SQLHelper.sIdUser, txt_phep_thamnien.Text,txt_phep_dochai.Text);
                     if (SQLHelper.ExecuteSql(sql_insert) == 1)
                     {
                         RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 annual_leave.load_data(1);
+                //annual_leave.LoadDGV();
             }
             catch (Exception ex)
             {

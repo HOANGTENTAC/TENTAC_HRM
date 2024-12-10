@@ -88,9 +88,15 @@
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.txt_info = new System.Windows.Forms.ToolStripLabel();
             this.lb_count_nv = new System.Windows.Forms.ToolStripLabel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlDieuHuong = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lb_totalsize = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_xepca)).BeginInit();
             this.toolStrip2.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -312,7 +318,7 @@
             this.dgv_xepca.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_xepca.Location = new System.Drawing.Point(0, 50);
             this.dgv_xepca.Name = "dgv_xepca";
-            this.dgv_xepca.Size = new System.Drawing.Size(1293, 576);
+            this.dgv_xepca.Size = new System.Drawing.Size(1293, 546);
             this.dgv_xepca.TabIndex = 1;
             this.dgv_xepca.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_xepca_CellContentClick);
             this.dgv_xepca.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_xepca_RowPostPaint);
@@ -588,11 +594,49 @@
             this.lb_count_nv.Size = new System.Drawing.Size(86, 22);
             this.lb_count_nv.Text = "toolStripLabel5";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pnlDieuHuong);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 596);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1293, 30);
+            this.panel2.TabIndex = 3;
+            // 
+            // pnlDieuHuong
+            // 
+            this.pnlDieuHuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDieuHuong.Location = new System.Drawing.Point(0, 0);
+            this.pnlDieuHuong.Name = "pnlDieuHuong";
+            this.pnlDieuHuong.Size = new System.Drawing.Size(1207, 30);
+            this.pnlDieuHuong.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.lb_totalsize);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(1207, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(86, 30);
+            this.panel4.TabIndex = 1;
+            // 
+            // lb_totalsize
+            // 
+            this.lb_totalsize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_totalsize.Location = new System.Drawing.Point(0, 0);
+            this.lb_totalsize.Name = "lb_totalsize";
+            this.lb_totalsize.Size = new System.Drawing.Size(86, 30);
+            this.lb_totalsize.TabIndex = 0;
+            this.lb_totalsize.Text = "label2";
+            this.lb_totalsize.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // uc_bangxepca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dgv_xepca);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -605,6 +649,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_xepca)).EndInit();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -670,5 +716,9 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn d29;
         private System.Windows.Forms.DataGridViewComboBoxColumn d30;
         private System.Windows.Forms.DataGridViewComboBoxColumn d31;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel pnlDieuHuong;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lb_totalsize;
     }
 }
