@@ -35,6 +35,13 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_hienthi = new System.Windows.Forms.ToolStripComboBox();
             this.panel = new System.Windows.Forms.Panel();
+            this.chk_GioiTinh = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.dtp_NgaySinh = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.txt_Email = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txt_DiaChi = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txt_SDT = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.txt_MaNhanVien = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label4 = new DevComponents.DotNetBar.LabelX();
             this.label5 = new DevComponents.DotNetBar.LabelX();
             this.label3 = new DevComponents.DotNetBar.LabelX();
@@ -192,15 +199,9 @@
             this.comboBoxTSPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.txt_MaNhanVien = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txt_SDT = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txt_DiaChi = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txt_Email = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.dtp_NgaySinh = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
-            this.chk_GioiTinh = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.toolStrip1.SuspendLayout();
             this.panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_avata)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).BeginInit();
             this.kryptonNavigator1.SuspendLayout();
@@ -244,7 +245,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thaisai)).BeginInit();
             this.panel16.SuspendLayout();
             this.toolStrip9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -309,6 +309,112 @@
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(1129, 118);
             this.panel.TabIndex = 1;
+            // 
+            // chk_GioiTinh
+            // 
+            this.chk_GioiTinh.Enabled = false;
+            this.chk_GioiTinh.Location = new System.Drawing.Point(623, 11);
+            this.chk_GioiTinh.Name = "chk_GioiTinh";
+            this.chk_GioiTinh.Size = new System.Drawing.Size(67, 23);
+            this.chk_GioiTinh.TabIndex = 11;
+            this.chk_GioiTinh.Text = "Nam";
+            // 
+            // dtp_NgaySinh
+            // 
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.dtp_NgaySinh.ButtonDropDown.Visible = true;
+            this.dtp_NgaySinh.Enabled = false;
+            this.dtp_NgaySinh.Location = new System.Drawing.Point(467, 11);
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
+            this.dtp_NgaySinh.MonthCalendar.ClearButtonVisible = true;
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
+            this.dtp_NgaySinh.MonthCalendar.DisplayMonth = new System.DateTime(2024, 11, 1, 0, 0, 0, 0);
+            this.dtp_NgaySinh.MonthCalendar.MarkedDates = new System.DateTime[0];
+            this.dtp_NgaySinh.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
+            // 
+            // 
+            // 
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
+            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.dtp_NgaySinh.MonthCalendar.TodayButtonVisible = true;
+            this.dtp_NgaySinh.Name = "dtp_NgaySinh";
+            this.dtp_NgaySinh.Size = new System.Drawing.Size(149, 23);
+            this.dtp_NgaySinh.TabIndex = 10;
+            // 
+            // labelX1
+            // 
+            this.labelX1.Location = new System.Drawing.Point(391, 11);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 9;
+            this.labelX1.Text = "Ngày sinh:";
+            // 
+            // txt_Email
+            // 
+            // 
+            // 
+            // 
+            this.txt_Email.Border.Class = "TextBoxBorder";
+            this.txt_Email.Enabled = false;
+            this.txt_Email.Location = new System.Drawing.Point(467, 42);
+            this.txt_Email.Name = "txt_Email";
+            this.txt_Email.Size = new System.Drawing.Size(223, 23);
+            this.txt_Email.TabIndex = 8;
+            // 
+            // txt_DiaChi
+            // 
+            // 
+            // 
+            // 
+            this.txt_DiaChi.Border.Class = "TextBoxBorder";
+            this.txt_DiaChi.Enabled = false;
+            this.txt_DiaChi.Location = new System.Drawing.Point(237, 72);
+            this.txt_DiaChi.Name = "txt_DiaChi";
+            this.txt_DiaChi.Size = new System.Drawing.Size(453, 23);
+            this.txt_DiaChi.TabIndex = 7;
+            // 
+            // txt_SDT
+            // 
+            // 
+            // 
+            // 
+            this.txt_SDT.Border.Class = "TextBoxBorder";
+            this.txt_SDT.Enabled = false;
+            this.txt_SDT.Location = new System.Drawing.Point(237, 43);
+            this.txt_SDT.Name = "txt_SDT";
+            this.txt_SDT.Size = new System.Drawing.Size(148, 23);
+            this.txt_SDT.TabIndex = 6;
+            // 
+            // txt_MaNhanVien
+            // 
+            // 
+            // 
+            // 
+            this.txt_MaNhanVien.Border.Class = "TextBoxBorder";
+            this.txt_MaNhanVien.Enabled = false;
+            this.txt_MaNhanVien.Location = new System.Drawing.Point(237, 14);
+            this.txt_MaNhanVien.Name = "txt_MaNhanVien";
+            this.txt_MaNhanVien.Size = new System.Drawing.Size(148, 23);
+            this.txt_MaNhanVien.TabIndex = 5;
             // 
             // label4
             // 
@@ -413,7 +519,7 @@
             this.kryptonPage6,
             this.kryptonPage7,
             this.kryptonPage8});
-            this.kryptonNavigator1.SelectedIndex = 0;
+            this.kryptonNavigator1.SelectedIndex = 2;
             this.kryptonNavigator1.Size = new System.Drawing.Size(1129, 471);
             this.kryptonNavigator1.TabIndex = 5;
             this.kryptonNavigator1.Text = "kryptonNavigator1";
@@ -546,7 +652,7 @@
             this.btn_add_congtac.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_congtac.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_congtac.Name = "btn_add_congtac";
-            this.btn_add_congtac.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_congtac.Size = new System.Drawing.Size(58, 29);
             this.btn_add_congtac.Text = "Thêm";
             this.btn_add_congtac.Click += new System.EventHandler(this.btn_add_congtac_Click);
             // 
@@ -732,7 +838,7 @@
             this.btn_add_khenthuong.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_khenthuong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_khenthuong.Name = "btn_add_khenthuong";
-            this.btn_add_khenthuong.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_khenthuong.Size = new System.Drawing.Size(58, 29);
             this.btn_add_khenthuong.Text = "Thêm";
             this.btn_add_khenthuong.Click += new System.EventHandler(this.btn_add_khenthuong_Click);
             // 
@@ -909,7 +1015,7 @@
             this.btn_add_kl.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_kl.Name = "btn_add_kl";
-            this.btn_add_kl.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_kl.Size = new System.Drawing.Size(58, 29);
             this.btn_add_kl.Text = "Thêm";
             this.btn_add_kl.Click += new System.EventHandler(this.btn_add_kl_Click);
             // 
@@ -1076,7 +1182,7 @@
             this.btn_add_dg.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_dg.Name = "btn_add_dg";
-            this.btn_add_dg.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_dg.Size = new System.Drawing.Size(58, 29);
             this.btn_add_dg.Text = "Thêm";
             this.btn_add_dg.Click += new System.EventHandler(this.btn_add_dg_Click);
             // 
@@ -1251,7 +1357,7 @@
             this.btn_add_dt.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_dt.Name = "btn_add_dt";
-            this.btn_add_dt.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_dt.Size = new System.Drawing.Size(58, 29);
             this.btn_add_dt.Text = "Thêm";
             this.btn_add_dt.Click += new System.EventHandler(this.btn_add_dt_Click);
             // 
@@ -1426,7 +1532,7 @@
             this.btn_add_tainan.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_tainan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_tainan.Name = "btn_add_tainan";
-            this.btn_add_tainan.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_tainan.Size = new System.Drawing.Size(58, 29);
             this.btn_add_tainan.Text = "Thêm";
             this.btn_add_tainan.Click += new System.EventHandler(this.btn_add_tainan_Click);
             // 
@@ -1610,7 +1716,7 @@
             this.btn_add_nv.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_nv.Name = "btn_add_nv";
-            this.btn_add_nv.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_nv.Size = new System.Drawing.Size(58, 29);
             this.btn_add_nv.Text = "Thêm";
             this.btn_add_nv.Click += new System.EventHandler(this.btn_add_nv_Click);
             // 
@@ -1767,7 +1873,7 @@
             this.btn_add_ts.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_ts.Name = "btn_add_ts";
-            this.btn_add_ts.Size = new System.Drawing.Size(57, 29);
+            this.btn_add_ts.Size = new System.Drawing.Size(58, 29);
             this.btn_add_ts.Text = "Thêm";
             this.btn_add_ts.Click += new System.EventHandler(this.btn_add_ts_Click);
             // 
@@ -1839,112 +1945,6 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
-            // txt_MaNhanVien
-            // 
-            // 
-            // 
-            // 
-            this.txt_MaNhanVien.Border.Class = "TextBoxBorder";
-            this.txt_MaNhanVien.Enabled = false;
-            this.txt_MaNhanVien.Location = new System.Drawing.Point(237, 14);
-            this.txt_MaNhanVien.Name = "txt_MaNhanVien";
-            this.txt_MaNhanVien.Size = new System.Drawing.Size(148, 23);
-            this.txt_MaNhanVien.TabIndex = 5;
-            // 
-            // txt_SDT
-            // 
-            // 
-            // 
-            // 
-            this.txt_SDT.Border.Class = "TextBoxBorder";
-            this.txt_SDT.Enabled = false;
-            this.txt_SDT.Location = new System.Drawing.Point(237, 43);
-            this.txt_SDT.Name = "txt_SDT";
-            this.txt_SDT.Size = new System.Drawing.Size(148, 23);
-            this.txt_SDT.TabIndex = 6;
-            // 
-            // txt_DiaChi
-            // 
-            // 
-            // 
-            // 
-            this.txt_DiaChi.Border.Class = "TextBoxBorder";
-            this.txt_DiaChi.Enabled = false;
-            this.txt_DiaChi.Location = new System.Drawing.Point(237, 72);
-            this.txt_DiaChi.Name = "txt_DiaChi";
-            this.txt_DiaChi.Size = new System.Drawing.Size(453, 23);
-            this.txt_DiaChi.TabIndex = 7;
-            // 
-            // txt_Email
-            // 
-            // 
-            // 
-            // 
-            this.txt_Email.Border.Class = "TextBoxBorder";
-            this.txt_Email.Enabled = false;
-            this.txt_Email.Location = new System.Drawing.Point(467, 42);
-            this.txt_Email.Name = "txt_Email";
-            this.txt_Email.Size = new System.Drawing.Size(223, 23);
-            this.txt_Email.TabIndex = 8;
-            // 
-            // labelX1
-            // 
-            this.labelX1.Location = new System.Drawing.Point(391, 11);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(75, 23);
-            this.labelX1.TabIndex = 9;
-            this.labelX1.Text = "Ngày sinh:";
-            // 
-            // dtp_NgaySinh
-            // 
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.BackgroundStyle.Class = "DateTimeInputBackground";
-            this.dtp_NgaySinh.ButtonDropDown.Visible = true;
-            this.dtp_NgaySinh.Enabled = false;
-            this.dtp_NgaySinh.Location = new System.Drawing.Point(467, 11);
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.AnnuallyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.BackgroundStyle.BackColor = System.Drawing.SystemColors.Window;
-            this.dtp_NgaySinh.MonthCalendar.ClearButtonVisible = true;
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground2;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTop = DevComponents.DotNetBar.eStyleBorderType.Solid;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.dtp_NgaySinh.MonthCalendar.CommandsBackgroundStyle.BorderTopWidth = 1;
-            this.dtp_NgaySinh.MonthCalendar.DisplayMonth = new System.DateTime(2024, 11, 1, 0, 0, 0, 0);
-            this.dtp_NgaySinh.MonthCalendar.MarkedDates = new System.DateTime[0];
-            this.dtp_NgaySinh.MonthCalendar.MonthlyMarkedDates = new System.DateTime[0];
-            // 
-            // 
-            // 
-            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorGradientAngle = 90;
-            this.dtp_NgaySinh.MonthCalendar.NavigationBackgroundStyle.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.dtp_NgaySinh.MonthCalendar.TodayButtonVisible = true;
-            this.dtp_NgaySinh.Name = "dtp_NgaySinh";
-            this.dtp_NgaySinh.Size = new System.Drawing.Size(149, 23);
-            this.dtp_NgaySinh.TabIndex = 10;
-            // 
-            // chk_GioiTinh
-            // 
-            this.chk_GioiTinh.Enabled = false;
-            this.chk_GioiTinh.Location = new System.Drawing.Point(623, 11);
-            this.chk_GioiTinh.Name = "chk_GioiTinh";
-            this.chk_GioiTinh.Size = new System.Drawing.Size(67, 23);
-            this.chk_GioiTinh.TabIndex = 11;
-            this.chk_GioiTinh.Text = "Nam";
-            // 
             // uc_quatrinh_lamviec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1961,6 +1961,7 @@
             this.toolStrip1.PerformLayout();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_avata)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonNavigator1)).EndInit();
             this.kryptonNavigator1.ResumeLayout(false);
@@ -2020,7 +2021,6 @@
             this.panel16.PerformLayout();
             this.toolStrip9.ResumeLayout(false);
             this.toolStrip9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,9 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDTrangThaiP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReportToReportTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenKhuVuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayNghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NuaNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiPhep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiXacNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
@@ -43,26 +60,12 @@
             this.cbo_trangthai = new System.Windows.Forms.ToolStripComboBox();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
-            this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.btn_Search = new System.Windows.Forms.ToolStripButton();
-            this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.chk_TheoNam = new DevComponents.DotNetBar.Controls.CheckBoxX();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            this.edit_columnquanly = new System.Windows.Forms.DataGridViewImageColumn();
-            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenKhuVuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayNghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NuaNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiPhep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Excel = new System.Windows.Forms.ToolStripButton();
+            this.btn_close = new System.Windows.Forms.ToolStripButton();
+            this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.chk_TheoNam = new DevComponents.DotNetBar.Controls.CheckBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_annual_leave)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -79,13 +82,13 @@
             // dgv_annual_leave
             // 
             this.dgv_annual_leave.AllowUserToAddRows = false;
-            this.dgv_annual_leave.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv_annual_leave.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_annual_leave.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_annual_leave.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
+            this.IDTrangThaiP,
+            this.ReportToReportTo,
             this.edit_column,
-            this.edit_columnquanly,
             this.MaNhanVien,
             this.TenNhanVien,
             this.TenKhuVuc,
@@ -96,15 +99,17 @@
             this.SoNgay,
             this.LoaiPhep,
             this.GhiChu,
-            this.MaChucVu});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle2;
+            this.MaChucVu,
+            this.NguoiXacNhan,
+            this.TrangThaiPhieu});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_annual_leave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_annual_leave.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_annual_leave.Location = new System.Drawing.Point(0, 38);
@@ -112,6 +117,129 @@
             this.dgv_annual_leave.Size = new System.Drawing.Size(1279, 464);
             this.dgv_annual_leave.TabIndex = 4;
             this.dgv_annual_leave.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_annual_leave_CellClick);
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Column1";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            this.id.Width = 88;
+            // 
+            // IDTrangThaiP
+            // 
+            this.IDTrangThaiP.DataPropertyName = "IDTrangThai";
+            this.IDTrangThaiP.HeaderText = "IDTrangThaiP";
+            this.IDTrangThaiP.Name = "IDTrangThaiP";
+            this.IDTrangThaiP.Visible = false;
+            // 
+            // ReportToReportTo
+            // 
+            this.ReportToReportTo.DataPropertyName = "ReportToReportTo";
+            this.ReportToReportTo.HeaderText = "ReportToReportTo";
+            this.ReportToReportTo.Name = "ReportToReportTo";
+            this.ReportToReportTo.Visible = false;
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Width = 35;
+            // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.Name = "MaNhanVien";
+            this.MaNhanVien.Width = 118;
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Họ tên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            this.TenNhanVien.Width = 200;
+            // 
+            // TenKhuVuc
+            // 
+            this.TenKhuVuc.DataPropertyName = "TenKhuVuc";
+            this.TenKhuVuc.HeaderText = "Đơn vị";
+            this.TenKhuVuc.Name = "TenKhuVuc";
+            this.TenKhuVuc.Width = 73;
+            // 
+            // TenChucVu
+            // 
+            this.TenChucVu.DataPropertyName = "TenChucVu";
+            this.TenChucVu.HeaderText = "Chức vụ";
+            this.TenChucVu.Name = "TenChucVu";
+            this.TenChucVu.Width = 84;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.HeaderText = "Trạng thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.Visible = false;
+            this.TrangThai.Width = 98;
+            // 
+            // NgayNghi
+            // 
+            this.NgayNghi.DataPropertyName = "NgayNghi";
+            this.NgayNghi.HeaderText = "Ngày nghỉ";
+            this.NgayNghi.Name = "NgayNghi";
+            this.NgayNghi.Width = 97;
+            // 
+            // NuaNgay
+            // 
+            this.NuaNgay.DataPropertyName = "NuaNgay";
+            this.NuaNgay.HeaderText = "Nghỉ nửa ngày";
+            this.NuaNgay.Name = "NuaNgay";
+            this.NuaNgay.Width = 125;
+            // 
+            // SoNgay
+            // 
+            this.SoNgay.DataPropertyName = "SoNgay";
+            this.SoNgay.HeaderText = "Số ngày";
+            this.SoNgay.Name = "SoNgay";
+            this.SoNgay.Width = 85;
+            // 
+            // LoaiPhep
+            // 
+            this.LoaiPhep.DataPropertyName = "KyHieu";
+            this.LoaiPhep.HeaderText = "Loại phép";
+            this.LoaiPhep.Name = "LoaiPhep";
+            this.LoaiPhep.Width = 96;
+            // 
+            // GhiChu
+            // 
+            this.GhiChu.DataPropertyName = "GhiChu";
+            this.GhiChu.HeaderText = "Nội dung";
+            this.GhiChu.Name = "GhiChu";
+            this.GhiChu.Width = 90;
+            // 
+            // MaChucVu
+            // 
+            this.MaChucVu.DataPropertyName = "MaChucVu";
+            this.MaChucVu.HeaderText = "Mã chức vụ";
+            this.MaChucVu.Name = "MaChucVu";
+            this.MaChucVu.Visible = false;
+            this.MaChucVu.Width = 105;
+            // 
+            // NguoiXacNhan
+            // 
+            this.NguoiXacNhan.DataPropertyName = "NguoiXacNhan";
+            this.NguoiXacNhan.HeaderText = "Người xác nhận";
+            this.NguoiXacNhan.Name = "NguoiXacNhan";
+            this.NguoiXacNhan.Width = 130;
+            // 
+            // TrangThaiPhieu
+            // 
+            this.TrangThaiPhieu.DataPropertyName = "TrangThaiPhieu";
+            this.TrangThaiPhieu.HeaderText = "Trạng thái phiếu";
+            this.TrangThaiPhieu.Name = "TrangThaiPhieu";
+            this.TrangThaiPhieu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TrangThaiPhieu.Width = 150;
             // 
             // panel2
             // 
@@ -170,7 +298,7 @@
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(40, 35);
+            this.toolStripLabel3.Size = new System.Drawing.Size(41, 35);
             this.toolStripLabel3.Text = "Tháng";
             // 
             // cbo_Thang
@@ -194,7 +322,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(59, 35);
+            this.toolStripLabel2.Size = new System.Drawing.Size(60, 35);
             this.toolStripLabel2.Text = "Trạng thái";
             // 
             // cbo_trangthai
@@ -202,13 +330,14 @@
             this.cbo_trangthai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_trangthai.Name = "cbo_trangthai";
             this.cbo_trangthai.Size = new System.Drawing.Size(121, 38);
+            this.cbo_trangthai.SelectedIndexChanged += new System.EventHandler(this.cbo_trangthai_SelectedIndexChanged);
             // 
             // btn_add
             // 
             this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(57, 35);
+            this.btn_add.Size = new System.Drawing.Size(58, 35);
             this.btn_add.Text = "Thêm";
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
@@ -221,6 +350,30 @@
             this.btn_delete.Text = "Xóa";
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
+            // btn_Search
+            // 
+            this.btn_Search.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_Search.Image = global::TENTAC_HRM.Properties.Resources.btnTim;
+            this.btn_Search.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(77, 35);
+            this.btn_Search.Text = "Tìm kiếm";
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            // 
+            // btn_Excel
+            // 
+            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_Excel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Excel.Name = "btn_Excel";
+            this.btn_Excel.Size = new System.Drawing.Size(80, 35);
+            this.btn_Excel.Text = "Xuất Excel";
+            this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
+            // 
             // btn_close
             // 
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
@@ -229,16 +382,6 @@
             this.btn_close.Size = new System.Drawing.Size(56, 35);
             this.btn_close.Text = "Đóng";
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
-            // btn_Search
-            // 
-            this.btn_Search.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_Search.Image = global::TENTAC_HRM.Properties.Resources.btnTim;
-            this.btn_Search.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(76, 35);
-            this.btn_Search.Text = "Tìm kiếm";
-            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
             // txt_search
             // 
@@ -262,120 +405,6 @@
             this.chk_TheoNam.Size = new System.Drawing.Size(117, 23);
             this.chk_TheoNam.TabIndex = 12;
             this.chk_TheoNam.Text = "Xem theo nam";
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "Column1";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            this.id.Width = 88;
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Width = 5;
-            // 
-            // edit_columnquanly
-            // 
-            this.edit_columnquanly.HeaderText = "";
-            this.edit_columnquanly.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_columnquanly.Name = "edit_columnquanly";
-            this.edit_columnquanly.Width = 5;
-            // 
-            // MaNhanVien
-            // 
-            this.MaNhanVien.DataPropertyName = "MaNhanVien";
-            this.MaNhanVien.HeaderText = "Mã nhân viên";
-            this.MaNhanVien.Name = "MaNhanVien";
-            this.MaNhanVien.Width = 118;
-            // 
-            // TenNhanVien
-            // 
-            this.TenNhanVien.DataPropertyName = "TenNhanVien";
-            this.TenNhanVien.HeaderText = "Họ tên";
-            this.TenNhanVien.Name = "TenNhanVien";
-            this.TenNhanVien.Width = 75;
-            // 
-            // TenKhuVuc
-            // 
-            this.TenKhuVuc.DataPropertyName = "TenKhuVuc";
-            this.TenKhuVuc.HeaderText = "Đơn vị";
-            this.TenKhuVuc.Name = "TenKhuVuc";
-            this.TenKhuVuc.Width = 73;
-            // 
-            // TenChucVu
-            // 
-            this.TenChucVu.DataPropertyName = "TenChucVu";
-            this.TenChucVu.HeaderText = "Chức vụ";
-            this.TenChucVu.Name = "TenChucVu";
-            this.TenChucVu.Width = 84;
-            // 
-            // TrangThai
-            // 
-            this.TrangThai.DataPropertyName = "TrangThai";
-            this.TrangThai.HeaderText = "Trạng thái";
-            this.TrangThai.Name = "TrangThai";
-            this.TrangThai.Width = 98;
-            // 
-            // NgayNghi
-            // 
-            this.NgayNghi.DataPropertyName = "NgayNghi";
-            this.NgayNghi.HeaderText = "Ngày nghỉ";
-            this.NgayNghi.Name = "NgayNghi";
-            this.NgayNghi.Width = 97;
-            // 
-            // NuaNgay
-            // 
-            this.NuaNgay.DataPropertyName = "NuaNgay";
-            this.NuaNgay.HeaderText = "Nghỉ nửa ngày";
-            this.NuaNgay.Name = "NuaNgay";
-            this.NuaNgay.Width = 125;
-            // 
-            // SoNgay
-            // 
-            this.SoNgay.DataPropertyName = "SoNgay";
-            this.SoNgay.HeaderText = "Số ngày";
-            this.SoNgay.Name = "SoNgay";
-            this.SoNgay.Width = 85;
-            // 
-            // LoaiPhep
-            // 
-            this.LoaiPhep.DataPropertyName = "LoaiPhep";
-            this.LoaiPhep.HeaderText = "Loại phép";
-            this.LoaiPhep.Name = "LoaiPhep";
-            this.LoaiPhep.Width = 96;
-            // 
-            // GhiChu
-            // 
-            this.GhiChu.DataPropertyName = "GhiChu";
-            this.GhiChu.HeaderText = "Nội dung";
-            this.GhiChu.Name = "GhiChu";
-            this.GhiChu.Width = 90;
-            // 
-            // MaChucVu
-            // 
-            this.MaChucVu.DataPropertyName = "MaChucVu";
-            this.MaChucVu.HeaderText = "Mã chức vụ";
-            this.MaChucVu.Name = "MaChucVu";
-            this.MaChucVu.Visible = false;
-            this.MaChucVu.Width = 105;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
-            // 
-            // btn_Excel
-            // 
-            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
-            this.btn_Excel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Excel.Name = "btn_Excel";
-            this.btn_Excel.Size = new System.Drawing.Size(81, 35);
-            this.btn_Excel.Text = "Xuất Excel";
-            this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
             // 
             // Frm_NghiPhep
             // 
@@ -420,9 +449,12 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripComboBox cbo_Thang;
         private DevComponents.DotNetBar.Controls.CheckBoxX chk_TheoNam;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btn_Excel;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDTrangThaiP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReportToReportTo;
         private System.Windows.Forms.DataGridViewImageColumn edit_column;
-        private System.Windows.Forms.DataGridViewImageColumn edit_columnquanly;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenKhuVuc;
@@ -434,7 +466,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiPhep;
         private System.Windows.Forms.DataGridViewTextBoxColumn GhiChu;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaChucVu;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btn_Excel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiXacNhan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiPhieu;
     }
 }

@@ -24,19 +24,19 @@ namespace TENTAC_HRM.Forms.User_control
         DataProvider provider = new DataProvider();
         public string maNhanVien;
         public static uc_quatrinh_lamviec _instance;
-        public static uc_quatrinh_lamviec Instance
+        public static uc_quatrinh_lamviec Instance(int[] idPermision)
         {
-            get
+            if (_instance == null)
             {
-                _instance = new uc_quatrinh_lamviec();
-                return _instance;
+                _instance = new uc_quatrinh_lamviec(idPermision);
             }
+            return _instance;
         }
         ToolStripControlHost dtp_den_ngay = new ToolStripControlHost(new DateTimePicker());
         ToolStripControlHost dtp_tu_ngay = new ToolStripControlHost(new DateTimePicker());
         ToolStripControlHost denngay = new ToolStripControlHost(new Label());
         ToolStripControlHost tungay = new ToolStripControlHost(new Label());
-        public uc_quatrinh_lamviec()
+        public uc_quatrinh_lamviec(int[] idPermision)
         {
             InitializeComponent();
             // add item to toolstrip

@@ -110,8 +110,9 @@ namespace TENTAC_HRM.Forms.Main
 
                 LoginInfo.UserCd = txt_user.Texts;
                 LoginInfo.ChucVu = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChucVu"].ToString(): "";
-                LoginInfo.ChucVu = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChamCong"].ToString(): "";
                 LoginInfo.LoaiUser = "NhanVien";
+                LoginInfo.MaPhongBan = dt.Rows[0]["MaPhongBan"].ToString();
+                LoginInfo.MaChamCong = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChamCong"].ToString() : "";
             }
             else
             {

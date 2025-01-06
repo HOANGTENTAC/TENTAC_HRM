@@ -11,6 +11,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
     {
         DataSet dataTable = new DataSet();
         DataProvider provider = new DataProvider();
+        public int[] idPermision { get; set; }
         int PageSize = 50;
         int pageCount = 0;
         public static uc_annual_leave _instance;
@@ -180,7 +181,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 case "Th11":
                 case "Th12":
                 case "PhepDaDung":
-                    Frm_NghiPhep user = new Frm_NghiPhep();
+                    Frm_NghiPhep user = new Frm_NghiPhep(idPermision);
                     user._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
                     user._year = cbo_year.Text;
                     user._month = dgv_annual_leave.CurrentCell.OwningColumn.Name.Replace("Th", "");
