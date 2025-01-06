@@ -29,7 +29,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //dt_ngaynghi = SQLHelper.ExecuteDt(sql_ngaynghi);
 
             DataTable dt = new DataTable();
-            string sql_socot = $"SELECT PhepTrongNam,PhepDocHai,TongNgayPhep FROM tbl_NgayPhepNam where MaChamCong = '{_machamcong}' and Nam = '{_year}'";
+            string sql_socot = $"SELECT a.PhepTrongNam,a.PhepDocHai,a.TongNgayPhep,b.MaNhanVien,b.TenNhanVien,b.NgayVaoLamViec,c.TenPhongBan,a.TongNgayTon " +
+                               $"FROM tbl_NgayPhepNam a " +
+                               $"left join MITACOSQL.dbo.NhanVien b on a.MaChamCong = b.MaChamCong " +
+                               $"left join MITACOSQL.dbo.PHONGBAN c on b.MaPhongBan = c.MaPhongBan " +
+                               $"where a.MaChamCong = '{_machamcong}' and a.Nam = '{_year}' ";
             dt = SQLHelper.ExecuteDt(sql_socot);
 
             DataTable data = new DataTable();
@@ -56,6 +60,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
             decimal PhepTrongNam = decimal.Parse(dt.Rows[0]["PhepTrongNam"].ToString()) - decimal.Parse(dt.Rows[0]["PhepDocHai"].ToString());
             decimal Phepdochai = decimal.Parse(dt.Rows[0]["PhepDocHai"].ToString());
 
+            var asm = Assembly.GetEntryAssembly();
+            string filepath = $@"{Path.GetDirectoryName(asm.Location)}\Template\BangPhepNam.html";
+            StreamReader read = new StreamReader(filepath, Encoding.Unicode);
+            string html_template = read.ReadToEnd();
+            html_template = html_template.Replace("[Nam]", _year);
+            html_template = html_template.Replace("[MaNhanVien]", dt.Rows[0]["MaNhanVien"].ToString());
+            html_template = html_template.Replace("[TenNhanVien]", dt.Rows[0]["TenNhanVien"].ToString());
+            html_template = html_template.Replace("[NgayVaoLam]", DateTime.Parse(dt.Rows[0]["NgayVaoLamViec"].ToString()).ToString("dd/MM/yyyy"));
+            html_template = html_template.Replace("[BoPhan]", dt.Rows[0]["TenPhongBan"].ToString());
+            html_template = html_template.Replace("[PhepTon]", dt.Rows[0]["TongNgayTon"].ToString());
             //List<NghiPhepModel> ngayphep = new List<NghiPhepModel>();
             //List<NghiPhepModel> ngaypheple = new List<NghiPhepModel>();
 
@@ -82,9 +96,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //}
 
             string html = "";
+            int index = 1;
             for (int i = 1; i <= PhepTrongNam; i++)
             {
                 int thang = i;
+
                 if (i > 12)
                 {
                     thang = int.Parse(_year) - 1;
@@ -104,12 +120,17 @@ namespace TENTAC_HRM.Forms.NghiPhep
                         {
                             if (j == 1)
                             {
-                                html += "<tr> \r\n" +
+                                html += "<tr> \r\n" + 
+                                        $"<td style='text-align:center' rowspan=2>{index}</td> \r\n" +
                                         $"<td style='text-align:center' rowspan=2>{thang}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{listnew["SoNgay"].ToString()}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{DateTime.Parse(listnew["NgayTao"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{listnew["LoaiPhep"].ToString()}</td> \r\n" +
+                                        $"<td class='borderbottomdotted'></td> \r\n" +
+                                        $"<td class='borderbottomdotted'></td> \r\n" +
+                                        $"<td class='borderbottomdotted'></td> \r\n" +
+                                        $"<td class='borderbottomdotted'></td> \r\n" +
                                     "</tr> \r\n";
                                 phepnam.Remove(listnew);
                             }
@@ -123,12 +144,20 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                             $"<td class='bordertopdotted'>{(dr != null ? DateTime.Parse(dr["NgayTao"].ToString()).ToString("dd/MM/yyyy") : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'>{(dr != null ? DateTime.Parse(dr["NgayNghi"].ToString()).ToString("dd/MM/yyyy") : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'>{(dr != null ? dr["LoaiPhep"].ToString() : "")}</td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
                                         "</tr> \r\n";
                                     phepnam.Remove(dr);
                                 }
                                 else
                                 {
                                     html += "<tr> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'></td> \r\n" +
                                             $"<td class='bordertopdotted'></td> \r\n" +
                                             $"<td class='bordertopdotted'></td> \r\n" +
                                             $"<td class='bordertopdotted'></td> \r\n" +
@@ -142,11 +171,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
                     else
                     {
                         html += "<tr> \r\n" +
+                                $"<td style='text-align:center'>{index}</td> \r\n" +
                                 $"<td style='text-align:center'>{thang}</td> \r\n" +
                                 $"<td>{listnew["SoNgay"].ToString()}</td> \r\n" +
                                 $"<td>{DateTime.Parse(listnew["NgayTao"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                 $"<td>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                 $"<td>{listnew["LoaiPhep"].ToString()}</td> \r\n" +
+                                $"<td></td> \r\n" +
+                                $"<td></td> \r\n" +
+                                $"<td></td> \r\n" +
+                                $"<td></td> \r\n" +
                             "</tr> \r\n";
                         phepnam.Remove(listnew);
                     }
@@ -158,7 +192,12 @@ namespace TENTAC_HRM.Forms.NghiPhep
                         if (j == 1)
                         {
                             html += "<tr> \r\n" +
+                                    $"<td style='text-align:center' rowspan=2>{index}</td> \r\n" +
                                     $"<td style='text-align:center' rowspan=2>{thang}</td> \r\n" +
+                                    $"<td class='borderbottomdotted'></td> \r\n" +
+                                    $"<td class='borderbottomdotted'></td> \r\n" +
+                                    $"<td class='borderbottomdotted'></td> \r\n" +
+                                    $"<td class='borderbottomdotted'></td> \r\n" +
                                     $"<td class='borderbottomdotted'></td> \r\n" +
                                     $"<td class='borderbottomdotted'></td> \r\n" +
                                     $"<td class='borderbottomdotted'></td> \r\n" +
@@ -172,11 +211,15 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                     $"<td class='bordertopdotted'></td> \r\n" +
                                     $"<td class='bordertopdotted'></td> \r\n" +
                                     $"<td class='bordertopdotted'></td> \r\n" +
+                                    $"<td class='bordertopdotted'></td> \r\n" +
+                                    $"<td class='bordertopdotted'></td> \r\n" +
+                                    $"<td class='bordertopdotted'></td> \r\n" +
+                                    $"<td class='bordertopdotted'></td> \r\n" +
                                 "</tr> \r\n";
                         }
-
                     }
                 }
+                index++;
             }
             if (Phepdochai > 0)
             {
@@ -184,6 +227,10 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 {
                     html += "<tr> \r\n" +
                             $"<td>Độc hại</td> \r\n" +
+                            $"<td></td> \r\n" +
+                            $"<td></td> \r\n" +
+                            $"<td></td> \r\n" +
+                            $"<td></td> \r\n" +
                             $"<td></td> \r\n" +
                             $"<td></td> \r\n" +
                             $"<td></td> \r\n" +
@@ -208,11 +255,23 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //        index++;
             //    }
             //}
-            var asm = Assembly.GetEntryAssembly();
-            string filepath = $@"{Path.GetDirectoryName(asm.Location)}\Template\BangPhepNam.html";
-            StreamReader read = new StreamReader(filepath, Encoding.Unicode);
-            string html_template = read.ReadToEnd();
+            string htmlmatsau = "";
+            for (int i = 1; i <= 25;i++)
+            {
+                htmlmatsau += "<tr> \r\n" +
+                        $"<td>{i}</td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                        $"<td></td> \r\n" +
+                    "</tr> \r\n";
+            }
             html_template = html_template.Replace("[MatTruoc]", html);
+            html_template = html_template.Replace("[MatSau]", htmlmatsau);
             html_template = html_template.Replace("[Tong]", tongphepnam + "/" + dt.Rows[0]["TongNgayPhep"].ToString());
             webBrowser1.DocumentText = html_template;
 
