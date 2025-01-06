@@ -163,6 +163,16 @@ namespace TENTAC_HRM.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn_send {
+            get {
+                object obj = ResourceManager.GetObject("btn_send", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btnBook {
             get {
                 object obj = ResourceManager.GetObject("btnBook", resourceCulture);
