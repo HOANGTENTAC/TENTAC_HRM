@@ -109,7 +109,7 @@ namespace TENTAC_HRM.Forms.Main
                 {
                     dtp_HetHanHC.CustomFormat = " ";
                 }
-                cbo_QuocTich.SelectedValue = dt.Rows[0]["QuocTich"];
+                cbo_QuocTich.SelectedValue = string.IsNullOrEmpty(dt.Rows[0]["QuocTich"].ToString()) ? "0" : dt.Rows[0]["QuocTich"].ToString();
                 txt_DiDong.Text = dt.Rows[0]["DienThoaiDD"].ToString();
                 txt_Email.Text = dt.Rows[0]["Email"].ToString();
                 dtp_NgayVaoLam.Text = dt.Rows[0]["NgayVaoLamViec"].ToString();

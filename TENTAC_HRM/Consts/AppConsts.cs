@@ -12,6 +12,8 @@ namespace TENTAC_HRM.Consts
         public static string UserName { get; set; }
         public static string LoaiUser { get; set; }
         public static string MaChamCong { get; set; }
+        public static string MaPhongBan {get; set; }
+        public static string ReportTo { get; set; }
         public static List<QuyenSuDung> QuyenSuDungs { get; set; }
     }
     public class QuyenSuDung

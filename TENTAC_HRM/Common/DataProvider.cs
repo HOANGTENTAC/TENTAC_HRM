@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM
@@ -121,7 +122,8 @@ namespace TENTAC_HRM
         }
         public DataTable load_loaiphep()
         {
-            string sql = string.Format("SELECT MaLoaiPhep as id,TenLoaiPhep as name, KyHieu FROM mst_LoaiPhep");
+            //string sql = string.Format("SELECT MaLoaiPhep as id, KyHieu, TenLoaiPhep as name FROM mst_LoaiPhep");
+            string sql = string.Format("SELECT MaLoaiPhep as id, TenLoaiPhep + ' (' + KyHieu + ')' as name FROM mst_LoaiPhep");
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dt.Rows.Add("", "");
@@ -479,7 +481,9 @@ namespace TENTAC_HRM
         public bool check_login(string user_name, string pass_word)
         {
             bool result = false;
-            string sql = $@"SELECT * FROM mst_Users WHERE MaNhanVien = {SQLHelper.rpStr(user_name)} AND del_flg = 0";
+            string sql = $@"SELECT us.*, nv.ReportTo FROM mst_Users us 
+                        Left join tbl_NhanVien nv on us.MaNhanVien = nv.MaNhanVien and nv.del_flg = 0
+                        WHERE us.MaNhanVien = {SQLHelper.rpStr(user_name)} AND us.del_flg = 0";
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
@@ -491,6 +495,8 @@ namespace TENTAC_HRM
                     result = true;
                     SQLHelper.sUser = user_name;
                     SQLHelper.sIdUser = dt.Rows[0]["Id"].ToString();
+                    SQLHelper.isAdmin = Convert.ToBoolean(dt.Rows[0]["Is_Admin"].ToString());
+                    LoginInfo.ReportTo = dt.Rows[0]["ReportTo"].ToString();
                 }
             }
 

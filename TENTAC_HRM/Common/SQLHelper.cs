@@ -15,6 +15,7 @@ namespace TENTAC_HRM
         private SqlConnection con;
         public static string sUser;
         public static string sIdUser;
+        public static bool isAdmin;
         public static string GetSqlConnection()
         {
             return ConfigurationManager.AppSettings["conn_string"].ToString();

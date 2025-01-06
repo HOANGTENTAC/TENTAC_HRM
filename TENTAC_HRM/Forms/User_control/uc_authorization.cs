@@ -48,7 +48,7 @@ namespace TENTAC_HRM.Forms.User_control
 
             string sql = string.Empty;
 
-            sql = $@"Select Id, MenuText from mst_Menu where ParentId = 0";
+            sql = $@"Select Id, MenuText from mst_Menu where ParentId = 0 and Id != 40";
             DataTable dtMenu = SQLHelper.ExecuteDt(sql);
 
             if (edit == false)
@@ -612,7 +612,7 @@ namespace TENTAC_HRM.Forms.User_control
                                     // Lưu cặp (menuId, nodeLv1) vào danh sách permissionIds
                                     permissionIds.Add((int.Parse(nodeLv0.Tag.ToString()), int.Parse(nodeLv1.Tag.ToString())));
                                 }
-                                else 
+                                else
                                 {
                                     bool nodeLv2Selected = false;
 
@@ -646,11 +646,15 @@ namespace TENTAC_HRM.Forms.User_control
             List<int> allSelectedMenuIds = selectedMenuIds.Concat(selectedMenuChillIds).Concat(selectedPermisionIds).ToList();
 
             // Xóa những menu không được chọn
+            //string sqlDelete = $@"UPDATE mst_UserRoles
+            //   SET Id_Permision = 0, del_flg = 1, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
+            //   WHERE MaNhanVien = {SQLHelper.rpStr(_MaNhanVien)} 
+            //   AND del_flg = 0 
+            //   {(allSelectedMenuIds.Count == 0 ? "" : "AND Id_Menu NOT IN (" + string.Join(",", allSelectedMenuIds) + ")")}";
             string sqlDelete = $@"UPDATE mst_UserRoles
                SET Id_Permision = 0, del_flg = 1, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
                WHERE MaNhanVien = {SQLHelper.rpStr(_MaNhanVien)} 
-               AND del_flg = 0 
-               AND Id_Menu NOT IN ({string.Join(",", allSelectedMenuIds)})";
+               AND del_flg = 0 ";
             SQLHelper.ExecuteSql(sqlDelete);
 
             // Cập nhật hoặc thêm mới các menu đã chọn
@@ -674,11 +678,12 @@ namespace TENTAC_HRM.Forms.User_control
                         INSERT INTO mst_UserRoles(MaNhanVien, Id_Menu, Id_Permision, NgayTao, NguoiTao, del_flg)
                         VALUES({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpI(pair.menuId)}, {(pair.permisionId.HasValue ? SQLHelper.rpI(pair.permisionId.Value) : "NULL")}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0);
                     END";
-                            sqlUpdateCommands.Add(sqlCommand);
-                        }
+                    sqlUpdateCommands.Add(sqlCommand);
+                }
             }
             string allSqlCommands = string.Join(" ", sqlUpdateCommands);
-            SQLHelper.ExecuteSql(allSqlCommands);
+            if (allSqlCommands.Length > 0)
+                SQLHelper.ExecuteSql(allSqlCommands);
         }
         private void LoadData(int pageIndex)
         {

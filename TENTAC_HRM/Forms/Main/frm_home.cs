@@ -9,6 +9,9 @@ using NPOI.SS.Formula.Functions;
 using FontAwesome.Sharp;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Windows.Media.Animation;
+using iTextSharp.text.pdf;
+using System.Security;
 
 namespace TENTAC_HRM.Forms.Main
 {
@@ -58,33 +61,66 @@ namespace TENTAC_HRM.Forms.Main
         private void load_menu()
         {
             //splitContainer1.Panel2.Controls.Clear();
-            string sql = $@"SELECT a.*, b.FrmType, b.FrmText FROM mst_Menu a
-            LEFT JOIN mst_from b ON a.FromName = b.FrmName 
-            WHERE a.ParentId = 0 
-                  AND (
-                      EXISTS (
-                          SELECT * FROM mst_Menu c
-                          INNER JOIN mst_UserRoles ur_child 
-                              ON c.Id = ur_child.Id_Menu 
-                              AND ur_child.del_flg = 0 
-                              AND ur_child.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
-                          WHERE c.ParentId = a.Id
-                      )
-                      OR EXISTS (
-                          SELECT * FROM mst_UserRoles ur_parent
-                          WHERE ur_parent.Id_Menu = a.Id 
-                            AND ur_parent.del_flg = 0 
-                            AND ur_parent.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
-                      )
-                  )
-            ORDER BY a.MenuNumber DESC;";
-            dt_MenuParent = SQLHelper.ExecuteDt(sql);
+            string sql = string.Empty;
+            if (SQLHelper.isAdmin == false)
+            {
+                sql = $@"SELECT 
+                a.Id,a.MenuCode,a.MenuText,a.MenuName,a.ParentId,a.MenuImage, a.FromName,a.MenuNumber,b.FrmType, b.FrmText,
+                (
+                    SELECT STRING_AGG(ur_child.Id_Permision, ',')
+                    FROM mst_UserRoles ur_child
+                    WHERE ur_child.Id_Menu = a.Id 
+                      AND ur_child.del_flg = 0 
+                      AND ur_child.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+                ) AS Id_Permision FROM mst_Menu a
+	            LEFT JOIN mst_from b ON a.FromName = b.FrmName
+		        WHERE 
+			        a.ParentId = 0 
+			        AND (
+				        EXISTS (
+					        SELECT * 
+					        FROM mst_Menu c
+					        INNER JOIN mst_UserRoles ur_child 
+						        ON c.Id = ur_child.Id_Menu 
+						        AND ur_child.del_flg = 0 
+						        AND ur_child.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+					        WHERE c.ParentId = a.Id
+				        )
+				        OR EXISTS (
+					        SELECT * 
+					        FROM mst_UserRoles ur_parent
+					        WHERE ur_parent.Id_Menu = a.Id 
+					          AND ur_parent.del_flg = 0 
+					          AND ur_parent.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+				        )
+			        )
+		        ORDER BY 
+			        a.MenuNumber DESC;";
+                dt_MenuParent = SQLHelper.ExecuteDt(sql);
 
-            string sql_chil = $@"select a.*,b.FrmType,b.FrmText from mst_menu a
+                sql = $@"select a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber ,
+                b.FrmType,b.FrmText,  STRING_AGG(ur.Id_Permision, ',') AS Id_Permision from mst_menu a
                 left join mst_from b on a.FromName = b.FrmName 
                 inner join mst_UserRoles ur on a.Id = ur.Id_Menu and ur.del_flg = 0
-                where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} order by a.MenuNumber desc";
-            dt_MenuChild = SQLHelper.ExecuteDt(sql_chil);
+                where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} 
+                group by a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber, b.FrmType, b.FrmText
+                order by a.MenuNumber desc";
+                dt_MenuChild = SQLHelper.ExecuteDt(sql);
+            }
+            else
+            {
+                sql = $@"SELECT a.Id,a.MenuCode,a.MenuText,a.MenuName,a.ParentId,a.MenuImage, a.FromName,a.MenuNumber,b.FrmType, b.FrmText FROM mst_Menu a
+	            LEFT JOIN mst_from b ON a.FromName = b.FrmName
+		        WHERE a.ParentId = 0 ORDER BY a.MenuNumber DESC";
+                dt_MenuParent = SQLHelper.ExecuteDt(sql);
+
+                sql = $@"select a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber ,
+                    b.FrmType,b.FrmText from mst_menu a
+                    left join mst_from b on a.FromName = b.FrmName 
+                    where ParentId != 0 
+                    order by a.MenuNumber desc";
+                dt_MenuChild = SQLHelper.ExecuteDt(sql);
+            }
 
             foreach (DataRow item in dt_MenuParent.Rows)
             {
@@ -369,15 +405,31 @@ namespace TENTAC_HRM.Forms.Main
             }
             if (name_parent != null)
             {
+                int[] idPermision = new int[0];
+                if (SQLHelper.isAdmin == false)
+                {
+                    string idPermisionStr = name_parent["Id_Permision"].ToString();
+                    idPermision = idPermisionStr.Split(',').Select(int.Parse).ToArray();
+                }
                 if (name_parent["FrmType"].ToString() == "uc")
                 {
                     isPresent = false;
                     string text_tab = name_parent["FrmText"].ToString();
                     UserControl user = new UserControl();
                     //user = uc_nhan_su.Instance;
-
-                    user = Activator.CreateInstance(Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"]?.ToString() + name_parent["FromName"]?.ToString())) as UserControl;
-
+                    var type = Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"]?.ToString() + name_parent["FromName"]?.ToString());
+                    if (type != null)
+                    {
+                        var constructor = type.GetConstructor(new[] { typeof(int[]) });
+                        if (constructor != null)
+                        {
+                            user = Activator.CreateInstance(type, idPermision) as UserControl;
+                        }
+                        else
+                        {
+                            user = Activator.CreateInstance(type) as UserControl;
+                        }
+                    }
                     for (int i = 0; i < tb_main.TabPages.Count; i++)
                     {
                         if (tb_main.TabPages[i].Name == "tp_" + name_parent["FromName"])
@@ -414,8 +466,14 @@ namespace TENTAC_HRM.Forms.Main
                 }
                 else
                 {
-                    var form = Activator.CreateInstance(Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"].ToString() + name_parent["FromName"].ToString())) as Form;
-                    form.ShowDialog();
+                    //var form = Activator.CreateInstance(Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"].ToString() + name_parent["FromName"].ToString())) as Form;
+                    //form.ShowDialog();
+                    var formType = Type.GetType("TENTAC_HRM.Forms." + name_parent["MenuCode"].ToString() + name_parent["FromName"].ToString());
+                    if (formType != null)
+                    {
+                        var form = Activator.CreateInstance(formType, idPermision) as Form;
+                        form.ShowDialog();
+                    }
                 }
             }
         }
