@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.NghiPhep
@@ -63,11 +64,14 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 sql = sql + string.Format(" and HoTen like N''%{0}%'' or DonVi like N''%{0}%'' or ChucVu like N''%{0}%'' or MaNhanVien like ''%{0}%''", txt_search.Texts);
             }
-
+            if (LoginInfo.UserCd.ToUpper() != "ADMIN" && LoginInfo.UserCd.ToUpper() != "HR")
+            {
+                sql += $" and (ReportTo = ''{LoginInfo.UserCd}'' or MaNhanVien = ''{LoginInfo.UserCd}'') ";
+            }
             dataTable = SQLHelper.ExecuteDs("getnhanvienpaging " + pageIndex + "," + PageSize + ",N'" + sql + "'");
             int recordCount = Convert.ToInt32(dataTable.Tables[0].Rows[0][0].ToString());
             this.HienThiThanhDieuHuong(recordCount, pageIndex);
-            dgv_annual_leave.DataSource = dataTable.Tables[1].Rows.Cast<DataRow>().OrderBy(x => x["MaChamCong"].ToString()).CopyToDataTable();
+            dgv_annual_leave.DataSource = dataTable.Tables[1].Rows.Cast<DataRow>().OrderBy(x => x["MaNhanVien"].ToString()).CopyToDataTable();
 
             //if (pageclick == false)
             //{
@@ -117,7 +121,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 frm_nghiphepnam frm = new frm_nghiphepnam(this);
                 frm.year = int.Parse(cbo_year.SelectedValue.ToString());
-                frm._MaChamCong = dgv_annual_leave.CurrentRow.Cells["MaChamCong"].Value.ToString();
+                frm._MaNhanVien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
                 frm.ShowDialog();
             }
             else
@@ -164,7 +168,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             
         }
 
-        private void dgv_annual_leave_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgv_annual_leave_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             switch (dgv_annual_leave.CurrentCell.OwningColumn.Name)
             {
@@ -185,7 +189,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                     user._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
                     user._year = cbo_year.Text;
                     user._month = dgv_annual_leave.CurrentCell.OwningColumn.Name.Replace("Th", "");
-                    user._trangthai = "DaDuyet";
+                    user._trangthai = "199";
                     if (dgv_annual_leave.CurrentCell.OwningColumn.Name == "PhepDaDung")
                     {
                         user._month = "";
@@ -195,7 +199,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                     break;
                 case "show_col":
                     Frm_XemPhepNam frm_XemPhepNam = new Frm_XemPhepNam();
-                    frm_XemPhepNam._machamcong = dgv_annual_leave.CurrentRow.Cells["MaChamCong"].Value.ToString();
+                    frm_XemPhepNam._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
                     frm_XemPhepNam._year = cbo_year.Text;
                     frm_XemPhepNam.ShowDialog();
                     break;

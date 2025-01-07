@@ -56,6 +56,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_search = new RJTextBox.RJTextBox();
+            this.btn_Excel = new System.Windows.Forms.Button();
             this.btn_refresh = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.cbo_year = new System.Windows.Forms.ComboBox();
@@ -65,6 +66,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.panel4 = new System.Windows.Forms.Panel();
             this.lb_totalsize = new System.Windows.Forms.Label();
             this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.show_col = new System.Windows.Forms.DataGridViewImageColumn();
             this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,9 +93,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.Th12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhepDaDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhepConLai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btn_Excel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -137,6 +136,18 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.txt_search.Texts = "";
             this.txt_search.UnderlinedStyle = false;
             this.txt_search._TextChanged += new System.EventHandler(this.txt_search__TextChanged);
+            // 
+            // btn_Excel
+            // 
+            this.btn_Excel.FlatAppearance.BorderSize = 0;
+            this.btn_Excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_Excel.Location = new System.Drawing.Point(177, 11);
+            this.btn_Excel.Name = "btn_Excel";
+            this.btn_Excel.Size = new System.Drawing.Size(23, 24);
+            this.btn_Excel.TabIndex = 6;
+            this.btn_Excel.UseVisualStyleBackColor = true;
+            this.btn_Excel.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_refresh
             // 
@@ -259,8 +270,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.Th11,
             this.Th12,
             this.PhepDaDung,
-            this.PhepConLai,
-            this.MaChamCong});
+            this.PhepConLai});
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -278,8 +288,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.dgv_annual_leave.RowsDefaultCellStyle = dataGridViewCellStyle23;
             this.dgv_annual_leave.Size = new System.Drawing.Size(1146, 486);
             this.dgv_annual_leave.TabIndex = 3;
-            this.dgv_annual_leave.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_annual_leave_CellMouseDoubleClick);
+            this.dgv_annual_leave.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_annual_leave_CellClick);
             this.dgv_annual_leave.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_annual_leave_RowPostPaint);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 24;
             // 
             // rownumber
             // 
@@ -551,34 +569,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.PhepConLai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.PhepConLai.Width = 85;
             // 
-            // MaChamCong
-            // 
-            this.MaChamCong.DataPropertyName = "MaChamCong";
-            this.MaChamCong.HeaderText = "Mã chấm công";
-            this.MaChamCong.Name = "MaChamCong";
-            this.MaChamCong.ReadOnly = true;
-            this.MaChamCong.Visible = false;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 24;
-            // 
-            // btn_Excel
-            // 
-            this.btn_Excel.FlatAppearance.BorderSize = 0;
-            this.btn_Excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
-            this.btn_Excel.Location = new System.Drawing.Point(177, 11);
-            this.btn_Excel.Name = "btn_Excel";
-            this.btn_Excel.Size = new System.Drawing.Size(23, 24);
-            this.btn_Excel.TabIndex = 6;
-            this.btn_Excel.UseVisualStyleBackColor = true;
-            this.btn_Excel.Click += new System.EventHandler(this.btn_refresh_Click);
-            // 
             // uc_annual_leave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -614,6 +604,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private RJTextBox.RJTextBox txt_search;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_annual_leave;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.Button btn_Excel;
         private System.Windows.Forms.DataGridViewTextBoxColumn rownumber;
         private System.Windows.Forms.DataGridViewImageColumn show_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
@@ -640,7 +631,5 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private System.Windows.Forms.DataGridViewTextBoxColumn Th12;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhepDaDung;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhepConLai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaChamCong;
-        private System.Windows.Forms.Button btn_Excel;
     }
 }

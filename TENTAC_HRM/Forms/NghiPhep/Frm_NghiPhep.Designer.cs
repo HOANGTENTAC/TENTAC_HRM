@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,14 +102,14 @@
             this.MaChucVu,
             this.NguoiXacNhan,
             this.TrangThaiPhieu});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_annual_leave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_annual_leave.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_annual_leave.Location = new System.Drawing.Point(0, 38);
@@ -298,7 +298,7 @@
             // toolStripLabel3
             // 
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(41, 35);
+            this.toolStripLabel3.Size = new System.Drawing.Size(40, 35);
             this.toolStripLabel3.Text = "Tháng";
             // 
             // cbo_Thang
@@ -322,7 +322,7 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(60, 35);
+            this.toolStripLabel2.Size = new System.Drawing.Size(59, 35);
             this.toolStripLabel2.Text = "Trạng thái";
             // 
             // cbo_trangthai
@@ -337,7 +337,7 @@
             this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(58, 35);
+            this.btn_add.Size = new System.Drawing.Size(57, 35);
             this.btn_add.Text = "Thêm";
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
@@ -356,7 +356,7 @@
             this.btn_Search.Image = global::TENTAC_HRM.Properties.Resources.btnTim;
             this.btn_Search.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(77, 35);
+            this.btn_Search.Size = new System.Drawing.Size(76, 35);
             this.btn_Search.Text = "Tìm kiếm";
             this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
             // 
@@ -370,7 +370,7 @@
             this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
             this.btn_Excel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_Excel.Name = "btn_Excel";
-            this.btn_Excel.Size = new System.Drawing.Size(80, 35);
+            this.btn_Excel.Size = new System.Drawing.Size(81, 35);
             this.btn_Excel.Text = "Xuất Excel";
             this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
             // 
@@ -394,7 +394,7 @@
             this.txt_search.Name = "txt_search";
             this.txt_search.Size = new System.Drawing.Size(211, 23);
             this.txt_search.TabIndex = 11;
-            this.txt_search.Text = "Từ khóa tìm kiếm";
+            this.txt_search.WatermarkText = "Từ khóa tìm kiếm";
             // 
             // chk_TheoNam
             // 

@@ -10,7 +10,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
     public partial class frm_nghiphepnam : KryptonForm
     {
         public int year { get; set; }
-        public string _MaChamCong { get; set; }
+        public string _MaNhanVien { get; set; }
         uc_annual_leave annual_leave = new uc_annual_leave();
         public frm_nghiphepnam(uc_annual_leave _annual_leave)
         {
@@ -20,7 +20,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void frm_nghiphepnam_Load(object sender, EventArgs e)
         {
-            string sql = string.Format("select TenNhanVien from MITACOSQL.dbo.NHANVIEN where MaChamCong = '{0}'", _MaChamCong);
+            string sql = string.Format("select TenNhanVien from MITACOSQL.dbo.NHANVIEN where MaNhanVien = '{0}'", _MaNhanVien);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -32,7 +32,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
         }
         private void load_data()
         {
-            string sql = string.Format("select * from tbl_NgayPhepNam where MaChamCong = '{0}' and Nam = '{1}'", _MaChamCong, year);
+            string sql = string.Format("select * from tbl_NgayPhepNam where MaNhanVien = '{0}' and Nam = '{1}'", _MaNhanVien, year);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if(dt.Rows.Count > 0)
@@ -46,8 +46,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
         }
         private void txt_phep_qd_Leave(object sender, EventArgs e)
         {
-            decimal phep_qd = decimal.Parse(txt_phep_qd.Text);
-            txt_phep_qd.Text = phep_qd.ToString("N1", CultureInfo.InvariantCulture);
+            //decimal phep_qd = decimal.Parse(txt_phep_qd.Text);
+            txt_phep_qd.Text = decimal.Parse(txt_phep_qd.Text).ToString("N1", CultureInfo.InvariantCulture);
         }
 
         private void txt_tong_ngayphep_Leave(object sender, EventArgs e)
@@ -64,13 +64,13 @@ namespace TENTAC_HRM.Forms.NghiPhep
         {
             try
             {
-                string sql = string.Format("select * from tbl_NgayPhepNam where MaChamCong = '{0}' and Nam = {1}", _MaChamCong, txt_nam_nghiphep.Text);
+                string sql = string.Format("select * from tbl_NgayPhepNam where MaNhanVien = '{0}' and Nam = {1}", _MaNhanVien, txt_nam_nghiphep.Text);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 if (dt.Rows.Count > 0)
                 {
                     string sql_update = string.Format("update tbl_NgayPhepNam set TongNgayQD = '{2}',TongNgayPhep = '{3}',TongNgayTon = '{4}',NgayCapNhat = GETDATE(),PhepThamNien = '{5}', PhepDocHai = '{6}' " +
-                        "where MaChamCong = '{0}' and Nam = {1}", _MaChamCong, txt_nam_nghiphep.Text,
+                        "where MaNhanVien = '{0}' and Nam = {1}", _MaNhanVien, txt_nam_nghiphep.Text,
                         txt_phep_qd.Text, txt_tong_ngayphep.Text, txt_tong_ngayton.Text,txt_phep_thamnien.Text,txt_phep_dochai.Text);
                     if (SQLHelper.ExecuteSql(sql_update) == 1)
                     {
@@ -79,9 +79,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 }
                 else
                 {
-                    string sql_insert = string.Format("insert into tbl_NgayPhepNam(MaChamCong,Nam,TongNgayQD,TongNgayPhep,TongNgayTon,NguoiTao,PhepThamNien,PhepDocHai) " +
+                    string sql_insert = string.Format("insert into tbl_NgayPhepNam(MaNhanVien,Nam,TongNgayQD,TongNgayPhep,TongNgayTon,NguoiTao,PhepThamNien,PhepDocHai) " +
                         "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')",
-                        _MaChamCong, txt_nam_nghiphep.Text, txt_phep_qd.Text, txt_tong_ngayphep.Text, txt_tong_ngayton.Text, SQLHelper.sIdUser, txt_phep_thamnien.Text,txt_phep_dochai.Text);
+                        _MaNhanVien, txt_nam_nghiphep.Text, txt_phep_qd.Text, txt_tong_ngayphep.Text, txt_tong_ngayton.Text, SQLHelper.sIdUser, txt_phep_thamnien.Text,txt_phep_dochai.Text);
                     if (SQLHelper.ExecuteSql(sql_insert) == 1)
                     {
                         RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,6 +99,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private void btn_close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txt_phep_thamnien_Leave(object sender, EventArgs e)
+        {
+            txt_phep_thamnien.Text = decimal.Parse(txt_phep_thamnien.Text).ToString("N1", CultureInfo.InvariantCulture);
+        }
+
+        private void txt_phep_dochai_Leave(object sender, EventArgs e)
+        {
+            txt_phep_dochai.Text = decimal.Parse(txt_phep_dochai.Text).ToString("N1", CultureInfo.InvariantCulture);
         }
     }
 }

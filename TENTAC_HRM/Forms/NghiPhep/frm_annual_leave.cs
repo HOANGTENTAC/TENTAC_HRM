@@ -19,11 +19,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
         public int[] idPermision { get; set; }
         DataProvider provider = new DataProvider();
         private Frm_NghiPhep uc_nghiphep;
-        string _LoaiPhepNghi, _GhiChu;
-        int _NuaNgay, _IdTrangThai, _Nam, _MaChamCong;
-        decimal _SoNgay;
-        DateTime _NgayNghi;
-        public frm_annual_leave(int[] permissions)
+
+        public frm_annual_leave(int[] permissions = null)
         {
             InitializeComponent();
             idPermision = permissions;
@@ -71,8 +68,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
             if (edit == true)
             {
                 load_data();
-                cbo_NhanVien.Enabled = false;
-                cbo_NhanVien.SelectedValue = _ma_nhan_vien;
             }
             LoadCheckList();
         }
@@ -121,10 +116,25 @@ namespace TENTAC_HRM.Forms.NghiPhep
         }
         private void load_nhanvien()
         {
+            string ReportTo = "";
+            if(LoginInfo.UserCd != "ADMIN" && LoginInfo.UserCd != "HR")
+            {
+                ReportTo = $" and nhanviennew.ReportTo = '{LoginInfo.UserCd}' ";
+            }    
             //cbo_NhanVien.DataSource = provider.load_nhanvien(LoginInfo.MaChamCong);
-            cbo_NhanVien.DataSource = provider.load_nhanvien_by_phongban(LoginInfo.MaPhongBan);
-            cbo_NhanVien.DisplayMember = "name";
-            cbo_NhanVien.ValueMember = "value";
+            string sql = "SELECT nhanvien.MaNhanVien,nhanvien.TenNhanVien,phongban.TenPhongBan," +
+                "COALESCE(SUM(b.SoNgay), 0) AS TongNgayNghi," +
+                "(a.TongNgayPhep - COALESCE(SUM(b.SoNgay), 0)) AS PhepTon " +
+                "FROM MITACOSQL.dbo.NHANVIEN nhanvien " +
+                "left join tbl_NhanVien nhanviennew on nhanvien.MaNhanVien = nhanviennew.MaNhanVien " +
+                "left join MITACOSQL.dbo.PHONGBAN phongban on phongban.MaPhongBan = nhanvien.MaPhongBan " +
+                $"left join tbl_NgayPhepNam a on nhanvien.MaNhanVien = a.MaNhanVien and a.Nam = {DateTime.Now.Year} " +
+                "LEFT JOIN tbl_NghiPhepNam b ON a.MaNhanVien = b.MaNhanVien AND b.del_flg = 0 " +
+                "AND YEAR(b.NgayNghi) = a.Nam and b.LoaiPhepNghi= 'LP001' and b.Id_TrangThai != 198 " +
+                $"WHERE a.del_flg = 0 and a.Nam = '{DateTime.Now.Year}' " + ReportTo + $" or nhanvien.MaNhanVien = '{LoginInfo.UserCd}' " +
+                "GROUP BY nhanvien.MaNhanVien,nhanvien.TenNhanVien,nhanvien.NgayVaoLamViec,phongban.TenPhongBan,a.MaNhanVien, a.TongNgayPhep;";
+
+            dgv_NhanVien.DataSource = SQLHelper.ExecuteDt(sql);
         }
         private void load_loaiphep()
         {
@@ -158,11 +168,10 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 return;
             }
-            SetValues();
-            if (!CheckNumberLeave())
-            {
-                return;
-            }
+            //if (!CheckNumberLeave())
+            //{
+            //    return;
+            //}
             if (edit == true)
             {
                 UpdateData();
@@ -171,13 +180,17 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 InsertData();
             }
-
+            load_nhanvien();
             uc_nghiphep.load_data();
-            this.Close();
+            //this.Close();
         }
         private bool CheckValidate()
         {
-            if (cbo_NhanVien.SelectedIndex == 0)
+            List<DataGridViewRow> List_NhanVien = dgv_NhanVien.Rows.Cast<DataGridViewRow>()
+                       .Where(x => Convert.ToBoolean(x.Cells[0].Value) == true)
+                       .ToList();
+
+            if (List_NhanVien.Count == 0 || List_NhanVien == null)
             {
                 RJMessageBox.Show("Vui lòng chọn nhân viên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -187,49 +200,72 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 RJMessageBox.Show("Vui lòng chọn loại phép.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            return true;
-        }
-        private bool CheckNumberLeave()
-        {
-            if (_LoaiPhepNghi == "LP001")
+            if (cbo_LoaiPhep.SelectedValue.ToString() == "LP001")
             {
-                decimal soPhepCoTheSuDung = TotalLeaveDays();
-                if (soPhepCoTheSuDung - _SoNgay < 0)
+                if (List_NhanVien.Count > 0)
                 {
-                    RJMessageBox.Show("Số phép năm của bạn không đủ, vui lòng chọn loại phép khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                    foreach (DataGridViewRow item in List_NhanVien)
+                    {
+                        if (decimal.Parse(item.Cells["PhepTon"].Value.ToString()) == 0)
+                        {
+                            RJMessageBox.Show("Nhân viên " + item.Cells["TenNhanVien"].Value.ToString() + " không còn phép năm để đăng ký, vui lòng chọn loại phép khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return false;
+                        }
+                    }
                 }
             }
+
             return true;
         }
-        private decimal TotalLeaveDays()
+        //private bool CheckNumberLeave()
+        //{
+        //    if (cbo_LoaiPhep.SelectedValue.ToString() == "LP001")
+        //    {
+        //        int _NuaNgay = 0;
+        //        if (chk_BuoiSang.Checked == true && chk_BuoiChieu.Checked == false)
+        //        {
+        //            _NuaNgay = 1;
+        //        }
+        //        else if (chk_BuoiSang.Checked == false && chk_BuoiChieu.Checked == true)
+        //        {
+        //            _NuaNgay = 2;
+        //        }
+        //        decimal _SoNgay = decimal.Parse(_NuaNgay != 0 ? "0.5" : "1");
+        //        decimal soPhepCoTheSuDung = TotalLeaveDays();
+        //        if (soPhepCoTheSuDung - _SoNgay < 0)
+        //        {
+        //            RJMessageBox.Show("Số phép năm của bạn không đủ, vui lòng chọn loại phép khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
+        //private decimal TotalLeaveDays()
+        //{
+        //    string sql = string.Empty;
+        //    decimal res = 0;
+        //    sql = $@"SELECT a.MaChamCong, a.TongNgayPhep, COALESCE(SUM(b.SoNgay), 0) AS TongNgayNghi, (a.TongNgayPhep - COALESCE(SUM(b.SoNgay), 0)) AS SoPhepSuDung
+        //            FROM  tbl_NgayPhepNam a
+        //            LEFT JOIN tbl_NghiPhepNam b ON a.MaChamCong = b.MaChamCong AND b.del_flg = 0  
+        //            AND YEAR(b.NgayNghi) = a.Nam and b.LoaiPhepNghi= 'LP001' and b.Id_TrangThai != 198 
+        //            WHERE a.MaChamCong = {SQLHelper.rpI(_MaChamCong)}  AND a.del_flg = 0 and a.Nam = {SQLHelper.rpI(_Nam)} 
+        //            GROUP BY a.MaChamCong, a.TongNgayPhep;";
+        //    DataTable dt = SQLHelper.ExecuteDt(sql);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        res = string.IsNullOrEmpty(dt.Rows[0]["SoPhepSuDung"].ToString()) ? 0 : decimal.Parse(dt.Rows[0]["SoPhepSuDung"].ToString());
+        //        //txt_SoPhepNamTon.Text = res.ToString();
+        //        return res;
+        //    }
+        //    //txt_SoPhepNamTon.Text = res.ToString();
+        //    return res;
+        //}
+        private void InsertData()
         {
-            string sql = string.Empty;
-            decimal res = 0;
-            sql = $@"SELECT a.MaChamCong, a.TongNgayPhep, COALESCE(SUM(b.SoNgay), 0) AS TongNgayNghi, (a.TongNgayPhep - COALESCE(SUM(b.SoNgay), 0)) AS SoPhepSuDung
-                    FROM  tbl_NgayPhepNam a
-                    LEFT JOIN tbl_NghiPhepNam b ON a.MaChamCong = b.MaChamCong AND b.del_flg = 0  
-                    AND YEAR(b.NgayNghi) = a.Nam and b.LoaiPhepNghi= 'LP001' and b.Id_TrangThai != 198 
-                    WHERE a.MaChamCong = {SQLHelper.rpI(_MaChamCong)}  AND a.del_flg = 0 and a.Nam = {SQLHelper.rpI(_Nam)} 
-                    GROUP BY a.MaChamCong, a.TongNgayPhep;";
-            DataTable dt = SQLHelper.ExecuteDt(sql);
-            if (dt.Rows.Count > 0)
+            try
             {
-                res = string.IsNullOrEmpty(dt.Rows[0]["SoPhepSuDung"].ToString()) ? 0 : decimal.Parse(dt.Rows[0]["SoPhepSuDung"].ToString());
-                txt_SoPhepNamTon.Text = res.ToString();
-                return res;
-            }
-            txt_SoPhepNamTon.Text = res.ToString();
-            return res;
-        }
-        private void SetValues()
-        {
-            _MaChamCong = Convert.ToInt32(cbo_NhanVien.SelectedValue.ToString().Substring(2));
-            _Nam = int.Parse(cbo_Nam.Text);
-            _LoaiPhepNghi = cbo_LoaiPhep.SelectedValue.ToString();
-            foreach (var item in lv_Ngay.CheckedItems)
-            {
-                _NuaNgay = 0;
+                int _IdTrangThai = !string.IsNullOrEmpty(LoginInfo.ReportTo) ? 197 : 199;
+                int _NuaNgay = 0;
                 if (chk_BuoiSang.Checked == true && chk_BuoiChieu.Checked == false)
                 {
                     _NuaNgay = 1;
@@ -238,65 +274,35 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 {
                     _NuaNgay = 2;
                 }
-                _NgayNghi = DateTime.ParseExact(cbo_Nam.Text + cbo_Thang.Text.PadLeft(2, '0') + item.ToString().PadLeft(2, '0'), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-            }
-            _GhiChu = txt_NoiDung.Text;
-            _SoNgay = decimal.Parse(_NuaNgay != 0 ? "0.5" : "1");
-            _IdTrangThai = CheckReportTo() == true ? 197 : 199;
-        }
-        private void InsertData()
-        {
-            try
-            {
-                //foreach (var item in lv_Ngay.CheckedItems)
-                //{
-                //    try
-                //    {
-                //        int nuangay = 0;
-                //        if (chk_BuoiSang.Checked == true && chk_BuoiChieu.Checked == false)
-                //        {
-                //            nuangay = 1;
-                //        }
-                //        else if (chk_BuoiSang.Checked == false && chk_BuoiChieu.Checked == true)
-                //        {
-                //            nuangay = 2;
-                //        }
-                //        string sql = "insert into tbl_NghiPhepNam(MaChamCong,Nam,LoaiPhepNghi,NgayNghi,GhiChu,SoNgay,NguoiTao,NuaNgay,Chk_QuanLy,Chk_NhanSu,Chk_ToTruong) " +
-                //                    $"values('{int.Parse(cbo_nhanvien.SelectedValue.ToString().Remove(0, 2))}'," +
-                //                    $"'{cbo_Nam.Text}'," +
-                //                    $"'{cbo_loaiphep.SelectedValue.ToString()}'," +
-                //                    $"'{cbo_Nam.Text + cbo_Thang.Text.PadLeft(2, '0') + item.ToString().PadLeft(2, '0')}'," +
-                //                    $"'{txt_noidung.Text}'," +
-                //                    $"'{(nuangay != 0 ? "0.5" : "1")}'," +
-                //                    $"'{SQLHelper.sIdUser}'," +
-                //                    $"'{nuangay}'," +
-                //                    $"'{(chk_ToTruong.Checked == true ? 1 : 0)}'," +
-                //                    $"'{(chk_quanly.Checked == true ? 1 : 0)}'," +
-                //                    $"'{(chk_nhansu.Checked == true ? 1 : 0)}')";
-                //        SQLHelper.ExecuteSql(sql);
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        throw new Exception(ex.Message);
-                //    }
-                //}
+                List<DataGridViewRow> List_NhanVien = dgv_NhanVien.Rows.Cast<DataGridViewRow>()
+                                                       .Where(x => Convert.ToBoolean(x.Cells[0].Value) == true)
+                                                       .ToList();
 
-                string sql = string.Empty;
-                sql = $@"Insert into tbl_NghiPhepNam(MaChamCong, Nam, LoaiPhepNghi, NgayNghi, GhiChu, SoNgay, NuaNgay, NguoiXacNhan, 
+                foreach (DataGridViewRow nhanvien in List_NhanVien)
+                {
+                    foreach (var item in lv_Ngay.CheckedItems)
+                    {
+                        DateTime _NgayNghi = DateTime.ParseExact(cbo_Nam.Text + cbo_Thang.Text.PadLeft(2, '0') + item.ToString().PadLeft(2, '0'), "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        decimal _SoNgay = decimal.Parse(_NuaNgay != 0 ? "0.5" : "1");
+                        string sql = string.Empty;
+                        sql = $@"Insert into tbl_NghiPhepNam(MaNhanVien, Nam, LoaiPhepNghi, NgayNghi, GhiChu, SoNgay, NuaNgay, NguoiXacNhan, 
                         Id_TrangThai, del_flg, NgayTao, NguoiTao)
-                        Values({SQLHelper.rpI(_MaChamCong)}, {SQLHelper.rpI(_Nam)}, {SQLHelper.rpStr(_LoaiPhepNghi)}, {SQLHelper.rpDT(_NgayNghi)},
-                        {SQLHelper.rpStr(_GhiChu)}, {SQLHelper.rpD(_SoNgay)}, {SQLHelper.rpI(_NuaNgay)}, {SQLHelper.rpStr(LoginInfo.ReportTo)}, 
+                        Values('{nhanvien.Cells["MaNhanVien"].Value.ToString()}', '{cbo_Nam.Text}', {SQLHelper.rpStr(cbo_LoaiPhep.SelectedValue.ToString())}, {SQLHelper.rpDT(_NgayNghi)},
+                        '{txt_NoiDung.Text}', '{SQLHelper.rpD(_SoNgay)}', {SQLHelper.rpI(_NuaNgay)}, {SQLHelper.rpStr(LoginInfo.ReportTo)}, 
                         {SQLHelper.rpI(_IdTrangThai)}, 0, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)})";
-                int res = SQLHelper.ExecuteSql(sql);
-                if (res > 0)
-                {
-                    RJMessageBox.Show("Gửi đơn nghỉ phép thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        int res = SQLHelper.ExecuteSql(sql);
+                        if (res > 0)
+                        {
+                            RJMessageBox.Show("Gửi đơn nghỉ phép thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            RJMessageBox.Show("Gửi đơn nghỉ phép thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
                 }
-                else
-                {
-                    RJMessageBox.Show("Gửi đơn nghỉ phép thất bại.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -307,22 +313,21 @@ namespace TENTAC_HRM.Forms.NghiPhep
         {
             try
             {
-                //string sql = $"update tbl_NghiPhepNam set LoaiPhepNghi = '{cbo_loaiphep.SelectedValue.ToString()}', " +
-                //            $"NgayNghi='{cbo_Nam.Text + cbo_Thang.Text.PadLeft(2, '0') + item.ToString().PadLeft(2, '0')}', " +
-                //            $"GhiChu='{txt_noidung.Text}'," +
-                //            $"SoNgay='{(nuangay != 0 ? "0.5" : "1")}', " +
-                //            $"NgayCapNhat = GETDATE(),Nam = '{cbo_Nam.Text}'," +
-                //            $"NguoiTao = '{SQLHelper.sIdUser}', " +
-                //            $"NuaNgay = '{nuangay}'," +
-                //            $"Chk_ToTruong = '{(chk_ToTruong.Checked == true ? 1 : 0)}', " +
-                //            $"Chk_QuanLy = '{(chk_quanly.Checked == true ? 1 : 0)}', Chk_NhanSu = '{(chk_nhansu.Checked == true ? 1 : 0)}' " +
-                //            $"where id = '{_id_nghi_phep_value}'";
-                //SQLHelper.ExecuteSql(sql);
+                int _NuaNgay = 0;
+                if (chk_BuoiSang.Checked == true && chk_BuoiChieu.Checked == false)
+                {
+                    _NuaNgay = 1;
+                }
+                else if (chk_BuoiSang.Checked == false && chk_BuoiChieu.Checked == true)
+                {
+                    _NuaNgay = 2;
+                }
 
+                decimal _SoNgay = decimal.Parse(_NuaNgay != 0 ? "0.5" : "1");
                 string sql = string.Empty;
-                sql = $@"Update tbl_NghiPhepNam set MaChamCong = {SQLHelper.rpI(_MaChamCong)},
-                Nam = {SQLHelper.rpI(_Nam)}, LoaiPhepNghi = {SQLHelper.rpStr(_LoaiPhepNghi)}, NgayNghi = {SQLHelper.rpDT(_NgayNghi)},
-                GhiChu = {SQLHelper.rpStr(_GhiChu)}, SoNgay = {SQLHelper.rpD(_SoNgay)}, NuaNgay = {SQLHelper.rpI(_NuaNgay)},
+                sql = $@"Update tbl_NghiPhepNam set
+                LoaiPhepNghi = {SQLHelper.rpStr(cbo_LoaiPhep.SelectedValue.ToString())},
+                GhiChu = {txt_NoiDung.Text}, SoNgay = {SQLHelper.rpD(_SoNgay)}, NuaNgay = {SQLHelper.rpI(_NuaNgay)},
                 NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
                 Where Id= {SQLHelper.rpI(_id_nghi_phep_value)} and Id_TrangThai = 197 and del_flg = 0";
                 int res = SQLHelper.ExecuteSql(sql);
@@ -340,41 +345,15 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private bool CheckReportTo()
-        {
-            string sql = string.Empty;
-            sql = $@"Select ReportTo from [TENTAC_HRM].[dbo].[tbl_NhanVien] where MaNhanVien = {SQLHelper.rpStr(cbo_NhanVien.SelectedValue.ToString())}";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            if (dt.Rows.Count > 0 && !string.IsNullOrEmpty(dt.Rows[0]["ReportTo"].ToString()))
-            {
-                return true;
-            }
-            return false;
-        }
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        private void cbo_NhanVien_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _MaChamCong = cbo_NhanVien.SelectedIndex == 0 ? 0 : Convert.ToInt32(cbo_NhanVien.SelectedValue.ToString().Substring(2));
-            string selectedEmployee = cbo_NhanVien.SelectedValue.ToString();
-            if (!txt_NhanVien.Text.Contains(selectedEmployee))
-            {
-                if (!string.IsNullOrEmpty(txt_NhanVien.Text))
-                {
-                    txt_NhanVien.Text += ", ";
-                }
-                if (cbo_NhanVien.SelectedIndex != 0)
-                    txt_NhanVien.Text += cbo_NhanVien.SelectedValue.ToString();
-            }
-            TotalLeaveDays();
-        }
+       
         private void cbo_Nam_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _Nam = int.Parse(cbo_Nam.Text);
-            TotalLeaveDays();
+            //_Nam = int.Parse(cbo_Nam.Text);
+            //TotalLeaveDays();
         }
         private void LoadCheckList()
         {

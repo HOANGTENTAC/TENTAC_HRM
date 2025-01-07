@@ -11,7 +11,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
 {
     public partial class Frm_XemPhepNam : Form
     {
-        public string _machamcong { get; set; }
+        public string _manhanvien { get; set; }
         public string _year { get; set; }
         public Frm_XemPhepNam()
         {
@@ -31,29 +31,29 @@ namespace TENTAC_HRM.Forms.NghiPhep
             DataTable dt = new DataTable();
             string sql_socot = $"SELECT a.PhepTrongNam,a.PhepDocHai,a.TongNgayPhep,b.MaNhanVien,b.TenNhanVien,b.NgayVaoLamViec,c.TenPhongBan,a.TongNgayTon " +
                                $"FROM tbl_NgayPhepNam a " +
-                               $"left join MITACOSQL.dbo.NhanVien b on a.MaChamCong = b.MaChamCong " +
+                               $"left join MITACOSQL.dbo.NhanVien b on a.MaNhanVien = b.MaNhanVien " +
                                $"left join MITACOSQL.dbo.PHONGBAN c on b.MaPhongBan = c.MaPhongBan " +
-                               $"where a.MaChamCong = '{_machamcong}' and a.Nam = '{_year}' ";
+                               $"where a.MaNhanVien = '{_manhanvien}' and a.Nam = '{_year}' ";
             dt = SQLHelper.ExecuteDt(sql_socot);
 
             DataTable data = new DataTable();
             string sql = "select f.id,a.MaNhanVien,a.TenNhanVien,d.TenKhuVuc,c.TenChucVu," +
                          "e.typename as TrangThai,f.NgayNghi,g.TenLoaiPhep,f.GhiChu,g.LoaiPhep," +
-                         "f.SoNgay,f.NgayTao,f.NuaNgay " +
+                         "f.SoNgay,f.NgayTao,f.NuaNgay,g.KyHieu  " +
                          "from MITACOSQL.dbo.NhanVien a " +
                          "join tbl_NhanVien b on a.MaNhanVien = b.MaNhanVien " +
                          //"join nhanvien_phongban b on a.manhanvien = b.ma_nhan_vien and is_active = 1 " +
                          "join MITACOSQL.dbo.CHUCVU c on c.MachucVu = a.MaChucVu " +
                          "join MITACOSQL.dbo.KHUVUC d on d.MaKhuVuc = a.MaKhuVuc " +
                          "join sys_AllType e on b.id_trangthai = e.typeid " +
-                         "join tbl_NghiPhepNam f on f.MaChamCong = a.MaChamCong " +
+                         "join tbl_NghiPhepNam f on f.MaNhanVien = a.MaNhanVien " +
                          "join mst_LoaiPhep g on g.MaLoaiPhep = f.LoaiPhepNghi " +
-                         $"where f.nam = '{_year}' and f.del_flg = 0 and a.MaChamCong = '{_machamcong}' and f.Chk_NhanSu = 1 " +
+                         $"where f.nam = '{_year}' and f.del_flg = 0 and a.MaNhanVien = '{_manhanvien}' " +
                          $"order by f.NgayNghi";
             data = SQLHelper.ExecuteDt(sql);
 
-            var phepnam = data.Rows.Cast<DataRow>().Where(x => x["LoaiPhep"].ToString().Equals("PN")).ToList();
-            var phepkhac = data.Rows.Cast<DataRow>().Where(x => x["LoaiPhep"].ToString() != "PN").ToList();
+            var phepnam = data.Rows.Cast<DataRow>().Where(x => x["KyHieu"].ToString().Equals("AL")).ToList();
+            var phepkhac = data.Rows.Cast<DataRow>().Where(x => x["KyHieu"].ToString() != "AL").ToList();
 
             decimal tongphepnam = phepnam.Sum(x => decimal.Parse(x["SoNgay"].ToString()));
 
@@ -126,7 +126,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                         $"<td class='borderbottomdotted'>{listnew["SoNgay"].ToString()}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{DateTime.Parse(listnew["NgayTao"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
-                                        $"<td class='borderbottomdotted'>{listnew["LoaiPhep"].ToString()}</td> \r\n" +
+                                        $"<td class='borderbottomdotted'>{listnew["KyHieu"].ToString()}</td> \r\n" +
                                         $"<td class='borderbottomdotted'></td> \r\n" +
                                         $"<td class='borderbottomdotted'></td> \r\n" +
                                         $"<td class='borderbottomdotted'></td> \r\n" +
@@ -143,7 +143,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                             $"<td class='bordertopdotted'>{(dr != null ? dr["SoNgay"].ToString() : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'>{(dr != null ? DateTime.Parse(dr["NgayTao"].ToString()).ToString("dd/MM/yyyy") : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'>{(dr != null ? DateTime.Parse(dr["NgayNghi"].ToString()).ToString("dd/MM/yyyy") : "")}</td> \r\n" +
-                                            $"<td class='bordertopdotted'>{(dr != null ? dr["LoaiPhep"].ToString() : "")}</td> \r\n" +
+                                            $"<td class='bordertopdotted'>{(dr != null ? dr["KyHieu"].ToString() : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'></td> \r\n" +
                                             $"<td class='bordertopdotted'></td> \r\n" +
                                             $"<td class='bordertopdotted'></td> \r\n" +
@@ -176,7 +176,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                 $"<td>{listnew["SoNgay"].ToString()}</td> \r\n" +
                                 $"<td>{DateTime.Parse(listnew["NgayTao"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                 $"<td>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
-                                $"<td>{listnew["LoaiPhep"].ToString()}</td> \r\n" +
+                                $"<td>{listnew["KyHieu"].ToString()}</td> \r\n" +
                                 $"<td></td> \r\n" +
                                 $"<td></td> \r\n" +
                                 $"<td></td> \r\n" +
@@ -284,7 +284,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
         public decimal SoNgay { get; set; }
         public string NgayVietPhep { get; set; }
         public string NgayNghi { get; set; }
-        public string LoaiPhep { get; set; }
+        public string KyHieu { get; set; }
 
     }
 }

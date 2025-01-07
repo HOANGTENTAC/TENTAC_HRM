@@ -3,7 +3,7 @@
 <head>
     <style>
         body {
-            background: rgb(204,204,204);*/
+            background: rgb(204,204,204);
         }
 
         #page {
@@ -15,10 +15,12 @@
             box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
         }
 
-        #page[size="A4"] {
-            width: 21cm;
-            height: 29.7cm;*/
-        }
+            #page[size="A4"] {
+                /*width: 21cm;*/
+                width: 48%;
+                height: 29.7cm;
+            }
+
         @media print {
             body, page {
                 background: white;
@@ -26,6 +28,7 @@
                 box-shadow: 0;
             }
         }
+
         #customers {
             /*font-family: Arial, Helvetica, sans-serif;*/
             border-collapse: collapse;
@@ -40,53 +43,115 @@
             height: 25cm;
         }
 
-/*        #customers td, #customers th {
+            /*        #customers td, #customers th {
             border: 1px solid #ddd;
             padding: 8px;
         }*/
 
-        #customers th {
-            border: 1px solid black;
-            padding: 8px;
-        }
+            #customers th {
+                border: 1px solid black;
+                padding: 8px;
+            }
 
-        #customers td {
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-            border-right: 1px solid black;
-            border-bottom: 1px solid black;
-            padding: 3px 5px 3px 5px;
-        }
-        #customers tr {
-            height: 24px;
-            text-align: center;
-        }
-        #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            /*background-color: #E1F2FD;*/
-            /*color: white;*/
-        }
+            #customers td {
+                border-top: 1px solid black;
+                border-left: 1px solid black;
+                border-right: 1px solid black;
+                border-bottom: 1px solid black;
+                padding: 3px 5px 3px 5px;
+            }
+
+            #customers tr {
+                height: 24px;
+                text-align: center;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                /*background-color: #E1F2FD;*/
+                /*color: white;*/
+            }
 
         .borderbottomdotted {
             border-bottom: 2px dotted black !important;
         }
+
         .bordertopdotted {
             border-top: 2px dotted black !important;
         }
     </style>
 </head>
 <body>
-    <div size="A4" id="page">
-        <div style="border:2px solid black; padding:3px;height:100%;padding-bottom:0px">
+    <div style="">
+        <div size="A4" id="page" style="float:left">
+            <div style="border:2px solid black; padding:3px;height:100%;padding-bottom:0px">
+                <div style="font-size: 50px; position: absolute;">
+                    <h3 style="margin: -13px 1px;font-size: 54px;">TENTAC</h3>
+                    <h6 style="margin: 0px 1px;font-size:14px">TENTAC(HO CHI MINH)CO.,LTD.</h6>
+                </div>
+                <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal;">No/HR-003(01)</h6>
+                <h4 style="text-align: center; margin: 5px;">BIỂU QUẢN LÝ PHÉP NĂM [Nam]</h4>
+                <h4 style="text-align: center; margin: 5px;">[Nam] BIỂU QUẢN LÝ PHÉP NĂM </h4>
+                <table style="width: 100%; font-size: 12px;">
+                    <tr>
+                        <td width="25%" style="text-align:left">Mã số NV:</td>
+                        <td width="25%" style="text-align:center">[MaNhanVien]</td>
+                        <td width="25%">Họ tên :</td>
+                        <td width="25%" style="text-align:center">[TenNhanVien]</td>
+                    </tr>
+                    <tr>
+                        <td width="25%" style="text-align:left">Ngày vào công ty:</td>
+                        <td width="25%" style="text-align:center">[NgayVaoLam]</td>
+                        <td width="25%">Bộ phận :</td>
+                        <td width="25%" style="text-align:center">[BoPhan]</td>
+                    </tr>
+                    <tr>
+                        <td width="25%" style="text-align:left">Cách cấp phép năm : 1 ngày / tháng</td>
+                        <td width="25%"></td>
+                        <td width="25%">Đon vị tính : 0.5 ngày</td>
+                        <td width="25%"></td>
+                    </tr>
+                    <tr>
+                        <td width="25%" style="text-align:left">Phép năm [Nam] chuyển qua</td>
+                        <td width="25%" style="text-align:center">[PhepTon]</td>
+                        <td width="25%">Phép độc hại</td>
+                        <td width="25%" style="text-align:center">No</td>
+                    </tr>
+                </table>
+                <table id="customers">
+                    <tbody>
+                        <tr>
+                            <th style="width: 5%; text-align:center">Stt</th>
+                            <th style="width: 12%; text-align:center">Tháng <br> (được sử dụng PN)</th>
+                            <th style="width: 11%; text-align: center">Đ vị tính <br> (0.5 ngày)</th>
+                            <th style="width: 10%; text-align:center">Ngày nộp đơn</th>
+                            <th style="width: 16%; text-align:center">Ngày tháng năm <br> sử dụng NP</th>
+                            <th style="text-align:center">Lý do</th>
+                            <th style="width: 6%; text-align: center">Ký tên</th>
+                            <th style="width: 6%; text-align: center">Xác nhận</th>
+                            <th style="width: 6%; text-align: center">Phê duyệt</th>
+                            <th style="width: 6%; text-align: center ">Nhân sự</th>
+                        </tr>
+                        [MatTruoc]
+                    </tbody>
+                </table>
+                <div>
+                    <h5 style="margin: 5px 0px 0px 5px;text-align: right;">[Tong]</h5>
+                    <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal; "> : 2019/12/25</h6>
+                </div>
+
+            </div>
+        </div>
+        <div size="A4" id="page" style="float:right">
             <div style="font-size: 50px; position: absolute;">
                 <h3 style="margin: -13px 1px;font-size: 54px;">TENTAC</h3>
                 <h6 style="margin: 0px 1px;font-size:14px">TENTAC(HO CHI MINH)CO.,LTD.</h6>
             </div>
             <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal;">No/HR-003(01)</h6>
-            <h4 style="text-align: center; margin: 5px;">BIỂU QUẢN LÝ PHÉP NĂM [Nam]</h4>
-            <h4 style="text-align: center; margin: 5px;">[Nam] BIỂU QUẢN LÝ PHÉP NĂM </h4>
+            <h4 style="text-align: center; margin-left: 230px;margin-top:5px; margin-bottom:5px">BIỂU QUẢN LÝ NGHỈ PPHEP1 (NGOÀI NGHỈ PHÉP THƯỜNG NIÊN)</h4>
+            <h4 style="text-align: center; margin-left: 230px; margin-top: 5px; margin-bottom: 5px">BIỂU QUẢN LÝ NGHỈ PPHEP1 (NGOÀI NGHỈ PHÉP THƯỜNG NIÊN)</h4>
             <table style="width: 100%; font-size: 12px;">
                 <tr>
                     <td width="25%" style="text-align:left">Mã số NV:</td>
@@ -100,104 +165,48 @@
                     <td width="25%">Bộ phận :</td>
                     <td width="25%" style="text-align:center">[BoPhan]</td>
                 </tr>
+            </table>
+            <h5 style="margin: 0px; text-decoration: underline; margin-left: 2px;">Note</h5>
+            <table style=" font-size: 10px;">
                 <tr>
-                    <td width="25%" style="text-align:left">Cách cấp phép năm : 1 ngày / tháng</td>
-                    <td width="25%"></td>
-                    <td width="25%">Đon vị tính : 0.5 ngày</td>
-                    <td width="25%"></td>
+                    <td style="width:61%">Nghỉ hưởng BHXH (bệnh, con ốm, khám thai...)/</td>
+                    <td style="width:10%">BH</td>
+                    <td style="width:24%">Nghỉ không lương/</td>
+                    <td>KL</td>
                 </tr>
                 <tr>
-                    <td width="25%" style="text-align:left">Phép năm [Nam] chuyển qua</td>
-                    <td width="25%" style="text-align:center">[PhepTon]</td>
-                    <td width="25%">Phép độc hại</td>
-                    <td width="25%" style="text-align:center">No</td>
+                    <td style="margin: 5px">Nghỉ việc riêng có lương/</td>
+                    <td>CL</td>
+                    <td>Nghỉ khác/</td>
+                    <td>Other</td>
+                </tr>
+                <tr>
+                    <td>Nghỉ bù  /</td>
+                    <td>NB</td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
             <table id="customers">
                 <tbody>
                     <tr>
-                        <th style="width: 5%; text-align:center">Stt</th>
-                        <th style="width: 12%; text-align:center">Tháng <br> (được sử dụng PN)</th>
-                        <th style="width: 11%; text-align: center">Đ vị tính <br> (0.5 ngày)</th>
-                        <th style="width: 10%; text-align:center">Ngày nộp đơn</th>
-                        <th style="width: 16%; text-align:center">Ngày tháng năm <br> sử dụng NP</th>
+                        <th style="width: 5%; text-align:center">Stt <br> No</th>
+                        <th style="width: 12%; text-align:center">Ngày nghỉ</th>
+                        <th style="width: 10%; text-align:center">Loại nghỉ phép</th>
+                        <th style="width: 9%; text-align:center">Số ngày nghỉ</th>
                         <th style="text-align:center">Lý do</th>
-                        <th style="width: 6%; text-align: center">Ký tên</th>
-                        <th style="width: 6%; text-align: center">Xác nhận</th>
-                        <th style="width: 6%; text-align: center">Phê duyệt</th>
-                        <th style="width: 6%; text-align: center ">Nhân sự</th>
+                        <th style="width: 12%; text-align:center">Nhân viên ký</th>
+                        <th style="width: 12%; text-align:center">Duyệt bởi QLTT</th>
+                        <th style="width: 12%; text-align:center">Duyệt bởi TBP</th>
+                        <th style="width: 12%; text-align:center">Xác nhận PNS</th>
                     </tr>
-                    [MatTruoc]
+                    [MatSau]
                 </tbody>
             </table>
-            <div>
-                <h5 style="margin: 5px 0px 0px 5px;text-align: right;">[Tong]</h5>
-                <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal; "> : 2019/12/25</h6>
-            </div>
+            <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal;;"> : 2019/12/25</h6>
+        </div>
+    </div>
 
-        </div>
-    </div>
-    <div size="A4" id="page">
-        <div style="font-size: 50px; position: absolute;">
-            <h3 style="margin: -13px 1px;font-size: 54px;">TENTAC</h3>
-            <h6 style="margin: 0px 1px;font-size:14px">TENTAC(HO CHI MINH)CO.,LTD.</h6>
-        </div>
-        <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal;">No/HR-003(01)</h6>
-        <h4 style="text-align: center; margin-left: 230px;margin-top:5px; margin-bottom:5px">BIỂU QUẢN LÝ NGHỈ PPHEP1 (NGOÀI NGHỈ PHÉP THƯỜNG NIÊN)</h4>
-        <h4 style="text-align: center; margin-left: 230px; margin-top: 5px; margin-bottom: 5px">BIỂU QUẢN LÝ NGHỈ PPHEP1 (NGOÀI NGHỈ PHÉP THƯỜNG NIÊN)</h4>
-        <table style="width: 100%; font-size: 12px;">
-            <tr>
-                <td width="25%" style="text-align:left">Mã số NV:</td>
-                <td width="25%" style="text-align:center">[MaNhanVien]</td>
-                <td width="25%">Họ tên :</td>
-                <td width="25%" style="text-align:center">[TenNhanVien]</td>
-            </tr>
-            <tr>
-                <td width="25%" style="text-align:left">Ngày vào công ty:</td>
-                <td width="25%" style="text-align:center">[NgayVaoLam]</td>
-                <td width="25%">Bộ phận :</td>
-                <td width="25%" style="text-align:center">[BoPhan]</td>
-            </tr>
-        </table>
-        <h5 style="margin: 0px; text-decoration: underline; margin-left: 2px;">Note</h5>
-        <table style=" font-size: 10px;">
-            <tr>
-                <td style="width:61%">Nghỉ hưởng BHXH (bệnh, con ốm, khám thai...)/</td>
-                <td style="width:10%">BH</td>
-                <td style="width:24%">Nghỉ không lương/</td>
-                <td>KL</td>
-            </tr>
-            <tr>
-                <td style="margin: 5px">Nghỉ việc riêng có lương/</td>
-                <td>CL</td>
-                <td>Nghỉ khác/</td>
-                <td>Other</td>
-            </tr>
-            <tr>
-                <td>Nghỉ bù  /</td>
-                <td>NB</td>
-                <td></td>
-                <td></td>
-            </tr>
-        </table>
-        <table id="customers">
-            <tbody>
-                <tr>
-                    <th style="width: 5%; text-align:center">Stt <br> No</th>
-                    <th style="width: 12%; text-align:center">Ngày nghỉ</th>
-                    <th style="width: 10%; text-align:center">Loại nghỉ phép</th>
-                    <th style="width: 9%; text-align:center">Số ngày nghỉ</th>
-                    <th style="text-align:center">Lý do</th>
-                    <th style="width: 12%; text-align:center">Nhân viên ký</th>
-                    <th style="width: 12%; text-align:center">Duyệt bởi QLTT</th>
-                    <th style="width: 12%; text-align:center">Duyệt bởi TBP</th>
-                    <th style="width: 12%; text-align:center">Xác nhận PNS</th>
-                </tr>
-                [MatSau]
-            </tbody>
-        </table>
-        <h6 style="text-align: right; font-size: 12px; margin: 0px; font-weight: normal;;"> : 2019/12/25</h6>
-    </div>
 </body>
 </html>
 

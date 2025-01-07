@@ -27,16 +27,16 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //             $"join MITACOSQL.dbo.NhanVien nv on nv.MaChamCong = npn.MaChamCong " +
             //             $"where npn.id = {_id}";
             string sql = $@"WITH NghiPhep AS (
-            SELECT np.MaChamCong,np.Id_TrangThai, SUM(np.SoNgay) AS TongNgayNghi FROM tbl_NghiPhepNam np
-            WHERE np.del_flg = 0 AND np.LoaiPhepNghi = 'LP001' AND Id_TrangThai = 199 AND YEAR(np.NgayNghi) = {_year}
-            GROUP BY np.MaChamCong, np.Id_TrangThai
+            SELECT np.MaNhanVien,np.Id_TrangThai, SUM(np.SoNgay) AS TongNgayNghi FROM tbl_NghiPhepNam np
+            WHERE np.del_flg = 0 AND np.LoaiPhepNghi = 'LP001' AND YEAR(np.NgayNghi) = {_year}
+            GROUP BY np.MaNhanVien, np.Id_TrangThai
             )
-            SELECT a.MaChamCong, npn.NgayNghi, nv.TenNhanVien, npn.GhiChu,
+            SELECT a.MaNhanVien, npn.NgayNghi, nv.TenNhanVien, npn.GhiChu,
                 (a.TongNgayPhep - COALESCE(np.TongNgayNghi, 0)) AS SoPhepTon
             FROM tbl_NgayPhepNam a
-            INNER JOIN tbl_NghiPhepNam npn on a.MaChamCong = npn.MaChamCong
-            INNER JOIN NghiPhep np ON a.MaChamCong = np.MaChamCong
-            INNER JOIN MITACOSQL.dbo.NhanVien nv ON nv.MaChamCong = a.MaChamCong
+            INNER JOIN tbl_NghiPhepNam npn on a.MaNhanVien = npn.MaNhanVien
+            INNER JOIN NghiPhep np ON a.MaNhanVien = np.MaNhanVien
+            INNER JOIN MITACOSQL.dbo.NhanVien nv ON nv.MaNhanVien = a.MaNhanVien
             WHERE npn.Id = {_id} AND a.del_flg = 0 AND a.Nam = {_year}";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);

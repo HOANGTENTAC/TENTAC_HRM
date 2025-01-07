@@ -682,12 +682,12 @@
             this.btn_close_all,
             this.closeAllButThisToolStripMenuItem});
             this.menustrip_tabpage.Name = "menustrip_tabpage";
-            this.menustrip_tabpage.Size = new System.Drawing.Size(167, 48);
+            this.menustrip_tabpage.Size = new System.Drawing.Size(166, 48);
             // 
             // btn_close_all
             // 
             this.btn_close_all.Name = "btn_close_all";
-            this.btn_close_all.Size = new System.Drawing.Size(166, 22);
+            this.btn_close_all.Size = new System.Drawing.Size(165, 22);
             this.btn_close_all.Text = "Close All";
             this.btn_close_all.Click += new System.EventHandler(this.btn_close_all_Click);
             // 
@@ -695,7 +695,7 @@
             // 
             this.closeAllButThisToolStripMenuItem.AccessibleDescription = "btn_close_all_but_this";
             this.closeAllButThisToolStripMenuItem.Name = "closeAllButThisToolStripMenuItem";
-            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeAllButThisToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.closeAllButThisToolStripMenuItem.Text = "Close All But This";
             this.closeAllButThisToolStripMenuItem.Click += new System.EventHandler(this.btn_close_all_but_this_Click);
             // 
@@ -739,7 +739,7 @@
             this.hệThốngToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.hệThốngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
-            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(72, 28);
+            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(71, 28);
             this.hệThốngToolStripMenuItem.Text = "Hệ Thống";
             // 
             // trợGiúpToolStripMenuItem
@@ -747,7 +747,7 @@
             this.trợGiúpToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.trợGiúpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
-            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(63, 28);
+            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
             this.trợGiúpToolStripMenuItem.Text = "Trợ giúp";
             // 
             // btn_exit

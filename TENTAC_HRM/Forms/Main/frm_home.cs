@@ -122,6 +122,39 @@ namespace TENTAC_HRM.Forms.Main
                 dt_MenuChild = SQLHelper.ExecuteDt(sql);
             }
 
+            Panel panelLogOut = new Panel
+            {
+                Dock = DockStyle.Top,
+                MinimumSize = new Size(200, 30)
+            };
+            IconButton btnlogout = new IconButton()
+            {
+                IconColor = Color.FromArgb(245, 245, 245),
+                Tag = 0,
+                Name = "LogOut",
+                ForeColor = Color.FromArgb(245, 245, 245),
+                ImageAlign = ContentAlignment.MiddleRight,
+                Height = 30,
+                Font = new Font("Arial", emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
+                Dock = DockStyle.Top,
+                FlatStyle = FlatStyle.Flat,
+                Text = "LogOut",
+                TextAlign = ContentAlignment.MiddleLeft,
+                UseVisualStyleBackColor = false,
+            };
+            btnlogout.IconChar = IconChar.RightFromBracket;
+            btnlogout.IconSize = 25;
+            btnlogout.IconColor = Color.FromArgb(245, 245, 245);
+            btnlogout.FlatAppearance.BorderColor = Color.FromArgb(18, 39, 75);
+
+            btnlogout.Click += BtnLogOut_Click;
+            panelLogOut.Controls.Add(btnlogout);
+            Height += 32;
+            panelLogOut.Size = new Size(201, 30);
+            panelLogOut.MaximumSize = new Size(201, Height);
+            panelLogOut.MinimumSize = new Size(201, 30);
+            pl_MenuLeft.Controls.Add(panelLogOut);
+
             foreach (DataRow item in dt_MenuParent.Rows)
             {
                 int Height = 0;
@@ -225,7 +258,12 @@ namespace TENTAC_HRM.Forms.Main
                 //splitContainer1.Panel2.Controls.Add(danhmuc);
             }
         }
-
+        private void BtnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frm_login frm = new frm_login();
+            frm.Show();
+        }
         private void BtnChil_Click(object sender, EventArgs e)
         {
             btn_IdClick = ((IconButton)sender).Tag.ToString();
@@ -687,22 +725,38 @@ namespace TENTAC_HRM.Forms.Main
                         {
                             if (childControl is IconButton btn)
                             {
-                                btn.Size = new Size(30, 30);
-                                var Id = btn.Tag?.ToString();
-                                btn.ImageAlign = ContentAlignment.MiddleLeft;
-
-                                var chil = dt_MenuChild.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
-                                btn.Text = chil?["MenuText"].ToString() ?? "";
-                                if (chil != null) countChil++;
-
-                                var parent = dt_MenuParent.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
-                                if (parent != null)
+                                if (btn.Name == "LogOut")
                                 {
-                                    btn.Text = parent["MenuText"].ToString();
-                                    btn.IconChar = countChil >= 1 ? IconChar.ChevronDown : IconChar.None;
-                                    btn.IconSize = 12;
+                                    btn.Size = new Size(30, 30);
+                                    var Id = btn.Tag?.ToString();
+                                    btn.ImageAlign = ContentAlignment.MiddleLeft;
+
+                                    btn.Text = "LogOut";
+                                    btn.IconChar = IconChar.RightFromBracket;
+                                    btn.IconSize = 25;
                                     btn.IconColor = Color.FromArgb(245, 245, 245);
                                     btn.ImageAlign = ContentAlignment.MiddleRight;
+
+                                }
+                                else
+                                {
+                                    btn.Size = new Size(30, 30);
+                                    var Id = btn.Tag?.ToString();
+                                    btn.ImageAlign = ContentAlignment.MiddleLeft;
+
+                                    var chil = dt_MenuChild.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
+                                    btn.Text = chil?["MenuText"].ToString() ?? "";
+                                    if (chil != null) countChil++;
+
+                                    var parent = dt_MenuParent.Rows.Cast<DataRow>().FirstOrDefault(x => x["Id"].ToString() == Id);
+                                    if (parent != null)
+                                    {
+                                        btn.Text = parent["MenuText"].ToString();
+                                        btn.IconChar = countChil >= 1 ? IconChar.ChevronDown : IconChar.None;
+                                        btn.IconSize = 12;
+                                        btn.IconColor = Color.FromArgb(245, 245, 245);
+                                        btn.ImageAlign = ContentAlignment.MiddleRight;
+                                    }
                                 }
                             }
                         }

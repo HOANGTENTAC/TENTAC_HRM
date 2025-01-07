@@ -83,7 +83,7 @@
             this.txt_phep_thamnien.TabIndex = 4;
             this.txt_phep_thamnien.Text = "0.0";
             this.txt_phep_thamnien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txt_phep_thamnien.Leave += new System.EventHandler(this.txt_tong_ngayton_Leave);
+            this.txt_phep_thamnien.Leave += new System.EventHandler(this.txt_phep_thamnien_Leave);
             // 
             // txt_phep_dochai
             // 
@@ -93,7 +93,7 @@
             this.txt_phep_dochai.TabIndex = 4;
             this.txt_phep_dochai.Text = "0.0";
             this.txt_phep_dochai.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txt_phep_dochai.Leave += new System.EventHandler(this.txt_tong_ngayton_Leave);
+            this.txt_phep_dochai.Leave += new System.EventHandler(this.txt_phep_dochai_Leave);
             // 
             // txt_tong_ngayton
             // 
@@ -161,7 +161,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 17);
             this.label6.TabIndex = 1;
-            this.label6.Text = "Tổng ngày tồn";
+            this.label6.Text = "Tồn năm trước";
             // 
             // label5
             // 
@@ -169,9 +169,9 @@
             this.label5.Location = new System.Drawing.Point(26, 163);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(112, 17);
+            this.label5.Size = new System.Drawing.Size(86, 17);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Tổng ngày phép";
+            this.label5.Text = "Phép còn lại";
             // 
             // label4
             // 

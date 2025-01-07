@@ -127,7 +127,7 @@
   <data name="show_col.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKnSURBVEhLpVVb
+        rAAAAKwBhgk01AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKnSURBVEhLpVVb
         axNBGN0/4YNX/A/FZKVWKwhSrOKb+qI+qW28PIr+CwXB2N2tbWkEwWKhrUVtfVcEUSGtpfVV0TSZ2SRt
         kt1+fmcz2+4taUwPHNidme/MfLcZrR16sutHdFPcSZtinrnELCviez5liNvHrMJhtbxzHB+rHkybMssi
         DpN2oatb8qU+WjyqzNsjZciLbGRHRDqh1E15QckkI22Ie7zQjRj+D9kbcVfJhaFOvhdxn27Mk/RI4RBP
@@ -214,13 +214,10 @@
   <metadata name="PhepConLai.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="MaChamCong.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="dataGridViewImageColumn1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        rgAAAK4B+ff3XQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKnSURBVEhLpVVb
+        rQAAAK0BVE7WMAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKnSURBVEhLpVVb
         axNBGN0/4YNX/A/FZKVWKwhSrOKb+qI+qW28PIr+CwXB2N2tbWkEwWKhrUVtfVcEUSGtpfVV0TSZ2SRt
         kt1+fmcz2+4taUwPHNidme/MfLcZrR16sutHdFPcSZtinrnELCviez5liNvHrMJhtbxzHB+rHkybMssi
         DpN2oatb8qU+WjyqzNsjZciLbGRHRDqh1E15QckkI22Ie7zQjRj+D9kbcVfJhaFOvhdxn27Mk/RI4RBP
