@@ -4,8 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Forms.Main;
-using TENTAC_HRM.Forms.User_control;
+using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
 {
@@ -31,7 +30,7 @@ namespace TENTAC_HRM.Forms.Category
             LoadChucVu();
             LoadCongTy();
             LoadPhongBan();
-            if(edit == true)
+            if (edit == true)
             {
                 LoadData();
             }
@@ -66,7 +65,7 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void cbo_CongTy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbo_CongTy.SelectedIndex != 0)
+            if (cbo_CongTy.SelectedIndex != 0)
             {
                 string MaCongTy = cbo_CongTy.SelectedValue.ToString();
                 LoadKhuVuc(MaCongTy);
@@ -91,7 +90,7 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void btn_clear_Click(object sender, EventArgs e)
         {
-           LoadNull();
+            LoadNull();
         }
         private void LoadKhuVuc(string MaCongTy)
         {

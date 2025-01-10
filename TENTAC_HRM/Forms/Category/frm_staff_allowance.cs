@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
+using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
 {

@@ -60,9 +60,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //{
             //    sql = $"update tbl_NghiPhepNam set Chk_NhanSu = 1 where id = '{_id}'";
             //}
-            string reportTo = _idTrangThai == 199 ? SQLHelper.sUser : LoginInfo.ReportTo;
             sql = $@"Update tbl_NghiPhepNam Set 
-                NguoiXacNhan = {SQLHelper.rpStr(reportTo)}, Id_TrangThai = {SQLHelper.rpI(_idTrangThai)} 
+                NguoiXacNhan = {LoginInfo.ReportTo}, Id_TrangThai = {SQLHelper.rpI(_idTrangThai)} 
                 where Id = {SQLHelper.rpI(_id)}"; 
             int res = SQLHelper.ExecuteSql(sql);
             if (res > 0)

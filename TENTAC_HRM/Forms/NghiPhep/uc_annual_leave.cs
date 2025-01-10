@@ -185,7 +185,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 case "Th11":
                 case "Th12":
                 case "PhepDaDung":
-                    Frm_NghiPhep user = new Frm_NghiPhep(idPermision);
+                    Frm_NghiPhep user = new Frm_NghiPhep();
                     user._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
                     user._year = cbo_year.Text;
                     user._month = dgv_annual_leave.CurrentCell.OwningColumn.Name.Replace("Th", "");

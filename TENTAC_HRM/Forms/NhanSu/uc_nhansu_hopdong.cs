@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using TENTAC_HRM.Forms.Category;
 
-namespace TENTAC_HRM.Forms.User_control
+namespace TENTAC_HRM.Forms.NhanSu
 {
     public partial class uc_nhansu_hopdong : UserControl
     {

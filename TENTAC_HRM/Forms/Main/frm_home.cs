@@ -1,17 +1,15 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using TENTAC_HRM.Properties;
+using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Forms.User_control;
-using NPOI.SS.Formula.Functions;
-using FontAwesome.Sharp;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Windows.Media.Animation;
-using iTextSharp.text.pdf;
-using System.Security;
+using TENTAC_HRM.Properties;
 
 namespace TENTAC_HRM.Forms.Main
 {
@@ -99,7 +97,8 @@ namespace TENTAC_HRM.Forms.Main
                 dt_MenuParent = SQLHelper.ExecuteDt(sql);
 
                 sql = $@"select a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber ,
-                b.FrmType,b.FrmText,  STRING_AGG(ur.Id_Permision, ',') AS Id_Permision from mst_menu a
+                b.FrmType,b.FrmText,  STRING_AGG(ur.Id_Permision, ',') AS Id_Permision,a.OpenSource 
+                from mst_menu a
                 left join mst_from b on a.FromName = b.FrmName 
                 inner join mst_UserRoles ur on a.Id = ur.Id_Menu and ur.del_flg = 0
                 where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} 
@@ -115,7 +114,8 @@ namespace TENTAC_HRM.Forms.Main
                 dt_MenuParent = SQLHelper.ExecuteDt(sql);
 
                 sql = $@"select a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber ,
-                    b.FrmType,b.FrmText from mst_menu a
+                    b.FrmType,b.FrmText,a.OpenSource  
+                    from mst_menu a
                     left join mst_from b on a.FromName = b.FrmName 
                     where ParentId != 0 
                     order by a.MenuNumber desc";
@@ -125,7 +125,7 @@ namespace TENTAC_HRM.Forms.Main
             Panel panelLogOut = new Panel
             {
                 Dock = DockStyle.Top,
-                MinimumSize = new Size(200, 30)
+                MinimumSize = new Size(223, 30)
             };
             IconButton btnlogout = new IconButton()
             {
@@ -150,9 +150,9 @@ namespace TENTAC_HRM.Forms.Main
             btnlogout.Click += BtnLogOut_Click;
             panelLogOut.Controls.Add(btnlogout);
             Height += 32;
-            panelLogOut.Size = new Size(201, 30);
-            panelLogOut.MaximumSize = new Size(201, Height);
-            panelLogOut.MinimumSize = new Size(201, 30);
+            panelLogOut.Size = new Size(223, 30);
+            panelLogOut.MaximumSize = new Size(223, Height);
+            panelLogOut.MinimumSize = new Size(223, 30);
             pl_MenuLeft.Controls.Add(panelLogOut);
 
             foreach (DataRow item in dt_MenuParent.Rows)
@@ -163,7 +163,7 @@ namespace TENTAC_HRM.Forms.Main
                 Panel panel = new Panel
                 {
                     Dock = DockStyle.Top,
-                    MinimumSize = new Size(200, 30)
+                    MinimumSize = new Size(223, 30)
                 };
 
                 foreach (var itemchil in chil)
@@ -229,9 +229,9 @@ namespace TENTAC_HRM.Forms.Main
                 btn.Click += Btn_Click;
                 panel.Controls.Add(btn);
                 Height += 32;
-                panel.Size = new Size(201, 30);
-                panel.MaximumSize = new Size(201, Height);
-                panel.MinimumSize = new Size(201, 30);
+                panel.Size = new Size(223, 30);
+                panel.MaximumSize = new Size(223, Height);
+                panel.MinimumSize = new Size(223, 30);
                 pl_MenuLeft.Controls.Add(panel);
 
                 //Custom.RJButton danhmuc = new Custom.RJButton
@@ -266,8 +266,38 @@ namespace TENTAC_HRM.Forms.Main
         }
         private void BtnChil_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             btn_IdClick = ((IconButton)sender).Tag.ToString();
             var name_parent = dt_MenuChild.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == btn_IdClick).FirstOrDefault();
+
+            if (name_parent["OpenSource"].ToString() == "True")
+            {
+                string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                //var menuStartStrings = userProfile + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\TENTAC(HO CHI MINH)\勤怠管理.appref-ms";
+                var menuStartStrings = @"I:\XoaDuLieuMayChamCong\XoaDuLieuMayChamCong\XoaDuLieuMayChamCong\bin\Debug\勤怠管理.exe";
+                var startParam = $"-tangca {name_parent["FromName"].ToString()}";
+                // 起動パラメータをDictionaryに変換し展開する
+                Dictionary<string, string> argsDic = new Dictionary<string, string>();
+                argsDic = ParamUtil.ConvertParamToDictionary(SplitUtil.SplitStringWithSeparator(startParam, ' '));
+                string startParameter = "";
+                string param;
+                // 半角スペースを含む起動パラメータをダブルクオーテーションで囲む
+                foreach (KeyValuePair<string, string> item in argsDic)
+                {
+                    startParameter = startParameter + item.Key + " " + SetDoublequotation(item.Value, 0) + " ";
+                }
+                // ClickOnceでインストールされたアプリケーションを起動する場合はダブルクォーテーションで囲む
+                param = startParameter;
+                Process.Start(menuStartStrings, param);
+
+                //string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+                //var menuStartStrings = @"D:\Project\XoaDuLieuMayChamCong\XoaDuLieuMayChamCong\bin\Debug\勤怠管理.exe";
+                //Process p = new Process();
+                //p.StartInfo.FileName = menuStartStrings;
+                //p.StartInfo.Arguments = $"-tangca {name_parent["FromName"].ToString()}";
+                //p.Start();
+                //p.WaitForExit();
+            }
 
             if (_btn_show_menu_left == true)
             {
@@ -278,11 +308,30 @@ namespace TENTAC_HRM.Forms.Main
             {
                 lbl_title_menu.Text = "";
             }
-            if (!string.IsNullOrEmpty(name_parent["FromName"].ToString()))
+            if (!string.IsNullOrEmpty(name_parent["FromName"].ToString()) && name_parent["OpenSource"].ToString() != "True")
             {
                 Open_From(sender, e, false);
             }
             ActivateButton(sender, RGBColors.color1);
+            Cursor.Current = Cursors.Default;
+        }
+        private string SetDoublequotation(string parm, int co_kubun)
+        {
+            if (parm.IndexOf(" ") >= 0 | parm.IndexOf("　") >= 0)
+            {
+                if (co_kubun == 0)
+                {
+                    return "\"\"" + parm + "\"\"";
+                }
+                else
+                {
+                    return "\"" + parm + "\"";
+                }
+            }
+            else
+            {
+                return parm;
+            }
         }
         private struct RGBColors
         {
@@ -526,7 +575,7 @@ namespace TENTAC_HRM.Forms.Main
             Rectangle workingRectangle = Screen.PrimaryScreen.WorkingArea;
             this.Size = new Size(workingRectangle.Width, workingRectangle.Height);
 
-            pl_menu_left.MaximumSize = new Size(203, this.Height - 30);
+            pl_menu_left.MaximumSize = new Size(225, this.Height - 30);
             pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
             //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
             //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
@@ -554,7 +603,7 @@ namespace TENTAC_HRM.Forms.Main
 
             tb_main.Padding = new Point(20, 4);
 
-            pl_menu_left.MaximumSize = new Size(203, this.Height - 30);
+            pl_menu_left.MaximumSize = new Size(225, this.Height - 30);
             pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
             if (!tb_dashboard.Controls.Contains(uc_dashboard.Instance))
             {
@@ -820,7 +869,7 @@ namespace TENTAC_HRM.Forms.Main
                 this.StartPosition = FormStartPosition.CenterScreen;
                 this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2, (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
 
-                pl_menu_left.MaximumSize = new Size(203, this.Height - 30);
+                pl_menu_left.MaximumSize = new Size(225, this.Height - 30);
                 pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
                 //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
                 //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);

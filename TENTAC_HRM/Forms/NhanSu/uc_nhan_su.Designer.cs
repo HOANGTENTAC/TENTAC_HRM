@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Forms.User_control
+﻿namespace TENTAC_HRM.Forms.NhanSu
 {
     partial class uc_nhan_su
     {

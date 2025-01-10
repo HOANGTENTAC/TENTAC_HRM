@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using HorizontalAlignment = NPOI.SS.UserModel.HorizontalAlignment;
 
@@ -13,7 +14,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
     public partial class Frm_NghiPhep : Form
     {
         DataProvider provider = new DataProvider();
-        public static Frm_NghiPhep _instance;
         public string _manhanvien { get; set; }
         public string _year { get; set; }
         public string _month { get; set; }
@@ -21,12 +21,12 @@ namespace TENTAC_HRM.Forms.NghiPhep
         public string _trangthai { get; set; }
         public int[] idPermision { get; set; }
         public int _idTrangThaiPhieu { get; set; }
-        public static Frm_NghiPhep Instance(int[] permissions)
-        {
-            _instance = new Frm_NghiPhep(permissions);
-            return _instance;
-        }
-        public Frm_NghiPhep(int[] permissions)
+        //public static Frm_NghiPhep Instance(int[] permissions = null)
+        //{
+        //    _instance = new Frm_NghiPhep(permissions);
+        //    return _instance;
+        //}
+        public Frm_NghiPhep(int[] permissions = null)
         {
             idPermision = permissions;
             InitializeComponent();
@@ -66,11 +66,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
             }
             return flg;
         }
-        private void VisibleButton()
-        {
-            btn_add.Visible = idPermision.Contains(2) ? true : false;
-            btn_delete.Visible = idPermision.Contains(4) ? true : false;
-        }
+        //private void VisibleButton()
+        //{
+        //    btn_add.Visible = idPermision.Contains(2) ? true : false;
+        //    btn_delete.Visible = idPermision.Contains(4) ? true : false;
+        //}
         private void cbo_year_SelectionChangeCommitted1(object sender, EventArgs e)
         {
             _trangthai = "";
@@ -147,10 +147,10 @@ namespace TENTAC_HRM.Forms.NghiPhep
         }
         public void load_data()
         {
-            //if (!string.IsNullOrEmpty(_trangthai))
-            //{
-            //    cbo_trangthai.ComboBox.SelectedIndex = 2;
-            //}
+            if (!string.IsNullOrEmpty(_trangthai))
+            {
+                cbo_trangthai.ComboBox.SelectedIndex = 1;
+            }
             if (_xemtong == true)
             {
                 chk_TheoNam.Checked = true;
@@ -159,14 +159,14 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 txt_search.Text = _manhanvien;
             }
-            //if (!string.IsNullOrEmpty(_year))
-            //{
-            //    cbo_year.ComboBox.SelectedValue = _year;
-            //}
-            //if (!string.IsNullOrEmpty(_month))
-            //{
-            //    cbo_Thang.ComboBox.SelectedValue = _month;
-            //}
+            if (!string.IsNullOrEmpty(_year))
+            {
+                cbo_year.ComboBox.Text = _year;
+            }
+            if (!string.IsNullOrEmpty(_month))
+            {
+                cbo_Thang.ComboBox.Text = _month;
+            }
             //string sql = "select f.id,a.MaNhanVien,a.TenNhanVien,d.TenKhuVuc,c.TenChucVu," +
             //            "e.typename as TrangThai,f.NgayNghi," +
             //            "case when f.NuaNgay = 0 then N'1 ngày' else case when f.NuaNgay = 1 then N'Nghỉ buổi sáng' else N'Nghỉ buổi chiều' end end NuaNgay," +
@@ -199,7 +199,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 search += $" and (MaNhanVien like '%{txt_search.Text}%' or TenNhanVien like '%{txt_search.Text}%') ";
             }
-            if (cbo_trangthai.ComboBox.SelectedValue.ToString() != "0")
+            if (cbo_trangthai.ComboBox.SelectedValue != null && cbo_trangthai.ComboBox.SelectedValue.ToString() != "0")
             {
                 search += $" and IDTrangThai = '{cbo_trangthai.ComboBox.SelectedValue}' ";
             }
@@ -227,8 +227,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
                     JOIN mst_LoaiPhep g ON g.MaLoaiPhep = f.LoaiPhepNghi
                     LEFT JOIN tbl_NhanVien i ON f.MaNhanVien = i.MaNhanVien
                     LEFT JOIN sys_AllType h ON f.Id_TrangThai = h.TypeId
-                    WHERE f.nam = {cbo_year.Text} AND f.del_flg = 0 " +
-                    (chk_TheoNam.Checked == false ? $" and month(f.NgayNghi) = {cbo_Thang.Text} " : "") +
+                    WHERE f.nam = '{cbo_year.Text}' AND f.del_flg = 0 " +
+                    (chk_TheoNam.Checked == false ? $" and month(f.NgayNghi) = '{cbo_Thang.Text}' " : "") +
                 $@")
                 SELECT Id, MaNhanVien, TenNhanVien, TenKhuVuc, TenChucVu, TrangThai, NgayNghi, NuaNgay, KyHieu, SoNgay, MaChucVu,
                 IDTrangThai, TrangThaiPhieu, NguoiXacNhan, ReportToReportTo
@@ -240,7 +240,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frm_annual_leave frm = new frm_annual_leave(this.idPermision);
+            frm_annual_leave frm = new frm_annual_leave(this);
             frm.edit = false;
             frm.ShowDialog();
         }
@@ -252,10 +252,15 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 if (dgv_annual_leave.CurrentRow.Cells["IDTrangThaiP"].Value.ToString().Contains("199"))
                 {
                     return;
+                }   
+                if(dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() == LoginInfo.ReportTo ||
+                   LoginInfo.ReportTo != "")
+                {
+                    return;
                 }
                 if (!CheckReportTo())
                 {
-                    frm_annual_leave frm = new frm_annual_leave(this.idPermision);
+                    frm_annual_leave frm = new frm_annual_leave(this);
                     frm.edit = true;
                     frm._id_nghi_phep_value = int.Parse(dgv_annual_leave.CurrentRow.Cells["id"].Value.ToString());
                     frm._ma_nhan_vien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
@@ -288,6 +293,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                     string sql = string.Format("update tbl_NghiPhepNam set del_flg = 1 , NguoiTao = '{1}' where id = '{0}'", dgv_annual_leave.CurrentRow.Cells["id"].Value, SQLHelper.sIdUser);
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
+                        load_data();
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }

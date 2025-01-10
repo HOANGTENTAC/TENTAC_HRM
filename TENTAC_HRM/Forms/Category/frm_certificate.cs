@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Forms.Main;
+using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
 {
@@ -27,7 +27,7 @@ namespace TENTAC_HRM.Forms.Category
             LoadComboboxNhanVien();
             LoadComboboxChungChi();
             LoadComboboxXepLoai();
-            if(edit == true)
+            if (edit == true)
             {
                 LoadData();
             }
@@ -44,7 +44,7 @@ namespace TENTAC_HRM.Forms.Category
             string sql = string.Empty;
             sql = $@"Select * from tbl_NhanVienChungChi where Id = {SQLHelper.rpI(_IdChungChi)}";
             DataTable dt = SQLHelper.ExecuteDt(sql);
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
                 cbo_ChungChi.SelectedValue = dt.Rows[0]["MaChungChi"].ToString();
                 txt_Truong.Text = dt.Rows[0]["TruongDaoTao"].ToString();
@@ -113,7 +113,7 @@ namespace TENTAC_HRM.Forms.Category
                     RJMessageBox.Show("Thêm thông tin thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -127,7 +127,7 @@ namespace TENTAC_HRM.Forms.Category
                 NgayNhanBang = {SQLHelper.rpDT(_NgayNhanBang)}, XepLoai = {SQLHelper.rpStr(_XepLoai)}, GhiChu = {SQLHelper.rpStr(_GhiChu)}, 
                 NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(_NguoiCapNhat)}
                 Where Id = {SQLHelper.rpI(_IdChungChi)}";
-                if(SQLHelper.ExecuteSql(sql) ==1 )
+                if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

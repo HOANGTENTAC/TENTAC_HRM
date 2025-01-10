@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Forms.Main;
+using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
 {
@@ -141,7 +141,7 @@ namespace TENTAC_HRM.Forms.Category
                 {SQLHelper.rpDT(_TuNgay)}, {SQLHelper.rpDT(_DenNgay)}, {SQLHelper.rpI(_Id_Tinh)}, {SQLHelper.rpStr(_NoiThucHien)}, 
                 {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(_NguoiTao)}, 0)";
                 int id = SQLHelper.ExecuteScalarSql(sql);
-                if(id != 0)
+                if (id != 0)
                 {
                     if (chk_Active.Checked == true)
                     {

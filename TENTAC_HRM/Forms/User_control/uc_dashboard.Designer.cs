@@ -36,9 +36,17 @@
             this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgaySinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grb_SinhNhat = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_ExportSinhNhat = new DevComponents.DotNetBar.ButtonX();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SinhNhat)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.grb_SinhNhat.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -68,7 +76,7 @@
             this.dgv_SinhNhat.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_SinhNhat.Location = new System.Drawing.Point(3, 19);
             this.dgv_SinhNhat.Name = "dgv_SinhNhat";
-            this.dgv_SinhNhat.Size = new System.Drawing.Size(676, 409);
+            this.dgv_SinhNhat.Size = new System.Drawing.Size(677, 314);
             this.dgv_SinhNhat.TabIndex = 0;
             this.dgv_SinhNhat.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_SinhNhat_RowPostPaint);
             // 
@@ -100,28 +108,97 @@
             this.NgaySinh.Name = "NgaySinh";
             this.NgaySinh.Width = 150;
             // 
-            // groupBox1
+            // grb_SinhNhat
             // 
-            this.groupBox1.Controls.Add(this.dgv_SinhNhat);
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(682, 431);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Nhân viên có sinh nhật trong tháng";
+            this.grb_SinhNhat.Controls.Add(this.dgv_SinhNhat);
+            this.grb_SinhNhat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grb_SinhNhat.Location = new System.Drawing.Point(0, 0);
+            this.grb_SinhNhat.Name = "grb_SinhNhat";
+            this.grb_SinhNhat.Size = new System.Drawing.Size(683, 336);
+            this.grb_SinhNhat.TabIndex = 1;
+            this.grb_SinhNhat.TabStop = false;
+            this.grb_SinhNhat.Text = "Nhân viên có sinh nhật trong tháng";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1378, 689);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btn_ExportSinhNhat);
+            this.panel1.Controls.Add(this.grb_SinhNhat);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(683, 338);
+            this.panel1.TabIndex = 3;
+            // 
+            // btn_ExportSinhNhat
+            // 
+            this.btn_ExportSinhNhat.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_ExportSinhNhat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ExportSinhNhat.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btn_ExportSinhNhat.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_ExportSinhNhat.Location = new System.Drawing.Point(580, 335);
+            this.btn_ExportSinhNhat.Name = "btn_ExportSinhNhat";
+            this.btn_ExportSinhNhat.Size = new System.Drawing.Size(102, 23);
+            this.btn_ExportSinhNhat.TabIndex = 2;
+            this.btn_ExportSinhNhat.Text = "Xuất Excel";
+            this.btn_ExportSinhNhat.Click += new System.EventHandler(this.btn_ExportSinhNhat_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(692, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(683, 338);
+            this.panel2.TabIndex = 4;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(692, 347);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(683, 339);
+            this.flowLayoutPanel1.TabIndex = 5;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 347);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(683, 339);
+            this.flowLayoutPanel2.TabIndex = 6;
             // 
             // uc_dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "uc_dashboard";
-            this.Size = new System.Drawing.Size(987, 613);
+            this.Size = new System.Drawing.Size(1378, 689);
             this.Load += new System.EventHandler(this.uc_dashboard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_SinhNhat)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.grb_SinhNhat.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -129,10 +206,16 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_SinhNhat;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grb_SinhNhat;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenPhongBan;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgaySinh;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private DevComponents.DotNetBar.ButtonX btn_ExportSinhNhat;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

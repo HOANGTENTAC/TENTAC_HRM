@@ -3,13 +3,12 @@ using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Mst_Add_Data;
-namespace TENTAC_HRM.Forms.User_control
+namespace TENTAC_HRM.Forms.NhanSu
 {
     public partial class uc_staff_religion : UserControl
     {
@@ -87,7 +86,7 @@ namespace TENTAC_HRM.Forms.User_control
                 }
                 LoadData();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

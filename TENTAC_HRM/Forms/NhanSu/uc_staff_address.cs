@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 
-namespace TENTAC_HRM.Forms.User_control
+namespace TENTAC_HRM.Forms.NhanSu
 {
     public partial class uc_staff_address : UserControl
     {

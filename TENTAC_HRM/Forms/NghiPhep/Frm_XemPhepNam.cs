@@ -39,7 +39,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
             DataTable data = new DataTable();
             string sql = "select f.id,a.MaNhanVien,a.TenNhanVien,d.TenKhuVuc,c.TenChucVu," +
                          "e.typename as TrangThai,f.NgayNghi,g.TenLoaiPhep,f.GhiChu,g.LoaiPhep," +
-                         "f.SoNgay,f.NgayTao,f.NuaNgay,g.KyHieu  " +
+                         "f.SoNgay,f.NgayTao,f.NuaNgay,g.KyHieu,f.Id_TrangThai,b.Ten," +
+                         "(select Ten from tbl_NhanVien where MaNhanVien = case when f.NguoiXacNhan != b.ReportTo then b.ReportTo else '' end) quanly1," +
+                         "(select (select Ten from tbl_NhanVien where MaNhanVien = case when f.NguoiXacNhan != ReportTo.ReportTo then f.NguoiXacNhan else '' end) from tbl_NhanVien ReportTo where MaNhanVien = case when f.NguoiXacNhan != b.ReportTo then b.ReportTo else '' end) quanly2 " +
                          "from MITACOSQL.dbo.NhanVien a " +
                          "join tbl_NhanVien b on a.MaNhanVien = b.MaNhanVien " +
                          //"join nhanvien_phongban b on a.manhanvien = b.ma_nhan_vien and is_active = 1 " +
@@ -127,10 +129,10 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                         $"<td class='borderbottomdotted'>{DateTime.Parse(listnew["NgayTao"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                         $"<td class='borderbottomdotted'>{listnew["KyHieu"].ToString()}</td> \r\n" +
-                                        $"<td class='borderbottomdotted'></td> \r\n" +
-                                        $"<td class='borderbottomdotted'></td> \r\n" +
-                                        $"<td class='borderbottomdotted'></td> \r\n" +
-                                        $"<td class='borderbottomdotted'></td> \r\n" +
+                                        $"<td class='borderbottomdotted'>{listnew["Ten"].ToString()}</td> \r\n" +
+                                        $"<td class='borderbottomdotted'>{(listnew["quanly1"].ToString() != "" ? listnew["quanly1"].ToString() : "")}</td> \r\n" +
+                                        $"<td class='borderbottomdotted'>{(listnew["quanly2"].ToString() != "" ? listnew["quanly2"].ToString() : "")}</td> \r\n" +
+                                        $"<td class='borderbottomdotted'>{(listnew["Id_TrangThai"].ToString() == "199" ? "Tâm" : "")}</td> \r\n" +
                                     "</tr> \r\n";
                                 phepnam.Remove(listnew);
                             }
@@ -144,10 +146,10 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                             $"<td class='bordertopdotted'>{(dr != null ? DateTime.Parse(dr["NgayTao"].ToString()).ToString("dd/MM/yyyy") : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'>{(dr != null ? DateTime.Parse(dr["NgayNghi"].ToString()).ToString("dd/MM/yyyy") : "")}</td> \r\n" +
                                             $"<td class='bordertopdotted'>{(dr != null ? dr["KyHieu"].ToString() : "")}</td> \r\n" +
-                                            $"<td class='bordertopdotted'></td> \r\n" +
-                                            $"<td class='bordertopdotted'></td> \r\n" +
-                                            $"<td class='bordertopdotted'></td> \r\n" +
-                                            $"<td class='bordertopdotted'></td> \r\n" +
+                                            $"<td class='bordertopdotted'>{(dr != null ? dr["Ten"].ToString() : "")}</td> \r\n" +
+                                            $"<td class='bordertopdotted'>{(dr["quanly1"].ToString() != "" ? dr["quanly1"].ToString() : "")}</td> \r\n" +
+                                            $"<td class='bordertopdotted'>{(dr["quanly2"].ToString() != "" ? dr["quanly2"].ToString() : "")}</td> \r\n" +
+                                            $"<td class='bordertopdotted'>{(dr["Id_TrangThai"].ToString() == "199" ? "Tâm" : "")}</td> \r\n" +
                                         "</tr> \r\n";
                                     phepnam.Remove(dr);
                                 }
@@ -177,10 +179,10 @@ namespace TENTAC_HRM.Forms.NghiPhep
                                 $"<td>{DateTime.Parse(listnew["NgayTao"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                 $"<td>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
                                 $"<td>{listnew["KyHieu"].ToString()}</td> \r\n" +
-                                $"<td></td> \r\n" +
-                                $"<td></td> \r\n" +
-                                $"<td></td> \r\n" +
-                                $"<td></td> \r\n" +
+                                $"<td>{listnew["Ten"].ToString()}</td> \r\n" +
+                                $"<td>{(listnew["quanly1"].ToString() != "" ? listnew["quanly1"].ToString() : "")}</td> \r\n" +
+                                $"<td>{(listnew["quanly2"].ToString() != "" ? listnew["quanly2"].ToString() : "")}</td> \r\n" +
+                                $"<td>{(listnew["Id_TrangThai"].ToString() == "199" ? "Tâm" : "")}</td> \r\n" +
                             "</tr> \r\n";
                         phepnam.Remove(listnew);
                     }
@@ -258,7 +260,26 @@ namespace TENTAC_HRM.Forms.NghiPhep
             string htmlmatsau = "";
             for (int i = 1; i <= 25;i++)
             {
-                htmlmatsau += "<tr> \r\n" +
+                if (phepkhac.Count > 0)
+                {
+                    var listnew = phepkhac[0];
+                    int thang = DateTime.Parse(listnew["NgayNghi"].ToString()).Month;
+                    htmlmatsau += "<tr> \r\n" +
+                        $"<td>{i}</td> \r\n" +
+                        $"<td>{DateTime.Parse(listnew["NgayNghi"].ToString()).ToString("dd/MM/yyyy")}</td> \r\n" +
+                        $"<td>{listnew["KyHieu"].ToString()}</td> \r\n" +
+                        $"<td>{listnew["SoNgay"].ToString()}</td> \r\n" +
+                        $"<td>{listnew["GhiChu"].ToString()}</td> \r\n" +
+                        $"<td>{listnew["Ten"].ToString()}</td> \r\n" +
+                        $"<td>{(listnew["quanly1"].ToString() != "" ? listnew["quanly1"].ToString() : "")}</td> \r\n" +
+                        $"<td>{(listnew["quanly2"].ToString() != "" ? listnew["quanly2"].ToString() : "")}</td> \r\n" +
+                        $"<td>{(listnew["Id_TrangThai"].ToString() == "199" ? "Tâm" : "")}</td> \r\n" +
+                    "</tr> \r\n";
+                    phepkhac.Remove(listnew);
+                }
+                else
+                {
+                    htmlmatsau += "<tr> \r\n" +
                         $"<td>{i}</td> \r\n" +
                         $"<td></td> \r\n" +
                         $"<td></td> \r\n" +
@@ -269,6 +290,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                         $"<td></td> \r\n" +
                         $"<td></td> \r\n" +
                     "</tr> \r\n";
+                }
             }
             html_template = html_template.Replace("[MatTruoc]", html);
             html_template = html_template.Replace("[MatSau]", htmlmatsau);

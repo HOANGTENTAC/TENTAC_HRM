@@ -9,6 +9,7 @@ using TENTAC_HRM.Properties;
 using TENTAC_HRM.Forms.Search;
 using TENTAC_HRM.Forms.User_control;
 using TENTAC_HRM.Forms.Main;
+using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
 {

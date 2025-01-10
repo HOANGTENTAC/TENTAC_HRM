@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Forms.Main;
+using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
 {
@@ -53,8 +52,8 @@ namespace TENTAC_HRM.Forms.Category
             string sql = string.Format("select a.id_cong_tac,b.ten_phong_ban as cong_ty,c.ten_phong_ban as khu_vuc,d.ten_phong_ban as phong_ban,e.ten_chuc_vu as chuc_vu,a.tu_ngay,a.den_ngay,case when a.is_active = 1 then 'true' else 'false' end as is_active " +
                         "from nhanvien_phongban a " +
                         "left join phong_ban b on a.ma_cong_ty = b.ma_phong_ban and id_loai_phong_ban = 1 " +
-                        "left join phong_ban c on c.ma_phong_ban = a.ma_khu_vuc "+
-                        "left join phong_ban d on d.ma_phong_ban = a.ma_phong_ban "+
+                        "left join phong_ban c on c.ma_phong_ban = a.ma_khu_vuc " +
+                        "left join phong_ban d on d.ma_phong_ban = a.ma_phong_ban " +
                         "left join chuc_vu e on e.ma_chuc_vu = a.ma_chuc_vu " +
                         "where a.ma_nhan_vien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
             DataTable dt = new DataTable();
@@ -322,7 +321,7 @@ namespace TENTAC_HRM.Forms.Category
             catch (Exception ex)
             {
 
-                RJMessageBox.Show(ex.Message,"Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                RJMessageBox.Show(ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

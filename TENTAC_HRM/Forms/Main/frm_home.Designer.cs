@@ -127,7 +127,7 @@
             this.tb_main.Name = "tb_main";
             this.tb_main.SelectedIndex = 0;
             this.tb_main.ShowToolTips = true;
-            this.tb_main.Size = new System.Drawing.Size(1037, 783);
+            this.tb_main.Size = new System.Drawing.Size(1015, 783);
             this.tb_main.TabIndex = 1;
             this.tb_main.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tb_main_DrawItem);
             this.tb_main.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_main_MouseClick);
@@ -139,7 +139,7 @@
             this.tb_dashboard.Location = new System.Drawing.Point(4, 22);
             this.tb_dashboard.Name = "tb_dashboard";
             this.tb_dashboard.Padding = new System.Windows.Forms.Padding(3);
-            this.tb_dashboard.Size = new System.Drawing.Size(1029, 757);
+            this.tb_dashboard.Size = new System.Drawing.Size(1007, 757);
             this.tb_dashboard.TabIndex = 0;
             this.tb_dashboard.Text = "Bàn làm việc";
             this.tb_dashboard.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             this.pl_dashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_dashboard.Location = new System.Drawing.Point(3, 3);
             this.pl_dashboard.Name = "pl_dashboard";
-            this.pl_dashboard.Size = new System.Drawing.Size(1023, 751);
+            this.pl_dashboard.Size = new System.Drawing.Size(1001, 751);
             this.pl_dashboard.TabIndex = 0;
             // 
             // timer1
@@ -187,9 +187,9 @@
             this.panel7.Controls.Add(this.tb_main);
             this.panel7.Controls.Add(this.statusStrip1);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(203, 0);
+            this.panel7.Location = new System.Drawing.Point(225, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1037, 805);
+            this.panel7.Size = new System.Drawing.Size(1015, 805);
             this.panel7.TabIndex = 7;
             // 
             // statusStrip1
@@ -200,7 +200,7 @@
             this.ts_date});
             this.statusStrip1.Location = new System.Drawing.Point(0, 783);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1037, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1015, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -236,11 +236,11 @@
             this.pl_menu_left.Controls.Add(this.panel2);
             this.pl_menu_left.Dock = System.Windows.Forms.DockStyle.Left;
             this.pl_menu_left.Location = new System.Drawing.Point(0, 0);
-            this.pl_menu_left.MaximumSize = new System.Drawing.Size(203, 0);
+            this.pl_menu_left.MaximumSize = new System.Drawing.Size(225, 0);
             this.pl_menu_left.MinimumSize = new System.Drawing.Size(63, 0);
             this.pl_menu_left.Name = "pl_menu_left";
             this.pl_menu_left.Padding = new System.Windows.Forms.Padding(1);
-            this.pl_menu_left.Size = new System.Drawing.Size(203, 805);
+            this.pl_menu_left.Size = new System.Drawing.Size(225, 805);
             this.pl_menu_left.TabIndex = 6;
             // 
             // pl_MenuLeft
@@ -250,7 +250,7 @@
             this.pl_MenuLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_MenuLeft.Location = new System.Drawing.Point(1, 29);
             this.pl_MenuLeft.Name = "pl_MenuLeft";
-            this.pl_MenuLeft.Size = new System.Drawing.Size(201, 775);
+            this.pl_MenuLeft.Size = new System.Drawing.Size(223, 775);
             this.pl_MenuLeft.TabIndex = 0;
             // 
             // panel2
@@ -261,7 +261,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(201, 28);
+            this.panel2.Size = new System.Drawing.Size(223, 28);
             this.panel2.TabIndex = 0;
             // 
             // btn_show_menu_left
@@ -272,7 +272,7 @@
             this.btn_show_menu_left.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_show_menu_left.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.btn_show_menu_left.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_show_menu_left.Location = new System.Drawing.Point(170, 0);
+            this.btn_show_menu_left.Location = new System.Drawing.Point(192, 0);
             this.btn_show_menu_left.Name = "btn_show_menu_left";
             this.btn_show_menu_left.Size = new System.Drawing.Size(31, 28);
             this.btn_show_menu_left.TabIndex = 0;
@@ -287,10 +287,10 @@
             this.lbl_title_menu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.lbl_title_menu.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_title_menu.Location = new System.Drawing.Point(0, 0);
-            this.lbl_title_menu.MaximumSize = new System.Drawing.Size(175, 0);
+            this.lbl_title_menu.MaximumSize = new System.Drawing.Size(192, 0);
             this.lbl_title_menu.MinimumSize = new System.Drawing.Size(0, 28);
             this.lbl_title_menu.Name = "lbl_title_menu";
-            this.lbl_title_menu.Size = new System.Drawing.Size(175, 28);
+            this.lbl_title_menu.Size = new System.Drawing.Size(192, 28);
             this.lbl_title_menu.TabIndex = 0;
             this.lbl_title_menu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 

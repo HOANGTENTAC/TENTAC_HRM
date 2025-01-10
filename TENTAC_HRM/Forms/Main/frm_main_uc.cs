@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using TENTAC_HRM.Forms.NhanSu;
 using TENTAC_HRM.Forms.User_control;
 
 namespace TENTAC_HRM.Forms.Main

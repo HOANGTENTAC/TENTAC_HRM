@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Toolkit;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
@@ -10,14 +11,13 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Custom;
+using TENTAC_HRM.Forms.Category;
+using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Model;
 using TENTAC_HRM.Properties;
-using TENTAC_HRM.Forms.User_control;
-using ComponentFactory.Krypton.Toolkit;
 
-namespace TENTAC_HRM.Forms.Main
+namespace TENTAC_HRM.Forms.NhanSu
 {
     public partial class frm_personnel : KryptonForm
     {

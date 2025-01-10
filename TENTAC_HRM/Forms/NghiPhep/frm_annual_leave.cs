@@ -18,14 +18,14 @@ namespace TENTAC_HRM.Forms.NghiPhep
         public int _id_trangthai { get; set; }
         public int[] idPermision { get; set; }
         DataProvider provider = new DataProvider();
-        private Frm_NghiPhep uc_nghiphep;
+        public Frm_NghiPhep uc_nghiphep;
 
-        public frm_annual_leave(int[] permissions = null)
+        public frm_annual_leave(Frm_NghiPhep _nghiphep = null)
         {
             InitializeComponent();
-            idPermision = permissions;
-            uc_nghiphep = new Frm_NghiPhep(idPermision);
-
+            //idPermision = permissions;
+            //uc_nghiphep = new Frm_NghiPhep(idPermision);
+            uc_nghiphep = _nghiphep;
             //if (LoginInfo.LoaiUser == "NhanVien")
             //{
             //    chk_ToTruong.Checked = false;
@@ -181,6 +181,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 InsertData();
             }
             load_nhanvien();
+            uc_nghiphep._year = cbo_Nam.Text;
+            uc_nghiphep._month = cbo_Thang.Text;
             uc_nghiphep.load_data();
             //this.Close();
         }
