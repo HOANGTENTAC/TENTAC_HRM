@@ -43,8 +43,8 @@ namespace TENTAC_HRM.Forms.Main
         public frm_home()
         {
             InitializeComponent();
-            MaximizeWindow();
             load_menu();
+            MaximizeWindow();
         }
 
         public IconChar GetUIFontAwesome(string strIcon)
@@ -102,7 +102,7 @@ namespace TENTAC_HRM.Forms.Main
                 left join mst_from b on a.FromName = b.FrmName 
                 inner join mst_UserRoles ur on a.Id = ur.Id_Menu and ur.del_flg = 0
                 where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} 
-                group by a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber, b.FrmType, b.FrmText
+                group by a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber, b.FrmType, b.FrmText,a.OpenSource 
                 order by a.MenuNumber desc";
                 dt_MenuChild = SQLHelper.ExecuteDt(sql);
             }
@@ -129,10 +129,10 @@ namespace TENTAC_HRM.Forms.Main
             };
             IconButton btnlogout = new IconButton()
             {
-                IconColor = Color.FromArgb(245, 245, 245),
+                IconColor = Colors.ColorRGB8,
                 Tag = 0,
                 Name = "LogOut",
-                ForeColor = Color.FromArgb(245, 245, 245),
+                ForeColor = Colors.ColorRGB8,
                 ImageAlign = ContentAlignment.MiddleRight,
                 Height = 30,
                 Font = new Font("Arial", emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
@@ -144,8 +144,8 @@ namespace TENTAC_HRM.Forms.Main
             };
             btnlogout.IconChar = IconChar.RightFromBracket;
             btnlogout.IconSize = 25;
-            btnlogout.IconColor = Color.FromArgb(245, 245, 245);
-            btnlogout.FlatAppearance.BorderColor = Color.FromArgb(18, 39, 75);
+            btnlogout.IconColor = Colors.ColorRGB8;
+            btnlogout.FlatAppearance.BorderColor = Colors.ColorRGB9;
 
             btnlogout.Click += BtnLogOut_Click;
             panelLogOut.Controls.Add(btnlogout);
@@ -170,14 +170,14 @@ namespace TENTAC_HRM.Forms.Main
                 {
                     IconButton btn_chil = new IconButton()
                     {
-                        IconColor = Color.FromArgb(211, 211, 211),
+                        IconColor = Colors.ColorRGB10,
                         IconSize = 25,
                         TextImageRelation = TextImageRelation.ImageBeforeText,
                         IconChar = GetUIFontAwesome(itemchil["MenuImage"].ToString()),
                         Padding = new Padding(10, 0, 0, 0),
                         Tag = itemchil["Id"].ToString(),
                         Name = itemchil["MenuName"].ToString(),
-                        ForeColor = Color.FromArgb(211, 211, 211),
+                        ForeColor = Colors.ColorRGB10,
                         ImageAlign = ContentAlignment.MiddleLeft,
                         Height = 30,
                         //Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
@@ -189,10 +189,10 @@ namespace TENTAC_HRM.Forms.Main
                         UseVisualStyleBackColor = false,
                     };
 
-                    btn_chil.MouseEnter += (s, e) => btn_chil.ForeColor = Color.FromArgb(245, 245, 245);
-                    btn_chil.MouseLeave += (s, e) => btn_chil.ForeColor = Color.FromArgb(211, 211, 211);
+                    btn_chil.MouseEnter += (s, e) => btn_chil.ForeColor = Colors.ColorRGB8;
+                    btn_chil.MouseLeave += (s, e) => btn_chil.ForeColor = Colors.ColorRGB10;
 
-                    btn_chil.FlatAppearance.BorderColor = Color.FromArgb(18, 39, 75);
+                    btn_chil.FlatAppearance.BorderColor = Colors.ColorRGB9;
                     btn_chil.Click += BtnChil_Click;
                     panel.Controls.Add(btn_chil);
                     Height += 30;
@@ -201,10 +201,10 @@ namespace TENTAC_HRM.Forms.Main
 
                 IconButton btn = new IconButton()
                 {
-                    IconColor = Color.FromArgb(245, 245, 245),
+                    IconColor = Colors.ColorRGB8,
                     Tag = item["Id"].ToString(),
                     Name = item["MenuName"].ToString(),
-                    ForeColor = Color.FromArgb(245, 245, 245),
+                    ForeColor = Colors.ColorRGB8,
                     ImageAlign = ContentAlignment.MiddleRight,
                     Height = 30,
                     //Font = new Font(Font.FontFamily, emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
@@ -221,10 +221,10 @@ namespace TENTAC_HRM.Forms.Main
                     // btn.Image = Properties.Resources.up_arrow;
                     btn.IconChar = IconChar.ChevronDown;
                     btn.IconSize = 12;
-                    btn.IconColor = Color.FromArgb(245, 245, 245);
+                    btn.IconColor = Colors.ColorRGB8;
                 }
 
-                btn.FlatAppearance.BorderColor = Color.FromArgb(18, 39, 75);
+                btn.FlatAppearance.BorderColor = Colors.ColorRGB9;
 
                 btn.Click += Btn_Click;
                 panel.Controls.Add(btn);
@@ -281,7 +281,7 @@ namespace TENTAC_HRM.Forms.Main
                 argsDic = ParamUtil.ConvertParamToDictionary(SplitUtil.SplitStringWithSeparator(startParam, ' '));
                 string startParameter = "";
                 string param;
-                // 半角スペースを含む起動パラメータをダブルクオーテーションで囲む
+                // Enclose startup parameters that include spaces in double quotes.
                 foreach (KeyValuePair<string, string> item in argsDic)
                 {
                     startParameter = startParameter + item.Key + " " + SetDoublequotation(item.Value, 0) + " ";
@@ -289,14 +289,6 @@ namespace TENTAC_HRM.Forms.Main
                 // ClickOnceでインストールされたアプリケーションを起動する場合はダブルクォーテーションで囲む
                 param = startParameter;
                 Process.Start(menuStartStrings, param);
-
-                //string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                //var menuStartStrings = @"D:\Project\XoaDuLieuMayChamCong\XoaDuLieuMayChamCong\bin\Debug\勤怠管理.exe";
-                //Process p = new Process();
-                //p.StartInfo.FileName = menuStartStrings;
-                //p.StartInfo.Arguments = $"-tangca {name_parent["FromName"].ToString()}";
-                //p.Start();
-                //p.WaitForExit();
             }
 
             if (_btn_show_menu_left == true)
@@ -312,7 +304,7 @@ namespace TENTAC_HRM.Forms.Main
             {
                 Open_From(sender, e, false);
             }
-            ActivateButton(sender, RGBColors.color1);
+            ActivateButton(sender, Colors.ColorRGB1);
             Cursor.Current = Cursors.Default;
         }
         private string SetDoublequotation(string parm, int co_kubun)
@@ -333,25 +325,25 @@ namespace TENTAC_HRM.Forms.Main
                 return parm;
             }
         }
-        private struct RGBColors
-        {
-            public static Color color1 = Color.FromArgb(172, 126, 241);
-            public static Color color2 = Color.FromArgb(249, 118, 176);
-            public static Color color3 = Color.FromArgb(253, 138, 114);
-            public static Color color4 = Color.FromArgb(95, 77, 221);
-            public static Color color5 = Color.FromArgb(249, 88, 155);
-            public static Color color6 = Color.FromArgb(24, 161, 251);
-        }
+        //private struct RGBColors
+        //{
+        //    public static Color color1 = Color.FromArgb(172, 126, 241);
+        //    public static Color color2 = Color.FromArgb(249, 118, 176);
+        //    public static Color color3 = Color.FromArgb(253, 138, 114);
+        //    public static Color color4 = Color.FromArgb(95, 77, 221);
+        //    public static Color color5 = Color.FromArgb(249, 88, 155);
+        //    public static Color color6 = Color.FromArgb(24, 161, 251);
+        //}
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null && isMinisize == false)
             {
                 DisableButton();
                 currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Color.FromArgb(105, 105, 105);
-                currentBtn.ForeColor = Color.FromArgb(245, 245, 245);
+                currentBtn.BackColor = Colors.ColorRGB7;
+                currentBtn.ForeColor = Colors.ColorRGB8;
                 currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-                currentBtn.IconColor = Color.FromArgb(245, 245, 245);
+                currentBtn.IconColor = Colors.ColorRGB8;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
                 currentBtn.ImageAlign = ContentAlignment.MiddleCenter;
             }
@@ -359,10 +351,10 @@ namespace TENTAC_HRM.Forms.Main
             {
                 DisableButton();
                 currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Color.FromArgb(105, 105, 105);
-                currentBtn.ForeColor = Color.FromArgb(245, 245, 245);
+                currentBtn.BackColor = Colors.ColorRGB7;
+                currentBtn.ForeColor = Colors.ColorRGB8;
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
-                currentBtn.IconColor = Color.FromArgb(245, 245, 245);
+                currentBtn.IconColor = Colors.ColorRGB8;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
@@ -371,10 +363,10 @@ namespace TENTAC_HRM.Forms.Main
         {
             if (currentBtn != null)
             {
-                currentBtn.BackColor = Color.FromArgb(18, 39, 75);
-                currentBtn.ForeColor = Color.FromArgb(211, 211, 211);
+                currentBtn.BackColor = Colors.ColorRGB9;
+                currentBtn.ForeColor = Colors.ColorRGB10;
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
-                currentBtn.IconColor = Color.FromArgb(211, 211, 211);
+                currentBtn.IconColor = Colors.ColorRGB10;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
@@ -569,8 +561,8 @@ namespace TENTAC_HRM.Forms.Main
         private void MaximizeWindow()
         {
             maximized = true;
-            var rectangle = Screen.FromControl(this).Bounds;
-            Size = new Size(rectangle.Width, rectangle.Height);
+            //var rectangle = Screen.FromControl(this).Bounds;
+            //Size = new Size(rectangle.Width, rectangle.Height);
             Location = new Point(0, 0);
             Rectangle workingRectangle = Screen.PrimaryScreen.WorkingArea;
             this.Size = new Size(workingRectangle.Width, workingRectangle.Height);
@@ -783,7 +775,7 @@ namespace TENTAC_HRM.Forms.Main
                                     btn.Text = "LogOut";
                                     btn.IconChar = IconChar.RightFromBracket;
                                     btn.IconSize = 25;
-                                    btn.IconColor = Color.FromArgb(245, 245, 245);
+                                    btn.IconColor = Colors.ColorRGB8;
                                     btn.ImageAlign = ContentAlignment.MiddleRight;
 
                                 }
@@ -803,7 +795,7 @@ namespace TENTAC_HRM.Forms.Main
                                         btn.Text = parent["MenuText"].ToString();
                                         btn.IconChar = countChil >= 1 ? IconChar.ChevronDown : IconChar.None;
                                         btn.IconSize = 12;
-                                        btn.IconColor = Color.FromArgb(245, 245, 245);
+                                        btn.IconColor = Colors.ColorRGB8;
                                         btn.ImageAlign = ContentAlignment.MiddleRight;
                                     }
                                 }

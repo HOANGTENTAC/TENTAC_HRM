@@ -28,26 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IDTrangThaiP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReportToReportTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenKhuVuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayNghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NuaNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiPhep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NguoiXacNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
@@ -66,6 +49,23 @@
             this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.chk_TheoNam = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDTrangThaiP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReportToReportTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenKhuVuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayNghi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NuaNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiPhep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiXacNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_annual_leave)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -102,14 +102,14 @@
             this.MaChucVu,
             this.NguoiXacNhan,
             this.TrangThaiPhieu});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_annual_leave.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_annual_leave.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_annual_leave.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_annual_leave.Location = new System.Drawing.Point(0, 38);
@@ -117,129 +117,6 @@
             this.dgv_annual_leave.Size = new System.Drawing.Size(1279, 464);
             this.dgv_annual_leave.TabIndex = 4;
             this.dgv_annual_leave.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_annual_leave_CellClick);
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "Column1";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            this.id.Width = 88;
-            // 
-            // IDTrangThaiP
-            // 
-            this.IDTrangThaiP.DataPropertyName = "IDTrangThai";
-            this.IDTrangThaiP.HeaderText = "IDTrangThaiP";
-            this.IDTrangThaiP.Name = "IDTrangThaiP";
-            this.IDTrangThaiP.Visible = false;
-            // 
-            // ReportToReportTo
-            // 
-            this.ReportToReportTo.DataPropertyName = "ReportToReportTo";
-            this.ReportToReportTo.HeaderText = "ReportToReportTo";
-            this.ReportToReportTo.Name = "ReportToReportTo";
-            this.ReportToReportTo.Visible = false;
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Width = 35;
-            // 
-            // MaNhanVien
-            // 
-            this.MaNhanVien.DataPropertyName = "MaNhanVien";
-            this.MaNhanVien.HeaderText = "Mã nhân viên";
-            this.MaNhanVien.Name = "MaNhanVien";
-            this.MaNhanVien.Width = 118;
-            // 
-            // TenNhanVien
-            // 
-            this.TenNhanVien.DataPropertyName = "TenNhanVien";
-            this.TenNhanVien.HeaderText = "Họ tên";
-            this.TenNhanVien.Name = "TenNhanVien";
-            this.TenNhanVien.Width = 200;
-            // 
-            // TenKhuVuc
-            // 
-            this.TenKhuVuc.DataPropertyName = "TenKhuVuc";
-            this.TenKhuVuc.HeaderText = "Đơn vị";
-            this.TenKhuVuc.Name = "TenKhuVuc";
-            this.TenKhuVuc.Width = 73;
-            // 
-            // TenChucVu
-            // 
-            this.TenChucVu.DataPropertyName = "TenChucVu";
-            this.TenChucVu.HeaderText = "Chức vụ";
-            this.TenChucVu.Name = "TenChucVu";
-            this.TenChucVu.Width = 84;
-            // 
-            // TrangThai
-            // 
-            this.TrangThai.DataPropertyName = "TrangThai";
-            this.TrangThai.HeaderText = "Trạng thái";
-            this.TrangThai.Name = "TrangThai";
-            this.TrangThai.Visible = false;
-            this.TrangThai.Width = 98;
-            // 
-            // NgayNghi
-            // 
-            this.NgayNghi.DataPropertyName = "NgayNghi";
-            this.NgayNghi.HeaderText = "Ngày nghỉ";
-            this.NgayNghi.Name = "NgayNghi";
-            this.NgayNghi.Width = 97;
-            // 
-            // NuaNgay
-            // 
-            this.NuaNgay.DataPropertyName = "NuaNgay";
-            this.NuaNgay.HeaderText = "Nghỉ nửa ngày";
-            this.NuaNgay.Name = "NuaNgay";
-            this.NuaNgay.Width = 125;
-            // 
-            // SoNgay
-            // 
-            this.SoNgay.DataPropertyName = "SoNgay";
-            this.SoNgay.HeaderText = "Số ngày";
-            this.SoNgay.Name = "SoNgay";
-            this.SoNgay.Width = 85;
-            // 
-            // LoaiPhep
-            // 
-            this.LoaiPhep.DataPropertyName = "KyHieu";
-            this.LoaiPhep.HeaderText = "Loại phép";
-            this.LoaiPhep.Name = "LoaiPhep";
-            this.LoaiPhep.Width = 96;
-            // 
-            // GhiChu
-            // 
-            this.GhiChu.DataPropertyName = "GhiChu";
-            this.GhiChu.HeaderText = "Nội dung";
-            this.GhiChu.Name = "GhiChu";
-            this.GhiChu.Width = 90;
-            // 
-            // MaChucVu
-            // 
-            this.MaChucVu.DataPropertyName = "MaChucVu";
-            this.MaChucVu.HeaderText = "Mã chức vụ";
-            this.MaChucVu.Name = "MaChucVu";
-            this.MaChucVu.Visible = false;
-            this.MaChucVu.Width = 105;
-            // 
-            // NguoiXacNhan
-            // 
-            this.NguoiXacNhan.DataPropertyName = "NguoiXacNhan";
-            this.NguoiXacNhan.HeaderText = "Người xác nhận";
-            this.NguoiXacNhan.Name = "NguoiXacNhan";
-            this.NguoiXacNhan.Width = 130;
-            // 
-            // TrangThaiPhieu
-            // 
-            this.TrangThaiPhieu.DataPropertyName = "TrangThaiPhieu";
-            this.TrangThaiPhieu.HeaderText = "Trạng thái phiếu";
-            this.TrangThaiPhieu.Name = "TrangThaiPhieu";
-            this.TrangThaiPhieu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TrangThaiPhieu.Width = 150;
             // 
             // panel2
             // 
@@ -339,6 +216,7 @@
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(57, 35);
             this.btn_add.Text = "Thêm";
+            this.btn_add.Visible = false;
             this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
             // 
             // btn_delete
@@ -348,6 +226,7 @@
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(47, 35);
             this.btn_delete.Text = "Xóa";
+            this.btn_delete.Visible = false;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_Search
@@ -405,6 +284,130 @@
             this.chk_TheoNam.Size = new System.Drawing.Size(117, 23);
             this.chk_TheoNam.TabIndex = 12;
             this.chk_TheoNam.Text = "Xem theo nam";
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "Column1";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            this.id.Width = 88;
+            // 
+            // IDTrangThaiP
+            // 
+            this.IDTrangThaiP.DataPropertyName = "IDTrangThai";
+            this.IDTrangThaiP.HeaderText = "IDTrangThaiP";
+            this.IDTrangThaiP.Name = "IDTrangThaiP";
+            this.IDTrangThaiP.Visible = false;
+            // 
+            // ReportToReportTo
+            // 
+            this.ReportToReportTo.DataPropertyName = "ReportToReportTo";
+            this.ReportToReportTo.HeaderText = "ReportToReportTo";
+            this.ReportToReportTo.Name = "ReportToReportTo";
+            this.ReportToReportTo.Visible = false;
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Visible = false;
+            this.edit_column.Width = 35;
+            // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.Name = "MaNhanVien";
+            this.MaNhanVien.Width = 118;
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Họ tên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            this.TenNhanVien.Width = 200;
+            // 
+            // TenKhuVuc
+            // 
+            this.TenKhuVuc.DataPropertyName = "TenKhuVuc";
+            this.TenKhuVuc.HeaderText = "Đơn vị";
+            this.TenKhuVuc.Name = "TenKhuVuc";
+            this.TenKhuVuc.Width = 73;
+            // 
+            // TenChucVu
+            // 
+            this.TenChucVu.DataPropertyName = "TenChucVu";
+            this.TenChucVu.HeaderText = "Chức vụ";
+            this.TenChucVu.Name = "TenChucVu";
+            this.TenChucVu.Width = 84;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.HeaderText = "Trạng thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.Visible = false;
+            this.TrangThai.Width = 98;
+            // 
+            // NgayNghi
+            // 
+            this.NgayNghi.DataPropertyName = "NgayNghi";
+            this.NgayNghi.HeaderText = "Ngày nghỉ";
+            this.NgayNghi.Name = "NgayNghi";
+            this.NgayNghi.Width = 97;
+            // 
+            // NuaNgay
+            // 
+            this.NuaNgay.DataPropertyName = "NuaNgay";
+            this.NuaNgay.HeaderText = "Nghỉ nửa ngày";
+            this.NuaNgay.Name = "NuaNgay";
+            this.NuaNgay.Width = 125;
+            // 
+            // SoNgay
+            // 
+            this.SoNgay.DataPropertyName = "SoNgay";
+            this.SoNgay.HeaderText = "Số ngày";
+            this.SoNgay.Name = "SoNgay";
+            this.SoNgay.Width = 85;
+            // 
+            // LoaiPhep
+            // 
+            this.LoaiPhep.DataPropertyName = "KyHieu";
+            this.LoaiPhep.HeaderText = "Loại phép";
+            this.LoaiPhep.Name = "LoaiPhep";
+            this.LoaiPhep.Width = 96;
+            // 
+            // GhiChu
+            // 
+            this.GhiChu.DataPropertyName = "GhiChu";
+            this.GhiChu.HeaderText = "Nội dung";
+            this.GhiChu.Name = "GhiChu";
+            this.GhiChu.Width = 90;
+            // 
+            // MaChucVu
+            // 
+            this.MaChucVu.DataPropertyName = "MaChucVu";
+            this.MaChucVu.HeaderText = "Mã chức vụ";
+            this.MaChucVu.Name = "MaChucVu";
+            this.MaChucVu.Visible = false;
+            this.MaChucVu.Width = 105;
+            // 
+            // NguoiXacNhan
+            // 
+            this.NguoiXacNhan.DataPropertyName = "NguoiXacNhan";
+            this.NguoiXacNhan.HeaderText = "Người xác nhận";
+            this.NguoiXacNhan.Name = "NguoiXacNhan";
+            this.NguoiXacNhan.Width = 130;
+            // 
+            // TrangThaiPhieu
+            // 
+            this.TrangThaiPhieu.DataPropertyName = "TrangThaiPhieu";
+            this.TrangThaiPhieu.HeaderText = "Trạng thái phiếu";
+            this.TrangThaiPhieu.Name = "TrangThaiPhieu";
+            this.TrangThaiPhieu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TrangThaiPhieu.Width = 150;
             // 
             // Frm_NghiPhep
             // 

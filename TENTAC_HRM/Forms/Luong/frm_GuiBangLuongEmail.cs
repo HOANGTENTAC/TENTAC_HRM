@@ -24,7 +24,7 @@ namespace TENTAC_HRM.Forms.Luong
 {
     public partial class frm_GuiBangLuongEmail : Form
     {
-        public frm_GuiBangLuongEmail()
+        public frm_GuiBangLuongEmail(int[] permissions = null)
         {
             InitializeComponent();
         }

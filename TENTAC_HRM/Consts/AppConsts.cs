@@ -14,7 +14,8 @@ namespace TENTAC_HRM.Consts
         public static string MaChamCong { get; set; }
         public static string MaPhongBan {get; set; }
         public static string ReportTo { get; set; }
-        public static List<QuyenSuDung> QuyenSuDungs { get; set; }
+        public static string Group { get; set; }
+        public static QuyenSuDung QuyenSuDungs { get; set; }
     }
     public class QuyenSuDung
     {
@@ -23,6 +24,6 @@ namespace TENTAC_HRM.Consts
         public bool Update { get; set; }
         public bool Delete { get; set; }
         public bool Import { get; set; }
-        public string Export { get; set; }
+        public bool Export { get; set; }
     }
 }

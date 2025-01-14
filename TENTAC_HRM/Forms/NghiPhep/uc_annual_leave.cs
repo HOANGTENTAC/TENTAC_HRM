@@ -41,6 +41,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             ToolTip ToolTip1 = new ToolTip();
             ToolTip1.SetToolTip(this.btn_edit, "Sửa");
             ToolTip1.SetToolTip(this.btn_refresh, "Refresh");
+            ToolTip1.SetToolTip(this.btn_Excel, "Xuất Excel");
 
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
@@ -53,25 +54,45 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_year.DisplayMember = "name";
             cbo_year.ValueMember = "id";
             cbo_year.SelectedValue = DateTime.Now.Year;
+
+            load_PhongBan();
             load_data(1);
             //LoadDGV();
+        }
+
+        private void load_PhongBan()
+        {
+            DataTable dt = new DataTable();
+            dt = provider.LoadPhongBan();
+            DataRow dr = dt.NewRow();
+            dr["id"] = "0";
+            dr["name"] = "Tất cả";
+            dt.Rows.InsertAt(dr, 0);
+            cbo_PhongBan.DataSource = dt;
+            cbo_PhongBan.DisplayMember = "name";
+            cbo_PhongBan.ValueMember = "id";
+            cbo_PhongBan.SelectedValue = "0";
         }
 
         public void load_data(int pageIndex, bool pageclick = false)
         {
             string sql = string.Format("select ROW_NUMBER() OVER(ORDER BY a.MaNhanVien ASC)AS rownumber,* Into ##tblTemp from fn_PhepNam({0}) a where 1=1", cbo_year.SelectedValue.ToString());
-            if (!string.IsNullOrEmpty(txt_search.Texts))
+            if (!string.IsNullOrEmpty(txt_search.Text))
             {
-                sql = sql + string.Format(" and HoTen like N''%{0}%'' or DonVi like N''%{0}%'' or ChucVu like N''%{0}%'' or MaNhanVien like ''%{0}%''", txt_search.Texts);
+                sql = sql + string.Format(" and HoTen like N''%{0}%'' or DonVi like N''%{0}%'' or ChucVu like N''%{0}%'' or MaNhanVien like ''%{0}%''", txt_search.Text);
             }
             if (LoginInfo.UserCd.ToUpper() != "ADMIN" && LoginInfo.UserCd.ToUpper() != "HR")
             {
                 sql += $" and (ReportTo = ''{LoginInfo.UserCd}'' or MaNhanVien = ''{LoginInfo.UserCd}'') ";
             }
+            if (cbo_PhongBan.SelectedValue.ToString() != "0")
+            {
+                sql += $" and MaPhongBan = ''{cbo_PhongBan.SelectedValue}'' ";
+            }
             dataTable = SQLHelper.ExecuteDs("getnhanvienpaging " + pageIndex + "," + PageSize + ",N'" + sql + "'");
             int recordCount = Convert.ToInt32(dataTable.Tables[0].Rows[0][0].ToString());
             this.HienThiThanhDieuHuong(recordCount, pageIndex);
-            dgv_annual_leave.DataSource = dataTable.Tables[1].Rows.Cast<DataRow>().OrderBy(x => x["MaNhanVien"].ToString()).CopyToDataTable();
+            dgv_annual_leave.DataSource = dataTable.Tables[1].Rows.Count > 0 ? dataTable.Tables[1].Rows.Cast<DataRow>().OrderBy(x => x["MaNhanVien"].ToString()).CopyToDataTable() : dataTable.Tables[1];
 
             //if (pageclick == false)
             //{
@@ -206,6 +227,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 default:
                     break;
             }
+        }
+
+        private void cbo_PhongBan_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            load_data(1);
         }
     }
 }

@@ -34,6 +34,18 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_trangthai.ComboBox.SelectionChangeCommitted += cbo_trangthai_SelectionChangeCommitted;
             cbo_year.ComboBox.SelectionChangeCommitted += cbo_year_SelectionChangeCommitted1;
             cbo_Thang.ComboBox.SelectionChangeCommitted += cbo_month_SelectionChangeCommitted1;
+            if(idPermision.Contains(2) || LoginInfo.Group == "ADMIN")
+            {
+                btn_add.Visible = true;
+            }
+            if (idPermision.Contains(4) || LoginInfo.Group == "ADMIN")
+            {
+                btn_delete.Visible = true;
+            }
+            if (idPermision.Contains(3) || LoginInfo.Group == "ADMIN")
+            {
+                edit_column.Visible = true;
+            }
             //load_data();
             //if (LoginInfo.LoaiUser == "NhanVien")
             //{
@@ -167,32 +179,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 cbo_Thang.ComboBox.Text = _month;
             }
-            //string sql = "select f.id,a.MaNhanVien,a.TenNhanVien,d.TenKhuVuc,c.TenChucVu," +
-            //            "e.typename as TrangThai,f.NgayNghi," +
-            //            "case when f.NuaNgay = 0 then N'1 ngày' else case when f.NuaNgay = 1 then N'Nghỉ buổi sáng' else N'Nghỉ buổi chiều' end end NuaNgay," +
-            //            "g.LoaiPhep,f.GhiChu,f.SoNgay,a.MaChucVu, h.TypeName as TrangThaiPhieu " +
-            //            "from MITACOSQL.dbo.NhanVien a " +
-            //            "join tbl_NhanVien b on a.MaNhanVien = b.MaNhanVien " +
-            //            //"join nhanvien_phongban b on a.manhanvien = b.ma_nhan_vien and is_active = 1 " +
-            //            "join MITACOSQL.dbo.CHUCVU c on c.MachucVu = a.MaChucVu " +
-            //            "join MITACOSQL.dbo.KHUVUC d on d.MaKhuVuc = a.MaKhuVuc " +
-            //            "join sys_AllType e on b.id_trangthai = e.typeid " +
-            //            "join tbl_NghiPhepNam f on f.MaChamCong = a.MaChamCong " +
-            //            "join mst_LoaiPhep g on g.MaLoaiPhep = f.LoaiPhepNghi " +
-            //            "left join sys_AllType h on f.Id_TrangThai = h.TypeId " +
-            //            $"where f.nam = '{cbo_year.ComboBox.SelectedValue.ToString()}' and f.del_flg = 0 ";
-            //if (txt_search.Text != "")
-            //{
-            //    sql += $" and a.MaNhanVien = '{txt_search.Text}'";
-            //}
-            //else if (cbo_trangthai.ComboBox.SelectedValue.ToString() == "2")
-            //{
-            //    sql = sql + " and chk_quanly = 1 and chk_nhansu = 0";
-            //}
-            //else if (cbo_trangthai.ComboBox.SelectedValue.ToString() == "3")
-            //{
-            //    sql = sql + " and chk_quanly = 1 and chk_nhansu = 1";
-            //}
 
             string search = "";
             if (!string.IsNullOrEmpty(txt_search.Text))
@@ -203,9 +189,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 search += $" and IDTrangThai = '{cbo_trangthai.ComboBox.SelectedValue}' ";
             }
-            //_trangthai = cbo_trangthai.SelectedIndex > 0 ? cbo_trangthai.ComboBox.SelectedValue.ToString() : "0";
-            //_year = string.IsNullOrEmpty(cbo_year.Text) ? DateTime.Now.Year.ToString() : cbo_year.Text;
-            //_month = string.IsNullOrEmpty(cbo_Thang.Text) ? DateTime.Now.Month.ToString() : cbo_Thang.Text;
+            if (LoginInfo.Group != "ADMIN" && LoginInfo.Group != "HR")
+            {
+                search += $" and (MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} OR NguoiXacNhan = {SQLHelper.rpStr(SQLHelper.sUser)} OR ReportToReportTo = {SQLHelper.rpStr(SQLHelper.sUser)}) ";
+            }
+
             string sql = string.Empty;
             sql = $@"WITH CTE_NhanVien AS (
                     SELECT f.id, a.MaNhanVien, a.TenNhanVien, d.TenKhuVuc, c.TenChucVu, e.typename AS TrangThai, f.NgayNghi,
@@ -233,8 +221,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 SELECT Id, MaNhanVien, TenNhanVien, TenKhuVuc, TenChucVu, TrangThai, NgayNghi, NuaNgay, KyHieu, SoNgay, MaChucVu,
                 IDTrangThai, TrangThaiPhieu, NguoiXacNhan, ReportToReportTo
                 FROM CTE_NhanVien
-                WHERE (MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} OR NguoiXacNhan = {SQLHelper.rpStr(SQLHelper.sUser)} OR ReportToReportTo = {SQLHelper.rpStr(SQLHelper.sUser)}) " +
+                WHERE 1=1 " +
                 search;
+
             dgv_annual_leave.DataSource = SQLHelper.ExecuteDt(sql);
         }
 
@@ -252,8 +241,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 if (dgv_annual_leave.CurrentRow.Cells["IDTrangThaiP"].Value.ToString().Contains("199"))
                 {
                     return;
-                }   
-                if(dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() == LoginInfo.ReportTo ||
+                }
+                if (dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() == LoginInfo.ReportTo ||
                    LoginInfo.ReportTo != "")
                 {
                     return;

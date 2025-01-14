@@ -55,11 +55,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txt_search = new RJTextBox.RJTextBox();
             this.btn_Excel = new System.Windows.Forms.Button();
             this.btn_refresh = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
-            this.cbo_year = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlDieuHuong = new System.Windows.Forms.Panel();
@@ -67,6 +65,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.lb_totalsize = new System.Windows.Forms.Label();
             this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cbo_PhongBan = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbo_year = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.show_col = new System.Windows.Forms.DataGridViewImageColumn();
             this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,6 +94,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.Th12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhepDaDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PhepConLai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReportTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -101,11 +105,15 @@ namespace TENTAC_HRM.Forms.NghiPhep
             // 
             // panel1
             // 
+            this.panel1.BackgroundImage = global::TENTAC_HRM.Properties.Resources.toolStrip1_BackgroundImage;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel1.Controls.Add(this.txt_search);
+            this.panel1.Controls.Add(this.cbo_year);
+            this.panel1.Controls.Add(this.cbo_PhongBan);
             this.panel1.Controls.Add(this.btn_Excel);
             this.panel1.Controls.Add(this.btn_refresh);
             this.panel1.Controls.Add(this.btn_edit);
-            this.panel1.Controls.Add(this.cbo_year);
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -113,79 +121,49 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.panel1.Size = new System.Drawing.Size(1146, 43);
             this.panel1.TabIndex = 0;
             // 
-            // txt_search
-            // 
-            this.txt_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_search.BackColor = System.Drawing.SystemColors.Window;
-            this.txt_search.BorderColor = System.Drawing.Color.Gray;
-            this.txt_search.BorderFocusColor = System.Drawing.Color.DeepSkyBlue;
-            this.txt_search.BorderRadius = 0;
-            this.txt_search.BorderSize = 1;
-            this.txt_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.txt_search.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txt_search.Location = new System.Drawing.Point(882, 9);
-            this.txt_search.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_search.Multiline = false;
-            this.txt_search.Name = "txt_search";
-            this.txt_search.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.txt_search.PasswordChar = false;
-            this.txt_search.PlaceholderColor = System.Drawing.Color.DarkGray;
-            this.txt_search.PlaceholderText = "Từ khóa tìm kiếm";
-            this.txt_search.Size = new System.Drawing.Size(250, 28);
-            this.txt_search.TabIndex = 8;
-            this.txt_search.Texts = "";
-            this.txt_search.UnderlinedStyle = false;
-            this.txt_search._TextChanged += new System.EventHandler(this.txt_search__TextChanged);
-            // 
             // btn_Excel
             // 
+            this.btn_Excel.BackColor = System.Drawing.Color.Transparent;
             this.btn_Excel.FlatAppearance.BorderSize = 0;
             this.btn_Excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
-            this.btn_Excel.Location = new System.Drawing.Point(177, 11);
+            this.btn_Excel.Location = new System.Drawing.Point(443, 11);
             this.btn_Excel.Name = "btn_Excel";
             this.btn_Excel.Size = new System.Drawing.Size(23, 24);
             this.btn_Excel.TabIndex = 6;
-            this.btn_Excel.UseVisualStyleBackColor = true;
+            this.btn_Excel.UseVisualStyleBackColor = false;
             this.btn_Excel.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_refresh
             // 
+            this.btn_refresh.BackColor = System.Drawing.Color.Transparent;
             this.btn_refresh.FlatAppearance.BorderSize = 0;
             this.btn_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_refresh.Image = global::TENTAC_HRM.Properties.Resources.refresh;
-            this.btn_refresh.Location = new System.Drawing.Point(148, 11);
+            this.btn_refresh.Location = new System.Drawing.Point(414, 11);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(23, 24);
             this.btn_refresh.TabIndex = 6;
-            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.UseVisualStyleBackColor = false;
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // btn_edit
             // 
+            this.btn_edit.BackColor = System.Drawing.Color.Transparent;
             this.btn_edit.FlatAppearance.BorderSize = 0;
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Image = global::TENTAC_HRM.Properties.Resources.edit_file;
-            this.btn_edit.Location = new System.Drawing.Point(124, 11);
+            this.btn_edit.Location = new System.Drawing.Point(390, 11);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(18, 24);
             this.btn_edit.TabIndex = 6;
-            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.UseVisualStyleBackColor = false;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
-            // 
-            // cbo_year
-            // 
-            this.cbo_year.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbo_year.FormattingEnabled = true;
-            this.cbo_year.Location = new System.Drawing.Point(53, 11);
-            this.cbo_year.Name = "cbo_year";
-            this.cbo_year.Size = new System.Drawing.Size(62, 24);
-            this.cbo_year.TabIndex = 4;
-            this.cbo_year.SelectionChangeCommitted += new System.EventHandler(this.cbo_year_SelectionChangeCommitted);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(10, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 17);
@@ -270,7 +248,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.Th11,
             this.Th12,
             this.PhepDaDung,
-            this.PhepConLai});
+            this.PhepConLai,
+            this.MaPhongBan,
+            this.ReportTo});
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -298,6 +278,42 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 24;
+            // 
+            // cbo_PhongBan
+            // 
+            this.cbo_PhongBan.DisplayMember = "Text";
+            this.cbo_PhongBan.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_PhongBan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_PhongBan.FormattingEnabled = true;
+            this.cbo_PhongBan.ItemHeight = 17;
+            this.cbo_PhongBan.Location = new System.Drawing.Point(204, 12);
+            this.cbo_PhongBan.Name = "cbo_PhongBan";
+            this.cbo_PhongBan.Size = new System.Drawing.Size(180, 23);
+            this.cbo_PhongBan.TabIndex = 9;
+            this.cbo_PhongBan.SelectionChangeCommitted += new System.EventHandler(this.cbo_PhongBan_SelectionChangeCommitted);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(121, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 17);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Phòng ban";
+            // 
+            // cbo_year
+            // 
+            this.cbo_year.DisplayMember = "Text";
+            this.cbo_year.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_year.FormattingEnabled = true;
+            this.cbo_year.ItemHeight = 17;
+            this.cbo_year.Location = new System.Drawing.Point(53, 12);
+            this.cbo_year.Name = "cbo_year";
+            this.cbo_year.Size = new System.Drawing.Size(62, 23);
+            this.cbo_year.TabIndex = 10;
+            this.cbo_year.SelectionChangeCommitted += new System.EventHandler(this.cbo_year_SelectionChangeCommitted);
             // 
             // rownumber
             // 
@@ -569,6 +585,36 @@ namespace TENTAC_HRM.Forms.NghiPhep
             this.PhepConLai.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.PhepConLai.Width = 85;
             // 
+            // MaPhongBan
+            // 
+            this.MaPhongBan.DataPropertyName = "MaPhongBan";
+            this.MaPhongBan.HeaderText = "MaPhongBan";
+            this.MaPhongBan.Name = "MaPhongBan";
+            this.MaPhongBan.ReadOnly = true;
+            this.MaPhongBan.Visible = false;
+            // 
+            // ReportTo
+            // 
+            this.ReportTo.DataPropertyName = "ReportTo";
+            this.ReportTo.HeaderText = "ReportTo";
+            this.ReportTo.Name = "ReportTo";
+            this.ReportTo.ReadOnly = true;
+            this.ReportTo.Visible = false;
+            // 
+            // txt_search
+            // 
+            this.txt_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txt_search.Border.Class = "TextBoxBorder";
+            this.txt_search.Location = new System.Drawing.Point(920, 12);
+            this.txt_search.Name = "txt_search";
+            this.txt_search.Size = new System.Drawing.Size(223, 23);
+            this.txt_search.TabIndex = 11;
+            this.txt_search.WatermarkText = "Từ khóa tìm kiếm";
+            this.txt_search.TextChanged += new System.EventHandler(this.txt_search__TextChanged);
+            // 
             // uc_annual_leave
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -593,7 +639,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cbo_year;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.Panel panel2;
@@ -601,10 +646,12 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private System.Windows.Forms.Panel pnlDieuHuong;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lb_totalsize;
-        private RJTextBox.RJTextBox txt_search;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgv_annual_leave;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Button btn_Excel;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_PhongBan;
+        private System.Windows.Forms.Label label2;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_year;
         private System.Windows.Forms.DataGridViewTextBoxColumn rownumber;
         private System.Windows.Forms.DataGridViewImageColumn show_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
@@ -631,5 +678,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private System.Windows.Forms.DataGridViewTextBoxColumn Th12;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhepDaDung;
         private System.Windows.Forms.DataGridViewTextBoxColumn PhepConLai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaPhongBan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReportTo;
+        private DevComponents.DotNetBar.Controls.TextBoxX txt_search;
     }
 }

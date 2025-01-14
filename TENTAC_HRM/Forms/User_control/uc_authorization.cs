@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
@@ -15,12 +17,12 @@ namespace TENTAC_HRM.Forms.User_control
         public static uc_authorization _instance;
         private string _PhongBan, _MaNhanVien, _MatKhau, _NguoiTao, _NguoiCapNhat;
         private List<int> selectedNodeIds = new List<int>();
-        int PageSize = 10;
-        int recordCount = 0;
+        int PageSize = 50;
+        //int recordCount = 0;
         public uc_authorization()
         {
             InitializeComponent();
-            recordCount = GetTotalRecordCount();
+            //recordCount = GetTotalRecordCount();
             cbo_pagenumber.ComboBox.SelectionChangeCommitted += cbo_pagenumber_SelectionChangeCommitted;
             cbo_BoPhan.ComboBox.SelectionChangeCommitted += cbo_BoPhan_SelectionChangeCommitted;
         }
@@ -28,7 +30,6 @@ namespace TENTAC_HRM.Forms.User_control
         {
             LoadTreeView(false);
             LoadComboboxBoPhan();
-            LoadComboboxNhanVien(false);
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
             datatable.Columns.Add("name");
@@ -39,9 +40,22 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_pagenumber.ComboBox.DataSource = datatable;
             cbo_pagenumber.ComboBox.DisplayMember = "name";
             cbo_pagenumber.ComboBox.ValueMember = "id";
-            cbo_pagenumber.ComboBox.SelectedIndex = 0;
+            cbo_pagenumber.ComboBox.SelectedIndex = 2;
             LoadData(1);
+            LoadGroup();
         }
+
+        private void LoadGroup()
+        {
+            DataTable dt_group = new DataTable();
+            dt_group.Columns.Add("id");
+            dt_group.Columns.Add("name");
+            dt_group.Rows.Add("1", "Admin");
+            dt_group.Rows.Add("0", "User");
+            dt_group.Rows.Add("0", "HR");
+
+        }
+
         private void LoadTreeView(bool edit)
         {
             treeview_PhanQuyen.Nodes.Clear();
@@ -443,34 +457,10 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_BoPhan.ComboBox.DisplayMember = "TenPhongBan";
             cbo_BoPhan.ComboBox.ValueMember = "MaPhongBan";
         }
-        private void LoadComboboxNhanVien(bool Select)
-        {
-            if (Select == true)
-            {
-                cbo_NhanVien.ComboBox.DataSource = provider.load_nhanvien_by_phongban(_PhongBan);
-                cbo_NhanVien.ComboBox.DisplayMember = "name";
-                cbo_NhanVien.ComboBox.ValueMember = "value";
-            }
-            else
-            {
-                cbo_NhanVien.ComboBox.DataSource = provider.load_nhanvien();
-                cbo_NhanVien.ComboBox.DisplayMember = "name";
-                cbo_NhanVien.ComboBox.ValueMember = "value";
-            }
-        }
-        private void cbo_NhanVien_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbo_NhanVien.SelectedIndex != 0)
-            {
-                txt_TenDangNhap.Text = _MaNhanVien = cbo_NhanVien.ComboBox.SelectedValue.ToString();
-                LoadTreeView(true);
-                LoadDataTaiKhoan();
-            }
-        }
+
         private void cbo_BoPhan_SelectedIndexChanged(object sender, EventArgs e)
         {
             _PhongBan = cbo_BoPhan.ComboBox.SelectedValue.ToString();
-            LoadComboboxNhanVien(true);
             LoadData(1);
         }
         private int GetSelectedPermisionIds(TreeNode node)
@@ -695,20 +685,19 @@ namespace TENTAC_HRM.Forms.User_control
                 }
                 string sql = string.Empty;
                 sql = $@"
-                        SELECT us.MaNhanVien, nv.TenNhanVien, pb.TenPhongBan, cv.TenChucVu 
-                        FROM mst_Users us
-                        INNER JOIN [MITACOSQL].[dbo].[NHANVIEN] nv ON us.MaNhanVien = nv.MaNhanVien
+                        SELECT ROW_NUMBER() OVER(ORDER BY nv.MaNhanVien ASC)AS rownumber,nv.MaNhanVien, nv.TenNhanVien, pb.TenPhongBan, cv.TenChucVu Into ##tblTemp
+                        FROM [MITACOSQL].[dbo].[NHANVIEN] nv 
+                        LEFT JOIN mst_Users us ON us.MaNhanVien = nv.MaNhanVien
                         INNER JOIN [MITACOSQL].[dbo].[PHONGBAN] pb ON nv.MaPhongBan = pb.MaPhongBan
                         LEFT JOIN mst_ChucVu cv ON nv.MaChucVu = cv.MaChucVu
-                        WHERE us.del_flg = 0
-                        AND ({(string.IsNullOrEmpty(_PhongBan) ? "1=1" : $"pb.MaPhongBan = {SQLHelper.rpStr(_PhongBan)}")})
-                        ORDER BY MaNhanVien
-                        OFFSET ({SQLHelper.rpI(pageIndex)} - 1) * {SQLHelper.rpI(PageSize)} ROWS
-                        FETCH NEXT {SQLHelper.rpI(PageSize)} ROWS ONLY;";
-
-                DataTable dt = SQLHelper.ExecuteDt(sql);
+                        WHERE (us.del_flg = 0 or us.Id is null)
+                        AND ({(string.IsNullOrEmpty(_PhongBan) ? "1=1" : $"pb.MaPhongBan = ''{_PhongBan}''")})
+                        ORDER BY MaNhanVien";
+                DataSet dt = SQLHelper.ExecuteDs("getnhanvienpaging " + pageIndex + "," + PageSize + ",N'" + sql + "'");
+                //DataTable dt = SQLHelper.ExecuteDt(sql);
+                int recordCount = Convert.ToInt32(dt.Tables[0].Rows[0][0].ToString());
                 this.HienThiThanhDieuHuong(recordCount, pageIndex);
-                dgv_MenuPhanQuyen.DataSource = dt;
+                dgv_MenuPhanQuyen.DataSource = dt.Tables[1];
 
                 //SqlParameter[] param = new SqlParameter[]
                 //{
@@ -807,7 +796,6 @@ namespace TENTAC_HRM.Forms.User_control
             txt_MatKhau.Text = string.Empty;
             txt_XacNhanMatKhau.Text = string.Empty;
             cbo_BoPhan.Text = string.Empty;
-            cbo_NhanVien.Text = string.Empty;
             LoadTreeView(false);
         }
         private void HienThiThanhDieuHuong(int recordCount, int currentPage)
@@ -820,6 +808,22 @@ namespace TENTAC_HRM.Forms.User_control
             DevComponents.DotNetBar.ButtonX btnPager = (sender as DevComponents.DotNetBar.ButtonX);
             this.LoadData(int.Parse(btnPager.Name));
         }
+
+        private void dgv_MenuPhanQuyen_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+            var centerFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            var textSize = TextRenderer.MeasureText(rowIdx, Font);
+            var headerBounds =
+                new System.Drawing.Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIdx, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+        }
+
         private int GetTotalRecordCount()
         {
             SqlParameter[] param = new SqlParameter[]
@@ -839,7 +843,6 @@ namespace TENTAC_HRM.Forms.User_control
         private void cbo_BoPhan_SelectionChangeCommitted(object sender, EventArgs e)
         {
             _PhongBan = cbo_BoPhan.ComboBox.SelectedValue.ToString();
-            LoadComboboxNhanVien(true);
             LoadData(1);
         }
         private void GetSelectedMenuIds(TreeNode node, List<int> selectedMenuIds, List<int> selectedMenuChillIds, List<int> selectedPermisionIds)

@@ -548,5 +548,12 @@ namespace TENTAC_HRM
                 return false;
             }
         }
+        public DataTable LoadPhongBan()
+        {
+            string sql = "select MaPhongBan as id,TenPhongBan as name from MITACOSQL.dbo.PHONGBAN";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            return dt;
+        }
     }
 }

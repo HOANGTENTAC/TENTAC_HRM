@@ -223,7 +223,7 @@
             this.ts_date.Image = ((System.Drawing.Image)(resources.GetObject("ts_date.Image")));
             this.ts_date.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ts_date.Name = "ts_date";
-            this.ts_date.Size = new System.Drawing.Size(891, 17);
+            this.ts_date.Size = new System.Drawing.Size(869, 17);
             this.ts_date.Spring = true;
             this.ts_date.Text = "2023/07/13";
             this.ts_date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -660,7 +660,7 @@
             this.btn_close_notifi.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_close_notifi.FlatAppearance.BorderSize = 0;
             this.btn_close_notifi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_close_notifi.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.btn_close_notifi.IconChar = FontAwesome.Sharp.IconChar.Remove;
             this.btn_close_notifi.IconColor = System.Drawing.Color.Black;
             this.btn_close_notifi.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_close_notifi.IconSize = 16;
@@ -727,6 +727,7 @@
             this.iconMenuItem1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconMenuItem1.BackgroundImage")));
             this.iconMenuItem1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.iconMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.iconMenuItem1.DoubleClickEnabled = true;
             this.iconMenuItem1.Enabled = false;
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
@@ -753,7 +754,7 @@
             // btn_exit
             // 
             this.btn_exit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_exit.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.btn_exit.IconChar = FontAwesome.Sharp.IconChar.Remove;
             this.btn_exit.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_exit.Name = "btn_exit";
