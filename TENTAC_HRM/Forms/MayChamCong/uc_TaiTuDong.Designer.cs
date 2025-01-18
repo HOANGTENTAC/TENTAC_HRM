@@ -1,6 +1,6 @@
-﻿namespace TENTAC_HRM.Forms.May_Cham_Cong
+﻿namespace TENTAC_HRM.Forms.MayChamCong
 {
-    partial class uc_taitudong
+    partial class uc_TaiTuDong
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_taitudong));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_TaiTuDong));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ChonTatCaMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.BoChonTatCaMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,19 +41,7 @@
             this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBoxLuaChonTai = new System.Windows.Forms.GroupBox();
-            this.chk_xoagio = new System.Windows.Forms.CheckBox();
-            this.etime_log = new System.Windows.Forms.DateTimePicker();
-            this.comboBoxLuaChonTai = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem3 = new DevComponents.Editors.ComboItem();
-            this.comboItem2 = new DevComponents.Editors.ComboItem();
-            this.comboItem1 = new DevComponents.Editors.ComboItem();
-            this.stime_log = new System.Windows.Forms.DateTimePicker();
-            this.btnTaiDuLieu = new DevComponents.DotNetBar.ButtonX();
-            this.lbDenNgay = new DevComponents.DotNetBar.LabelX();
-            this.labelTuNgay = new DevComponents.DotNetBar.LabelX();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.ListBoxThongBao = new System.Windows.Forms.ListBox();
+            this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.DGVMayChamCong = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +56,19 @@
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.ListBoxThongBao = new System.Windows.Forms.ListBox();
+            this.groupBoxLuaChonTai = new System.Windows.Forms.GroupBox();
+            this.chk_xoagio = new System.Windows.Forms.CheckBox();
+            this.etime_log = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxLuaChonTai = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboItem3 = new DevComponents.Editors.ComboItem();
+            this.comboItem2 = new DevComponents.Editors.ComboItem();
+            this.comboItem1 = new DevComponents.Editors.ComboItem();
+            this.stime_log = new System.Windows.Forms.DateTimePicker();
+            this.btnTaiDuLieu = new DevComponents.DotNetBar.ButtonX();
+            this.lbDenNgay = new DevComponents.DotNetBar.LabelX();
+            this.labelTuNgay = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
             this.DGVGioTai = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,9 +86,9 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.groupBoxLuaChonTai.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVMayChamCong)).BeginInit();
             this.expandablePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVMayChamCong)).BeginInit();
+            this.groupBoxLuaChonTai.SuspendLayout();
             this.expandablePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVGioTai)).BeginInit();
             this.SuspendLayout();
@@ -132,6 +132,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_close});
@@ -181,6 +182,157 @@
             this.splitContainer1.Size = new System.Drawing.Size(1167, 568);
             this.splitContainer1.SplitterDistance = 263;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // expandablePanel1
+            // 
+            this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.expandablePanel1.Controls.Add(this.DGVMayChamCong);
+            this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.expandablePanel1.ExpandButtonVisible = false;
+            this.expandablePanel1.Location = new System.Drawing.Point(0, 268);
+            this.expandablePanel1.Name = "expandablePanel1";
+            this.expandablePanel1.Size = new System.Drawing.Size(263, 300);
+            this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.expandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandablePanel1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.expandablePanel1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.expandablePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandablePanel1.Style.GradientAngle = 90;
+            this.expandablePanel1.TabIndex = 7;
+            this.expandablePanel1.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.expandablePanel1.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandablePanel1.TitleStyle.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.expandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.expandablePanel1.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandablePanel1.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.expandablePanel1.TitleStyle.GradientAngle = 90;
+            this.expandablePanel1.TitleText = "Máy Chấm Công";
+            // 
+            // DGVMayChamCong
+            // 
+            this.DGVMayChamCong.AllowUserToAddRows = false;
+            this.DGVMayChamCong.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.DGVMayChamCong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVMayChamCong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column10,
+            this.Column11,
+            this.Column12,
+            this.Column13,
+            this.Column14,
+            this.Column15,
+            this.Column16,
+            this.Column17,
+            this.Column18,
+            this.Column19,
+            this.Column20});
+            this.DGVMayChamCong.ContextMenuStrip = this.contextMenuStrip1;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVMayChamCong.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DGVMayChamCong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVMayChamCong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.DGVMayChamCong.Location = new System.Drawing.Point(0, 26);
+            this.DGVMayChamCong.Name = "DGVMayChamCong";
+            this.DGVMayChamCong.Size = new System.Drawing.Size(263, 274);
+            this.DGVMayChamCong.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "MaMay";
+            this.Column1.Name = "Column1";
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tên Máy";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 200;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "ID Máy";
+            this.Column10.Name = "Column10";
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "KieuKetNoi";
+            this.Column11.Name = "Column11";
+            this.Column11.Visible = false;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "DiaChiIP";
+            this.Column12.Name = "Column12";
+            this.Column12.Visible = false;
+            // 
+            // Column13
+            // 
+            this.Column13.HeaderText = "Port";
+            this.Column13.Name = "Column13";
+            this.Column13.Visible = false;
+            // 
+            // Column14
+            // 
+            this.Column14.HeaderText = "CongCOM";
+            this.Column14.Name = "Column14";
+            this.Column14.Visible = false;
+            // 
+            // Column15
+            // 
+            this.Column15.HeaderText = "TocDoTruyen";
+            this.Column15.Name = "Column15";
+            this.Column15.Visible = false;
+            // 
+            // Column16
+            // 
+            this.Column16.HeaderText = "DiaChiWeb";
+            this.Column16.Name = "Column16";
+            this.Column16.Visible = false;
+            // 
+            // Column17
+            // 
+            this.Column17.HeaderText = "SuDungWeb";
+            this.Column17.Name = "Column17";
+            this.Column17.Visible = false;
+            // 
+            // Column18
+            // 
+            this.Column18.HeaderText = "TrangThai";
+            this.Column18.Name = "Column18";
+            this.Column18.Visible = false;
+            // 
+            // Column19
+            // 
+            this.Column19.HeaderText = "Serial";
+            this.Column19.Name = "Column19";
+            this.Column19.Visible = false;
+            // 
+            // Column20
+            // 
+            this.Column20.HeaderText = "So Dang Ky";
+            this.Column20.Name = "Column20";
+            this.Column20.Visible = false;
+            // 
+            // ListBoxThongBao
+            // 
+            this.ListBoxThongBao.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ListBoxThongBao.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListBoxThongBao.FormattingEnabled = true;
+            this.ListBoxThongBao.ItemHeight = 16;
+            this.ListBoxThongBao.Location = new System.Drawing.Point(0, 136);
+            this.ListBoxThongBao.Name = "ListBoxThongBao";
+            this.ListBoxThongBao.Size = new System.Drawing.Size(263, 132);
+            this.ListBoxThongBao.TabIndex = 9;
             // 
             // groupBoxLuaChonTai
             // 
@@ -301,157 +453,6 @@
             this.labelX1.TabIndex = 0;
             this.labelX1.Text = "Tải thời gian";
             // 
-            // ListBoxThongBao
-            // 
-            this.ListBoxThongBao.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ListBoxThongBao.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListBoxThongBao.FormattingEnabled = true;
-            this.ListBoxThongBao.ItemHeight = 16;
-            this.ListBoxThongBao.Location = new System.Drawing.Point(0, 136);
-            this.ListBoxThongBao.Name = "ListBoxThongBao";
-            this.ListBoxThongBao.Size = new System.Drawing.Size(263, 132);
-            this.ListBoxThongBao.TabIndex = 9;
-            // 
-            // DGVMayChamCong
-            // 
-            this.DGVMayChamCong.AllowUserToAddRows = false;
-            this.DGVMayChamCong.BackgroundColor = System.Drawing.Color.GhostWhite;
-            this.DGVMayChamCong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVMayChamCong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16,
-            this.Column17,
-            this.Column18,
-            this.Column19,
-            this.Column20});
-            this.DGVMayChamCong.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVMayChamCong.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DGVMayChamCong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVMayChamCong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGVMayChamCong.Location = new System.Drawing.Point(0, 26);
-            this.DGVMayChamCong.Name = "DGVMayChamCong";
-            this.DGVMayChamCong.Size = new System.Drawing.Size(263, 274);
-            this.DGVMayChamCong.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "MaMay";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tên Máy";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 200;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "ID Máy";
-            this.Column10.Name = "Column10";
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "KieuKetNoi";
-            this.Column11.Name = "Column11";
-            this.Column11.Visible = false;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "DiaChiIP";
-            this.Column12.Name = "Column12";
-            this.Column12.Visible = false;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "Port";
-            this.Column13.Name = "Column13";
-            this.Column13.Visible = false;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "CongCOM";
-            this.Column14.Name = "Column14";
-            this.Column14.Visible = false;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "TocDoTruyen";
-            this.Column15.Name = "Column15";
-            this.Column15.Visible = false;
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "DiaChiWeb";
-            this.Column16.Name = "Column16";
-            this.Column16.Visible = false;
-            // 
-            // Column17
-            // 
-            this.Column17.HeaderText = "SuDungWeb";
-            this.Column17.Name = "Column17";
-            this.Column17.Visible = false;
-            // 
-            // Column18
-            // 
-            this.Column18.HeaderText = "TrangThai";
-            this.Column18.Name = "Column18";
-            this.Column18.Visible = false;
-            // 
-            // Column19
-            // 
-            this.Column19.HeaderText = "Serial";
-            this.Column19.Name = "Column19";
-            this.Column19.Visible = false;
-            // 
-            // Column20
-            // 
-            this.Column20.HeaderText = "So Dang Ky";
-            this.Column20.Name = "Column20";
-            this.Column20.Visible = false;
-            // 
-            // expandablePanel1
-            // 
-            this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
-            this.expandablePanel1.Controls.Add(this.DGVMayChamCong);
-            this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.expandablePanel1.ExpandButtonVisible = false;
-            this.expandablePanel1.Location = new System.Drawing.Point(0, 268);
-            this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(263, 300);
-            this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
-            this.expandablePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel1.Style.GradientAngle = 90;
-            this.expandablePanel1.TabIndex = 7;
-            this.expandablePanel1.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel1.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel1.TitleStyle.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
-            this.expandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel1.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.expandablePanel1.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel1.TitleStyle.GradientAngle = 90;
-            this.expandablePanel1.TitleText = "Máy Chấm Công";
-            // 
             // expandablePanel2
             // 
             this.expandablePanel2.CanvasColor = System.Drawing.SystemColors.Control;
@@ -492,14 +493,14 @@
             this.Column7,
             this.Column8,
             this.Column9});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVGioTai.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVGioTai.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGVGioTai.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVGioTai.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGVGioTai.Location = new System.Drawing.Point(0, 26);
@@ -553,7 +554,7 @@
             this.progressBarTaiDuLieu.TabIndex = 4;
             this.progressBarTaiDuLieu.TextVisible = true;
             // 
-            // uc_taitudong
+            // uc_TaiTuDong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -562,7 +563,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "uc_taitudong";
+            this.Name = "uc_TaiTuDong";
             this.Size = new System.Drawing.Size(1167, 593);
             this.Load += new System.EventHandler(this.uc_taitudong_Load);
             this.contextMenuStrip1.ResumeLayout(false);
@@ -573,10 +574,10 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.expandablePanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVMayChamCong)).EndInit();
             this.groupBoxLuaChonTai.ResumeLayout(false);
             this.groupBoxLuaChonTai.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVMayChamCong)).EndInit();
-            this.expandablePanel1.ResumeLayout(false);
             this.expandablePanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVGioTai)).EndInit();
             this.ResumeLayout(false);

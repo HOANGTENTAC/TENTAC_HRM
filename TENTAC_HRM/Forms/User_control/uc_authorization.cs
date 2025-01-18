@@ -50,10 +50,12 @@ namespace TENTAC_HRM.Forms.User_control
             DataTable dt_group = new DataTable();
             dt_group.Columns.Add("id");
             dt_group.Columns.Add("name");
-            dt_group.Rows.Add("1", "Admin");
-            dt_group.Rows.Add("0", "User");
-            dt_group.Rows.Add("0", "HR");
-
+            dt_group.Rows.Add("Admin", "Admin");
+            dt_group.Rows.Add("HR", "HR");
+            dt_group.Rows.Add("User", "User");
+            cbo_Group.DataSource = dt_group;
+            cbo_Group.DisplayMember = "name";
+            cbo_Group.ValueMember = "id";
         }
 
         private void LoadTreeView(bool edit)
@@ -783,11 +785,13 @@ namespace TENTAC_HRM.Forms.User_control
             {
                 txt_MatKhau.Text = dt.Rows[0]["MatKhau"].ToString();
                 txt_XacNhanMatKhau.Text = dt.Rows[0]["MatKhau"].ToString();
+                cbo_Group.SelectedValue = dt.Rows[0]["Groups"].ToString();
             }
             else
             {
                 txt_MatKhau.Text = string.Empty;
                 txt_XacNhanMatKhau.Text = string.Empty;
+                cbo_Group.SelectedValue = "User";
             }
         }
         private void LoadNull()

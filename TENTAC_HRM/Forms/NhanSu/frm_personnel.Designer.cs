@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_personnel));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new ComponentFactory.Krypton.Navigator.KryptonNavigator();
             this.tabPage1 = new ComponentFactory.Krypton.Navigator.KryptonPage();
             this.cbo_ReportTo = new TENTAC_HRM.Custom.MultiColumnComboBox();
@@ -522,7 +522,7 @@
             this.btn_HonNhan.IconSize = 20;
             this.btn_HonNhan.Location = new System.Drawing.Point(319, 134);
             this.btn_HonNhan.Name = "btn_HonNhan";
-            this.btn_HonNhan.Size = new System.Drawing.Size(25, 26);
+            this.btn_HonNhan.Size = new System.Drawing.Size(25, 25);
             this.btn_HonNhan.TabIndex = 0;
             this.btn_HonNhan.UseVisualStyleBackColor = true;
             this.btn_HonNhan.Click += new System.EventHandler(this.btn_honnhan_Click);
@@ -887,7 +887,7 @@
             this.btn_add_nation.Location = new System.Drawing.Point(318, 15);
             this.btn_add_nation.Margin = new System.Windows.Forms.Padding(0);
             this.btn_add_nation.Name = "btn_add_nation";
-            this.btn_add_nation.Size = new System.Drawing.Size(26, 26);
+            this.btn_add_nation.Size = new System.Drawing.Size(25, 25);
             this.btn_add_nation.TabIndex = 4;
             this.btn_add_nation.Text = "+";
             this.btn_add_nation.UseVisualStyleBackColor = true;
@@ -899,7 +899,7 @@
             this.btn_religion.Location = new System.Drawing.Point(666, 16);
             this.btn_religion.Margin = new System.Windows.Forms.Padding(0);
             this.btn_religion.Name = "btn_religion";
-            this.btn_religion.Size = new System.Drawing.Size(26, 26);
+            this.btn_religion.Size = new System.Drawing.Size(25, 25);
             this.btn_religion.TabIndex = 4;
             this.btn_religion.Text = "+";
             this.btn_religion.UseVisualStyleBackColor = true;
@@ -1168,7 +1168,7 @@
             this.btn_quoc_tich.Location = new System.Drawing.Point(666, 73);
             this.btn_quoc_tich.Margin = new System.Windows.Forms.Padding(0);
             this.btn_quoc_tich.Name = "btn_quoc_tich";
-            this.btn_quoc_tich.Size = new System.Drawing.Size(26, 26);
+            this.btn_quoc_tich.Size = new System.Drawing.Size(25, 25);
             this.btn_quoc_tich.TabIndex = 4;
             this.btn_quoc_tich.Text = "+";
             this.btn_quoc_tich.UseVisualStyleBackColor = true;
@@ -1349,9 +1349,9 @@
             this.btn_TamTru.IconColor = System.Drawing.Color.Black;
             this.btn_TamTru.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_TamTru.IconSize = 20;
-            this.btn_TamTru.Location = new System.Drawing.Point(666, 71);
+            this.btn_TamTru.Location = new System.Drawing.Point(666, 73);
             this.btn_TamTru.Name = "btn_TamTru";
-            this.btn_TamTru.Size = new System.Drawing.Size(25, 26);
+            this.btn_TamTru.Size = new System.Drawing.Size(25, 25);
             this.btn_TamTru.TabIndex = 32;
             this.btn_TamTru.UseVisualStyleBackColor = true;
             this.btn_TamTru.Click += new System.EventHandler(this.btn_TamTru_Click);
@@ -1528,7 +1528,7 @@
             this.btn_BaoHiem.FlatAppearance.BorderSize = 0;
             this.btn_BaoHiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_BaoHiem.Image = global::TENTAC_HRM.Properties.Resources.gear;
-            this.btn_BaoHiem.Location = new System.Drawing.Point(904, 3);
+            this.btn_BaoHiem.Location = new System.Drawing.Point(904, 2);
             this.btn_BaoHiem.Name = "btn_BaoHiem";
             this.btn_BaoHiem.Size = new System.Drawing.Size(23, 23);
             this.btn_BaoHiem.TabIndex = 27;
@@ -1774,7 +1774,7 @@
             this.btn_HopDong.FlatAppearance.BorderSize = 0;
             this.btn_HopDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_HopDong.Image = global::TENTAC_HRM.Properties.Resources.gear;
-            this.btn_HopDong.Location = new System.Drawing.Point(904, 3);
+            this.btn_HopDong.Location = new System.Drawing.Point(904, 2);
             this.btn_HopDong.Name = "btn_HopDong";
             this.btn_HopDong.Size = new System.Drawing.Size(23, 23);
             this.btn_HopDong.TabIndex = 27;
@@ -2562,7 +2562,7 @@
             this.btn_AddChungChi.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_AddChungChi.Location = new System.Drawing.Point(0, 0);
             this.btn_AddChungChi.Name = "btn_AddChungChi";
-            this.btn_AddChungChi.Size = new System.Drawing.Size(54, 88);
+            this.btn_AddChungChi.Size = new System.Drawing.Size(54, 99);
             this.btn_AddChungChi.TabIndex = 29;
             this.btn_AddChungChi.Text = "Thêm";
             this.btn_AddChungChi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -2574,9 +2574,9 @@
             this.btn_XoaChungChi.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_XoaChungChi.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_XoaChungChi.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_XoaChungChi.Location = new System.Drawing.Point(0, 108);
+            this.btn_XoaChungChi.Location = new System.Drawing.Point(0, 95);
             this.btn_XoaChungChi.Name = "btn_XoaChungChi";
-            this.btn_XoaChungChi.Size = new System.Drawing.Size(54, 86);
+            this.btn_XoaChungChi.Size = new System.Drawing.Size(54, 99);
             this.btn_XoaChungChi.TabIndex = 29;
             this.btn_XoaChungChi.Text = "Xóa";
             this.btn_XoaChungChi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -3049,9 +3049,9 @@
             // IsActive
             // 
             this.IsActive.DataPropertyName = "IsActive";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = false;
-            this.IsActive.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.NullValue = false;
+            this.IsActive.DefaultCellStyle = dataGridViewCellStyle5;
             this.IsActive.FalseValue = null;
             this.IsActive.HeaderText = "Hiệu lực";
             this.IsActive.IndeterminateValue = null;
@@ -3760,9 +3760,9 @@
             // isphuthuoc
             // 
             this.isphuthuoc.DataPropertyName = "IsPhuThuoc";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = false;
-            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.NullValue = false;
+            this.isphuthuoc.DefaultCellStyle = dataGridViewCellStyle6;
             this.isphuthuoc.FalseValue = null;
             this.isphuthuoc.FillWeight = 67.00507F;
             this.isphuthuoc.HeaderText = "Phụ thuộc";

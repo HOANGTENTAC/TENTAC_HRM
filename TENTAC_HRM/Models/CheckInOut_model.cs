@@ -6,18 +6,18 @@ namespace TENTAC_HRM.Model
     {
         public int ID { get; set; }
 
-        public int Ma_Cham_Cong { get; set; }
+        public int MaChamCong { get; set; }
 
-        public DateTime Ngay_Cham { get; set; }
+        public DateTime NgayCham { get; set; }
 
-        public DateTime Gio_Cham { get; set; }
+        public DateTime GioCham { get; set; }
 
-        public string Kieu_Cham { get; set; }
+        public string KieuCham { get; set; }
 
-        public string Nguon_Cham { get; set; }
+        public string NguonCham { get; set; }
 
-        public int MaSo_May { get; set; }
+        public int MaSoMay { get; set; }
 
-        public string Ten_May { get; set; }
+        public string TenMay { get; set; }
     }
 }

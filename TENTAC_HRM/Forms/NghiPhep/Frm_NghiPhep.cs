@@ -13,123 +13,105 @@ namespace TENTAC_HRM.Forms.NghiPhep
 {
     public partial class Frm_NghiPhep : Form
     {
-        DataProvider provider = new DataProvider();
-        public string _manhanvien { get; set; }
-        public string _year { get; set; }
-        public string _month { get; set; }
-        public bool _xemtong { get; set; }
-        public string _trangthai { get; set; }
-        public int[] idPermision { get; set; }
-        public int _idTrangThaiPhieu { get; set; }
-        //public static Frm_NghiPhep Instance(int[] permissions = null)
-        //{
-        //    _instance = new Frm_NghiPhep(permissions);
-        //    return _instance;
-        //}
+        readonly DataProvider provider = new DataProvider();
+        public string Manhanvien { get; set; }
+        public string Year { get; set; }
+        public string Month { get; set; }
+        public bool Xemtong { get; set; }
+        public string Trangthai { get; set; }
+        public int[] IdPermision { get; set; }
+        public int IdTrangThaiPhieu { get; set; }
+
         public Frm_NghiPhep(int[] permissions = null)
         {
-            idPermision = permissions;
+            IdPermision = permissions;
             InitializeComponent();
-            //VisibleButton();
             cbo_trangthai.ComboBox.SelectionChangeCommitted += cbo_trangthai_SelectionChangeCommitted;
             cbo_year.ComboBox.SelectionChangeCommitted += cbo_year_SelectionChangeCommitted1;
             cbo_Thang.ComboBox.SelectionChangeCommitted += cbo_month_SelectionChangeCommitted1;
-            if(idPermision.Contains(2) || LoginInfo.Group == "ADMIN")
-            {
-                btn_add.Visible = true;
-            }
-            if (idPermision.Contains(4) || LoginInfo.Group == "ADMIN")
-            {
-                btn_delete.Visible = true;
-            }
-            if (idPermision.Contains(3) || LoginInfo.Group == "ADMIN")
-            {
-                edit_column.Visible = true;
-            }
-            //load_data();
-            //if (LoginInfo.LoaiUser == "NhanVien")
+            //if (IdPermision.Contains(2) || LoginInfo.Group == "ADMIN")
+            //{
+            //    btn_add.Visible = true;
+            //}
+            //if (IdPermision.Contains(4) || LoginInfo.Group == "ADMIN")
+            //{
+            //    btn_delete.Visible = true;
+            //}
+            //if (IdPermision.Contains(3) || LoginInfo.Group == "ADMIN")
             //{
             //    edit_column.Visible = true;
-            //    edit_columnquanly.Visible = false;
-            //}
-            //else
-            //{
-            //    edit_column.Visible = false;
-            //    edit_columnquanly.Visible = true;
             //}
         }
+
         private bool CheckReportTo()
         {
             bool flg = false;
             if (dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString().Contains(SQLHelper.sUser) && dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString() != "")
             {
-                _idTrangThaiPhieu = 197;
+                IdTrangThaiPhieu = 197;
                 flg = true;
             }
             else if (dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString().Contains(SQLHelper.sUser) && dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() != "")
             {
-                _idTrangThaiPhieu = 199;
+                IdTrangThaiPhieu = 199;
                 flg = true;
             }
             else if (dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString() == "" && dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString().Contains(SQLHelper.sUser))
             {
-                _idTrangThaiPhieu = 199;
+                IdTrangThaiPhieu = 199;
                 flg = true;
             }
             return flg;
         }
-        //private void VisibleButton()
-        //{
-        //    btn_add.Visible = idPermision.Contains(2) ? true : false;
-        //    btn_delete.Visible = idPermision.Contains(4) ? true : false;
-        //}
+
         private void cbo_year_SelectionChangeCommitted1(object sender, EventArgs e)
         {
-            _trangthai = "";
-            _xemtong = false;
-            _manhanvien = "";
-            _year = "";
-            _month = "";
-            load_data();
+            Trangthai = "";
+            Xemtong = false;
+            Manhanvien = "";
+            Year = "";
+            Month = "";
+            Load_data();
         }
+
         private void cbo_month_SelectionChangeCommitted1(object sender, EventArgs e)
         {
-            _trangthai = "";
-            _xemtong = false;
-            _manhanvien = "";
-            _year = "";
-            _month = "";
-            load_data();
+            Trangthai = "";
+            Xemtong = false;
+            Manhanvien = "";
+            Year = "";
+            Month = "";
+            Load_data();
         }
+
         private void cbo_trangthai_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            _trangthai = "";
-            _xemtong = false;
-            _manhanvien = "";
-            _year = "";
-            _month = "";
-            load_data();
+            Trangthai = "";
+            Xemtong = false;
+            Manhanvien = "";
+            Year = "";
+            Month = "";
+            Load_data();
         }
 
         public void uc_nghiphep_Load(object sender, EventArgs e)
         {
-            load_trangthai();
+            Load_trangthai();
             LoadMonth();
-            load_year();
-            load_data();
+            Load_year();
+            Load_data();
         }
 
-        private void load_trangthai()
+        private void Load_trangthai()
         {
-            DataTable datatable = new DataTable();
-            datatable = provider.load_all_type(196);
+            DataTable datatable = provider.load_all_type(196);
             cbo_trangthai.ComboBox.DataSource = datatable;
             cbo_trangthai.ComboBox.DisplayMember = "name";
             cbo_trangthai.ComboBox.ValueMember = "id";
-            cbo_trangthai.ComboBox.SelectedValue = !string.IsNullOrEmpty(_trangthai) ? int.Parse(_trangthai) : 0;
+            cbo_trangthai.ComboBox.SelectedValue = !string.IsNullOrEmpty(Trangthai) ? int.Parse(Trangthai) : 0;
         }
 
-        private void load_year()
+        private void Load_year()
         {
             DataTable datatable = new DataTable();
             datatable.Columns.Add("id");
@@ -141,8 +123,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_year.ComboBox.DataSource = datatable;
             cbo_year.ComboBox.DisplayMember = "name";
             cbo_year.ComboBox.ValueMember = "id";
-            cbo_year.ComboBox.SelectedValue = !string.IsNullOrEmpty(_year) ? int.Parse(_year) : DateTime.Now.Year;
+            cbo_year.ComboBox.SelectedValue = !string.IsNullOrEmpty(Year) ? int.Parse(Year) : DateTime.Now.Year;
         }
+
         private void LoadMonth()
         {
             DataTable datatable = new DataTable();
@@ -155,29 +138,30 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_Thang.ComboBox.DataSource = datatable;
             cbo_Thang.ComboBox.DisplayMember = "name";
             cbo_Thang.ComboBox.ValueMember = "id";
-            cbo_Thang.ComboBox.SelectedValue = !string.IsNullOrEmpty(_month) ? int.Parse(_month) : DateTime.Now.Month;
+            cbo_Thang.ComboBox.SelectedValue = !string.IsNullOrEmpty(Month) ? int.Parse(Month) : DateTime.Now.Month;
         }
-        public void load_data()
+
+        public void Load_data()
         {
-            if (!string.IsNullOrEmpty(_trangthai))
+            if (!string.IsNullOrEmpty(Trangthai))
             {
-                cbo_trangthai.ComboBox.SelectedIndex = 1;
+                cbo_trangthai.ComboBox.SelectedValue = int.Parse(Trangthai);
             }
-            if (_xemtong == true)
+            if (Xemtong == true)
             {
                 chk_TheoNam.Checked = true;
             }
-            if (_manhanvien != "")
+            if (Manhanvien != "")
             {
-                txt_search.Text = _manhanvien;
+                txt_search.Text = Manhanvien;
             }
-            if (!string.IsNullOrEmpty(_year))
+            if (!string.IsNullOrEmpty(Year))
             {
-                cbo_year.ComboBox.Text = _year;
+                cbo_year.ComboBox.Text = Year;
             }
-            if (!string.IsNullOrEmpty(_month))
+            if (!string.IsNullOrEmpty(Month))
             {
-                cbo_Thang.ComboBox.Text = _month;
+                cbo_Thang.ComboBox.Text = Month;
             }
 
             string search = "";
@@ -196,32 +180,32 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
             string sql = string.Empty;
             sql = $@"WITH CTE_NhanVien AS (
-                    SELECT f.id, a.MaNhanVien, a.TenNhanVien, d.TenKhuVuc, c.TenChucVu, e.typename AS TrangThai, f.NgayNghi,
-                        CASE 
-                            WHEN f.NuaNgay = 0 THEN N'1 ngày' 
-                            ELSE 
-                                CASE 
-                                    WHEN f.NuaNgay = 1 THEN N'Nghỉ buổi sáng' 
-                                    ELSE N'Nghỉ buổi chiều' 
-                                END 
-                        END AS NuaNgay,
-                        g.KyHieu, f.GhiChu, f.SoNgay, a.MaChucVu, h.TypeId AS IDTrangThai, h.TypeName AS TrangThaiPhieu, f.NguoiXacNhan, i.ReportTo as ReportToReportTo
-                    FROM MITACOSQL.dbo.NhanVien a
-                    JOIN tbl_NhanVien b ON a.MaNhanVien = b.MaNhanVien
-                    LEFT JOIN MITACOSQL.dbo.CHUCVU c ON c.MachucVu = a.MaChucVu
-                    JOIN MITACOSQL.dbo.KHUVUC d ON d.MaKhuVuc = a.MaKhuVuc
-                    JOIN sys_AllType e ON b.id_trangthai = e.typeid
-                    JOIN tbl_NghiPhepNam f ON f.MaNhanVien = a.MaNhanVien
-                    JOIN mst_LoaiPhep g ON g.MaLoaiPhep = f.LoaiPhepNghi
-                    LEFT JOIN tbl_NhanVien i ON f.MaNhanVien = i.MaNhanVien
-                    LEFT JOIN sys_AllType h ON f.Id_TrangThai = h.TypeId
-                    WHERE f.nam = '{cbo_year.Text}' AND f.del_flg = 0 " +
+                        SELECT f.id, a.MaNhanVien, a.TenNhanVien, d.TenKhuVuc, c.TenChucVu, e.typename AS TrangThai, f.NgayNghi,
+                            CASE 
+                                WHEN f.NuaNgay = 0 THEN N'1 ngày' 
+                                ELSE 
+                                    CASE 
+                                        WHEN f.NuaNgay = 1 THEN N'Nghỉ buổi sáng' 
+                                        ELSE N'Nghỉ buổi chiều' 
+                                    END 
+                            END AS NuaNgay,
+                            g.KyHieu, f.GhiChu, f.SoNgay, a.MaChucVu, h.TypeId AS IDTrangThai, h.TypeName AS TrangThaiPhieu, f.NguoiXacNhan, i.ReportTo as ReportToReportTo,f.LyDoNguoiXacNhan
+                        FROM MITACOSQL.dbo.NhanVien a
+                        JOIN tbl_NhanVien b ON a.MaNhanVien = b.MaNhanVien
+                        LEFT JOIN MITACOSQL.dbo.CHUCVU c ON c.MachucVu = a.MaChucVu
+                        JOIN MITACOSQL.dbo.KHUVUC d ON d.MaKhuVuc = a.MaKhuVuc
+                        JOIN sys_AllType e ON b.id_trangthai = e.typeid
+                        JOIN tbl_NghiPhepNam f ON f.MaNhanVien = a.MaNhanVien
+                        JOIN mst_LoaiPhep g ON g.MaLoaiPhep = f.LoaiPhepNghi
+                        LEFT JOIN tbl_NhanVien i ON f.MaNhanVien = i.MaNhanVien
+                        LEFT JOIN sys_AllType h ON f.Id_TrangThai = h.TypeId
+                        WHERE f.nam = '{cbo_year.Text}' AND f.del_flg = 0 " +
                     (chk_TheoNam.Checked == false ? $" and month(f.NgayNghi) = '{cbo_Thang.Text}' " : "") +
                 $@")
-                SELECT Id, MaNhanVien, TenNhanVien, TenKhuVuc, TenChucVu, TrangThai, NgayNghi, NuaNgay, KyHieu, SoNgay, MaChucVu,
-                IDTrangThai, TrangThaiPhieu, NguoiXacNhan, ReportToReportTo
-                FROM CTE_NhanVien
-                WHERE 1=1 " +
+                    SELECT Id, MaNhanVien, TenNhanVien, TenKhuVuc, TenChucVu, TrangThai, NgayNghi, NuaNgay, KyHieu, SoNgay, MaChucVu,
+                    IDTrangThai, TrangThaiPhieu, NguoiXacNhan, ReportToReportTo,GhiChu,LyDoNguoiXacNhan
+                    FROM CTE_NhanVien
+                    WHERE 1=1 " +
                 search;
 
             dgv_annual_leave.DataSource = SQLHelper.ExecuteDt(sql);
@@ -229,9 +213,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            frm_annual_leave frm = new frm_annual_leave(this);
-            frm.edit = false;
-            frm.ShowDialog();
+            using (frm_annual_leave frm = new frm_annual_leave(this))
+            {
+                frm.edit = false;
+                frm.ShowDialog();
+            }
         }
 
         private void dgv_annual_leave_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -249,42 +235,48 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 }
                 if (!CheckReportTo())
                 {
-                    frm_annual_leave frm = new frm_annual_leave(this);
-                    frm.edit = true;
-                    frm._id_nghi_phep_value = int.Parse(dgv_annual_leave.CurrentRow.Cells["id"].Value.ToString());
-                    frm._ma_nhan_vien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
-                    frm._id_trangthai = int.Parse(dgv_annual_leave.CurrentRow.Cells["IDTrangThaiP"].Value.ToString());
-                    frm.ShowDialog();
+                    using (frm_annual_leave frm = new frm_annual_leave(this))
+                    {
+                        frm.edit = true;
+                        frm._id_nghi_phep_value = int.Parse(dgv_annual_leave.CurrentRow.Cells["id"].Value.ToString());
+                        frm._ma_nhan_vien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
+                        frm._id_trangthai = int.Parse(dgv_annual_leave.CurrentRow.Cells["IDTrangThaiP"].Value.ToString());
+                        frm.ShowDialog();
+                    }
                 }
                 else
                 {
-                    frm_QuanLyXacNhan frm = new frm_QuanLyXacNhan();
-                    frm._id = int.Parse(dgv_annual_leave.CurrentRow.Cells["id"].Value.ToString());
-                    frm._idTrangThai = _idTrangThaiPhieu;
-                    frm._year = cbo_year.ComboBox.SelectedValue.ToString();
-                    frm.ShowDialog();
+                    using (frm_QuanLyXacNhan frm = new frm_QuanLyXacNhan())
+                    {
+                        frm._id = int.Parse(dgv_annual_leave.CurrentRow.Cells["id"].Value.ToString());
+                        frm._idTrangThai = IdTrangThaiPhieu;
+                        frm._year = cbo_year.ComboBox.SelectedValue.ToString();
+                        frm.ShowDialog();
+                    }
                 }
             }
         }
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            Control x = this.Parent;
-            TabControl tab = (TabControl)x.Parent.Parent;
-            tab.TabPages.Remove(tab.SelectedTab);
-        }
+
         private void btn_delete_Click(object sender, EventArgs e)
         {
             try
             {
-                DialogResult result = RJMessageBox.Show("Bạn có chác muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                if (dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() != LoginInfo.ReportTo)
                 {
-                    string sql = string.Format("update tbl_NghiPhepNam set del_flg = 1 , NguoiTao = '{1}' where id = '{0}'", dgv_annual_leave.CurrentRow.Cells["id"].Value, SQLHelper.sIdUser);
-                    if (SQLHelper.ExecuteSql(sql) == 1)
+                    DialogResult result = RJMessageBox.Show("Bạn có chác muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
                     {
-                        load_data();
-                        RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        string sql = string.Format("update tbl_NghiPhepNam set del_flg = 1 , NguoiTao = '{1}' where id = '{0}'", dgv_annual_leave.CurrentRow.Cells["id"].Value, SQLHelper.sIdUser);
+                        if (SQLHelper.ExecuteSql(sql) == 1)
+                        {
+                            Load_data();
+                            RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
+                }
+                else
+                {
+                    RJMessageBox.Show("Phiếu này đã được duyệt, bạn không thể xóa");
                 }
             }
             catch (Exception ex)
@@ -295,12 +287,12 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void btn_Search_Click(object sender, EventArgs e)
         {
-            _trangthai = "";
-            _xemtong = false;
-            _manhanvien = "";
-            _year = "";
-            _month = "";
-            load_data();
+            Trangthai = "";
+            Xemtong = false;
+            Manhanvien = "";
+            Year = "";
+            Month = "";
+            Load_data();
         }
 
         private void btn_Excel_Click(object sender, EventArgs e)

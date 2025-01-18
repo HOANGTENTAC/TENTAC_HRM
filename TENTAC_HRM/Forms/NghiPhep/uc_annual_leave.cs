@@ -11,7 +11,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
     public partial class uc_annual_leave : UserControl
     {
         DataSet dataTable = new DataSet();
-        DataProvider provider = new DataProvider();
+        readonly DataProvider provider = new DataProvider();
         public int[] idPermision { get; set; }
         int PageSize = 50;
         int pageCount = 0;
@@ -55,15 +55,14 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_year.ValueMember = "id";
             cbo_year.SelectedValue = DateTime.Now.Year;
 
-            load_PhongBan();
-            load_data(1);
+            Load_PhongBan();
+            Load_data(1);
             //LoadDGV();
         }
 
-        private void load_PhongBan()
+        private void Load_PhongBan()
         {
-            DataTable dt = new DataTable();
-            dt = provider.LoadPhongBan();
+            DataTable dt = provider.LoadPhongBan();
             DataRow dr = dt.NewRow();
             dr["id"] = "0";
             dr["name"] = "Tất cả";
@@ -74,14 +73,14 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_PhongBan.SelectedValue = "0";
         }
 
-        public void load_data(int pageIndex, bool pageclick = false)
+        public void Load_data(int pageIndex, bool pageclick = false)
         {
             string sql = string.Format("select ROW_NUMBER() OVER(ORDER BY a.MaNhanVien ASC)AS rownumber,* Into ##tblTemp from fn_PhepNam({0}) a where 1=1", cbo_year.SelectedValue.ToString());
             if (!string.IsNullOrEmpty(txt_search.Text))
             {
-                sql = sql + string.Format(" and HoTen like N''%{0}%'' or DonVi like N''%{0}%'' or ChucVu like N''%{0}%'' or MaNhanVien like ''%{0}%''", txt_search.Text);
+                sql += string.Format(" and HoTen like N''%{0}%'' or DonVi like N''%{0}%'' or ChucVu like N''%{0}%'' or MaNhanVien like ''%{0}%''", txt_search.Text);
             }
-            if (LoginInfo.UserCd.ToUpper() != "ADMIN" && LoginInfo.UserCd.ToUpper() != "HR")
+            if (LoginInfo.Group.ToUpper() != "ADMIN" && LoginInfo.Group.ToUpper() != "HR")
             {
                 sql += $" and (ReportTo = ''{LoginInfo.UserCd}'' or MaNhanVien = ''{LoginInfo.UserCd}'') ";
             }
@@ -113,7 +112,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private void Page_Click(object sender, EventArgs e)
         {
             DevComponents.DotNetBar.ButtonX btnPager = (sender as DevComponents.DotNetBar.ButtonX);
-            this.load_data(int.Parse(btnPager.Name), true);
+            this.Load_data(int.Parse(btnPager.Name), true);
             //LoadDGV();
             lb_totalsize.Text = int.Parse(btnPager.Name) + "/" + pageCount.ToString();
             //foreach(Control button in pnlDieuHuong.Controls)
@@ -140,10 +139,12 @@ namespace TENTAC_HRM.Forms.NghiPhep
         {
             if (dgv_annual_leave.Rows.Count > 0)
             {
-                frm_nghiphepnam frm = new frm_nghiphepnam(this);
-                frm.year = int.Parse(cbo_year.SelectedValue.ToString());
-                frm._MaNhanVien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
-                frm.ShowDialog();
+                using (frm_nghiphepnam frm = new frm_nghiphepnam(this))
+                {
+                    frm.year = int.Parse(cbo_year.SelectedValue.ToString());
+                    frm._MaNhanVien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
+                    frm.ShowDialog();
+                }
             }
             else
             {
@@ -153,19 +154,19 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            load_data(1);
+            Load_data(1);
             //LoadDGV();
         }
 
         private void cbo_year_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            load_data(1); 
+            Load_data(1); 
             //LoadDGV();
         }
 
         private void txt_search__TextChanged(object sender, EventArgs e)
         {
-            load_data(1);
+            Load_data(1);
             //LoadDGV();
         }
 
@@ -206,23 +207,27 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 case "Th11":
                 case "Th12":
                 case "PhepDaDung":
-                    Frm_NghiPhep user = new Frm_NghiPhep();
-                    user._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
-                    user._year = cbo_year.Text;
-                    user._month = dgv_annual_leave.CurrentCell.OwningColumn.Name.Replace("Th", "");
-                    user._trangthai = "199";
+                    Frm_NghiPhep user = new Frm_NghiPhep
+                    {
+                        Manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString(),
+                        Year = cbo_year.Text,
+                        Month = dgv_annual_leave.CurrentCell.OwningColumn.Name.Replace("Th", ""),
+                        Trangthai = "199"
+                    };
                     if (dgv_annual_leave.CurrentCell.OwningColumn.Name == "PhepDaDung")
                     {
-                        user._month = "";
-                        user._xemtong = true;
+                        user.Month = "";
+                        user.Xemtong = true;
                     }
                     user.ShowDialog();
                     break;
                 case "show_col":
-                    Frm_XemPhepNam frm_XemPhepNam = new Frm_XemPhepNam();
-                    frm_XemPhepNam._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
-                    frm_XemPhepNam._year = cbo_year.Text;
-                    frm_XemPhepNam.ShowDialog();
+                    using (Frm_XemPhepNam frm_XemPhepNam = new Frm_XemPhepNam())
+                    {
+                        frm_XemPhepNam._manhanvien = dgv_annual_leave.CurrentRow.Cells["MaNhanVien"].Value.ToString();
+                        frm_XemPhepNam._year = cbo_year.Text;
+                        frm_XemPhepNam.ShowDialog();
+                    }
                     break;
                 default:
                     break;
@@ -231,7 +236,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
 
         private void cbo_PhongBan_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            load_data(1);
+            Load_data(1);
         }
     }
 }

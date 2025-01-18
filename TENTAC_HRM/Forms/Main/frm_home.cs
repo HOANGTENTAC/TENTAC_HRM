@@ -7,7 +7,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
-using TENTAC_HRM.Consts;
 using TENTAC_HRM.Forms.User_control;
 using TENTAC_HRM.Properties;
 
@@ -20,43 +19,32 @@ namespace TENTAC_HRM.Forms.Main
         Panel panel = new Panel();
         Panel panel_menu = new Panel();
         //Button btn_menu;
-        private FontAwesome.Sharp.IconButton btn_menu;
+        private IconButton btn_menu;
         Point _imageLocation = new Point(20, 4);
         Point _imgHitArea = new Point(20, 4);
         private IconButton currentBtn;
         private List<string> tagList = new List<string>();
         private bool isCollapsed = false;
         private bool isCollapsedMenu = false;
-        bool _btn_nhansu = false;
-        bool _btn_maychamcong = false;
-        bool _btn_luong = false;
-        bool _btn_quatrinh = false;
-        bool _btn_chamcong = false;
-        bool _btn_bangxepca = false;
-        bool _btn_sodo_chucnang = false;
-        bool _btn_setting = false;
         bool _btn_show_menu_left = false;
-        bool _btn_category = false;
         bool isPresent = false;
         bool isMinisize = false;
         DataTable dt_MenuParent = new DataTable();
         public frm_home()
         {
             InitializeComponent();
-            load_menu();
+            Load_menu();
             MaximizeWindow();
         }
 
         public IconChar GetUIFontAwesome(string strIcon)
         {
-            IconChar item;
-            if (Enum.TryParse(strIcon, out item))
+            if (Enum.TryParse(strIcon, out IconChar item))
                 return item;
             else
                 return IconChar.None;
         }
-        private IconButton selectedButton;
-        private void load_menu()
+        private void Load_menu()
         {
             //splitContainer1.Panel2.Controls.Clear();
             string sql = string.Empty;
@@ -121,39 +109,6 @@ namespace TENTAC_HRM.Forms.Main
                     order by a.MenuNumber desc";
                 dt_MenuChild = SQLHelper.ExecuteDt(sql);
             }
-
-            Panel panelLogOut = new Panel
-            {
-                Dock = DockStyle.Top,
-                MinimumSize = new Size(223, 30)
-            };
-            IconButton btnlogout = new IconButton()
-            {
-                IconColor = Colors.ColorRGB8,
-                Tag = 0,
-                Name = "LogOut",
-                ForeColor = Colors.ColorRGB8,
-                ImageAlign = ContentAlignment.MiddleRight,
-                Height = 30,
-                Font = new Font("Arial", emSize: 12f, FontStyle.Bold, unit: GraphicsUnit.Point),
-                Dock = DockStyle.Top,
-                FlatStyle = FlatStyle.Flat,
-                Text = "LogOut",
-                TextAlign = ContentAlignment.MiddleLeft,
-                UseVisualStyleBackColor = false,
-            };
-            btnlogout.IconChar = IconChar.RightFromBracket;
-            btnlogout.IconSize = 25;
-            btnlogout.IconColor = Colors.ColorRGB8;
-            btnlogout.FlatAppearance.BorderColor = Colors.ColorRGB9;
-
-            btnlogout.Click += BtnLogOut_Click;
-            panelLogOut.Controls.Add(btnlogout);
-            Height += 32;
-            panelLogOut.Size = new Size(223, 30);
-            panelLogOut.MaximumSize = new Size(223, Height);
-            panelLogOut.MinimumSize = new Size(223, 30);
-            pl_MenuLeft.Controls.Add(panelLogOut);
 
             foreach (DataRow item in dt_MenuParent.Rows)
             {
@@ -258,12 +213,6 @@ namespace TENTAC_HRM.Forms.Main
                 //splitContainer1.Panel2.Controls.Add(danhmuc);
             }
         }
-        private void BtnLogOut_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            frm_login frm = new frm_login();
-            frm.Show();
-        }
         private void BtnChil_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -275,7 +224,7 @@ namespace TENTAC_HRM.Forms.Main
                 string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
                 //var menuStartStrings = userProfile + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\TENTAC(HO CHI MINH)\勤怠管理.appref-ms";
                 var menuStartStrings = @"I:\XoaDuLieuMayChamCong\XoaDuLieuMayChamCong\XoaDuLieuMayChamCong\bin\Debug\勤怠管理.exe";
-                var startParam = $"-tangca {name_parent["FromName"].ToString()}";
+                var startParam = $"-tangca {name_parent["FromName"]}";
                 // 起動パラメータをDictionaryに変換し展開する
                 Dictionary<string, string> argsDic = new Dictionary<string, string>();
                 argsDic = ParamUtil.ConvertParamToDictionary(SplitUtil.SplitStringWithSeparator(startParam, ' '));
@@ -340,8 +289,8 @@ namespace TENTAC_HRM.Forms.Main
             {
                 DisableButton();
                 currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Colors.ColorRGB7;
-                currentBtn.ForeColor = Colors.ColorRGB8;
+                currentBtn.BackColor = Colors.ColorRGB12;
+                currentBtn.ForeColor = Colors.ColorRGB0;
                 currentBtn.TextAlign = ContentAlignment.MiddleCenter;
                 currentBtn.IconColor = Colors.ColorRGB8;
                 currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
@@ -351,8 +300,8 @@ namespace TENTAC_HRM.Forms.Main
             {
                 DisableButton();
                 currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Colors.ColorRGB7;
-                currentBtn.ForeColor = Colors.ColorRGB8;
+                currentBtn.BackColor = Colors.ColorRGB12;
+                currentBtn.ForeColor = Colors.ColorRGB0;
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
                 currentBtn.IconColor = Colors.ColorRGB8;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -432,10 +381,10 @@ namespace TENTAC_HRM.Forms.Main
             else
             {
                 //splitContainer1.Panel1.Controls.Clear();
-                string sql = $"select a.*,b.FrmType,b.FrmText " +
-                             $"from mst_menu a " +
-                             "left join mst_from b on a.FromName = b.FrmName " +
-                             $"where ParentId = '{((Custom.RJButton)sender).Tag}' order by a.MenuNumber desc";
+                string sql = $@"select a.*,b.FrmType,b.FrmText
+                             from mst_menu a
+                             left join mst_from b on a.FromName = b.FrmName
+                             where ParentId = '{((Custom.RJButton)sender).Tag}' order by a.MenuNumber desc";
                 dt_MenuChild = SQLHelper.ExecuteDt(sql);
                 foreach (DataRow item in dt_MenuChild.Rows)
                 {
@@ -458,7 +407,6 @@ namespace TENTAC_HRM.Forms.Main
                         Image = (Bitmap)Resources.ResourceManager.GetObject(item["MenuImage"].ToString()),
                         ImageAlign = ContentAlignment.MiddleLeft,
                         TextImageRelation = TextImageRelation.ImageBeforeText,
-
                     };
                     bt.Click += Bt_Click;
                     ToolTip ToolTip1 = new ToolTip();
@@ -466,7 +414,6 @@ namespace TENTAC_HRM.Forms.Main
                     //splitContainer1.Panel1.Controls.Add(bt);
                 }
             }
-
         }
 
         private void Bt_Click(object sender, EventArgs e)
@@ -521,11 +468,15 @@ namespace TENTAC_HRM.Forms.Main
 
                     if (isPresent == false)
                     {
-                        TabPage tp = new TabPage(text_tab);
-                        tp.Name = "tp_" + name_parent["FromName"];
-                        Panel tb = new Panel();
-                        tb.Dock = DockStyle.Fill;
-                        tb.Name = "pl_" + name_parent["FromName"];
+                        TabPage tp = new TabPage(text_tab)
+                        {
+                            Name = "tp_" + name_parent["FromName"]
+                        };
+                        Panel tb = new Panel
+                        {
+                            Dock = DockStyle.Fill,
+                            Name = "pl_" + name_parent["FromName"]
+                        };
 
                         tb_main.TabPages.Add(tp);
                         tb_main.SelectedTab = tp;
@@ -572,16 +523,16 @@ namespace TENTAC_HRM.Forms.Main
             //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
             //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
         }
-        private void ResizableWindow()
-        {
-            this.ControlBox = false;
-            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
-        }
+        //private void ResizableWindow()
+        //{
+        //    this.ControlBox = false;
+        //    this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+        //}
 
-        public void remove_tabpage()
-        {
-            tb_main.TabPages.RemoveByKey("tp_nhansu");
-        }
+        //public void Remove_tabpage()
+        //{
+        //    tb_main.TabPages.RemoveByKey("tp_nhansu");
+        //}
 
         private void frm_home_Load(object sender, EventArgs e)
         {
@@ -589,9 +540,9 @@ namespace TENTAC_HRM.Forms.Main
             pl_sn.Height = 0;
             pl_nv_moi.Height = 0;
             pl_hopdong.Height = 0;
-            load_sinhnhat();
-            load_ngayhet_hopdong();
-            load_nv_moi();
+            Load_sinhnhat();
+            Load_ngayhet_hopdong();
+            Load_nv_moi();
 
             tb_main.Padding = new Point(20, 4);
 
@@ -608,11 +559,10 @@ namespace TENTAC_HRM.Forms.Main
                 uc_dashboard.Instance.BringToFront();
             }
         }
-        private void load_nv_moi()
+        private void Load_nv_moi()
         {
             string sql = "select manhanvien,TenNhanVien,ngayvaolamviec from MITACOSQL.dbo.NHANVIEN where datediff(day,ngayvaolamviec,GETDATE()) <= 10";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
+            DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
                 pl_nv_moi.Visible = true;
@@ -633,11 +583,10 @@ namespace TENTAC_HRM.Forms.Main
             lb_title_nv_moi.Text = "Có (" + dt.Rows.Count + ") nhân viên mới";
         }
 
-        private void load_sinhnhat()
+        private void Load_sinhnhat()
         {
-            string sql = "select MaNhanVien,TenNhanVien,NgaySinh from MITACOSQL.dbo.NHANVIEN where MONTH(NgaySinh) = MONTH(GETDATE())";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
+            string sql = "select MaNhanVien,TenNhanVien,NgaySinh from MITACOSQL.dbo.NHANVIEN where MONTH(NgaySinh) = MONTH(GETDATE()) and MaCongTy is not null";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
                 pl_sn.Visible = true;
@@ -657,14 +606,13 @@ namespace TENTAC_HRM.Forms.Main
 
             lb_title_notifi.Text = "Có (" + dt.Rows.Count + ") nhân viên có sinh nhật trong tháng";
         }
-        private void load_ngayhet_hopdong()
+        private void Load_ngayhet_hopdong()
         {
-            string sql = "select nhanvien.MaNhanVien,nhanvien.TenNhanVien,a.denngay as ngay_het_han from MITACOSQL.dbo.NHANVIEN nhanvien " +
-                "left join [tbl_NhanVienHopDong] a on a.manhanvien = nhanvien.MaNhanVien " +
-                "join mst_LoaiHopDong b on a.id_loaihopdong = b.id and b.id in (2,3) " +
-                "where datediff(day,GETDATE(),a.denngay) <= 10";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
+            string sql = @"select nhanvien.MaNhanVien,nhanvien.TenNhanVien,a.denngay as ngay_het_han from MITACOSQL.dbo.NHANVIEN nhanvien
+                left join [tbl_NhanVienHopDong] a on a.manhanvien = nhanvien.MaNhanVien
+                join mst_LoaiHopDong b on a.id_loaihopdong = b.id and b.id in (2,3)
+                where datediff(day,GETDATE(),a.denngay) <= 10";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
                 pl_hopdong.Visible = true;
@@ -777,7 +725,6 @@ namespace TENTAC_HRM.Forms.Main
                                     btn.IconSize = 25;
                                     btn.IconColor = Colors.ColorRGB8;
                                     btn.ImageAlign = ContentAlignment.MiddleRight;
-
                                 }
                                 else
                                 {
@@ -808,7 +755,6 @@ namespace TENTAC_HRM.Forms.Main
                 //    var names = dt_MenuParent.Rows.Cast<DataRow>().Where(x => x["Id"].ToString() == item.Tag.ToString()).FirstOrDefault();
                 //    item.Text = "  " + names["MenuText"].ToString();
                 //}
-
             }
             tm_menu_left.Start();
         }
@@ -950,7 +896,7 @@ namespace TENTAC_HRM.Forms.Main
             if (notifi_hide == true)
             {
                 notifi_hide = false;
-                btn_close_notifi.IconChar = FontAwesome.Sharp.IconChar.UpRightFromSquare;
+                btn_close_notifi.IconChar = IconChar.UpRightFromSquare;
                 pl_menu.Location = new Point(this.Right - 429, this.Bottom - 56);
                 pl_menu.Width = 429;
                 pl_menu.Height = 32;
@@ -992,7 +938,7 @@ namespace TENTAC_HRM.Forms.Main
             if (notifi_hide == true)
             {
                 notifi_hide = false;
-                btn_close_notifi.IconChar = FontAwesome.Sharp.IconChar.UpRightFromSquare;
+                btn_close_notifi.IconChar = IconChar.UpRightFromSquare;
                 pl_menu.Location = new Point(this.Width - 429, this.Height - 56);
                 pl_menu.Width = 429;
                 pl_menu.Height = 32;
@@ -1001,7 +947,7 @@ namespace TENTAC_HRM.Forms.Main
             else
             {
                 notifi_hide = true;
-                btn_close_notifi.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+                btn_close_notifi.IconChar = IconChar.Xmark;
                 //pl_menu.Location = new Point(this.Right - 432, this.Bottom - 410);
                 pl_menu.Location = new Point(this.Width - 432, this.Height - 410);
                 pl_menu.Width = 429;
@@ -1088,6 +1034,13 @@ namespace TENTAC_HRM.Forms.Main
                     isCollapsedMenu = true;
                 }
             }
+        }
+
+        private void btn_SignOut_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frm_login frm = new frm_login();
+            frm.Show();
         }
     }
 }

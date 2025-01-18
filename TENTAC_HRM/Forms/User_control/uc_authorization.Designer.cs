@@ -33,15 +33,18 @@ namespace TENTAC_HRM.Forms.User_control
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_authorization));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_save = new System.Windows.Forms.Button();
-            this.txt_MatKhau = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.txt_TenDangNhap = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.treeview_PhanQuyen = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.txt_XacNhanMatKhau = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.cbo_Group = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.txt_TenDangNhap = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.btn_save = new DevComponents.DotNetBar.ButtonX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.txt_MatKhau = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
+            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.txt_XacNhanMatKhau = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_BoPhan = new System.Windows.Forms.ToolStripComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -49,16 +52,15 @@ namespace TENTAC_HRM.Forms.User_control
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgv_MenuPhanQuyen = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.pnlDieuHuong = new System.Windows.Forms.Panel();
             this.MaNhanVien = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.TenNhanVien = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.TenPhongBan = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.TenChucVu = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.SoLanDangNhap = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.rownumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxEx1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX4 = new DevComponents.DotNetBar.LabelX();
+            this.pnlDieuHuong = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -70,16 +72,8 @@ namespace TENTAC_HRM.Forms.User_control
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.panel1.Controls.Add(this.comboBoxEx1);
-            this.panel1.Controls.Add(this.btn_save);
-            this.panel1.Controls.Add(this.txt_MatKhau);
-            this.panel1.Controls.Add(this.txt_TenDangNhap);
             this.panel1.Controls.Add(this.treeview_PhanQuyen);
-            this.panel1.Controls.Add(this.txt_XacNhanMatKhau);
-            this.panel1.Controls.Add(this.labelX4);
-            this.panel1.Controls.Add(this.labelX3);
-            this.panel1.Controls.Add(this.labelX2);
-            this.panel1.Controls.Add(this.labelX1);
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
@@ -87,60 +81,18 @@ namespace TENTAC_HRM.Forms.User_control
             this.panel1.Size = new System.Drawing.Size(349, 587);
             this.panel1.TabIndex = 2;
             // 
-            // btn_save
-            // 
-            this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
-            this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_save.Location = new System.Drawing.Point(257, 133);
-            this.btn_save.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(85, 34);
-            this.btn_save.TabIndex = 9;
-            this.btn_save.Text = "Lưu";
-            this.btn_save.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_save.UseVisualStyleBackColor = true;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
-            // 
-            // txt_MatKhau
-            // 
-            // 
-            // 
-            // 
-            this.txt_MatKhau.Border.Class = "TextBoxBorder";
-            this.txt_MatKhau.Location = new System.Drawing.Point(137, 40);
-            this.txt_MatKhau.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_MatKhau.Name = "txt_MatKhau";
-            this.txt_MatKhau.PasswordChar = '*';
-            this.txt_MatKhau.Size = new System.Drawing.Size(205, 22);
-            this.txt_MatKhau.TabIndex = 8;
-            this.txt_MatKhau.UseSystemPasswordChar = true;
-            // 
-            // txt_TenDangNhap
-            // 
-            // 
-            // 
-            // 
-            this.txt_TenDangNhap.Border.Class = "TextBoxBorder";
-            this.txt_TenDangNhap.Location = new System.Drawing.Point(137, 8);
-            this.txt_TenDangNhap.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_TenDangNhap.Name = "txt_TenDangNhap";
-            this.txt_TenDangNhap.ReadOnly = true;
-            this.txt_TenDangNhap.Size = new System.Drawing.Size(205, 22);
-            this.txt_TenDangNhap.TabIndex = 7;
-            // 
             // treeview_PhanQuyen
             // 
             this.treeview_PhanQuyen.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.treeview_PhanQuyen.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.treeview_PhanQuyen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeview_PhanQuyen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeview_PhanQuyen.ImageIndex = 0;
             this.treeview_PhanQuyen.ImageList = this.imageList1;
-            this.treeview_PhanQuyen.Location = new System.Drawing.Point(0, 168);
+            this.treeview_PhanQuyen.Location = new System.Drawing.Point(0, 180);
             this.treeview_PhanQuyen.Margin = new System.Windows.Forms.Padding(4);
             this.treeview_PhanQuyen.Name = "treeview_PhanQuyen";
             this.treeview_PhanQuyen.SelectedImageIndex = 1;
-            this.treeview_PhanQuyen.Size = new System.Drawing.Size(349, 419);
+            this.treeview_PhanQuyen.Size = new System.Drawing.Size(349, 407);
             this.treeview_PhanQuyen.TabIndex = 6;
             this.treeview_PhanQuyen.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.Treeview_PhanQuyen_NodeMouseClick);
             // 
@@ -151,46 +103,123 @@ namespace TENTAC_HRM.Forms.User_control
             this.imageList1.Images.SetKeyName(0, "No.png");
             this.imageList1.Images.SetKeyName(1, "Yes.png");
             // 
-            // txt_XacNhanMatKhau
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.cbo_Group);
+            this.panel2.Controls.Add(this.txt_TenDangNhap);
+            this.panel2.Controls.Add(this.btn_save);
+            this.panel2.Controls.Add(this.labelX1);
+            this.panel2.Controls.Add(this.txt_MatKhau);
+            this.panel2.Controls.Add(this.labelX2);
+            this.panel2.Controls.Add(this.labelX3);
+            this.panel2.Controls.Add(this.labelX4);
+            this.panel2.Controls.Add(this.txt_XacNhanMatKhau);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(349, 180);
+            this.panel2.TabIndex = 12;
+            // 
+            // cbo_Group
+            // 
+            this.cbo_Group.DisplayMember = "Text";
+            this.cbo_Group.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbo_Group.FormattingEnabled = true;
+            this.cbo_Group.ItemHeight = 16;
+            this.cbo_Group.Location = new System.Drawing.Point(139, 113);
+            this.cbo_Group.Name = "cbo_Group";
+            this.cbo_Group.Size = new System.Drawing.Size(205, 22);
+            this.cbo_Group.TabIndex = 10;
+            // 
+            // txt_TenDangNhap
             // 
             // 
             // 
             // 
-            this.txt_XacNhanMatKhau.Border.Class = "TextBoxBorder";
-            this.txt_XacNhanMatKhau.Location = new System.Drawing.Point(137, 72);
-            this.txt_XacNhanMatKhau.Margin = new System.Windows.Forms.Padding(4);
-            this.txt_XacNhanMatKhau.Name = "txt_XacNhanMatKhau";
-            this.txt_XacNhanMatKhau.PasswordChar = '*';
-            this.txt_XacNhanMatKhau.Size = new System.Drawing.Size(205, 22);
-            this.txt_XacNhanMatKhau.TabIndex = 5;
-            this.txt_XacNhanMatKhau.UseSystemPasswordChar = true;
+            this.txt_TenDangNhap.Border.Class = "TextBoxBorder";
+            this.txt_TenDangNhap.Location = new System.Drawing.Point(139, 17);
+            this.txt_TenDangNhap.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_TenDangNhap.Name = "txt_TenDangNhap";
+            this.txt_TenDangNhap.ReadOnly = true;
+            this.txt_TenDangNhap.Size = new System.Drawing.Size(205, 22);
+            this.txt_TenDangNhap.TabIndex = 7;
             // 
-            // labelX3
+            // btn_save
             // 
-            this.labelX3.Location = new System.Drawing.Point(8, 69);
-            this.labelX3.Margin = new System.Windows.Forms.Padding(4);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(133, 28);
-            this.labelX3.TabIndex = 4;
-            this.labelX3.Text = "Xác nhận mật khẩu :";
+            this.btn_save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btn_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
+            this.btn_save.Location = new System.Drawing.Point(250, 142);
+            this.btn_save.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(94, 33);
+            this.btn_save.TabIndex = 9;
+            this.btn_save.Text = "Lưu";
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // labelX1
+            // 
+            this.labelX1.Location = new System.Drawing.Point(3, 14);
+            this.labelX1.Margin = new System.Windows.Forms.Padding(4);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(115, 28);
+            this.labelX1.TabIndex = 0;
+            this.labelX1.Text = "Tên đăng nhập :";
+            // 
+            // txt_MatKhau
+            // 
+            // 
+            // 
+            // 
+            this.txt_MatKhau.Border.Class = "TextBoxBorder";
+            this.txt_MatKhau.Location = new System.Drawing.Point(139, 49);
+            this.txt_MatKhau.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_MatKhau.Name = "txt_MatKhau";
+            this.txt_MatKhau.PasswordChar = '*';
+            this.txt_MatKhau.Size = new System.Drawing.Size(205, 22);
+            this.txt_MatKhau.TabIndex = 8;
+            this.txt_MatKhau.UseSystemPasswordChar = true;
             // 
             // labelX2
             // 
-            this.labelX2.Location = new System.Drawing.Point(5, 37);
+            this.labelX2.Location = new System.Drawing.Point(3, 46);
             this.labelX2.Margin = new System.Windows.Forms.Padding(4);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(100, 28);
             this.labelX2.TabIndex = 1;
             this.labelX2.Text = "Mật khẩu :";
             // 
-            // labelX1
+            // labelX3
             // 
-            this.labelX1.Location = new System.Drawing.Point(5, 5);
-            this.labelX1.Margin = new System.Windows.Forms.Padding(4);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(115, 28);
-            this.labelX1.TabIndex = 0;
-            this.labelX1.Text = "Tên đăng nhập :";
+            this.labelX3.Location = new System.Drawing.Point(6, 78);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(4);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(133, 28);
+            this.labelX3.TabIndex = 4;
+            this.labelX3.Text = "Xác nhận mật khẩu :";
+            // 
+            // labelX4
+            // 
+            this.labelX4.Location = new System.Drawing.Point(6, 110);
+            this.labelX4.Margin = new System.Windows.Forms.Padding(4);
+            this.labelX4.Name = "labelX4";
+            this.labelX4.Size = new System.Drawing.Size(133, 28);
+            this.labelX4.TabIndex = 4;
+            this.labelX4.Text = "Nhóm tài khoản :";
+            // 
+            // txt_XacNhanMatKhau
+            // 
+            // 
+            // 
+            // 
+            this.txt_XacNhanMatKhau.Border.Class = "TextBoxBorder";
+            this.txt_XacNhanMatKhau.Location = new System.Drawing.Point(139, 81);
+            this.txt_XacNhanMatKhau.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_XacNhanMatKhau.Name = "txt_XacNhanMatKhau";
+            this.txt_XacNhanMatKhau.PasswordChar = '*';
+            this.txt_XacNhanMatKhau.Size = new System.Drawing.Size(205, 22);
+            this.txt_XacNhanMatKhau.TabIndex = 5;
+            this.txt_XacNhanMatKhau.UseSystemPasswordChar = true;
             // 
             // toolStripLabel2
             // 
@@ -258,6 +287,7 @@ namespace TENTAC_HRM.Forms.User_control
             // dgv_MenuPhanQuyen
             // 
             this.dgv_MenuPhanQuyen.AllowUserToAddRows = false;
+            this.dgv_MenuPhanQuyen.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_MenuPhanQuyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_MenuPhanQuyen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaNhanVien,
@@ -282,14 +312,6 @@ namespace TENTAC_HRM.Forms.User_control
             this.dgv_MenuPhanQuyen.TabIndex = 11;
             this.dgv_MenuPhanQuyen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_MenuPhanQuyen_CellClick);
             this.dgv_MenuPhanQuyen.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_MenuPhanQuyen_RowPostPaint);
-            // 
-            // pnlDieuHuong
-            // 
-            this.pnlDieuHuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDieuHuong.Location = new System.Drawing.Point(0, 0);
-            this.pnlDieuHuong.Name = "pnlDieuHuong";
-            this.pnlDieuHuong.Size = new System.Drawing.Size(780, 25);
-            this.pnlDieuHuong.TabIndex = 12;
             // 
             // MaNhanVien
             // 
@@ -333,25 +355,13 @@ namespace TENTAC_HRM.Forms.User_control
             this.rownumber.Name = "rownumber";
             this.rownumber.Visible = false;
             // 
-            // comboBoxEx1
+            // pnlDieuHuong
             // 
-            this.comboBoxEx1.DisplayMember = "Text";
-            this.comboBoxEx1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.comboBoxEx1.FormattingEnabled = true;
-            this.comboBoxEx1.ItemHeight = 16;
-            this.comboBoxEx1.Location = new System.Drawing.Point(137, 104);
-            this.comboBoxEx1.Name = "comboBoxEx1";
-            this.comboBoxEx1.Size = new System.Drawing.Size(205, 22);
-            this.comboBoxEx1.TabIndex = 10;
-            // 
-            // labelX4
-            // 
-            this.labelX4.Location = new System.Drawing.Point(8, 101);
-            this.labelX4.Margin = new System.Windows.Forms.Padding(4);
-            this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(133, 28);
-            this.labelX4.TabIndex = 4;
-            this.labelX4.Text = "Nhóm tài khoản :";
+            this.pnlDieuHuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDieuHuong.Location = new System.Drawing.Point(0, 0);
+            this.pnlDieuHuong.Name = "pnlDieuHuong";
+            this.pnlDieuHuong.Size = new System.Drawing.Size(780, 25);
+            this.pnlDieuHuong.TabIndex = 12;
             // 
             // uc_authorization
             // 
@@ -367,6 +377,7 @@ namespace TENTAC_HRM.Forms.User_control
             this.Load += new System.EventHandler(this.uc_authorization_Load);
             this.Resize += new System.EventHandler(this.uc_authorization_Resize);
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -389,7 +400,7 @@ namespace TENTAC_HRM.Forms.User_control
         private DevComponents.DotNetBar.Controls.TextBoxX txt_TenDangNhap;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_MatKhau;
         private System.Windows.Forms.TreeView treeview_PhanQuyen;
-        private System.Windows.Forms.Button btn_save;
+        private DevComponents.DotNetBar.ButtonX btn_save;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox cbo_BoPhan;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -404,7 +415,8 @@ namespace TENTAC_HRM.Forms.User_control
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn TenChucVu;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn SoLanDangNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn rownumber;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx comboBoxEx1;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbo_Group;
         private DevComponents.DotNetBar.LabelX labelX4;
+        private System.Windows.Forms.Panel panel2;
     }
 }

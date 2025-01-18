@@ -255,6 +255,7 @@
             // 
             // btn_save
             // 
+            this.btn_save.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.Image = global::TENTAC_HRM.Properties.Resources.diskette;
             this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -287,8 +288,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(306, 584);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_address";

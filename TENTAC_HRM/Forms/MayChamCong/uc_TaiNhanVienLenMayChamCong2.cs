@@ -9,7 +9,7 @@ using TENTAC_HRM.Custom;
 using TENTAC_HRM.Model;
 using zkemkeeper;
 
-namespace TENTAC_HRM.Forms.May_Cham_Cong
+namespace TENTAC_HRM.Forms.MayChamCong
 {
     public partial class uc_TaiNhanVienLenMayChamCong2 : UserControl
     {

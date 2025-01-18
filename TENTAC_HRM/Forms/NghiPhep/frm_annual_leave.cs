@@ -1,5 +1,4 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
-using MathNet.Numerics.Distributions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -117,22 +116,22 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private void load_nhanvien()
         {
             string ReportTo = "";
-            if(LoginInfo.UserCd != "ADMIN" && LoginInfo.UserCd != "HR")
+            if (LoginInfo.Group != "ADMIN" && LoginInfo.Group != "HR")
             {
                 ReportTo = $" and nhanviennew.ReportTo = '{LoginInfo.UserCd}' ";
-            }    
+            }
             //cbo_NhanVien.DataSource = provider.load_nhanvien(LoginInfo.MaChamCong);
-            string sql = "SELECT nhanvien.MaNhanVien,nhanvien.TenNhanVien,phongban.TenPhongBan," +
-                "COALESCE(SUM(b.SoNgay), 0) AS TongNgayNghi," +
-                "(a.TongNgayPhep - COALESCE(SUM(b.SoNgay), 0)) AS PhepTon " +
-                "FROM MITACOSQL.dbo.NHANVIEN nhanvien " +
-                "left join tbl_NhanVien nhanviennew on nhanvien.MaNhanVien = nhanviennew.MaNhanVien " +
-                "left join MITACOSQL.dbo.PHONGBAN phongban on phongban.MaPhongBan = nhanvien.MaPhongBan " +
-                $"left join tbl_NgayPhepNam a on nhanvien.MaNhanVien = a.MaNhanVien and a.Nam = {DateTime.Now.Year} " +
-                "LEFT JOIN tbl_NghiPhepNam b ON a.MaNhanVien = b.MaNhanVien AND b.del_flg = 0 " +
-                "AND YEAR(b.NgayNghi) = a.Nam and b.LoaiPhepNghi= 'LP001' and b.Id_TrangThai != 198 " +
-                $"WHERE a.del_flg = 0 and a.Nam = '{DateTime.Now.Year}' " + ReportTo + $" or nhanvien.MaNhanVien = '{LoginInfo.UserCd}' " +
-                "GROUP BY nhanvien.MaNhanVien,nhanvien.TenNhanVien,nhanvien.NgayVaoLamViec,phongban.TenPhongBan,a.MaNhanVien, a.TongNgayPhep;";
+            string sql = $@"SELECT nhanvien.MaNhanVien,nhanvien.TenNhanVien,phongban.TenPhongBan,
+                COALESCE(SUM(b.SoNgay), 0) AS TongNgayNghi,
+                (a.TongNgayPhep - COALESCE(SUM(b.SoNgay), 0)) AS PhepTon 
+                FROM MITACOSQL.dbo.NHANVIEN nhanvien 
+                left join tbl_NhanVien nhanviennew on nhanvien.MaNhanVien = nhanviennew.MaNhanVien 
+                left join MITACOSQL.dbo.PHONGBAN phongban on phongban.MaPhongBan = nhanvien.MaPhongBan 
+                left join tbl_NgayPhepNam a on nhanvien.MaNhanVien = a.MaNhanVien and a.Nam = {DateTime.Now.Year}
+                LEFT JOIN tbl_NghiPhepNam b ON a.MaNhanVien = b.MaNhanVien AND b.del_flg = 0 
+                AND YEAR(b.NgayNghi) = a.Nam and b.LoaiPhepNghi= 'LP001' and b.Id_TrangThai != 198 
+                WHERE a.del_flg = 0 and a.Nam = '{DateTime.Now.Year}' {ReportTo} or nhanvien.MaNhanVien = '{LoginInfo.UserCd}' 
+                GROUP BY nhanvien.MaNhanVien,nhanvien.TenNhanVien,nhanvien.NgayVaoLamViec,phongban.TenPhongBan,a.MaNhanVien, a.TongNgayPhep;";
 
             dgv_NhanVien.DataSource = SQLHelper.ExecuteDt(sql);
         }
@@ -181,9 +180,9 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 InsertData();
             }
             load_nhanvien();
-            uc_nghiphep._year = cbo_Nam.Text;
-            uc_nghiphep._month = cbo_Thang.Text;
-            uc_nghiphep.load_data();
+            uc_nghiphep.Year = cbo_Nam.Text;
+            uc_nghiphep.Month = cbo_Thang.Text;
+            uc_nghiphep.Load_data();
             //this.Close();
         }
         private bool CheckValidate()
@@ -304,7 +303,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
                         }
                     }
                 }
-                
             }
             catch (Exception ex)
             {
@@ -351,7 +349,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
         {
             this.Close();
         }
-       
+
         private void cbo_Nam_SelectedIndexChanged(object sender, EventArgs e)
         {
             //_Nam = int.Parse(cbo_Nam.Text);
@@ -411,6 +409,22 @@ namespace TENTAC_HRM.Forms.NghiPhep
             {
                 chk_BuoiSang.Enabled = false;
                 chk_BuoiChieu.Enabled = false;
+            }
+        }
+
+        private void chk_BuoiChieu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_BuoiChieu.Checked == true)
+            {
+                chk_BuoiSang.Checked = false;
+            }
+        }
+
+        private void chk_BuoiSang_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_BuoiSang.Checked == true)
+            {
+                chk_BuoiChieu.Checked = false;
             }
         }
     }

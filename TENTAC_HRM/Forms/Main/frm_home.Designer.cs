@@ -94,6 +94,7 @@
             this.btn_maxximize = new FontAwesome.Sharp.IconMenuItem();
             this.btn_minimize = new FontAwesome.Sharp.IconMenuItem();
             this.btn_notifi = new FontAwesome.Sharp.IconMenuItem();
+            this.btn_SignOut = new FontAwesome.Sharp.IconMenuItem();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.tb_main.SuspendLayout();
             this.tb_dashboard.SuspendLayout();
@@ -220,6 +221,7 @@
             // 
             // ts_date
             // 
+            this.ts_date.Enabled = false;
             this.ts_date.Image = ((System.Drawing.Image)(resources.GetObject("ts_date.Image")));
             this.ts_date.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ts_date.Name = "ts_date";
@@ -276,7 +278,7 @@
             this.btn_show_menu_left.Name = "btn_show_menu_left";
             this.btn_show_menu_left.Size = new System.Drawing.Size(31, 28);
             this.btn_show_menu_left.TabIndex = 0;
-            this.btn_show_menu_left.Text = ">>";
+            this.btn_show_menu_left.Text = "<<";
             this.btn_show_menu_left.UseVisualStyleBackColor = false;
             this.btn_show_menu_left.Click += new System.EventHandler(this.btn_show_menu_left_Click);
             // 
@@ -711,7 +713,8 @@
             this.btn_exit,
             this.btn_maxximize,
             this.btn_minimize,
-            this.btn_notifi});
+            this.btn_notifi,
+            this.btn_SignOut});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 2);
@@ -722,18 +725,16 @@
             // 
             // iconMenuItem1
             // 
-            this.iconMenuItem1.AutoSize = false;
             this.iconMenuItem1.BackColor = System.Drawing.Color.Transparent;
             this.iconMenuItem1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconMenuItem1.BackgroundImage")));
             this.iconMenuItem1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.iconMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.iconMenuItem1.DoubleClickEnabled = true;
             this.iconMenuItem1.Enabled = false;
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
             this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(28, 26);
+            this.iconMenuItem1.Size = new System.Drawing.Size(28, 28);
             // 
             // hệThốngToolStripMenuItem
             // 
@@ -796,6 +797,19 @@
             this.btn_notifi.Text = "0";
             this.btn_notifi.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btn_notifi.Click += new System.EventHandler(this.btn_notifi_Click);
+            // 
+            // btn_SignOut
+            // 
+            this.btn_SignOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_SignOut.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btn_SignOut.IconChar = FontAwesome.Sharp.IconChar.SignOut;
+            this.btn_SignOut.IconColor = System.Drawing.Color.Black;
+            this.btn_SignOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_SignOut.Name = "btn_SignOut";
+            this.btn_SignOut.Size = new System.Drawing.Size(80, 28);
+            this.btn_SignOut.Text = "SignOut";
+            this.btn_SignOut.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_SignOut.Click += new System.EventHandler(this.btn_SignOut_Click);
             // 
             // timer2
             // 
@@ -910,6 +924,7 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.ToolStripStatusLabel ts_user;
+        private FontAwesome.Sharp.IconMenuItem btn_SignOut;
     }
 }
 

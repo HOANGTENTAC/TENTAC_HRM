@@ -116,6 +116,7 @@ namespace TENTAC_HRM.Forms.Main
                 LoginInfo.LoaiUser = "NhanVien";
                 LoginInfo.MaPhongBan = dt.Rows[0]["MaPhongBan"].ToString();
                 LoginInfo.MaChamCong = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChamCong"].ToString() : "";
+                LoginInfo.Email = dt.Rows[0]["Email"].ToString();
             }
             else
             {

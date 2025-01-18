@@ -60,10 +60,10 @@ namespace TENTAC_HRM.Forms.NhanSu
                 pl_GiaDinh.Enabled = true;
                 pl_TaiSan.Enabled = true;
 
-                string sql = string.Format("select * from tbl_NhanVien a " +
-                                            "right join MITACOSQL.dbo.NHANVIEN b on a.MaNhanVien = b.MaNhanVien " +
-                                            "left join mst_ChucVu c on b.ChucVu = c.MaChucVu " +
-                                            "where b.MaNhanVien = '{0}'", _ma_nhan_vien);
+                string sql = $@"select * from tbl_NhanVien a 
+                                right join MITACOSQL.dbo.NHANVIEN b on a.MaNhanVien = b.MaNhanVien 
+                                left join mst_ChucVu c on b.ChucVu = c.MaChucVu 
+                                where b.MaNhanVien = '{_ma_nhan_vien}'";
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 txt_MaSo.Text = dt.Rows[0]["MaNhanVien"].ToString();
@@ -202,9 +202,9 @@ namespace TENTAC_HRM.Forms.NhanSu
         }
         public void LoadNhanVienTaiSan()
         {
-            string sql = string.Format("select Id as Id,SoPhieu,NgayVaoSo,DienGiai,TuNgay as TuNgayTS,DenNgay as DenNgayTS " +
-                "from tbl_NhanVienTaiSan a " +
-                "where MaNhanVien = '{0}' and delflg = 0", _ma_nhan_vien);
+            string sql = $@"select Id as Id,SoPhieu,NgayVaoSo,DienGiai,TuNgay as TuNgayTS,DenNgay as DenNgayTS 
+                from tbl_NhanVienTaiSan a 
+                where MaNhanVien = '{_ma_nhan_vien}' and delflg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_TaiSan.DataSource = dt;
@@ -258,33 +258,33 @@ namespace TENTAC_HRM.Forms.NhanSu
         }
         public void LoadNhanVienNguoiThan()
         {
-            string sql = string.Format("select Id,b.TypeName as MoiQuanHe,HoTen,NgaySinh,MaSoThue,CCCD, IsPhuThuoc " +
-                "from tbl_NhanVienNguoiThan a " +
-                "join sys_AllType b on a.LoaiQuanHe = b.TypeId and TypeType = 80 " +
-                "where a.MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = $@"select Id,b.TypeName as MoiQuanHe,HoTen,NgaySinh,MaSoThue,CCCD, IsPhuThuoc 
+                from tbl_NhanVienNguoiThan a 
+                join sys_AllType b on a.LoaiQuanHe = b.TypeId and TypeType = 80 
+                where a.MaNhanVien = '{_ma_nhan_vien}' and a.del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_NguoiThan.DataSource = dt;
         }
         public void LoadNhanVienTieuSu()
         {
-            string sql = string.Format("select a.Id,TuNam,DenNam,CongViec,TenDiaChi as QuocGia " +
-                "from tbl_NhanVienTieuSu a " +
-                "join mst_DonViHanhChinh b on a.id_QuocGia = b.Id and b.ParentId is null and b.del_flg = 0 " +
-                "where MaNhanVien = '{0}' and a.del_flg = 0", _ma_nhan_vien);
+            string sql = $@"select a.Id,TuNam,DenNam,CongViec,TenDiaChi as QuocGia 
+                from tbl_NhanVienTieuSu a 
+                join mst_DonViHanhChinh b on a.id_QuocGia = b.Id and b.ParentId is null and b.del_flg = 0 
+                where MaNhanVien = '{_ma_nhan_vien}' and a.del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_TieuSu.DataSource = dt;
         }
         public void LoadNhanVienPhongBan()
         {
-            string sql = string.Format("select b.TenCongTy,c.TenPhongBan,d.TenChucVu, e.TenKhuVuc " +
-                "from MITACOSQL.dbo.NhanVien a " +
-                "left join MITACOSQL.dbo.CongTy b on a.MaCongTy = b.MaCongTy " +
-                "left join MITACOSQL.dbo.PhongBan c on a.MaPhongBan = c.MaPhongBan " +
-                "left join MITACOSQL.dbo.ChucVu d on a.MaChucVu = d.MaChucVu " +
-                "left join MITACOSQL.dbo.KHUVUC e on a.MaKhuVuc = e.MaKhuVuc " +
-                "where a.MaNhanVien = '{0}'", _ma_nhan_vien);
+            string sql = $@"select b.TenCongTy,c.TenPhongBan,d.TenChucVu, e.TenKhuVuc 
+                from MITACOSQL.dbo.NhanVien a 
+                left join MITACOSQL.dbo.CongTy b on a.MaCongTy = b.MaCongTy 
+                left join MITACOSQL.dbo.PhongBan c on a.MaPhongBan = c.MaPhongBan 
+                left join MITACOSQL.dbo.ChucVu d on a.MaChucVu = d.MaChucVu 
+                left join MITACOSQL.dbo.KHUVUC e on a.MaKhuVuc = e.MaKhuVuc 
+                where a.MaNhanVien = '{_ma_nhan_vien}'";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -341,13 +341,13 @@ namespace TENTAC_HRM.Forms.NhanSu
         }
         public void LoadPhongBanNew()
         {
-            string sql = string.Format("select b.TenCongTy as TenCongTy, c.TenKhuVuc as TenKhuVuc, d.TenPhongBan as TenPhongBan, " +
-                "e.TenChucVu as TenChucVu, a.TuNgay, a.DenNgay, a.IsActive from tbl_NhanVienPhongBan a " +
-                "left join mst_CongTy b on a.MaCongTy = b.MaCongTy " +
-                "left join mst_KhuVuc c on c.MaKhuVuc = a.MaKhuVuc " +
-                "left join mst_PhongBan d on d.MaPhongBan = a.MaPhongBan " +
-                "left join mst_ChucVu e on e.MaChucVu = a.MaChucVu " +
-                "where a.MaNhanVien = '{0}' and a.del_flg = 0 and a.IsActive = 1", _ma_nhan_vien);
+            string sql = $@"select b.TenCongTy as TenCongTy, c.TenKhuVuc as TenKhuVuc, d.TenPhongBan as TenPhongBan, 
+                e.TenChucVu as TenChucVu, a.TuNgay, a.DenNgay, a.IsActive from tbl_NhanVienPhongBan a 
+                left join mst_CongTy b on a.MaCongTy = b.MaCongTy 
+                left join mst_KhuVuc c on c.MaKhuVuc = a.MaKhuVuc 
+                left join mst_PhongBan d on d.MaPhongBan = a.MaPhongBan 
+                left join mst_ChucVu e on e.MaChucVu = a.MaChucVu 
+                where a.MaNhanVien = '{_ma_nhan_vien}' and a.del_flg = 0 and a.IsActive = 1";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -362,13 +362,13 @@ namespace TENTAC_HRM.Forms.NhanSu
         }
         public void LoadNhanVienChuyenMon()
         {
-            string sql = string.Format("select b.Id,c.TenBac,d.TenHe,e.TenChuyenNganh, b.TruongDaoTao,TuNgay,DenNgay,NgayNhanBang,f.TypeName as XepLoaiBang " +
-                "from tbl_NhanVienDaoTao b " +
-                "left join mst_BacDaoTao c on c.MaBac = b.MaBacDaoTao " +
-                "left join mst_HeDaoTao d on d.Id = b.id_HeDaoTao " +
-                "left join mst_ChuyenNganh e on e.MaChuyenNganh = b.MaNganhDaoTao " +
-                "left join sys_AllType f on f.TypeNameShort = b.XepLoaiBang " +
-                "where b.MaNhanVien = '{0}' and b.del_flg = 0", _ma_nhan_vien);
+            string sql = $@"select b.Id,c.TenBac,d.TenHe,e.TenChuyenNganh, b.TruongDaoTao,TuNgay,DenNgay,NgayNhanBang,f.TypeName as XepLoaiBang 
+                from tbl_NhanVienDaoTao b 
+                left join mst_BacDaoTao c on c.MaBac = b.MaBacDaoTao 
+                left join mst_HeDaoTao d on d.Id = b.id_HeDaoTao 
+                left join mst_ChuyenNganh e on e.MaChuyenNganh = b.MaNganhDaoTao 
+                left join sys_AllType f on f.TypeNameShort = b.XepLoaiBang 
+                where b.MaNhanVien = '{_ma_nhan_vien}' and b.del_flg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -420,10 +420,10 @@ namespace TENTAC_HRM.Forms.NhanSu
         //}
         public void LoadNhanVienHopDong()
         {
-            string sql = string.Format("select b.Id,c.TenLoai,b.SoHopDong,b.TuNgay,b.DenNgay " +
-                "from tbl_NhanVienHopDong b " +
-                "left join mst_LoaiHopDong c on c.Id = b.id_LoaiHopDong " +
-                "where b.MaNhanVien = '{0}' and b.del_flg = 0 and IsActive = 1 ", _ma_nhan_vien);
+            string sql = $@"select b.Id,c.TenLoai,b.SoHopDong,b.TuNgay,b.DenNgay 
+                from tbl_NhanVienHopDong b 
+                left join mst_LoaiHopDong c on c.Id = b.id_LoaiHopDong 
+                where b.MaNhanVien = '{_ma_nhan_vien}' and b.del_flg = 0 and IsActive = 1 ";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -437,11 +437,11 @@ namespace TENTAC_HRM.Forms.NhanSu
         }
         public void LoadNhanVienBaoHiem()
         {
-            string sql = string.Format("select SoThe,TuNgay,DenNgay,NoiThucHien,TenDiaChi,LoaiBaoHiem " +
-                "from tbl_NhanVienBaoHiem a " +
-                "join sys_AllType b on a.LoaiBaoHiem = b.TypeId " +
-                "left join mst_DonViHanhChinh c on c.Id = a.id_tinh and c.LoaiDiaChi = 22 and c.del_flg = 0 " +
-                "where a.IsActive = 1 and a.MaNhanVien = '{0}' and a.del_flg = 0 ", _ma_nhan_vien);
+            string sql = $@"select SoThe,TuNgay,DenNgay,NoiThucHien,TenDiaChi,LoaiBaoHiem 
+                from tbl_NhanVienBaoHiem a 
+                join sys_AllType b on a.LoaiBaoHiem = b.TypeId 
+                left join mst_DonViHanhChinh c on c.Id = a.id_tinh and c.LoaiDiaChi = 22 and c.del_flg = 0 
+                where a.IsActive = 1 and a.MaNhanVien = '{_ma_nhan_vien}' and a.del_flg = 0 ";
             DataTable dt = new DataTable(sql);
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -1852,12 +1852,12 @@ namespace TENTAC_HRM.Forms.NhanSu
         {
             if (txt_MucLuong.PasswordChar == '\0')
             {
-                btn_show_salary.Image = Properties.Resources.close_eye2;
+                btn_show_salary.Image = Resources.close_eye2;
                 txt_MucLuong.PasswordChar = '*';
             }
             else
             {
-                btn_show_salary.Image = Properties.Resources.eye;
+                btn_show_salary.Image = Resources.eye;
                 txt_MucLuong.PasswordChar = '\0';
             }
         }

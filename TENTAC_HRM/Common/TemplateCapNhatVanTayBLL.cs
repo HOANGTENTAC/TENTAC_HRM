@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TENTAC_HRM.DataTransferObject.QuanLyNhanVienDTO;
 using TENTAC_HRM.Model;
 
 namespace TENTAC_HRM.Common
@@ -27,6 +29,10 @@ namespace TENTAC_HRM.Common
         {
             string sql = "select * from template_capnhatvantay where (ma_cham_cong = '"+ machamcong + "')";
             return SQLHelper.ExecuteDt(sql);
+        }
+        public DataTable NhanVienUpdateGetByMaChamCong(int machamcong)
+        {
+            return SQLHelper.ExecuteDt($"select * from  dbo.[NhanVienUpdate] where ('{machamcong}'=dbo.[NhanVienUpdate].MaChamCong)");
         }
     }
 }

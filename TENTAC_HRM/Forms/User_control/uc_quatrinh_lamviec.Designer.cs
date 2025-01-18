@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.cbo_nhanvien = new System.Windows.Forms.ToolStripComboBox();
+            this.cbo_PhongBan = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.cbo_hienthi = new System.Windows.Forms.ToolStripComboBox();
@@ -199,6 +200,11 @@
             this.comboBoxTSPrinters = new System.Windows.Forms.ToolStripComboBox();
             this.miniToolStrip = new System.Windows.Forms.ToolStrip();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.dgv_NhanVien = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.MaNhanVien_NV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien_NV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_NgaySinh)).BeginInit();
@@ -245,6 +251,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_thaisai)).BeginInit();
             this.panel16.SuspendLayout();
             this.toolStrip9.SuspendLayout();
+            this.expandablePanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_NhanVien)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -252,7 +261,7 @@
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
-            this.cbo_nhanvien,
+            this.cbo_PhongBan,
             this.toolStripSeparator17,
             this.toolStripLabel3,
             this.cbo_hienthi});
@@ -266,13 +275,13 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(111, 22);
-            this.toolStripLabel1.Text = "Lọc theo nhân viên:";
+            this.toolStripLabel1.Size = new System.Drawing.Size(65, 22);
+            this.toolStripLabel1.Text = "Phòng ban";
             // 
-            // cbo_nhanvien
+            // cbo_PhongBan
             // 
-            this.cbo_nhanvien.Name = "cbo_nhanvien";
-            this.cbo_nhanvien.Size = new System.Drawing.Size(180, 25);
+            this.cbo_PhongBan.Name = "cbo_PhongBan";
+            this.cbo_PhongBan.Size = new System.Drawing.Size(180, 25);
             // 
             // toolStripSeparator17
             // 
@@ -287,6 +296,7 @@
             // 
             // cbo_hienthi
             // 
+            this.cbo_hienthi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_hienthi.Name = "cbo_hienthi";
             this.cbo_hienthi.Size = new System.Drawing.Size(121, 25);
             // 
@@ -305,9 +315,9 @@
             this.panel.Controls.Add(this.label2);
             this.panel.Controls.Add(this.pb_avata);
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel.Location = new System.Drawing.Point(0, 25);
+            this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1129, 118);
+            this.panel.Size = new System.Drawing.Size(784, 118);
             this.panel.TabIndex = 1;
             // 
             // chk_GioiTinh
@@ -507,7 +517,7 @@
             // kryptonNavigator1
             // 
             this.kryptonNavigator1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.kryptonNavigator1.Location = new System.Drawing.Point(0, 143);
+            this.kryptonNavigator1.Location = new System.Drawing.Point(0, 118);
             this.kryptonNavigator1.Name = "kryptonNavigator1";
             this.kryptonNavigator1.NavigatorMode = ComponentFactory.Krypton.Navigator.NavigatorMode.BarRibbonTabGroup;
             this.kryptonNavigator1.Pages.AddRange(new ComponentFactory.Krypton.Navigator.KryptonPage[] {
@@ -520,7 +530,7 @@
             this.kryptonPage7,
             this.kryptonPage8});
             this.kryptonNavigator1.SelectedIndex = 2;
-            this.kryptonNavigator1.Size = new System.Drawing.Size(1129, 471);
+            this.kryptonNavigator1.Size = new System.Drawing.Size(784, 471);
             this.kryptonNavigator1.TabIndex = 5;
             this.kryptonNavigator1.Text = "kryptonNavigator1";
             // 
@@ -652,7 +662,7 @@
             this.btn_add_congtac.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_congtac.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_congtac.Name = "btn_add_congtac";
-            this.btn_add_congtac.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_congtac.Size = new System.Drawing.Size(57, 29);
             this.btn_add_congtac.Text = "Thêm";
             this.btn_add_congtac.Click += new System.EventHandler(this.btn_add_congtac_Click);
             // 
@@ -838,7 +848,7 @@
             this.btn_add_khenthuong.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_khenthuong.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_khenthuong.Name = "btn_add_khenthuong";
-            this.btn_add_khenthuong.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_khenthuong.Size = new System.Drawing.Size(57, 29);
             this.btn_add_khenthuong.Text = "Thêm";
             this.btn_add_khenthuong.Click += new System.EventHandler(this.btn_add_khenthuong_Click);
             // 
@@ -898,7 +908,7 @@
             this.kryptonPage3.LastVisibleSet = true;
             this.kryptonPage3.MinimumSize = new System.Drawing.Size(50, 50);
             this.kryptonPage3.Name = "kryptonPage3";
-            this.kryptonPage3.Size = new System.Drawing.Size(1127, 442);
+            this.kryptonPage3.Size = new System.Drawing.Size(782, 442);
             this.kryptonPage3.Text = "Kỷ luật";
             this.kryptonPage3.ToolTipTitle = "Page ToolTip";
             this.kryptonPage3.UniqueName = "E777F1016B094D6AE1B6169E503BE779";
@@ -919,7 +929,7 @@
             this.dgv_kyluat.Location = new System.Drawing.Point(0, 32);
             this.dgv_kyluat.Name = "dgv_kyluat";
             this.dgv_kyluat.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Office2010Blue;
-            this.dgv_kyluat.Size = new System.Drawing.Size(1127, 410);
+            this.dgv_kyluat.Size = new System.Drawing.Size(782, 410);
             this.dgv_kyluat.TabIndex = 6;
             this.dgv_kyluat.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_kyluat_CellClick);
             this.dgv_kyluat.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_kyluat_RowPostPaint);
@@ -986,7 +996,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1127, 32);
+            this.panel9.Size = new System.Drawing.Size(782, 32);
             this.panel9.TabIndex = 5;
             // 
             // toolStrip4
@@ -1006,7 +1016,7 @@
             this.toolStrip4.Location = new System.Drawing.Point(0, 0);
             this.toolStrip4.Name = "toolStrip4";
             this.toolStrip4.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.toolStrip4.Size = new System.Drawing.Size(1127, 32);
+            this.toolStrip4.Size = new System.Drawing.Size(782, 32);
             this.toolStrip4.TabIndex = 1;
             this.toolStrip4.Text = "toolStrip4";
             // 
@@ -1015,7 +1025,7 @@
             this.btn_add_kl.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_kl.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_kl.Name = "btn_add_kl";
-            this.btn_add_kl.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_kl.Size = new System.Drawing.Size(57, 29);
             this.btn_add_kl.Text = "Thêm";
             this.btn_add_kl.Click += new System.EventHandler(this.btn_add_kl_Click);
             // 
@@ -1182,7 +1192,7 @@
             this.btn_add_dg.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_dg.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_dg.Name = "btn_add_dg";
-            this.btn_add_dg.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_dg.Size = new System.Drawing.Size(57, 29);
             this.btn_add_dg.Text = "Thêm";
             this.btn_add_dg.Click += new System.EventHandler(this.btn_add_dg_Click);
             // 
@@ -1357,7 +1367,7 @@
             this.btn_add_dt.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_dt.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_dt.Name = "btn_add_dt";
-            this.btn_add_dt.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_dt.Size = new System.Drawing.Size(57, 29);
             this.btn_add_dt.Text = "Thêm";
             this.btn_add_dt.Click += new System.EventHandler(this.btn_add_dt_Click);
             // 
@@ -1532,7 +1542,7 @@
             this.btn_add_tainan.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_tainan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_tainan.Name = "btn_add_tainan";
-            this.btn_add_tainan.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_tainan.Size = new System.Drawing.Size(57, 29);
             this.btn_add_tainan.Text = "Thêm";
             this.btn_add_tainan.Click += new System.EventHandler(this.btn_add_tainan_Click);
             // 
@@ -1716,7 +1726,7 @@
             this.btn_add_nv.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_nv.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_nv.Name = "btn_add_nv";
-            this.btn_add_nv.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_nv.Size = new System.Drawing.Size(57, 29);
             this.btn_add_nv.Text = "Thêm";
             this.btn_add_nv.Click += new System.EventHandler(this.btn_add_nv_Click);
             // 
@@ -1873,7 +1883,7 @@
             this.btn_add_ts.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add_ts.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btn_add_ts.Name = "btn_add_ts";
-            this.btn_add_ts.Size = new System.Drawing.Size(58, 29);
+            this.btn_add_ts.Size = new System.Drawing.Size(57, 29);
             this.btn_add_ts.Text = "Thêm";
             this.btn_add_ts.Click += new System.EventHandler(this.btn_add_ts_Click);
             // 
@@ -1945,12 +1955,86 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // expandablePanel1
+            // 
+            this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
+            this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.expandablePanel1.Controls.Add(this.dgv_NhanVien);
+            this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.expandablePanel1.ExpandButtonVisible = false;
+            this.expandablePanel1.Location = new System.Drawing.Point(0, 25);
+            this.expandablePanel1.Name = "expandablePanel1";
+            this.expandablePanel1.Size = new System.Drawing.Size(345, 589);
+            this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.expandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandablePanel1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.expandablePanel1.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.expandablePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandablePanel1.Style.GradientAngle = 90;
+            this.expandablePanel1.TabIndex = 7;
+            this.expandablePanel1.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.expandablePanel1.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandablePanel1.TitleStyle.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
+            this.expandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.expandablePanel1.TitleStyle.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandablePanel1.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.expandablePanel1.TitleStyle.GradientAngle = 90;
+            this.expandablePanel1.TitleText = "Nhân viên";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.kryptonNavigator1);
+            this.panel1.Controls.Add(this.panel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(345, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(784, 589);
+            this.panel1.TabIndex = 8;
+            // 
+            // dgv_NhanVien
+            // 
+            this.dgv_NhanVien.AllowUserToAddRows = false;
+            this.dgv_NhanVien.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.dgv_NhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_NhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaNhanVien_NV,
+            this.TenNhanVien_NV});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_NhanVien.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_NhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_NhanVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgv_NhanVien.Location = new System.Drawing.Point(0, 26);
+            this.dgv_NhanVien.Name = "dgv_NhanVien";
+            this.dgv_NhanVien.Size = new System.Drawing.Size(345, 563);
+            this.dgv_NhanVien.TabIndex = 7;
+            this.dgv_NhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_NhanVien_CellClick);
+            // 
+            // MaNhanVien_NV
+            // 
+            this.MaNhanVien_NV.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien_NV.HeaderText = "Mã nhân vien";
+            this.MaNhanVien_NV.Name = "MaNhanVien_NV";
+            // 
+            // TenNhanVien_NV
+            // 
+            this.TenNhanVien_NV.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien_NV.HeaderText = "Tên nhân viên";
+            this.TenNhanVien_NV.Name = "TenNhanVien_NV";
+            this.TenNhanVien_NV.Width = 200;
+            // 
             // uc_quatrinh_lamviec
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.kryptonNavigator1);
-            this.Controls.Add(this.panel);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.expandablePanel1);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -2021,6 +2105,9 @@
             this.panel16.PerformLayout();
             this.toolStrip9.ResumeLayout(false);
             this.toolStrip9.PerformLayout();
+            this.expandablePanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_NhanVien)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2038,7 +2125,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox cbo_nhanvien;
+        private System.Windows.Forms.ToolStripComboBox cbo_PhongBan;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripComboBox cbo_hienthi;
@@ -2198,5 +2285,10 @@
         private DevComponents.DotNetBar.Controls.TextBoxX txt_Email;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_DiaChi;
         private DevComponents.DotNetBar.Controls.CheckBoxX chk_GioiTinh;
+        private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
+        private System.Windows.Forms.Panel panel1;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgv_NhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien_NV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien_NV;
     }
 }

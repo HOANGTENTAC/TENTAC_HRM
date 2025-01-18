@@ -56,7 +56,6 @@
             this.txt_GhiChu = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_Luong = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.label1 = new System.Windows.Forms.Label();
             this.ID = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.delete_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
@@ -65,6 +64,7 @@
             this.MucLuong = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.PT_ThueTNCN = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewTextBoxColumn();
             this.IsActive = new ComponentFactory.Krypton.Toolkit.KryptonDataGridViewCheckBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_TuNgay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtp_DenNgay)).BeginInit();
@@ -442,16 +442,6 @@
             this.dgv_Luong.TabIndex = 147;
             this.dgv_Luong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_luong_CellClick);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(1080, 270);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 17);
-            this.label1.TabIndex = 167;
-            this.label1.Text = "%";
-            // 
             // ID
             // 
             this.ID.DataPropertyName = "ID";
@@ -514,12 +504,23 @@
             this.IsActive.Name = "IsActive";
             this.IsActive.TrueValue = null;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(1080, 270);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 17);
+            this.label1.TabIndex = 167;
+            this.label1.Text = "%";
+            // 
             // frm_wage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1129, 554);
+            this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txt_GhiChu);
@@ -544,7 +545,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.labelX1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;

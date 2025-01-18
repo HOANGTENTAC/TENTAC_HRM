@@ -61,7 +61,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //    sql = $"update tbl_NghiPhepNam set Chk_NhanSu = 1 where id = '{_id}'";
             //}
             sql = $@"Update tbl_NghiPhepNam Set 
-                NguoiXacNhan = {LoginInfo.ReportTo}, Id_TrangThai = {SQLHelper.rpI(_idTrangThai)} 
+                NguoiXacNhan = '{(LoginInfo.Group == "HR" ? "" : LoginInfo.ReportTo)}', Id_TrangThai = {(LoginInfo.ReportTo == "" ? "199" : "198")} 
                 where Id = {SQLHelper.rpI(_id)}"; 
             int res = SQLHelper.ExecuteSql(sql);
             if (res > 0)
@@ -96,8 +96,8 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //}
             string reportTo = _idTrangThai == 199 ? SQLHelper.sUser : LoginInfo.ReportTo;
             sql = $@"Update tbl_NghiPhepNam Set 
-                NguoiXacNhan = {SQLHelper.rpStr(reportTo)}, Id_TrangThai = 198
-                LyDoNguoiXacNhan = {SQLHelper.rpStr(txt_LyDoTuChoi.Text.Trim())}
+                NguoiXacNhan = {SQLHelper.rpStr(reportTo)}, Id_TrangThai = 198,
+                LyDoNguoiXacNhan = {SQLHelper.rpStr(txt_LyDoTuChoi.Text.TrimEnd())}
                 where Id = {SQLHelper.rpI(_id)}";
             int res = SQLHelper.ExecuteSql(sql);
             if (res > 0)

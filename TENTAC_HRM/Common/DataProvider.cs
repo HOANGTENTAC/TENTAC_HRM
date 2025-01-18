@@ -109,7 +109,7 @@ namespace TENTAC_HRM
                 "from sys_AllType where TypeType = {0}", id);
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
-            dt.Rows.Add("0", "");
+            dt.Rows.Add("0", "Tất cả");
             return dt.Rows.Cast<DataRow>().OrderBy(x => x.Field<int>("id")).CopyToDataTable();
         }
         public DataTable load_loainghiviec()

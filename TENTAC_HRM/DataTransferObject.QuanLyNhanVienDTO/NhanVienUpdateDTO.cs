@@ -6,6 +6,9 @@
 
         private string _MaThe;
 
+        private string _UserPassWord;
+
+        private int _PhanQuyen;
         public int MaChamCong
         {
             get
@@ -27,6 +30,29 @@
             set
             {
                 _MaThe = value;
+            }
+        }
+        public string UserPassWord
+        {
+            get
+            {
+                return _UserPassWord;
+            }
+            set
+            {
+                _UserPassWord = value;
+            }
+        }
+
+        public int PhanQuyen
+        {
+            get
+            {
+                return _PhanQuyen;
+            }
+            set
+            {
+                _PhanQuyen = value;
             }
         }
     }

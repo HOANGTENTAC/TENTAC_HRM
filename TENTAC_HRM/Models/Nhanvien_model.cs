@@ -4,6 +4,8 @@ namespace TENTAC_HRM.Model
 {
     class Nhanvien_model
     {
+        private string MaNhanVien { get; set; }
+        public string MaChamCong { get; set; }
         public int Id_hoc_van { get; set; }
         public int Gioi_tinh_value { get; set; }
         public int Hon_nhan_value { get; set; }

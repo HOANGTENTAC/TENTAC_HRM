@@ -1,21 +1,19 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using Microsoft.Win32;
+using NPOI.SS.UserModel;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
-using TENTAC_HRM.Forms.Category;
-using TENTAC_HRM.Custom;
-using NPOI.SS.UserModel;
-using System.Collections.Generic;
-using Microsoft.Win32;
-using DevComponents.DotNetBar.Controls;
-using System.Drawing.Printing;
-using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-using Label = System.Windows.Forms.Label;
-using DataTable = System.Data.DataTable;
+using System.Windows.Forms;
+using TENTAC_HRM.Consts;
+using TENTAC_HRM.Custom;
+using TENTAC_HRM.Forms.Category;
 using Application = Microsoft.Office.Interop.Excel.Application;
-using System.Diagnostics;
+using DataTable = System.Data.DataTable;
+using Label = System.Windows.Forms.Label;
 
 namespace TENTAC_HRM.Forms.User_control
 {
@@ -42,14 +40,16 @@ namespace TENTAC_HRM.Forms.User_control
             // add item to toolstrip
             ((DateTimePicker)dtp_tu_ngay.Control).CustomFormat = "yyyy/MM/dd";
             ((DateTimePicker)dtp_tu_ngay.Control).Format = DateTimePickerFormat.Custom;
+            ((DateTimePicker)dtp_tu_ngay.Control).MaximumSize = new Size(100, 23);
+            ((DateTimePicker)dtp_tu_ngay.Control).Width = 100;
             ((DateTimePicker)dtp_den_ngay.Control).CustomFormat = "yyyy/MM/dd";
             ((DateTimePicker)dtp_den_ngay.Control).Format = DateTimePickerFormat.Custom;
+            ((DateTimePicker)dtp_den_ngay.Control).MaximumSize = new Size(100, 23);
+            ((DateTimePicker)dtp_den_ngay.Control).Width = 100;
             ((Label)denngay.Control).TextAlign = ContentAlignment.MiddleCenter;
             ((Label)tungay.Control).TextAlign = ContentAlignment.MiddleCenter;
             tungay.Text = "Từ ngày";
             denngay.Text = "Đến ngày";
-            dtp_tu_ngay.Width = 100;
-            dtp_den_ngay.Width = 100;
             tungay.Visible = false;
             denngay.Visible = false;
             dtp_den_ngay.Visible = false;
@@ -58,7 +58,7 @@ namespace TENTAC_HRM.Forms.User_control
             toolStrip1.Items.Add(dtp_tu_ngay);
             toolStrip1.Items.Add(denngay);
             toolStrip1.Items.Add(dtp_den_ngay);
-            cbo_nhanvien.ComboBox.SelectionChangeCommitted += cbo_nhanvien_SelectionChangeCommitted;
+            cbo_PhongBan.ComboBox.SelectionChangeCommitted += cbo_PhongBan_SelectionChangeCommitted;
             cbo_hienthi.ComboBox.SelectionChangeCommitted += cbo_hienthi_SelectionChangeCommitted;
         }
         private void cbo_hienthi_SelectionChangeCommitted(object sender, EventArgs e)
@@ -79,17 +79,35 @@ namespace TENTAC_HRM.Forms.User_control
             }
         }
 
-        private void cbo_nhanvien_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cbo_PhongBan_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            maNhanVien = cbo_nhanvien.ComboBox.SelectedValue.ToString();
-            LoadData();
+            LoadNhanVien();
+        }
+
+        private void LoadNhanVien()
+        {
+            string where = "";
+            if (LoginInfo.Group != "ADMIN" && LoginInfo.Group != "HR")
+            {
+                where += $" and (nhanvienmoi.ReportTo = '{LoginInfo.UserCd}' or nhanvien.MaNhanVien = '{LoginInfo.UserCd}') ";
+            }
+            if (cbo_PhongBan.ComboBox.SelectedValue.ToString() != "0")
+            {
+                where += $" and nhanvien.MaPhongBan = '{cbo_PhongBan.ComboBox.SelectedValue.ToString()}'";
+            }
+            string sql = $@"select nhanvien.MaNhanVien,nhanvien.TenNhanVien 
+                from MITACOSQL.dbo.NHANVIEN nhanvien 
+                left join tbl_NhanVien nhanvienmoi on nhanvien.MaNhanVien = nhanvienmoi.MaNhanVien 
+                where nhanvien.MaCongTy is not null " + where;
+            dgv_NhanVien.DataSource = SQLHelper.ExecuteDt(sql);
         }
 
         private void uc_staff_allowance_Load(object sender, EventArgs e)
         {
             LoadComboboxHienThi();
-            LoadComboboxNhanVien();
+            LoadComboboxPhongBan();
             LoadComboboxPrinters();
+            LoadNhanVien();
         }
         private void LoadComboboxHienThi()
         {
@@ -102,11 +120,16 @@ namespace TENTAC_HRM.Forms.User_control
             cbo_hienthi.ComboBox.DisplayMember = "name";
             cbo_hienthi.ComboBox.ValueMember = "value";
         }
-        private void LoadComboboxNhanVien()
+        private void LoadComboboxPhongBan()
         {
-            cbo_nhanvien.ComboBox.DataSource = provider.load_nhanvien();
-            cbo_nhanvien.ComboBox.DisplayMember = "name";
-            cbo_nhanvien.ComboBox.ValueMember = "value";
+            DataTable dt = provider.LoadPhongBan();
+            DataRow dr = dt.NewRow();
+            dr["id"] = "0";
+            dr["name"] = "";
+            dt.Rows.InsertAt(dr, 0);
+            cbo_PhongBan.ComboBox.DataSource = dt;
+            cbo_PhongBan.ComboBox.DisplayMember = "name";
+            cbo_PhongBan.ComboBox.ValueMember = "id";
         }
         private void LoadData()
         {
@@ -115,7 +138,7 @@ namespace TENTAC_HRM.Forms.User_control
                     from MITACOSQL.dbo.NHANVIEN a 
                     left join tbl_NhanVien c on a.MaNhanVien = c.MaNhanVien
                     left join tbl_NhanVienDiaChi b on a.MaNhanVien = b.MaNhanVien 
-                    WHere a.MaNhanVien = {SQLHelper.rpStr(maNhanVien)} and b.LoaiDiaChi = 43";
+                    Where a.MaNhanVien = '{dgv_NhanVien.CurrentRow.Cells["MaNhanVien_NV"].Value.ToString()}' ";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -138,6 +161,7 @@ namespace TENTAC_HRM.Forms.User_control
                     pb_avata.Image = null;
                 }
             }
+            maNhanVien = dgv_NhanVien.CurrentRow.Cells["MaNhanVien_NV"].Value.ToString();
             LoadQTCongTac();
             LoadQTKhenThuong();
             LoadQTKyLuat();
@@ -1497,7 +1521,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_print_nv_Click(object sender, EventArgs e)
         {
-            if(comboBoxNVPrinters.SelectedItem != null)
+            if (comboBoxNVPrinters.SelectedItem != null)
             {
                 try
                 {
@@ -1588,7 +1612,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_print_ts_Click(object sender, EventArgs e)
         {
-            if(comboBoxTSPrinters.SelectedItem != null)
+            if (comboBoxTSPrinters.SelectedItem != null)
             {
                 try
                 {
@@ -1679,7 +1703,7 @@ namespace TENTAC_HRM.Forms.User_control
         }
         private void btn_print_tn_Click(object sender, EventArgs e)
         {
-            if(comboBoxTNPrinters.SelectedItem != null)
+            if (comboBoxTNPrinters.SelectedItem != null)
             {
                 try
                 {
@@ -1768,6 +1792,11 @@ namespace TENTAC_HRM.Forms.User_control
                     RJMessageBox.Show("Lỗi khi in: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void dgv_NhanVien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            LoadData();
         }
     }
 }

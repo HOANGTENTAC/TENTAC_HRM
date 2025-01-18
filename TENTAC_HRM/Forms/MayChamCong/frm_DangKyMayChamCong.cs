@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Net;
+using System.Security;
 using System.Windows.Forms;
 using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.DataTransferObject.MayChamCong;
 using zkemkeeper;
 
-namespace TENTAC_HRM.Forms.May_Cham_Cong
+namespace TENTAC_HRM.Forms.MayChamCong
 {
-    public partial class frmDangKyMayChamCong : Form
+    public partial class frm_DangKyMayChamCong : Form
     {
         public CZKEMClass axCZKEM1 = new CZKEMClass();
         private bool bIsConnected = false;
@@ -39,9 +41,11 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
         private string _b;
 
         private string _c;
-        public frmDangKyMayChamCong()
+        public int[] idPermision { get; set; }
+        public frm_DangKyMayChamCong(int[] permissions = null)
         {
             InitializeComponent();
+            idPermision = permissions;
         }
 
         private void frmDangKyMayChamCong_Load(object sender, EventArgs e)

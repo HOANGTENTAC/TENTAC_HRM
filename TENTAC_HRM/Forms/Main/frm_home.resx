@@ -126,6 +126,9 @@
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>817, 18</value>
   </metadata>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>817, 18</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripStatusLabel1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -173,10 +176,28 @@
   <metadata name="iconMenuItem1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>330, 18</value>
   </metadata>
+  <metadata name="btn_exit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>467, 18</value>
+  </metadata>
+  <metadata name="btn_maxximize.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>561, 18</value>
+  </metadata>
+  <metadata name="btn_minimize.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>693, 18</value>
+  </metadata>
+  <metadata name="btn_notifi.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>933, 18</value>
+  </metadata>
+  <metadata name="btn_SignOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 55</value>
+  </metadata>
+  <metadata name="iconMenuItem1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>330, 18</value>
+  </metadata>
   <data name="iconMenuItem1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAABftJREFUaEPNmX9MVWUYx19BNJHC9Y9sLRC0dOZK2thyirO8CEaI/KxYCJgljUKZ
+        vwAADr8BOAVTJAAABftJREFUaEPNmX9MVWUYx19BNJHC9Y9sLRC0dOZK2thyirO8CEaI/KxYCJgljUKZ
         A3KEBKzc2NBEQZQQEIpfCyx+mFKbLctWgijwh9IMy5LBGDUniohP3+fccy/3cA73AvfC9dk+Y/flnPf9
         8PKe533ec8V0g9qFI3WIxdQp1oB4UAAawK/UJW7i5xD4B7SCJsC/TwDedEU8ifsd5K5mPuiicIDs8xj8
         E/Ad+AuMApoEfB1f/y3IkfpBf3LXtg8MsAC8gMHywR/gHtASmywPwC2Qj5lfjr6d5KFsE/h3e6HzfaAb
@@ -216,6 +237,9 @@
   </metadata>
   <metadata name="btn_notifi.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>933, 18</value>
+  </metadata>
+  <metadata name="btn_SignOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 55</value>
   </metadata>
   <metadata name="timer2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1294, 18</value>

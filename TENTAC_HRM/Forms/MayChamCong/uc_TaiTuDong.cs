@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
@@ -11,9 +12,9 @@ using TENTAC_HRM.DataTransferObject.MayChamCong;
 using TENTAC_HRM.Model;
 using zkemkeeper;
 
-namespace TENTAC_HRM.Forms.May_Cham_Cong
+namespace TENTAC_HRM.Forms.MayChamCong
 {
-    public partial class uc_taitudong : UserControl
+    public partial class uc_TaiTuDong : UserControl
     {
         DataProvider provider = new DataProvider();
         public CZKEMClass axCZKEM1 = new CZKEMClass();
@@ -79,20 +80,19 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
         private double dYearVersion;
         private int iValue = 0;
         private int iDemLanTaiDauTien;
-        public static uc_taitudong _instance;
-        public static uc_taitudong Instance
+        public static uc_TaiTuDong _instance;
+        public static uc_TaiTuDong Instance
         {
             get
             {
-                _instance = new uc_taitudong();
+                _instance = new uc_TaiTuDong();
                 return _instance;
             }
         }
-        public uc_taitudong()
+        public uc_TaiTuDong()
         {
             InitializeComponent();
         }
-
         private void uc_taitudong_Load(object sender, EventArgs e)
         {
             DateTime dTuNgayTai = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 1, 0, 0);
@@ -161,18 +161,15 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                 }
             }
         }
-
         private void TaiLaiDanhSachMayChamCongMenu_Click(object sender, EventArgs e)
         {
             DGVMayChamCong.Rows.Clear();
             loadMayChamCong();
         }
-
         private void btn_close_Click(object sender, EventArgs e)
         {
             provider.btn_close(this.Parent);
         }
-
         private void btnTaiDuLieu_Click(object sender, EventArgs e)
         {
             iDemLanTaiDauTien = 0;
@@ -201,7 +198,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
             }
             if (comboBoxLuaChonTai.SelectedIndex == 1 && chk_xoagio.Checked == true && danhsachmachamcongcanlay.Count > 0)
             {
-                string sql = $"delete tbl_CheckInOut " +
+                string sql = $"delete CheckInOut " +
                     $"where NgayCham >= '{Convert.ToDateTime(stime_log.Text).ToString("yyyy/MM/dd 00:00:00")}' " +
                     $"and NgayCham <= '{Convert.ToDateTime(etime_log.Text).ToString("yyyy/MM/dd 00:00:00")}' " +
                     $"and MaSoMay in ('{string.Join("','", danhsachmachamcongcanlay)}')";
@@ -376,6 +373,20 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                 int test = iValue;
                 if (_loaiManHinh == "0")
                 {
+                    //comboBoxLuaChonTai.SelectedIndex = iChonCachTai;
+                    //if (dYearVersion < 2017.0 && comboBoxLuaChonTai.SelectedIndex != 1)
+                    //{
+                    //    comboBoxLuaChonTai.SelectedIndex = 2;
+                    //}
+                    //else if (dYearVersion < 2017.0 && comboBoxLuaChonTai.SelectedIndex == 1)
+                    //{
+                    //    comboBoxLuaChonTai.SelectedIndex = 1;
+                    //    iDemLanTaiTheoThoiGian++;
+                    //}
+                    //else
+                    //{
+                    //    comboBoxLuaChonTai.SelectedIndex = iChonCachTai;
+                    //}
                     string sdwEnrollNumber = "";
                     int idwVerifyMode = 0;
                     int idwInOutMode = 0;
@@ -389,11 +400,14 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                     int idwErrorCode2 = 0;
                     int iCount1 = 0;
                     axCZKEM1.EnableDevice(iMachineNumber, bFlag: false);
+                    DataTable dataTable = new DataTable();
+                    string sql = "select MaChamCong,NgayCham from [MITACOSQL].[dbo].[ChuyenGioChamCong]";
+                    dataTable = SQLHelper.ExecuteDt(sql);
                     if (comboBoxLuaChonTai.SelectedIndex == 2)
                     {
                         int i3 = 0;
                         DataTable dtCheckInOut8 = new DataTable();
-                        dtCheckInOut8 = _checkInOutBLL.CountAll_CheckInOut();
+                        dtCheckInOut8 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                         try
                         {
                             iCount1 = Convert.ToInt32(dtCheckInOut8.Rows[i3]["Column1"].ToString());
@@ -411,74 +425,83 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                 }
                                 DateTime dNgayCham11 = default(DateTime);
                                 DateTime dGioCham12 = default(DateTime);
-                                try
+                                DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                int countdt = dataTable.Rows.Cast<DataRow>()
+                                            .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                            x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                if (countdt == 0)
                                 {
-                                    dNgayCham11 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                    dGioCham12 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                }
-                                catch
-                                {
-                                }
-                                if (iDemLanTaiTheoThoiGian != 0)
-                                {
-                                    DateTime dNgayKiemTra6 = new DateTime(idwYear, idwMonth2, idwDay2);
-                                    DateTime dTuNgay6 = Convert.ToDateTime(stime_log.Text);
-                                    DateTime dDenNgay6 = Convert.ToDateTime(etime_log.Text);
-                                    DateTime dTuNgay14 = new DateTime(dTuNgay6.Year, dTuNgay6.Month, dTuNgay6.Day, 0, 0, 0);
-                                    DateTime DenNgay7 = new DateTime(dDenNgay6.Year, dDenNgay6.Month, dDenNgay6.Day, 0, 0, 0);
-                                    if (dNgayKiemTra6 >= dTuNgay14 && dNgayKiemTra6 <= DenNgay7)
+                                    try
                                     {
                                         dNgayCham11 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
                                         dGioCham12 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                        int addGioChamCong12 = DGVGioTai.Rows.Add();
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[0].Value = sdwEnrollNumber;
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[1].Value = dNgayCham11.ToString("yyyy/MM/dd");
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[2].Value = dGioCham12.ToString("yyyy/MM/dd HH:mm:ss");
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[3].Value = idwInOutMode.ToString();
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[4].Value = idwVerifyMode.ToString();
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[5].Value = sIDMayChamCong;
-                                        DGVGioTai.Rows[addGioChamCong12].Cells[6].Value = sTenMayChamCong;
-                                        DataTable dtKiemTraNhanVien12 = new DataTable();
-                                        _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                        dtKiemTraNhanVien12 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                        if (dtKiemTraNhanVien12.Rows.Count == 1)
+                                    }
+                                    catch
+                                    {
+                                    }
+                                    if (iDemLanTaiTheoThoiGian != 0)
+                                    {
+                                        DateTime dNgayKiemTra6 = new DateTime(idwYear, idwMonth2, idwDay2);
+                                        DateTime dTuNgay6 = Convert.ToDateTime(stime_log.Text);
+                                        DateTime dDenNgay6 = Convert.ToDateTime(etime_log.Text);
+                                        DateTime dTuNgay14 = new DateTime(dTuNgay6.Year, dTuNgay6.Month, dTuNgay6.Day, 0, 0, 0);
+                                        DateTime DenNgay7 = new DateTime(dDenNgay6.Year, dDenNgay6.Month, dDenNgay6.Day, 0, 0, 0);
+                                        if (dNgayKiemTra6 >= dTuNgay14 && dNgayKiemTra6 <= DenNgay7)
                                         {
-                                            _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong12].Cells[0].Value.ToString());
-                                            _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong12].Cells[1].Value.ToString());
-                                            _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong12].Cells[2].Value.ToString());
-                                            _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong12].Cells[3].Value.ToString();
-                                            _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong12].Cells[4].Value.ToString();
-                                            _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong12].Cells[5].Value.ToString());
-                                            _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong12].Cells[6].Value.ToString();
+                                            dNgayCham11 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                            dGioCham12 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+
+                                            int addGioChamCong12 = DGVGioTai.Rows.Add();
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[0].Value = sdwEnrollNumber;
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[1].Value = dNgayCham11.ToString("yyyy/MM/dd");
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[2].Value = dGioCham12.ToString("yyyy/MM/dd HH:mm:ss");
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[3].Value = idwInOutMode.ToString();
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[4].Value = idwVerifyMode.ToString();
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[5].Value = sIDMayChamCong;
+                                            DGVGioTai.Rows[addGioChamCong12].Cells[6].Value = sTenMayChamCong;
+                                            DataTable dtKiemTraNhanVien12 = new DataTable();
+                                            _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                            dtKiemTraNhanVien12 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                            if (dtKiemTraNhanVien12.Rows.Count == 1)
+                                            {
+                                                _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong12].Cells[0].Value.ToString());
+                                                _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong12].Cells[1].Value.ToString());
+                                                _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong12].Cells[2].Value.ToString());
+                                                _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong12].Cells[3].Value.ToString();
+                                                _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong12].Cells[4].Value.ToString();
+                                                _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong12].Cells[5].Value.ToString());
+                                                _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong12].Cells[6].Value.ToString();
+                                                _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        int addGioChamCong13 = DGVGioTai.Rows.Add();
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[0].Value = sdwEnrollNumber;
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[1].Value = dNgayCham11.ToString("yyyy/MM/dd");
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[2].Value = dGioCham12.ToString("yyyy/MM/dd HH:mm:ss");
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[3].Value = idwInOutMode.ToString();
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[4].Value = idwVerifyMode.ToString();
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[5].Value = sIDMayChamCong;
+                                        DGVGioTai.Rows[addGioChamCong13].Cells[6].Value = sTenMayChamCong;
+                                        DataTable dtKiemTraNhanVien13 = new DataTable();
+                                        _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                        dtKiemTraNhanVien13 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                        if (dtKiemTraNhanVien13.Rows.Count == 1)
+                                        {
+                                            _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong13].Cells[0].Value.ToString());
+                                            _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong13].Cells[1].Value.ToString());
+                                            _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong13].Cells[2].Value.ToString());
+                                            _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong13].Cells[3].Value.ToString();
+                                            _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong13].Cells[4].Value.ToString();
+                                            _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong13].Cells[5].Value.ToString());
+                                            _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong13].Cells[6].Value.ToString();
                                             _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
                                         }
                                     }
                                 }
-                                else
-                                {
-                                    int addGioChamCong13 = DGVGioTai.Rows.Add();
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[0].Value = sdwEnrollNumber;
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[1].Value = dNgayCham11.ToString("yyyy/MM/dd");
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[2].Value = dGioCham12.ToString("yyyy/MM/dd HH:mm:ss");
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[3].Value = idwInOutMode.ToString();
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[4].Value = idwVerifyMode.ToString();
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[5].Value = sIDMayChamCong;
-                                    DGVGioTai.Rows[addGioChamCong13].Cells[6].Value = sTenMayChamCong;
-                                    DataTable dtKiemTraNhanVien13 = new DataTable();
-                                    _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                    dtKiemTraNhanVien13 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                    if (dtKiemTraNhanVien13.Rows.Count == 1)
-                                    {
-                                        _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong13].Cells[0].Value.ToString());
-                                        _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong13].Cells[1].Value.ToString());
-                                        _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong13].Cells[2].Value.ToString());
-                                        _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong13].Cells[3].Value.ToString();
-                                        _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong13].Cells[4].Value.ToString();
-                                        _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong13].Cells[5].Value.ToString());
-                                        _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong13].Cells[6].Value.ToString();
-                                        _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
-                                    }
-                                }
+
                                 progressBarTaiDuLieu.Maximum = iValue;
                                 test--;
                                 dem++;
@@ -494,7 +517,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                             int i13 = 0;
                             int iCount10 = 0;
                             DataTable dtCheckInOut19 = new DataTable();
-                            dtCheckInOut19 = _checkInOutBLL.CountAll_CheckInOut();
+                            dtCheckInOut19 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                             try
                             {
                                 iCount10 = Convert.ToInt32(dtCheckInOut19.Rows[i13]["Column1"].ToString());
@@ -513,7 +536,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                             {
                                 comboBoxLuaChonTai.SelectedIndex = 1;
                                 DataTable dtCheckInOut10 = new DataTable();
-                                dtCheckInOut10 = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut10 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 try
                                 {
                                     iCount1 = Convert.ToInt32(dtCheckInOut10.Rows[i3]["Column1"].ToString());
@@ -531,46 +554,54 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                         }
                                         DateTime dNgayCham12 = default(DateTime);
                                         DateTime dGioCham11 = default(DateTime);
-                                        try
+                                        DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                        int countdt = dataTable.Rows.Cast<DataRow>()
+                                                    .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                    x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                        if (countdt == 0)
                                         {
-                                            dNgayCham12 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                            dGioCham11 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                        }
-                                        catch
-                                        {
-                                        }
-                                        DateTime dNgayKiemTra7 = new DateTime(idwYear, idwMonth2, idwDay2);
-                                        DateTime dTuNgay7 = Convert.ToDateTime(stime_log.Text);
-                                        DateTime dDenNgay7 = Convert.ToDateTime(etime_log.Text);
-                                        DateTime dTuNgay13 = new DateTime(dTuNgay7.Year, dTuNgay7.Month, dTuNgay7.Day, 0, 0, 0);
-                                        DateTime DenNgay6 = new DateTime(dDenNgay7.Year, dDenNgay7.Month, dDenNgay7.Day, 0, 0, 0);
-                                        if (dNgayKiemTra7 >= dTuNgay13 && dNgayKiemTra7 <= DenNgay6)
-                                        {
-                                            dNgayCham12 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                            dGioCham11 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                            int addGioChamCong11 = DGVGioTai.Rows.Add();
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[0].Value = sdwEnrollNumber;
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[1].Value = dNgayCham12.ToString("yyyy/MM/dd");
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[2].Value = dGioCham11.ToString("yyyy/MM/dd HH:mm:ss");
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[3].Value = idwInOutMode.ToString();
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[4].Value = idwVerifyMode.ToString();
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[5].Value = sIDMayChamCong;
-                                            DGVGioTai.Rows[addGioChamCong11].Cells[6].Value = sTenMayChamCong;
-                                            DataTable dtKiemTraNhanVien11 = new DataTable();
-                                            _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                            dtKiemTraNhanVien11 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                            if (dtKiemTraNhanVien11.Rows.Count == 1)
+                                            try
                                             {
-                                                _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong11].Cells[0].Value.ToString());
-                                                _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong11].Cells[1].Value.ToString());
-                                                _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong11].Cells[2].Value.ToString());
-                                                _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong11].Cells[3].Value.ToString();
-                                                _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong11].Cells[4].Value.ToString();
-                                                _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong11].Cells[5].Value.ToString());
-                                                _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong11].Cells[6].Value.ToString();
-                                                _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                dNgayCham12 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                                dGioCham11 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                            }
+                                            catch
+                                            {
+                                            }
+                                            DateTime dNgayKiemTra7 = new DateTime(idwYear, idwMonth2, idwDay2);
+                                            DateTime dTuNgay7 = Convert.ToDateTime(stime_log.Text);
+                                            DateTime dDenNgay7 = Convert.ToDateTime(etime_log.Text);
+                                            DateTime dTuNgay13 = new DateTime(dTuNgay7.Year, dTuNgay7.Month, dTuNgay7.Day, 0, 0, 0);
+                                            DateTime DenNgay6 = new DateTime(dDenNgay7.Year, dDenNgay7.Month, dDenNgay7.Day, 0, 0, 0);
+                                            if (dNgayKiemTra7 >= dTuNgay13 && dNgayKiemTra7 <= DenNgay6)
+                                            {
+                                                dNgayCham12 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                                dGioCham11 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                                int addGioChamCong11 = DGVGioTai.Rows.Add();
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[0].Value = sdwEnrollNumber;
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[1].Value = dNgayCham12.ToString("yyyy/MM/dd");
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[2].Value = dGioCham11.ToString("yyyy/MM/dd HH:mm:ss");
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[3].Value = idwInOutMode.ToString();
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[4].Value = idwVerifyMode.ToString();
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[5].Value = sIDMayChamCong;
+                                                DGVGioTai.Rows[addGioChamCong11].Cells[6].Value = sTenMayChamCong;
+                                                DataTable dtKiemTraNhanVien11 = new DataTable();
+                                                _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                                dtKiemTraNhanVien11 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                                if (dtKiemTraNhanVien11.Rows.Count == 1)
+                                                {
+                                                    _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong11].Cells[0].Value.ToString());
+                                                    _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong11].Cells[1].Value.ToString());
+                                                    _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong11].Cells[2].Value.ToString());
+                                                    _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong11].Cells[3].Value.ToString();
+                                                    _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong11].Cells[4].Value.ToString();
+                                                    _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong11].Cells[5].Value.ToString());
+                                                    _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong11].Cells[6].Value.ToString();
+                                                    _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                }
                                             }
                                         }
+
                                         progressBarTaiDuLieu.Maximum = iValue;
                                         test--;
                                         dem++;
@@ -586,7 +617,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                     int i14 = 0;
                                     int iCount11 = 0;
                                     DataTable dtCheckInOut20 = new DataTable();
-                                    dtCheckInOut20 = _checkInOutBLL.CountAll_CheckInOut();
+                                    dtCheckInOut20 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                     try
                                     {
                                         iCount11 = Convert.ToInt32(dtCheckInOut20.Rows[i14]["Column1"].ToString());
@@ -623,35 +654,43 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                             {
                                 int i4 = 0;
                                 DataTable dtCheckInOut9 = new DataTable();
-                                dtCheckInOut9 = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut9 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 iCount1 = Convert.ToInt32(dtCheckInOut9.Rows[i4]["Column1"].ToString());
                                 while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth2, out idwDay2, out idwHour2, out idwMinute2, out idwSecond2, ref idwWorkcode))
                                 {
                                     new DateTime(idwYear, idwMonth2, idwDay2);
                                     DateTime dNgayCham10 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
                                     DateTime dGioCham10 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                    int addGioChamCong10 = DGVGioTai.Rows.Add();
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[0].Value = sdwEnrollNumber;
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[1].Value = dNgayCham10.ToString("yyyy/MM/dd");
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[2].Value = dGioCham10.ToString("yyyy/MM/dd HH:mm:ss");
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[3].Value = idwInOutMode.ToString();
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[4].Value = idwVerifyMode.ToString();
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[5].Value = sIDMayChamCong;
-                                    DGVGioTai.Rows[addGioChamCong10].Cells[6].Value = sTenMayChamCong;
-                                    DataTable dtKiemTraNhanVien10 = new DataTable();
-                                    _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                    dtKiemTraNhanVien10 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                    if (dtKiemTraNhanVien10.Rows.Count == 1)
+                                    DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                    int countdt = dataTable.Rows.Cast<DataRow>()
+                                                .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                    if (countdt == 0)
                                     {
-                                        _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong10].Cells[0].Value.ToString());
-                                        _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong10].Cells[1].Value.ToString());
-                                        _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong10].Cells[2].Value.ToString());
-                                        _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong10].Cells[3].Value.ToString();
-                                        _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong10].Cells[4].Value.ToString();
-                                        _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong10].Cells[5].Value.ToString());
-                                        _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong10].Cells[6].Value.ToString();
-                                        _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                        int addGioChamCong10 = DGVGioTai.Rows.Add();
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[0].Value = sdwEnrollNumber;
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[1].Value = dNgayCham10.ToString("yyyy/MM/dd");
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[2].Value = dGioCham10.ToString("yyyy/MM/dd HH:mm:ss");
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[3].Value = idwInOutMode.ToString();
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[4].Value = idwVerifyMode.ToString();
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[5].Value = sIDMayChamCong;
+                                        DGVGioTai.Rows[addGioChamCong10].Cells[6].Value = sTenMayChamCong;
+                                        DataTable dtKiemTraNhanVien10 = new DataTable();
+                                        _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                        dtKiemTraNhanVien10 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                        if (dtKiemTraNhanVien10.Rows.Count == 1)
+                                        {
+                                            _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong10].Cells[0].Value.ToString());
+                                            _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong10].Cells[1].Value.ToString());
+                                            _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong10].Cells[2].Value.ToString());
+                                            _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong10].Cells[3].Value.ToString();
+                                            _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong10].Cells[4].Value.ToString();
+                                            _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong10].Cells[5].Value.ToString());
+                                            _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong10].Cells[6].Value.ToString();
+                                            _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                        }
                                     }
+
                                     progressBarTaiDuLieu.Maximum = iValue;
                                     test--;
                                     dem++;
@@ -666,7 +705,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                 }
                                 int i12 = 0;
                                 DataTable dtCheckInOut18 = new DataTable();
-                                dtCheckInOut18 = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut18 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 int iCount9 = Convert.ToInt32(dtCheckInOut18.Rows[i12]["Column1"].ToString());
                                 btnTaiDuLieu.Text = "Dữ Liệu mới: " + (iCount9 - iCount1);
                             }
@@ -675,7 +714,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                 comboBoxLuaChonTai.SelectedIndex = 1;
                                 int i2 = 0;
                                 DataTable dtCheckInOut7 = new DataTable();
-                                dtCheckInOut7 = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut7 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 try
                                 {
                                     iCount1 = Convert.ToInt32(dtCheckInOut7.Rows[i2]["Column1"].ToString());
@@ -708,29 +747,36 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                         DateTime DenNgay5 = new DateTime(dDenNgay5.Year, dDenNgay5.Month, dDenNgay5.Day, 0, 0, 0);
                                         if (dNgayKiemTra5 >= dTuNgay12 && dNgayKiemTra5 <= DenNgay5)
                                         {
-                                            dNgayCham9 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                            dGioCham9 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                            int addGioChamCong9 = DGVGioTai.Rows.Add();
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[0].Value = sdwEnrollNumber;
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[1].Value = dNgayCham9.ToString("yyyy/MM/dd");
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[2].Value = dGioCham9.ToString("yyyy/MM/dd HH:mm:ss");
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[3].Value = idwInOutMode.ToString();
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[4].Value = idwVerifyMode.ToString();
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[5].Value = sIDMayChamCong;
-                                            DGVGioTai.Rows[addGioChamCong9].Cells[6].Value = sTenMayChamCong;
-                                            DataTable dtKiemTraNhanVien9 = new DataTable();
-                                            _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                            dtKiemTraNhanVien9 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                            if (dtKiemTraNhanVien9.Rows.Count == 1)
+                                            DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                            int countdt = dataTable.Rows.Cast<DataRow>()
+                                                        .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                        x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                            if (countdt == 0)
                                             {
-                                                _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong9].Cells[0].Value.ToString());
-                                                _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong9].Cells[1].Value.ToString());
-                                                _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong9].Cells[2].Value.ToString());
-                                                _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong9].Cells[3].Value.ToString();
-                                                _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong9].Cells[4].Value.ToString();
-                                                _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong9].Cells[5].Value.ToString());
-                                                _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong9].Cells[6].Value.ToString();
-                                                _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                dNgayCham9 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                                dGioCham9 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                                int addGioChamCong9 = DGVGioTai.Rows.Add();
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[0].Value = sdwEnrollNumber;
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[1].Value = dNgayCham9.ToString("yyyy/MM/dd");
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[2].Value = dGioCham9.ToString("yyyy/MM/dd HH:mm:ss");
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[3].Value = idwInOutMode.ToString();
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[4].Value = idwVerifyMode.ToString();
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[5].Value = sIDMayChamCong;
+                                                DGVGioTai.Rows[addGioChamCong9].Cells[6].Value = sTenMayChamCong;
+                                                DataTable dtKiemTraNhanVien9 = new DataTable();
+                                                _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                                dtKiemTraNhanVien9 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                                if (dtKiemTraNhanVien9.Rows.Count == 1)
+                                                {
+                                                    _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong9].Cells[0].Value.ToString());
+                                                    _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong9].Cells[1].Value.ToString());
+                                                    _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong9].Cells[2].Value.ToString());
+                                                    _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong9].Cells[3].Value.ToString();
+                                                    _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong9].Cells[4].Value.ToString();
+                                                    _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong9].Cells[5].Value.ToString());
+                                                    _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong9].Cells[6].Value.ToString();
+                                                    _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                }
                                             }
                                         }
                                         progressBarTaiDuLieu.Maximum = iValue;
@@ -748,7 +794,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                     int i11 = 0;
                                     int iCount8 = 0;
                                     DataTable dtCheckInOut17 = new DataTable();
-                                    dtCheckInOut17 = _checkInOutBLL.CountAll_CheckInOut();
+                                    dtCheckInOut17 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                     try
                                     {
                                         iCount8 = Convert.ToInt32(dtCheckInOut17.Rows[i11]["Column1"].ToString());
@@ -767,7 +813,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                     comboBoxLuaChonTai.SelectedIndex = 1;
                                     int n = 0;
                                     DataTable dtCheckInOut6 = new DataTable();
-                                    dtCheckInOut6 = _checkInOutBLL.CountAll_CheckInOut();
+                                    dtCheckInOut6 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                     try
                                     {
                                         iCount1 = Convert.ToInt32(dtCheckInOut6.Rows[n]["Column1"].ToString());
@@ -800,29 +846,36 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                             DateTime DenNgay4 = new DateTime(dDenNgay4.Year, dDenNgay4.Month, dDenNgay4.Day, 0, 0, 0);
                                             if (dNgayKiemTra4 >= dTuNgay11 && dNgayKiemTra4 <= DenNgay4)
                                             {
-                                                dNgayCham8 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                                dGioCham8 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                                int addGioChamCong8 = DGVGioTai.Rows.Add();
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[0].Value = sdwEnrollNumber;
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[1].Value = dNgayCham8.ToString("yyyy/MM/dd");
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[2].Value = dGioCham8.ToString("yyyy/MM/dd HH:mm:ss");
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[3].Value = idwInOutMode.ToString();
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[4].Value = idwVerifyMode.ToString();
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[5].Value = sIDMayChamCong;
-                                                DGVGioTai.Rows[addGioChamCong8].Cells[6].Value = sTenMayChamCong;
-                                                DataTable dtKiemTraNhanVien8 = new DataTable();
-                                                _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                                dtKiemTraNhanVien8 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                                if (dtKiemTraNhanVien8.Rows.Count == 1)
+                                                DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                                int countdt = dataTable.Rows.Cast<DataRow>()
+                                                            .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                            x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                                if (countdt == 0)
                                                 {
-                                                    _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong8].Cells[0].Value.ToString());
-                                                    _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong8].Cells[1].Value.ToString());
-                                                    _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong8].Cells[2].Value.ToString());
-                                                    _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong8].Cells[3].Value.ToString();
-                                                    _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong8].Cells[4].Value.ToString();
-                                                    _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong8].Cells[5].Value.ToString());
-                                                    _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong8].Cells[6].Value.ToString();
-                                                    _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                    dNgayCham8 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                                    dGioCham8 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                                    int addGioChamCong8 = DGVGioTai.Rows.Add();
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[0].Value = sdwEnrollNumber;
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[1].Value = dNgayCham8.ToString("yyyy/MM/dd");
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[2].Value = dGioCham8.ToString("yyyy/MM/dd HH:mm:ss");
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[3].Value = idwInOutMode.ToString();
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[4].Value = idwVerifyMode.ToString();
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[5].Value = sIDMayChamCong;
+                                                    DGVGioTai.Rows[addGioChamCong8].Cells[6].Value = sTenMayChamCong;
+                                                    DataTable dtKiemTraNhanVien8 = new DataTable();
+                                                    _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                                    dtKiemTraNhanVien8 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                                    if (dtKiemTraNhanVien8.Rows.Count == 1)
+                                                    {
+                                                        _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong8].Cells[0].Value.ToString());
+                                                        _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong8].Cells[1].Value.ToString());
+                                                        _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong8].Cells[2].Value.ToString());
+                                                        _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong8].Cells[3].Value.ToString();
+                                                        _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong8].Cells[4].Value.ToString();
+                                                        _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong8].Cells[5].Value.ToString());
+                                                        _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong8].Cells[6].Value.ToString();
+                                                        _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                    }
                                                 }
                                             }
                                             progressBarTaiDuLieu.Maximum = iValue;
@@ -840,7 +893,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                         int i10 = 0;
                                         int iCount7 = 0;
                                         DataTable dtCheckInOut16 = new DataTable();
-                                        dtCheckInOut16 = _checkInOutBLL.CountAll_CheckInOut();
+                                        dtCheckInOut16 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                         try
                                         {
                                             iCount7 = Convert.ToInt32(dtCheckInOut16.Rows[i10]["Column1"].ToString());
@@ -961,7 +1014,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                             comboBoxLuaChonTai.SelectedIndex = 1;
                             int l = 0;
                             DataTable dtCheckInOut4 = new DataTable();
-                            dtCheckInOut4 = _checkInOutBLL.CountAll_CheckInOut();
+                            dtCheckInOut4 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                             try
                             {
                                 iCount1 = Convert.ToInt32(dtCheckInOut4.Rows[l]["Column1"].ToString());
@@ -994,30 +1047,38 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                     DateTime DenNgay2 = new DateTime(dDenNgay2.Year, dDenNgay2.Month, dDenNgay2.Day, 0, 0, 0);
                                     if (dNgayKiemTra2 >= dTuNgay9 && dNgayKiemTra2 <= DenNgay2)
                                     {
-                                        dNgayCham6 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                        dGioCham6 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                        int addGioChamCong6 = DGVGioTai.Rows.Add();
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[0].Value = sdwEnrollNumber;
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[1].Value = dNgayCham6.ToString();
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[2].Value = dGioCham6.ToString();
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[3].Value = idwInOutMode.ToString();
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[4].Value = idwVerifyMode.ToString();
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[5].Value = sIDMayChamCong;
-                                        DGVGioTai.Rows[addGioChamCong6].Cells[6].Value = sTenMayChamCong;
-                                        DataTable dtKiemTraNhanVien6 = new DataTable();
-                                        _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                        dtKiemTraNhanVien6 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                        if (dtKiemTraNhanVien6.Rows.Count == 1)
+                                        DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                        int countdt = dataTable.Rows.Cast<DataRow>()
+                                                    .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                    x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                        if (countdt == 0)
                                         {
-                                            _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong6].Cells[0].Value.ToString());
-                                            _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong6].Cells[1].Value.ToString());
-                                            _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong6].Cells[2].Value.ToString());
-                                            _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong6].Cells[3].Value.ToString();
-                                            _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong6].Cells[4].Value.ToString();
-                                            _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong6].Cells[5].Value.ToString());
-                                            _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong6].Cells[6].Value.ToString();
-                                            _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                            dNgayCham6 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                            dGioCham6 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                            int addGioChamCong6 = DGVGioTai.Rows.Add();
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[0].Value = sdwEnrollNumber;
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[1].Value = dNgayCham6.ToString();
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[2].Value = dGioCham6.ToString();
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[3].Value = idwInOutMode.ToString();
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[4].Value = idwVerifyMode.ToString();
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[5].Value = sIDMayChamCong;
+                                            DGVGioTai.Rows[addGioChamCong6].Cells[6].Value = sTenMayChamCong;
+                                            DataTable dtKiemTraNhanVien6 = new DataTable();
+                                            _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                            dtKiemTraNhanVien6 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                            if (dtKiemTraNhanVien6.Rows.Count == 1)
+                                            {
+                                                _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong6].Cells[0].Value.ToString());
+                                                _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong6].Cells[1].Value.ToString());
+                                                _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong6].Cells[2].Value.ToString());
+                                                _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong6].Cells[3].Value.ToString();
+                                                _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong6].Cells[4].Value.ToString();
+                                                _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong6].Cells[5].Value.ToString());
+                                                _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong6].Cells[6].Value.ToString();
+                                                _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                            }
                                         }
+
                                     }
                                     progressBarTaiDuLieu.Maximum = iValue;
                                     test--;
@@ -1034,7 +1095,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                 int i8 = 0;
                                 int iCount5 = 0;
                                 DataTable dtCheckInOut14 = new DataTable();
-                                dtCheckInOut14 = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut14 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 try
                                 {
                                     iCount5 = Convert.ToInt32(dtCheckInOut14.Rows[i8]["Column1"].ToString());
@@ -1054,35 +1115,43 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                         {
                             int k = 0;
                             DataTable dtCheckInOut3 = new DataTable();
-                            dtCheckInOut3 = _checkInOutBLL.CountAll_CheckInOut();
+                            dtCheckInOut3 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                             iCount1 = Convert.ToInt32(dtCheckInOut3.Rows[k]["Column1"].ToString());
                             while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth2, out idwDay2, out idwHour2, out idwMinute2, out idwSecond2, ref idwWorkcode))
                             {
-                                new DateTime(idwYear, idwMonth2, idwDay2);
-                                DateTime dNgayCham5 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                DateTime dGioCham5 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                int addGioChamCong5 = DGVGioTai.Rows.Add();
-                                DGVGioTai.Rows[addGioChamCong5].Cells[0].Value = sdwEnrollNumber;
-                                DGVGioTai.Rows[addGioChamCong5].Cells[1].Value = dNgayCham5.ToString();
-                                DGVGioTai.Rows[addGioChamCong5].Cells[2].Value = dGioCham5.ToString();
-                                DGVGioTai.Rows[addGioChamCong5].Cells[3].Value = idwInOutMode.ToString();
-                                DGVGioTai.Rows[addGioChamCong5].Cells[4].Value = idwVerifyMode.ToString();
-                                DGVGioTai.Rows[addGioChamCong5].Cells[5].Value = sIDMayChamCong;
-                                DGVGioTai.Rows[addGioChamCong5].Cells[6].Value = sTenMayChamCong;
-                                DataTable dtKiemTraNhanVien5 = new DataTable();
-                                _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                dtKiemTraNhanVien5 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                if (dtKiemTraNhanVien5.Rows.Count == 1)
+                                DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                int countdt = dataTable.Rows.Cast<DataRow>()
+                                            .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                            x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                if (countdt == 0)
                                 {
-                                    _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong5].Cells[0].Value.ToString());
-                                    _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong5].Cells[1].Value.ToString());
-                                    _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong5].Cells[2].Value.ToString());
-                                    _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong5].Cells[3].Value.ToString();
-                                    _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong5].Cells[4].Value.ToString();
-                                    _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong5].Cells[5].Value.ToString());
-                                    _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong5].Cells[6].Value.ToString();
-                                    _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                    new DateTime(idwYear, idwMonth2, idwDay2);
+                                    DateTime dNgayCham5 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                    DateTime dGioCham5 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                    int addGioChamCong5 = DGVGioTai.Rows.Add();
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[0].Value = sdwEnrollNumber;
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[1].Value = dNgayCham5.ToString();
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[2].Value = dGioCham5.ToString();
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[3].Value = idwInOutMode.ToString();
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[4].Value = idwVerifyMode.ToString();
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[5].Value = sIDMayChamCong;
+                                    DGVGioTai.Rows[addGioChamCong5].Cells[6].Value = sTenMayChamCong;
+                                    DataTable dtKiemTraNhanVien5 = new DataTable();
+                                    _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                    dtKiemTraNhanVien5 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                    if (dtKiemTraNhanVien5.Rows.Count == 1)
+                                    {
+                                        _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong5].Cells[0].Value.ToString());
+                                        _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong5].Cells[1].Value.ToString());
+                                        _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong5].Cells[2].Value.ToString());
+                                        _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong5].Cells[3].Value.ToString();
+                                        _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong5].Cells[4].Value.ToString();
+                                        _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong5].Cells[5].Value.ToString());
+                                        _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong5].Cells[6].Value.ToString();
+                                        _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                    }
                                 }
+
                                 progressBarTaiDuLieu.Maximum = iValue;
                                 test--;
                                 dem++;
@@ -1097,7 +1166,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                             }
                             int i7 = 0;
                             DataTable dtCheckInOut13 = new DataTable();
-                            dtCheckInOut13 = _checkInOutBLL.CountAll_CheckInOut();
+                            dtCheckInOut13 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                             int iCount4 = Convert.ToInt32(dtCheckInOut13.Rows[i7]["Column1"].ToString());
                             btnTaiDuLieu.Text = "Dữ Liệu mới: " + (iCount4 - iCount1);
                         }
@@ -1106,7 +1175,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                             comboBoxLuaChonTai.SelectedIndex = 2;
                             int j = 0;
                             DataTable dtCheckInOut2 = new DataTable();
-                            dtCheckInOut2 = _checkInOutBLL.CountAll_CheckInOut();
+                            dtCheckInOut2 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                             try
                             {
                                 iCount1 = Convert.ToInt32(dtCheckInOut2.Rows[j]["Column1"].ToString());
@@ -1130,28 +1199,36 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                         catch
                                         {
                                         }
-                                        int addGioChamCong4 = DGVGioTai.Rows.Add();
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[0].Value = sdwEnrollNumber;
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[1].Value = dNgayCham4.ToString();
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[2].Value = dGioCham4.ToString();
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[3].Value = idwInOutMode.ToString();
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[4].Value = idwVerifyMode.ToString();
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[5].Value = sIDMayChamCong;
-                                        DGVGioTai.Rows[addGioChamCong4].Cells[6].Value = sTenMayChamCong;
-                                        DataTable dtKiemTraNhanVien4 = new DataTable();
-                                        _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                        dtKiemTraNhanVien4 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                        if (dtKiemTraNhanVien4.Rows.Count == 1)
+                                        DateTime dNgayKiemTra = new DateTime(idwYear, idwMonth2, idwDay2);
+                                        int countdt = dataTable.Rows.Cast<DataRow>()
+                                                    .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                    x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                        if (countdt == 0)
                                         {
-                                            _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong4].Cells[0].Value.ToString());
-                                            _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong4].Cells[1].Value.ToString());
-                                            _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong4].Cells[2].Value.ToString());
-                                            _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong4].Cells[3].Value.ToString();
-                                            _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong4].Cells[4].Value.ToString();
-                                            _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong4].Cells[5].Value.ToString());
-                                            _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong4].Cells[6].Value.ToString();
-                                            _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                            int addGioChamCong4 = DGVGioTai.Rows.Add();
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[0].Value = sdwEnrollNumber;
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[1].Value = dNgayCham4.ToString();
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[2].Value = dGioCham4.ToString();
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[3].Value = idwInOutMode.ToString();
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[4].Value = idwVerifyMode.ToString();
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[5].Value = sIDMayChamCong;
+                                            DGVGioTai.Rows[addGioChamCong4].Cells[6].Value = sTenMayChamCong;
+                                            DataTable dtKiemTraNhanVien4 = new DataTable();
+                                            _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                            dtKiemTraNhanVien4 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                            if (dtKiemTraNhanVien4.Rows.Count == 1)
+                                            {
+                                                _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong4].Cells[0].Value.ToString());
+                                                _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong4].Cells[1].Value.ToString());
+                                                _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong4].Cells[2].Value.ToString());
+                                                _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong4].Cells[3].Value.ToString();
+                                                _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong4].Cells[4].Value.ToString();
+                                                _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong4].Cells[5].Value.ToString());
+                                                _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong4].Cells[6].Value.ToString();
+                                                _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                            }
                                         }
+
                                         progressBarTaiDuLieu.Maximum = iValue;
                                         test--;
                                         dem++;
@@ -1168,7 +1245,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                 int i6 = 0;
                                 int iCount3 = 0;
                                 DataTable dtCheckInOut12 = new DataTable();
-                                dtCheckInOut12 = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut12 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 try
                                 {
                                     iCount3 = Convert.ToInt32(dtCheckInOut12.Rows[i6]["Column1"].ToString());
@@ -1189,7 +1266,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                 comboBoxLuaChonTai.SelectedIndex = 1;
                                 int i = 0;
                                 DataTable dtCheckInOut = new DataTable();
-                                dtCheckInOut = _checkInOutBLL.CountAll_CheckInOut();
+                                dtCheckInOut = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                 try
                                 {
                                     iCount1 = Convert.ToInt32(dtCheckInOut.Rows[i]["Column1"].ToString());
@@ -1222,29 +1299,35 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                         DateTime DenNgay1 = new DateTime(dDenNgay.Year, dDenNgay.Month, dDenNgay.Day, 0, 0, 0);
                                         if (dNgayKiemTra >= dTuNgay8 && dNgayKiemTra <= DenNgay1)
                                         {
-                                            dNgayCham3 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
-                                            dGioCham3 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
-                                            int addGioChamCong3 = DGVGioTai.Rows.Add();
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[0].Value = sdwEnrollNumber;
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[1].Value = dNgayCham3.ToString();
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[2].Value = dGioCham3.ToString();
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[3].Value = idwInOutMode.ToString();
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[4].Value = idwVerifyMode.ToString();
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[5].Value = sIDMayChamCong;
-                                            DGVGioTai.Rows[addGioChamCong3].Cells[6].Value = sTenMayChamCong;
-                                            DataTable dtKiemTraNhanVien3 = new DataTable();
-                                            _nhanVienDTO.Ma_Cham_Cong = sdwEnrollNumber;
-                                            dtKiemTraNhanVien3 = _nhanVienBLL.NhanVienGetByMaChamCong(_nhanVienDTO.Ma_Cham_Cong);
-                                            if (dtKiemTraNhanVien3.Rows.Count == 1)
+                                            int countdt = dataTable.Rows.Cast<DataRow>()
+                                                        .Where(x => x["MaChamCong"].ToString() == sdwEnrollNumber &&
+                                                        x["NgayCham"].ToString() == dNgayKiemTra.ToString("yyyy/MM/dd")).Count();
+                                            if (countdt == 0)
                                             {
-                                                _checkInOutDTO.Ma_Cham_Cong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong3].Cells[0].Value.ToString());
-                                                _checkInOutDTO.Ngay_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong3].Cells[1].Value.ToString());
-                                                _checkInOutDTO.Gio_Cham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong3].Cells[2].Value.ToString());
-                                                _checkInOutDTO.Kieu_Cham = DGVGioTai.Rows[addGioChamCong3].Cells[3].Value.ToString();
-                                                _checkInOutDTO.Nguon_Cham = DGVGioTai.Rows[addGioChamCong3].Cells[4].Value.ToString();
-                                                _checkInOutDTO.MaSo_May = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong3].Cells[5].Value.ToString());
-                                                _checkInOutDTO.Ten_May = DGVGioTai.Rows[addGioChamCong3].Cells[6].Value.ToString();
-                                                _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                dNgayCham3 = new DateTime(idwYear, idwMonth2, idwDay2, 0, 0, 0);
+                                                dGioCham3 = new DateTime(idwYear, idwMonth2, idwDay2, idwHour2, idwMinute2, idwSecond2);
+                                                int addGioChamCong3 = DGVGioTai.Rows.Add();
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[0].Value = sdwEnrollNumber;
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[1].Value = dNgayCham3.ToString();
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[2].Value = dGioCham3.ToString();
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[3].Value = idwInOutMode.ToString();
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[4].Value = idwVerifyMode.ToString();
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[5].Value = sIDMayChamCong;
+                                                DGVGioTai.Rows[addGioChamCong3].Cells[6].Value = sTenMayChamCong;
+                                                DataTable dtKiemTraNhanVien3 = new DataTable();
+                                                _nhanVienDTO.MaChamCong = sdwEnrollNumber;
+                                                dtKiemTraNhanVien3 = _nhanVienBLL.NhanVienGetByMaChamCong(sdwEnrollNumber);
+                                                if (dtKiemTraNhanVien3.Rows.Count == 1)
+                                                {
+                                                    _checkInOutDTO.MaChamCong = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong3].Cells[0].Value.ToString());
+                                                    _checkInOutDTO.NgayCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong3].Cells[1].Value.ToString());
+                                                    _checkInOutDTO.GioCham = Convert.ToDateTime(DGVGioTai.Rows[addGioChamCong3].Cells[2].Value.ToString());
+                                                    _checkInOutDTO.KieuCham = DGVGioTai.Rows[addGioChamCong3].Cells[3].Value.ToString();
+                                                    _checkInOutDTO.NguonCham = DGVGioTai.Rows[addGioChamCong3].Cells[4].Value.ToString();
+                                                    _checkInOutDTO.MaSoMay = Convert.ToInt32(DGVGioTai.Rows[addGioChamCong3].Cells[5].Value.ToString());
+                                                    _checkInOutDTO.TenMay = DGVGioTai.Rows[addGioChamCong3].Cells[6].Value.ToString();
+                                                    _checkInOutBLL.Insert_CheckinOut(_checkInOutDTO);
+                                                }
                                             }
                                         }
                                         progressBarTaiDuLieu.Maximum = iValue;
@@ -1262,7 +1345,7 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
                                     int i5 = 0;
                                     int iCount2 = 0;
                                     DataTable dtCheckInOut11 = new DataTable();
-                                    dtCheckInOut11 = _checkInOutBLL.CountAll_CheckInOut();
+                                    dtCheckInOut11 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
                                     try
                                     {
                                         iCount2 = Convert.ToInt32(dtCheckInOut11.Rows[i5]["Column1"].ToString());
@@ -1468,7 +1551,6 @@ namespace TENTAC_HRM.Forms.May_Cham_Cong
             }
 
         }
-
         private void comboBoxLuaChonTai_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxLuaChonTai.SelectedIndex == 0 || comboBoxLuaChonTai.SelectedIndex == 2)

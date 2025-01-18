@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Security;
 using System.Windows.Forms;
 
 namespace TENTAC_HRM.Forms.Tuy_Chon
 {
     public partial class frm_tuychon : Form
     {
-        DataProvider provider = new DataProvider();
-        public frm_tuychon()
+        DataProvider provider = new DataProvider(); 
+        public int[] idPermision { get; set; }
+        public frm_tuychon(int[] permissions = null)
         {
+            idPermision = permissions;
             InitializeComponent();
         }
 

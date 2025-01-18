@@ -261,6 +261,7 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
             this.btn_close.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_close.Location = new System.Drawing.Point(288, 13);
@@ -510,9 +511,10 @@
             this.AutoSize = true;
             this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(395, 668);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;

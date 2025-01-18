@@ -16,9 +16,12 @@ namespace TENTAC_HRM.BusinessLogicLayer.MayChamCong
 
         public DataTable GETDANHSACHMCC()
         {
-            return _mayChamCongDAL.LOADMAYCHAMCONG();
+            return SQLHelper.ExecuteDt("select * from  MITACOSQL.dbo.MAYCHAMCONG");
         }
-
+        //public DataTable GETDANHSACHMCCComBobox()
+        //{
+        //    return SQLHelper.ExecuteDt("select MaMCC,TenMCC from  MITACOSQL.dbo.MAYCHAMCONG");
+        //}
         public ArrayList GetAllMCC()
         {
             ArrayList arrMCC = new ArrayList();
@@ -47,7 +50,7 @@ namespace TENTAC_HRM.BusinessLogicLayer.MayChamCong
 
         public DataTable MayChamCongGetAllByTenMCC(MayChamCongDTO _mayChamCongDTO)
         {
-            return _mayChamCongDAL.MayChamCong_getAllByTenMCC(_mayChamCongDTO);
+            return SQLHelper.ExecuteDt("select * from  MITACOSQL.dbo.MAYCHAMCONG where TenMCC = '" + _mayChamCongDTO.TenMCC + "'");
         }
         public DataTable MayChamCongGetAllByMaMCC(MayChamCongDTO _mayChamCongDTO)
         {

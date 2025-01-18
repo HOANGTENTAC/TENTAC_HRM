@@ -305,6 +305,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 503);
+            this.ControlBox = false;
             this.Controls.Add(this.chk_HieuLuc);
             this.Controls.Add(this.txt_MucPhuCap);
             this.Controls.Add(this.labelX7);
@@ -321,7 +322,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.labelX1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frm_staff_allowance";

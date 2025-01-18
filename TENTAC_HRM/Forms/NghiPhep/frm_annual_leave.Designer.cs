@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbo_LoaiPhep = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -113,6 +113,7 @@
             this.cbo_Thang.Name = "cbo_Thang";
             this.cbo_Thang.Size = new System.Drawing.Size(55, 23);
             this.cbo_Thang.TabIndex = 3;
+            this.cbo_Thang.SelectionChangeCommitted += new System.EventHandler(this.cbo_Thang_SelectionChangeCommitted);
             // 
             // cbo_Nam
             // 
@@ -126,6 +127,7 @@
             this.cbo_Nam.Size = new System.Drawing.Size(73, 23);
             this.cbo_Nam.TabIndex = 4;
             this.cbo_Nam.SelectedIndexChanged += new System.EventHandler(this.cbo_Nam_SelectedIndexChanged);
+            this.cbo_Nam.SelectionChangeCommitted += new System.EventHandler(this.cbo_Nam_SelectionChangeCommitted);
             // 
             // chk_BuoiSang
             // 
@@ -134,6 +136,7 @@
             this.chk_BuoiSang.Size = new System.Drawing.Size(115, 23);
             this.chk_BuoiSang.TabIndex = 5;
             this.chk_BuoiSang.Text = "Nghỉ buổi sáng";
+            this.chk_BuoiSang.CheckedChanged += new System.EventHandler(this.chk_BuoiSang_CheckedChanged);
             // 
             // chk_BuoiChieu
             // 
@@ -142,6 +145,7 @@
             this.chk_BuoiChieu.Size = new System.Drawing.Size(123, 23);
             this.chk_BuoiChieu.TabIndex = 6;
             this.chk_BuoiChieu.Text = "Nghỉ buổi chiều";
+            this.chk_BuoiChieu.CheckedChanged += new System.EventHandler(this.chk_BuoiChieu_CheckedChanged);
             // 
             // lv_Ngay
             // 
@@ -248,14 +252,14 @@
             this.TenPhongBan,
             this.TongNgayNghi,
             this.PhepTon});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_NhanVien.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_NhanVien.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_NhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_NhanVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_NhanVien.Location = new System.Drawing.Point(3, 19);

@@ -46,7 +46,6 @@
             this.btn_Search = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Excel = new System.Windows.Forms.ToolStripButton();
-            this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.chk_TheoNam = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,6 +62,7 @@
             this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoaiPhep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GhiChu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LyDoNguoiXacNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiXacNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrangThaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,6 +99,7 @@
             this.SoNgay,
             this.LoaiPhep,
             this.GhiChu,
+            this.LyDoNguoiXacNhan,
             this.MaChucVu,
             this.NguoiXacNhan,
             this.TrangThaiPhieu});
@@ -152,7 +153,10 @@
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel3,
             this.cbo_Thang,
@@ -164,8 +168,7 @@
             this.btn_delete,
             this.btn_Search,
             this.toolStripSeparator1,
-            this.btn_Excel,
-            this.btn_close});
+            this.btn_Excel});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1279, 38);
@@ -253,15 +256,6 @@
             this.btn_Excel.Text = "Xuất Excel";
             this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
             // 
-            // btn_close
-            // 
-            this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
-            this.btn_close.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(56, 35);
-            this.btn_close.Text = "Đóng";
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
             // txt_search
             // 
             this.txt_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -283,7 +277,7 @@
             this.chk_TheoNam.Name = "chk_TheoNam";
             this.chk_TheoNam.Size = new System.Drawing.Size(117, 23);
             this.chk_TheoNam.TabIndex = 12;
-            this.chk_TheoNam.Text = "Xem theo nam";
+            this.chk_TheoNam.Text = "Xem theo năm";
             // 
             // id
             // 
@@ -382,9 +376,15 @@
             // GhiChu
             // 
             this.GhiChu.DataPropertyName = "GhiChu";
-            this.GhiChu.HeaderText = "Nội dung";
+            this.GhiChu.HeaderText = "Lý do nghỉ";
             this.GhiChu.Name = "GhiChu";
             this.GhiChu.Width = 90;
+            // 
+            // LyDoNguoiXacNhan
+            // 
+            this.LyDoNguoiXacNhan.DataPropertyName = "LyDoNguoiXacNhan";
+            this.LyDoNguoiXacNhan.HeaderText = "Lý do từ chối";
+            this.LyDoNguoiXacNhan.Name = "LyDoNguoiXacNhan";
             // 
             // MaChucVu
             // 
@@ -446,7 +446,6 @@
         private System.Windows.Forms.ToolStripComboBox cbo_trangthai;
         private System.Windows.Forms.ToolStripButton btn_add;
         private System.Windows.Forms.ToolStripButton btn_delete;
-        private System.Windows.Forms.ToolStripButton btn_close;
         private System.Windows.Forms.ToolStripButton btn_Search;
         private DevComponents.DotNetBar.Controls.TextBoxX txt_search;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
@@ -468,6 +467,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoNgay;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiPhep;
         private System.Windows.Forms.DataGridViewTextBoxColumn GhiChu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LyDoNguoiXacNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaChucVu;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiXacNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiPhieu;

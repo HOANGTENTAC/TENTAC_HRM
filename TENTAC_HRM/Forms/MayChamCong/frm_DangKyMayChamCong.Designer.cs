@@ -1,6 +1,6 @@
-﻿namespace TENTAC_HRM.Forms.May_Cham_Cong
+﻿namespace TENTAC_HRM.Forms.MayChamCong
 {
-    partial class frmDangKyMayChamCong
+    partial class frm_DangKyMayChamCong
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangKyMayChamCong));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_DangKyMayChamCong));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnKetNoi = new System.Windows.Forms.ToolStripButton();
             this.btnDangKy = new System.Windows.Forms.ToolStripButton();
