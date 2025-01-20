@@ -4,12 +4,13 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
-using TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL;
+using TENTAC_HRM.Bll.MayChamCong;
+using TENTAC_HRM.BLL.DuLieuMayChamCongBLL;
+using TENTAC_HRM.BLL.QuanLyNhanVienBLL;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.DataAccessLayer.MayChamCong.DuLieuMayChamCongDAL;
-using TENTAC_HRM.DataTransferObject.MayChamCong;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
+using TENTAC_HRM.Models.ChamCongModel;
+using TENTAC_HRM.Models.MayChamCongModel;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong
@@ -26,8 +27,8 @@ namespace TENTAC_HRM.Forms.MayChamCong
         private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
         private Nhanvien_model _nhanVienDTO = new Nhanvien_model();
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
-        private MayChamCongDTO _mayChamCongDTO = new MayChamCongDTO();
-        private CheckInOut_model _checkInOutDTO = new CheckInOut_model();
+        private MayChamCongModel _mayChamCongDTO = new MayChamCongModel();
+        private CheckInOutModel _checkInOutDTO = new CheckInOutModel();
 
         private CheckInOut_BLL _checkInOutBLL = new CheckInOut_BLL();
 
@@ -180,7 +181,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                 sSerial = dtMayChamCong.Rows[iMayChamCong]["Serial"].ToString();
                 DataTable dtCheckMCC = new DataTable();
                 _mayChamCongDTO.Serial = sSerial;
-                dtCheckMCC = _mayChamCongBLL.MayChamCongGetBySerial(_mayChamCongDTO);
+                dtCheckMCC = _mayChamCongBLL.MayChamCongGetBySerial(sSerial);
                 if (dtCheckMCC.Rows.Count >= 2 && dtMayChamCong.Rows[iMayChamCong]["Serial"].ToString() != "")
                 {
                     MessageBox.Show("Máy chấm công trùng serial, Không được phép tải");
@@ -407,7 +408,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                     {
                         int i3 = 0;
                         DataTable dtCheckInOut8 = new DataTable();
-                        dtCheckInOut8 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                        dtCheckInOut8 = _checkInOutBLL.CountAllCheckInOut();
                         try
                         {
                             iCount1 = Convert.ToInt32(dtCheckInOut8.Rows[i3]["Column1"].ToString());
@@ -517,7 +518,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                             int i13 = 0;
                             int iCount10 = 0;
                             DataTable dtCheckInOut19 = new DataTable();
-                            dtCheckInOut19 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                            dtCheckInOut19 = _checkInOutBLL.CountAllCheckInOut();
                             try
                             {
                                 iCount10 = Convert.ToInt32(dtCheckInOut19.Rows[i13]["Column1"].ToString());
@@ -536,7 +537,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                             {
                                 comboBoxLuaChonTai.SelectedIndex = 1;
                                 DataTable dtCheckInOut10 = new DataTable();
-                                dtCheckInOut10 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut10 = _checkInOutBLL.CountAllCheckInOut();
                                 try
                                 {
                                     iCount1 = Convert.ToInt32(dtCheckInOut10.Rows[i3]["Column1"].ToString());
@@ -617,7 +618,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                     int i14 = 0;
                                     int iCount11 = 0;
                                     DataTable dtCheckInOut20 = new DataTable();
-                                    dtCheckInOut20 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                    dtCheckInOut20 = _checkInOutBLL.CountAllCheckInOut();
                                     try
                                     {
                                         iCount11 = Convert.ToInt32(dtCheckInOut20.Rows[i14]["Column1"].ToString());
@@ -654,7 +655,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                             {
                                 int i4 = 0;
                                 DataTable dtCheckInOut9 = new DataTable();
-                                dtCheckInOut9 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut9 = _checkInOutBLL.CountAllCheckInOut();
                                 iCount1 = Convert.ToInt32(dtCheckInOut9.Rows[i4]["Column1"].ToString());
                                 while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth2, out idwDay2, out idwHour2, out idwMinute2, out idwSecond2, ref idwWorkcode))
                                 {
@@ -705,7 +706,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                 }
                                 int i12 = 0;
                                 DataTable dtCheckInOut18 = new DataTable();
-                                dtCheckInOut18 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut18 = _checkInOutBLL.CountAllCheckInOut();
                                 int iCount9 = Convert.ToInt32(dtCheckInOut18.Rows[i12]["Column1"].ToString());
                                 btnTaiDuLieu.Text = "Dữ Liệu mới: " + (iCount9 - iCount1);
                             }
@@ -714,7 +715,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                 comboBoxLuaChonTai.SelectedIndex = 1;
                                 int i2 = 0;
                                 DataTable dtCheckInOut7 = new DataTable();
-                                dtCheckInOut7 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut7 = _checkInOutBLL.CountAllCheckInOut();
                                 try
                                 {
                                     iCount1 = Convert.ToInt32(dtCheckInOut7.Rows[i2]["Column1"].ToString());
@@ -794,7 +795,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                     int i11 = 0;
                                     int iCount8 = 0;
                                     DataTable dtCheckInOut17 = new DataTable();
-                                    dtCheckInOut17 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                    dtCheckInOut17 = _checkInOutBLL.CountAllCheckInOut();
                                     try
                                     {
                                         iCount8 = Convert.ToInt32(dtCheckInOut17.Rows[i11]["Column1"].ToString());
@@ -813,7 +814,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                     comboBoxLuaChonTai.SelectedIndex = 1;
                                     int n = 0;
                                     DataTable dtCheckInOut6 = new DataTable();
-                                    dtCheckInOut6 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                    dtCheckInOut6 = _checkInOutBLL.CountAllCheckInOut();
                                     try
                                     {
                                         iCount1 = Convert.ToInt32(dtCheckInOut6.Rows[n]["Column1"].ToString());
@@ -893,7 +894,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                         int i10 = 0;
                                         int iCount7 = 0;
                                         DataTable dtCheckInOut16 = new DataTable();
-                                        dtCheckInOut16 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                        dtCheckInOut16 = _checkInOutBLL.CountAllCheckInOut();
                                         try
                                         {
                                             iCount7 = Convert.ToInt32(dtCheckInOut16.Rows[i10]["Column1"].ToString());
@@ -1014,7 +1015,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                             comboBoxLuaChonTai.SelectedIndex = 1;
                             int l = 0;
                             DataTable dtCheckInOut4 = new DataTable();
-                            dtCheckInOut4 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                            dtCheckInOut4 = _checkInOutBLL.CountAllCheckInOut();
                             try
                             {
                                 iCount1 = Convert.ToInt32(dtCheckInOut4.Rows[l]["Column1"].ToString());
@@ -1095,7 +1096,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                 int i8 = 0;
                                 int iCount5 = 0;
                                 DataTable dtCheckInOut14 = new DataTable();
-                                dtCheckInOut14 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut14 = _checkInOutBLL.CountAllCheckInOut();
                                 try
                                 {
                                     iCount5 = Convert.ToInt32(dtCheckInOut14.Rows[i8]["Column1"].ToString());
@@ -1115,7 +1116,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                         {
                             int k = 0;
                             DataTable dtCheckInOut3 = new DataTable();
-                            dtCheckInOut3 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                            dtCheckInOut3 = _checkInOutBLL.CountAllCheckInOut();
                             iCount1 = Convert.ToInt32(dtCheckInOut3.Rows[k]["Column1"].ToString());
                             while (axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, out sdwEnrollNumber, out idwVerifyMode, out idwInOutMode, out idwYear, out idwMonth2, out idwDay2, out idwHour2, out idwMinute2, out idwSecond2, ref idwWorkcode))
                             {
@@ -1166,7 +1167,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                             }
                             int i7 = 0;
                             DataTable dtCheckInOut13 = new DataTable();
-                            dtCheckInOut13 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                            dtCheckInOut13 = _checkInOutBLL.CountAllCheckInOut();
                             int iCount4 = Convert.ToInt32(dtCheckInOut13.Rows[i7]["Column1"].ToString());
                             btnTaiDuLieu.Text = "Dữ Liệu mới: " + (iCount4 - iCount1);
                         }
@@ -1175,7 +1176,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                             comboBoxLuaChonTai.SelectedIndex = 2;
                             int j = 0;
                             DataTable dtCheckInOut2 = new DataTable();
-                            dtCheckInOut2 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                            dtCheckInOut2 = _checkInOutBLL.CountAllCheckInOut();
                             try
                             {
                                 iCount1 = Convert.ToInt32(dtCheckInOut2.Rows[j]["Column1"].ToString());
@@ -1245,7 +1246,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                 int i6 = 0;
                                 int iCount3 = 0;
                                 DataTable dtCheckInOut12 = new DataTable();
-                                dtCheckInOut12 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut12 = _checkInOutBLL.CountAllCheckInOut();
                                 try
                                 {
                                     iCount3 = Convert.ToInt32(dtCheckInOut12.Rows[i6]["Column1"].ToString());
@@ -1266,7 +1267,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                 comboBoxLuaChonTai.SelectedIndex = 1;
                                 int i = 0;
                                 DataTable dtCheckInOut = new DataTable();
-                                dtCheckInOut = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                dtCheckInOut = _checkInOutBLL.CountAllCheckInOut();
                                 try
                                 {
                                     iCount1 = Convert.ToInt32(dtCheckInOut.Rows[i]["Column1"].ToString());
@@ -1345,7 +1346,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                     int i5 = 0;
                                     int iCount2 = 0;
                                     DataTable dtCheckInOut11 = new DataTable();
-                                    dtCheckInOut11 = _checkInOutBLL.CountAllCheckInOut(_checkInOutDTO);
+                                    dtCheckInOut11 = _checkInOutBLL.CountAllCheckInOut();
                                     try
                                     {
                                         iCount2 = Convert.ToInt32(dtCheckInOut11.Rows[i5]["Column1"].ToString());

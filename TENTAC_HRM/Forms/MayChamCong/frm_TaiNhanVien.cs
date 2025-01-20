@@ -3,14 +3,14 @@ using System.Data;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-using TENTAC_HRM.BusinessLogicLayer.ChamCongBLL;
-using TENTAC_HRM.BusinessLogicLayer.CommonBLL;
-using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
-using TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL;
+using TENTAC_HRM.Bll.MayChamCong;
+using TENTAC_HRM.BLL.ChamCongBLL;
+using TENTAC_HRM.BLL.CommonBLL;
+using TENTAC_HRM.BLL.QuanLyNhanVienBLL;
 using TENTAC_HRM.Common;
-using TENTAC_HRM.DataTransferObject.MayChamCong;
-using TENTAC_HRM.DataTransferObject.QuanLyNhanVienDTO;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
+using TENTAC_HRM.Models.MayChamCongModel;
+using TENTAC_HRM.Models.QuanLyNhanVienModel;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong
@@ -30,9 +30,9 @@ namespace TENTAC_HRM.Forms.MayChamCong
         public string _Serial;
         public string _SoDangKy;
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
-        private MayChamCongDTO _mayChamCongDTO = new MayChamCongDTO();
+        private MayChamCongModel _mayChamCongDTO = new MayChamCongModel();
         private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
-        private CommonBLL _commonBLL = new CommonBLL();
+        private CommonBLL CommonBLL = new CommonBLL();
         private Common_model _commonDTO = new Common_model();
         private CommonKhuonMatBLL _commonKhuonMatBLL = new CommonKhuonMatBLL();
         private CommonKhuonMat_model _commonKhuonMatDTO = new CommonKhuonMat_model();
@@ -233,7 +233,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                     _commonDTO.FlagVirtual = iFlag2;
                                     _commonDTO.FingerTemplateVirtual = sTmpData2;
                                     _commonDTO.FingerVersionVirtual = _phienBanVanTay;
-                                    _commonBLL.InsertTemplateVirtual(_commonDTO);
+                                    CommonBLL.InsertTemplateVirtual(_commonDTO);
                                 }
                             }
                         }
@@ -392,7 +392,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                                 _commonDTO.FlagVirtual = iFlag;
                                 _commonDTO.FingerTemplateVirtual = sTmpData;
                                 _commonDTO.FingerVersionVirtual = _phienBanVanTay;
-                                _commonBLL.InsertTemplateVirtual(_commonDTO);
+                                CommonBLL.InsertTemplateVirtual(_commonDTO);
                             }
                         }
                     }
@@ -897,7 +897,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
                 {
                     DataTable selectVT = new DataTable();
                     _commonDTO.MaChamCong = Convert.ToInt32(sMaChamCong);
-                    selectVT = _commonBLL.SelectTemplateVirtualByMaChamCong(Convert.ToInt32(sMaChamCong));
+                    selectVT = CommonBLL.SelectTemplateVirtualByMaChamCong(Convert.ToInt32(sMaChamCong));
                     for (int selectLuuVT = 0; selectLuuVT < selectVT.Rows.Count; selectLuuVT++)
                     {
                         _templateDTO.MaChamCong = Convert.ToInt32(selectVT.Rows[selectLuuVT]["MaChamCong"].ToString());
@@ -919,7 +919,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
             }
             listBoxThongTin.Items.Add("Số nhân viên vừa tải: " + DemNhanVien_LuuVanTay);
             listBoxThongTin.Items.Add("Số vân tay: " + DemVanTay_LuuVanTay);
-            _commonBLL.DeleteALLTemplateVirtual();
+            CommonBLL.DeleteALLTemplateVirtual();
         }
 
         private void CapNhatChoNhanVienDaCoTrenPhanMem()
@@ -994,7 +994,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
         private void btnDuyetTuMayChamCongNew_Click(object sender, EventArgs e)
         {
             sdwSerialNumber = "";
-            _commonBLL.DeleteALLTemplateVirtual();
+            CommonBLL.DeleteALLTemplateVirtual();
             _templateCapNhatVanTayBLL.TemplateCapNhatVanTayDeleteAll();
             _nhanVienUpdateBLL.NhanVienUpdateDeleteAll(_nhanVienUpdateDTO);
             if (comboBoxChonMayChamCong.SelectedIndex == -1)

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
 using System.Net;
-using System.Security;
 using System.Windows.Forms;
-using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
+using TENTAC_HRM.Bll.MayChamCong;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.DataTransferObject.MayChamCong;
+using TENTAC_HRM.Models.MayChamCongModel;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong
@@ -18,7 +16,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
 
         private int iMachineNumber = 1;
 
-        private MayChamCongDTO _mayChamCongDTO = new MayChamCongDTO();
+        private MayChamCongModel _mayChamCongDTO = new MayChamCongModel();
 
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
 

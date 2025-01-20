@@ -14,7 +14,7 @@ using System.Windows.Forms;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Forms.Main;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
 using TENTAC_HRM.Properties;
 
 namespace TENTAC_HRM.Forms.NhanSu

@@ -3,7 +3,7 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
 
 namespace TENTAC_HRM.Forms.NhanSu
 {

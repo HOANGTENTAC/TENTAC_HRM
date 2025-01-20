@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TENTAC_HRM.Model
+namespace TENTAC_HRM.Models
 {
     class Nhanvien_model
     {

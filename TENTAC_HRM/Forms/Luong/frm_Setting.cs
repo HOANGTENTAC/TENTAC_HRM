@@ -4,8 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using TENTAC_HRM.CommonModel;
 using TENTAC_HRM.Custom;
+using TENTAC_HRM.Models.CommonModel;
 
 namespace TENTAC_HRM.Forms.Luong
 {

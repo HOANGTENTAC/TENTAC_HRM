@@ -1,4 +1,4 @@
-﻿namespace TENTAC_HRM.Model
+﻿namespace TENTAC_HRM.Models
 {
     class Diachi_model
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TENTAC_HRM.Model
+namespace TENTAC_HRM.Models
 {
     class Tainan_model
     {

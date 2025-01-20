@@ -2,11 +2,11 @@
 using System.Data;
 using System.Net;
 using System.Windows.Forms;
-using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
-using TENTAC_HRM.BusinessLogicLayer.QuanLyNhanVienBLL;
+using TENTAC_HRM.Bll.MayChamCong;
+using TENTAC_HRM.BLL.QuanLyNhanVienBLL;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong

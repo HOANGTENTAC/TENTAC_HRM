@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
 
 namespace TENTAC_HRM.Common
 {

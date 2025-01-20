@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using TENTAC_HRM.BusinessLogicLayer.MayChamCong;
+using TENTAC_HRM.Bll.MayChamCong;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.DataTransferObject.MayChamCong;
+using TENTAC_HRM.Models.MayChamCongModel;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong
@@ -18,7 +18,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
         private bool _bIsConnected = false;
         private int iMachineNumber = 1;
         private string hostCheckIp;
-        private MayChamCongDTO _mayChamCongDTO = new MayChamCongDTO();
+        private MayChamCongModel _mayChamCongDTO = new MayChamCongModel();
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
         private int kiemtra;
         private MaTuDong _maTuDong = new MaTuDong();

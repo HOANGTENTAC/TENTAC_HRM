@@ -14,11 +14,11 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
-using TENTAC_HRM.CommonModel;
 using TENTAC_HRM.Custom;
+using TENTAC_HRM.Models.CommonModel;
+using Excel = Microsoft.Office.Interop.Excel;
 using Font = iTextSharp.text.Font;
 using Image = iTextSharp.text.Image;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace TENTAC_HRM.Forms.Luong
 {

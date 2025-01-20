@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TENTAC_HRM.BusinessLogicLayer.BaoBieuBLL;
-using TENTAC_HRM.BusinessLogicLayer.ChamCongBLL;
+using TENTAC_HRM.BLL.BaoBieuBLL;
+using TENTAC_HRM.BLL.ChamCongBLL;
 using TENTAC_HRM.Common;
-using TENTAC_HRM.Model;
+using TENTAC_HRM.Models;
 
 namespace TENTAC_HRM.Forms.ChamCong
 {
@@ -457,7 +451,7 @@ namespace TENTAC_HRM.Forms.ChamCong
             //}
             //System.Data.DataTable dtKyHieu = new System.Data.DataTable();
             //_kyHieuChamCongDTO.MaKyHieu = "KH00001";
-            //dtKyHieu = _kyHieuChamCongBLL.showLoadKyHieuChamCong(_kyHieuChamCongDTO);
+            //dtKyHieu = _kyHieuBLL.ChamCongBLL.showLoadKyHieuChamCong(_kyHieuChamCongDTO);
             //for (int _kyHieu = 0; _kyHieu < dtKyHieu.Rows.Count; _kyHieu++)
             //{
             //    sKHDiTre = dtKyHieu.Rows[_kyHieu]["DiTre"].ToString();
