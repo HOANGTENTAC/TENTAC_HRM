@@ -2,7 +2,7 @@
 
 namespace TENTAC_HRM.Models
 {
-    internal class LichTrinhVaoRa_model
+    internal class LichTrinhVaoRaModel
     {
         private string _MaLichTrinhVaoRa;
 
@@ -144,11 +144,11 @@ namespace TENTAC_HRM.Models
             }
         }
 
-        public LichTrinhVaoRa_model()
+        public LichTrinhVaoRaModel()
         {
         }
 
-        public LichTrinhVaoRa_model(string _MaLichTrinhVaoRa, string _TenLichTrinhVaoRa, int _ChonLichTrinhVaoRa, bool _MotLanChamCong, bool _LoaiBoGio, DateTime _TuGio, DateTime _DenGio, int _ThoiGianNhoNhat, int _ThoiGianLonNhat, int _KhoangCachGiuaHaiCapVaoRa)
+        public LichTrinhVaoRaModel(string _MaLichTrinhVaoRa, string _TenLichTrinhVaoRa, int _ChonLichTrinhVaoRa, bool _MotLanChamCong, bool _LoaiBoGio, DateTime _TuGio, DateTime _DenGio, int _ThoiGianNhoNhat, int _ThoiGianLonNhat, int _KhoangCachGiuaHaiCapVaoRa)
         {
             MaLichTrinhVaoRa = _MaLichTrinhVaoRa;
             TenLichTrinhVaoRa = _TenLichTrinhVaoRa;

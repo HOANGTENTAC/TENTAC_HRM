@@ -2,7 +2,7 @@
 
 namespace TENTAC_HRM.Models
 {
-    class Tainan_model
+    class TainanModel
     {
         public int id_qt_tainan { get; set; }
         [DisplayName("Ngày diễn ra")]

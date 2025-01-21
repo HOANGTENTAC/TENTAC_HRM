@@ -10,138 +10,100 @@ namespace TENTAC_HRM.BLL.BaoBieuBLL
     {
         public void TinhCongInsert(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaNhanVien", _tinhCongDTO.MaNhanVien));
-            _sqlParameter.Add(new SqlParameter("@TenNhanVien", _tinhCongDTO.TenNhanVien));
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            _sqlParameter.Add(new SqlParameter("@Thu", _tinhCongDTO.Thu));
-            _sqlParameter.Add(new SqlParameter("@Ca", _tinhCongDTO.Ca));
-            _sqlParameter.Add(new SqlParameter("@GioVao", _tinhCongDTO.GioVao));
-            _sqlParameter.Add(new SqlParameter("@GioRa", _tinhCongDTO.GioRa));
-            _sqlParameter.Add(new SqlParameter("@Cong", _tinhCongDTO.Cong));
-            _sqlParameter.Add(new SqlParameter("@Gio", _tinhCongDTO.Gio));
-            _sqlParameter.Add(new SqlParameter("@Tre", _tinhCongDTO.Tre));
-            _sqlParameter.Add(new SqlParameter("@VeSom", _tinhCongDTO.VeSom));
-            _sqlParameter.Add(new SqlParameter("@VeTre", _tinhCongDTO.VeTre));
-            _sqlParameter.Add(new SqlParameter("@TC1", _tinhCongDTO.TC1));
-            _sqlParameter.Add(new SqlParameter("@TC2", _tinhCongDTO.TC2));
-            _sqlParameter.Add(new SqlParameter("@TC3", _tinhCongDTO.TC3));
-            _sqlParameter.Add(new SqlParameter("@TC4", _tinhCongDTO.TC4));
-            _sqlParameter.Add(new SqlParameter("@TongGio", _tinhCongDTO.TongGio));
-            _sqlParameter.Add(new SqlParameter("@DemCong", _tinhCongDTO.DemCong));
-            _sqlParameter.Add(new SqlParameter("@KyHieu", _tinhCongDTO.KyHieu));
-            _sqlParameter.Add(new SqlParameter("@KyHieuPhu", _tinhCongDTO.KyHieuPhu));
-            _sqlParameter.Add(new SqlParameter("@PhongBan", _tinhCongDTO.PhongBan));
-            base.Procedure("TinhCong_add", _sqlParameter);
+            string sql = $@"insert into MITACOSQL.dbo.[TinhCong](  
+                            MaNhanVien,TenNhanVien,MaChamCong,Ngay,Thu,Ca,GioVao,GioRa,Cong,Gio,Tre,VeSom,VeTre,TC1,TC2,TC3,TC4,TongGio,DemCong,KyHieu,KyHieuPhu,PhongBan)  
+                            values(  
+                            '{_tinhCongDTO.MaNhanVien}',
+                            N'{_tinhCongDTO.TenNhanVien}',
+                            '{_tinhCongDTO.MaChamCong}',
+                            '{_tinhCongDTO.Ngay}',
+                            '{_tinhCongDTO.Thu}',
+                            '{_tinhCongDTO.Ca}',
+                            '{_tinhCongDTO.GioVao}',
+                            '{_tinhCongDTO.GioRa}',
+                            '{_tinhCongDTO.Cong}',
+                            '{_tinhCongDTO.Gio}',
+                            '{_tinhCongDTO.Tre}',
+                            '{_tinhCongDTO.VeSom}',
+                            '{_tinhCongDTO.VeTre}',
+                            '{_tinhCongDTO.TC1}',
+                            '{_tinhCongDTO.TC2}',
+                            '{_tinhCongDTO.TC3}',
+                            '{_tinhCongDTO.TC4}',
+                            '{_tinhCongDTO.TongGio}',
+                            '{_tinhCongDTO.DemCong}',
+                            '{_tinhCongDTO.KyHieu}',
+                            '{_tinhCongDTO.KyHieuPhu}',
+                            '{_tinhCongDTO.PhongBan}')";
+            SQLHelper.ExecuteSql(sql);
         }
 
         public void TinhCongDelete(TinhCongModel _tinhCongDTO)
         {
-            base.Procedure("TinhCong_delete", new List<SqlParameter>());
+            SQLHelper.ExecuteSql("TRUNCATE TABLE MITACOSQL.dbo.[TinhCong]");
         }
 
         public DataTable TinhCongGetAll(TinhCongModel _tinhCongDTO)
         {
-            return base.executeNonQuerya("TinhCong_getall", new List<SqlParameter>());
+            return SQLHelper.ExecuteDt("select * from MITACOSQL.dbo.[TinhCong]");
         }
 
         public DataTable TinhCongGetByMaChamCong(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            return base.executeNonQuerya("TinhCong_getByMaChamCong", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}'");
         }
 
         public DataTable TinhCongGetByMaChamCongAndKyHieuPhu(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@KyHieuPhu", _tinhCongDTO.KyHieuPhu));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndKyHieuPhu", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and KyHieuPhu = '{_tinhCongDTO.KyHieuPhu}'");
         }
 
         public DataTable TinhCongGetByMaChamCongAndLe(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@KyHieu", _tinhCongDTO.KyHieu));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndLe", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and KyHieu = '{_tinhCongDTO.KyHieu}'");
         }
 
         public DataTable TinhCongGetNgayAndPhongBan(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            _sqlParameter.Add(new SqlParameter("@PhongBan", _tinhCongDTO.PhongBan));
-            return base.executeNonQuerya("TinhCong_getByNgayAndPhongBan", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[TinhCong] where Ngay = '{_tinhCongDTO.Ngay}' and PhongBan = '{_tinhCongDTO.PhongBan}'");
         }
 
         public DataTable TinhCongGetNgay(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByNgay", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[TinhCong] where Ngay = '{_tinhCongDTO.Ngay}'");
         }
 
         public DataTable TinhCongGetMaChamCongAndNgay(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndNgay", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and Ngay = '{_tinhCongDTO.Ngay}'");
         }
 
         public DataTable TinhCongGetMaChamCongAndNgayChiTietTungNguoiTungNgay(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndNgayChiTietTungNguoiTungNgay", _sqlParameter);
+            string sql = $@"select Thu,GioVao,GioRa,Tre,VeSom,VeTre,Gio,Cong,TC1,KyHieu,TC2 
+			                from MITACOSQL.dbo.[TinhCong]
+                            where MaChamCong = '{_tinhCongDTO.MaChamCong}' and Ngay = '{_tinhCongDTO.Ngay}'";
+            return SQLHelper.ExecuteDt(sql);
         }
 
         public DataTable TinhCongGetMaChamCongAndNgayThongKeCong(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndNgayThongKeCong", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select Thu,Cong from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and Ngay = '{_tinhCongDTO.Ngay}'");
         }
 
         public DataTable TinhCongGetMaChamCongAndNgayChiTietThoiGian(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndNgayChiTietThoiGian", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select Thu,GioVao,GioRa,Gio,TC1,TC2 from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and Ngay = '{_tinhCongDTO.Ngay}'");
         }
 
         public DataTable TinhCongGetMaChamCongAndNgayGioVaTC(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndNgayGioVaTC", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select Thu,GioVao,GioRa,Gio,TC1,TC2 from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and Ngay = '{_tinhCongDTO.Ngay}'");
         }
 
         public DataTable TinhCongGetMaChamCongAndNgayThongKeGio(TinhCongModel _tinhCongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _tinhCongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@Ngay", _tinhCongDTO.Ngay));
-            return base.executeNonQuerya("TinhCong_getByMaChamCongAndNgayThongKeGio", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select Thu,KyHieu,KyHieuPhu,Gio from MITACOSQL.dbo.[TinhCong] where MaChamCong = '{_tinhCongDTO.MaChamCong}' and Ngay = '{_tinhCongDTO.Ngay}'");
         }
     }
 }

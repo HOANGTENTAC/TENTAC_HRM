@@ -15,6 +15,7 @@ using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Models;
+using TENTAC_HRM.Models.QuanLyNhanVienModel;
 using TENTAC_HRM.Properties;
 
 namespace TENTAC_HRM.Forms.NhanSu
@@ -22,7 +23,7 @@ namespace TENTAC_HRM.Forms.NhanSu
     public partial class frm_personnel : KryptonForm
     {
         DataProvider provider = new DataProvider();
-        Nhanvien_model nhanvien = new Nhanvien_model();
+        NhanVienModel nhanvien = new NhanVienModel();
         public string _ma_nhan_vien { get; set; }
         public bool status_frm { get; set; }
         public int _id_hop_dong = 0;
@@ -1466,28 +1467,28 @@ namespace TENTAC_HRM.Forms.NhanSu
             SqlParameter[] param = new SqlParameter[]
            {
                     new SqlParameter("@MaNhanVien", SqlDbType.NVarChar) {Value = _ma_nhan_vien},
-                    new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.Ho_lot_value) ? "" : nhanvien.Ho_lot_value + " ") + (string.IsNullOrEmpty(nhanvien.Ten_value) ? "" : nhanvien.Ten_value)},
-                    new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
-                    new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
+                    new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.HoLot) ? "" : nhanvien.HoLot + " ") + (string.IsNullOrEmpty(nhanvien.TenNhanVien) ? "" : nhanvien.TenNhanVien)},
+                    new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.TenChamCong},
+                    new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.MaThe},
                     new SqlParameter("PhanQuyen", SqlDbType.Int) {Value = 0},
                     new SqlParameter("UserEnable", SqlDbType.NVarChar) {Value = "True"},
-                    new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
-                    new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                    new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_sinh_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                    new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
-                    new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.GioiTinh},
+                    new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.NgayVaoLamViec == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.NgayVaoLamViec.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.NgaySinh == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.NgaySinh.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email},
+                    new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.NgayKyHopDong == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.NgayKyHopDong.ToString("yyyy/MM/dd")), IsNullable = true},
                     new SqlParameter("@ThoiHanHopDong", SqlDbType.Float) {Value = 0},
                     new SqlParameter("@CMND", SqlDbType.Int) {Value = 0},
-                    new SqlParameter("@NgayCap", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@NgayCap", SqlDbType.DateTime) {Value = nhanvien.NgayCap == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.NgayCap.ToString("yyyy/MM/dd")), IsNullable = true},
                     new SqlParameter("@NgayPhep", SqlDbType.Float) {Value = 12},
-                    new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
-                    new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
+                    new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.GhiChu},
+                    new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.HinhAnh == null ? (object)DBNull.Value : nhanvien.HinhAnh},
                     new SqlParameter("@TienLuong", SqlDbType.Money) {Value = 0},
                     new SqlParameter("@LuongHopDong", SqlDbType.Money) {Value = 0},
-                    new SqlParameter("@MaCongTy", SqlDbType.NVarChar) {Value = nhanvien.MaCongTy_value},
-                    new SqlParameter("@MaKhuVuc", SqlDbType.NVarChar) {Value = nhanvien.MaKhuVuc_value},
-                    new SqlParameter("@MaPhongBan", SqlDbType.NVarChar){Value = nhanvien.MaPhongBan_value},
-                    new SqlParameter("@MaChucVu", SqlDbType.NVarChar) {Value = nhanvien.MaChucVu_value},
+                    new SqlParameter("@MaCongTy", SqlDbType.NVarChar) {Value = nhanvien.MaCongTy},
+                    new SqlParameter("@MaKhuVuc", SqlDbType.NVarChar) {Value = nhanvien.MaKhuVuc},
+                    new SqlParameter("@MaPhongBan", SqlDbType.NVarChar){Value = nhanvien.MaPhongBan},
+                    new SqlParameter("@MaChucVu", SqlDbType.NVarChar) {Value = nhanvien.MaChucVu},
                     new SqlParameter("@DangThamGiaBaoHiem", SqlDbType.Bit) {Value = true},
                     new SqlParameter("@NghiViecTamThoi", SqlDbType.Bit) {Value = false},
                     new SqlParameter("@TinhLuongTheo", SqlDbType.Bit) {Value = false},
@@ -1513,19 +1514,19 @@ namespace TENTAC_HRM.Forms.NhanSu
             ThoiGianThuViec, NgayKetThucThuViec, NgayKetThuc, MaSoThue, NgayDKThue, NoiDKThue, SoTK, NganHang, NhanTienMat, CaNhanKhongCuTru,
             KhongUyQuyenQT, Id_NganHangCK, WorkPermit, NgayCapWP, NgayHetHanWP, ChieuCao, CanNang, NhomMau, SucKhoe, LuuYSK, KhuyetTat,
             ReportTo, NgayTao, NguoiTao, Del_Flg)
-            Values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpI(nhanvien.Trang_thai_value)}, {SQLHelper.rpStr(nhanvien.Ten_value)}, 
-            {SQLHelper.rpI(nhanvien.Hon_nhan_value)}, {SQLHelper.rpStr(nhanvien.Ton_giao_value)}, {SQLHelper.rpStr(nhanvien.Dan_toc_value)},
-            {SQLHelper.rpStr(nhanvien.Quoc_tich_value)}, {SQLHelper.rpStr(nhanvien.Cccd_value)}, {SQLHelper.rpDT(nhanvien.Ngay_cap_cccd_value)},
-            {SQLHelper.rpStr(nhanvien.Noi_cap_cccd_value)}, {SQLHelper.rpStr(nhanvien.So_hc_value)}, {SQLHelper.rpDT(nhanvien.Ngay_cap_hc_value)},
-            {SQLHelper.rpStr(nhanvien.Noi_cap_hc_value)}, {SQLHelper.rpDT(nhanvien.Ngay_het_han_hc_value)}, {SQLHelper.rpStr(nhanvien.Sdt_value)},
-            {SQLHelper.rpDT(nhanvien.Ngay_tv_value)}, {SQLHelper.rpI(nhanvien.Thoi_gan_tv_value)}, {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_tv_value)},
-            {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_value)}, {SQLHelper.rpStr(nhanvien.Ma_so_thue_value)}, {SQLHelper.rpDT(nhanvien.Ngay_dk_thue_value)},
-            {SQLHelper.rpStr(nhanvien.Noi_dk_thue_value)}, {SQLHelper.rpStr(nhanvien.So_tk_value)}, {SQLHelper.rpStr(nhanvien.Ngan_hang_value)},
-            {SQLHelper.rpI(nhanvien.Nhan_tien_mat_value)}, {SQLHelper.rpI(nhanvien.Ca_nhan_khong_cu_tru_value)}, {SQLHelper.rpI(nhanvien.Khong_uy_quyen_value)},
-            {SQLHelper.rpI(nhanvien.Ngan_hang_ck_value)}, {SQLHelper.rpStr(nhanvien.Work_permit_value)}, {SQLHelper.rpDT(nhanvien.Ngay_cap_work_permit_value)},
-            {SQLHelper.rpDT(nhanvien.Ngay_het_han_work_permit_value)}, {SQLHelper.rpDouble(nhanvien.Chieu_cao_value)}, {SQLHelper.rpDouble(nhanvien.Can_nang_value)},
-            {SQLHelper.rpStr(nhanvien.Nhom_mau_value)}, {SQLHelper.rpStr(nhanvien.Suc_khoe_value)}, {SQLHelper.rpStr(nhanvien.Luu_y_sk_value)},
-            {SQLHelper.rpI(nhanvien.Khuyet_tat_value)}, {SQLHelper.rpStr(nhanvien.ReportTo)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+            Values({SQLHelper.rpStr(_ma_nhan_vien)}, {SQLHelper.rpI(nhanvien.Id_TrangThai)}, {SQLHelper.rpStr(nhanvien.Ten)}, 
+            {SQLHelper.rpI(nhanvien.HonNhan)}, {SQLHelper.rpStr(nhanvien.TonGiao)}, {SQLHelper.rpStr(nhanvien.DanToc)},
+            {SQLHelper.rpStr(nhanvien.QuocTich)}, {SQLHelper.rpStr(nhanvien.SoCCCD)}, {SQLHelper.rpDT(nhanvien.NgayCapCCCD)},
+            {SQLHelper.rpStr(nhanvien.NoiCapCCCD)}, {SQLHelper.rpStr(nhanvien.SoHoChieu)}, {SQLHelper.rpDT(nhanvien.NgayCapHoChieu)},
+            {SQLHelper.rpStr(nhanvien.NoiCapHoChieu)}, {SQLHelper.rpDT(nhanvien.NgayHetHanHoChieu)}, {SQLHelper.rpStr(nhanvien.DienThoaiDD)},
+            {SQLHelper.rpDT(nhanvien.NgayThuViec)}, {SQLHelper.rpI(nhanvien.ThoiGianThuViec)}, {SQLHelper.rpDT(nhanvien.NgayKetThucThuViec)},
+            {SQLHelper.rpDT(nhanvien.NgayKetThuc)}, {SQLHelper.rpStr(nhanvien.MaSoThue)}, {SQLHelper.rpDT(nhanvien.NgayDKThue)},
+            {SQLHelper.rpStr(nhanvien.NoiDKThue)}, {SQLHelper.rpStr(nhanvien.SoTK)}, {SQLHelper.rpStr(nhanvien.NganHang)},
+            {(nhanvien.NhanTienMat == true ? 1 : 0)}, {(nhanvien.CaNhanKhongCuTru == true ? 1 : 0)}, {(nhanvien.KhongUyQuyenQT == true ? 1 : 0)},
+            {SQLHelper.rpI(nhanvien.Id_NganHangCK)}, {SQLHelper.rpStr(nhanvien.WorkPermit)}, {SQLHelper.rpDT(nhanvien.NgayCapWP)},
+            {SQLHelper.rpDT(nhanvien.NgayHetHanWP)}, {SQLHelper.rpDouble(nhanvien.ChieuCao)}, {SQLHelper.rpDouble(nhanvien.CanNang)},
+            {SQLHelper.rpStr(nhanvien.NhomMau)}, {SQLHelper.rpStr(nhanvien.SucKhoe)}, {SQLHelper.rpStr(nhanvien.LuuYSK)},
+            {(nhanvien.KhuyetTat == true ? 1 : 0)}, {SQLHelper.rpStr(nhanvien.ReportTo)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
             int res = SQLHelper.ExecuteSql(sql);
             if (res > 0)
             {
@@ -1564,20 +1565,20 @@ namespace TENTAC_HRM.Forms.NhanSu
             SqlParameter[] param = new SqlParameter[]
             {
                     new SqlParameter("@MaNhanVien", SqlDbType.NVarChar) {Value = _ma_nhan_vien},
-                    new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.Ho_lot_value) ? "" : nhanvien.Ho_lot_value + " ") + (string.IsNullOrEmpty(nhanvien.Ten_value) ? "" : nhanvien.Ten_value)},
-                    new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
-                    new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
-                    new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.Ngay_sinh_value},
-                    new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.Gioi_tinh_value},
-                    new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email_value},
-                    new SqlParameter("@MaCongTy", SqlDbType.VarChar) {Value = nhanvien.MaCongTy_value},
-                    new SqlParameter("@MaKhuVuc", SqlDbType.VarChar) {Value = nhanvien.MaKhuVuc_value},
-                    new SqlParameter("@MaChucVu", SqlDbType.VarChar) {Value = nhanvien.MaChucVu_value},
-                    new SqlParameter("@MaPhongBan", SqlDbType.VarChar) {Value = nhanvien.MaPhongBan_value},
-                    new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.Ngay_vao_lam_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_vao_lam_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                    new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.Ngay_tv_value == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.Ngay_tv_value.Value.ToString("yyyy/MM/dd")), IsNullable = true},
-                    new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.Ghi_chu_value},
-                    new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.Picbyte == null ? (object)DBNull.Value : nhanvien.Picbyte},
+                    new SqlParameter("@TenNhanVien", SqlDbType.NVarChar) {Value = (string.IsNullOrEmpty(nhanvien.HoLot) ? "" : nhanvien.HoLot + " ") + (string.IsNullOrEmpty(nhanvien.Ten) ? "" : nhanvien.Ten)},
+                    new SqlParameter("@TenChamCong", SqlDbType.NVarChar) {Value = nhanvien.TenChamCong},
+                    new SqlParameter("@MaThe", SqlDbType.NVarChar) {Value = nhanvien.MaThe},
+                    new SqlParameter("@NgaySinh", SqlDbType.Date) {Value = nhanvien.NgaySinh},
+                    new SqlParameter("@GioiTinh", SqlDbType.Bit) {Value = nhanvien.GioiTinh},
+                    new SqlParameter("@Email", SqlDbType.VarChar) {Value = nhanvien.Email},
+                    new SqlParameter("@MaCongTy", SqlDbType.VarChar) {Value = nhanvien.MaCongTy},
+                    new SqlParameter("@MaKhuVuc", SqlDbType.VarChar) {Value = nhanvien.MaKhuVuc},
+                    new SqlParameter("@MaChucVu", SqlDbType.VarChar) {Value = nhanvien.MaChucVu},
+                    new SqlParameter("@MaPhongBan", SqlDbType.VarChar) {Value = nhanvien.MaPhongBan},
+                    new SqlParameter("@NgayVaoLamViec", SqlDbType.DateTime) {Value = nhanvien.NgayVaoLamViec == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.NgayVaoLamViec.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@NgayKyHopDong", SqlDbType.DateTime) {Value = nhanvien.NgayThuViec == null ?(object) DBNull.Value : DateTime.Parse(nhanvien.NgayThuViec.ToString("yyyy/MM/dd")), IsNullable = true},
+                    new SqlParameter("@GhiChu", SqlDbType.NVarChar) {Value = nhanvien.GhiChu},
+                    new SqlParameter("@HinhAnh", SqlDbType.Image)  {Value = nhanvien.HinhAnh == null ? (object)DBNull.Value : nhanvien.HinhAnh},
             };
             int res = SQLHelper.ExecuteSql(sql, param);
             return res;
@@ -1585,26 +1586,26 @@ namespace TENTAC_HRM.Forms.NhanSu
         private void UpdateHRM()
         {
             string sql = string.Empty;
-            sql = $@"Update [TENTAC_HRM].[dbo].[tbl_NhanVien] Set Id_TrangThai = {SQLHelper.rpI(nhanvien.Trang_thai_value)},
-            Ten = {SQLHelper.rpStr(nhanvien.Ten_value)}, HonNhan = {SQLHelper.rpI(nhanvien.Hon_nhan_value)}, TonGiao = {SQLHelper.rpStr(nhanvien.Ton_giao_value)},
-            DanToc = {SQLHelper.rpStr(nhanvien.Dan_toc_value)}, QuocTich = {SQLHelper.rpStr(nhanvien.Quoc_tich_value)}, SoCCCD = {SQLHelper.rpStr(nhanvien.Cccd_value)},
-            NgayCapCCCD = {SQLHelper.rpDT(nhanvien.Ngay_cap_cccd_value)}, NoiCapCCCD = {SQLHelper.rpStr(nhanvien.Noi_cap_cccd_value)},
-            SoHoChieu = {SQLHelper.rpStr(nhanvien.So_hc_value)}, NgayCapHoChieu = {SQLHelper.rpDT(nhanvien.Ngay_cap_hc_value)}, 
-            NoiCapHoChieu = {SQLHelper.rpStr(nhanvien.Noi_cap_hc_value)}, NgayHetHanHoChieu = {SQLHelper.rpDT(nhanvien.Ngay_het_han_hc_value)},
-            DienThoaiDD = {SQLHelper.rpStr(nhanvien.Sdt_value)}, NgayThuViec = {SQLHelper.rpDT(nhanvien.Ngay_tv_value)}, 
-            ThoiGianThuViec = {SQLHelper.rpI(nhanvien.Thoi_gan_tv_value)}, NgayKetThucThuViec = {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_tv_value)}, 
-            NgayKetThuc = {SQLHelper.rpDT(nhanvien.Ngay_ket_thuc_value)}, MaSoThue = {SQLHelper.rpStr(nhanvien.Ma_so_value)},
-            NgayDKThue = {SQLHelper.rpDT(nhanvien.Ngay_dk_thue_value)}, NoiDKThue = {SQLHelper.rpStr(nhanvien.Noi_dk_thue_value)}, 
-            SoTK = {SQLHelper.rpStr(nhanvien.So_tk_value)}, NganHang = {SQLHelper.rpStr(nhanvien.Ngan_hang_value)}, 
-            NhanTienMat = {SQLHelper.rpI(nhanvien.Nhan_tien_mat_value)}, CaNhanKhongCuTru = {SQLHelper.rpI(nhanvien.Ca_nhan_khong_cu_tru_value)},
-            KhongUyQuyenQT = {SQLHelper.rpI(nhanvien.Khong_uy_quyen_value)}, Id_NganHang = {SQLHelper.rpI(nhanvien.Ngan_hang_ck_value)},
-            WorkPermit = {SQLHelper.rpStr(nhanvien.Work_permit_value)}, NgayCapWP = {SQLHelper.rpDT(nhanvien.Ngay_cap_work_permit_value)},
-            NgayHetHanWP = {SQLHelper.rpDT(nhanvien.Ngay_het_han_work_permit_value)}, ChieuCao = {SQLHelper.rpDouble(nhanvien.Chieu_cao_value)},
-            CanNang = {SQLHelper.rpDouble(nhanvien.Can_nang_value)}, NhomMau = {SQLHelper.rpStr(nhanvien.Nhom_mau_value)},
-            SucKhoe = {SQLHelper.rpStr(nhanvien.Suc_khoe_value)}, LuuYSK = {SQLHelper.rpStr(nhanvien.Luu_y_sk_value)}, 
-            KhuyetTat = {SQLHelper.rpI(nhanvien.Khuyet_tat_value)}, MaCongTy = {SQLHelper.rpStr(nhanvien.MaCongTy_value)}, 
-            MaKhuVuc = {SQLHelper.rpStr(nhanvien.MaKhuVuc_value)}, MaPhongBan = {SQLHelper.rpStr(nhanvien.MaPhongBan_value)},
-            MaChucVu = {SQLHelper.rpStr(nhanvien.MaChucVu_value)}, ReportTo = {SQLHelper.rpStr(nhanvien.ReportTo)}, NgayCapNhat = '{DateTime.Now}',
+            sql = $@"Update [TENTAC_HRM].[dbo].[tbl_NhanVien] Set Id_TrangThai = {SQLHelper.rpI(nhanvien.Id_TrangThai)},
+            Ten = {SQLHelper.rpStr(nhanvien.Ten)}, HonNhan = {SQLHelper.rpI(nhanvien.HonNhan)}, TonGiao = {SQLHelper.rpStr(nhanvien.TonGiao)},
+            DanToc = {SQLHelper.rpStr(nhanvien.DanToc)}, QuocTich = {SQLHelper.rpStr(nhanvien.QuocTich)}, SoCCCD = {SQLHelper.rpStr(nhanvien.SoCCCD)},
+            NgayCapCCCD = {SQLHelper.rpDT(nhanvien.NgayCapCCCD)}, NoiCapCCCD = {SQLHelper.rpStr(nhanvien.NoiCapCCCD)},
+            SoHoChieu = {SQLHelper.rpStr(nhanvien.SoHoChieu)}, NgayCapHoChieu = {SQLHelper.rpDT(nhanvien.NgayCapHoChieu)}, 
+            NoiCapHoChieu = {SQLHelper.rpStr(nhanvien.NoiCapHoChieu)}, NgayHetHanHoChieu = {SQLHelper.rpDT(nhanvien.NgayHetHanHoChieu)},
+            DienThoaiDD = {SQLHelper.rpStr(nhanvien.DienThoaiDD)}, NgayThuViec = {SQLHelper.rpDT(nhanvien.NgayThuViec)}, 
+            ThoiGianThuViec = {SQLHelper.rpI(nhanvien.ThoiGianThuViec)}, NgayKetThucThuViec = {SQLHelper.rpDT(nhanvien.NgayKetThucThuViec)}, 
+            NgayKetThuc = {SQLHelper.rpDT(nhanvien.NgayKetThuc)}, MaSoThue = {SQLHelper.rpStr(nhanvien.MaSoThue)},
+            NgayDKThue = {SQLHelper.rpDT(nhanvien.NgayDKThue)}, NoiDKThue = {SQLHelper.rpStr(nhanvien.NoiDKThue)}, 
+            SoTK = {SQLHelper.rpStr(nhanvien.SoTK)}, NganHang = {SQLHelper.rpStr(nhanvien.NganHang)}, 
+            NhanTienMat = {(nhanvien.NhanTienMat == true ? 1 : 0)}, CaNhanKhongCuTru = {(nhanvien.CaNhanKhongCuTru == true ? 1 : 0)},
+            KhongUyQuyenQT = {(nhanvien.KhongUyQuyenQT == true ? 1 : 0)}, Id_NganHang = {SQLHelper.rpI(nhanvien.Id_NganHangCK)},
+            WorkPermit = {SQLHelper.rpStr(nhanvien.WorkPermit)}, NgayCapWP = {SQLHelper.rpDT(nhanvien.NgayCapWP)},
+            NgayHetHanWP = {SQLHelper.rpDT(nhanvien.NgayHetHanWP)}, ChieuCao = {SQLHelper.rpDouble(nhanvien.ChieuCao)},
+            CanNang = {SQLHelper.rpDouble(nhanvien.CanNang)}, NhomMau = {SQLHelper.rpStr(nhanvien.NhomMau)},
+            SucKhoe = {SQLHelper.rpStr(nhanvien.SucKhoe)}, LuuYSK = {SQLHelper.rpStr(nhanvien.LuuYSK)}, 
+            KhuyetTat = {(nhanvien.KhuyetTat == true ? 1 : 0)}, MaCongTy = {SQLHelper.rpStr(nhanvien.MaCongTy)}, 
+            MaKhuVuc = {SQLHelper.rpStr(nhanvien.MaKhuVuc)}, MaPhongBan = {SQLHelper.rpStr(nhanvien.MaPhongBan)},
+            MaChucVu = {SQLHelper.rpStr(nhanvien.MaChucVu)}, ReportTo = {SQLHelper.rpStr(nhanvien.ReportTo)}, NgayCapNhat = '{DateTime.Now}',
             NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
             Where MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and Del_Flg = 0";
             if (SQLHelper.ExecuteSql(sql) > 0)
@@ -1620,67 +1621,67 @@ namespace TENTAC_HRM.Forms.NhanSu
         }
         private void Setvalues()
         {
-            nhanvien.Trang_thai_value = int.Parse(cbo_TrangThai.SelectedValue.ToString());
-            nhanvien.Ma_so_value = txt_MaSo.Text;
-            nhanvien.Ho_ten_value = txt_HoLot.Text + " " + txt_Ten.Text;
-            nhanvien.Ten_value = txt_Ten.Text;
-            nhanvien.Ho_lot_value = txt_HoLot.Text;
-            nhanvien.Ngay_sinh_value = dtp_NgaySinh.Value;
-            nhanvien.Gioi_tinh_value = int.Parse(cbo_GioiTinh.SelectedValue.ToString());
-            nhanvien.Hon_nhan_value = rb_DaKetHon.Checked == true ? 1 : 0;
-            nhanvien.Ton_giao_value = cbo_TonGiao.SelectedValue == null ? null : cbo_TonGiao.SelectedValue.ToString();
-            nhanvien.Dan_toc_value = cbo_DanToc.SelectedValue == null ? null : cbo_DanToc.SelectedValue.ToString();
-            nhanvien.Quoc_tich_value = cbo_QuocTich.SelectedValue == null ? "" : cbo_QuocTich.SelectedValue.ToString();
-            nhanvien.Cccd_value = txt_CCCD.Text;
-            nhanvien.Ngay_cap_cccd_value = string.IsNullOrWhiteSpace(dtp_NgayCapCCCD.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapCCCD.Text.ToString());
-            nhanvien.Noi_cap_cccd_value = txt_NoiCapCC.Text;
-            nhanvien.So_hc_value = txt_HoChieu.Text;
-            nhanvien.Ngay_cap_hc_value = string.IsNullOrWhiteSpace(dtp_NgayCapHC.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapHC.Text.ToString());
-            nhanvien.Noi_cap_hc_value = txt_NoiCapHC.Text;
-            nhanvien.Ngay_het_han_hc_value = string.IsNullOrWhiteSpace(dtp_HetHanHC.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_HetHanHC.Text.ToString());
-            nhanvien.Sdt_value = txt_DiDong.Text;
-            nhanvien.Email_value = txt_Email.Text;
-            nhanvien.Suc_khoe_value = txt_SucKhoe.Text;
-            nhanvien.Chieu_cao_value = string.IsNullOrEmpty(txt_ChieuCao.Text) ? (float?)null : float.Parse(txt_ChieuCao.Text);
-            nhanvien.Can_nang_value = (string.IsNullOrEmpty(txt_CanNang.Text) ? (float?)null : float.Parse(txt_CanNang.Text));
-            nhanvien.Luu_y_sk_value = txt_LuuYSK.Text;
-            nhanvien.Nhom_mau_value = cbo_NhomMau.SelectedValue == null ? "" : cbo_NhomMau.SelectedValue.ToString();
-            nhanvien.Khuyet_tat_value = chk_KhuyetTat.Checked == true ? 1 : 0;
-            nhanvien.Ghi_chu_value = txt_GhiChu.Text;
-            nhanvien.Ngay_tv_value = string.IsNullOrEmpty(dtp_NgayThuViec.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayThuViec.Text.ToString());
-            nhanvien.Thoi_gan_tv_value = (int)(dtp_NgayKetThucTV.Value - dtp_NgayThuViec.Value).TotalDays;
-            nhanvien.Ngay_ket_thuc_tv_value = string.IsNullOrEmpty(dtp_NgayKetThucTV.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayThuViec.Text.ToString());
-            nhanvien.Ngay_vao_lam_value = string.IsNullOrWhiteSpace(dtp_NgayVaoLam.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayVaoLam.Text.ToString());
-            nhanvien.Ngay_ket_thuc_value = string.IsNullOrWhiteSpace(dtp_NgayKetThucLam.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayKetThucLam.Text.ToString());
-            nhanvien.Ma_so_thue_value = txt_MaSoThue.Text;
-            nhanvien.Ngay_dk_thue_value = string.IsNullOrWhiteSpace(dtp_NgayDKThue.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayDKThue.Text.ToString());
-            nhanvien.Noi_dk_thue_value = txt_NoiDKThue.Text;
-            nhanvien.So_tk_value = txt_SoTK.Text;
-            nhanvien.Ngan_hang_value = txt_NganHangNhan.Text;
-            nhanvien.Nhan_tien_mat_value = chk_TienMat.Checked == true ? 1 : 0;
-            nhanvien.Ca_nhan_khong_cu_tru_value = chk_KhongCuTru.Checked == true ? 1 : 0;
-            nhanvien.Khong_uy_quyen_value = chk_KhongUyQuyen.Checked == true ? 1 : 0;
-            nhanvien.Ngan_hang_ck_value = int.Parse(cbo_NganHang.SelectedValue.ToString());
-            nhanvien.Work_permit_value = txt_WorkPermit.Text;
-            nhanvien.Ngay_cap_work_permit_value = string.IsNullOrWhiteSpace(dtp_NgayCapWorkPermit.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapWorkPermit.Text.ToString());
-            nhanvien.Ngay_het_han_work_permit_value = string.IsNullOrWhiteSpace(dtp_NgayHetWorkPermit.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayHetWorkPermit.Text.ToString());
-            nhanvien.Picbyte = null;
-            nhanvien.Ma_Cham_Cong = txt_MaChamCong.Text;
-            nhanvien.Ten_Cham_Cong = txt_TenChamCong.Text;
-            nhanvien.Ma_The = txt_MaThe.Text;
-            nhanvien.MaCongTy_value = cbo_DonVi.SelectedValue == null ? null : cbo_DonVi.SelectedValue.ToString();
-            nhanvien.MaKhuVuc_value = cbo_KhuVuc.SelectedValue == null ? null : cbo_KhuVuc.SelectedValue.ToString();
-            nhanvien.MaPhongBan_value = cbo_PhongBan.SelectedValue == null ? null : cbo_PhongBan.SelectedValue.ToString();
-            nhanvien.MaChucVu_value = cbo_ChucVu.SelectedValue == null ? null : cbo_ChucVu.SelectedValue.ToString();
+            nhanvien.Id_TrangThai = int.Parse(cbo_TrangThai.SelectedValue.ToString());
+            nhanvien.MaThe = txt_MaSo.Text;
+            nhanvien.TenNhanVien = txt_HoLot.Text + " " + txt_Ten.Text;
+            nhanvien.Ten = txt_Ten.Text;
+            nhanvien.HoLot = txt_HoLot.Text;
+            nhanvien.NgaySinh = dtp_NgaySinh.Value;
+            nhanvien.GioiTinh = int.Parse(cbo_GioiTinh.SelectedValue.ToString()) == 1 ? true : false;
+            nhanvien.HonNhan = rb_DaKetHon.Checked == true ? 1 : 0;
+            nhanvien.TonGiao = cbo_TonGiao.SelectedValue == null ? null : cbo_TonGiao.SelectedValue.ToString();
+            nhanvien.DanToc = cbo_DanToc.SelectedValue == null ? null : cbo_DanToc.SelectedValue.ToString();
+            nhanvien.QuocTich = cbo_QuocTich.SelectedValue == null ? "" : cbo_QuocTich.SelectedValue.ToString();
+            nhanvien.SoCCCD = txt_CCCD.Text;
+            nhanvien.NgayCapCCCD = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayCapCCCD.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapCCCD.Text.ToString()));
+            nhanvien.NoiCapCCCD = txt_NoiCapCC.Text;
+            nhanvien.SoHoChieu = txt_HoChieu.Text;
+            nhanvien.NgayCapHoChieu = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayCapHC.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapHC.Text.ToString()));
+            nhanvien.NoiCapHoChieu = txt_NoiCapHC.Text;
+            nhanvien.NgayHetHanHoChieu = (DateTime)(string.IsNullOrWhiteSpace(dtp_HetHanHC.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_HetHanHC.Text.ToString()));
+            nhanvien.DienThoaiDD = txt_DiDong.Text;
+            nhanvien.Email = txt_Email.Text;
+            nhanvien.SucKhoe = txt_SucKhoe.Text;
+            nhanvien.ChieuCao = (double)(string.IsNullOrEmpty(txt_ChieuCao.Text) ? (double?)null : double.Parse(txt_ChieuCao.Text));
+            nhanvien.CanNang = (double)(string.IsNullOrEmpty(txt_CanNang.Text) ? (double?)null : double.Parse(txt_CanNang.Text));
+            nhanvien.LuuYSK = txt_LuuYSK.Text;
+            nhanvien.NhomMau = cbo_NhomMau.SelectedValue == null ? "" : cbo_NhomMau.SelectedValue.ToString();
+            nhanvien.KhuyetTat = chk_KhuyetTat.Checked == true ? true : false;
+            nhanvien.GhiChu = txt_GhiChu.Text;
+            nhanvien.NgayThuViec = (DateTime)(string.IsNullOrEmpty(dtp_NgayThuViec.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayThuViec.Text.ToString()));
+            nhanvien.ThoiGianThuViec = (int)(dtp_NgayKetThucTV.Value - dtp_NgayThuViec.Value).TotalDays;
+            nhanvien.NgayKetThuc = (DateTime)(string.IsNullOrEmpty(dtp_NgayKetThucTV.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayThuViec.Text.ToString()));
+            nhanvien.NgayVaoLamViec = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayVaoLam.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayVaoLam.Text.ToString()));
+            nhanvien.NgayKetThuc = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayKetThucLam.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayKetThucLam.Text.ToString()));
+            nhanvien.MaSoThue = txt_MaSoThue.Text;
+            nhanvien.NgayDKThue = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayDKThue.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayDKThue.Text.ToString()));
+            nhanvien.NoiDKThue = txt_NoiDKThue.Text;
+            nhanvien.SoTK = txt_SoTK.Text;
+            nhanvien.NganHang = txt_NganHangNhan.Text;
+            nhanvien.NhanTienMat = chk_TienMat.Checked == true ? true : false;
+            nhanvien.CaNhanKhongCuTru = chk_KhongCuTru.Checked == true ? true : false;
+            nhanvien.KhongUyQuyenQT = chk_KhongUyQuyen.Checked == true ? true : false;
+            nhanvien.Id_NganHangCK = int.Parse(cbo_NganHang.SelectedValue.ToString());
+            nhanvien.WorkPermit = txt_WorkPermit.Text;
+            nhanvien.NgayCapWP = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayCapWorkPermit.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayCapWorkPermit.Text.ToString()));
+            nhanvien.NgayHetHanWP = (DateTime)(string.IsNullOrWhiteSpace(dtp_NgayHetWorkPermit.Text.ToString()) ? (DateTime?)null : DateTime.Parse(dtp_NgayHetWorkPermit.Text.ToString()));
+            nhanvien.HinhAnh = null;
+            nhanvien.MaChamCong = txt_MaChamCong.Text;
+            nhanvien.TenChamCong = txt_TenChamCong.Text;
+            nhanvien.MaThe = txt_MaThe.Text;
+            nhanvien.MaCongTy = cbo_DonVi.SelectedValue == null ? null : cbo_DonVi.SelectedValue.ToString();
+            nhanvien.MaKhuVuc = cbo_KhuVuc.SelectedValue == null ? null : cbo_KhuVuc.SelectedValue.ToString();
+            nhanvien.MaPhongBan = cbo_PhongBan.SelectedValue == null ? null : cbo_PhongBan.SelectedValue.ToString();
+            nhanvien.MaChucVu = cbo_ChucVu.SelectedValue == null ? null : cbo_ChucVu.SelectedValue.ToString();
             nhanvien.ReportTo = cbo_ReportTo.SelectedValue == null ? null : cbo_ReportTo.SelectedValue.ToString();
             if (pb_Avata.Image != null)
             {
                 MemoryStream ms;
                 ms = new MemoryStream();
                 pb_Avata.Image.Save(ms, ImageFormat.Png);
-                nhanvien.Picbyte = new byte[ms.Length];
+                nhanvien.HinhAnh = new byte[ms.Length];
                 ms.Position = 0;
-                ms.Read(nhanvien.Picbyte, 0, nhanvien.Picbyte.Length);
+                ms.Read(nhanvien.HinhAnh, 0, nhanvien.HinhAnh.Length);
             }
         }
 

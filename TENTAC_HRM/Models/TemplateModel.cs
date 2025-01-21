@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models
 {
-    internal class Template_model
+    internal class TemplateModel
     {
         public int MaChamCong { get; set; }
 

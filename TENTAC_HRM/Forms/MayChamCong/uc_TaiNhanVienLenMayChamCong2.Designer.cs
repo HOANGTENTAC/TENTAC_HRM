@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Danh sách nhân viên mới");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Nhân viên nghỉ việc");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_TaiNhanVienLenMayChamCong2));
             this.panel1 = new System.Windows.Forms.Panel();
             this.trv_sodoquanly = new System.Windows.Forms.TreeView();
@@ -37,11 +35,6 @@
             this.lbCauTrucCongTy = new System.Windows.Forms.Label();
             this.groupNhanVien = new System.Windows.Forms.GroupBox();
             this.dgv_nhanvien = new System.Windows.Forms.DataGridView();
-            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_cham_cong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_cham_cong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ma_the = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.txt_TimMa = new RJTextBox.RJTextBox();
             this.btn_ChonTatCa = new RJButton.RJButton();
@@ -117,6 +110,11 @@
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_close = new System.Windows.Forms.ToolStripButton();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaThe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupNhanVien.SuspendLayout();
@@ -153,15 +151,6 @@
             this.trv_sodoquanly.ImageKey = "No.png";
             this.trv_sodoquanly.Location = new System.Drawing.Point(0, 30);
             this.trv_sodoquanly.Name = "trv_sodoquanly";
-            treeNode1.Name = "Node0";
-            treeNode1.Tag = "nv_moi";
-            treeNode1.Text = "Danh sách nhân viên mới";
-            treeNode2.Name = "Node0";
-            treeNode2.Tag = "vn_nv";
-            treeNode2.Text = "Nhân viên nghỉ việc";
-            this.trv_sodoquanly.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
             this.trv_sodoquanly.Size = new System.Drawing.Size(265, 634);
             this.trv_sodoquanly.TabIndex = 4;
             this.trv_sodoquanly.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trv_sodoquanly_AfterSelect);
@@ -209,47 +198,17 @@
             this.dgv_nhanvien.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.dgv_nhanvien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_nhanvien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ma_nhan_vien,
-            this.ten_nhan_vien,
-            this.ma_cham_cong,
-            this.ten_cham_cong,
-            this.ma_the});
+            this.MaNhanVien,
+            this.TenNhanVien,
+            this.MaChamCong,
+            this.TenChamCong,
+            this.MaThe});
             this.dgv_nhanvien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_nhanvien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_nhanvien.Location = new System.Drawing.Point(3, 18);
             this.dgv_nhanvien.Name = "dgv_nhanvien";
             this.dgv_nhanvien.Size = new System.Drawing.Size(503, 289);
             this.dgv_nhanvien.TabIndex = 0;
-            // 
-            // ma_nhan_vien
-            // 
-            this.ma_nhan_vien.DataPropertyName = "ma_nhan_vien";
-            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.ma_nhan_vien.Name = "ma_nhan_vien";
-            // 
-            // ten_nhan_vien
-            // 
-            this.ten_nhan_vien.DataPropertyName = "ho_ten";
-            this.ten_nhan_vien.HeaderText = "Tên nhân viên";
-            this.ten_nhan_vien.Name = "ten_nhan_vien";
-            // 
-            // ma_cham_cong
-            // 
-            this.ma_cham_cong.DataPropertyName = "ma_cham_cong";
-            this.ma_cham_cong.HeaderText = "Mã chấm công";
-            this.ma_cham_cong.Name = "ma_cham_cong";
-            // 
-            // ten_cham_cong
-            // 
-            this.ten_cham_cong.DataPropertyName = "ten_cham_cong";
-            this.ten_cham_cong.HeaderText = "Tên chấm công";
-            this.ten_cham_cong.Name = "ten_cham_cong";
-            // 
-            // ma_the
-            // 
-            this.ma_the.DataPropertyName = "ma_the";
-            this.ma_the.HeaderText = "Mã thẻ";
-            this.ma_the.Name = "ma_the";
             // 
             // panel4
             // 
@@ -963,6 +922,36 @@
             this.btn_close.Text = "toolStripButton1";
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.Name = "MaNhanVien";
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            // 
+            // MaChamCong
+            // 
+            this.MaChamCong.DataPropertyName = "MaChamCong";
+            this.MaChamCong.HeaderText = "Mã chấm công";
+            this.MaChamCong.Name = "MaChamCong";
+            // 
+            // TenChamCong
+            // 
+            this.TenChamCong.DataPropertyName = "TenChamCong";
+            this.TenChamCong.HeaderText = "Tên chấm công";
+            this.TenChamCong.Name = "TenChamCong";
+            // 
+            // MaThe
+            // 
+            this.MaThe.DataPropertyName = "MaThe";
+            this.MaThe.HeaderText = "Mã thẻ";
+            this.MaThe.Name = "MaThe";
+            // 
             // uc_TaiNhanVienLenMayChamCong2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1065,11 +1054,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ma_cham_cong1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ten_cham_cong1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ma_the1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_cham_cong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_cham_cong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_the;
         private System.Windows.Forms.DataGridViewTextBoxColumn ma_mcc;
         private System.Windows.Forms.DataGridViewTextBoxColumn ten_mcc;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_mcc;
@@ -1087,5 +1071,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn trangthaimay;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton btn_close;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaChamCong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenChamCong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaThe;
     }
 }

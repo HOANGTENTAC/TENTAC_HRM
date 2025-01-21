@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models.QuanLyNhanVienModel
 {
-    internal class CongTyDTO
+    internal class CongTyModel
     {
         private string _MaCongTy;
 

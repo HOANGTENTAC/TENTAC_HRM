@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models
 {
-    internal class KyHieuChamCong_Model
+    internal class KyHieuChamCongModel
     {
         private string _MaKyHieu;
 

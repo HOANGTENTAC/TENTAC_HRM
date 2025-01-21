@@ -16,7 +16,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
         {
             this.dbHelper = new DBHelper();
         }
-        public void THEM_LICHTRINHVAORA(LichTrinhVaoRa_model _lichTrinhVaoRaDTO)
+        public void THEM_LICHTRINHVAORA(Models.LichTrinhVaoRaModel _lichTrinhVaoRaDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
             _sqlParameter.Add(new SqlParameter("@MaLichTrinhVaoRa", _lichTrinhVaoRaDTO.MaLichTrinhVaoRa));
@@ -43,13 +43,13 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
             arrLichTrinhVaoRa = new ArrayList();
             while (rd.Read())
             {
-                arrLichTrinhVaoRa.Add(new LichTrinhVaoRaModel(rd.GetString(0), rd.GetString(1), rd.GetInt32(2), rd.GetBoolean(3), rd.GetBoolean(4), rd.GetDateTime(5), rd.GetDateTime(6), rd.GetInt32(7), rd.GetInt32(8), rd.GetInt32(9)));
+                arrLichTrinhVaoRa.Add(new Models.ChamCongModel.LichTrinhVaoRaModel(rd.GetString(0), rd.GetString(1), rd.GetInt32(2), rd.GetBoolean(3), rd.GetBoolean(4), rd.GetDateTime(5), rd.GetDateTime(6), rd.GetInt32(7), rd.GetInt32(8), rd.GetInt32(9)));
             }
             rd.Close();
             return arrLichTrinhVaoRa;
         }
 
-        public void SUA_LICHTRINHVAORA(LichTrinhVaoRaModel _lichTrinhVaoRaDTO)
+        public void SUA_LICHTRINHVAORA(Models.ChamCongModel.LichTrinhVaoRaModel _lichTrinhVaoRaDTO)
         {
             List<SqlParameter> _sqlParameter;
             _sqlParameter = new List<SqlParameter>();
@@ -71,7 +71,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
             SQLHelper.ExecuteSql($"delete MITACOSQL.dbo.[LICHTRINHVAORA] where MaLichTrinhVaoRa = '{MaLichTrinhVaoRa}'");
         }
 
-        public void DELETEALL_LICHTRINHVAORA(LichTrinhVaoRaModel _lichTrinhVaoRaDTO)
+        public void DELETEALL_LICHTRINHVAORA(Models.ChamCongModel.LichTrinhVaoRaModel _lichTrinhVaoRaDTO)
         {
             SQLHelper.ExecuteSql("delete MITACOSQL.dbo.[LICHTRINHVAORA]  ");
         }

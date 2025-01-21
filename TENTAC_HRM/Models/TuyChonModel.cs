@@ -2,7 +2,7 @@
 
 namespace TENTAC_HRM.Models
 {
-    internal class TuyChon_model
+    internal class TuyChonModel
     {
         public string MaTuyChinh;
 

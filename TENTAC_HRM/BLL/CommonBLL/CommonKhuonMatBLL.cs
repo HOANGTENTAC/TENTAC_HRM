@@ -2,25 +2,23 @@
 using System.Data;
 using System.Data.SqlClient;
 using TENTAC_HRM.Common;
-using TENTAC_HRM.Models;
+using TENTAC_HRM.Models.CommonModel;
 
 namespace TENTAC_HRM.BLL.CommonBLL
 {
     internal class CommonKhuonMatBLL : Provider
     {
-        public void InsertFaceVirtual(CommonKhuonMat_model _commonkhuonmatDTO)
+        public void InsertFaceVirtual(CommonKhuonMatModel _commonkhuonmatDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@machamcong", _commonkhuonmatDTO));
-            _sqlParameter.Add(new SqlParameter("@faceidvirtual", _commonkhuonmatDTO.FaceIDVirtual));
-            _sqlParameter.Add(new SqlParameter("@facetemplatevirtual", _commonkhuonmatDTO.FaceTemplateVirtual));
-            Procedure("facevirtual", _sqlParameter);
+            _sqlParameter.Add(new SqlParameter("@MaChamCong", _commonkhuonmatDTO));
+            _sqlParameter.Add(new SqlParameter("@FaceIDVirtual", _commonkhuonmatDTO.FaceIDVirtual));
+            _sqlParameter.Add(new SqlParameter("@@FaceTemplateVirtual", _commonkhuonmatDTO.FaceTemplateVirtual));
+            Procedure("FaceVirtual_add", _sqlParameter);
         }
         public DataTable SelectTemplateVirtualByMaChamCong(string MaChamCong)
         {
-            List<SqlParameter> _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@machamcong", MaChamCong));
-            return executeNonQuerya("NhanVienVirtual_selectFaceByMaChamCong", _sqlParameter);
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[FaceVirtual] where MaChamCong = '{MaChamCong}'");
         }
     }
 }

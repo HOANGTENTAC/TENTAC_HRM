@@ -13,15 +13,15 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
             dbHelper = new DBHelper();
         }
 
-        public DataTable showThongTinCongTy(CongTyDTO _congTyDTO)
+        public DataTable showThongTinCongTy(CongTyModel _congTyDTO)
         {
-            string sql = "select * from  MITACOSQL.dbo.[CONGTY]";
+            string sql = "select * from MITACOSQL.dbo.[CONGTY]";
             return SQLHelper.ExecuteDt(sql);
         }
 
-        public DataTable CongTygetTreeView(CongTyDTO _congTyDTO)
+        public DataTable CongTygetTreeView(CongTyModel _congTyDTO)
         {
-            string sql = $"select * from  MITACOSQL.dbo.[CongTy] where TenCongTy = '{_congTyDTO.TenCongTy}'";
+            string sql = $"select * from MITACOSQL.dbo.[CongTy] where TenCongTy = '{_congTyDTO.TenCongTy}'";
             return SQLHelper.ExecuteDt(sql);
         }
     }

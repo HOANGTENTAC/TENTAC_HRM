@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models.CommonModel
 {
-    internal class CommonKhuonMat_model
+    internal class CommonKhuonMatModel
     {
         private int _MaChamCong;
 

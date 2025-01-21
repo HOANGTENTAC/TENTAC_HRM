@@ -7,7 +7,7 @@ namespace TENTAC_HRM.Common
 {
     internal class TemplateBLL : Provider
     {
-        public void ThemTemplate(Template_model _templateDTO)
+        public void ThemTemplate(TemplateModel _templateDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
             _sqlParameter.Add(new SqlParameter("@MaChamCong", _templateDTO.MaChamCong));

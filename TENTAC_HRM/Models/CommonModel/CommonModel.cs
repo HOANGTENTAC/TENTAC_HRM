@@ -1,6 +1,6 @@
-﻿namespace TENTAC_HRM.Models
+﻿namespace TENTAC_HRM.Models.CommonModel
 {
-    internal class Common_model
+    internal class CommonModel
     {
         public int MaChamCong { get; set; }
 

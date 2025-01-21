@@ -2,7 +2,7 @@
 
 namespace TENTAC_HRM.Models
 {
-    internal class NgayTinhCong_model
+    internal class NgayTinhCongModel
     {
         public int ID { get; set; }
 

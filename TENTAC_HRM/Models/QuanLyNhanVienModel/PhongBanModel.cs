@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models.QuanLyNhanVienModel
 {
-    internal class PhongBanDTO
+    internal class PhongBanModel
     {
         private string _MaPhongBan;
 
@@ -86,11 +86,11 @@
             }
         }
 
-        public PhongBanDTO()
+        public PhongBanModel()
         {
         }
 
-        public PhongBanDTO(string _MaPhongBan, string _MaCongTy, string _TenKhuVuc, string _TenPhongBan, string _MaKhuVuc)
+        public PhongBanModel(string _MaPhongBan, string _MaCongTy, string _TenKhuVuc, string _TenPhongBan, string _MaKhuVuc)
         {
             MaPhongBan = _MaPhongBan;
             MaCongTy = _MaCongTy;
@@ -99,7 +99,7 @@
             MaKhuVuc = _MaKhuVuc;
         }
 
-        public PhongBanDTO(string _MaPhongBan, string _MaCongTy, string _MaKhuVuc, string _TenPhongBan)
+        public PhongBanModel(string _MaPhongBan, string _MaCongTy, string _MaKhuVuc, string _TenPhongBan)
         {
             MaPhongBan = _MaPhongBan;
             this._MaCongTy = _MaCongTy;

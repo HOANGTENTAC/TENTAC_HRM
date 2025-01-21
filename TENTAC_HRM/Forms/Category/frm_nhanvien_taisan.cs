@@ -23,7 +23,7 @@ namespace TENTAC_HRM.Forms.Category
         public string id_thanhphan4 { get; set; }
         public string id_thanhphan5 { get; set; }
         DataProvider provider = new DataProvider();
-        Nhanvien_Taisan_model nhanvien_taisan_model = new Nhanvien_Taisan_model();
+        NhanvienTaisanModel nhanvien_taisan_model = new NhanvienTaisanModel();
 
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);

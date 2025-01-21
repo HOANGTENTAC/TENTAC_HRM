@@ -59,7 +59,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
 
         public DataTable ChiTietLichTrinhChoCaLamViecgetByMaLichTrinhCalamViec(string MaLichTrinhCaLamViec)
         {
-            return SQLHelper.ExecuteDt($"select * from MITACOSQL.ChiTietLichTrinhCaLamViec where MaLichTrinhCaLamViec='{MaLichTrinhCaLamViec}'");
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.ChiTietLichTrinhCaLamViec where MaLichTrinhCaLamViec='{MaLichTrinhCaLamViec}'");
         }
 
         public DataTable ChiTietLichTrinhChoCaLamViecNhanCa(ChiTietLichTrinhChoCaLamViecModel _chiTietLichTrinhChoCaLamViecDTO)
@@ -69,7 +69,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
 
         public DataTable ChiTietLichTrinhChoCaLamViecGetID(int Id)
         {
-            return SQLHelper.ExecuteDt($"select * from  ChiTietLichTrinhCaLamViec where ID='{Id}'");
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.ChiTietLichTrinhCaLamViec where ID='{Id}'");
         }
     }
 }

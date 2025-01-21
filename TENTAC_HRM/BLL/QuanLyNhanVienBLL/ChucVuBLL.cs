@@ -8,12 +8,12 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
     {
         public DataTable GETCHUCVUTREEVIEW(ChucVuModel _chucVuDTO)
         {
-            string sql = $"select * from  MITACOSQL.dbo.[CHUCVU] where MaPhongBan='{_chucVuDTO.MaPhongBan}'";
+            string sql = $"select * from MITACOSQL.dbo.[CHUCVU] where MaPhongBan='{_chucVuDTO.MaPhongBan}'";
             return SQLHelper.ExecuteDt(sql);
         }
         public DataTable ChucVugetTreeView(ChucVuModel _chucVuDTO)
         {
-            string sql = $"select * from  MITACOSQL.dbo.[ChucVu] where TenChucVu = '{_chucVuDTO.TenKhuVuc}'";
+            string sql = $"select * from MITACOSQL.dbo.[ChucVu] where TenChucVu = '{_chucVuDTO.TenKhuVuc}'";
             return SQLHelper.ExecuteDt(sql);
         }
     }

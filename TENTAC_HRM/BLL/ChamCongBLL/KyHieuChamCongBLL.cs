@@ -8,7 +8,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
 {
     internal class KyHieuChamCongBLL : Provider
     {
-        public void Insert_KyHieuChamCong(KyHieuChamCong_Model _kyHieuChamCongDTO)
+        public void Insert_KyHieuChamCong(KyHieuChamCongModel _kyHieuChamCongDTO)
         {
             List<SqlParameter> _sqlParameter;
             _sqlParameter = new List<SqlParameter>();
@@ -29,7 +29,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
             base.Procedure("KYHIEUCHAMCONG_add", _sqlParameter);
         }
 
-        public void Update_KyHieuChamCong(KyHieuChamCong_Model _kyHieuChamCongDTO)
+        public void Update_KyHieuChamCong(KyHieuChamCongModel _kyHieuChamCongDTO)
         {
             List<SqlParameter> _sqlParameter;
             _sqlParameter = new List<SqlParameter>();
@@ -50,17 +50,14 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
             base.Procedure("KYHIEUCHAMCONG_update", _sqlParameter);
         }
 
-        public DataTable showKyHieuChamCong(KyHieuChamCong_Model _kyHieuChamCongDTO)
+        public DataTable showKyHieuChamCong()
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            new DataTable();
-            return base.executeNonQuerya("KYHIEUCHAMCONG_getall", _sqlParameter);
+            return SQLHelper.ExecuteDt("select * from MITACOSQL.dbo.[KYHIEUCHAMCONG]");
         }
 
-        public DataTable showLoadKyHieuChamCong(KyHieuChamCong_Model _kyHieuChamCongDTO)
+        public DataTable showLoadKyHieuChamCong(KyHieuChamCongModel _kyHieuChamCongDTO)
         {
-            return SQLHelper.ExecuteDt($"select * from  MITACOSQL.dbo.[KYHIEUCHAMCONG] where MaKyHieu = '{_kyHieuChamCongDTO.MaKyHieu}'");
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[KYHIEUCHAMCONG] where MaKyHieu = '{_kyHieuChamCongDTO.MaKyHieu}'");
         }
     }
 }

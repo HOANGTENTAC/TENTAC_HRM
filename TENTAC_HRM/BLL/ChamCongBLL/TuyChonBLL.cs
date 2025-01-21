@@ -8,7 +8,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
 {
     internal class TuyChonBLL
     {
-        public void THEMTUYCHON(TuyChon_model _tuyChonDTO)
+        public void THEMTUYCHON(TuyChonModel _tuyChonDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
             _sqlParameter.Add(new SqlParameter("@MaTuyChinh", _tuyChonDTO.MaTuyChinh));
@@ -57,7 +57,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
             SQLHelper.Procedure("TUYCHON_add", _sqlParameter);
         }
 
-        public void CAPNHATTUYCHON(TuyChon_model _tuyChonDTO)
+        public void CAPNHATTUYCHON(TuyChonModel _tuyChonDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
             _sqlParameter.Add(new SqlParameter("@MaTuyChinh", _tuyChonDTO.MaTuyChinh));
@@ -111,14 +111,14 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
 
         public DataTable showThongTinTuyChon()
         {
-            return SQLHelper.ExecuteDt("select * from dbo.tuychon");
+            return SQLHelper.ExecuteDt("select * MITACOSQL.from dbo.tuychon");
         }
 
         public DataTable showLoadTuyChon(string matuychinh)
         {
             //NhatKyDTO _nhatKyDTO = new NhatKyDTO(frmClassico.MaNguoiDung, DateTime.Now.ToString(), "Tùy chọn", "Xem", DateTime.Now.ToString());
             //_nguoiDungBLL.SetSystemLog(_nhatKyDTO);
-            string sql = "select * from dbo.[tuychon] where ma_tuychinh = '" + matuychinh + "'";
+            string sql = "select * from MITACOSQL.dbo.[tuychon] where MaTuyChinh = '" + matuychinh + "'";
             return SQLHelper.ExecuteDt(sql);
         }
     }

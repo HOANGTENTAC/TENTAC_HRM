@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models
 {
-    class Diachi_model
+    class DiachiModel
     {
         public int Active_value { get; set; }
         public string Loai_dichi_value { get; set; }

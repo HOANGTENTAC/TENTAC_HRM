@@ -8,9 +8,9 @@ using TENTAC_HRM.Bll.MayChamCong;
 using TENTAC_HRM.BLL.DuLieuMayChamCongBLL;
 using TENTAC_HRM.BLL.QuanLyNhanVienBLL;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Models;
 using TENTAC_HRM.Models.ChamCongModel;
 using TENTAC_HRM.Models.MayChamCongModel;
+using TENTAC_HRM.Models.QuanLyNhanVienModel;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong
@@ -25,7 +25,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
         public int iMachineNumber;
 
         private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
-        private Nhanvien_model _nhanVienDTO = new Nhanvien_model();
+        private NhanVienModel _nhanVienDTO = new NhanVienModel();
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
         private MayChamCongModel _mayChamCongDTO = new MayChamCongModel();
         private CheckInOutModel _checkInOutDTO = new CheckInOutModel();

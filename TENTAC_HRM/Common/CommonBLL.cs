@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using TENTAC_HRM.Models;
+using TENTAC_HRM.Models.CommonModel;
 
 namespace TENTAC_HRM.Common
 {
     internal class CommonBLL : Provider
     {
 
-        public void InsertTemplateVirtual(Common_model _commonDTO)
+        public void InsertTemplateVirtual(CommonModel _commonDTO)
         {
             string sql = "insert into dbo.[template_virtual](ma_cham_cong,fingeridvirtual,flagvirtual,fingertemplatevirtual,fingerversionvirtual) " +
-                "values('"+_commonDTO.MaChamCong+"','"+ _commonDTO .FingerIDVirtual+ "','"+_commonDTO.FlagVirtual+"','"+_commonDTO.FingerTemplateVirtual+"','"+_commonDTO.FingerVersionVirtual+"')";
+                "values('" + _commonDTO.MaChamCong + "','" + _commonDTO.FingerIDVirtual + "','" + _commonDTO.FlagVirtual + "','" + _commonDTO.FingerTemplateVirtual + "','" + _commonDTO.FingerVersionVirtual + "')";
             SQLHelper.ExecuteSql(sql);
         }
         public void InsertNhanVienVirtual(int machamcong)

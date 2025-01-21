@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models
 {
-    class Kyluat_model
+    class KyluatModel
     {
         public int Id_kyluat { get; set; }
         public int Id_nhanvien { get; set; }

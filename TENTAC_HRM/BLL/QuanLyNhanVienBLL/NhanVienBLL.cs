@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SqlClient;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Models.QuanLyNhanVienModel;
-using TENTAC_HRM.Models;
 
 namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
 {
@@ -11,7 +10,7 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
     {
         public DataTable NhanVienGetByMaChamCong(string machamcong)
         {
-            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[NHANVIEN] where ('{machamcong}'= dbo.[NHANVIEN].MaChamCong)");
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[NHANVIEN] where MaChamCong = '{machamcong}'");
         }
         public DataTable getNhanVienCoTrongCSDL()
         {
@@ -19,38 +18,31 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
         }
         public DataTable GetAllNhanVien()
         {
-            return SQLHelper.ExecuteDt("select * from hrm_nhan_vien");
+            return SQLHelper.ExecuteDt("select * from tbl_NhanVien");
         }
         public DataTable TaiNhanVienLenMayChamCong()
         {
             string sql = "SELECT manhanvien,hoten,machamcong,tenchamcong,mathe FROM dbo.tbl_NhanVien";
             return SQLHelper.ExecuteDt(sql);
         }
-        public DataTable NhanVienSearchTaiNhanVienLenMCC(Nhanvien_model model)
+        public DataTable NhanVienSearchTaiNhanVienLenMCC(NhanVienModel model)
         {
-            string sql = "select manhanvien,hoten,machamcong,tenchamcong,mathe " +
-                "from  dbo.tbl_NhanVien " +
-                "where hoten like '%"+model.Ma_so_value +"%' or manhanvien like '%"+model.Ho_ten_value +"%'";
+            string sql = "select MaNhanVien,TenNhanVien,MaChamCong,TenChamCong,MaThe " +
+                "From MITACOSQL.dbo.[NHANVIEN] " +
+                "Where TenNhanVien like '%" + model.TenNhanVien + "%' or MaNhanVien like '%" + model.MaNhanVien +"%'";
             return SQLHelper.ExecuteDt(sql);
         }
-        public void Insert_NhanVienFromDevice(Nhanvien_model _nhanVienDTO)
+        public void Insert_NhanVienFromDevice(NhanVienModel _nhanVienDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaNhanVien", _nhanVienDTO.Ma_so_value));
-            _sqlParameter.Add(new SqlParameter("@TenNhanVien", _nhanVienDTO.Ten_value));
-            _sqlParameter.Add(new SqlParameter("@HoTen", _nhanVienDTO.Ho_ten_value));
-            _sqlParameter.Add(new SqlParameter("@HoLot", _nhanVienDTO.Ho_lot_value));
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _nhanVienDTO.Ma_Cham_Cong));
-            _sqlParameter.Add(new SqlParameter("@TenChamCong", _nhanVienDTO.Ten_Cham_Cong));
-            _sqlParameter.Add(new SqlParameter("@MaThe", _nhanVienDTO.Ma_The));
-            _sqlParameter.Add(new SqlParameter("@GioiTinh", _nhanVienDTO.Gioi_tinh_value));
-            _sqlParameter.Add(new SqlParameter("@NgaySinh", _nhanVienDTO.Ngay_sinh_value));
-            _sqlParameter.Add(new SqlParameter("@CCCD", _nhanVienDTO.Cccd_value));
-            _sqlParameter.Add(new SqlParameter("@DienThoaiDD", _nhanVienDTO.Sdt_value));
-            _sqlParameter.Add(new SqlParameter("@Email", _nhanVienDTO.Email_value));
+            _sqlParameter.Add(new SqlParameter("@MaNhanVien", _nhanVienDTO.MaNhanVien));
+            _sqlParameter.Add(new SqlParameter("@TenNhanVien", _nhanVienDTO.TenNhanVien));
+            _sqlParameter.Add(new SqlParameter("@HoLot", _nhanVienDTO.HoLot));
+            _sqlParameter.Add(new SqlParameter("@CCCD", _nhanVienDTO.CMND));
+            _sqlParameter.Add(new SqlParameter("@DienThoaiDD", _nhanVienDTO.DienThoaiLienHe));
             Procedure("nhanvien_add_tumaychamcong", _sqlParameter);
         }
-        public DataTable NhanViengetFromTreeview(NhanVienDTO _nhanVienDTO)
+        public DataTable NhanViengetFromTreeview(NhanVienModel _nhanVienDTO)
         {
             string sql = $@"select * from  MITACOSQL.dbo.[NhanVien] 
                 where (MITACOSQL.dbo.[NhanVien].MaCongTy = '{_nhanVienDTO.MaCongTy}') 
@@ -59,14 +51,14 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
                 or (MITACOSQL.dbo.[NhanVien].MaChucVu = '{_nhanVienDTO.MaChucVu}') ";
             return SQLHelper.ExecuteDt(sql);
         }        
-        public DataTable NhanVienSearch(NhanVienDTO _nhanVienDTO)
+        public DataTable NhanVienSearch(NhanVienModel _nhanVienDTO)
         {
             string sql = "select * " +
                 "from  MITACOSQL.dbo.[NHANVIEN] " +
                 $"where (TenNhanVien like '%{_nhanVienDTO.TenNhanVien}%' or MaNhanVien like '%{_nhanVienDTO.MaNhanVien}%'  ) and MaPhongBan is not null";
             return SQLHelper.ExecuteDt(sql);
         }
-        public void InsertNhanVienFromDevice(NhanVienDTO _nhanVienDTO)
+        public void InsertNhanVienFromDevice(NhanVienModel _nhanVienDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
             _sqlParameter.Add(new SqlParameter("@MaNhanVien", _nhanVienDTO.MaNhanVien));
@@ -101,9 +93,9 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
             _sqlParameter.Add(new SqlParameter("@TinhLuongTheo", _nhanVienDTO.TinhLuongTheo));
             _sqlParameter.Add(new SqlParameter("@SanPhamOrCongDoan", _nhanVienDTO.SanPhamOrCongDoan));
             _sqlParameter.Add(new SqlParameter("@NhanVienMoi", _nhanVienDTO.NhanVienMoi));
-            Procedure("NHANVIEN_add_TuMayChamCong", _sqlParameter);
+            Procedure("NHANVIEN_add_TuMayChamCong_Mitaco", _sqlParameter);
         }
-        public void NhanVienUpdateToanBoNhanVien(NhanVienDTO _nhanVienDTO)
+        public void NhanVienUpdateToanBoNhanVien(NhanVienModel _nhanVienDTO)
         {
             List<SqlParameter> _sqlParameter = new List<SqlParameter>();
             _sqlParameter.Add(new SqlParameter("@MaChamCong", _nhanVienDTO.MaChamCong));

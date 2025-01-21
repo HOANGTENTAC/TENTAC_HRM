@@ -6,15 +6,15 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
 {
     internal class KhuVucBLL : Provider
     {
-        public DataTable GETKHUVUCTREEVIEW(KhuVucDTO _khuVucDTO)
+        public DataTable GETKHUVUCTREEVIEW(KhuVucModel _khuVucDTO)
         {
-            string sql = $"select * from  MITACOSQL.dbo.[KHUVUC] where MaCongTy='{_khuVucDTO.MaCongTy}'";
+            string sql = $"select * from MITACOSQL.dbo.[KHUVUC] where MaCongTy='{_khuVucDTO.MaCongTy}'";
             return SQLHelper.ExecuteDt(sql);
         }
 
-        public DataTable KhuVucgetTreeView(KhuVucDTO _khuVucDTO)
+        public DataTable KhuVucgetTreeView(KhuVucModel _khuVucDTO)
         {
-            string sql = $"select * from  MITACOSQL.dbo.[KhuVuc] where TenKhuVuc = '{_khuVucDTO.TenKhuVuc}'";
+            string sql = $"select * from MITACOSQL.dbo.[KhuVuc] where TenKhuVuc = '{_khuVucDTO.TenKhuVuc}'";
             return SQLHelper.ExecuteDt(sql);
         }
     }

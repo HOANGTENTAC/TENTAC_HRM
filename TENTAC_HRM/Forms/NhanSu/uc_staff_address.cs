@@ -9,7 +9,7 @@ namespace TENTAC_HRM.Forms.NhanSu
 {
     public partial class uc_staff_address : UserControl
     {
-        Diachi_model model = new Diachi_model();
+        DiachiModel model = new DiachiModel();
         DataProvider provider = new DataProvider();
         public bool edit { get; set; }
         public string _ma_nhan_vien { get; set; }

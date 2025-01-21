@@ -15,7 +15,7 @@ namespace TENTAC_HRM.Forms.Category
         public string _MaNhanVien { get; set; }
         public int _IdKyLuat { get; set; }
         DataProvider provider = new DataProvider();
-        Kyluat_model model = new Kyluat_model();
+        KyluatModel model = new KyluatModel();
         frm_personnel _Personnel;
         uc_quatrinh_lamviec _quatrinh;
         string _SoQuyetDinh, _NoiDung, _LyDo, _NguoiTao, _NguoiCapNhat;

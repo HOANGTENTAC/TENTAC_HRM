@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models.QuanLyNhanVienModel
 {
-    internal class NhanVienUpdateDTO
+    internal class NhanVienUpdateModel
     {
         private int _MaChamCong;
 

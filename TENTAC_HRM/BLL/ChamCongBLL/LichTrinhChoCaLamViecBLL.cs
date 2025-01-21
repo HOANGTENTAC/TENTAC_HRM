@@ -27,7 +27,7 @@ namespace TENTAC_HRM.BLL.ChamCongBLL
 
         public DataTable GET_DANHSACH_LICHTRINHCHOCALAMVIEC()
         {
-            return SQLHelper.ExecuteDt("select * from  MITACOSQL.dbo.lichtrinh_chocalamviec");
+            return SQLHelper.ExecuteDt("select * from MITACOSQL.dbo.lichtrinh_chocalamviec");
         }
 
         public ArrayList load_LichTrinhChoCaLamViecLenComboBox()

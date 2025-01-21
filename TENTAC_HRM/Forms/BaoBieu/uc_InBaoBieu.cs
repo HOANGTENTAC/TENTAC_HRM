@@ -18,6 +18,7 @@ using TENTAC_HRM.Forms.Common;
 using TENTAC_HRM.Models;
 using Excel = Microsoft.Office.Interop.Excel;
 using TENTAC_HRM.BLL.BLL.ChamCongBLL;
+using System.Linq;
 
 namespace TENTAC_HRM.Forms.BaoBieu
 {
@@ -29,13 +30,13 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private CongTyBLL _congTyBLL = new CongTyBLL();
 
-        private CongTyDTO _congTyDTO = new CongTyDTO();
+        private CongTyModel _congTyDTO = new CongTyModel();
 
-        private KhuVucDTO _khuVucDTO = new KhuVucDTO();
+        private KhuVucModel _khuVucDTO = new KhuVucModel();
 
         private KhuVucBLL _khuVucBLL = new KhuVucBLL();
 
-        private PhongBanDTO _phongBanDTO = new PhongBanDTO();
+        private PhongBanModel _phongBanDTO = new PhongBanModel();
 
         private PhongBanBLL _phongBanBLL = new PhongBanBLL();
 
@@ -45,13 +46,13 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
 
-        private NhanVienDTO _nhanVienDTO = new NhanVienDTO();
+        private NhanVienModel _nhanVienDTO = new NhanVienModel();
 
-        private KyHieuChamCong_Model _kyHieuChamCongDTO = new KyHieuChamCong_Model();
+        private KyHieuChamCongModel _kyHieuChamCongDTO = new KyHieuChamCongModel();
 
         private KyHieuChamCongBLL _kyHieuChamCongBLL = new KyHieuChamCongBLL();
 
-        private TuyChonModel _tuyChonDTO = new TuyChonModel();
+        private Models.ChamCongModel.TuyChonModel _tuyChonDTO = new Models.ChamCongModel.TuyChonModel();
 
         private TuyChonBLL _tuyChonBLL = new TuyChonBLL();
 
@@ -95,7 +96,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private SapXepLichTrinhChoNhanVienBLL _sapXepLichTrinhChoNhanVienBLL = new SapXepLichTrinhChoNhanVienBLL();
 
-        private LichTrinhVaoRa_model _lichTrinhVaoRaDTO = new LichTrinhVaoRa_model();
+        private Models.LichTrinhVaoRaModel _lichTrinhVaoRaDTO = new Models.LichTrinhVaoRaModel();
 
         private LichTrinhVaoRaBLL _lichTrinhVaoRaBLL = new LichTrinhVaoRaBLL();
 
@@ -115,10 +116,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private PhanTheoGioModel _phanTheoGioDTO = new PhanTheoGioModel();
 
-        //private NgayCuoiTuanBLL _ngayCuoiTuanBLL = new NgayCuoiTuanBLL();
-
-        //private NgayCuoiTuanDTO _ngayCuoiTuanDTO = new NgayCuoiTuanDTO();
-
         private SqlConnection con;
 
         private SqlDataAdapter da;
@@ -137,7 +134,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private NgayTinhCongBLL _ngayTinhCongBLL = new NgayTinhCongBLL();
 
-        private NgayTinhCong_model _ngayTinhCongDTO = new NgayTinhCong_model();
+        private NgayTinhCongModel _ngayTinhCongDTO = new NgayTinhCongModel();
 
         private string sTongNgayTinh;
 
@@ -285,12 +282,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         public int iDemNhanVienDuocChon;
 
-        //private string sLoadCaLamViec;
-
-        //private string sMaCaLamViec;
-
-        //private string sCaLamViec;
-
         private int iLamTronCong;
 
         private int iLamTronGio;
@@ -411,28 +402,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
             InitializeComponent();
         }
 
-        //public void disconnect()
-        //{
-        //    if (con != null && con.State == ConnectionState.Open)
-        //    {
-        //        con.Close();
-        //    }
-        //}
-
         private void frmTinhCongVaInBaoBieu_Load(object sender, EventArgs e)
         {
-            if (!this.cbThaoTacThem.Checked)
-            {
-                this.button1.Visible = false;
-                this.button2.Visible = false;
-                this.btnSuaGio.Visible = false;
-            }
-            else
-            {
-                this.button1.Visible = true;
-                this.button2.Visible = true;
-                this.btnSuaGio.Visible = true;
-            }
             xuatThuTuNgay();
             xuatThuDenNgay();
             loadTreeView();
@@ -442,7 +413,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
             loadControlTinhCong();
             loadControlTinhLuong();
             //loadTuyChon();
-            loadListViewBaoCao();
+            //loadListViewBaoCao();
             loadThongTinCongTy();
         }
 
@@ -562,7 +533,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
             }
         }
 
-
         private void btnTinhToan_Click(object sender, EventArgs e)
         {
             this.iDemNhanVienDuocChon = 0;
@@ -570,6 +540,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this._tinhCongBLL.TinhCongDelete(this._tinhCongDTO);
             this._tinhLuongBLL.TinhLuongDelete();
             this._chiTietCongTruLuongBLL.ChiTietCongTruLuongDelete();
+            DataTable dt_ca = SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.BangXepCa where Nam = '{dateTimeTuNgay.Value.Year}' and Thang = '{dateTimeTuNgay.Value.Month}'");
             int TestDemNhanVien;
             TestDemNhanVien = 0;
             for (int iTestDemNhanVien = 0; iTestDemNhanVien < this.DGVDanhSachNhanVien.Rows.Count; iTestDemNhanVien++)
@@ -581,9 +552,9 @@ namespace TENTAC_HRM.Forms.BaoBieu
                 }
             }
             this.loadTuyChon();
-            new System.Data.DataTable();
+            new DataTable();
             this._kyHieuChamCongDTO.MaKyHieu = "KH00001";
-            System.Data.DataTable dtKyHieu;
+            DataTable dtKyHieu;
             dtKyHieu = this._kyHieuChamCongBLL.showLoadKyHieuChamCong(this._kyHieuChamCongDTO);
             for (int _kyHieu = 0; _kyHieu < dtKyHieu.Rows.Count; _kyHieu++)
             {
@@ -601,8 +572,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                 this.sKHVeTre = dtKyHieu.Rows[_kyHieu]["VeTre"].ToString();
                 this.sKHCuoiTuan = dtKyHieu.Rows[_kyHieu]["CuoiTuan"].ToString();
             }
-            new System.Data.DataTable();
-            System.Data.DataTable _dtNgayTinhCong;
+            new DataTable();
+            DataTable _dtNgayTinhCong;
             _dtNgayTinhCong = this._ngayTinhCongBLL.showThongTinNgayTinhCong();
             if (_dtNgayTinhCong.Rows.Count == 0)
             {
@@ -620,7 +591,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
             }
             this.DGVChiTietLuong.Rows.Clear();
             this.DGVTinhCong.Rows.Clear();
-            this.DGVDuLieuChamCongNguon.Rows.Clear();
             this.DGVSuaXoaGioCham.Rows.Clear();
             this.sTongNgayTinh = Convert.ToInt32((this.dateTimeDenNgay.Value - this.dateTimeTuNgay.Value).TotalDays).ToString();
             if (Convert.ToInt32(this.sTongNgayTinh) < 0)
@@ -637,7 +607,12 @@ namespace TENTAC_HRM.Forms.BaoBieu
             demProcess = -1;
             int testProcess;
             testProcess = TestDemNhanVien;
-            for (int abc = 0; abc < this.DGVDanhSachNhanVien.Rows.Count; abc++)
+
+            var DanhSachNhanVien_check = (from DataGridViewRow r in DGVDanhSachNhanVien.Rows
+                                 where Convert.ToBoolean(r.Cells[0].Value) == true
+                                 select r).ToList();
+
+            for (int abc = 0; abc < DanhSachNhanVien_check.Count; abc++)
             {
                 int iKiemTraNhanVien;
                 iKiemTraNhanVien = 0;
@@ -666,7 +641,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                 dDenGioLoc = default(DateTime);
                 int iChuKyKiemTra;
                 iChuKyKiemTra = 0;
-                if (!Convert.ToBoolean(this.DGVDanhSachNhanVien[0, abc].Value))
+                if (!Convert.ToBoolean(DanhSachNhanVien_check[abc].Cells[0].Value))
                 {
                     continue;
                 }
@@ -680,22 +655,22 @@ namespace TENTAC_HRM.Forms.BaoBieu
                 this.dTongTienThuong = 0.0;
                 this.demNhanVienNghiLeTinhCong = 0;
                 this.demNhanVienVangTinhCong = 0;
-                this.sMaChamCong = this.DGVDanhSachNhanVien.Rows[abc].Cells[3].Value.ToString();
-                this.sMaNhanVien = this.DGVDanhSachNhanVien.Rows[abc].Cells[1].Value.ToString();
-                this.sTenNhanVien = this.DGVDanhSachNhanVien.Rows[abc].Cells[2].Value.ToString();
-                this.sPhongBanTinhCong = this.DGVDanhSachNhanVien.Rows[abc].Cells[7].Value.ToString();
+                this.sMaChamCong = DanhSachNhanVien_check[abc].Cells[3].Value.ToString();
+                this.sMaNhanVien = DanhSachNhanVien_check[abc].Cells[1].Value.ToString();
+                this.sTenNhanVien = DanhSachNhanVien_check[abc].Cells[2].Value.ToString();
+                this.sPhongBanTinhCong = DanhSachNhanVien_check[abc].Cells[7].Value.ToString();
                 _loadTinhCong.lbTenNhanVien.Text = "Nhân viên: " + this.sTenNhanVien;
-                System.Windows.Forms.Application.DoEvents();
-                new System.Data.DataTable();
+                Application.DoEvents();
+                new DataTable();
                 this._sapxepLichTrinhChoNhanVienDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
-                System.Data.DataTable dtSapXepLichTrinh;
+                DataTable dtSapXepLichTrinh;
                 dtSapXepLichTrinh = this._sapXepLichTrinhChoNhanVienBLL.get_SapXepLichTrinhChoNhanVienByMaChamCong(Convert.ToInt32(this.sMaChamCong));
                 for (int iSapXepLichTrinh = 0; iSapXepLichTrinh < dtSapXepLichTrinh.Rows.Count; iSapXepLichTrinh++)
                 {
                     sLTVRNhanVien = dtSapXepLichTrinh.Rows[iSapXepLichTrinh]["MaLichTrinhVaoRa"].ToString();
-                    new System.Data.DataTable();
+                    new DataTable();
                     this._lichTrinhVaoRaDTO.MaLichTrinhVaoRa = sLTVRNhanVien;
-                    System.Data.DataTable dtLichTrinhVaoRa;
+                    DataTable dtLichTrinhVaoRa;
                     dtLichTrinhVaoRa = this._lichTrinhVaoRaBLL.get_LichTrinhVaoRaByMaLichTrinhVaoRa(sLTVRNhanVien);
                     for (int iLichTrinhVaoRa = 0; iLichTrinhVaoRa < dtLichTrinhVaoRa.Rows.Count; iLichTrinhVaoRa++)
                     {
@@ -716,15 +691,15 @@ namespace TENTAC_HRM.Forms.BaoBieu
                         }
                     }
                     sLTCCLVNhanVien = dtSapXepLichTrinh.Rows[iSapXepLichTrinh]["MaLichTrinhCaLamViec"].ToString();
-                    new System.Data.DataTable();
+                    new DataTable();
                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
-                    System.Data.DataTable dtChiTietLichTrinhChoCalamViec;
+                    DataTable dtChiTietLichTrinhChoCalamViec;
                     dtChiTietLichTrinhChoCalamViec = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecgetByMaLichTrinhCalamViec(sLTCCLVNhanVien);
                     for (int iChiTietLichTrinhChoCaLamViec = 0; iChiTietLichTrinhChoCaLamViec < dtChiTietLichTrinhChoCalamViec.Rows.Count; iChiTietLichTrinhChoCaLamViec++)
                     {
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._lichTrinhChoCaLamViecDTO.MaLichTrinhCaLamViec = dtChiTietLichTrinhChoCalamViec.Rows[iChiTietLichTrinhChoCaLamViec]["MaLichTrinhCaLamViec"].ToString();
-                        System.Data.DataTable dtTestChuKy;
+                        DataTable dtTestChuKy;
                         dtTestChuKy = this._lichTrinhChoCaLamViecBLL.get_LichTrinhChoCaLamViecByMaLichTrinhCaLamViec(dtChiTietLichTrinhChoCalamViec.Rows[iChiTietLichTrinhChoCaLamViec]["MaLichTrinhCaLamViec"].ToString());
                         for (int iTestChuKy = 0; iTestChuKy < dtTestChuKy.Rows.Count; iTestChuKy++)
                         {
@@ -733,7 +708,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                     }
                     demSapXep++;
                 }
-                this.sNgayVaoLamViec = this.DGVDanhSachNhanVien.Rows[abc].Cells[4].Value.ToString();
+                this.sNgayVaoLamViec = DanhSachNhanVien_check[abc].Cells[4].Value.ToString();
                 for (int _tongNgay = 0; _tongNgay <= Convert.ToInt32(this.sTongNgayTinh); _tongNgay++)
                 {
                     int iTinhBuTru;
@@ -753,7 +728,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                     string sNgayChamChuKyThang;
                     sNgayChamChuKyThang = dtDinhDang.Day.ToString();
                     string sNgayCham;
-                    sNgayCham = $"{dtDinhDang:dd/MM/yyyy}";
+                    sNgayCham = $"{dtDinhDang:yyyy/MM/dd}";
                     string sThu;
                     sThu = DateTimeProgress.Test((int)dt.AddDays(dem).DayOfWeek);
                     if (iChuKyKiemTra == 1)
@@ -764,15 +739,15 @@ namespace TENTAC_HRM.Forms.BaoBieu
                     {
                         sThu = sNgayChamChuKyThang;
                     }
-                    this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = $"{dtDinhDang:dd/MM/yyyy}";
+                    this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = $"{dtDinhDang:yyyy/MM/dd}";
                     string sNhanCaLamViecTheoThang;
                     sNhanCaLamViecTheoThang = "";
                     int iLichTrinhThang;
                     iLichTrinhThang = 0;
-                    new System.Data.DataTable();
+                    new DataTable();
                     this._chiTietDangKyTangCaDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                     this._chiTietDangKyTangCaDTO.Ngay = Convert.ToDateTime(Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
-                    System.Data.DataTable dtKiemTraCaDem;
+                    DataTable dtKiemTraCaDem;
                     dtKiemTraCaDem = this._chiTietDangKyTangCaBLL.ChiTietDangKyTangCaGetByMaChamCongAndNgay(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString())));
                     for (int iDangKy = 0; iDangKy < dtKiemTraCaDem.Rows.Count; iDangKy++)
                     {
@@ -783,6 +758,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                     }
                     int iKiemTraSapXepCa;
                     iKiemTraSapXepCa = 0;
+                    string ca = dt_ca.Rows.Cast<DataRow>().Where(x => x["MaChamCong"].ToString() == int.Parse(sMaNhanVien.Remove(0, 2)).ToString()).Select(x => x["D" + dtDinhDang.Day].ToString()).FirstOrDefault();
                     if (demSapXep > 0)
                     {
                         if (iChonLichTrinh == 1)
@@ -805,12 +781,11 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             iKiemTraB = 0;
                             DateTime dGioVaoChonTuMay;
                             dGioVaoChonTuMay = default(DateTime);
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtChonTuMay;
+                            new DataTable();
+                            DataTable dtChonTuMay;
                             dtChonTuMay = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                             for (int iChonTuMay = 0; iChonTuMay < dtChonTuMay.Rows.Count; iChonTuMay++)
                             {
-                                this.DGVDuLieuChamCongNguon.Rows.Add();
                                 iKiemTraLanChamLichTrinhVaoRa++;
                                 if (iKiemTraLanChamLichTrinhVaoRa == 1)
                                 {
@@ -841,7 +816,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     if (iLanCham == 1)
                                     {
                                         dGioVaoChonTuMay = Convert.ToDateTime(dateGioChamChonTuMay.ToString());
-                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[5].Value = string.Format(this.sDinhDangThoiGian, dGioVaoChonTuMay);
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
@@ -868,7 +843,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[0].Value = this.sMaNhanVien;
                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                        this.DGVTinhCong.Rows[addChonTuMay].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addChonTuMay].Cells[4].Value = dt_ca.Rows.Cast<DataRow>().Where(x => x["MaChamCong"].ToString() == int.Parse(sMaNhanVien.Remove(0, 2)).ToString()).Select(x => x["D" + dtDinhDang.Day]);
                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
@@ -919,8 +894,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 dGioNgayHomTruoc = default(DateTime);
                                                 DateTime dNgayTruocChonTuMay;
                                                 dNgayTruocChonTuMay = Convert.ToDateTime(dt.AddDays(dem - 1).ToString());
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtNgayTruocChonTuMay;
+                                                new DataTable();
+                                                DataTable dtNgayTruocChonTuMay;
                                                 dtNgayTruocChonTuMay = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), dNgayTruocChonTuMay);
                                                 for (int iNgayTruocChonTuMay = 0; iNgayTruocChonTuMay < dtNgayTruocChonTuMay.Rows.Count; iNgayTruocChonTuMay++)
                                                 {
@@ -928,10 +903,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 }
                                                 dGioRaChonTuMay = Convert.ToDateTime(dateGioChamChonTuMay.ToString());
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaChonTuMay);
-                                                new System.Data.DataTable();
+                                                new DataTable();
                                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                                System.Data.DataTable dtNhanCaQuaDemChonTuMay;
+                                                DataTable dtNhanCaQuaDemChonTuMay;
                                                 dtNhanCaQuaDemChonTuMay = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                                 int iChiTietLichTrinhChoCaLamViecQuaDemChonTuMay;
                                                 iChiTietLichTrinhChoCaLamViecQuaDemChonTuMay = 0;
@@ -948,8 +923,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         kiemTraVao = 0;
                                                         kiemTraRa = 0;
                                                         this.sChonTuMayMaCaLamViec = dtNhanCaQuaDemChonTuMay.Rows[iChiTietLichTrinhChoCaLamViecQuaDemChonTuMay][cellChiTietLichTrinhChoCaLamViecQuaDemChonTuMay].ToString();
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtChonTuMayCa4;
+                                                        new DataTable();
+                                                        DataTable dtChonTuMayCa4;
                                                         dtChonTuMayCa4 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                         int iChonTuMayCa4;
                                                         iChonTuMayCa4 = 0;
@@ -992,7 +967,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             cellChiTietLichTrinhChoCaLamViecQuaDemChonTuMay++;
                                                             continue;
                                                         }
-                                                        this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = "***";
+                                                        this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = dt_ca.Rows.Cast<DataRow>().Where(x => x["MaChamCong"].ToString() == int.Parse(sMaNhanVien.Remove(0, 2)).ToString()).Select(x => x["D" + dtDinhDang.Day]);
                                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[7].Value = "0";
                                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[8].Value = "0";
                                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[9].Value = "0";
@@ -1020,8 +995,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     goto IL_18e8;
                                                 IL_18e8:
                                                     this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = this.sChonTuMayTenCaLamViec;
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtThongSoCaLamViecChonTuMay;
+                                                    new DataTable();
+                                                    DataTable dtThongSoCaLamViecChonTuMay;
                                                     dtThongSoCaLamViecChonTuMay = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                     for (int iThongSoCaLamViecChonTuMay = 0; iThongSoCaLamViecChonTuMay < dtThongSoCaLamViecChonTuMay.Rows.Count; iThongSoCaLamViecChonTuMay++)
                                                     {
@@ -1313,10 +1288,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             dGioRaChonTuMay = Convert.ToDateTime(dateGioChamChonTuMay.ToString());
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaChonTuMay);
                                             iLanCham++;
-                                            new System.Data.DataTable();
+                                            new DataTable();
                                             this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                             this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                            System.Data.DataTable dtNhanCaChonTuMay3;
+                                            DataTable dtNhanCaChonTuMay3;
                                             dtNhanCaChonTuMay3 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                             int iChiTietLichTrinhChoCaLamViecChonTuMay3;
                                             iChiTietLichTrinhChoCaLamViecChonTuMay3 = 0;
@@ -1333,8 +1308,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     kiemTraVao = 0;
                                                     kiemTraRa = 0;
                                                     this.sChonTuMayMaCaLamViec = dtNhanCaChonTuMay3.Rows[iChiTietLichTrinhChoCaLamViecChonTuMay3][cellChiTietLichTrinhChoCaLamViecChonTuMay3].ToString();
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtChonTuMayCa3;
+                                                    new DataTable();
+                                                    DataTable dtChonTuMayCa3;
                                                     dtChonTuMayCa3 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                     int iChonTuMayCa3;
                                                     iChonTuMayCa3 = 0;
@@ -1375,7 +1350,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         cellChiTietLichTrinhChoCaLamViecChonTuMay3++;
                                                         continue;
                                                     }
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = dt_ca.Rows.Cast<DataRow>().Where(x => x["MaChamCong"].ToString() == int.Parse(sMaNhanVien.Remove(0, 2)).ToString()).Select(x => x["D" + dtDinhDang.Day]);
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -1403,8 +1378,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 goto IL_3429;
                                             IL_3429:
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sChonTuMayTenCaLamViec;
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtCaLamViecChonTuMay3;
+                                                new DataTable();
+                                                DataTable dtCaLamViecChonTuMay3;
                                                 dtCaLamViecChonTuMay3 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                 for (int iCaLamViecChonTuMay3 = 0; iCaLamViecChonTuMay3 < dtCaLamViecChonTuMay3.Rows.Count; iCaLamViecChonTuMay3++)
                                                 {
@@ -1717,10 +1692,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         dGioRaChonTuMay = Convert.ToDateTime(dateGioChamChonTuMay.ToString());
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaChonTuMay);
                                         iLanCham++;
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaChonTuMay2;
+                                        DataTable dtNhanCaChonTuMay2;
                                         dtNhanCaChonTuMay2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecChonTuMay2;
                                         iChiTietLichTrinhChoCaLamViecChonTuMay2 = 0;
@@ -1737,8 +1712,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sChonTuMayMaCaLamViec = dtNhanCaChonTuMay2.Rows[iChiTietLichTrinhChoCaLamViecChonTuMay2][cellChiTietLichTrinhChoCaLamViecChonTuMay2].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtChonTuMayCa2;
+                                                new DataTable();
+                                                DataTable dtChonTuMayCa2;
                                                 dtChonTuMayCa2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                 int iChonTuMayCa2;
                                                 iChonTuMayCa2 = 0;
@@ -1779,7 +1754,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecChonTuMay2++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -1797,8 +1772,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_518f;
                                         IL_518f:
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sChonTuMayTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtCaLamViecChonTuMay2;
+                                            new DataTable();
+                                            DataTable dtCaLamViecChonTuMay2;
                                             dtCaLamViecChonTuMay2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                             for (int iCaLamViecChonTuMay2 = 0; iCaLamViecChonTuMay2 < dtCaLamViecChonTuMay2.Rows.Count; iCaLamViecChonTuMay2++)
                                             {
@@ -2116,10 +2091,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 dGioRaChonTuMay = Convert.ToDateTime(dateGioChamChonTuMay.ToString());
                                                 this.DGVTinhCong.Rows[addChonTuMay].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaChonTuMay);
                                                 iKiemTraB = 0;
-                                                new System.Data.DataTable();
+                                                new DataTable();
                                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                                System.Data.DataTable dtNhanCaChonTuMay;
+                                                DataTable dtNhanCaChonTuMay;
                                                 dtNhanCaChonTuMay = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                                 int iChiTietLichTrinhChoCaLamViecChonTuMay;
                                                 iChiTietLichTrinhChoCaLamViecChonTuMay = 0;
@@ -2136,8 +2111,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         kiemTraVao = 0;
                                                         kiemTraRa = 0;
                                                         this.sChonTuMayMaCaLamViec = dtNhanCaChonTuMay.Rows[iChiTietLichTrinhChoCaLamViecChonTuMay][cellChiTietLichTrinhChoCaLamViecChonTuMay].ToString();
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtChonTuMayCa1;
+                                                        new DataTable();
+                                                        DataTable dtChonTuMayCa1;
                                                         dtChonTuMayCa1 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                         int iChonTuMayCa1;
                                                         iChonTuMayCa1 = 0;
@@ -2178,7 +2153,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             cellChiTietLichTrinhChoCaLamViecChonTuMay++;
                                                             continue;
                                                         }
-                                                        this.DGVTinhCong.Rows[addChonTuMay].Cells[4].Value = "***";
+                                                        this.DGVTinhCong.Rows[addChonTuMay].Cells[4].Value = ca;
                                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[7].Value = "0";
                                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[8].Value = "0";
                                                         this.DGVTinhCong.Rows[addChonTuMay].Cells[9].Value = "0";
@@ -2196,8 +2171,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     goto IL_6f90;
                                                 IL_6f90:
                                                     this.DGVTinhCong.Rows[addChonTuMay].Cells[4].Value = this.sChonTuMayTenCaLamViec;
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtCaLamViecChonTuMay;
+                                                    new DataTable();
+                                                    DataTable dtCaLamViecChonTuMay;
                                                     dtCaLamViecChonTuMay = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sChonTuMayMaCaLamViec);
                                                     for (int iCaLamViecChonTuMay = 0; iCaLamViecChonTuMay < dtCaLamViecChonTuMay.Rows.Count; iCaLamViecChonTuMay++)
                                                     {
@@ -2517,7 +2492,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addChonTuMayB].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[addChonTuMayB].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[addChonTuMayB].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[addChonTuMayB].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addChonTuMayB].Cells[4].Value = dt_ca.Rows.Cast<DataRow>().Where(x => x["MaChamCong"].ToString() == int.Parse(sMaNhanVien.Remove(0, 2)).ToString()).Select(x => x["D" + dtDinhDang.Day]);
                                                 this.DGVTinhCong.Rows[addChonTuMayB].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addChonTuMayB].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addChonTuMayB].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
@@ -2581,8 +2556,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             dGioVaoTuDongKhongQuaDemLichTrinhVaoRa = default(DateTime);
                             DateTime dGioRaTuDongKhongQuaDemLichTrinhVaoRa;
                             dGioRaTuDongKhongQuaDemLichTrinhVaoRa = default(DateTime);
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtTuDong;
+                            new DataTable();
+                            DataTable dtTuDong;
                             dtTuDong = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString())));
                             for (int iTuDong = 0; iTuDong < dtTuDong.Rows.Count; iTuDong++)
                             {
@@ -2621,10 +2596,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[1].Value = this.sTenNhanVien;
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                    new System.Data.DataTable();
+                                    new DataTable();
                                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                     this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                    System.Data.DataTable dtNhanCaTuDongKhongQuaDem;
+                                    DataTable dtNhanCaTuDongKhongQuaDem;
                                     dtNhanCaTuDongKhongQuaDem = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                     int iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem;
                                     iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem = 0;
@@ -2639,8 +2614,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongKhongQuaDem.Rows[iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem][cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtTuDongQuaDemCa5;
+                                                new DataTable();
+                                                DataTable dtTuDongQuaDemCa5;
                                                 dtTuDongQuaDemCa5 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 int iTuDongQuaDemCa5;
                                                 iTuDongQuaDemCa5 = 0;
@@ -2675,7 +2650,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -2703,8 +2678,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_9714;
                                         IL_9714:
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtCaLamViecFiloChamMotLan;
+                                            new DataTable();
+                                            DataTable dtCaLamViecFiloChamMotLan;
                                             dtCaLamViecFiloChamMotLan = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                             for (int iCaLamViecFiLoChamMotLan = 0; iCaLamViecFiLoChamMotLan < dtCaLamViecFiloChamMotLan.Rows.Count; iCaLamViecFiLoChamMotLan++)
                                             {
@@ -2866,7 +2841,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                         this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                        this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDong);
                                         this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat].Cells[8].Value = "0";
@@ -2894,10 +2869,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     else
                                     {
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDong);
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTuDongKhongQuaDem2;
+                                        DataTable dtNhanCaTuDongKhongQuaDem2;
                                         dtNhanCaTuDongKhongQuaDem2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem2;
                                         iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem2 = 0;
@@ -2912,8 +2887,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     kiemTraVao = 0;
                                                     kiemTraRa = 0;
                                                     this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongKhongQuaDem2.Rows[iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem2][cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem2].ToString();
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtTuDongQuaDemCa7;
+                                                    new DataTable();
+                                                    DataTable dtTuDongQuaDemCa7;
                                                     dtTuDongQuaDemCa7 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                     int iTuDongQuaDemCa7;
                                                     iTuDongQuaDemCa7 = 0;
@@ -2956,7 +2931,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem2++;
                                                         continue;
                                                     }
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -2984,8 +2959,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 goto IL_af91;
                                             IL_af91:
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtCaLamViecTuDongKhongQuaDem;
+                                                new DataTable();
+                                                DataTable dtCaLamViecTuDongKhongQuaDem;
                                                 dtCaLamViecTuDongKhongQuaDem = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 for (int iCaLamViecTuDongKhongQuaDem = 0; iCaLamViecTuDongKhongQuaDem < dtCaLamViecTuDongKhongQuaDem.Rows.Count; iCaLamViecTuDongKhongQuaDem++)
                                                 {
@@ -3632,7 +3607,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     this.DGVTinhCong.Rows[addTuDong].Cells[1].Value = this.sTenNhanVien;
                                     this.DGVTinhCong.Rows[addTuDong].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                     this.DGVTinhCong.Rows[addTuDong].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                    this.DGVTinhCong.Rows[addTuDong].Cells[4].Value = "***";
+                                    this.DGVTinhCong.Rows[addTuDong].Cells[4].Value = ca;
                                     this.DGVTinhCong.Rows[addTuDong].Cells[7].Value = "0";
                                     this.DGVTinhCong.Rows[addTuDong].Cells[8].Value = "0";
                                     this.DGVTinhCong.Rows[addTuDong].Cells[9].Value = "0";
@@ -3659,10 +3634,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     {
                                         continue;
                                     }
-                                    new System.Data.DataTable();
+                                    new DataTable();
                                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                     this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                    System.Data.DataTable dtNhanCaTuDongKhongQuaDem4;
+                                    DataTable dtNhanCaTuDongKhongQuaDem4;
                                     dtNhanCaTuDongKhongQuaDem4 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                     int iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem4;
                                     iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem4 = 0;
@@ -3675,8 +3650,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         kiemTraVao = 0;
                                         kiemTraRa = 0;
                                         this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongKhongQuaDem4.Rows[iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem4][cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem4].ToString();
-                                        new System.Data.DataTable();
-                                        System.Data.DataTable dtTuDongQuaDemCa10;
+                                        new DataTable();
+                                        DataTable dtTuDongQuaDemCa10;
                                         dtTuDongQuaDemCa10 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                         for (int iTuDongQuaDemCa10 = 0; iTuDongQuaDemCa10 < dtTuDongQuaDemCa10.Rows.Count; iTuDongQuaDemCa10++)
                                         {
@@ -3741,7 +3716,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[1].Value = this.sTenNhanVien;
                                     this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                     this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                    this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[4].Value = "***";
+                                    this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[4].Value = ca;
                                     this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDong);
                                     this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[7].Value = "0";
                                     this.DGVTinhCong.Rows[addTuDongKhongQuaDemThoiGianLonNhat2].Cells[8].Value = "0";
@@ -3768,10 +3743,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     continue;
                                 }
                                 this.DGVTinhCong.Rows[addTuDong].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDong);
-                                new System.Data.DataTable();
+                                new DataTable();
                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                System.Data.DataTable dtNhanCaTuDongKhongQuaDem3;
+                                DataTable dtNhanCaTuDongKhongQuaDem3;
                                 dtNhanCaTuDongKhongQuaDem3 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                 int iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem3;
                                 iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem3 = 0;
@@ -3786,8 +3761,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     if (cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem3 < 13)
                                     {
                                         this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongKhongQuaDem3.Rows[iChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem3][cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem3].ToString();
-                                        new System.Data.DataTable();
-                                        System.Data.DataTable dtTuDongQuaDemCa9;
+                                        new DataTable();
+                                        DataTable dtTuDongQuaDemCa9;
                                         dtTuDongQuaDemCa9 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                         int iTuDongQuaDemCa9;
                                         iTuDongQuaDemCa9 = 0;
@@ -3832,7 +3807,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             cellChiTietLichTrinhChoCaLamViecTuDongKhongQuaDem3++;
                                             continue;
                                         }
-                                        this.DGVTinhCong.Rows[addTuDong].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTuDong].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTuDong].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDong].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDong].Cells[9].Value = "0";
@@ -3860,8 +3835,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     goto IL_f776;
                                 IL_f776:
                                     this.DGVTinhCong.Rows[addTuDong].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                    new System.Data.DataTable();
-                                    System.Data.DataTable dtCaLamViecTuDongKhongQuaDem2;
+                                    new DataTable();
+                                    DataTable dtCaLamViecTuDongKhongQuaDem2;
                                     dtCaLamViecTuDongKhongQuaDem2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                     for (int iCaLamViecTuDongKhongQuaDem2 = 0; iCaLamViecTuDongKhongQuaDem2 < dtCaLamViecTuDongKhongQuaDem2.Rows.Count; iCaLamViecTuDongKhongQuaDem2++)
                                     {
@@ -4535,86 +4510,18 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             iKiemTraLanCham2 = 0;
                             int addPhanTheoGio;
                             addPhanTheoGio = 0;
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtPhanTheoGio;
+                            new DataTable();
+                            DataTable dtPhanTheoGio;
                             dtPhanTheoGio = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                             for (int iPhanTheoGio = 0; iPhanTheoGio < dtPhanTheoGio.Rows.Count; iPhanTheoGio++)
                             {
-                                int addGioNguonTuDongKhongQuaDem;
-                                addGioNguonTuDongKhongQuaDem = this.DGVDuLieuChamCongNguon.Rows.Add();
-                                iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2++;
-                                if (iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2 == 1)
-                                {
-                                    dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2 = Convert.ToDateTime(dtPhanTheoGio.Rows[iPhanTheoGio]["GioCham"].ToString());
-                                    if (dtPhanTheoGio.Rows.Count > 2 && iKiemTraLanChamKhoangCachTuDongKhongQuaDemLichTrinhVaoRa2 == 3)
-                                    {
-                                        if (Convert.ToInt32(Convert.ToInt32((dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2 - dGioRaTuDongKhongQuaDemLichTrinhVaoRa2).TotalMinutes).ToString()) < iKhoangCachGiuaHaiCapVaoRa)
-                                        {
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[0].Value = this.sMaChamCong;
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[1].Value = $"{dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2:d}";
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[2].Value = dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2;
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[3].Value = "Lặp lại";
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[4].Value = "*";
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[6].Value = dtPhanTheoGio.Rows[iPhanTheoGio]["MaSoMay"].ToString();
-                                            for (int iLapLaiTuDongKhongQuaDem2 = 0; iLapLaiTuDongKhongQuaDem2 < 7; iLapLaiTuDongKhongQuaDem2++)
-                                            {
-                                                this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[iLapLaiTuDongKhongQuaDem2].Style.BackColor = Color.Red;
-                                            }
-                                            iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2 = 0;
-                                            continue;
-                                        }
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[0].Value = this.sMaChamCong;
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[1].Value = $"{dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2:d}";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[2].Value = dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2;
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[3].Value = "Vào";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[4].Value = "I";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[6].Value = dtPhanTheoGio.Rows[iPhanTheoGio]["MaSoMay"].ToString();
-                                        iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2 = 1;
-                                    }
-                                    else
-                                    {
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[0].Value = this.sMaChamCong;
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[1].Value = $"{dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2:d}";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[2].Value = dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2;
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[3].Value = "Vào";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[4].Value = "I";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[6].Value = dtPhanTheoGio.Rows[iPhanTheoGio]["MaSoMay"].ToString();
-                                    }
-                                }
-                                if (iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2 == 2)
-                                {
-                                    dGioRaTuDongKhongQuaDemLichTrinhVaoRa2 = Convert.ToDateTime(dtPhanTheoGio.Rows[iPhanTheoGio]["GioCham"].ToString());
-                                    if (Convert.ToInt32(Convert.ToInt32((dGioRaTuDongKhongQuaDemLichTrinhVaoRa2 - dGioVaoTuDongKhongQuaDemLichTrinhVaoRa2).TotalMinutes).ToString()) < iThoiGianNhoNhat)
-                                    {
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[0].Value = this.sMaChamCong;
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[1].Value = $"{dGioRaTuDongKhongQuaDemLichTrinhVaoRa2:d}";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[2].Value = dGioRaTuDongKhongQuaDemLichTrinhVaoRa2;
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[3].Value = "Lặp lại";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[4].Value = "***";
-                                        this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[6].Value = dtPhanTheoGio.Rows[iPhanTheoGio]["MaSoMay"].ToString();
-                                        for (int iLapLaiTuDongKhongQuaDem = 0; iLapLaiTuDongKhongQuaDem < 7; iLapLaiTuDongKhongQuaDem++)
-                                        {
-                                            this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[iLapLaiTuDongKhongQuaDem].Style.BackColor = Color.Red;
-                                        }
-                                        iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2 = 1;
-                                        continue;
-                                    }
-                                    iKiemTraLanChamTuDongKhongQuaDemLichTrinhVaoRa2 = 0;
-                                    iKiemTraLanChamKhoangCachTuDongKhongQuaDemLichTrinhVaoRa2 = 3;
-                                    this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[0].Value = this.sMaChamCong;
-                                    this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[1].Value = $"{dGioRaTuDongKhongQuaDemLichTrinhVaoRa2:d}";
-                                    this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[2].Value = dGioRaTuDongKhongQuaDemLichTrinhVaoRa2;
-                                    this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[3].Value = "Ra";
-                                    this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[4].Value = "O";
-                                    this.DGVDuLieuChamCongNguon.Rows[addGioNguonTuDongKhongQuaDem].Cells[6].Value = dtPhanTheoGio.Rows[iPhanTheoGio]["MaSoMay"].ToString();
-                                }
                                 string sPhanTheoGio;
                                 sPhanTheoGio = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                 DateTime dGioChamPhanTheoGio;
                                 dGioChamPhanTheoGio = Convert.ToDateTime(dtPhanTheoGio.Rows[iPhanTheoGio]["GioCham"].ToString());
-                                new System.Data.DataTable();
+                                new DataTable();
                                 this._phanTheoGioDTO.MaLichTrinhVaoRa = sLTVRNhanVien;
-                                System.Data.DataTable dtChiTietPhanTheoGio;
+                                DataTable dtChiTietPhanTheoGio;
                                 dtChiTietPhanTheoGio = this._phanTheoGioBLL.PhanTheoGioGetMaLichTrinhVaoRa(sLTVRNhanVien);
                                 for (int iChiTietPhanTheoGio = 0; iChiTietPhanTheoGio < dtChiTietPhanTheoGio.Rows.Count; iChiTietPhanTheoGio++)
                                 {
@@ -4637,7 +4544,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[9].Value = "0";
@@ -4669,7 +4576,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -4702,7 +4609,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[9].Value = "0";
@@ -4735,7 +4642,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[9].Value = "0";
@@ -4777,7 +4684,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[0].Value = this.sMaNhanVien;
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[1].Value = this.sTenNhanVien;
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -4802,10 +4709,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaPhanTheoGio);
                                                 int iCaTrongLIchtrinh3;
                                                 iCaTrongLIchtrinh3 = 0;
-                                                new System.Data.DataTable();
+                                                new DataTable();
                                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                                System.Data.DataTable dtNhanCaPhanTheoGio;
+                                                DataTable dtNhanCaPhanTheoGio;
                                                 dtNhanCaPhanTheoGio = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                                 int iChiTietLichTrinhChoCaLamViecPhanTheoGio;
                                                 iChiTietLichTrinhChoCaLamViecPhanTheoGio = 0;
@@ -4821,8 +4728,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             kiemTraVao = 0;
                                                             kiemTraRa = 0;
                                                             this.sPhanTheoGioMaCaLamViec = dtNhanCaPhanTheoGio.Rows[iChiTietLichTrinhChoCaLamViecPhanTheoGio][cellChiTietLichTrinhChoCaLamViecPhanTheoGio].ToString();
-                                                            new System.Data.DataTable();
-                                                            System.Data.DataTable dtPhanTheoGioCa1;
+                                                            new DataTable();
+                                                            DataTable dtPhanTheoGioCa1;
                                                             dtPhanTheoGioCa1 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sPhanTheoGioMaCaLamViec);
                                                             int iPhanTheoGioCa1;
                                                             iPhanTheoGioCa1 = 0;
@@ -4861,7 +4768,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                                 cellChiTietLichTrinhChoCaLamViecPhanTheoGio++;
                                                                 continue;
                                                             }
-                                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                             this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                             this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                             this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -4889,8 +4796,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         goto IL_1543b;
                                                     IL_1543b:
                                                         this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sPhanTheoGioTenCaLamViec;
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtCaLamViecPhanTheoGio;
+                                                        new DataTable();
+                                                        DataTable dtCaLamViecPhanTheoGio;
                                                         dtCaLamViecPhanTheoGio = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sPhanTheoGioMaCaLamViec);
                                                         for (int iCaLamViecPhanTheoGio = 0; iCaLamViecPhanTheoGio < dtCaLamViecPhanTheoGio.Rows.Count; iCaLamViecPhanTheoGio++)
                                                         {
@@ -5623,7 +5530,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 }
                                                 if (iCaTrongLIchtrinh3 == 0)
                                                 {
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -5656,10 +5563,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addPhanTheoGio].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaPhanTheoGio);
                                                 int iCaTrongLIchtrinh5;
                                                 iCaTrongLIchtrinh5 = 0;
-                                                new System.Data.DataTable();
+                                                new DataTable();
                                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                                System.Data.DataTable dtNhanCaPhanTheoGio2;
+                                                DataTable dtNhanCaPhanTheoGio2;
                                                 dtNhanCaPhanTheoGio2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                                 int iChiTietLichTrinhChoCaLamViecPhanTheoGio2;
                                                 iChiTietLichTrinhChoCaLamViecPhanTheoGio2 = 0;
@@ -5675,8 +5582,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             kiemTraVao = 0;
                                                             kiemTraRa = 0;
                                                             this.sPhanTheoGioMaCaLamViec = dtNhanCaPhanTheoGio2.Rows[iChiTietLichTrinhChoCaLamViecPhanTheoGio2][cellChiTietLichTrinhChoCaLamViecPhanTheoGio2].ToString();
-                                                            new System.Data.DataTable();
-                                                            System.Data.DataTable dtPhanTheoGioCa2;
+                                                            new DataTable();
+                                                            DataTable dtPhanTheoGioCa2;
                                                             dtPhanTheoGioCa2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sPhanTheoGioMaCaLamViec);
                                                             int iPhanTheoGioCa2;
                                                             iPhanTheoGioCa2 = 0;
@@ -5715,7 +5622,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                                 cellChiTietLichTrinhChoCaLamViecPhanTheoGio2++;
                                                                 continue;
                                                             }
-                                                            this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = "***";
+                                                            this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = ca;
                                                             this.DGVTinhCong.Rows[addPhanTheoGio].Cells[7].Value = "0";
                                                             this.DGVTinhCong.Rows[addPhanTheoGio].Cells[8].Value = "0";
                                                             this.DGVTinhCong.Rows[addPhanTheoGio].Cells[9].Value = "0";
@@ -5743,8 +5650,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         goto IL_19658;
                                                     IL_19658:
                                                         this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = this.sPhanTheoGioTenCaLamViec;
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtCaLamViecPhanTheoGio2;
+                                                        new DataTable();
+                                                        DataTable dtCaLamViecPhanTheoGio2;
                                                         dtCaLamViecPhanTheoGio2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sPhanTheoGioMaCaLamViec);
                                                         for (int iCaLamViecPhanTheoGio2 = 0; iCaLamViecPhanTheoGio2 < dtCaLamViecPhanTheoGio2.Rows.Count; iCaLamViecPhanTheoGio2++)
                                                         {
@@ -6477,7 +6384,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 }
                                                 if (iCaTrongLIchtrinh5 == 0)
                                                 {
-                                                    this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[addPhanTheoGio].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[addPhanTheoGio].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[addPhanTheoGio].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[addPhanTheoGio].Cells[9].Value = "0";
@@ -6511,7 +6418,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addPhanTheoGioB].Cells[9].Value = "0";
@@ -6574,12 +6481,11 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             iKiemTraB2 = 0;
                             DateTime dGioVaoTheoIDMay;
                             dGioVaoTheoIDMay = default(DateTime);
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtTheoIDMay;
+                            new DataTable();
+                            DataTable dtTheoIDMay;
                             dtTheoIDMay = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                             for (int iTheoIDMay = 0; iTheoIDMay < dtTheoIDMay.Rows.Count; iTheoIDMay++)
                             {
-                                this.DGVDuLieuChamCongNguon.Rows.Add();
                                 iKiemTraLanChamLichTrinhVaoRa3++;
                                 if (iKiemTraLanChamLichTrinhVaoRa3 == 1)
                                 {
@@ -6614,7 +6520,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     if (iLanCham2 == 1)
                                     {
                                         dGioVaoTheoIDMay = Convert.ToDateTime(dateGioChamTheoIDMay.ToString());
-                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[5].Value = string.Format(this.sDinhDangThoiGian, dGioVaoTheoIDMay);
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
@@ -6641,7 +6547,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[0].Value = this.sMaNhanVien;
                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                        this.DGVTinhCong.Rows[addTheoIDMay].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTheoIDMay].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
@@ -6691,7 +6597,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 dGioRaTheoIDMay = Convert.ToDateTime(dateGioChamTheoIDMay.ToString());
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTheoIDMay);
                                                 iLanCham2++;
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -6722,8 +6628,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 dGioNgayHomTruoc3 = default(DateTime);
                                                 DateTime dNgayTruocTheoIDMay;
                                                 dNgayTruocTheoIDMay = Convert.ToDateTime(dt.AddDays(dem - 1).ToString());
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtNgayTruocTheoIDMay;
+                                                new DataTable();
+                                                DataTable dtNgayTruocTheoIDMay;
                                                 dtNgayTruocTheoIDMay = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), dNgayTruocTheoIDMay);
                                                 for (int iNgayTruocTheoIDMay = 0; iNgayTruocTheoIDMay < dtNgayTruocTheoIDMay.Rows.Count; iNgayTruocTheoIDMay++)
                                                 {
@@ -6731,10 +6637,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 }
                                                 dGioRaTheoIDMay = Convert.ToDateTime(dateGioChamTheoIDMay.ToString());
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTheoIDMay);
-                                                new System.Data.DataTable();
+                                                new DataTable();
                                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                                System.Data.DataTable dtNhanCaQuaDemTheoIDMay;
+                                                DataTable dtNhanCaQuaDemTheoIDMay;
                                                 dtNhanCaQuaDemTheoIDMay = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                                 int iChiTietLichTrinhChoCaLamViecQuaDemTheoIDMay;
                                                 iChiTietLichTrinhChoCaLamViecQuaDemTheoIDMay = 0;
@@ -6751,8 +6657,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         kiemTraVao = 0;
                                                         kiemTraRa = 0;
                                                         this.sTheoIDMayMaCaLamViec = dtNhanCaQuaDemTheoIDMay.Rows[iChiTietLichTrinhChoCaLamViecQuaDemTheoIDMay][cellChiTietLichTrinhChoCaLamViecQuaDemTheoIDMay].ToString();
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtTheoIDMayCa1;
+                                                        new DataTable();
+                                                        DataTable dtTheoIDMayCa1;
                                                         dtTheoIDMayCa1 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                         int iTheoIDMayCa1;
                                                         iTheoIDMayCa1 = 0;
@@ -6795,7 +6701,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             cellChiTietLichTrinhChoCaLamViecQuaDemTheoIDMay++;
                                                             continue;
                                                         }
-                                                        this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = "***";
+                                                        this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = ca;
                                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[7].Value = "0";
                                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[8].Value = "0";
                                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[9].Value = "0";
@@ -6823,8 +6729,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     goto IL_1ee6a;
                                                 IL_1ee6a:
                                                     this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = this.sTheoIDMayTenCaLamViec;
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtThongSoCaLamViecTheoIDMay;
+                                                    new DataTable();
+                                                    DataTable dtThongSoCaLamViecTheoIDMay;
                                                     dtThongSoCaLamViecTheoIDMay = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                     for (int iThongSoCaLamViecTheoIDMay = 0; iThongSoCaLamViecTheoIDMay < dtThongSoCaLamViecTheoIDMay.Rows.Count; iThongSoCaLamViecTheoIDMay++)
                                                     {
@@ -7119,10 +7025,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             dGioRaTheoIDMay = Convert.ToDateTime(dateGioChamTheoIDMay.ToString());
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTheoIDMay);
                                             iLanCham2++;
-                                            new System.Data.DataTable();
+                                            new DataTable();
                                             this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                             this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                            System.Data.DataTable dtNhanCaTheoIDMay;
+                                            DataTable dtNhanCaTheoIDMay;
                                             dtNhanCaTheoIDMay = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                             int iChiTietLichTrinhChoCaLamViecTheoIDMay;
                                             iChiTietLichTrinhChoCaLamViecTheoIDMay = 0;
@@ -7139,8 +7045,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     kiemTraVao = 0;
                                                     kiemTraRa = 0;
                                                     this.sTheoIDMayMaCaLamViec = dtNhanCaTheoIDMay.Rows[iChiTietLichTrinhChoCaLamViecTheoIDMay][cellChiTietLichTrinhChoCaLamViecTheoIDMay].ToString();
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtTheoIDMayCa2;
+                                                    new DataTable();
+                                                    DataTable dtTheoIDMayCa2;
                                                     dtTheoIDMayCa2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                     int iTheoIDMayCa2;
                                                     iTheoIDMayCa2 = 0;
@@ -7181,7 +7087,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         cellChiTietLichTrinhChoCaLamViecTheoIDMay++;
                                                         continue;
                                                     }
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -7201,8 +7107,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 goto IL_20cc0;
                                             IL_20cc0:
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTheoIDMayTenCaLamViec;
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtCaLamViecTheoIDMay;
+                                                new DataTable();
+                                                DataTable dtCaLamViecTheoIDMay;
                                                 dtCaLamViecTheoIDMay = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                 for (int iCaLamViecTheoIDMay = 0; iCaLamViecTheoIDMay < dtCaLamViecTheoIDMay.Rows.Count; iCaLamViecTheoIDMay++)
                                                 {
@@ -7518,10 +7424,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         dGioRaTheoIDMay = Convert.ToDateTime(dateGioChamTheoIDMay.ToString());
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTheoIDMay);
                                         iLanCham2++;
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTheoIDMay2;
+                                        DataTable dtNhanCaTheoIDMay2;
                                         dtNhanCaTheoIDMay2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTheoIDMay2;
                                         iChiTietLichTrinhChoCaLamViecTheoIDMay2 = 0;
@@ -7538,8 +7444,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sTheoIDMayMaCaLamViec = dtNhanCaTheoIDMay2.Rows[iChiTietLichTrinhChoCaLamViecTheoIDMay2][cellChiTietLichTrinhChoCaLamViecTheoIDMay2].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtTheoIDMayCa3;
+                                                new DataTable();
+                                                DataTable dtTheoIDMayCa3;
                                                 dtTheoIDMayCa3 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                 int iTheoIDMayCa3;
                                                 iTheoIDMayCa3 = 0;
@@ -7580,7 +7486,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecTheoIDMay2++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -7598,8 +7504,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_22c98;
                                         IL_22c98:
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTheoIDMayTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtCaLamViecTheoIDMay2;
+                                            new DataTable();
+                                            DataTable dtCaLamViecTheoIDMay2;
                                             dtCaLamViecTheoIDMay2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                             for (int iCaLamViecTheoIDMay2 = 0; iCaLamViecTheoIDMay2 < dtCaLamViecTheoIDMay2.Rows.Count; iCaLamViecTheoIDMay2++)
                                             {
@@ -7920,10 +7826,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 dGioRaTheoIDMay = Convert.ToDateTime(dateGioChamTheoIDMay.ToString());
                                                 this.DGVTinhCong.Rows[addTheoIDMay].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTheoIDMay);
                                                 iKiemTraB2 = 0;
-                                                new System.Data.DataTable();
+                                                new DataTable();
                                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                                System.Data.DataTable dtNhanCaTheoIDMay3;
+                                                DataTable dtNhanCaTheoIDMay3;
                                                 dtNhanCaTheoIDMay3 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                                 int iChiTietLichTrinhChoCaLamViecTheoIDMay3;
                                                 iChiTietLichTrinhChoCaLamViecTheoIDMay3 = 0;
@@ -7940,8 +7846,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         kiemTraVao = 0;
                                                         kiemTraRa = 0;
                                                         this.sTheoIDMayMaCaLamViec = dtNhanCaTheoIDMay3.Rows[iChiTietLichTrinhChoCaLamViecTheoIDMay3][cellChiTietLichTrinhChoCaLamViecTheoIDMay3].ToString();
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtTheoIDMayCa4;
+                                                        new DataTable();
+                                                        DataTable dtTheoIDMayCa4;
                                                         dtTheoIDMayCa4 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                         int iTheoIDMayCa4;
                                                         iTheoIDMayCa4 = 0;
@@ -7982,7 +7888,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             cellChiTietLichTrinhChoCaLamViecTheoIDMay3++;
                                                             continue;
                                                         }
-                                                        this.DGVTinhCong.Rows[addTheoIDMay].Cells[4].Value = "***";
+                                                        this.DGVTinhCong.Rows[addTheoIDMay].Cells[4].Value = ca;
                                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[7].Value = "0";
                                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[8].Value = "0";
                                                         this.DGVTinhCong.Rows[addTheoIDMay].Cells[9].Value = "0";
@@ -8000,8 +7906,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     goto IL_24c25;
                                                 IL_24c25:
                                                     this.DGVTinhCong.Rows[addTheoIDMay].Cells[4].Value = this.sTheoIDMayTenCaLamViec;
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtCaLamViecTheoIDMay3;
+                                                    new DataTable();
+                                                    DataTable dtCaLamViecTheoIDMay3;
                                                     dtCaLamViecTheoIDMay3 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTheoIDMayMaCaLamViec);
                                                     for (int iCaLamViecTheoIDMay3 = 0; iCaLamViecTheoIDMay3 < dtCaLamViecTheoIDMay3.Rows.Count; iCaLamViecTheoIDMay3++)
                                                     {
@@ -8324,7 +8230,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 this.DGVTinhCong.Rows[addTheoIDMayB].Cells[0].Value = this.sMaNhanVien;
                                                 this.DGVTinhCong.Rows[addTheoIDMayB].Cells[1].Value = this.sTenNhanVien;
                                                 this.DGVTinhCong.Rows[addTheoIDMayB].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
-                                                this.DGVTinhCong.Rows[addTheoIDMayB].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addTheoIDMayB].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[addTheoIDMayB].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addTheoIDMayB].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addTheoIDMayB].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
@@ -8377,8 +8283,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             dGioRaFilo = default(DateTime);
                             int iLanChamFilo;
                             iLanChamFilo = 0;
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtGioChamFilo;
+                            new DataTable();
+                            DataTable dtGioChamFilo;
                             dtGioChamFilo = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                             for (int iGioChamFilo = 0; iGioChamFilo < dtGioChamFilo.Rows.Count; iGioChamFilo++)
                             {
@@ -8387,10 +8293,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 {
                                     dGioVaoFilo = Convert.ToDateTime(dtGioChamFilo.Rows[iGioChamFilo]["GioCham"].ToString());
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[5].Value = string.Format(this.sDinhDangThoiGian, dGioVaoFilo);
-                                    new System.Data.DataTable();
+                                    new DataTable();
                                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                     this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                    System.Data.DataTable dtNhanCaFilo2;
+                                    DataTable dtNhanCaFilo2;
                                     dtNhanCaFilo2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                     int iChiTietLichTrinhChoCaLamViecFilo2;
                                     iChiTietLichTrinhChoCaLamViecFilo2 = 0;
@@ -8405,8 +8311,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sFiloMaCaLamViec = dtNhanCaFilo2.Rows[iChiTietLichTrinhChoCaLamViecFilo2][cellChiTietLichTrinhChoCaLamViecFilo2].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtFiloCa2;
+                                                new DataTable();
+                                                DataTable dtFiloCa2;
                                                 dtFiloCa2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sFiloMaCaLamViec);
                                                 int iFiloCa2;
                                                 iFiloCa2 = 0;
@@ -8445,7 +8351,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecFilo2++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -8473,8 +8379,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_2734f;
                                         IL_2734f:
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sFiloTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtCaLamViecFiloChamMotLan2;
+                                            new DataTable();
+                                            DataTable dtCaLamViecFiloChamMotLan2;
                                             dtCaLamViecFiloChamMotLan2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sFiloMaCaLamViec);
                                             for (int iCaLamViecFiLoChamMotLan2 = 0; iCaLamViecFiLoChamMotLan2 < dtCaLamViecFiloChamMotLan2.Rows.Count; iCaLamViecFiLoChamMotLan2++)
                                             {
@@ -8639,8 +8545,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 if (iLichTrinhThang != 0)
                                 {
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = sNhanCaLamViecTheoThang;
-                                    new System.Data.DataTable();
-                                    System.Data.DataTable dtCaLamViecFilo;
+                                    new DataTable();
+                                    DataTable dtCaLamViecFilo;
                                     dtCaLamViecFilo = this._caLamViecBLL.getMaByTenCaLamViec(sNhanCaLamViecTheoThang);
                                     for (int iCaLamViecFilo = 0; iCaLamViecFilo < dtCaLamViecFilo.Rows.Count; iCaLamViecFilo++)
                                     {
@@ -9372,10 +9278,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     break;
                                 }
                                 sThu = DateTimeProgress.Test((int)dt.AddDays(dem).DayOfWeek);
-                                new System.Data.DataTable();
+                                new DataTable();
                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                System.Data.DataTable dtNhanCaFilo;
+                                DataTable dtNhanCaFilo;
                                 dtNhanCaFilo = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                 int iChiTietLichTrinhChoCaLamViecFilo;
                                 iChiTietLichTrinhChoCaLamViecFilo = 0;
@@ -9391,8 +9297,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             kiemTraVao = 0;
                                             kiemTraRa = 0;
                                             this.sFiloMaCaLamViec = dtNhanCaFilo.Rows[iChiTietLichTrinhChoCaLamViecFilo][cellChiTietLichTrinhChoCaLamViecFilo].ToString();
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtFiloCa1;
+                                            new DataTable();
+                                            DataTable dtFiloCa1;
                                             dtFiloCa1 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sFiloMaCaLamViec);
                                             int iFiloCa1;
                                             iFiloCa1 = 0;
@@ -9435,7 +9341,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 cellChiTietLichTrinhChoCaLamViecFilo++;
                                                 continue;
                                             }
-                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -9463,8 +9369,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         goto IL_2c31d;
                                     IL_2c31d:
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sFiloTenCaLamViec;
-                                        new System.Data.DataTable();
-                                        System.Data.DataTable dtCaLamViecFilo2;
+                                        new DataTable();
+                                        DataTable dtCaLamViecFilo2;
                                         dtCaLamViecFilo2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sFiloMaCaLamViec);
                                         for (int iCaLamViecFilo2 = 0; iCaLamViecFilo2 < dtCaLamViecFilo2.Rows.Count; iCaLamViecFilo2++)
                                         {
@@ -10198,7 +10104,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 }
                                 if (iCaTrongLIchtrinh4 == 0)
                                 {
-                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -10259,12 +10165,11 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             dGioRaTinhTheoGioLichTrinhVaoRa = default(DateTime);
                             DateTime dGioVaoTinhTheoGioLichTrinhVaoRa;
                             dGioVaoTinhTheoGioLichTrinhVaoRa = default(DateTime);
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtTinhTheoGio;
+                            new DataTable();
+                            DataTable dtTinhTheoGio;
                             dtTinhTheoGio = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                             for (int iTinhTheoGio = 0; iTinhTheoGio < dtTinhTheoGio.Rows.Count; iTinhTheoGio++)
                             {
-                                this.DGVDuLieuChamCongNguon.Rows.Add();
                                 iKiemTraLanChamTinhTheoGioLichTrinhVaoRa++;
                                 if (iKiemTraLanChamTinhTheoGioLichTrinhVaoRa == 1)
                                 {
@@ -10299,7 +10204,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -10329,7 +10234,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -10366,7 +10271,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                         this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                        this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTinhTheoGio);
                                         this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat2].Cells[8].Value = "0";
@@ -10396,10 +10301,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTinhTheoGio);
                                         int iCaTrongLIchtrinh2;
                                         iCaTrongLIchtrinh2 = 0;
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTinhTheoGio2;
+                                        DataTable dtNhanCaTinhTheoGio2;
                                         dtNhanCaTinhTheoGio2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTinhTheoGio2;
                                         iChiTietLichTrinhChoCaLamViecTinhTheoGio2 = 0;
@@ -10415,8 +10320,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     kiemTraVao = 0;
                                                     kiemTraRa = 0;
                                                     this.sTinhTheoGioMaCaLamViec = dtNhanCaTinhTheoGio2.Rows[iChiTietLichTrinhChoCaLamViecTinhTheoGio2][cellChiTietLichTrinhChoCaLamViecTinhTheoGio2].ToString();
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtTinhTheoGioCa2;
+                                                    new DataTable();
+                                                    DataTable dtTinhTheoGioCa2;
                                                     dtTinhTheoGioCa2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTinhTheoGioMaCaLamViec);
                                                     int iTinhTheoGioCa2;
                                                     iTinhTheoGioCa2 = 0;
@@ -10453,7 +10358,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         cellChiTietLichTrinhChoCaLamViecTinhTheoGio2++;
                                                         continue;
                                                     }
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -10481,8 +10386,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 goto IL_31909;
                                             IL_31909:
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTinhTheoGioTenCaLamViec;
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtCaLamViecTinhTheoGio2;
+                                                new DataTable();
+                                                DataTable dtCaLamViecTinhTheoGio2;
                                                 dtCaLamViecTinhTheoGio2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTinhTheoGioMaCaLamViec);
                                                 for (int iCaLamViecTinhTheoGio2 = 0; iCaLamViecTinhTheoGio2 < dtCaLamViecTinhTheoGio2.Rows.Count; iCaLamViecTinhTheoGio2++)
                                                 {
@@ -10793,7 +10698,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         }
                                         if (iCaTrongLIchtrinh2 == 0)
                                         {
-                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                            this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -10830,7 +10735,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                        this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[9].Value = "0";
@@ -10866,7 +10771,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[1].Value = this.sTenNhanVien;
                                             this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                             this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                            this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[4].Value = "***";
+                                            this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[4].Value = ca;
                                             this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTinhTheoGio);
                                             this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[7].Value = "0";
                                             this.DGVTinhCong.Rows[addTinhTheoGioThoiGianLonNhat].Cells[8].Value = "0";
@@ -10896,10 +10801,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             this.DGVTinhCong.Rows[addTinhTheoGio].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTinhTheoGio);
                                             int iCaTrongLIchtrinh;
                                             iCaTrongLIchtrinh = 0;
-                                            new System.Data.DataTable();
+                                            new DataTable();
                                             this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                             this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                            System.Data.DataTable dtNhanCaTinhTheoGio;
+                                            DataTable dtNhanCaTinhTheoGio;
                                             dtNhanCaTinhTheoGio = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                             int iChiTietLichTrinhChoCaLamViecTinhTheoGio;
                                             iChiTietLichTrinhChoCaLamViecTinhTheoGio = 0;
@@ -10915,8 +10820,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         kiemTraVao = 0;
                                                         kiemTraRa = 0;
                                                         this.sTinhTheoGioMaCaLamViec = dtNhanCaTinhTheoGio.Rows[iChiTietLichTrinhChoCaLamViecTinhTheoGio][cellChiTietLichTrinhChoCaLamViecTinhTheoGio].ToString();
-                                                        new System.Data.DataTable();
-                                                        System.Data.DataTable dtTinhTheoGioCa1;
+                                                        new DataTable();
+                                                        DataTable dtTinhTheoGioCa1;
                                                         dtTinhTheoGioCa1 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTinhTheoGioMaCaLamViec);
                                                         int iTinhTheoGioCa1;
                                                         iTinhTheoGioCa1 = 0;
@@ -10953,7 +10858,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                             cellChiTietLichTrinhChoCaLamViecTinhTheoGio++;
                                                             continue;
                                                         }
-                                                        this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = "***";
+                                                        this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = ca;
                                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[7].Value = "0";
                                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[8].Value = "0";
                                                         this.DGVTinhCong.Rows[addTinhTheoGio].Cells[9].Value = "0";
@@ -10981,8 +10886,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     goto IL_34528;
                                                 IL_34528:
                                                     this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = this.sTinhTheoGioTenCaLamViec;
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtCaLamViecTinhTheoGio;
+                                                    new DataTable();
+                                                    DataTable dtCaLamViecTinhTheoGio;
                                                     dtCaLamViecTinhTheoGio = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTinhTheoGioMaCaLamViec);
                                                     for (int iCaLamViecTinhTheoGio = 0; iCaLamViecTinhTheoGio < dtCaLamViecTinhTheoGio.Rows.Count; iCaLamViecTinhTheoGio++)
                                                     {
@@ -11293,7 +11198,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             }
                                             if (iCaTrongLIchtrinh == 0)
                                             {
-                                                this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[addTinhTheoGio].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[addTinhTheoGio].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[addTinhTheoGio].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[addTinhTheoGio].Cells[9].Value = "0";
@@ -11352,12 +11257,11 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             dGioVaoTuDongQuaDemKiemTraLichTrinhVaoRa2 = default(DateTime);
                             DateTime dGioRaTuDongQuaDemKiemTraLichTrinhVaoRa2;
                             dGioRaTuDongQuaDemKiemTraLichTrinhVaoRa2 = default(DateTime);
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtTuDongQuaDem;
+                            new DataTable();
+                            DataTable dtTuDongQuaDem;
                             dtTuDongQuaDem = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                             for (int iTuDongQuaDem = 0; iTuDongQuaDem < dtTuDongQuaDem.Rows.Count; iTuDongQuaDem++)
                             {
-                                this.DGVDuLieuChamCongNguon.Rows.Add();
                                 iKiemTraLanChamLichTrinhVaoRa2++;
                                 if (iKiemTraLanChamLichTrinhVaoRa2 == 1)
                                 {
@@ -11408,10 +11312,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     {
                                         dGioVaoTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[5].Value = string.Format(this.sDinhDangThoiGian, dGioVaoTuDongQuaDem);
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTuDongQuaDem3;
+                                        DataTable dtNhanCaTuDongQuaDem3;
                                         dtNhanCaTuDongQuaDem3 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTuDongQuaDem3;
                                         iChiTietLichTrinhChoCaLamViecTuDongQuaDem3 = 0;
@@ -11426,8 +11330,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     kiemTraVao = 0;
                                                     kiemTraRa = 0;
                                                     this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem3.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem3][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem3].ToString();
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtTuDongQuaDemCa3;
+                                                    new DataTable();
+                                                    DataTable dtTuDongQuaDemCa3;
                                                     dtTuDongQuaDemCa3 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                     int iTuDongQuaDemCa3;
                                                     iTuDongQuaDemCa3 = 0;
@@ -11462,7 +11366,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         cellChiTietLichTrinhChoCaLamViecTuDongQuaDem3++;
                                                         continue;
                                                     }
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -11520,10 +11424,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     {
                                         dGioRaTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                         this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDongQuaDem);
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTuDongQuaDem2;
+                                        DataTable dtNhanCaTuDongQuaDem2;
                                         dtNhanCaTuDongQuaDem2 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTuDongQuaDem2;
                                         iChiTietLichTrinhChoCaLamViecTuDongQuaDem2 = 0;
@@ -11538,8 +11442,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     kiemTraVao = 0;
                                                     kiemTraRa = 0;
                                                     this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem2.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem2][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem2].ToString();
-                                                    new System.Data.DataTable();
-                                                    System.Data.DataTable dtTuDongQuaDemCa2;
+                                                    new DataTable();
+                                                    DataTable dtTuDongQuaDemCa2;
                                                     dtTuDongQuaDemCa2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                     int iTuDongQuaDemCa2;
                                                     iTuDongQuaDemCa2 = 0;
@@ -11578,7 +11482,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                         cellChiTietLichTrinhChoCaLamViecTuDongQuaDem2++;
                                                         continue;
                                                     }
-                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                    this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                     this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -11606,8 +11510,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 goto IL_375f9;
                                             IL_375f9:
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtCaLamViecTuDongQuaDem2;
+                                                new DataTable();
+                                                DataTable dtCaLamViecTuDongQuaDem2;
                                                 dtCaLamViecTuDongQuaDem2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 for (int iCaLamViecTuDongQuaDem2 = 0; iCaLamViecTuDongQuaDem2 < dtCaLamViecTuDongQuaDem2.Rows.Count; iCaLamViecTuDongQuaDem2++)
                                                 {
@@ -11874,7 +11778,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[1].Value = this.sTenNhanVien;
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                        this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[9].Value = "0";
@@ -11904,10 +11808,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     }
                                     dGioRaTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                     this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDongQuaDem);
-                                    new System.Data.DataTable();
+                                    new DataTable();
                                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                     this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                    System.Data.DataTable dtNhanCaTuDongQuaDem;
+                                    DataTable dtNhanCaTuDongQuaDem;
                                     dtNhanCaTuDongQuaDem = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                     int iChiTietLichTrinhChoCaLamViecTuDongQuaDem;
                                     iChiTietLichTrinhChoCaLamViecTuDongQuaDem = 0;
@@ -11924,8 +11828,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             kiemTraVao = 0;
                                             kiemTraRa = 0;
                                             this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem].ToString();
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtTuDongQuaDemCa;
+                                            new DataTable();
+                                            DataTable dtTuDongQuaDemCa;
                                             dtTuDongQuaDemCa = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                             int iTuDongQuaDemCa;
                                             iTuDongQuaDemCa = 0;
@@ -11964,7 +11868,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 cellChiTietLichTrinhChoCaLamViecTuDongQuaDem++;
                                                 continue;
                                             }
-                                            this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[4].Value = "***";
+                                            this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[4].Value = ca;
                                             this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[7].Value = "0";
                                             this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[8].Value = "0";
                                             this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[9].Value = "0";
@@ -11992,8 +11896,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         goto IL_3957f;
                                     IL_3957f:
                                         this.DGVTinhCong.Rows[addTuDongQuaDem].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                        new System.Data.DataTable();
-                                        System.Data.DataTable dtCaLamViecTuDongQuaDem;
+                                        new DataTable();
+                                        DataTable dtCaLamViecTuDongQuaDem;
                                         dtCaLamViecTuDongQuaDem = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                         for (int iCaLamViecTuDongQuaDem = 0; iCaLamViecTuDongQuaDem < dtCaLamViecTuDongQuaDem.Rows.Count; iCaLamViecTuDongQuaDem++)
                                         {
@@ -12255,8 +12159,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 dGioNgayHomTruoc2 = default(DateTime);
                                 DateTime dNgayTruocTuDongQuaDem;
                                 dNgayTruocTuDongQuaDem = Convert.ToDateTime(dt.AddDays(dem - 1).ToString());
-                                new System.Data.DataTable();
-                                System.Data.DataTable dtNgayTruocTuDongQuaDem;
+                                new DataTable();
+                                DataTable dtNgayTruocTuDongQuaDem;
                                 dtNgayTruocTuDongQuaDem = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), dNgayTruocTuDongQuaDem);
                                 for (int iNgayTruocTuDongQuaDem = 0; iNgayTruocTuDongQuaDem < dtNgayTruocTuDongQuaDem.Rows.Count; iNgayTruocTuDongQuaDem++)
                                 {
@@ -12270,10 +12174,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         dGioRaNgayTruocTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaNgayTruocTuDongQuaDem);
                                         demTuDongQuaDem--;
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTuDongQuaDem4;
+                                        DataTable dtNhanCaTuDongQuaDem4;
                                         dtNhanCaTuDongQuaDem4 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTuDongQuaDem4;
                                         iChiTietLichTrinhChoCaLamViecTuDongQuaDem4 = 0;
@@ -12290,8 +12194,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem4.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem4][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem4].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtTuDongQuaDemCa11;
+                                                new DataTable();
+                                                DataTable dtTuDongQuaDemCa11;
                                                 dtTuDongQuaDemCa11 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 int iTuDongQuaDemCa11;
                                                 iTuDongQuaDemCa11 = 0;
@@ -12334,7 +12238,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecTuDongQuaDem4++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[9].Value = "0";
@@ -12362,8 +12266,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_3b2d9;
                                         IL_3b2d9:
                                             this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtThongSoCaLamViecTuDongQuaDem;
+                                            new DataTable();
+                                            DataTable dtThongSoCaLamViecTuDongQuaDem;
                                             dtThongSoCaLamViecTuDongQuaDem = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                             for (int iThongSoCaLamViecTuDongQuaDem = 0; iThongSoCaLamViecTuDongQuaDem < dtThongSoCaLamViecTuDongQuaDem.Rows.Count; iThongSoCaLamViecTuDongQuaDem++)
                                             {
@@ -12660,10 +12564,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         dGioRaNgayTruocTuDongQuaDem2 = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                         this.DGVTinhCong.Rows[_nhanVien - 1].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaNgayTruocTuDongQuaDem2);
                                         demTuDongQuaDem--;
-                                        new System.Data.DataTable();
+                                        new DataTable();
                                         this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                         this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                        System.Data.DataTable dtNhanCaTuDongQuaDem5;
+                                        DataTable dtNhanCaTuDongQuaDem5;
                                         dtNhanCaTuDongQuaDem5 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                         int iChiTietLichTrinhChoCaLamViecTuDongQuaDem5;
                                         iChiTietLichTrinhChoCaLamViecTuDongQuaDem5 = 0;
@@ -12680,8 +12584,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem5.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem5][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem5].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtTuDongQuaDemCa12;
+                                                new DataTable();
+                                                DataTable dtTuDongQuaDemCa12;
                                                 dtTuDongQuaDemCa12 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 int iTuDongQuaDemCa12;
                                                 iTuDongQuaDemCa12 = 0;
@@ -12724,7 +12628,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecTuDongQuaDem5++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien - 1].Cells[9].Value = "0";
@@ -12752,8 +12656,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_3d1fa;
                                         IL_3d1fa:
                                             this.DGVTinhCong.Rows[_nhanVien - 1].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtThongSoCaLamViecTuDongQuaDem2;
+                                            new DataTable();
+                                            DataTable dtThongSoCaLamViecTuDongQuaDem2;
                                             dtThongSoCaLamViecTuDongQuaDem2 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                             for (int iThongSoCaLamViecTuDongQuaDem2 = 0; iThongSoCaLamViecTuDongQuaDem2 < dtThongSoCaLamViecTuDongQuaDem2.Rows.Count; iThongSoCaLamViecTuDongQuaDem2++)
                                             {
@@ -13057,10 +12961,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 {
                                     dGioVaoTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[5].Value = string.Format(this.sDinhDangThoiGian, dGioVaoTuDongQuaDem);
-                                    new System.Data.DataTable();
+                                    new DataTable();
                                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                     this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                    System.Data.DataTable dtNhanCaTuDongQuaDem8;
+                                    DataTable dtNhanCaTuDongQuaDem8;
                                     dtNhanCaTuDongQuaDem8 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                     int iChiTietLichTrinhChoCaLamViecTuDongQuaDem8;
                                     iChiTietLichTrinhChoCaLamViecTuDongQuaDem8 = 0;
@@ -13075,8 +12979,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem8.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem8][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem8].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtTuDongQuaDemCa8;
+                                                new DataTable();
+                                                DataTable dtTuDongQuaDemCa8;
                                                 dtTuDongQuaDemCa8 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 int iTuDongQuaDemCa8;
                                                 iTuDongQuaDemCa8 = 0;
@@ -13111,7 +13015,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecTuDongQuaDem8++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -13169,10 +13073,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 {
                                     dGioRaTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                     this.DGVTinhCong.Rows[_nhanVien].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDongQuaDem);
-                                    new System.Data.DataTable();
+                                    new DataTable();
                                     this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                     this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                    System.Data.DataTable dtNhanCaTuDongQuaDem7;
+                                    DataTable dtNhanCaTuDongQuaDem7;
                                     dtNhanCaTuDongQuaDem7 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                     int iChiTietLichTrinhChoCaLamViecTuDongQuaDem7;
                                     iChiTietLichTrinhChoCaLamViecTuDongQuaDem7 = 0;
@@ -13187,8 +13091,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                 kiemTraVao = 0;
                                                 kiemTraRa = 0;
                                                 this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem7.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem7][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem7].ToString();
-                                                new System.Data.DataTable();
-                                                System.Data.DataTable dtTuDongQuaDemCa6;
+                                                new DataTable();
+                                                DataTable dtTuDongQuaDemCa6;
                                                 dtTuDongQuaDemCa6 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                                 int iTuDongQuaDemCa6;
                                                 iTuDongQuaDemCa6 = 0;
@@ -13227,7 +13131,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                                     cellChiTietLichTrinhChoCaLamViecTuDongQuaDem7++;
                                                     continue;
                                                 }
-                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = "***";
+                                                this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = ca;
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[7].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[8].Value = "0";
                                                 this.DGVTinhCong.Rows[_nhanVien].Cells[9].Value = "0";
@@ -13255,8 +13159,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             goto IL_3fa13;
                                         IL_3fa13:
                                             this.DGVTinhCong.Rows[_nhanVien].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                            new System.Data.DataTable();
-                                            System.Data.DataTable dtCaLamViecTuDongQuaDem4;
+                                            new DataTable();
+                                            DataTable dtCaLamViecTuDongQuaDem4;
                                             dtCaLamViecTuDongQuaDem4 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                             for (int iCaLamViecTuDongQuaDem4 = 0; iCaLamViecTuDongQuaDem4 < dtCaLamViecTuDongQuaDem4.Rows.Count; iCaLamViecTuDongQuaDem4++)
                                             {
@@ -13523,7 +13427,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[1].Value = this.sTenNhanVien;
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[2].Value = this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString();
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[3].Value = DateTimeProgress.XuatThuTinhCong((int)dt.AddDays(dem).DayOfWeek);
-                                    this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[4].Value = "***";
+                                    this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[4].Value = ca;
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[7].Value = "0";
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[8].Value = "0";
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[9].Value = "0";
@@ -13553,10 +13457,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 }
                                 dGioRaTuDongQuaDem = Convert.ToDateTime(dtTuDongQuaDem.Rows[iTuDongQuaDem]["GioCham"].ToString());
                                 this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[6].Value = string.Format(this.sDinhDangThoiGian, dGioRaTuDongQuaDem);
-                                new System.Data.DataTable();
+                                new DataTable();
                                 this._chiTietLichTrinhChoCalamViecDTO.MaLichTrinhCaLamViec = sLTCCLVNhanVien;
                                 this._chiTietLichTrinhChoCalamViecDTO.Thu = sThu;
-                                System.Data.DataTable dtNhanCaTuDongQuaDem6;
+                                DataTable dtNhanCaTuDongQuaDem6;
                                 dtNhanCaTuDongQuaDem6 = this._chiTietLichTrinhChoCaLamViecBLL.ChiTietLichTrinhChoCaLamViecNhanCa(this._chiTietLichTrinhChoCalamViecDTO);
                                 int iChiTietLichTrinhChoCaLamViecTuDongQuaDem6;
                                 iChiTietLichTrinhChoCaLamViecTuDongQuaDem6 = 0;
@@ -13573,8 +13477,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                         kiemTraVao = 0;
                                         kiemTraRa = 0;
                                         this.sTuDongQuaDemMaCaLamViec = dtNhanCaTuDongQuaDem6.Rows[iChiTietLichTrinhChoCaLamViecTuDongQuaDem6][cellChiTietLichTrinhChoCaLamViecTuDongQuaDem6].ToString();
-                                        new System.Data.DataTable();
-                                        System.Data.DataTable dtTuDongQuaDemCa4;
+                                        new DataTable();
+                                        DataTable dtTuDongQuaDemCa4;
                                         dtTuDongQuaDemCa4 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                         int iTuDongQuaDemCa4;
                                         iTuDongQuaDemCa4 = 0;
@@ -13613,7 +13517,7 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                             cellChiTietLichTrinhChoCaLamViecTuDongQuaDem6++;
                                             continue;
                                         }
-                                        this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[4].Value = "***";
+                                        this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[4].Value = ca;
                                         this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[7].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[8].Value = "0";
                                         this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[9].Value = "0";
@@ -13641,8 +13545,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                     goto IL_41999;
                                 IL_41999:
                                     this.DGVTinhCong.Rows[addTuDongQuaDemB].Cells[4].Value = this.sTuDongQuaDemTenCaLamViec;
-                                    new System.Data.DataTable();
-                                    System.Data.DataTable dtCaLamViecTuDongQuaDem3;
+                                    new DataTable();
+                                    DataTable dtCaLamViecTuDongQuaDem3;
                                     dtCaLamViecTuDongQuaDem3 = this._caLamViecBLL.CaLamViecGetByMaCaLamViec(sTuDongQuaDemMaCaLamViec);
                                     for (int iCaLamViecTuDongQuaDem3 = 0; iCaLamViecTuDongQuaDem3 < dtCaLamViecTuDongQuaDem3.Rows.Count; iCaLamViecTuDongQuaDem3++)
                                     {
@@ -13966,13 +13870,13 @@ namespace TENTAC_HRM.Forms.BaoBieu
                     }
                     if (iKiemTraSapXepCa == 0)
                     {
-                        new System.Data.DataTable();
-                        System.Data.DataTable dtKiemTraChamCong;
+                        new DataTable();
+                        DataTable dtKiemTraChamCong;
                         dtKiemTraChamCong = this._checkInOutBLL.getCheckInOutByMaChamCongAndNgayCham(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                         int iKiemTraNghi;
                         iKiemTraNghi = 0;
-                        new System.Data.DataTable();
-                        System.Data.DataTable dtNgayLe;
+                        new DataTable();
+                        DataTable dtNgayLe;
                         dtNgayLe = this._ngayLeBLL.NgayLeGetTinhCong(Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                         for (int iNgayLe = 0; iNgayLe < dtNgayLe.Rows.Count; iNgayLe++)
                         {
@@ -14017,8 +13921,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 iKiemTraNghi++;
                             }
                         }
-                        new System.Data.DataTable();
-                        System.Data.DataTable dtCongTac;
+                        new DataTable();
+                        DataTable dtCongTac;
                         dtCongTac = this._chiTietDiCongTacBLL.ChiTietDiCongTacGetTinhCong(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                         for (int iCongTac = 0; iCongTac < dtCongTac.Rows.Count; iCongTac++)
                         {
@@ -14055,8 +13959,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 iKiemTraNghi++;
                             }
                         }
-                        new System.Data.DataTable();
-                        System.Data.DataTable dtPhepNam;
+                        new DataTable();
+                        DataTable dtPhepNam;
                         dtPhepNam = this._phepNamBLL.PhepNamGetTinhCong(Convert.ToInt32(this.sMaChamCong), Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString()));
                         for (int iPhepNam = 0; iPhepNam < dtPhepNam.Rows.Count; iPhepNam++)
                         {
@@ -14089,10 +13993,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 iKiemTraNghi++;
                             }
                         }
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._khaiBaoVangChoNhanVienDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                         DateTime NgayThang = Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString());
-                        System.Data.DataTable dtNhanVienVang;
+                        DataTable dtNhanVienVang;
                         dtNhanVienVang = this._khaiBaoVangChoNhanVienBLL.CacLoaiVangGetTinhCong(Convert.ToInt32(this.sMaChamCong), NgayThang);
                         for (int iLoaiVangNhanVien = 0; iLoaiVangNhanVien < dtNhanVienVang.Rows.Count; iLoaiVangNhanVien++)
                         {
@@ -14114,8 +14018,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                                 }
                                 string sMaCacLoaiVang;
                                 sMaCacLoaiVang = dtNhanVienVang.Rows[iLoaiVangNhanVien]["MaCacLoaiVang"].ToString();
-                                new System.Data.DataTable();
-                                System.Data.DataTable dtCacLoaiVang;
+                                new DataTable();
+                                DataTable dtCacLoaiVang;
                                 dtCacLoaiVang = this._cacLoaiVangBLL.CacLoaiVangGetByMaCacLoaiVang(sMaCacLoaiVang);
                                 for (int iCacLoaiVang = 0; iCacLoaiVang < dtCacLoaiVang.Rows.Count; iCacLoaiVang++)
                                 {
@@ -14143,8 +14047,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                             }
                             string sMaCacLoaiVang2;
                             sMaCacLoaiVang2 = dtNhanVienVang.Rows[iLoaiVangNhanVien]["MaCacLoaiVang"].ToString();
-                            new System.Data.DataTable();
-                            System.Data.DataTable dtCacLoaiVang2;
+                            new DataTable();
+                            DataTable dtCacLoaiVang2;
                             dtCacLoaiVang2 = this._cacLoaiVangBLL.CacLoaiVangGetByMaCacLoaiVang(sMaCacLoaiVang2);
                             for (int iCacLoaiVang2 = 0; iCacLoaiVang2 < dtCacLoaiVang2.Rows.Count; iCacLoaiVang2++)
                             {
@@ -14162,48 +14066,48 @@ namespace TENTAC_HRM.Forms.BaoBieu
                     dem++;
                     if (this.checkBoxCoTinhLuong.Checked)
                     {
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._chiTietPhuCapNhanVienDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                         this._chiTietPhuCapNhanVienDTO.Ngay = Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString());
                         this._chiTietPhuCapNhanVienDTO.KyHieuPhuCap = "PCTC";
-                        System.Data.DataTable dtChiTietPhuCapTienCom;
+                        DataTable dtChiTietPhuCapTienCom;
                         dtChiTietPhuCapTienCom = this._chiTietPhuCapNhanVienBLL.ChiTietPhuCapNhanVienGetByMaChamCongAndNgayAndKyHieuPhuCap(this._chiTietPhuCapNhanVienDTO);
                         for (int iChiTietPhuCapTienCom = 0; iChiTietPhuCapTienCom < dtChiTietPhuCapTienCom.Rows.Count; iChiTietPhuCapTienCom++)
                         {
                             this.dTongTienPhuCapTienCom += Convert.ToDouble(dtChiTietPhuCapTienCom.Rows[iChiTietPhuCapTienCom]["SoTien"].ToString());
                         }
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._chiTietPhuCapNhanVienDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                         this._chiTietPhuCapNhanVienDTO.Ngay = Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString());
                         this._chiTietPhuCapNhanVienDTO.KyHieuPhuCap = "PCK";
-                        System.Data.DataTable dtChiTietPhuCapKhac;
+                        DataTable dtChiTietPhuCapKhac;
                         dtChiTietPhuCapKhac = this._chiTietPhuCapNhanVienBLL.ChiTietPhuCapNhanVienGetByMaChamCongAndNgayAndKyHieuPhuCap(this._chiTietPhuCapNhanVienDTO);
                         for (int iChiTietPhuCapKhac = 0; iChiTietPhuCapKhac < dtChiTietPhuCapKhac.Rows.Count; iChiTietPhuCapKhac++)
                         {
                             this.dTongTienPhuCapKhac += Convert.ToDouble(dtChiTietPhuCapKhac.Rows[iChiTietPhuCapKhac]["SoTien"].ToString());
                         }
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._chiTietTamUngLuongDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                         this._chiTietTamUngLuongDTO.NgayTamUng = Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString());
-                        System.Data.DataTable dtChiTietTamUngLuong;
+                        DataTable dtChiTietTamUngLuong;
                         dtChiTietTamUngLuong = this._chiTietTamUngLuongBLL.ChiTietTamUngLuongGetMaChamCongAndNgayTamUng(this._chiTietTamUngLuongDTO);
                         for (int iChiTietTamUngLuong = 0; iChiTietTamUngLuong < dtChiTietTamUngLuong.Rows.Count; iChiTietTamUngLuong++)
                         {
                             this.dTongTienTamUng += Convert.ToDouble(dtChiTietTamUngLuong.Rows[iChiTietTamUngLuong]["SoTien"].ToString());
                         }
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._viPhamDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                         this._viPhamDTO.NgayThang = Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString());
-                        System.Data.DataTable dtChiTietViPham;
+                        DataTable dtChiTietViPham;
                         dtChiTietViPham = this._viPhamBLL.ViPhamGetMaChamCongAndNgayThang(this._viPhamDTO);
                         for (int iChiTietViPham = 0; iChiTietViPham < dtChiTietViPham.Rows.Count; iChiTietViPham++)
                         {
                             this.dTongTienViPham += Convert.ToDouble(dtChiTietViPham.Rows[iChiTietViPham]["TienPhat"].ToString());
                         }
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._thuongDTO.MaChamCong = Convert.ToInt32(this.sMaChamCong);
                         this._thuongDTO.NgayThuong = Convert.ToDateTime(this.DGVTinhCong.Rows[_nhanVien].Cells[2].Value.ToString());
-                        System.Data.DataTable dtChiTietThuong;
+                        DataTable dtChiTietThuong;
                         dtChiTietThuong = this._thuongBLL.ThuongGetByMaChamCongAndNgayThuong(this._thuongDTO);
                         for (int iChiTietThuong = 0; iChiTietThuong < dtChiTietThuong.Rows.Count; iChiTietThuong++)
                         {
@@ -14246,10 +14150,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
             for (int iLuuTinhCong = 0; iLuuTinhCong < this.DGVTinhCong.Rows.Count; iLuuTinhCong++)
             {
                 _loadTinhCong.lbDangTinh.Text = "Đang lưu tính công";
-                System.Windows.Forms.Application.DoEvents();
+                Application.DoEvents();
                 this._tinhCongDTO.MaNhanVien = this.DGVTinhCong.Rows[iLuuTinhCong].Cells[0].Value.ToString();
                 this._tinhCongDTO.TenNhanVien = this.DGVTinhCong.Rows[iLuuTinhCong].Cells[1].Value.ToString();
-                this._tinhCongDTO.Ngay = Convert.ToDateTime(this.DGVTinhCong.Rows[iLuuTinhCong].Cells[2].Value.ToString());
+                this._tinhCongDTO.Ngay = DateTime.Parse(this.DGVTinhCong.Rows[iLuuTinhCong].Cells[2].Value.ToString());
                 this._tinhCongDTO.Thu = this.DGVTinhCong.Rows[iLuuTinhCong].Cells[3].Value.ToString();
                 if (this.DGVTinhCong.Rows[iLuuTinhCong].Cells[4].Value == null)
                 {
@@ -14403,9 +14307,9 @@ namespace TENTAC_HRM.Forms.BaoBieu
                 System.Windows.Forms.Application.DoEvents();
                 int iMaChamCongTinhCongTinhLuong;
                 iMaChamCongTinhCongTinhLuong = 0;
-                new System.Data.DataTable();
+                new DataTable();
                 this._tinhCongDTO.Ngay = Convert.ToDateTime(this.dateTimeTuNgay.Text);
-                System.Data.DataTable dtTinhCongTinhLuong;
+                DataTable dtTinhCongTinhLuong;
                 dtTinhCongTinhLuong = this._tinhCongBLL.TinhCongGetNgay(this._tinhCongDTO);
                 for (int iTinhCongTinhLuong = 0; iTinhCongTinhLuong < dtTinhCongTinhLuong.Rows.Count; iTinhCongTinhLuong++)
                 {
@@ -14423,8 +14327,8 @@ namespace TENTAC_HRM.Forms.BaoBieu
                         this.DGVChiTietLuong.Rows[addLuongNhanVien].Cells[2].Value = iMaChamCongTinhCongTinhLuong;
                         double dTienLuongHopDongNhanVien;
                         dTienLuongHopDongNhanVien = 0.0;
-                        new System.Data.DataTable();
-                        System.Data.DataTable dtNhanVienGetTinhLuong;
+                        new DataTable();
+                        DataTable dtNhanVienGetTinhLuong;
                         dtNhanVienGetTinhLuong = this._nhanVienBLL.NhanVienGetByMaChamCong(iMaChamCongTinhCongTinhLuong.ToString());
                         for (int iNhanVienGetTinhLuong = 0; iNhanVienGetTinhLuong < dtNhanVienGetTinhLuong.Rows.Count; iNhanVienGetTinhLuong++)
                         {
@@ -14440,9 +14344,9 @@ namespace TENTAC_HRM.Forms.BaoBieu
                         dTongCongLamDuocTinhLuong = 0.0;
                         double dTongTangCaLamDuocTinhLuong;
                         dTongTangCaLamDuocTinhLuong = 0.0;
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._tinhCongDTO.MaChamCong = iMaChamCongTinhCongTinhLuong;
-                        System.Data.DataTable dtNhanVienChiTietTinhLuong;
+                        DataTable dtNhanVienChiTietTinhLuong;
                         dtNhanVienChiTietTinhLuong = this._tinhCongBLL.TinhCongGetByMaChamCong(this._tinhCongDTO);
                         for (int iNhanVienChiTietTinhLuong = 0; iNhanVienChiTietTinhLuong < dtNhanVienChiTietTinhLuong.Rows.Count; iNhanVienChiTietTinhLuong++)
                         {
@@ -14467,9 +14371,9 @@ namespace TENTAC_HRM.Forms.BaoBieu
                         dTongTienViPhamTinhLuong = 0.0;
                         double dTongTienThuongTinhLuong;
                         dTongTienThuongTinhLuong = 0.0;
-                        new System.Data.DataTable();
+                        new DataTable();
                         this._chiTietCongTruLuongDTO.MaChamCong = iMaChamCongTinhCongTinhLuong;
-                        System.Data.DataTable dtCongTruLuongPhuCapTienCom;
+                        DataTable dtCongTruLuongPhuCapTienCom;
                         dtCongTruLuongPhuCapTienCom = this._chiTietCongTruLuongBLL.ChiTietCongTruLuongGetByMaChamCong(iMaChamCongTinhCongTinhLuong);
                         for (int iCongTruLuongPhuCapTienCom = 0; iCongTruLuongPhuCapTienCom < dtCongTruLuongPhuCapTienCom.Rows.Count; iCongTruLuongPhuCapTienCom++)
                         {
@@ -14753,59 +14657,59 @@ namespace TENTAC_HRM.Forms.BaoBieu
             sListView.Items.Add(new ListViewItem(sCaption, sIcon));
         }
 
-        private void loadListViewBaoCao()
-        {
-            setListview(listViewBaoCao, "Chi tiết từng người từng ngày", 0, imageBaoCao);
-            setListview(listViewBaoCao, "Chi tiết thời gian làm việc", 1, imageBaoCao);
-            setListview(listViewBaoCao, "Chi tiết giờ và tăng ca kèm kí hiệu", 2, imageBaoCao);
-            setListview(listViewBaoCao, "Xuất lưới", 3, imageBaoCao);
-            setListview(listViewBaoCao, "Thống kê tháng (ký hiệu)", 4, imageBaoCao);
-            setListview(listViewBaoCao, "Thống kê tháng (công)", 5, imageBaoCao);
-            setListview(listViewBaoCao, "Thống kê tháng (giờ)", 6, imageBaoCao);
-            setListview(listViewBaoCao, "Thống kê tháng (giờ và tăng ca)", 9, imageBaoCao);
-            setListview(listViewBaoCao, "Bảng Lương Tổng Hợp", 7, imageBaoCao);
-            setListview(listViewBaoCao, "Bảng lương từng nhân viên", 8, imageBaoCao);
-            setListview(listViewBaoCao, "Tổng Hợp Tháng", 10, imageBaoCao);
-        }
+        //private void loadListViewBaoCao()
+        //{
+        //    setListview(listViewBaoCao, "Chi tiết từng người từng ngày", 0, imageBaoCao);
+        //    setListview(listViewBaoCao, "Chi tiết thời gian làm việc", 1, imageBaoCao);
+        //    setListview(listViewBaoCao, "Chi tiết giờ và tăng ca kèm kí hiệu", 2, imageBaoCao);
+        //    setListview(listViewBaoCao, "Xuất lưới", 3, imageBaoCao);
+        //    setListview(listViewBaoCao, "Thống kê tháng (ký hiệu)", 4, imageBaoCao);
+        //    setListview(listViewBaoCao, "Thống kê tháng (công)", 5, imageBaoCao);
+        //    setListview(listViewBaoCao, "Thống kê tháng (giờ)", 6, imageBaoCao);
+        //    setListview(listViewBaoCao, "Thống kê tháng (giờ và tăng ca)", 9, imageBaoCao);
+        //    setListview(listViewBaoCao, "Bảng Lương Tổng Hợp", 7, imageBaoCao);
+        //    setListview(listViewBaoCao, "Bảng lương từng nhân viên", 8, imageBaoCao);
+        //    setListview(listViewBaoCao, "Tổng Hợp Tháng", 10, imageBaoCao);
+        //}
 
         private void listViewBaoCao_Click(object sender, EventArgs e)
         {
-            //switch (listViewBaoCao.Items[listViewBaoCao.FocusedItem.Index].ImageIndex.ToString())
-            //{
-            //    case "0":
-            //        ChiTietTungNguoiTungNgay_Click(sender, e);
-            //        break;
-            //    case "1":
-            //        ChiTietThoiGianLamViec_Click(sender, e);
-            //        break;
-            //    case "2":
-            //        ThongKeThangCongPB_Click(sender, e);
-            //        break;
-            //    case "3":
-            //        XuatLuoi_Click(sender, e);
-            //        break;
-            //    case "4":
-            //        ThongKeThangKyHieu_Click(sender, e);
-            //        break;
-            //    case "5":
-            //        ThongKeThangCong_Click(sender, e);
-            //        break;
-            //    case "6":
-            //        ThongKeThangGio_Click(sender, e);
-            //        break;
-            //    case "7":
-            //        TienLuong_Click(sender, e);
-            //        break;
-            //    case "8":
-            //        BangLuongTungNhanVien_Click(sender, e);
-            //        break;
-            //    case "9":
-            //        ThongKeGioVaTC_Click(sender, e);
-            //        break;
-            //    case "10":
-            //        TongHop_Click(sender, e);
-            //        break;
-            //}
+            switch (listViewBaoCao.Items[listViewBaoCao.FocusedItem.Index].ImageIndex.ToString())
+            {
+                case "0":
+                    ChiTietTungNguoiTungNgay_Click(sender, e);
+                    break;
+                case "1":
+                    ChiTietThoiGianLamViec_Click(sender, e);
+                    break;
+                case "2":
+                    ThongKeThangCongPB_Click(sender, e);
+                    break;
+                case "3":
+                    XuatLuoi_Click(sender, e);
+                    break;
+                case "4":
+                    ThongKeThangKyHieu_Click(sender, e);
+                    break;
+                case "5":
+                    ThongKeThangCong_Click(sender, e);
+                    break;
+                case "6":
+                    ThongKeThangGio_Click(sender, e);
+                    break;
+                case "7":
+                    TienLuong_Click(sender, e);
+                    break;
+                case "8":
+                    BangLuongTungNhanVien_Click(sender, e);
+                    break;
+                case "9":
+                    ThongKeGioVaTC_Click(sender, e);
+                    break;
+                case "10":
+                    TongHop_Click(sender, e);
+                    break;
+            }
         }
 
         private void BangLuongTungNhanVien_Click(object sender, EventArgs e)
@@ -18643,22 +18547,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private void tabControl2_Click(object sender, EventArgs e)
         {
-        }
-
-        private void cbThaoTacThem_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!this.cbThaoTacThem.Checked)
-            {
-                this.button1.Visible = false;
-                this.button2.Visible = false;
-                this.btnSuaGio.Visible = false;
-            }
-            else
-            {
-                this.button1.Visible = true;
-                this.button2.Visible = true;
-                this.btnSuaGio.Visible = true;
-            }
         }
 
         private void ThemGioToolStripMenuItem_Click(object sender, EventArgs e)

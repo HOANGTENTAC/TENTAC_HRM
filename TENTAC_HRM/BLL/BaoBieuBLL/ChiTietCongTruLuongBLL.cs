@@ -10,25 +10,21 @@ namespace TENTAC_HRM.BLL.BaoBieuBLL
     {
         public void ChiTietCongTruLuongInsert(ChiTietCongTruLuongModel _chiTietCongTruLuongDTO)
         {
-            List<SqlParameter> _sqlParameter;
-            _sqlParameter = new List<SqlParameter>();
-            _sqlParameter.Add(new SqlParameter("@MaChamCong", _chiTietCongTruLuongDTO.MaChamCong));
-            _sqlParameter.Add(new SqlParameter("@ChiTietPhuCapCom", _chiTietCongTruLuongDTO.ChiTietPhuCapCom));
-            _sqlParameter.Add(new SqlParameter("@ChiTietPhuCapKhac", _chiTietCongTruLuongDTO.ChiTietPhuCapKhac));
-            _sqlParameter.Add(new SqlParameter("@ChiTietTamUngLuong", _chiTietCongTruLuongDTO.ChiTietTamUngLuong));
-            _sqlParameter.Add(new SqlParameter("@ChiTietViPham", _chiTietCongTruLuongDTO.ChiTietViPham));
-            _sqlParameter.Add(new SqlParameter("@ChiTietThuong", _chiTietCongTruLuongDTO.ChiTietThuong));
-            base.Procedure("ChiTietCongTruLuong_add", _sqlParameter);
+            string sql = $@"insert into MITACOSQL.dbo.[ChiTietCongTruLuong](MaChamCong,ChiTietPhuCapCom,ChiTietPhuCapKhac,ChiTietTamUngLuong,ChiTietViPham,ChiTietThuong)  
+                            values('{_chiTietCongTruLuongDTO.MaChamCong}','{_chiTietCongTruLuongDTO.ChiTietPhuCapCom}',
+                                    '{_chiTietCongTruLuongDTO.ChiTietPhuCapKhac}','{_chiTietCongTruLuongDTO.ChiTietTamUngLuong}',
+                                    '{_chiTietCongTruLuongDTO.ChiTietViPham}','{_chiTietCongTruLuongDTO.ChiTietThuong}')";
+            SQLHelper.ExecuteSql(sql);
         }
 
         public void ChiTietCongTruLuongDelete()
         {
-            SQLHelper.ExecuteSql("TRUNCATE TABLE  MITACOSQL.dbo.[ChiTietCongTruLuong]");
+            SQLHelper.ExecuteSql("TRUNCATE TABLE MITACOSQL.dbo.[ChiTietCongTruLuong]");
         }
 
         public DataTable ChiTietCongTruLuongGetByMaChamCong(int machamcong)
         {
-            return SQLHelper.ExecuteDt($"select * from  MITACOSQL.dbo.[ChiTietCongTruLuong] where MaChamCong = '{machamcong}'");
+            return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[ChiTietCongTruLuong] where MaChamCong = '{machamcong}'");
         }
     }
 }

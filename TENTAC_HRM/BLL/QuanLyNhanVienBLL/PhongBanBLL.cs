@@ -6,18 +6,18 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
 {
     internal class PhongBanBLL : Provider
     {
-        public DataTable GETPHONGBANTREEVIEW(PhongBanDTO _phongBanDTO)
+        public DataTable GETPHONGBANTREEVIEW(PhongBanModel _phongBanDTO)
         {
-            string sql = $"select * from  MITACOSQL.dbo.[PHONGBAN] where MaKhuVuc='{_phongBanDTO.MaKhuVuc}' ";
+            string sql = $"select * from MITACOSQL.dbo.[PHONGBAN] where MaKhuVuc='{_phongBanDTO.MaKhuVuc}' ";
             return SQLHelper.ExecuteDt(sql);
         }
 
-        public DataTable PhongBanGetTreeView(PhongBanDTO _phongBanDTO)
+        public DataTable PhongBanGetTreeView(PhongBanModel _phongBanDTO)
         {
             string sql = $"select * from MITACOSQL.dbo.[PhongBan] where TenPhongBan = '{_phongBanDTO.TenPhongBan}'";
             return SQLHelper.ExecuteDt(sql);
         }
-        public DataTable getTenPhongBanByMaPhongBan(PhongBanDTO _phongBanDTO)
+        public DataTable getTenPhongBanByMaPhongBan(PhongBanModel _phongBanDTO)
         {
             string sql = $"select * from MITACOSQL.dbo.[PHONGBAN] where MaPhongBan = '{_phongBanDTO.MaPhongBan}'";
             return SQLHelper.ExecuteDt(sql);

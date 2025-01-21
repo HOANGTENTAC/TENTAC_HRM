@@ -6,7 +6,7 @@ using TENTAC_HRM.Bll.MayChamCong;
 using TENTAC_HRM.BLL.QuanLyNhanVienBLL;
 using TENTAC_HRM.Common;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Models;
+using TENTAC_HRM.Models.QuanLyNhanVienModel;
 using zkemkeeper;
 
 namespace TENTAC_HRM.Forms.MayChamCong
@@ -15,13 +15,23 @@ namespace TENTAC_HRM.Forms.MayChamCong
     {
         DataProvider provider = new DataProvider();
         private NhanVienBLL _nhanVienBLL = new NhanVienBLL();
-
-        private Nhanvien_model _nhanVienDTO = new Nhanvien_model();
-
+        private KhuVucBLL _khuVucBLL = new KhuVucBLL();
+        private KhuVucModel _khuVucDTO = new KhuVucModel();
+        private NhanVienModel _nhanVienDTO = new NhanVienModel();
+        private CongTyBLL _congTyBLL = new CongTyBLL();
+        private CongTyModel _congTyDTO = new CongTyModel();
         private MayChamCongBLL _mayChamCongBLL = new MayChamCongBLL();
-
+        private PhongBanBLL _phongBanBLL = new PhongBanBLL();
+        private PhongBanModel _phongBanDTO = new PhongBanModel();
+        private ChucVuModel _chucVuDTO = new ChucVuModel();
+        private ChucVuBLL _chucVuBLL = new ChucVuBLL();
         public CZKEMClass axCZKEM1 = new CZKEMClass();
 
+        private string sMaPhongBanTreeView;
+        private string sMaCongTyTreeView;
+        private string sMaKhuVucTreeView;
+        private string sMaChucVuTreeView;
+        private string _tenNode;
         public bool _bIsConnected;
 
         public int _iMachineNumber;
@@ -116,11 +126,11 @@ namespace TENTAC_HRM.Forms.MayChamCong
             for (int iNhanVien = 0; iNhanVien < dtNhanVien.Rows.Count; iNhanVien++)
             {
                 int addNhanVien = dgv_nhanvien.Rows.Add();
-                dgv_nhanvien.Rows[addNhanVien].Cells[1].Value = dtNhanVien.Rows[iNhanVien]["ma_nhan_vien"].ToString();
-                dgv_nhanvien.Rows[addNhanVien].Cells[2].Value = dtNhanVien.Rows[iNhanVien]["ho_ten"].ToString();
-                dgv_nhanvien.Rows[addNhanVien].Cells[3].Value = dtNhanVien.Rows[iNhanVien]["ma_cham_cong"].ToString();
-                dgv_nhanvien.Rows[addNhanVien].Cells[4].Value = dtNhanVien.Rows[iNhanVien]["ten_cham_cong"].ToString();
-                dgv_nhanvien.Rows[addNhanVien].Cells[5].Value = dtNhanVien.Rows[iNhanVien]["ma_the"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[1].Value = dtNhanVien.Rows[iNhanVien]["MaNhanVien"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[2].Value = dtNhanVien.Rows[iNhanVien]["TenNhanVien"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[3].Value = dtNhanVien.Rows[iNhanVien]["MaChamCong"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[4].Value = dtNhanVien.Rows[iNhanVien]["TenChamCong"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[5].Value = dtNhanVien.Rows[iNhanVien]["MaThe"].ToString();
                 demNhanVien++;
             }
         }
@@ -137,55 +147,50 @@ namespace TENTAC_HRM.Forms.MayChamCong
         }
         private void load_treeview()
         {
-            string sql_nv_nghiviec_dv = "select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 2";
-            DataTable dt_nv_nghiviec_dv = new DataTable();
-            dt_nv_nghiviec_dv = SQLHelper.ExecuteDt(sql_nv_nghiviec_dv);
-            for (int i = 0; i < dt_nv_nghiviec_dv.Rows.Count; i++)
+            DataTable dtCongTy = _congTyBLL.showThongTinCongTy(_congTyDTO);
+            for (int i = 0; i < dtCongTy.Rows.Count; i++)
             {
-                TreeNode treenv_nghiviec_dv = new TreeNode();
-                treenv_nghiviec_dv.Text = dt_nv_nghiviec_dv.Rows[i][1].ToString();
-                treenv_nghiviec_dv.Tag = dt_nv_nghiviec_dv.Rows[i][0].ToString();
-                trv_sodoquanly.Nodes[1].Nodes.Add(treenv_nghiviec_dv);
-
-                string sql_phongban_nghiviec = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where ma_phong_ban_root = '{0}'", dt_nv_nghiviec_dv.Rows[i]["ma_phong_ban"].ToString());
-                DataTable dt_phongban_nghiviec = new DataTable();
-                dt_phongban_nghiviec = SQLHelper.ExecuteDt(sql_phongban_nghiviec);
-                for (int j = 0; j < dt_phongban_nghiviec.Rows.Count; j++)
+                TreeNode treeCongTy = new TreeNode()
                 {
-                    TreeNode treephongban_nghiviec = new TreeNode();
-                    treephongban_nghiviec.Text = dt_phongban_nghiviec.Rows[j][1].ToString();
-                    treephongban_nghiviec.Tag = dt_phongban_nghiviec.Rows[j][0].ToString();
-                    trv_sodoquanly.Nodes[1].Nodes[i].Nodes.Add(treephongban_nghiviec);
-                }
-            }
-            string sql = "select ma_phong_ban,ten_phong_ban from phong_ban where id_loai_phong_ban = 1";
-            DataTable dt_cty = new DataTable();
-            dt_cty = SQLHelper.ExecuteDt(sql);
-            for (int i = 0; i < dt_cty.Rows.Count; i++)
-            {
-                TreeNode treeCongTy = new TreeNode();
-                treeCongTy.Text = dt_cty.Rows[i][1].ToString();
-                treeCongTy.Tag = "ma_cty_" + dt_cty.Rows[i][0].ToString();
+                    Text = dtCongTy.Rows[i][1].ToString(),
+                    Tag = dtCongTy.Rows[i][0].ToString()
+                };
                 trv_sodoquanly.Nodes.Add(treeCongTy);
-                string sql_khuvuc = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where ma_phong_ban_root = '{0}'", dt_cty.Rows[i]["ma_phong_ban"].ToString());
-                DataTable dt_khuvuc = new DataTable();
-                dt_khuvuc = SQLHelper.ExecuteDt(sql_khuvuc);
-                for (int j = 0; j < dt_khuvuc.Rows.Count; j++)
+                _khuVucDTO.MaCongTy = dtCongTy.Rows[i]["MaCongTy"].ToString();
+                DataTable dtKhuVuc = _khuVucBLL.GETKHUVUCTREEVIEW(_khuVucDTO);
+                for (int j = 0; j < dtKhuVuc.Rows.Count; j++)
                 {
-                    TreeNode treekhuvuc = new TreeNode();
-                    treekhuvuc.Text = dt_khuvuc.Rows[j][1].ToString();
-                    treekhuvuc.Tag = "ma_khuvuc_" + dt_khuvuc.Rows[j][0].ToString();
-                    trv_sodoquanly.Nodes[i + 2].Nodes.Add(treekhuvuc);
-
-                    string sql_phongban = string.Format("select ma_phong_ban,ten_phong_ban from phong_ban where ma_phong_ban_root = '{0}'", dt_khuvuc.Rows[j]["ma_phong_ban"].ToString());
-                    DataTable dt_phongban = new DataTable();
-                    dt_phongban = SQLHelper.ExecuteDt(sql_phongban);
-                    for (int z = 0; z < dt_phongban.Rows.Count; z++)
+                    TreeNode treeKhuVuc = new TreeNode()
                     {
-                        TreeNode treephongban = new TreeNode();
-                        treephongban.Text = dt_phongban.Rows[z][1].ToString();
-                        treephongban.Tag = dt_phongban.Rows[z][0].ToString();
-                        trv_sodoquanly.Nodes[i + 2].Nodes[j].Nodes.Add(treephongban);
+                        Text = dtKhuVuc.Rows[j][2].ToString(),
+                        Tag = dtKhuVuc.Rows[j][0].ToString()
+                    };
+                    trv_sodoquanly.Nodes[i + 0].Nodes.Add(treeKhuVuc);
+                    _phongBanDTO.MaKhuVuc = dtKhuVuc.Rows[j]["MaKhuVuc"].ToString();
+                    DataTable dtPhongBan = _phongBanBLL.GETPHONGBANTREEVIEW(_phongBanDTO);
+
+                    for (int z = 0; z < dtPhongBan.Rows.Count; z++)
+                    {
+                        TreeNode treePhongBan = new TreeNode()
+                        {
+                            Text = dtPhongBan.Rows[z][3].ToString(),
+                            Tag = dtPhongBan.Rows[z][0].ToString()
+                        };
+
+                        trv_sodoquanly.Nodes[i + 0].Nodes[j].Nodes.Add(treePhongBan);
+                        _chucVuDTO.MaPhongBan = dtPhongBan.Rows[z]["MaPhongBan"].ToString();
+                        DataTable dtChucVu = _chucVuBLL.GETCHUCVUTREEVIEW(_chucVuDTO);
+                        for (int v = 0; v < dtChucVu.Rows.Count; v++)
+                        {
+                            TreeNode treeChucVu = new TreeNode()
+                            {
+                                Text = dtChucVu.Rows[v][4].ToString(),
+                                Tag = dtChucVu.Rows[v][0].ToString()
+                            };
+
+                            trv_sodoquanly.Nodes[i + 0].Nodes[j].Nodes[z].Nodes.Add(treeChucVu);
+                            _chucVuDTO.MaChucVu = dtChucVu.Rows[v]["MaChucVu"].ToString();
+                        }
                     }
                 }
             }
@@ -221,17 +226,17 @@ namespace TENTAC_HRM.Forms.MayChamCong
         {
             dgv_nhanvien.Rows.Clear();
             DataTable dtSearch = new DataTable();
-            _nhanVienDTO.Ma_so_value = txt_TimMa.Text;
-            _nhanVienDTO.Ho_ten_value = txt_TimMa.Text;
+            _nhanVienDTO.MaNhanVien = txt_TimMa.Text;
+            _nhanVienDTO.TenNhanVien = txt_TimMa.Text;
             dtSearch = _nhanVienBLL.NhanVienSearchTaiNhanVienLenMCC(_nhanVienDTO);
             for (int iSearch = 0; iSearch < dtSearch.Rows.Count; iSearch++)
             {
                 int addSearch = dgv_nhanvien.Rows.Add();
-                dgv_nhanvien.Rows[addSearch].Cells[1].Value = dtSearch.Rows[iSearch]["ma_nhan_vien"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[2].Value = dtSearch.Rows[iSearch]["ho_ten"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[3].Value = dtSearch.Rows[iSearch]["ma_cham_cong"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[4].Value = dtSearch.Rows[iSearch]["ten_cham_cong"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[5].Value = dtSearch.Rows[iSearch]["ma_the"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[1].Value = dtSearch.Rows[iSearch]["MaNhanVien"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[2].Value = dtSearch.Rows[iSearch]["TenNhanVien"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[3].Value = dtSearch.Rows[iSearch]["MaChamCong"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[4].Value = dtSearch.Rows[iSearch]["TenChamCong"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[5].Value = dtSearch.Rows[iSearch]["MaThe"].ToString();
             }
         }
 
@@ -517,51 +522,67 @@ namespace TENTAC_HRM.Forms.MayChamCong
             int demNhanVien = 0;
             dgv_nhanvien.Rows.Clear();
             DataTable dtSearch = new DataTable();
-            _nhanVienDTO.Ma_so_value = txt_TimMa.Texts;
-            _nhanVienDTO.Ho_ten_value = txt_TimMa.Texts;
+            _nhanVienDTO.MaNhanVien = txt_TimMa.Texts;
+            _nhanVienDTO.TenNhanVien = txt_TimMa.Texts;
             dtSearch = _nhanVienBLL.NhanVienSearchTaiNhanVienLenMCC(_nhanVienDTO);
             for (int iSearch = 0; iSearch < dtSearch.Rows.Count; iSearch++)
             {
                 int addSearch = dgv_nhanvien.Rows.Add();
-                dgv_nhanvien.Rows[addSearch].Cells[1].Value = dtSearch.Rows[iSearch]["ma_nhan_vien"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[2].Value = dtSearch.Rows[iSearch]["ho_ten"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[3].Value = dtSearch.Rows[iSearch]["ma_cham_cong"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[4].Value = dtSearch.Rows[iSearch]["ten_cham_cong"].ToString();
-                dgv_nhanvien.Rows[addSearch].Cells[5].Value = dtSearch.Rows[iSearch]["ma_the"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[1].Value = dtSearch.Rows[iSearch]["MaNhanVien"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[2].Value = dtSearch.Rows[iSearch]["TenNhanVien"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[3].Value = dtSearch.Rows[iSearch]["MaChamCong"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[4].Value = dtSearch.Rows[iSearch]["TenChamCong"].ToString();
+                dgv_nhanvien.Rows[addSearch].Cells[5].Value = dtSearch.Rows[iSearch]["MaThe"].ToString();
                 demNhanVien++;
             }
         }
 
         private void trv_sodoquanly_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            string treeview_select = e.Node.Tag.ToString();
-            string sql = "select * from view_hoso_nhansu where 1=1";
-            if (treeview_select != "")
+            sMaCongTyTreeView = "";
+            sMaKhuVucTreeView = "";
+            sMaPhongBanTreeView = "";
+            sMaChucVuTreeView = "";
+            dgv_nhanvien.Rows.Clear();
+            _tenNode = trv_sodoquanly.SelectedNode.Text;
+            DataTable dtTreeviewPhongBan = new DataTable();
+            _phongBanDTO.TenPhongBan = _tenNode;
+            dtTreeviewPhongBan = _phongBanBLL.PhongBanGetTreeView(_phongBanDTO);
+            for (int iTreeviewPhongBan = 0; iTreeviewPhongBan < dtTreeviewPhongBan.Rows.Count; iTreeviewPhongBan++)
             {
-                if (treeview_select == "nv_nv")
-                {
-
-                }
-                else if (treeview_select == "nv_moi")
-                {
-                    sql = sql + " and ma_phong_ban is null";
-                }
-                else if (treeview_select.Contains("id_cty"))
-                {
-                    sql = sql + string.Format(" and ma_cong_ty = {0}", treeview_select.Remove(0, 7));
-                }
-                else if (treeview_select.Contains("id_khuvuc"))
-                {
-                    sql = sql + string.Format(" and ma_khu_vuc = {0}", treeview_select.Remove(0, 10));
-                }
-                else
-                {
-                    sql = sql + string.Format(" and ma_phong_ban = {0}", treeview_select);
-                }
+                sMaPhongBanTreeView = dtTreeviewPhongBan.Rows[iTreeviewPhongBan]["MaPhongBan"].ToString();
             }
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            dgv_nhanvien.DataSource = dt;
+            DataTable dtTreeViewCongTy = new DataTable();
+            _congTyDTO.TenCongTy = _tenNode;
+            dtTreeViewCongTy = _congTyBLL.CongTygetTreeView(_congTyDTO);
+            DataTable dtTreeViewKhuVuc = new DataTable();
+            _khuVucDTO.TenKhuVuc = _tenNode;
+            dtTreeViewKhuVuc = _khuVucBLL.KhuVucgetTreeView(_khuVucDTO);
+            for (int iTreeviewKhuVuc = 0; iTreeviewKhuVuc < dtTreeViewKhuVuc.Rows.Count; iTreeviewKhuVuc++)
+            {
+                sMaKhuVucTreeView = dtTreeViewKhuVuc.Rows[iTreeviewKhuVuc]["MaKhuVuc"].ToString();
+            }
+            DataTable dtTreeViewChucVu = new DataTable();
+            _chucVuDTO.TenChucVu = _tenNode;
+            dtTreeViewChucVu = _chucVuBLL.ChucVugetTreeView(_chucVuDTO);
+            for (int iTreeviewChucVu = 0; iTreeviewChucVu < dtTreeViewChucVu.Rows.Count; iTreeviewChucVu++)
+            {
+                sMaChucVuTreeView = dtTreeViewChucVu.Rows[iTreeviewChucVu]["MaChucVu"].ToString();
+            }
+            DataTable dtNhanVien = new DataTable();
+            _nhanVienDTO.MaCongTy = sMaCongTyTreeView;
+            _nhanVienDTO.MaKhuVuc = sMaKhuVucTreeView;
+            _nhanVienDTO.MaPhongBan = sMaPhongBanTreeView;
+            _nhanVienDTO.MaChucVu = sMaChucVuTreeView;
+            dtNhanVien = _nhanVienBLL.NhanViengetFromTreeview(_nhanVienDTO);
+            for (int iNhanVien = 0; iNhanVien < dtNhanVien.Rows.Count; iNhanVien++)
+            {
+                int addNhanVien = dgv_nhanvien.Rows.Add();
+                dgv_nhanvien.Rows[addNhanVien].Cells[1].Value = dtNhanVien.Rows[iNhanVien]["MaNhanVien"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[2].Value = dtNhanVien.Rows[iNhanVien]["TenNhanVien"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[3].Value = dtNhanVien.Rows[iNhanVien]["MaChamCong"].ToString();
+                dgv_nhanvien.Rows[addNhanVien].Cells[4].Value = dtNhanVien.Rows[iNhanVien]["MaPhongBan"].ToString();
+            }
         }
 
         private void btnChuyenXuong_Click(object sender, EventArgs e)

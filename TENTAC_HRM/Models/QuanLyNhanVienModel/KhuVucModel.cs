@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Models.QuanLyNhanVienModel
 {
-    internal class KhuVucDTO
+    internal class KhuVucModel
     {
         private string _MaKhuVuc;
 
@@ -86,11 +86,11 @@
             }
         }
 
-        public KhuVucDTO()
+        public KhuVucModel()
         {
         }
 
-        public KhuVucDTO(string _MaKhuVuc, string _MaCongTy, string _TenKhuVuc, string _DiaChiKhuVuc, string _NguoiLienHe, string _DienThoaiLienHe)
+        public KhuVucModel(string _MaKhuVuc, string _MaCongTy, string _TenKhuVuc, string _DiaChiKhuVuc, string _NguoiLienHe, string _DienThoaiLienHe)
         {
             MaKhuVuc = _MaKhuVuc;
             MaCongTy = _MaCongTy;

@@ -18,7 +18,7 @@ namespace TENTAC_HRM.Forms.Category
         public string _MaNhanVien { get; set; }
         public int _IdTaiNhan { get; set; }
         DataProvider provider = new DataProvider();
-        Tainan_model model = new Tainan_model();
+        TainanModel model = new TainanModel();
         frm_personnel _Personnel;
         uc_quatrinh_lamviec _quatrinh;
         public frm_nhanvien_tainan(Form form, UserControl user)
