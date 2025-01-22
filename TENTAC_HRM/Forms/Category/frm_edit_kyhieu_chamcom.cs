@@ -9,8 +9,8 @@ namespace TENTAC_HRM.Forms.Category
     {
         public bool edit { get; set; }
         public string ma_kyhieu { get; set; }
-        frm_kyhieu_chamcong _frm;
-        public frm_edit_kyhieu_chamcom(frm_kyhieu_chamcong frm1)
+        frm_KyHieuChamCong _frm;
+        public frm_edit_kyhieu_chamcom(frm_KyHieuChamCong frm1)
         {
             InitializeComponent();
             _frm = frm1;
@@ -23,14 +23,14 @@ namespace TENTAC_HRM.Forms.Category
                 this.Text = "Cập nhật ký hiệu chấm công";
                 txt_ma.Enabled = false;
                 txt_ten.Enabled = false;
-                string sql = string.Format("select * from dic_kyhieu where ma_kyhieu = '{0}'", ma_kyhieu);
+                string sql = string.Format("select * from mst_KyHieu where MaKyHieu = '{0}'", ma_kyhieu);
                 DataTable dt = new DataTable();
                 dt = SQLHelper.ExecuteDt(sql);
                 if(dt.Rows.Count > 0)
                 {
-                    txt_ma.Text = dt.Rows[0]["ma_kyhieu"].ToString();
-                    txt_ten.Text = dt.Rows[0]["ten_kyhieu"].ToString();
-                    nbr_phantram.Text = dt.Rows[0]["phantram_luong"].ToString();
+                    txt_ma.Text = dt.Rows[0]["MaKyHieu"].ToString();
+                    txt_ten.Text = dt.Rows[0]["TenKyHieu"].ToString();
+                    nbr_phantram.Text = dt.Rows[0]["PhanTramLuong"].ToString();
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace TENTAC_HRM.Forms.Category
                     RJMessageBox.Show("Mã ký hiệu không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                string check_ma = string.Format("select * from dic_kyhieu where ma_kyhieu = '{0}'", txt_ma.Text);
+                string check_ma = string.Format("select * from mst_KyHieu where MaKyHieu = '{0}'", txt_ma.Text);
                 if (SQLHelper.ExecuteDt(check_ma).Rows.Count > 0)
                 {
                     RJMessageBox.Show("Mã ký hiệu đã tồn tại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -78,7 +78,7 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-                string sql = string.Format("insert into dic_kyhieu(ma_kyhieu,ten_kyhieu,phantram_luong,id_nguoi_tao) " +
+                string sql = string.Format("insert into mst_KyHieu(MaKyHieu,TenKyHieu,PhanTramLuong,NguoiTao) " +
                                             "values('{0}',N'{1}','{2}','{3}')", txt_ma.Text, txt_ten.Text, nbr_phantram.Value.ToString(),SQLHelper.sIdUser);
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
@@ -98,7 +98,7 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-                string sql = string.Format("update dic_kyhieu set phantram_luong = '{1}' where ma_kyhieu='{0}'", txt_ma.Text, nbr_phantram.Value.ToString());
+                string sql = string.Format("update mst_KyHieu set PhanTramLuong = '{1}' where MaKyHieu='{0}'", txt_ma.Text, nbr_phantram.Value.ToString());
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

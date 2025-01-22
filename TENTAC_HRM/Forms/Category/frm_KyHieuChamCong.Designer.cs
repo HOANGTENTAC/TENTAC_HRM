@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Forms.Category
 {
-    partial class frm_kyhieu_chamcong
+    partial class frm_KyHieuChamCong
     {
         /// <summary>
         /// Required designer variable.
@@ -29,27 +29,28 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dgv_kyhieu = new System.Windows.Forms.DataGridView();
-            this.ma_kyhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_kyhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phantram_luong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.btn_add = new System.Windows.Forms.ToolStripButton();
             this.btn_edit = new System.Windows.Forms.ToolStripButton();
             this.btn_delete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_refresh = new System.Windows.Forms.ToolStripButton();
             this.btn_print = new System.Windows.Forms.ToolStripButton();
             this.btn_export = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_close = new System.Windows.Forms.ToolStripButton();
+            this.dgv_kyhieu = new System.Windows.Forms.DataGridView();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.MaKyHieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenKyHieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhanTramLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_kyhieu)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_add,
@@ -66,66 +67,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(1067, 38);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
-            // 
-            // dgv_kyhieu
-            // 
-            this.dgv_kyhieu.AllowUserToAddRows = false;
-            this.dgv_kyhieu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_kyhieu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.edit_column,
-            this.ma_kyhieu,
-            this.ten_kyhieu,
-            this.phantram_luong});
-            this.dgv_kyhieu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_kyhieu.Location = new System.Drawing.Point(0, 38);
-            this.dgv_kyhieu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dgv_kyhieu.Name = "dgv_kyhieu";
-            this.dgv_kyhieu.Size = new System.Drawing.Size(1067, 516);
-            this.dgv_kyhieu.TabIndex = 1;
-            this.dgv_kyhieu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_kyhieu_CellClick);
-            this.dgv_kyhieu.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_kyhieu_CellMouseDoubleClick);
-            // 
-            // ma_kyhieu
-            // 
-            this.ma_kyhieu.DataPropertyName = "ma_kyhieu";
-            this.ma_kyhieu.HeaderText = "Mã";
-            this.ma_kyhieu.Name = "ma_kyhieu";
-            // 
-            // ten_kyhieu
-            // 
-            this.ten_kyhieu.DataPropertyName = "ten_kyhieu";
-            this.ten_kyhieu.HeaderText = "Tên";
-            this.ten_kyhieu.Name = "ten_kyhieu";
-            // 
-            // phantram_luong
-            // 
-            this.phantram_luong.DataPropertyName = "phantram_luong";
-            this.phantram_luong.HeaderText = "Tiền trừ (% lương cơ bản)";
-            this.phantram_luong.Name = "phantram_luong";
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Width = 40;
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Width = 40;
             // 
             // btn_add
             // 
@@ -157,6 +98,11 @@
             this.btn_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            // 
             // btn_refresh
             // 
             this.btn_refresh.Image = global::TENTAC_HRM.Properties.Resources.refresh;
@@ -187,6 +133,11 @@
             this.btn_export.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 38);
+            // 
             // btn_close
             // 
             this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
@@ -197,7 +148,57 @@
             this.btn_close.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // frm_kyhieu_chamcong
+            // dgv_kyhieu
+            // 
+            this.dgv_kyhieu.AllowUserToAddRows = false;
+            this.dgv_kyhieu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_kyhieu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.edit_column,
+            this.MaKyHieu,
+            this.TenKyHieu,
+            this.PhanTramLuong});
+            this.dgv_kyhieu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_kyhieu.Location = new System.Drawing.Point(0, 38);
+            this.dgv_kyhieu.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_kyhieu.Name = "dgv_kyhieu";
+            this.dgv_kyhieu.Size = new System.Drawing.Size(1067, 516);
+            this.dgv_kyhieu.TabIndex = 1;
+            this.dgv_kyhieu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_kyhieu_CellClick);
+            this.dgv_kyhieu.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_kyhieu_CellMouseDoubleClick);
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Width = 40;
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Width = 40;
+            // 
+            // MaKyHieu
+            // 
+            this.MaKyHieu.DataPropertyName = "MaKyHieu";
+            this.MaKyHieu.HeaderText = "Mã";
+            this.MaKyHieu.Name = "MaKyHieu";
+            // 
+            // TenKyHieu
+            // 
+            this.TenKyHieu.DataPropertyName = "TenKyHieu";
+            this.TenKyHieu.HeaderText = "Tên";
+            this.TenKyHieu.Name = "TenKyHieu";
+            // 
+            // PhanTramLuong
+            // 
+            this.PhanTramLuong.DataPropertyName = "PhanTramLuong";
+            this.PhanTramLuong.HeaderText = "Tiền trừ (% lương cơ bản)";
+            this.PhanTramLuong.Name = "PhanTramLuong";
+            // 
+            // frm_KyHieuChamCong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -205,8 +206,8 @@
             this.Controls.Add(this.dgv_kyhieu);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "frm_kyhieu_chamcong";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frm_KyHieuChamCong";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ký hiệu chấm công";
             this.Load += new System.EventHandler(this.frm_kyhieu_chamcong_Load);
@@ -231,10 +232,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btn_close;
         private System.Windows.Forms.DataGridView dgv_kyhieu;
-        private System.Windows.Forms.DataGridViewImageColumn edit_column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_kyhieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_kyhieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phantram_luong;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn edit_column;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaKyHieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenKyHieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhanTramLuong;
     }
 }

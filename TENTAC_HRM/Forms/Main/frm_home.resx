@@ -126,9 +126,6 @@
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>817, 18</value>
   </metadata>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>817, 18</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripStatusLabel1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -173,9 +170,6 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>98, 15</value>
   </metadata>
-  <metadata name="iconMenuItem1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>330, 18</value>
-  </metadata>
   <metadata name="btn_exit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>467, 18</value>
   </metadata>
@@ -191,41 +185,6 @@
   <metadata name="btn_SignOut.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 55</value>
   </metadata>
-  <metadata name="iconMenuItem1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>330, 18</value>
-  </metadata>
-  <data name="iconMenuItem1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        RK5CYII=
-</value>
-  </data>
   <metadata name="btn_exit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>467, 18</value>
   </metadata>

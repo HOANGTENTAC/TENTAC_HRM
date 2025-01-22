@@ -43,12 +43,15 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.btn_refresh = new System.Windows.Forms.ToolStripButton();
-            this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_timekeeper = new System.Windows.Forms.DataGridView();
-            this.ma_nhan_vien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ho_lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.pl_symbol = new System.Windows.Forms.Panel();
+            this.btn_edit_synbol = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,16 +83,11 @@
             this.d29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.d31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_cong_that = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngay_nghi_phep = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.muon_phut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.som_phut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tong_gio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.pl_symbol = new System.Windows.Forms.Panel();
-            this.btn_edit_synbol = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.NgayCongThat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayNghiPhep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Muon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Som = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongGio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_timekeeper)).BeginInit();
@@ -99,6 +97,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
             this.toolStripComboBox1,
@@ -112,8 +111,7 @@
             this.toolStripButton3,
             this.toolStripButton4,
             this.toolStripButton5,
-            this.btn_refresh,
-            this.btn_close});
+            this.btn_refresh});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1343, 25);
@@ -210,15 +208,6 @@
             this.btn_refresh.Text = "Nạp lại";
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
-            // btn_close
-            // 
-            this.btn_close.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.cancel;
-            this.btn_close.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(23, 22);
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dgv_timekeeper);
@@ -235,9 +224,8 @@
             this.dgv_timekeeper.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_timekeeper.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_timekeeper.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ma_nhan_vien,
-            this.ho_lot,
-            this.ten,
+            this.MaNhanVien,
+            this.TenNhanVien,
             this.d1,
             this.d2,
             this.d3,
@@ -269,34 +257,81 @@
             this.d29,
             this.d30,
             this.d31,
-            this.ngay_cong_that,
-            this.ngay_nghi_phep,
-            this.muon_phut,
-            this.som_phut,
-            this.tong_gio});
+            this.NgayCongThat,
+            this.NgayNghiPhep,
+            this.Muon,
+            this.Som,
+            this.TongGio});
             this.dgv_timekeeper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_timekeeper.Location = new System.Drawing.Point(0, 0);
             this.dgv_timekeeper.Name = "dgv_timekeeper";
             this.dgv_timekeeper.Size = new System.Drawing.Size(1343, 472);
             this.dgv_timekeeper.TabIndex = 0;
             // 
-            // ma_nhan_vien
+            // panel3
             // 
-            this.ma_nhan_vien.DataPropertyName = "ma_nhan_vien";
-            this.ma_nhan_vien.HeaderText = "Mã nhân viên";
-            this.ma_nhan_vien.Name = "ma_nhan_vien";
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 472);
+            this.panel3.MaximumSize = new System.Drawing.Size(0, 25);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1343, 25);
+            this.panel3.TabIndex = 1;
             // 
-            // ho_lot
+            // pl_symbol
             // 
-            this.ho_lot.DataPropertyName = "ho_lot";
-            this.ho_lot.HeaderText = "Họ lót";
-            this.ho_lot.Name = "ho_lot";
+            this.pl_symbol.Controls.Add(this.btn_edit_synbol);
+            this.pl_symbol.Controls.Add(this.panel4);
+            this.pl_symbol.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pl_symbol.Location = new System.Drawing.Point(0, 522);
+            this.pl_symbol.Name = "pl_symbol";
+            this.pl_symbol.Size = new System.Drawing.Size(1343, 126);
+            this.pl_symbol.TabIndex = 2;
             // 
-            // ten
+            // btn_edit_synbol
             // 
-            this.ten.DataPropertyName = "ten";
-            this.ten.HeaderText = "Tên";
-            this.ten.Name = "ten";
+            this.btn_edit_synbol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_edit_synbol.Location = new System.Drawing.Point(1072, 30);
+            this.btn_edit_synbol.Name = "btn_edit_synbol";
+            this.btn_edit_synbol.Size = new System.Drawing.Size(261, 30);
+            this.btn_edit_synbol.TabIndex = 2;
+            this.btn_edit_synbol.Text = "Chỉnh sửa bảng ký hiệu chấm công";
+            this.btn_edit_synbol.UseVisualStyleBackColor = true;
+            this.btn_edit_synbol.Click += new System.EventHandler(this.btn_edit_synbol_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1343, 24);
+            this.panel4.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.label1.Size = new System.Drawing.Size(724, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "KÝ HIỆU CHẤM CÔNG & CA LÀM VIỆC";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.UseMnemonic = false;
+            // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.HeaderText = "Mã nhân viên";
+            this.MaNhanVien.Name = "MaNhanVien";
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.HeaderText = "Tên nhân viên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            this.TenNhanVien.Width = 150;
             // 
             // d1
             // 
@@ -515,87 +550,35 @@
             this.d31.Name = "d31";
             this.d31.Width = 60;
             // 
-            // ngay_cong_that
+            // NgayCongThat
             // 
-            this.ngay_cong_that.DataPropertyName = "ngay_cong_that";
-            this.ngay_cong_that.HeaderText = "Số ngày công";
-            this.ngay_cong_that.Name = "ngay_cong_that";
+            this.NgayCongThat.DataPropertyName = "NgayCongThat";
+            this.NgayCongThat.HeaderText = "Số ngày công";
+            this.NgayCongThat.Name = "NgayCongThat";
             // 
-            // ngay_nghi_phep
+            // NgayNghiPhep
             // 
-            this.ngay_nghi_phep.DataPropertyName = "ngay_nghi_phep";
-            this.ngay_nghi_phep.HeaderText = "Nghỉ phép";
-            this.ngay_nghi_phep.Name = "ngay_nghi_phep";
+            this.NgayNghiPhep.DataPropertyName = "NgayNghiPhep";
+            this.NgayNghiPhep.HeaderText = "Nghỉ phép";
+            this.NgayNghiPhep.Name = "NgayNghiPhep";
             // 
-            // muon_phut
+            // Muon
             // 
-            this.muon_phut.DataPropertyName = "muon_phut";
-            this.muon_phut.HeaderText = "Đi muộn";
-            this.muon_phut.Name = "muon_phut";
+            this.Muon.DataPropertyName = "Muon";
+            this.Muon.HeaderText = "Đi muộn";
+            this.Muon.Name = "Muon";
             // 
-            // som_phut
+            // Som
             // 
-            this.som_phut.DataPropertyName = "som_phut";
-            this.som_phut.HeaderText = "Vế sớm";
-            this.som_phut.Name = "som_phut";
+            this.Som.DataPropertyName = "Som";
+            this.Som.HeaderText = "Vế sớm";
+            this.Som.Name = "Som";
             // 
-            // tong_gio
+            // TongGio
             // 
-            this.tong_gio.DataPropertyName = "tong_gio";
-            this.tong_gio.HeaderText = "Tổng giờ";
-            this.tong_gio.Name = "tong_gio";
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 472);
-            this.panel3.MaximumSize = new System.Drawing.Size(0, 25);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1343, 25);
-            this.panel3.TabIndex = 1;
-            // 
-            // pl_symbol
-            // 
-            this.pl_symbol.Controls.Add(this.btn_edit_synbol);
-            this.pl_symbol.Controls.Add(this.panel4);
-            this.pl_symbol.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pl_symbol.Location = new System.Drawing.Point(0, 522);
-            this.pl_symbol.Name = "pl_symbol";
-            this.pl_symbol.Size = new System.Drawing.Size(1343, 126);
-            this.pl_symbol.TabIndex = 2;
-            // 
-            // btn_edit_synbol
-            // 
-            this.btn_edit_synbol.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_edit_synbol.Location = new System.Drawing.Point(1072, 30);
-            this.btn_edit_synbol.Name = "btn_edit_synbol";
-            this.btn_edit_synbol.Size = new System.Drawing.Size(261, 30);
-            this.btn_edit_synbol.TabIndex = 2;
-            this.btn_edit_synbol.Text = "Chỉnh sửa bảng ký hiệu chấm công";
-            this.btn_edit_synbol.UseVisualStyleBackColor = true;
-            this.btn_edit_synbol.Click += new System.EventHandler(this.btn_edit_synbol_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1343, 24);
-            this.panel4.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(724, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "KÝ HIỆU CHẤM CÔNG & CA LÀM VIỆC";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.UseMnemonic = false;
+            this.TongGio.DataPropertyName = "TongGio";
+            this.TongGio.HeaderText = "Tổng giờ";
+            this.TongGio.Name = "TongGio";
             // 
             // uc_timekeeper
             // 
@@ -639,13 +622,12 @@
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton btn_refresh;
-        private System.Windows.Forms.ToolStripButton btn_close;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_nhan_vien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ho_lot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten;
+        private System.Windows.Forms.Button btn_edit_synbol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNhanVien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNhanVien;
         private System.Windows.Forms.DataGridViewTextBoxColumn d1;
         private System.Windows.Forms.DataGridViewTextBoxColumn d2;
         private System.Windows.Forms.DataGridViewTextBoxColumn d3;
@@ -677,11 +659,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn d29;
         private System.Windows.Forms.DataGridViewTextBoxColumn d30;
         private System.Windows.Forms.DataGridViewTextBoxColumn d31;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_cong_that;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngay_nghi_phep;
-        private System.Windows.Forms.DataGridViewTextBoxColumn muon_phut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn som_phut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tong_gio;
-        private System.Windows.Forms.Button btn_edit_synbol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayCongThat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayNghiPhep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Muon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Som;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TongGio;
     }
 }

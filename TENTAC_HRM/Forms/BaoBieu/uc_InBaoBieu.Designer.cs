@@ -33,82 +33,26 @@ namespace TENTAC_HRM.Forms.BaoBieu
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("Chi tiết từng người từng ngày", 0);
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("Chi tiết thời gian làm việc", 0);
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("Chi tiết giờ và tăng ca kèm kí hiệu", 0);
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("Xuất lưới", 0);
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("Thống kê tháng (ký hiệu)", 0);
-            System.Windows.Forms.ListViewItem listViewItem17 = new System.Windows.Forms.ListViewItem("Thống kê tháng (công)", 0);
-            System.Windows.Forms.ListViewItem listViewItem18 = new System.Windows.Forms.ListViewItem("Thống kê tháng (giờ)", 0);
-            System.Windows.Forms.ListViewItem listViewItem19 = new System.Windows.Forms.ListViewItem("Thống kê tháng (giờ và tăng ca)", 0);
-            System.Windows.Forms.ListViewItem listViewItem20 = new System.Windows.Forms.ListViewItem("Bảng Lương Tổng Hợp", 0);
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("Bảng lương từng nhân viên", 0);
-            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("Tổng Hợp Tháng", 0);
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("Chi tiết từng người từng ngày", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("Chi tiết thời gian làm việc", 0);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("Chi tiết giờ và tăng ca kèm kí hiệu", 0);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("Xuất lưới", 0);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("Thống kê tháng (ký hiệu)", 0);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("Thống kê tháng (công)", 0);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("Thống kê tháng (giờ)", 0);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("Thống kê tháng (giờ và tăng ca)", 0);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("Bảng Lương Tổng Hợp", 0);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("Bảng lương từng nhân viên", 0);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("Tổng Hợp Tháng", 0);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_InBaoBieu));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.tabControl2 = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.DGVDuLieuChamCongNguon = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.DGVSuaXoaGioCham = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column51 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column60 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.bar2 = new DevComponents.DotNetBar.Bar();
-            this.btnXoa = new DevComponents.DotNetBar.ButtonItem();
-            this.btnSua = new DevComponents.DotNetBar.ButtonItem();
-            this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.DGVTinhCong = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column69 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column70 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column71 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column72 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column74 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStripTinhCong = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.sửaGiờToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaGiờToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmGiờToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel6 = new DevComponents.DotNetBar.TabControlPanel();
             this.listViewBaoCao = new System.Windows.Forms.ListView();
             this.imageBaoCao = new System.Windows.Forms.ImageList(this.components);
@@ -142,6 +86,40 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.Column45 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column47 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabItem5 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.DGVDuLieuChamCongNguon = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DGVSuaXoaGioCham = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column51 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column60 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.bar2 = new DevComponents.DotNetBar.Bar();
+            this.btnXoa = new DevComponents.DotNetBar.ButtonItem();
+            this.btnSua = new DevComponents.DotNetBar.ButtonItem();
+            this.tabItem4 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.DGVTinhCong = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.contextMenuStripTinhCong = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.sửaGiờToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaGiờToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmGiờToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -180,10 +158,39 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtTimKiem = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.controlContainerItem2 = new DevComponents.DotNetBar.ControlContainerItem();
+            this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ngay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VeSom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VeTre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TC1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioBatDau1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioKetThuc1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TC2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioBatDau2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioKetThuc2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TC3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TC4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongGio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DemCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KyHieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl2)).BeginInit();
             this.tabControl2.SuspendLayout();
+            this.tabControlPanel6.SuspendLayout();
+            this.tabControlPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVChiTietLuong)).BeginInit();
             this.tabControlPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -197,9 +204,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.tabControlPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTinhCong)).BeginInit();
             this.contextMenuStripTinhCong.SuspendLayout();
-            this.tabControlPanel6.SuspendLayout();
-            this.tabControlPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVChiTietLuong)).BeginInit();
             this.panel3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -238,10 +242,10 @@ namespace TENTAC_HRM.Forms.BaoBieu
             // 
             this.tabControl2.BackColor = System.Drawing.Color.White;
             this.tabControl2.CanReorderTabs = true;
-            this.tabControl2.Controls.Add(this.tabControlPanel6);
-            this.tabControl2.Controls.Add(this.tabControlPanel5);
-            this.tabControl2.Controls.Add(this.tabControlPanel4);
             this.tabControl2.Controls.Add(this.tabControlPanel1);
+            this.tabControl2.Controls.Add(this.tabControlPanel5);
+            this.tabControl2.Controls.Add(this.tabControlPanel6);
+            this.tabControl2.Controls.Add(this.tabControlPanel4);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl2.Location = new System.Drawing.Point(0, 92);
@@ -258,6 +262,292 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.tabControl2.Tabs.Add(this.tabItem6);
             this.tabControl2.Text = "tabControl2";
             this.tabControl2.Click += new System.EventHandler(this.tabControl2_Click);
+            // 
+            // tabControlPanel6
+            // 
+            this.tabControlPanel6.Controls.Add(this.listViewBaoCao);
+            this.tabControlPanel6.Controls.Add(this.panel12);
+            this.tabControlPanel6.Controls.Add(this.panel11);
+            this.tabControlPanel6.Controls.Add(this.panel10);
+            this.tabControlPanel6.Controls.Add(this.panel8);
+            this.tabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel6.Location = new System.Drawing.Point(0, 26);
+            this.tabControlPanel6.Name = "tabControlPanel6";
+            this.tabControlPanel6.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel6.Size = new System.Drawing.Size(870, 510);
+            this.tabControlPanel6.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(250)))), ((int)(((byte)(247)))));
+            this.tabControlPanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel6.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(157)))), ((int)(((byte)(185)))));
+            this.tabControlPanel6.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel6.Style.GradientAngle = 90;
+            this.tabControlPanel6.TabIndex = 6;
+            this.tabControlPanel6.TabItem = this.tabItem6;
+            // 
+            // listViewBaoCao
+            // 
+            this.listViewBaoCao.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewBaoCao.HideSelection = false;
+            this.listViewBaoCao.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10,
+            listViewItem11});
+            this.listViewBaoCao.LargeImageList = this.imageBaoCao;
+            this.listViewBaoCao.Location = new System.Drawing.Point(11, 11);
+            this.listViewBaoCao.Name = "listViewBaoCao";
+            this.listViewBaoCao.Size = new System.Drawing.Size(848, 488);
+            this.listViewBaoCao.TabIndex = 1;
+            this.listViewBaoCao.UseCompatibleStateImageBehavior = false;
+            this.listViewBaoCao.Click += new System.EventHandler(this.listViewBaoCao_Click);
+            // 
+            // imageBaoCao
+            // 
+            this.imageBaoCao.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageBaoCao.ImageStream")));
+            this.imageBaoCao.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageBaoCao.Images.SetKeyName(0, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(1, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(2, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(3, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(4, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(5, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(6, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(7, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(8, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(9, "MS Excel-64.png");
+            this.imageBaoCao.Images.SetKeyName(10, "MS Excel-64.png");
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.White;
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel12.Location = new System.Drawing.Point(859, 11);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(10, 488);
+            this.panel12.TabIndex = 2;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.White;
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel11.Location = new System.Drawing.Point(1, 11);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(10, 488);
+            this.panel11.TabIndex = 2;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(1, 499);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(868, 10);
+            this.panel10.TabIndex = 2;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(1, 1);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(868, 10);
+            this.panel8.TabIndex = 2;
+            // 
+            // tabItem6
+            // 
+            this.tabItem6.AttachedControl = this.tabControlPanel6;
+            this.tabItem6.Name = "tabItem6";
+            this.tabItem6.Text = "Báo cáo/ Xuất excel";
+            // 
+            // tabControlPanel5
+            // 
+            this.tabControlPanel5.Controls.Add(this.DGVChiTietLuong);
+            this.tabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel5.Location = new System.Drawing.Point(0, 26);
+            this.tabControlPanel5.Name = "tabControlPanel5";
+            this.tabControlPanel5.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel5.Size = new System.Drawing.Size(870, 510);
+            this.tabControlPanel5.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(250)))), ((int)(((byte)(247)))));
+            this.tabControlPanel5.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel5.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(157)))), ((int)(((byte)(185)))));
+            this.tabControlPanel5.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel5.Style.GradientAngle = 90;
+            this.tabControlPanel5.TabIndex = 5;
+            this.tabControlPanel5.TabItem = this.tabItem5;
+            // 
+            // DGVChiTietLuong
+            // 
+            this.DGVChiTietLuong.AllowUserToAddRows = false;
+            this.DGVChiTietLuong.BackgroundColor = System.Drawing.Color.GhostWhite;
+            this.DGVChiTietLuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVChiTietLuong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column37,
+            this.Column38,
+            this.Column39,
+            this.Column40,
+            this.Column22,
+            this.Column67,
+            this.Column54,
+            this.Column57,
+            this.Column68,
+            this.Column58,
+            this.Column23,
+            this.Column24,
+            this.Column55,
+            this.Column59,
+            this.Column56,
+            this.Column41,
+            this.Column42,
+            this.Column43,
+            this.Column44,
+            this.Column46,
+            this.Column45,
+            this.Column47});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVChiTietLuong.DefaultCellStyle = dataGridViewCellStyle2;
+            this.DGVChiTietLuong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVChiTietLuong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.DGVChiTietLuong.Location = new System.Drawing.Point(1, 1);
+            this.DGVChiTietLuong.Name = "DGVChiTietLuong";
+            this.DGVChiTietLuong.RowHeadersWidth = 40;
+            this.DGVChiTietLuong.Size = new System.Drawing.Size(868, 508);
+            this.DGVChiTietLuong.TabIndex = 0;
+            // 
+            // Column37
+            // 
+            this.Column37.Frozen = true;
+            this.Column37.HeaderText = "Mã";
+            this.Column37.Name = "Column37";
+            // 
+            // Column38
+            // 
+            this.Column38.Frozen = true;
+            this.Column38.HeaderText = "Tên";
+            this.Column38.Name = "Column38";
+            // 
+            // Column39
+            // 
+            this.Column39.HeaderText = "MaChamCong";
+            this.Column39.Name = "Column39";
+            this.Column39.Visible = false;
+            // 
+            // Column40
+            // 
+            this.Column40.HeaderText = "Lương Cơ Bản Bảo Hiểm";
+            this.Column40.Name = "Column40";
+            this.Column40.Width = 120;
+            // 
+            // Column22
+            // 
+            this.Column22.HeaderText = "Lương Hợp Đồng";
+            this.Column22.Name = "Column22";
+            // 
+            // Column67
+            // 
+            this.Column67.HeaderText = "Ngày Công Tính";
+            this.Column67.Name = "Column67";
+            // 
+            // Column54
+            // 
+            this.Column54.HeaderText = "Ngày Công Làm Được";
+            this.Column54.Name = "Column54";
+            // 
+            // Column57
+            // 
+            this.Column57.HeaderText = "Số Giờ Tăng Ca";
+            this.Column57.Name = "Column57";
+            // 
+            // Column68
+            // 
+            this.Column68.HeaderText = "Lương Ngày Công Làm Được";
+            this.Column68.Name = "Column68";
+            // 
+            // Column58
+            // 
+            this.Column58.HeaderText = "Tiền Tăng Ca";
+            this.Column58.Name = "Column58";
+            // 
+            // Column23
+            // 
+            this.Column23.HeaderText = "Phụ Cấp Tiền Cơm";
+            this.Column23.Name = "Column23";
+            // 
+            // Column24
+            // 
+            this.Column24.HeaderText = "Phụ Cấp Tiền Cơm Theo Ngày Công Thực Tế";
+            this.Column24.Name = "Column24";
+            // 
+            // Column55
+            // 
+            this.Column55.HeaderText = "Phụ Cấp Khác";
+            this.Column55.Name = "Column55";
+            // 
+            // Column59
+            // 
+            this.Column59.HeaderText = "Thưởng";
+            this.Column59.Name = "Column59";
+            // 
+            // Column56
+            // 
+            this.Column56.HeaderText = "Tổng Lương";
+            this.Column56.Name = "Column56";
+            // 
+            // Column41
+            // 
+            this.Column41.HeaderText = "BHXH";
+            this.Column41.Name = "Column41";
+            // 
+            // Column42
+            // 
+            this.Column42.HeaderText = "BHYT";
+            this.Column42.Name = "Column42";
+            // 
+            // Column43
+            // 
+            this.Column43.HeaderText = "BHTT";
+            this.Column43.Name = "Column43";
+            // 
+            // Column44
+            // 
+            this.Column44.HeaderText = "Tạm Ứng";
+            this.Column44.Name = "Column44";
+            // 
+            // Column46
+            // 
+            this.Column46.HeaderText = "Vi Phạm";
+            this.Column46.Name = "Column46";
+            // 
+            // Column45
+            // 
+            this.Column45.HeaderText = "Tổng Tiền Trừ Vào Lương";
+            this.Column45.Name = "Column45";
+            // 
+            // Column47
+            // 
+            this.Column47.HeaderText = "Lương Thực Lãnh";
+            this.Column47.Name = "Column47";
+            this.Column47.Width = 150;
+            // 
+            // tabItem5
+            // 
+            this.tabItem5.AttachedControl = this.tabControlPanel5;
+            this.tabItem5.Name = "tabItem5";
+            this.tabItem5.Text = "Lương";
             // 
             // tabControlPanel4
             // 
@@ -321,14 +611,14 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.Column29,
             this.Column30,
             this.Column31});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVDuLieuChamCongNguon.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVDuLieuChamCongNguon.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGVDuLieuChamCongNguon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVDuLieuChamCongNguon.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGVDuLieuChamCongNguon.Location = new System.Drawing.Point(3, 18);
@@ -404,14 +694,14 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.Column52,
             this.Column53,
             this.Column60});
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVSuaXoaGioCham.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVSuaXoaGioCham.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGVSuaXoaGioCham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVSuaXoaGioCham.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGVSuaXoaGioCham.Location = new System.Drawing.Point(3, 50);
@@ -543,37 +833,41 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.DGVTinhCong.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.DGVTinhCong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTinhCong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column69,
-            this.Column70,
-            this.Column15,
-            this.Column16,
-            this.Column17,
-            this.Column71,
-            this.Column72,
-            this.Column74});
+            this.MaNhanVien,
+            this.TenNhanVien,
+            this.Ngay,
+            this.Thu,
+            this.Ca,
+            this.Vao,
+            this.Ra,
+            this.Cong,
+            this.Gio,
+            this.Tre,
+            this.VeSom,
+            this.VeTre,
+            this.TC1,
+            this.GioBatDau1,
+            this.GioKetThuc1,
+            this.TC2,
+            this.GioBatDau2,
+            this.GioKetThuc2,
+            this.TC3,
+            this.TC4,
+            this.TongGio,
+            this.DemCong,
+            this.KyHieu,
+            this.IDThu,
+            this.MaChamCong,
+            this.PhongBan});
             this.DGVTinhCong.ContextMenuStrip = this.contextMenuStripTinhCong;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVTinhCong.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVTinhCong.DefaultCellStyle = dataGridViewCellStyle1;
             this.DGVTinhCong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVTinhCong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGVTinhCong.Location = new System.Drawing.Point(1, 1);
@@ -582,159 +876,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.DGVTinhCong.Size = new System.Drawing.Size(868, 508);
             this.DGVTinhCong.TabIndex = 1;
             this.DGVTinhCong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTinhCong_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.Frozen = true;
-            this.Column1.HeaderText = "Mã";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // Column2
-            // 
-            this.Column2.Frozen = true;
-            this.Column2.HeaderText = "Tên Nhân Viên";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
-            // 
-            // Column3
-            // 
-            this.Column3.Frozen = true;
-            this.Column3.HeaderText = "Ngày";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 80;
-            // 
-            // Column4
-            // 
-            this.Column4.Frozen = true;
-            this.Column4.HeaderText = "Thứ";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 70;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Ca";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 80;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Vào";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 55;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Ra";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Width = 55;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Công";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 50;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Giờ";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 50;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Trễ";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Width = 50;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Về Sớm";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Width = 50;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Về Trễ";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Width = 50;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "TC 1";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Width = 50;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "TC 2";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Width = 50;
-            // 
-            // Column69
-            // 
-            this.Column69.HeaderText = "TC 3";
-            this.Column69.Name = "Column69";
-            this.Column69.Width = 50;
-            // 
-            // Column70
-            // 
-            this.Column70.HeaderText = "TC 4";
-            this.Column70.Name = "Column70";
-            this.Column70.Width = 50;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "Tổng Giờ";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            this.Column15.Width = 50;
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "Đếm Công";
-            this.Column16.Name = "Column16";
-            this.Column16.ReadOnly = true;
-            this.Column16.Width = 50;
-            // 
-            // Column17
-            // 
-            this.Column17.HeaderText = "Ký Hiệu";
-            this.Column17.Name = "Column17";
-            this.Column17.ReadOnly = true;
-            this.Column17.Width = 50;
-            // 
-            // Column71
-            // 
-            this.Column71.HeaderText = "IDThu";
-            this.Column71.Name = "Column71";
-            this.Column71.Visible = false;
-            // 
-            // Column72
-            // 
-            this.Column72.HeaderText = "MaChamCong";
-            this.Column72.Name = "Column72";
-            this.Column72.Visible = false;
-            // 
-            // Column74
-            // 
-            this.Column74.HeaderText = "Phong Ban";
-            this.Column74.Name = "Column74";
-            this.Column74.Visible = false;
             // 
             // contextMenuStripTinhCong
             // 
@@ -772,292 +913,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.tabItem1.AttachedControl = this.tabControlPanel1;
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.Text = "Chi tiết chấm công";
-            // 
-            // tabControlPanel6
-            // 
-            this.tabControlPanel6.Controls.Add(this.listViewBaoCao);
-            this.tabControlPanel6.Controls.Add(this.panel12);
-            this.tabControlPanel6.Controls.Add(this.panel11);
-            this.tabControlPanel6.Controls.Add(this.panel10);
-            this.tabControlPanel6.Controls.Add(this.panel8);
-            this.tabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel6.Location = new System.Drawing.Point(0, 26);
-            this.tabControlPanel6.Name = "tabControlPanel6";
-            this.tabControlPanel6.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel6.Size = new System.Drawing.Size(870, 510);
-            this.tabControlPanel6.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(250)))), ((int)(((byte)(247)))));
-            this.tabControlPanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel6.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(157)))), ((int)(((byte)(185)))));
-            this.tabControlPanel6.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel6.Style.GradientAngle = 90;
-            this.tabControlPanel6.TabIndex = 6;
-            this.tabControlPanel6.TabItem = this.tabItem6;
-            // 
-            // listViewBaoCao
-            // 
-            this.listViewBaoCao.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listViewBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewBaoCao.HideSelection = false;
-            this.listViewBaoCao.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem12,
-            listViewItem13,
-            listViewItem14,
-            listViewItem15,
-            listViewItem16,
-            listViewItem17,
-            listViewItem18,
-            listViewItem19,
-            listViewItem20,
-            listViewItem21,
-            listViewItem22});
-            this.listViewBaoCao.LargeImageList = this.imageBaoCao;
-            this.listViewBaoCao.Location = new System.Drawing.Point(11, 11);
-            this.listViewBaoCao.Name = "listViewBaoCao";
-            this.listViewBaoCao.Size = new System.Drawing.Size(848, 488);
-            this.listViewBaoCao.TabIndex = 1;
-            this.listViewBaoCao.UseCompatibleStateImageBehavior = false;
-            this.listViewBaoCao.Click += new System.EventHandler(this.listViewBaoCao_Click);
-            // 
-            // imageBaoCao
-            // 
-            this.imageBaoCao.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageBaoCao.ImageStream")));
-            this.imageBaoCao.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageBaoCao.Images.SetKeyName(0, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(1, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(2, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(3, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(4, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(5, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(6, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(7, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(8, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(9, "MS Excel-64.png");
-            this.imageBaoCao.Images.SetKeyName(10, "MS Excel-64.png");
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.White;
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel12.Location = new System.Drawing.Point(859, 11);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(10, 488);
-            this.panel12.TabIndex = 2;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.White;
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(1, 11);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(10, 488);
-            this.panel11.TabIndex = 2;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(1, 499);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(868, 10);
-            this.panel10.TabIndex = 2;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(1, 1);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(868, 10);
-            this.panel8.TabIndex = 2;
-            // 
-            // tabItem6
-            // 
-            this.tabItem6.AttachedControl = this.tabControlPanel6;
-            this.tabItem6.Name = "tabItem6";
-            this.tabItem6.Text = "Báo cáo/ Xuất excel";
-            // 
-            // tabControlPanel5
-            // 
-            this.tabControlPanel5.Controls.Add(this.DGVChiTietLuong);
-            this.tabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel5.Location = new System.Drawing.Point(0, 26);
-            this.tabControlPanel5.Name = "tabControlPanel5";
-            this.tabControlPanel5.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel5.Size = new System.Drawing.Size(870, 510);
-            this.tabControlPanel5.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(250)))), ((int)(((byte)(247)))));
-            this.tabControlPanel5.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel5.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(157)))), ((int)(((byte)(185)))));
-            this.tabControlPanel5.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel5.Style.GradientAngle = 90;
-            this.tabControlPanel5.TabIndex = 5;
-            this.tabControlPanel5.TabItem = this.tabItem5;
-            // 
-            // DGVChiTietLuong
-            // 
-            this.DGVChiTietLuong.AllowUserToAddRows = false;
-            this.DGVChiTietLuong.BackgroundColor = System.Drawing.Color.GhostWhite;
-            this.DGVChiTietLuong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVChiTietLuong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column37,
-            this.Column38,
-            this.Column39,
-            this.Column40,
-            this.Column22,
-            this.Column67,
-            this.Column54,
-            this.Column57,
-            this.Column68,
-            this.Column58,
-            this.Column23,
-            this.Column24,
-            this.Column55,
-            this.Column59,
-            this.Column56,
-            this.Column41,
-            this.Column42,
-            this.Column43,
-            this.Column44,
-            this.Column46,
-            this.Column45,
-            this.Column47});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVChiTietLuong.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DGVChiTietLuong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGVChiTietLuong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.DGVChiTietLuong.Location = new System.Drawing.Point(1, 1);
-            this.DGVChiTietLuong.Name = "DGVChiTietLuong";
-            this.DGVChiTietLuong.RowHeadersWidth = 40;
-            this.DGVChiTietLuong.Size = new System.Drawing.Size(868, 508);
-            this.DGVChiTietLuong.TabIndex = 0;
-            // 
-            // Column37
-            // 
-            this.Column37.Frozen = true;
-            this.Column37.HeaderText = "Mã";
-            this.Column37.Name = "Column37";
-            // 
-            // Column38
-            // 
-            this.Column38.Frozen = true;
-            this.Column38.HeaderText = "Tên";
-            this.Column38.Name = "Column38";
-            // 
-            // Column39
-            // 
-            this.Column39.HeaderText = "MaChamCong";
-            this.Column39.Name = "Column39";
-            this.Column39.Visible = false;
-            // 
-            // Column40
-            // 
-            this.Column40.HeaderText = "Lương Cơ Bản Bảo Hiểm";
-            this.Column40.Name = "Column40";
-            this.Column40.Width = 120;
-            // 
-            // Column22
-            // 
-            this.Column22.HeaderText = "Lương Hợp Đồng";
-            this.Column22.Name = "Column22";
-            // 
-            // Column67
-            // 
-            this.Column67.HeaderText = "Ngày Công Tính";
-            this.Column67.Name = "Column67";
-            // 
-            // Column54
-            // 
-            this.Column54.HeaderText = "Ngày Công Làm Được";
-            this.Column54.Name = "Column54";
-            // 
-            // Column57
-            // 
-            this.Column57.HeaderText = "Số Giờ Tăng Ca";
-            this.Column57.Name = "Column57";
-            // 
-            // Column68
-            // 
-            this.Column68.HeaderText = "Lương Ngày Công Làm Được";
-            this.Column68.Name = "Column68";
-            // 
-            // Column58
-            // 
-            this.Column58.HeaderText = "Tiền Tăng Ca";
-            this.Column58.Name = "Column58";
-            // 
-            // Column23
-            // 
-            this.Column23.HeaderText = "Phụ Cấp Tiền Cơm";
-            this.Column23.Name = "Column23";
-            // 
-            // Column24
-            // 
-            this.Column24.HeaderText = "Phụ Cấp Tiền Cơm Theo Ngày Công Thực Tế";
-            this.Column24.Name = "Column24";
-            // 
-            // Column55
-            // 
-            this.Column55.HeaderText = "Phụ Cấp Khác";
-            this.Column55.Name = "Column55";
-            // 
-            // Column59
-            // 
-            this.Column59.HeaderText = "Thưởng";
-            this.Column59.Name = "Column59";
-            // 
-            // Column56
-            // 
-            this.Column56.HeaderText = "Tổng Lương";
-            this.Column56.Name = "Column56";
-            // 
-            // Column41
-            // 
-            this.Column41.HeaderText = "BHXH";
-            this.Column41.Name = "Column41";
-            // 
-            // Column42
-            // 
-            this.Column42.HeaderText = "BHYT";
-            this.Column42.Name = "Column42";
-            // 
-            // Column43
-            // 
-            this.Column43.HeaderText = "BHTT";
-            this.Column43.Name = "Column43";
-            // 
-            // Column44
-            // 
-            this.Column44.HeaderText = "Tạm Ứng";
-            this.Column44.Name = "Column44";
-            // 
-            // Column46
-            // 
-            this.Column46.HeaderText = "Vi Phạm";
-            this.Column46.Name = "Column46";
-            // 
-            // Column45
-            // 
-            this.Column45.HeaderText = "Tổng Tiền Trừ Vào Lương";
-            this.Column45.Name = "Column45";
-            // 
-            // Column47
-            // 
-            this.Column47.HeaderText = "Lương Thực Lãnh";
-            this.Column47.Name = "Column47";
-            this.Column47.Width = 150;
-            // 
-            // tabItem5
-            // 
-            this.tabItem5.AttachedControl = this.tabControlPanel5;
-            this.tabItem5.Name = "tabItem5";
-            this.tabItem5.Text = "Lương";
             // 
             // panel4
             // 
@@ -1371,14 +1226,14 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.Column73,
             this.Column21});
             this.DGVDanhSachNhanVien.ContextMenuStrip = this.contextMenuStrip1;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVDanhSachNhanVien.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVDanhSachNhanVien.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGVDanhSachNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGVDanhSachNhanVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.DGVDanhSachNhanVien.Location = new System.Drawing.Point(0, 26);
@@ -1495,6 +1350,205 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.controlContainerItem2.MenuVisibility = DevComponents.DotNetBar.eMenuVisibility.VisibleAlways;
             this.controlContainerItem2.Name = "controlContainerItem2";
             // 
+            // MaNhanVien
+            // 
+            this.MaNhanVien.DataPropertyName = "MaNhanVien";
+            this.MaNhanVien.Frozen = true;
+            this.MaNhanVien.HeaderText = "Mã";
+            this.MaNhanVien.Name = "MaNhanVien";
+            this.MaNhanVien.ReadOnly = true;
+            this.MaNhanVien.Width = 50;
+            // 
+            // TenNhanVien
+            // 
+            this.TenNhanVien.DataPropertyName = "TenNhanVien";
+            this.TenNhanVien.Frozen = true;
+            this.TenNhanVien.HeaderText = "Tên Nhân Viên";
+            this.TenNhanVien.Name = "TenNhanVien";
+            this.TenNhanVien.ReadOnly = true;
+            this.TenNhanVien.Width = 150;
+            // 
+            // Ngay
+            // 
+            this.Ngay.DataPropertyName = "Ngay";
+            this.Ngay.Frozen = true;
+            this.Ngay.HeaderText = "Ngày";
+            this.Ngay.Name = "Ngay";
+            this.Ngay.ReadOnly = true;
+            this.Ngay.Width = 80;
+            // 
+            // Thu
+            // 
+            this.Thu.DataPropertyName = "Thu";
+            this.Thu.Frozen = true;
+            this.Thu.HeaderText = "Thứ";
+            this.Thu.Name = "Thu";
+            this.Thu.ReadOnly = true;
+            this.Thu.Width = 70;
+            // 
+            // Ca
+            // 
+            this.Ca.DataPropertyName = "Ca";
+            this.Ca.HeaderText = "Ca";
+            this.Ca.Name = "Ca";
+            this.Ca.ReadOnly = true;
+            this.Ca.Width = 80;
+            // 
+            // Vao
+            // 
+            this.Vao.DataPropertyName = "Vao";
+            this.Vao.HeaderText = "Vào";
+            this.Vao.Name = "Vao";
+            this.Vao.ReadOnly = true;
+            this.Vao.Width = 55;
+            // 
+            // Ra
+            // 
+            this.Ra.DataPropertyName = "Ra";
+            this.Ra.HeaderText = "Ra";
+            this.Ra.Name = "Ra";
+            this.Ra.ReadOnly = true;
+            this.Ra.Width = 55;
+            // 
+            // Cong
+            // 
+            this.Cong.DataPropertyName = "Cong";
+            this.Cong.HeaderText = "Công";
+            this.Cong.Name = "Cong";
+            this.Cong.ReadOnly = true;
+            this.Cong.Width = 50;
+            // 
+            // Gio
+            // 
+            this.Gio.DataPropertyName = "Gio";
+            this.Gio.HeaderText = "Giờ";
+            this.Gio.Name = "Gio";
+            this.Gio.ReadOnly = true;
+            this.Gio.Width = 50;
+            // 
+            // Tre
+            // 
+            this.Tre.DataPropertyName = "Tre";
+            this.Tre.HeaderText = "Trễ";
+            this.Tre.Name = "Tre";
+            this.Tre.ReadOnly = true;
+            this.Tre.Width = 50;
+            // 
+            // VeSom
+            // 
+            this.VeSom.DataPropertyName = "VeSom";
+            this.VeSom.HeaderText = "Về Sớm";
+            this.VeSom.Name = "VeSom";
+            this.VeSom.ReadOnly = true;
+            this.VeSom.Width = 50;
+            // 
+            // VeTre
+            // 
+            this.VeTre.DataPropertyName = "VeTre";
+            this.VeTre.HeaderText = "Về Trễ";
+            this.VeTre.Name = "VeTre";
+            this.VeTre.ReadOnly = true;
+            this.VeTre.Width = 50;
+            // 
+            // TC1
+            // 
+            this.TC1.DataPropertyName = "TC1";
+            this.TC1.HeaderText = "TC 1";
+            this.TC1.Name = "TC1";
+            this.TC1.ReadOnly = true;
+            this.TC1.Width = 50;
+            // 
+            // GioBatDau1
+            // 
+            this.GioBatDau1.DataPropertyName = "GioBatDau1";
+            this.GioBatDau1.HeaderText = "Giờ bắt đâu 1";
+            this.GioBatDau1.Name = "GioBatDau1";
+            // 
+            // GioKetThuc1
+            // 
+            this.GioKetThuc1.DataPropertyName = "GioKetThuc1";
+            this.GioKetThuc1.HeaderText = "Giờ kết thúc 1";
+            this.GioKetThuc1.Name = "GioKetThuc1";
+            // 
+            // TC2
+            // 
+            this.TC2.DataPropertyName = "TC2";
+            this.TC2.HeaderText = "TC 2";
+            this.TC2.Name = "TC2";
+            this.TC2.ReadOnly = true;
+            this.TC2.Width = 50;
+            // 
+            // GioBatDau2
+            // 
+            this.GioBatDau2.DataPropertyName = "GioBatDau2";
+            this.GioBatDau2.HeaderText = "Giờ bắt đầu 2";
+            this.GioBatDau2.Name = "GioBatDau2";
+            // 
+            // GioKetThuc2
+            // 
+            this.GioKetThuc2.DataPropertyName = "GioKetThuc2";
+            this.GioKetThuc2.HeaderText = "Giờ kết thúc 2";
+            this.GioKetThuc2.Name = "GioKetThuc2";
+            // 
+            // TC3
+            // 
+            this.TC3.DataPropertyName = "TC3";
+            this.TC3.HeaderText = "TC 3";
+            this.TC3.Name = "TC3";
+            this.TC3.Width = 50;
+            // 
+            // TC4
+            // 
+            this.TC4.DataPropertyName = "TC4";
+            this.TC4.HeaderText = "TC 4";
+            this.TC4.Name = "TC4";
+            this.TC4.Width = 50;
+            // 
+            // TongGio
+            // 
+            this.TongGio.DataPropertyName = "TongGio";
+            this.TongGio.HeaderText = "Tổng Giờ";
+            this.TongGio.Name = "TongGio";
+            this.TongGio.ReadOnly = true;
+            this.TongGio.Width = 50;
+            // 
+            // DemCong
+            // 
+            this.DemCong.DataPropertyName = "DemCong";
+            this.DemCong.HeaderText = "Đếm Công";
+            this.DemCong.Name = "DemCong";
+            this.DemCong.ReadOnly = true;
+            this.DemCong.Width = 50;
+            // 
+            // KyHieu
+            // 
+            this.KyHieu.DataPropertyName = "KyHieu";
+            this.KyHieu.HeaderText = "Ký Hiệu";
+            this.KyHieu.Name = "KyHieu";
+            this.KyHieu.ReadOnly = true;
+            this.KyHieu.Width = 50;
+            // 
+            // IDThu
+            // 
+            this.IDThu.DataPropertyName = "IDThu";
+            this.IDThu.HeaderText = "IDThu";
+            this.IDThu.Name = "IDThu";
+            this.IDThu.Visible = false;
+            // 
+            // MaChamCong
+            // 
+            this.MaChamCong.DataPropertyName = "MaChamCong";
+            this.MaChamCong.HeaderText = "MaChamCong";
+            this.MaChamCong.Name = "MaChamCong";
+            this.MaChamCong.Visible = false;
+            // 
+            // PhongBan
+            // 
+            this.PhongBan.DataPropertyName = "PhongBan";
+            this.PhongBan.HeaderText = "Phong Ban";
+            this.PhongBan.Name = "PhongBan";
+            this.PhongBan.Visible = false;
+            // 
             // uc_InBaoBieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1508,6 +1562,9 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.panel9.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabControl2)).EndInit();
             this.tabControl2.ResumeLayout(false);
+            this.tabControlPanel6.ResumeLayout(false);
+            this.tabControlPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVChiTietLuong)).EndInit();
             this.tabControlPanel4.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1521,9 +1578,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
             this.tabControlPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVTinhCong)).EndInit();
             this.contextMenuStripTinhCong.ResumeLayout(false);
-            this.tabControlPanel6.ResumeLayout(false);
-            this.tabControlPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DGVChiTietLuong)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -1749,50 +1803,6 @@ namespace TENTAC_HRM.Forms.BaoBieu
 
         private DataGridViewTextBoxColumn Column60;
 
-        private DataGridViewTextBoxColumn Column1;
-
-        private DataGridViewTextBoxColumn Column2;
-
-        private DataGridViewTextBoxColumn Column3;
-
-        private DataGridViewTextBoxColumn Column4;
-
-        private DataGridViewTextBoxColumn Column5;
-
-        private DataGridViewTextBoxColumn Column6;
-
-        private DataGridViewTextBoxColumn Column7;
-
-        private DataGridViewTextBoxColumn Column8;
-
-        private DataGridViewTextBoxColumn Column9;
-
-        private DataGridViewTextBoxColumn Column10;
-
-        private DataGridViewTextBoxColumn Column11;
-
-        private DataGridViewTextBoxColumn Column12;
-
-        private DataGridViewTextBoxColumn Column13;
-
-        private DataGridViewTextBoxColumn Column14;
-
-        private DataGridViewTextBoxColumn Column69;
-
-        private DataGridViewTextBoxColumn Column70;
-
-        private DataGridViewTextBoxColumn Column15;
-
-        private DataGridViewTextBoxColumn Column16;
-
-        private DataGridViewTextBoxColumn Column17;
-
-        private DataGridViewTextBoxColumn Column71;
-
-        private DataGridViewTextBoxColumn Column72;
-
-        private DataGridViewTextBoxColumn Column74;
-
         private ContextMenuStrip contextMenuStripTinhCong;
 
         private ToolStripMenuItem sửaGiờToolStripMenuItem;
@@ -1800,5 +1810,31 @@ namespace TENTAC_HRM.Forms.BaoBieu
         private ToolStripMenuItem xóaGiờToolStripMenuItem;
 
         private ToolStripMenuItem thêmGiờToolStripMenuItem;
+        private DataGridViewTextBoxColumn MaNhanVien;
+        private DataGridViewTextBoxColumn TenNhanVien;
+        private DataGridViewTextBoxColumn Ngay;
+        private DataGridViewTextBoxColumn Thu;
+        private DataGridViewTextBoxColumn Ca;
+        private DataGridViewTextBoxColumn Vao;
+        private DataGridViewTextBoxColumn Ra;
+        private DataGridViewTextBoxColumn Cong;
+        private DataGridViewTextBoxColumn Gio;
+        private DataGridViewTextBoxColumn Tre;
+        private DataGridViewTextBoxColumn VeSom;
+        private DataGridViewTextBoxColumn VeTre;
+        private DataGridViewTextBoxColumn TC1;
+        private DataGridViewTextBoxColumn GioBatDau1;
+        private DataGridViewTextBoxColumn GioKetThuc1;
+        private DataGridViewTextBoxColumn TC2;
+        private DataGridViewTextBoxColumn GioBatDau2;
+        private DataGridViewTextBoxColumn GioKetThuc2;
+        private DataGridViewTextBoxColumn TC3;
+        private DataGridViewTextBoxColumn TC4;
+        private DataGridViewTextBoxColumn TongGio;
+        private DataGridViewTextBoxColumn DemCong;
+        private DataGridViewTextBoxColumn KyHieu;
+        private DataGridViewTextBoxColumn IDThu;
+        private DataGridViewTextBoxColumn MaChamCong;
+        private DataGridViewTextBoxColumn PhongBan;
     }
 }

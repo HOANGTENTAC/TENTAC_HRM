@@ -1,6 +1,6 @@
 ﻿namespace TENTAC_HRM.Forms.ChamCong
 {
-    partial class frm_calamviec
+    partial class frm_calamviec_Old
     {
         /// <summary>
         /// Required designer variable.

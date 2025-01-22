@@ -118,7 +118,7 @@ namespace TENTAC_HRM.Forms.Main
                 Panel panel = new Panel
                 {
                     Dock = DockStyle.Top,
-                    MinimumSize = new Size(223, 30)
+                    MinimumSize = new Size(248, 30)
                 };
 
                 foreach (var itemchil in chil)
@@ -136,7 +136,7 @@ namespace TENTAC_HRM.Forms.Main
                         ImageAlign = ContentAlignment.MiddleLeft,
                         Height = 30,
                         //Font = new Font(Font.FontFamily, emSize: 10f, FontStyle.Bold, unit: GraphicsUnit.Point),
-                        Font = new Font("Arial", emSize: 10, FontStyle.Bold, unit: GraphicsUnit.Point),
+                        Font = new Font("Arial", emSize: 9, FontStyle.Bold, unit: GraphicsUnit.Point),
                         Dock = DockStyle.Top,
                         FlatStyle = FlatStyle.Flat,
                         Text = itemchil["MenuText"].ToString(),
@@ -184,9 +184,9 @@ namespace TENTAC_HRM.Forms.Main
                 btn.Click += Btn_Click;
                 panel.Controls.Add(btn);
                 Height += 32;
-                panel.Size = new Size(223, 30);
-                panel.MaximumSize = new Size(223, Height);
-                panel.MinimumSize = new Size(223, 30);
+                panel.Size = new Size(248, 30);
+                panel.MaximumSize = new Size(248, Height);
+                panel.MinimumSize = new Size(248, 30);
                 pl_MenuLeft.Controls.Add(panel);
 
                 //Custom.RJButton danhmuc = new Custom.RJButton
@@ -518,7 +518,7 @@ namespace TENTAC_HRM.Forms.Main
             Rectangle workingRectangle = Screen.PrimaryScreen.WorkingArea;
             this.Size = new Size(workingRectangle.Width, workingRectangle.Height);
 
-            pl_menu_left.MaximumSize = new Size(225, this.Height - 30);
+            pl_menu_left.MaximumSize = new Size(248, this.Height - 30);
             pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
             //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
             //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);
@@ -546,7 +546,7 @@ namespace TENTAC_HRM.Forms.Main
 
             tb_main.Padding = new Point(20, 4);
 
-            pl_menu_left.MaximumSize = new Size(225, this.Height - 30);
+            pl_menu_left.MaximumSize = new Size(248, this.Height - 30);
             pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
             if (!tb_dashboard.Controls.Contains(uc_dashboard.Instance))
             {
@@ -807,7 +807,7 @@ namespace TENTAC_HRM.Forms.Main
                 this.StartPosition = FormStartPosition.CenterScreen;
                 this.Location = new Point((Screen.PrimaryScreen.WorkingArea.Width - this.Width) / 2, (Screen.PrimaryScreen.WorkingArea.Height - this.Height) / 2);
 
-                pl_menu_left.MaximumSize = new Size(225, this.Height - 30);
+                pl_menu_left.MaximumSize = new Size(248, this.Height - 30);
                 pl_menu_left.MinimumSize = new Size(63, this.Height - 30);
                 //splitContainer1.Panel1MinSize = splitContainer1.Size.Height - 755;
                 //splitContainer1.Panel2MinSize = splitContainer1.Size.Height - (splitContainer1.Size.Height - 740);

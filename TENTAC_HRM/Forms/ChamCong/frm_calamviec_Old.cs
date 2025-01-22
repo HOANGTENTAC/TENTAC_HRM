@@ -4,9 +4,9 @@ using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.ChamCong
 {
-    public partial class frm_calamviec : Form
+    public partial class frm_calamviec_Old : Form
     {
-        public frm_calamviec()
+        public frm_calamviec_Old()
         {
             InitializeComponent();
         }

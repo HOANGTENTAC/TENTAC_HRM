@@ -4,9 +4,9 @@ using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.Category
 {
-    public partial class frm_kyhieu_chamcong : Form
+    public partial class frm_KyHieuChamCong : Form
     {
-        public frm_kyhieu_chamcong()
+        public frm_KyHieuChamCong()
         {
             InitializeComponent();
         }
@@ -17,7 +17,7 @@ namespace TENTAC_HRM.Forms.Category
         }
         public void load_data()
         {
-            string sql = "select * from dic_kyhieu where del_flg = 0";
+            string sql = "select * from mst_KyHieu where DelFlg = 0";
             dgv_kyhieu.DataSource = SQLHelper.ExecuteDt(sql);
         }
 
@@ -36,7 +36,7 @@ namespace TENTAC_HRM.Forms.Category
         private void btn_edit_Click(object sender, EventArgs e)
         {
             frm_edit_kyhieu_chamcom frm = new frm_edit_kyhieu_chamcom(this);
-            frm.ma_kyhieu = dgv_kyhieu.CurrentRow.Cells["ma_kyhieu"].Value.ToString();
+            frm.ma_kyhieu = dgv_kyhieu.CurrentRow.Cells["MaKyHieu"].Value.ToString();
             frm.edit = true;
             frm.ShowDialog();
         }
@@ -48,7 +48,7 @@ namespace TENTAC_HRM.Forms.Category
                 DialogResult result = RJMessageBox.Show("Bạn có chác muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    string sql = string.Format("update dic_kyhieu set del_flg = 1 where ma_kyhieu = '{0}'", dgv_kyhieu.CurrentRow.Cells["ma_kyhieu"].Value);
+                    string sql = string.Format("update mst_KyHieu set DelFlg = 1 where MaKyhieu = '{0}'", dgv_kyhieu.CurrentRow.Cells["MaKyhieu"].Value);
                     if (SQLHelper.ExecuteSql(sql) == 1)
                     {
                         RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -81,7 +81,7 @@ namespace TENTAC_HRM.Forms.Category
             if (dgv_kyhieu.CurrentCell.OwningColumn.Name == "edit_column")
             {
                 frm_edit_kyhieu_chamcom frm = new frm_edit_kyhieu_chamcom(this);
-                frm.ma_kyhieu = dgv_kyhieu.CurrentRow.Cells["ma_kyhieu"].Value.ToString();
+                frm.ma_kyhieu = dgv_kyhieu.CurrentRow.Cells["MaKyhieu"].Value.ToString();
                 frm.edit = true;
                 frm.ShowDialog();
             }
@@ -90,7 +90,7 @@ namespace TENTAC_HRM.Forms.Category
         private void dgv_kyhieu_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             frm_edit_kyhieu_chamcom frm = new frm_edit_kyhieu_chamcom(this);
-            frm.ma_kyhieu = dgv_kyhieu.CurrentRow.Cells["ma_kyhieu"].Value.ToString();
+            frm.ma_kyhieu = dgv_kyhieu.CurrentRow.Cells["MaKyhieu"].Value.ToString();
             frm.edit = true;
             frm.ShowDialog();
         }

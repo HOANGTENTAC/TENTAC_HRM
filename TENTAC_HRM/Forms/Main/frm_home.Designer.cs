@@ -87,7 +87,6 @@
             this.btn_close_all = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAllButThisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trợGiúpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_exit = new FontAwesome.Sharp.IconMenuItem();
@@ -128,7 +127,7 @@
             this.tb_main.Name = "tb_main";
             this.tb_main.SelectedIndex = 0;
             this.tb_main.ShowToolTips = true;
-            this.tb_main.Size = new System.Drawing.Size(1015, 783);
+            this.tb_main.Size = new System.Drawing.Size(990, 778);
             this.tb_main.TabIndex = 1;
             this.tb_main.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tb_main_DrawItem);
             this.tb_main.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tb_main_MouseClick);
@@ -140,7 +139,7 @@
             this.tb_dashboard.Location = new System.Drawing.Point(4, 22);
             this.tb_dashboard.Name = "tb_dashboard";
             this.tb_dashboard.Padding = new System.Windows.Forms.Padding(3);
-            this.tb_dashboard.Size = new System.Drawing.Size(1007, 757);
+            this.tb_dashboard.Size = new System.Drawing.Size(982, 752);
             this.tb_dashboard.TabIndex = 0;
             this.tb_dashboard.Text = "Bàn làm việc";
             this.tb_dashboard.UseVisualStyleBackColor = true;
@@ -150,7 +149,7 @@
             this.pl_dashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_dashboard.Location = new System.Drawing.Point(3, 3);
             this.pl_dashboard.Name = "pl_dashboard";
-            this.pl_dashboard.Size = new System.Drawing.Size(1001, 751);
+            this.pl_dashboard.Size = new System.Drawing.Size(976, 746);
             this.pl_dashboard.TabIndex = 0;
             // 
             // timer1
@@ -168,9 +167,9 @@
             // 
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Location = new System.Drawing.Point(0, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1240, 805);
+            this.panel1.Size = new System.Drawing.Size(1240, 800);
             this.panel1.TabIndex = 7;
             // 
             // panel3
@@ -180,7 +179,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1240, 805);
+            this.panel3.Size = new System.Drawing.Size(1240, 800);
             this.panel3.TabIndex = 8;
             // 
             // panel7
@@ -188,9 +187,9 @@
             this.panel7.Controls.Add(this.tb_main);
             this.panel7.Controls.Add(this.statusStrip1);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(225, 0);
+            this.panel7.Location = new System.Drawing.Point(250, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1015, 805);
+            this.panel7.Size = new System.Drawing.Size(990, 800);
             this.panel7.TabIndex = 7;
             // 
             // statusStrip1
@@ -199,9 +198,9 @@
             this.toolStripStatusLabel1,
             this.ts_user,
             this.ts_date});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 783);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 778);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1015, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(990, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -225,7 +224,7 @@
             this.ts_date.Image = ((System.Drawing.Image)(resources.GetObject("ts_date.Image")));
             this.ts_date.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ts_date.Name = "ts_date";
-            this.ts_date.Size = new System.Drawing.Size(869, 17);
+            this.ts_date.Size = new System.Drawing.Size(854, 17);
             this.ts_date.Spring = true;
             this.ts_date.Text = "2023/07/13";
             this.ts_date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -238,11 +237,11 @@
             this.pl_menu_left.Controls.Add(this.panel2);
             this.pl_menu_left.Dock = System.Windows.Forms.DockStyle.Left;
             this.pl_menu_left.Location = new System.Drawing.Point(0, 0);
-            this.pl_menu_left.MaximumSize = new System.Drawing.Size(225, 0);
+            this.pl_menu_left.MaximumSize = new System.Drawing.Size(250, 0);
             this.pl_menu_left.MinimumSize = new System.Drawing.Size(63, 0);
             this.pl_menu_left.Name = "pl_menu_left";
             this.pl_menu_left.Padding = new System.Windows.Forms.Padding(1);
-            this.pl_menu_left.Size = new System.Drawing.Size(225, 805);
+            this.pl_menu_left.Size = new System.Drawing.Size(250, 800);
             this.pl_menu_left.TabIndex = 6;
             // 
             // pl_MenuLeft
@@ -252,7 +251,7 @@
             this.pl_MenuLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pl_MenuLeft.Location = new System.Drawing.Point(1, 29);
             this.pl_MenuLeft.Name = "pl_MenuLeft";
-            this.pl_MenuLeft.Size = new System.Drawing.Size(223, 775);
+            this.pl_MenuLeft.Size = new System.Drawing.Size(248, 770);
             this.pl_MenuLeft.TabIndex = 0;
             // 
             // panel2
@@ -263,7 +262,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(223, 28);
+            this.panel2.Size = new System.Drawing.Size(248, 28);
             this.panel2.TabIndex = 0;
             // 
             // btn_show_menu_left
@@ -274,7 +273,7 @@
             this.btn_show_menu_left.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_show_menu_left.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.btn_show_menu_left.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_show_menu_left.Location = new System.Drawing.Point(192, 0);
+            this.btn_show_menu_left.Location = new System.Drawing.Point(217, 0);
             this.btn_show_menu_left.Name = "btn_show_menu_left";
             this.btn_show_menu_left.Size = new System.Drawing.Size(31, 28);
             this.btn_show_menu_left.TabIndex = 0;
@@ -289,10 +288,10 @@
             this.lbl_title_menu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.lbl_title_menu.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lbl_title_menu.Location = new System.Drawing.Point(0, 0);
-            this.lbl_title_menu.MaximumSize = new System.Drawing.Size(192, 0);
+            this.lbl_title_menu.MaximumSize = new System.Drawing.Size(217, 0);
             this.lbl_title_menu.MinimumSize = new System.Drawing.Size(0, 28);
             this.lbl_title_menu.Name = "lbl_title_menu";
-            this.lbl_title_menu.Size = new System.Drawing.Size(192, 28);
+            this.lbl_title_menu.Size = new System.Drawing.Size(217, 28);
             this.lbl_title_menu.TabIndex = 0;
             this.lbl_title_menu.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -707,7 +706,6 @@
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(219)))), ((int)(((byte)(255)))));
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iconMenuItem1,
             this.hệThốngToolStripMenuItem,
             this.trợGiúpToolStripMenuItem,
             this.btn_exit,
@@ -718,30 +716,17 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1240, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1240, 35);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip1_MouseDown);
-            // 
-            // iconMenuItem1
-            // 
-            this.iconMenuItem1.BackColor = System.Drawing.Color.Transparent;
-            this.iconMenuItem1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("iconMenuItem1.BackgroundImage")));
-            this.iconMenuItem1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.iconMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.iconMenuItem1.Enabled = false;
-            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(28, 28);
             // 
             // hệThốngToolStripMenuItem
             // 
             this.hệThốngToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.hệThốngToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.hệThốngToolStripMenuItem.Name = "hệThốngToolStripMenuItem";
-            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(71, 28);
+            this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(71, 33);
             this.hệThốngToolStripMenuItem.Text = "Hệ Thống";
             // 
             // trợGiúpToolStripMenuItem
@@ -749,7 +734,7 @@
             this.trợGiúpToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.trợGiúpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.trợGiúpToolStripMenuItem.Name = "trợGiúpToolStripMenuItem";
-            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(62, 28);
+            this.trợGiúpToolStripMenuItem.Size = new System.Drawing.Size(62, 33);
             this.trợGiúpToolStripMenuItem.Text = "Trợ giúp";
             // 
             // btn_exit
@@ -759,7 +744,7 @@
             this.btn_exit.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_exit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(28, 28);
+            this.btn_exit.Size = new System.Drawing.Size(28, 33);
             this.btn_exit.Click += new System.EventHandler(this.btn_exit_Click);
             // 
             // btn_maxximize
@@ -770,7 +755,7 @@
             this.btn_maxximize.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_maxximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_maxximize.Name = "btn_maxximize";
-            this.btn_maxximize.Size = new System.Drawing.Size(28, 28);
+            this.btn_maxximize.Size = new System.Drawing.Size(28, 33);
             this.btn_maxximize.Click += new System.EventHandler(this.btn_maxximize_Click);
             // 
             // btn_minimize
@@ -780,7 +765,7 @@
             this.btn_minimize.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_minimize.Name = "btn_minimize";
-            this.btn_minimize.Size = new System.Drawing.Size(28, 28);
+            this.btn_minimize.Size = new System.Drawing.Size(28, 33);
             this.btn_minimize.Click += new System.EventHandler(this.btn_minimize_Click);
             // 
             // btn_notifi
@@ -793,7 +778,7 @@
             this.btn_notifi.IconColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btn_notifi.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_notifi.Name = "btn_notifi";
-            this.btn_notifi.Size = new System.Drawing.Size(41, 28);
+            this.btn_notifi.Size = new System.Drawing.Size(41, 33);
             this.btn_notifi.Text = "0";
             this.btn_notifi.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btn_notifi.Click += new System.EventHandler(this.btn_notifi_Click);
@@ -806,7 +791,7 @@
             this.btn_SignOut.IconColor = System.Drawing.Color.Black;
             this.btn_SignOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_SignOut.Name = "btn_SignOut";
-            this.btn_SignOut.Size = new System.Drawing.Size(80, 28);
+            this.btn_SignOut.Size = new System.Drawing.Size(80, 33);
             this.btn_SignOut.Text = "SignOut";
             this.btn_SignOut.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_SignOut.Click += new System.EventHandler(this.btn_SignOut_Click);
@@ -867,7 +852,6 @@
         private System.Windows.Forms.ToolStripMenuItem hệThốngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trợGiúpToolStripMenuItem;
         private System.Windows.Forms.Timer tm_menu_left;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
         private FontAwesome.Sharp.IconMenuItem btn_exit;
         private FontAwesome.Sharp.IconMenuItem btn_maxximize;
         private FontAwesome.Sharp.IconMenuItem btn_minimize;

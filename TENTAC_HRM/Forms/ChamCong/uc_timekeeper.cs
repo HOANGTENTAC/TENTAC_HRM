@@ -34,8 +34,8 @@ namespace TENTAC_HRM.Forms.ChamCong
             dgv_timekeeper.Columns[1].Frozen = true;
             //dgv_timekeeper.Columns[2].Name = "ten";
             //dgv_timekeeper.Columns[2].HeaderText = "Tên";
-            dgv_timekeeper.Columns[2].Frozen = true;
-            dgv_timekeeper.Columns[2].Width = 60;
+            //dgv_timekeeper.Columns[2].Frozen = true;
+            //dgv_timekeeper.Columns[2].Width = 60;
 
             DateTime dtResult = DateTime.Parse("2023/09/01");
             dtResult = dtResult.AddMonths(1);
@@ -44,29 +44,29 @@ namespace TENTAC_HRM.Forms.ChamCong
             for (int i = 1; i <= dtResult.Day; i++)
             {
                 DateTime date = new DateTime(dtResult.Year, dtResult.Month, i);
-                dgv_timekeeper.Columns[i + 2].HeaderText = i.ToString() + Environment.NewLine + provider.getdayname(date.DayOfWeek);
-                dgv_timekeeper.Columns[i + 2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgv_timekeeper.Columns[i + 2].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgv_timekeeper.Columns[i + 2].Width = 40;
+                dgv_timekeeper.Columns[i + 1].HeaderText = i.ToString() + Environment.NewLine + provider.getdayname(date.DayOfWeek);
+                dgv_timekeeper.Columns[i + 1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_timekeeper.Columns[i + 1].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgv_timekeeper.Columns[i + 1].Width = 40;
 
                 if (i % 2 == 0)
                 {
-                    dgv_timekeeper.Columns[i + 2].DefaultCellStyle.BackColor = Color.MistyRose;
+                    dgv_timekeeper.Columns[i + 1].DefaultCellStyle.BackColor = Color.MistyRose;
                 }
                 else
                 {
-                    dgv_timekeeper.Columns[i + 2].DefaultCellStyle.BackColor = Color.Cornsilk;
+                    dgv_timekeeper.Columns[i + 1].DefaultCellStyle.BackColor = Color.Cornsilk;
                 }
                 if (date.DayOfWeek == DayOfWeek.Sunday)
                 {
-                    dgv_timekeeper.Columns[i + 2].DefaultCellStyle.BackColor = Color.Azure;
+                    dgv_timekeeper.Columns[i + 1].DefaultCellStyle.BackColor = Color.Azure;
                 }
             }
             if (dtResult.Day < 31)
             {
                 for (int i = dtResult.Day + 1; i <= 31; i++)
                 {
-                    dgv_timekeeper.Columns[i + 2].Visible = false;
+                    dgv_timekeeper.Columns[i + 1].Visible = false;
                 }
             }
             //dgv_timekeeper.Columns[34].HeaderText = "Nghỉ KP";
@@ -153,7 +153,6 @@ namespace TENTAC_HRM.Forms.ChamCong
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            provider.btn_close(this.Parent);
         }
 
         private void btn_refresh_Click(object sender, EventArgs e)
@@ -163,13 +162,13 @@ namespace TENTAC_HRM.Forms.ChamCong
 
         private void btn_edit_synbol_Click(object sender, EventArgs e)
         {
-            frm_kyhieu_chamcong frm = new frm_kyhieu_chamcong();
+            frm_KyHieuChamCong frm = new frm_KyHieuChamCong();
             frm.ShowDialog();
         }
 
         public void load_symbol()
         {
-            string sql = "select ma_kyhieu,ten_kyhieu from dic_kyhieu";
+            string sql = "select MaKyHieu,TenKyHieu from mst_KyHieu";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -181,14 +180,14 @@ namespace TENTAC_HRM.Forms.ChamCong
                 {
 
                     Label label = new Label();
-                    label.Text = item["ten_kyhieu"].ToString();
+                    label.Text = item["TenKyHieu"].ToString();
                     label.Location = new Point(9 + rowx, 27 + rowy);
                     label.Size = new Size(125, 17);
                     label.TextAlign = ContentAlignment.MiddleLeft;
                     pl_symbol.Controls.Add(label);
 
                     Label label_ma = new Label();
-                    label_ma.Text = ": " + item["ma_kyhieu"].ToString();
+                    label_ma.Text = ": " + item["MaKyHieu"].ToString();
                     label_ma.Location = new Point(130 + rowx, 27 + rowy);
                     label_ma.Size = new Size(40, 17);
                     label_ma.TextAlign = ContentAlignment.MiddleLeft;

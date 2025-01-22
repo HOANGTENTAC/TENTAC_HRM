@@ -731,14 +731,14 @@ namespace TENTAC_HRM.Common
         public string sTuDongDienCaLamViec(string sCaLamViec)
         {
             int iMaxSoSanh = 1;
-            SqlCommand sqlcmdLenhThucThi = new SqlCommand("Select MaCaLamViec from CaLamViecNew", sqlMaTuDong);
+            SqlCommand sqlcmdLenhThucThi = new SqlCommand("Select top 1 MaCaLamViec from MITACOSQL.dbo.CaLamViecNew where MaCaLamViec != 'HC' order by MaCaLamViec desc", sqlMaTuDong);
             SqlDataReader sqldatareader = sqlcmdLenhThucThi.ExecuteReader();
             while (sqldatareader.Read())
             {
                 for (int ii = 0; ii < sqldatareader.GetValue(0).ToString().Length; ii++)
                 {
                     sCaLamViec = sqldatareader.GetValue(0).ToString().Trim();
-                    int iLaySoDuoi = int.Parse(sCaLamViec.ToString().Trim().Substring(2, 5));
+                    int iLaySoDuoi = int.Parse(sCaLamViec.ToString().Trim().Substring(2, sCaLamViec.Length - 2));
                     if (iMaxSoSanh == iLaySoDuoi)
                     {
                         iMaxSoSanh++;
@@ -750,26 +750,7 @@ namespace TENTAC_HRM.Common
                 }
             }
             sqldatareader.Close();
-            if (Maxa < 10)
-            {
-                sCaLamViec = "CA" + "0000" + Maxa;
-            }
-            if (Maxa >= 10)
-            {
-                sCaLamViec = "CA" + "000" + Maxa;
-            }
-            if (Maxa >= 100)
-            {
-                sCaLamViec = "CA" + "00" + Maxa;
-            }
-            if (Maxa >= 1000)
-            {
-                sCaLamViec = "CA" + "0" + Maxa;
-            }
-            if (Maxa >= 10000)
-            {
-                sCaLamViec = string.Concat(Maxa);
-            }
+            sCaLamViec = "CA" + Maxa;
             return sCaLamViec;
         }
 

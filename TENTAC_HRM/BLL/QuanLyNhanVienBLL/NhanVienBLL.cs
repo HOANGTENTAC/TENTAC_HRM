@@ -108,5 +108,13 @@ namespace TENTAC_HRM.BLL.QuanLyNhanVienBLL
         {
             return SQLHelper.ExecuteDt($"select * from MITACOSQL.dbo.[NHANVIEN] where TenNhanVien like '%{search}%' or MaNhanVien like '%{search}%'");
         }
+        public DataTable TaiNhanVienLenMCC()
+        {
+            return SQLHelper.ExecuteDt("SELECT MaNhanVien,TenNhanVien,MaChamCong,TenChamCong,MaThe,UserPassWord,PhanQuyen,UserEnable FROM MITACOSQL.dbo.[NHANVIEN] ");
+        }
+        public DataTable getTemplateNhanVien(int MaChamCong)
+        {
+            return SQLHelper.ExecuteDt($"select MaChamCong, FingerID, FingerTemplate, FingerVersion from MITACOSQL.dbo.[TEMPLATE] where MaChamCong = '{MaChamCong}'");
+        }
     }
 }
