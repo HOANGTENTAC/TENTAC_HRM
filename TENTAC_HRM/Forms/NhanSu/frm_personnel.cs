@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Category;
 using TENTAC_HRM.Forms.Main;
@@ -1440,7 +1441,7 @@ namespace TENTAC_HRM.Forms.NhanSu
             //    new SqlParameter("@ma_cham_cong", SqlDbType.NVarChar) {Value = nhanvien.Ma_Cham_Cong},
             //    new SqlParameter("@ten_cham_cong", SqlDbType.NVarChar) {Value = nhanvien.Ten_Cham_Cong},
             //    new SqlParameter("@ma_the", SqlDbType.NVarChar) {Value = nhanvien.Ma_The},
-            //    new SqlParameter("@id_nguoi_tao", SqlDbType.VarChar) {Value = SQLHelper.sIdUser},
+            //    new SqlParameter("@id_nguoi_tao", SqlDbType.VarChar) {Value = LoginInfo.UserCd},
             //};
             //SQLHelper.ExecuteSql(sql, param);
             //_ma_nhan_vien = txt_MaSo.Text;
@@ -1526,7 +1527,7 @@ namespace TENTAC_HRM.Forms.NhanSu
             {SQLHelper.rpI(nhanvien.Id_NganHangCK)}, {SQLHelper.rpStr(nhanvien.WorkPermit)}, {SQLHelper.rpDT(nhanvien.NgayCapWP)},
             {SQLHelper.rpDT(nhanvien.NgayHetHanWP)}, {SQLHelper.rpDouble(nhanvien.ChieuCao)}, {SQLHelper.rpDouble(nhanvien.CanNang)},
             {SQLHelper.rpStr(nhanvien.NhomMau)}, {SQLHelper.rpStr(nhanvien.SucKhoe)}, {SQLHelper.rpStr(nhanvien.LuuYSK)},
-            {(nhanvien.KhuyetTat == true ? 1 : 0)}, {SQLHelper.rpStr(nhanvien.ReportTo)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+            {(nhanvien.KhuyetTat == true ? 1 : 0)}, {SQLHelper.rpStr(nhanvien.ReportTo)}, '{DateTime.Now}', {SQLHelper.rpStr(LoginInfo.UserCd)}, 0)";
             int res = SQLHelper.ExecuteSql(sql);
             if (res > 0)
             {
@@ -1606,7 +1607,7 @@ namespace TENTAC_HRM.Forms.NhanSu
             KhuyetTat = {(nhanvien.KhuyetTat == true ? 1 : 0)}, MaCongTy = {SQLHelper.rpStr(nhanvien.MaCongTy)}, 
             MaKhuVuc = {SQLHelper.rpStr(nhanvien.MaKhuVuc)}, MaPhongBan = {SQLHelper.rpStr(nhanvien.MaPhongBan)},
             MaChucVu = {SQLHelper.rpStr(nhanvien.MaChucVu)}, ReportTo = {SQLHelper.rpStr(nhanvien.ReportTo)}, NgayCapNhat = '{DateTime.Now}',
-            NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+            NguoiCapNhat = {SQLHelper.rpStr(LoginInfo.UserCd)}
             Where MaNhanVien = {SQLHelper.rpStr(_ma_nhan_vien)} and Del_Flg = 0";
             if (SQLHelper.ExecuteSql(sql) > 0)
             {

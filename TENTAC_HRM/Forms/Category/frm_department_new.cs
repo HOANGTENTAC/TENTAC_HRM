@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -211,8 +212,8 @@ namespace TENTAC_HRM.Forms.Category
             _DenNgay = string.IsNullOrEmpty(dtp_DenNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_DenNgay.Text);
             _SoQuyetDinh = txt_SoQuyetDinh.Text.Trim().ToString();
             _GhiChu = txt_GhiChu.Text.Trim().ToString();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void dgv_NhanVienPhongBan_CellClick(object sender, DataGridViewCellEventArgs e)
         {

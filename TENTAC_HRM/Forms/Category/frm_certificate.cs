@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -15,7 +16,7 @@ namespace TENTAC_HRM.Forms.Category
         public int _IdChungChi { get; set; }
         public bool edit { get; set; }
         frm_personnel _Personnel;
-        string _MaChungChi, _TruongDaoTao, _XepLoai, _GhiChu, _NguoiTao = SQLHelper.sUser, _NguoiCapNhat = SQLHelper.sUser;
+        string _MaChungChi, _TruongDaoTao, _XepLoai, _GhiChu, _NguoiTao = LoginInfo.UserCd, _NguoiCapNhat = LoginInfo.UserCd;
         DateTime? _NgayNhanBang;
         public frm_certificate(Form frm)
         {

@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -16,7 +17,7 @@ namespace TENTAC_HRM.Forms.Category
         public bool edit { get; set; }
         DataProvider provider = new DataProvider();
         int _Active, _HeDaoTao;
-        string _LoaiDaoTao, _BacDaoTao, _NganhDaoTao, _TruongDaoTao, _XepLoai, _GhiChu, _NguoiTao = SQLHelper.sUser, _NguoiCapNhat = SQLHelper.sUser;
+        string _LoaiDaoTao, _BacDaoTao, _NganhDaoTao, _TruongDaoTao, _XepLoai, _GhiChu, _NguoiTao = LoginInfo.UserCd, _NguoiCapNhat = LoginInfo.UserCd;
         DateTime? TuNam_value, DenNam_value, NgayNhanBang_value;
         public frm_pecialize(frm_personnel _personnel)
         {
@@ -218,8 +219,8 @@ namespace TENTAC_HRM.Forms.Category
             NgayNhanBang_value = string.IsNullOrEmpty(dtp_NamNhanBang.Text) ? (DateTime?)null : DateTime.Parse(dtp_NamNhanBang.Text);
             _XepLoai = cbo_XepLoai.SelectedValue.ToString();
             _GhiChu = txt_ghichu.Text;
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void frm_pecialize_KeyDown(object sender, KeyEventArgs e)
         {

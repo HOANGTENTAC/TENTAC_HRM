@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -138,7 +139,7 @@ namespace TENTAC_HRM.Forms.Category
                 DenNgay = {SQLHelper.rpDT(_DenNgay)}, MucLuong = {SQLHelper.rpD(_MucLuong)}, Is_DongBHXH = {SQLHelper.rpI(_DongBHXH)},
                 Is_DongBHYT = {SQLHelper.rpI(_DongBHYT)}, Is_DongBHTN = {SQLHelper.rpI(_DongBHTN)}, Is_MienThue = {SQLHelper.rpI(_MienThue)},
                 Is_ThueCoDinh = {SQLHelper.rpI(_ThueCoDinh)}, PT_ThueTNCN = {SQLHelper.rpStr(_ThueTNCN)}, GhiChu = {SQLHelper.rpStr(_GhiChu)},
-                Is_DongKPCD = {SQLHelper.rpI(_CongDoan)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+                Is_DongKPCD = {SQLHelper.rpI(_CongDoan)}, NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(LoginInfo.UserCd)}
                 Where ID = {SQLHelper.rpI(Convert.ToInt32(_IDLuong))}";
 
                 if (SQLHelper.ExecuteSql(sql) > 0)
@@ -176,7 +177,7 @@ namespace TENTAC_HRM.Forms.Category
                 Values ({SQLHelper.rpStr(_MaNhanVien)}, {SQLHelper.rpI(active_value)}, {SQLHelper.rpDT(_TuNgay)}, {SQLHelper.rpDT(_DenNgay)},
                 {SQLHelper.rpD(_MucLuong)}, {SQLHelper.rpD(_LuongBHXH)}, {SQLHelper.rpI(_DongBHXH)}, {SQLHelper.rpI(_DongBHYT)},
                 {SQLHelper.rpI(_DongBHTN)}, {SQLHelper.rpI(_CongDoan)}, {SQLHelper.rpI(_MienThue)}, {SQLHelper.rpI(_ThueCoDinh)},
-                {SQLHelper.rpStr(_ThueTNCN)}, {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+                {SQLHelper.rpStr(_ThueTNCN)}, {SQLHelper.rpStr(_GhiChu)}, '{DateTime.Now}', {SQLHelper.rpStr(LoginInfo.UserCd)}, 0)";
 
                 int IDNew = SQLHelper.ExecuteScalarSql(sql);
                 if (IDNew != 0)

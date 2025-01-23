@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.NhanSu;
@@ -267,8 +268,8 @@ namespace TENTAC_HRM.Forms.Category
             _DiaChi = (string.IsNullOrEmpty(_ThonSoNha) ? "" : _ThonSoNha + ", ") + (string.IsNullOrEmpty(cbo_PhuongXa.Text) ? "" : cbo_PhuongXa.Text + ", ") +
                 (string.IsNullOrEmpty(cbo_QuanHuyen.Text) ? "" : cbo_QuanHuyen.Text + ", ") + (string.IsNullOrEmpty(cbo_TinhThanh.Text) ? "" : cbo_TinhThanh.Text + ", ") +
                 (string.IsNullOrEmpty(cbo_QuocGia.Text) ? "" : cbo_QuocGia.Text);
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
     }
 }

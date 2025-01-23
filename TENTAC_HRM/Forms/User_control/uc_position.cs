@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Mst_Add_Data;
 
@@ -201,7 +202,7 @@ namespace TENTAC_HRM.Forms.User_control
                                     SET TenChucVu = {SQLHelper.rpStr(_TenChucVu)}, 
                                     MoTa = {SQLHelper.rpStr(_MoTa)},
                                     NgayCapNhat = '{DateTime.Now}',
-                                    NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+                                    NguoiCapNhat = {SQLHelper.rpStr(LoginInfo.UserCd)}
                                     WHERE MaChucVu = {SQLHelper.rpStr(_MaChucVu)} and del_flg = 0";
                                 res += SQLHelper.ExecuteSql(sqlUpdate);
                             }
@@ -210,7 +211,7 @@ namespace TENTAC_HRM.Forms.User_control
                                 string newMaChucVu = autoCodeGenerator.GenerateNextMaChucVu();
                                 string sqlInsert = $@"INSERT INTO mst_ChucVu(MaChucVu, TenChucVu, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg) 
                                                 VALUES({SQLHelper.rpStr(newMaChucVu)}, {SQLHelper.rpStr(_TenChucVu)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}',
-                                                {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+                                                {SQLHelper.rpStr(LoginInfo.UserCd)}, '{DateTime.Now}', {SQLHelper.rpStr(LoginInfo.UserCd)}, 0)";
                                 res += SQLHelper.ExecuteSql(sqlInsert);
                             }
                         }

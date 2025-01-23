@@ -81,6 +81,10 @@ namespace TENTAC_HRM.Forms.MayChamCong
             this.ColEnable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DGVNhanVien = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.treeViewSoDoQuanLy = new System.Windows.Forms.TreeView();
+            this.col_check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColMaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColTenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMaChamCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,9 +94,6 @@ namespace TENTAC_HRM.Forms.MayChamCong
             this.ColPhanQuyen1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColMatKhau1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColEnable1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.treeViewSoDoQuanLy = new System.Windows.Forms.TreeView();
             this.panelEx1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupTimNhanVien.SuspendLayout();
@@ -516,6 +517,7 @@ namespace TENTAC_HRM.Forms.MayChamCong
             this.DGVNhanVien.BackgroundColor = System.Drawing.Color.GhostWhite;
             this.DGVNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_check,
             this.ColMaNhanVien,
             this.ColTenNhanVien,
             this.ColMaChamCong,
@@ -541,6 +543,50 @@ namespace TENTAC_HRM.Forms.MayChamCong
             this.DGVNhanVien.TabIndex = 0;
             this.DGVNhanVien.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DGVNhanVien_CellPainting);
             this.DGVNhanVien.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVNhanVien_ColumnHeaderMouseClick);
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(264, 579);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(920, 3);
+            this.panel1.TabIndex = 8;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.treeViewSoDoQuanLy);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(264, 582);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Danh sách phòng ban";
+            // 
+            // treeViewSoDoQuanLy
+            // 
+            this.treeViewSoDoQuanLy.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewSoDoQuanLy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeViewSoDoQuanLy.ImageIndex = 0;
+            this.treeViewSoDoQuanLy.ImageList = this.imageList1;
+            this.treeViewSoDoQuanLy.Location = new System.Drawing.Point(3, 16);
+            this.treeViewSoDoQuanLy.Name = "treeViewSoDoQuanLy";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Danh sách nhân viên mới";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Nhân viên nghỉ việc";
+            this.treeViewSoDoQuanLy.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            this.treeViewSoDoQuanLy.SelectedImageIndex = 1;
+            this.treeViewSoDoQuanLy.Size = new System.Drawing.Size(258, 563);
+            this.treeViewSoDoQuanLy.TabIndex = 3;
+            // 
+            // col_check
+            // 
+            this.col_check.HeaderText = "";
+            this.col_check.Name = "col_check";
+            this.col_check.Width = 30;
             // 
             // ColMaNhanVien
             // 
@@ -596,44 +642,6 @@ namespace TENTAC_HRM.Forms.MayChamCong
             this.ColEnable1.DataPropertyName = "UserEnable";
             this.ColEnable1.HeaderText = "Enable";
             this.ColEnable1.Name = "ColEnable1";
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(264, 579);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(920, 3);
-            this.panel1.TabIndex = 8;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.treeViewSoDoQuanLy);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(264, 582);
-            this.groupBox1.TabIndex = 4;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Danh sách phòng ban";
-            // 
-            // treeViewSoDoQuanLy
-            // 
-            this.treeViewSoDoQuanLy.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewSoDoQuanLy.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeViewSoDoQuanLy.ImageIndex = 0;
-            this.treeViewSoDoQuanLy.ImageList = this.imageList1;
-            this.treeViewSoDoQuanLy.Location = new System.Drawing.Point(3, 16);
-            this.treeViewSoDoQuanLy.Name = "treeViewSoDoQuanLy";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Danh sách nhân viên mới";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Nhân viên nghỉ việc";
-            this.treeViewSoDoQuanLy.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            this.treeViewSoDoQuanLy.SelectedImageIndex = 1;
-            this.treeViewSoDoQuanLy.Size = new System.Drawing.Size(258, 563);
-            this.treeViewSoDoQuanLy.TabIndex = 3;
             // 
             // uc_TaiNhanVienLenMayChamCong
             // 
@@ -743,24 +751,17 @@ namespace TENTAC_HRM.Forms.MayChamCong
         private DataGridViewTextBoxColumn ColMatKhau;
 
         private DataGridViewTextBoxColumn ColEnable;
-
-        private DataGridViewTextBoxColumn ColMaNhanVien;
-
-        private DataGridViewTextBoxColumn ColTenNhanVien;
-
-        private DataGridViewTextBoxColumn ColMaChamCong;
-
-        private DataGridViewTextBoxColumn ColTenChamCong;
-
-        private DataGridViewTextBoxColumn ColMaThe;
-
-        private DataGridViewCheckBoxColumn ColTinhTrang;
-
-        private DataGridViewTextBoxColumn ColPhanQuyen1;
-
-        private DataGridViewTextBoxColumn ColMatKhau1;
-
-        private DataGridViewTextBoxColumn ColEnable1;
         #endregion
+
+        private DataGridViewCheckBoxColumn col_check;
+        private DataGridViewTextBoxColumn ColMaNhanVien;
+        private DataGridViewTextBoxColumn ColTenNhanVien;
+        private DataGridViewTextBoxColumn ColMaChamCong;
+        private DataGridViewTextBoxColumn ColTenChamCong;
+        private DataGridViewTextBoxColumn ColMaThe;
+        private DataGridViewCheckBoxColumn ColTinhTrang;
+        private DataGridViewTextBoxColumn ColPhanQuyen1;
+        private DataGridViewTextBoxColumn ColMatKhau1;
+        private DataGridViewTextBoxColumn ColEnable1;
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.NhanSu;
@@ -119,8 +120,8 @@ namespace TENTAC_HRM.Forms.Category
             _TuNgay = string.IsNullOrEmpty(dtp_TuNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_TuNgay.Text);
             _DenNgay = string.IsNullOrEmpty(dtp_DenNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_DenNgay.Text);
             _GhiChu = txt_GhiChu.Text.Trim();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void btn_close_Click(object sender, EventArgs e)
         {

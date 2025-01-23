@@ -290,7 +290,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                         Id_TrangThai, del_flg, NgayTao, NguoiTao)
                         Values('{nhanvien.Cells["MaNhanVien"].Value.ToString()}', '{cbo_Nam.Text}', {SQLHelper.rpStr(cbo_LoaiPhep.SelectedValue.ToString())}, {SQLHelper.rpDT(_NgayNghi)},
                         '{txt_NoiDung.Text}', '{SQLHelper.rpD(_SoNgay)}', {SQLHelper.rpI(_NuaNgay)}, {SQLHelper.rpStr(LoginInfo.ReportTo)}, 
-                        {SQLHelper.rpI(_IdTrangThai)}, 0, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)})";
+                        {SQLHelper.rpI(_IdTrangThai)}, 0, '{DateTime.Now}', {SQLHelper.rpStr(LoginInfo.UserCd)})";
                         int res = SQLHelper.ExecuteSql(sql);
                         if (res > 0)
                         {
@@ -328,7 +328,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 sql = $@"Update tbl_NghiPhepNam set
                 LoaiPhepNghi = {SQLHelper.rpStr(cbo_LoaiPhep.SelectedValue.ToString())},
                 GhiChu = {txt_NoiDung.Text}, SoNgay = {SQLHelper.rpD(_SoNgay)}, NuaNgay = {SQLHelper.rpI(_NuaNgay)},
-                NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+                NgayCapNhat = '{DateTime.Now}', NguoiCapNhat = {SQLHelper.rpStr(LoginInfo.UserCd)}
                 Where Id= {SQLHelper.rpI(_id_nghi_phep_value)} and Id_TrangThai = 197 and del_flg = 0";
                 int res = SQLHelper.ExecuteSql(sql);
                 if (res > 0)

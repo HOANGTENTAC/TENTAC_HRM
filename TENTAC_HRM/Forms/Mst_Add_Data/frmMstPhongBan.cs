@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.User_control;
 
@@ -111,8 +112,8 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             _TenPhongBan = txtTenPhongBan.Text.Trim().ToString();
             _CongTy = cbMaCongTy.SelectedValue.ToString();
             _KhuVuc = cbMaKhuVuc.SelectedValue.ToString();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void InsertData()
         {

@@ -84,7 +84,6 @@ namespace TENTAC_HRM.Forms.MayChamCong
         {
             this.loadTreeView();
             this.DGVNhanVien.DataSource = this._nhanVienBLL.TaiNhanVienLenMCC();
-            this.DGVNhanVien.Columns.Insert(0, new DataGridViewCheckBoxColumn());
             for (int ts = 0; ts <= this.DGVNhanVien.Rows.Count; ts++)
             {
                 this.lbTongSoNhanVien.Text = "Tổng số nhân viên: " + ts;

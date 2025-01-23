@@ -14,5 +14,6 @@
         public static string ReportTo { get; set; }
         public static string Group { get; set; }
         public static string Email { get; set; }
+        public static string TenNhanVien { get;set; }
     }
 }

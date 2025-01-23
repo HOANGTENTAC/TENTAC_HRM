@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,7 +16,7 @@ namespace TENTAC_HRM
         public DataTable load_nhanvien(string MaChamCong = "")
         {
             string sql = "select MaNhanVien as value,TenNhanVien as name from MITACOSQL.dbo.NHANVIEN where 1=1 ";
-            if(!string.IsNullOrEmpty(MaChamCong))
+            if (!string.IsNullOrEmpty(MaChamCong))
             {
                 sql += $" and MaChamCong = '{MaChamCong}'";
             }
@@ -262,13 +261,15 @@ namespace TENTAC_HRM
             string Ten = ht.Substring(i + 1);
             string Ho = ht.Substring(0, j);
             string HoVaTen = Ho + " " + TenLot;
-            if(type == 1)
+            if (type == 1)
             {
                 return TenLot;
-            }else if(type == 2)
+            }
+            else if (type == 2)
             {
                 return Ten;
-            }else if(type == 3)
+            }
+            else if (type == 3)
             {
                 return Ho + " " + TenLot;
             }
@@ -466,8 +467,8 @@ namespace TENTAC_HRM
         //        if (isPasswordMatch)
         //        {
         //            resual = true;
-        //            SQLHelper.sUser = user_name;
-        //            SQLHelper.sIdUser = dt.Rows[0]["userid"].ToString();
+        //            LoginInfo.UserCd = user_name;
+        //            LoginInfo.UserCd = dt.Rows[0]["userid"].ToString();
         //        }
         //    }
         //    else
@@ -481,8 +482,10 @@ namespace TENTAC_HRM
         public bool check_login(string user_name, string pass_word)
         {
             bool result = false;
-            string sql = $@"SELECT us.*, nv.ReportTo FROM mst_Users us 
-                        Left join tbl_NhanVien nv on us.MaNhanVien = nv.MaNhanVien and nv.del_flg = 0
+            string sql = $@"SELECT us.*, nv_new.ReportTo,nv.MaChucVu,nv.MaPhongBan,nv.MaChamCong,nv.Email,nv.TenNhanVien 
+                        FROM mst_Users us 
+                        Left join MITACOSQL.dbo.NhanVien nv on us.MaNhanVien = nv.MaNhanVien 
+                        left join tbl_NhanVien nv_new on nv_new.MaNhanVien = nv.MaNhanVien
                         WHERE us.MaNhanVien = {SQLHelper.rpStr(user_name)} AND us.del_flg = 0";
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
@@ -490,13 +493,37 @@ namespace TENTAC_HRM
                 string storedPasswordHashSHA1 = dt.Rows[0]["MatKhau"].ToString();
                 string enteredPasswordHashSHA1 = Hash_sha(pass_word);
 
+                LoginInfo.Group = "";
+                LoginInfo.UserCd = "";
+                LoginInfo.ReportTo = "";
+                LoginInfo.ChucVu = "";
+                LoginInfo.LoaiUser = "";
+                LoginInfo.MaPhongBan = "";
+                LoginInfo.MaChamCong = "";
+                LoginInfo.Email = "";
+                LoginInfo.TenNhanVien = "";
+
                 if (storedPasswordHashSHA1 == enteredPasswordHashSHA1)
                 {
                     result = true;
-                    SQLHelper.sUser = user_name;
-                    SQLHelper.sIdUser = dt.Rows[0]["Id"].ToString();
-                    SQLHelper.isAdmin = Convert.ToBoolean(dt.Rows[0]["Is_Admin"].ToString());
+                    LoginInfo.Group = dt.Rows[0]["Groups"].ToString();
+                    LoginInfo.UserCd = user_name;
                     LoginInfo.ReportTo = dt.Rows[0]["ReportTo"].ToString();
+
+                    if (dt.Rows[0]["Groups"].ToString() != "ADMIN" && dt.Rows[0]["Groups"].ToString() != "HR")
+                    {
+                        LoginInfo.ChucVu = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChucVu"].ToString() : "";
+                        LoginInfo.LoaiUser = "NhanVien";
+                        LoginInfo.MaPhongBan = dt.Rows[0]["MaPhongBan"].ToString();
+                        LoginInfo.MaChamCong = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChamCong"].ToString() : "";
+                        LoginInfo.Email = dt.Rows[0]["Email"].ToString();
+                        LoginInfo.TenNhanVien = dt.Rows[0]["TenNhanVien"].ToString();
+                    }
+                    else
+                    {
+                        LoginInfo.ChucVu = "";
+                        LoginInfo.LoaiUser = "NhanVien";
+                    }
                 }
             }
 

@@ -296,7 +296,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
             html_template = html_template.Replace("[MatSau]", htmlmatsau);
             html_template = html_template.Replace("[Tong]", tongphepnam + "/" + dt.Rows[0]["TongNgayPhep"].ToString());
             webBrowser1.DocumentText = html_template;
-
             //FileStream source = new FileStream(filepath, FileMode.Open, FileAccess.Read);
             //webBrowser1.DocumentStream = source;
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.ChamCong
@@ -85,7 +86,7 @@ namespace TENTAC_HRM.Forms.ChamCong
                     txt_ma.Text,txt_ten.Text,dtp_giovao.Value.ToString("yyyy/MM/dd HH:mm:ss"),dtp_giora.Value.ToString("yyyy/MM/dd HH:mm:ss"), chk_cadem.Checked,
                     dtp_giovao_tu.Value.ToString("yyyy/MM/dd HH:mm:ss"), dtp_giovao_den.Value.ToString("yyyy/MM/dd HH:mm:ss"), dtp_giora_tu.Value.ToString("yyyy/MM/dd HH:mm:ss"), dtp_giora_den.Value.ToString("yyyy/MM/dd HH:mm:ss"), nmr_di_tre.Value,nmr_ve_som.Value,
                     dtp_batdau_nghi.Value.ToString("yyyy/MM/dd HH:mm:ss"), dtp_ketthuc_nghi.Value.ToString("yyyy/MM/dd HH:mm:ss"), txt_tongso_phut.Text,txt_tongso_gio.Text,nmr_tangca_toithieu.Value,nmr_tangca_toida.Value,
-                    txt_ghi_chu.Text,chk_nghi_giua_ca.Checked,chk_tinhca.Checked,SQLHelper.sIdUser);
+                    txt_ghi_chu.Text,chk_nghi_giua_ca.Checked,chk_tinhca.Checked,LoginInfo.UserCd);
                 if(SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

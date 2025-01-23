@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.Category
@@ -79,7 +80,7 @@ namespace TENTAC_HRM.Forms.Category
             try
             {
                 string sql = string.Format("insert into mst_KyHieu(MaKyHieu,TenKyHieu,PhanTramLuong,NguoiTao) " +
-                                            "values('{0}',N'{1}','{2}','{3}')", txt_ma.Text, txt_ten.Text, nbr_phantram.Value.ToString(),SQLHelper.sIdUser);
+                                            "values('{0}',N'{1}','{2}','{3}')", txt_ma.Text, txt_ten.Text, nbr_phantram.Value.ToString(),LoginInfo.UserCd);
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

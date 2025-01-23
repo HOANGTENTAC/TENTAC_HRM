@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Forms.User_control;
 using TENTAC_HRM.Properties;
 
@@ -48,7 +49,7 @@ namespace TENTAC_HRM.Forms.Main
         {
             //splitContainer1.Panel2.Controls.Clear();
             string sql = string.Empty;
-            if (SQLHelper.isAdmin == false)
+            if (LoginInfo.Group != "ADMIN")
             {
                 sql = $@"SELECT 
                 a.Id,a.MenuCode,a.MenuText,a.MenuName,a.ParentId,a.MenuImage, a.FromName,a.MenuNumber,b.FrmType, b.FrmText,
@@ -57,7 +58,7 @@ namespace TENTAC_HRM.Forms.Main
                     FROM mst_UserRoles ur_child
                     WHERE ur_child.Id_Menu = a.Id 
                       AND ur_child.del_flg = 0 
-                      AND ur_child.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+                      AND ur_child.MaNhanVien = {SQLHelper.rpStr(LoginInfo.UserCd)}
                 ) AS Id_Permision FROM mst_Menu a
 	            LEFT JOIN mst_from b ON a.FromName = b.FrmName
 		        WHERE 
@@ -69,7 +70,7 @@ namespace TENTAC_HRM.Forms.Main
 					        INNER JOIN mst_UserRoles ur_child 
 						        ON c.Id = ur_child.Id_Menu 
 						        AND ur_child.del_flg = 0 
-						        AND ur_child.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+						        AND ur_child.MaNhanVien = {SQLHelper.rpStr(LoginInfo.UserCd)}
 					        WHERE c.ParentId = a.Id
 				        )
 				        OR EXISTS (
@@ -77,7 +78,7 @@ namespace TENTAC_HRM.Forms.Main
 					        FROM mst_UserRoles ur_parent
 					        WHERE ur_parent.Id_Menu = a.Id 
 					          AND ur_parent.del_flg = 0 
-					          AND ur_parent.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)}
+					          AND ur_parent.MaNhanVien = {SQLHelper.rpStr(LoginInfo.UserCd)}
 				        )
 			        )
 		        ORDER BY 
@@ -89,7 +90,7 @@ namespace TENTAC_HRM.Forms.Main
                 from mst_menu a
                 left join mst_from b on a.FromName = b.FrmName 
                 inner join mst_UserRoles ur on a.Id = ur.Id_Menu and ur.del_flg = 0
-                where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} 
+                where ParentId != 0 and ur.MaNhanVien = {SQLHelper.rpStr(LoginInfo.UserCd)} 
                 group by a.Id, a.MenuCode, a.MenuText, a.MenuName, a.ParentId, a.MenuImage, a.FromName, a.MenuNumber, b.FrmType, b.FrmText,a.OpenSource 
                 order by a.MenuNumber desc";
                 dt_MenuChild = SQLHelper.ExecuteDt(sql);
@@ -432,7 +433,7 @@ namespace TENTAC_HRM.Forms.Main
             if (name_parent != null)
             {
                 int[] idPermision = new int[0];
-                if (SQLHelper.isAdmin == false)
+                if (LoginInfo.Group != "ADMIN")
                 {
                     string idPermisionStr = name_parent["Id_Permision"].ToString();
                     idPermision = idPermisionStr.Split(',').Select(int.Parse).ToArray();
@@ -536,7 +537,7 @@ namespace TENTAC_HRM.Forms.Main
 
         private void frm_home_Load(object sender, EventArgs e)
         {
-            ts_user.Text = SQLHelper.sUser;
+            ts_user.Text = LoginInfo.UserCd + "-" + LoginInfo.TenNhanVien;
             pl_sn.Height = 0;
             pl_nv_moi.Height = 0;
             pl_hopdong.Height = 0;
@@ -784,7 +785,7 @@ namespace TENTAC_HRM.Forms.Main
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btn_minimize_Click(object sender, EventArgs e)

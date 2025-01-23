@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -192,7 +193,7 @@ namespace TENTAC_HRM.Forms.Category
             denngay_value = DateTime.Parse(dtp_den_ngay.Text).ToString("yyyy/MM/dd");
             soquyetdinh_value = txt_so_quyet_dinh.Text.ToString();
             ghichu_value = txt_mo_ta.Text.ToString();
-            nguoitao_value = SQLHelper.sIdUser;
+            nguoitao_value = LoginInfo.UserCd;
             khuvuc_value = cbo_khuvuc.SelectedValue.ToString();
         }
 

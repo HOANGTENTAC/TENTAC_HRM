@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using DataTable = System.Data.DataTable;
 
@@ -267,8 +268,8 @@ namespace TENTAC_HRM.Forms.Category
             _SoGiayChungNhan = txt_SoGiayChungNhan.Text.Trim();
             _NgayDangKy = string.IsNullOrEmpty(dtp_NgayDK.Text) ? (DateTime?)null : Convert.ToDateTime(dtp_NgayDK.Text);
             _NoiDangKy = txt_NoiDK.Text.Trim();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
 
             //pic_mattruoc = null;
             //if (pb_MatTruoc.Image != null)

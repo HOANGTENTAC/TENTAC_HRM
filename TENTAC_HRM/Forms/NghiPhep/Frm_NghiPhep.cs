@@ -46,17 +46,17 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private bool CheckReportTo()
         {
             bool flg = false;
-            if (dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString().Contains(SQLHelper.sUser) && dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString() != "")
+            if (dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString().Contains(LoginInfo.UserCd) && dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString() != "")
             {
                 IdTrangThaiPhieu = 197;
                 flg = true;
             }
-            else if (dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString().Contains(SQLHelper.sUser) && dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() != "")
+            else if (dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString().Contains(LoginInfo.UserCd) && dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString() != "")
             {
                 IdTrangThaiPhieu = 199;
                 flg = true;
             }
-            else if (dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString() == "" && dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString().Contains(SQLHelper.sUser))
+            else if (dgv_annual_leave.CurrentRow.Cells["ReportToReportTo"].Value.ToString() == "" && dgv_annual_leave.CurrentRow.Cells["NguoiXacNhan"].Value.ToString().Contains(LoginInfo.UserCd))
             {
                 IdTrangThaiPhieu = 199;
                 flg = true;
@@ -175,7 +175,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             }
             if (LoginInfo.Group != "ADMIN" && LoginInfo.Group != "HR")
             {
-                search += $" and (MaNhanVien = {SQLHelper.rpStr(SQLHelper.sUser)} OR NguoiXacNhan = {SQLHelper.rpStr(SQLHelper.sUser)} OR ReportToReportTo = {SQLHelper.rpStr(SQLHelper.sUser)}) ";
+                search += $" and (MaNhanVien = {SQLHelper.rpStr(LoginInfo.UserCd)} OR NguoiXacNhan = {SQLHelper.rpStr(LoginInfo.UserCd)} OR ReportToReportTo = {SQLHelper.rpStr(LoginInfo.UserCd)}) ";
             }
 
             string sql = string.Empty;
@@ -266,7 +266,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                     DialogResult result = RJMessageBox.Show("Bạn có chác muốn xóa?", "Thông báo", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
-                        string sql = string.Format("update tbl_NghiPhepNam set del_flg = 1 , NguoiTao = '{1}' where id = '{0}'", dgv_annual_leave.CurrentRow.Cells["id"].Value, SQLHelper.sIdUser);
+                        string sql = string.Format("update tbl_NghiPhepNam set del_flg = 1 , NguoiTao = '{1}' where id = '{0}'", dgv_annual_leave.CurrentRow.Cells["id"].Value, LoginInfo.UserCd);
                         if (SQLHelper.ExecuteSql(sql) == 1)
                         {
                             Load_data();

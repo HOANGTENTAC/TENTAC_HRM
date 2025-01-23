@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -176,8 +177,8 @@ namespace TENTAC_HRM.Forms.Category
             _Id_Tinh = Convert.ToInt32(cbo_TinhThanh.SelectedValue);
             _NoiThucHien = txt_NoiDangKy.Text.Trim();
             _GhiChu = txt_GhiChu.Text.Trim();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void btn_close_Click(object sender, EventArgs e)
         {

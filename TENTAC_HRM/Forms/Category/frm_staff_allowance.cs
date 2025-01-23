@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.NhanSu;
@@ -117,8 +118,8 @@ namespace TENTAC_HRM.Forms.Category
             _DenNgay = string.IsNullOrEmpty(dtp_DenNgay.Text) ? (DateTime?)null : DateTime.Parse(dtp_DenNgay.Text.ToString());
             _Active = chk_HieuLuc.Checked == true ? 1 : 0;
             _GhiChu = txt_GhiChu.Text.Trim().ToString();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void InsertData()
         {

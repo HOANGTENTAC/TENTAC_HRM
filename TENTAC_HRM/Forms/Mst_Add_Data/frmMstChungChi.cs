@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.User_control;
 
@@ -73,8 +74,8 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             _MaChungChi = txtMaChungChi.Text.Trim().ToString();
             _TenChungChi = txtTenChungChi.Text.Trim().ToString();
             _MoTa = txtMoTa.Text.Trim().ToString();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void InsertData()
         {

@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using TENTAC_HRM.Common;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Mst_Add_Data;
 
@@ -205,7 +206,7 @@ namespace TENTAC_HRM.Forms.User_control
                                             TenDanToc = {SQLHelper.rpStr(_TenDanToc)},
                                             MoTa = {SQLHelper.rpStr(_MoTa)},
                                             NgayCapNhat = '{DateTime.Now}',
-                                            NguoiCapNhat = {SQLHelper.rpStr(SQLHelper.sUser)}
+                                            NguoiCapNhat = {SQLHelper.rpStr(LoginInfo.UserCd)}
                                         WHERE 
                                             MaDanToc = {SQLHelper.rpStr(_MaDanToc)} AND del_flg = 0";
 
@@ -217,7 +218,7 @@ namespace TENTAC_HRM.Forms.User_control
 
                                 string sqlInsert = $@"INSERT INTO mst_DanToc(MaDanToc, TenDanToc, MoTa, NgayTao, NguoiTao, NgayCapNhat, NguoiCapNhat, del_flg)
                                         VALUES({SQLHelper.rpStr(newMaDanToc)}, {SQLHelper.rpStr(_TenDanToc)}, {SQLHelper.rpStr(_MoTa)}, '{DateTime.Now}', 
-                                        {SQLHelper.rpStr(SQLHelper.sUser)}, '{DateTime.Now}', {SQLHelper.rpStr(SQLHelper.sUser)}, 0)";
+                                        {SQLHelper.rpStr(LoginInfo.UserCd)}, '{DateTime.Now}', {SQLHelper.rpStr(LoginInfo.UserCd)}, 0)";
 
                                 res += SQLHelper.ExecuteSql(sqlInsert);
                             }

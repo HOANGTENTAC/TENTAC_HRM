@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 using TENTAC_HRM.Forms.User_control;
@@ -180,8 +181,8 @@ namespace TENTAC_HRM.Forms.Category
             _LyDo = txt_LyDo.Text.Trim();
             _Cap = Convert.ToInt32(cbo_Cap.SelectedValue);
             _NguoiKy = cbo_NguoiKy.SelectedValue.ToString();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private bool validateForm()
         {

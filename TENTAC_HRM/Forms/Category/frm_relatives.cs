@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.NhanSu;
@@ -263,11 +264,11 @@ namespace TENTAC_HRM.Forms.Category
             _MaSoThue = txt_ma_so_thue.Text;
             _CCCD = txt_cccd.Text;
             quoctich_value = Convert.ToInt32(cbo_QuocTich.SelectedValue);
-            _NguoiTao = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
             _DienThoai = txt_dien_thoai.Text;
             _DiDong = txt_di_dong.Text;
             _GioiTinh = cbo_gioi_tinh.SelectedValue.ToString();
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private bool validateForm()
         {

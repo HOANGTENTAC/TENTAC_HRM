@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.NghiPhep
@@ -100,7 +101,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
                 {
                     string sql_insert = string.Format("insert into tbl_NgayPhepNam(MaNhanVien,Nam,TongNgayQD,TongNgayPhep,TongNgayTon,NguoiTao,PhepThamNien,PhepDocHai,PhepCongDon) " +
                         "values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}',{8})",
-                        _MaNhanVien, txt_nam_nghiphep.Text, txt_phep_qd.Text, tongphep, txt_tong_ngayton.Text, SQLHelper.sIdUser, txt_phep_thamnien.Text, txt_phep_dochai.Text, txt_tong_ngayphep.Text);
+                        _MaNhanVien, txt_nam_nghiphep.Text, txt_phep_qd.Text, tongphep, txt_tong_ngayton.Text, LoginInfo.UserCd, txt_phep_thamnien.Text, txt_phep_dochai.Text, txt_tong_ngayphep.Text);
                     if (SQLHelper.ExecuteSql(sql_insert) == 1)
                     {
                         RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

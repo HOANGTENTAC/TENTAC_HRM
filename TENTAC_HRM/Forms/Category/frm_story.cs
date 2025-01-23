@@ -2,8 +2,8 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
-using TENTAC_HRM.Forms.Main;
 using TENTAC_HRM.Forms.NhanSu;
 
 namespace TENTAC_HRM.Forms.Category
@@ -179,8 +179,8 @@ namespace TENTAC_HRM.Forms.Category
             _DenNam = cbo_DenNam.Text;
             _CongViec = txt_cong_viec.Text;
             quocgia_value = Convert.ToInt32(cbo_QuocGia.SelectedValue);
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
     }
 }

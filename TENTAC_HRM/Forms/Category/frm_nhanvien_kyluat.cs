@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 using TENTAC_HRM.Forms.User_control;
@@ -91,8 +92,8 @@ namespace TENTAC_HRM.Forms.Category
             _NoiDung = txt_NoiDung.Text.Trim();
             _HinhThuc = Convert.ToInt32(cbo_HinhThuc.SelectedValue);
             _LyDo = txt_LyDo.Text.Trim();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void InsertData()
         {

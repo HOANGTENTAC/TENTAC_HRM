@@ -1,9 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using System;
-using System.Data;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM.Forms.Main
@@ -67,7 +65,21 @@ namespace TENTAC_HRM.Forms.Main
 
             if (provider.check_login(txt_user.Texts.Trim().ToUpper(), txt_password.Texts))
             {
-                save_data();
+                if (chk_remember_me.Checked)
+                {
+                    Properties.Settings.Default.UserName = txt_user.Texts;
+                    Properties.Settings.Default.PassWord = txt_password.Texts;
+                    Properties.Settings.Default.Reme = "yes";
+                    Properties.Settings.Default.Save();
+                }
+                else
+                {
+                    Properties.Settings.Default.UserName = txt_user.Texts;
+                    Properties.Settings.Default.PassWord = "";
+                    Properties.Settings.Default.Reme = "no";
+                    Properties.Settings.Default.Save();
+                }
+
                 frm_home frm = new frm_home();
                 this.Hide();
                 frm.Show();
@@ -94,49 +106,6 @@ namespace TENTAC_HRM.Forms.Main
                 {
                     txt_user.Texts = Properties.Settings.Default.UserName;
                 }
-            }
-        }
-
-        private void save_data()
-        {
-            string sql_user = $"select * from mst_Users where MaNhanVien = '{txt_user.Texts}'";
-            DataTable dt_user = new DataTable();
-            dt_user = SQLHelper.ExecuteDt(sql_user);
-            LoginInfo.Group = dt_user.Rows[0]["Groups"].ToString();
-            LoginInfo.UserCd = txt_user.Texts;
-
-            if (dt_user.Rows[0]["Groups"].ToString() != "ADMIN" && dt_user.Rows[0]["Groups"].ToString() != "HR")
-            {
-                string sql = "";
-                sql = $"select * from MITACOSQL.dbo.NhanVien where MaChamCong = '{int.Parse(txt_user.Texts.Remove(0, 2))}'";
-                DataTable dt = new DataTable();
-                dt = SQLHelper.ExecuteDt(sql);
-
-                LoginInfo.ChucVu = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChucVu"].ToString() : "";
-                LoginInfo.LoaiUser = "NhanVien";
-                LoginInfo.MaPhongBan = dt.Rows[0]["MaPhongBan"].ToString();
-                LoginInfo.MaChamCong = dt != null || dt.Rows.Count > 0 ? dt.Rows[0]["MaChamCong"].ToString() : "";
-                LoginInfo.Email = dt.Rows[0]["Email"].ToString();
-            }
-            else
-            {
-                LoginInfo.ChucVu = "";
-                LoginInfo.LoaiUser = "NhanVien";
-            }
-
-            if (chk_remember_me.Checked)
-            {
-                Properties.Settings.Default.UserName = txt_user.Texts;
-                Properties.Settings.Default.PassWord = txt_password.Texts;
-                Properties.Settings.Default.Reme = "yes";
-                Properties.Settings.Default.Save();
-            }
-            else
-            {
-                Properties.Settings.Default.UserName = txt_user.Texts;
-                Properties.Settings.Default.PassWord = "";
-                Properties.Settings.Default.Reme = "no";
-                Properties.Settings.Default.Save();
             }
         }
 

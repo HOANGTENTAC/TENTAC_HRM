@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -181,7 +182,7 @@ namespace TENTAC_HRM.Forms.Category
             tinh_value = cbo_tinh.SelectedValue.ToString().ToString();
             noithuchien_value = txt_noidangky.Text;
             ghichu_value = txt_ghichu.Text;
-            nguoitao_value = SQLHelper.sIdUser;
+            nguoitao_value = LoginInfo.UserCd;
         }
 
         private void btn_close_Click(object sender, EventArgs e)

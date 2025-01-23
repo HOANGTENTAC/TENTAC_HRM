@@ -5,6 +5,7 @@ using TENTAC_HRM.Forms.User_control;
 using TENTAC_HRM.Common;
 using ComponentFactory.Krypton.Toolkit;
 using System.Data;
+using TENTAC_HRM.Consts;
 
 namespace TENTAC_HRM.Forms.Mst_Add_Data
 {
@@ -72,8 +73,8 @@ namespace TENTAC_HRM.Forms.Mst_Add_Data
             _MaDanToc = txtMaDanToc.Text.Trim().ToString();
             _TenDanToc = txtTenDanToc.Text.Trim().ToString();
             _MoTa = txtMoTa.Text.Trim().ToString();
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private void InsertData()
         {

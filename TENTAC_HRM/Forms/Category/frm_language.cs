@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 
@@ -162,8 +163,8 @@ namespace TENTAC_HRM.Forms.Category
             ngayNhanBang = string.IsNullOrEmpty(dtp_NgayNhanBang.Text) ? (DateTime?)null : DateTime.Parse(dtp_NgayNhanBang.Text);
             _XepLoai = cbo_XepLoai.SelectedValue.ToString();
             _GhiChu = txtGhiChu.Text;
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
     }
 }

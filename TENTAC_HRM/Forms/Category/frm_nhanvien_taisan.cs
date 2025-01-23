@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using TENTAC_HRM.Forms.NhanSu;
 using TENTAC_HRM.Forms.Search;
@@ -323,7 +324,7 @@ namespace TENTAC_HRM.Forms.Category
                     _ma_nhan_vien, nhanvien_taisan_model.so_phieu, nhanvien_taisan_model.ngay_vao_so, nhanvien_taisan_model.tu_ngay, nhanvien_taisan_model.den_ngay, nhanvien_taisan_model.trang_thai,
                     nhanvien_taisan_model.quy_trinh, nhanvien_taisan_model.kho, nhanvien_taisan_model.ke, nhanvien_taisan_model.dien_giai, nhanvien_taisan_model.ghi_chu, nhanvien_taisan_model.ma_donvi, nhanvien_taisan_model.ma_khuvuc, nhanvien_taisan_model.ma_phongban, nhanvien_taisan_model.ma_chucvu,
                     nhanvien_taisan_model.thanh_phan1, nhanvien_taisan_model.chuc_vu1, nhanvien_taisan_model.dai_dien1, nhanvien_taisan_model.thanh_phan2, nhanvien_taisan_model.chuc_vu2, nhanvien_taisan_model.dai_dien2, nhanvien_taisan_model.thanh_phan3, nhanvien_taisan_model.chuc_vu3, nhanvien_taisan_model.dai_dien3,
-                    nhanvien_taisan_model.thanh_phan4, nhanvien_taisan_model.chuc_vu4, nhanvien_taisan_model.dai_dien4, nhanvien_taisan_model.thanh_phan5, nhanvien_taisan_model.chuc_vu5, nhanvien_taisan_model.dai_dien5, SQLHelper.sIdUser);
+                    nhanvien_taisan_model.thanh_phan4, nhanvien_taisan_model.chuc_vu4, nhanvien_taisan_model.dai_dien4, nhanvien_taisan_model.thanh_phan5, nhanvien_taisan_model.chuc_vu5, nhanvien_taisan_model.dai_dien5, LoginInfo.UserCd);
                 int id_nhanvien_taisan_new = SQLHelper.ExecuteScalarSql(sql);
                 if (id_nhanvien_taisan_new != 0)
                 {
@@ -334,7 +335,7 @@ namespace TENTAC_HRM.Forms.Category
                                             "so_luong,ghi_chu,ngay_tao,id_nguoi_tao,del_flg) " +
                                             "values('{0}','{1}','{2}','{3}',N'{4}',GETDATE(),'{5}',0)",
                                             item.Cells["id_tai_san"].Value.ToString(), id_nhanvien_taisan_new, item.Cells["hien_trang"].Value,
-                                            item.Cells["so_luong"].Value.ToString(), item.Cells["ghi_chu"].Value.ToString(), SQLHelper.sIdUser);
+                                            item.Cells["so_luong"].Value.ToString(), item.Cells["ghi_chu"].Value.ToString(), LoginInfo.UserCd);
                         SQLHelper.ExecuteSql(sql_taisan);
                     }
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -370,7 +371,7 @@ namespace TENTAC_HRM.Forms.Category
                         string sql_taisan = string.Format("Execute update_taisan '{0}','{1}','{2}','{3}',N'{4}','{5}'",
                             item.Cells["id_tai_san"].Value, _id_nhanvien_taisan,
                             item.Cells["hien_trang"].Value, item.Cells["so_luong"].Value,
-                            item.Cells["ghi_chu"].Value, SQLHelper.sIdUser);
+                            item.Cells["ghi_chu"].Value, LoginInfo.UserCd);
                         SQLHelper.ExecuteSql(sql_taisan);
                     }
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

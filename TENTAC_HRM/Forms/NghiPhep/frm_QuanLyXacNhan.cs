@@ -94,7 +94,7 @@ namespace TENTAC_HRM.Forms.NghiPhep
             //{
             //    sql = $"update tbl_NghiPhepNam set Chk_NhanSu = 0 where id = '{_id}'";
             //}
-            string reportTo = _idTrangThai == 199 ? SQLHelper.sUser : LoginInfo.ReportTo;
+            string reportTo = _idTrangThai == 199 ? LoginInfo.UserCd : LoginInfo.ReportTo;
             sql = $@"Update tbl_NghiPhepNam Set 
                 NguoiXacNhan = {SQLHelper.rpStr(reportTo)}, Id_TrangThai = 198,
                 LyDoNguoiXacNhan = {SQLHelper.rpStr(txt_LyDoTuChoi.Text.TrimEnd())}

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using TENTAC_HRM.Consts;
 using TENTAC_HRM.Custom;
 using DataTable = System.Data.DataTable;
 
@@ -579,8 +580,8 @@ namespace TENTAC_HRM.Forms.User_control
             }
             _MaNhanVien = txt_TenDangNhap.Text.Trim().ToString();
             _MatKhau = provider.Hash_sha(txt_MatKhau.Text.Trim());
-            _NguoiTao = SQLHelper.sUser;
-            _NguoiCapNhat = SQLHelper.sUser;
+            _NguoiTao = LoginInfo.UserCd;
+            _NguoiCapNhat = LoginInfo.UserCd;
         }
         private List<(int menuId, int? permisionId)> GetSelectedPermisionIdsForMenu(int menuId)
         {
