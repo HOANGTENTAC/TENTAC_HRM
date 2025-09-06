@@ -31,27 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgv_annual_leave = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.miniToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.cbo_Thang = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.cbo_year = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.cbo_trangthai = new System.Windows.Forms.ToolStripComboBox();
-            this.btn_add = new System.Windows.Forms.ToolStripButton();
-            this.btn_delete = new System.Windows.Forms.ToolStripButton();
-            this.btn_Search = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.btn_Excel = new System.Windows.Forms.ToolStripButton();
-            this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.chk_TheoNam = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDTrangThaiP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReportToReportTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
             this.MaNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenNhanVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenKhuVuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +48,25 @@
             this.MaChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiXacNhan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrangThaiPhieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.miniToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.cbo_Thang = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.cbo_year = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.cbo_trangthai = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.txt_search = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.chk_TheoNam = new DevComponents.DotNetBar.Controls.CheckBoxX();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.btn_add = new System.Windows.Forms.ToolStripButton();
+            this.btn_delete = new System.Windows.Forms.ToolStripButton();
+            this.btn_Search = new System.Windows.Forms.ToolStripButton();
+            this.btn_Excel = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_annual_leave)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -118,166 +119,7 @@
             this.dgv_annual_leave.Size = new System.Drawing.Size(1279, 464);
             this.dgv_annual_leave.TabIndex = 4;
             this.dgv_annual_leave.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_annual_leave_CellClick);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 502);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1279, 36);
-            this.panel2.TabIndex = 5;
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1169, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(110, 36);
-            this.panel4.TabIndex = 1;
-            // 
-            // miniToolStrip
-            // 
-            this.miniToolStrip.AccessibleName = "New item selection";
-            this.miniToolStrip.AccessibleRole = System.Windows.Forms.AccessibleRole.ButtonDropDown;
-            this.miniToolStrip.AutoSize = false;
-            this.miniToolStrip.CanOverflow = false;
-            this.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.miniToolStrip.Location = new System.Drawing.Point(507, 3);
-            this.miniToolStrip.Name = "miniToolStrip";
-            this.miniToolStrip.Size = new System.Drawing.Size(1042, 25);
-            this.miniToolStrip.TabIndex = 9;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripLabel3,
-            this.cbo_Thang,
-            this.toolStripLabel1,
-            this.cbo_year,
-            this.toolStripLabel2,
-            this.cbo_trangthai,
-            this.btn_add,
-            this.btn_delete,
-            this.btn_Search,
-            this.toolStripSeparator1,
-            this.btn_Excel});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1279, 38);
-            this.toolStrip1.TabIndex = 10;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(40, 35);
-            this.toolStripLabel3.Text = "Tháng";
-            // 
-            // cbo_Thang
-            // 
-            this.cbo_Thang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_Thang.Name = "cbo_Thang";
-            this.cbo_Thang.Size = new System.Drawing.Size(75, 38);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(33, 35);
-            this.toolStripLabel1.Text = "Năm";
-            // 
-            // cbo_year
-            // 
-            this.cbo_year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_year.Name = "cbo_year";
-            this.cbo_year.Size = new System.Drawing.Size(75, 38);
-            // 
-            // toolStripLabel2
-            // 
-            this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(59, 35);
-            this.toolStripLabel2.Text = "Trạng thái";
-            // 
-            // cbo_trangthai
-            // 
-            this.cbo_trangthai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_trangthai.Name = "cbo_trangthai";
-            this.cbo_trangthai.Size = new System.Drawing.Size(121, 38);
-            this.cbo_trangthai.SelectedIndexChanged += new System.EventHandler(this.cbo_trangthai_SelectedIndexChanged);
-            // 
-            // btn_add
-            // 
-            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
-            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_add.Name = "btn_add";
-            this.btn_add.Size = new System.Drawing.Size(57, 35);
-            this.btn_add.Text = "Thêm";
-            this.btn_add.Visible = false;
-            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
-            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(47, 35);
-            this.btn_delete.Text = "Xóa";
-            this.btn_delete.Visible = false;
-            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
-            // 
-            // btn_Search
-            // 
-            this.btn_Search.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_Search.Image = global::TENTAC_HRM.Properties.Resources.btnTim;
-            this.btn_Search.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(76, 35);
-            this.btn_Search.Text = "Tìm kiếm";
-            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
-            // 
-            // btn_Excel
-            // 
-            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
-            this.btn_Excel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_Excel.Name = "btn_Excel";
-            this.btn_Excel.Size = new System.Drawing.Size(81, 35);
-            this.btn_Excel.Text = "Xuất Excel";
-            this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
-            // 
-            // txt_search
-            // 
-            this.txt_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            // 
-            // 
-            // 
-            this.txt_search.Border.Class = "TextBoxBorder";
-            this.txt_search.Location = new System.Drawing.Point(987, 7);
-            this.txt_search.Name = "txt_search";
-            this.txt_search.Size = new System.Drawing.Size(211, 23);
-            this.txt_search.TabIndex = 11;
-            this.txt_search.WatermarkText = "Từ khóa tìm kiếm";
-            // 
-            // chk_TheoNam
-            // 
-            this.chk_TheoNam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chk_TheoNam.BackColor = System.Drawing.Color.Transparent;
-            this.chk_TheoNam.Location = new System.Drawing.Point(864, 7);
-            this.chk_TheoNam.Name = "chk_TheoNam";
-            this.chk_TheoNam.Size = new System.Drawing.Size(117, 23);
-            this.chk_TheoNam.TabIndex = 12;
-            this.chk_TheoNam.Text = "Xem theo năm";
+            this.dgv_annual_leave.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_annual_leave_RowPostPaint);
             // 
             // id
             // 
@@ -300,14 +142,6 @@
             this.ReportToReportTo.HeaderText = "ReportToReportTo";
             this.ReportToReportTo.Name = "ReportToReportTo";
             this.ReportToReportTo.Visible = false;
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Visible = false;
-            this.edit_column.Width = 35;
             // 
             // MaNhanVien
             // 
@@ -409,6 +243,182 @@
             this.TrangThaiPhieu.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.TrangThaiPhieu.Width = 150;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 502);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1279, 36);
+            this.panel2.TabIndex = 5;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(1169, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(110, 36);
+            this.panel4.TabIndex = 1;
+            // 
+            // miniToolStrip
+            // 
+            this.miniToolStrip.AccessibleName = "New item selection";
+            this.miniToolStrip.AccessibleRole = System.Windows.Forms.AccessibleRole.ButtonDropDown;
+            this.miniToolStrip.AutoSize = false;
+            this.miniToolStrip.CanOverflow = false;
+            this.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.miniToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.miniToolStrip.Location = new System.Drawing.Point(507, 3);
+            this.miniToolStrip.Name = "miniToolStrip";
+            this.miniToolStrip.Size = new System.Drawing.Size(1042, 25);
+            this.miniToolStrip.TabIndex = 9;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel3,
+            this.cbo_Thang,
+            this.toolStripLabel1,
+            this.cbo_year,
+            this.toolStripLabel2,
+            this.cbo_trangthai,
+            this.btn_add,
+            this.btn_delete,
+            this.btn_Search,
+            this.toolStripSeparator1,
+            this.btn_Excel});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1279, 38);
+            this.toolStrip1.TabIndex = 10;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(40, 35);
+            this.toolStripLabel3.Text = "Tháng";
+            // 
+            // cbo_Thang
+            // 
+            this.cbo_Thang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_Thang.Name = "cbo_Thang";
+            this.cbo_Thang.Size = new System.Drawing.Size(75, 38);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(33, 35);
+            this.toolStripLabel1.Text = "Năm";
+            // 
+            // cbo_year
+            // 
+            this.cbo_year.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_year.Name = "cbo_year";
+            this.cbo_year.Size = new System.Drawing.Size(75, 38);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(59, 35);
+            this.toolStripLabel2.Text = "Trạng thái";
+            // 
+            // cbo_trangthai
+            // 
+            this.cbo_trangthai.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_trangthai.Name = "cbo_trangthai";
+            this.cbo_trangthai.Size = new System.Drawing.Size(121, 38);
+            this.cbo_trangthai.SelectedIndexChanged += new System.EventHandler(this.cbo_trangthai_SelectedIndexChanged);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 38);
+            // 
+            // txt_search
+            // 
+            this.txt_search.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            // 
+            // 
+            // 
+            this.txt_search.Border.Class = "TextBoxBorder";
+            this.txt_search.Location = new System.Drawing.Point(987, 7);
+            this.txt_search.Name = "txt_search";
+            this.txt_search.Size = new System.Drawing.Size(211, 23);
+            this.txt_search.TabIndex = 11;
+            this.txt_search.WatermarkText = "Từ khóa tìm kiếm";
+            // 
+            // chk_TheoNam
+            // 
+            this.chk_TheoNam.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_TheoNam.BackColor = System.Drawing.Color.Transparent;
+            this.chk_TheoNam.Location = new System.Drawing.Point(864, 7);
+            this.chk_TheoNam.Name = "chk_TheoNam";
+            this.chk_TheoNam.Size = new System.Drawing.Size(117, 23);
+            this.chk_TheoNam.TabIndex = 12;
+            this.chk_TheoNam.Text = "Xem theo năm";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Visible = false;
+            this.dataGridViewImageColumn1.Width = 35;
+            // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Visible = false;
+            this.edit_column.Width = 35;
+            // 
+            // btn_add
+            // 
+            this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
+            this.btn_add.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_add.Name = "btn_add";
+            this.btn_add.Size = new System.Drawing.Size(57, 35);
+            this.btn_add.Text = "Thêm";
+            this.btn_add.Visible = false;
+            this.btn_add.Click += new System.EventHandler(this.btn_add_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
+            this.btn_delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(47, 35);
+            this.btn_delete.Text = "Xóa";
+            this.btn_delete.Visible = false;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_Search
+            // 
+            this.btn_Search.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btn_Search.Image = global::TENTAC_HRM.Properties.Resources.btnTim;
+            this.btn_Search.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(76, 35);
+            this.btn_Search.Text = "Tìm kiếm";
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
+            // btn_Excel
+            // 
+            this.btn_Excel.Image = global::TENTAC_HRM.Properties.Resources.export_excel;
+            this.btn_Excel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btn_Excel.Name = "btn_Excel";
+            this.btn_Excel.Size = new System.Drawing.Size(81, 35);
+            this.btn_Excel.Text = "Xuất Excel";
+            this.btn_Excel.Click += new System.EventHandler(this.btn_Excel_Click);
+            // 
             // Frm_NghiPhep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -471,5 +481,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MaChucVu;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiXacNhan;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThaiPhieu;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

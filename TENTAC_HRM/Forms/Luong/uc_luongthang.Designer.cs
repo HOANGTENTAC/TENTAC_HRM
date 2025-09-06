@@ -53,7 +53,6 @@ namespace TENTAC_HRM.Forms.Luong
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.btn_close = new System.Windows.Forms.ToolStripButton();
             this.cbo_name = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.pl_info = new System.Windows.Forms.Panel();
@@ -206,6 +205,7 @@ namespace TENTAC_HRM.Forms.Luong
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel1,
@@ -227,8 +227,7 @@ namespace TENTAC_HRM.Forms.Luong
             this.toolStripButton8,
             this.toolStripButton9,
             this.toolStripSeparator4,
-            this.toolStripButton10,
-            this.btn_close});
+            this.toolStripButton10});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1189, 25);
@@ -385,15 +384,6 @@ namespace TENTAC_HRM.Forms.Luong
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(64, 22);
             this.toolStripButton10.Text = "Nạp lại";
-            // 
-            // btn_close
-            // 
-            this.btn_close.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btn_close.Image = global::TENTAC_HRM.Properties.Resources.clear;
-            this.btn_close.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(23, 22);
-            this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
             // cbo_name
             // 
@@ -891,6 +881,7 @@ namespace TENTAC_HRM.Forms.Luong
             // 
             // toolStrip2
             // 
+            this.toolStrip2.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton12,
             this.toolStripSeparator5,
@@ -979,7 +970,7 @@ namespace TENTAC_HRM.Forms.Luong
             this.btn_close_info.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_close_info.FlatAppearance.BorderSize = 0;
             this.btn_close_info.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_close_info.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.btn_close_info.IconChar = FontAwesome.Sharp.IconChar.Remove;
             this.btn_close_info.IconColor = System.Drawing.Color.Black;
             this.btn_close_info.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_close_info.IconSize = 16;
@@ -1451,7 +1442,6 @@ namespace TENTAC_HRM.Forms.Luong
         private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton toolStripButton10;
-        private System.Windows.Forms.ToolStripButton btn_close;
         private System.Windows.Forms.Panel cbo_name;
         private System.Windows.Forms.Panel pl_info;
         private System.Windows.Forms.TabControl tabControl1;

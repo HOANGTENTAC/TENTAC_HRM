@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbo_LoaiPhep = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -176,11 +176,11 @@
             // btn_send
             // 
             this.btn_send.Image = global::TENTAC_HRM.Properties.Resources.btn_send;
-            this.btn_send.Location = new System.Drawing.Point(253, 319);
+            this.btn_send.Location = new System.Drawing.Point(219, 319);
             this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(70, 30);
+            this.btn_send.Size = new System.Drawing.Size(104, 30);
             this.btn_send.TabIndex = 8;
-            this.btn_send.Text = "Lưu";
+            this.btn_send.Text = "Đăng ký";
             this.btn_send.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_send.UseVisualStyleBackColor = true;
             this.btn_send.Click += new System.EventHandler(this.btn_send_Click);
@@ -252,14 +252,14 @@
             this.TenPhongBan,
             this.TongNgayNghi,
             this.PhepTon});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_NhanVien.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_NhanVien.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_NhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_NhanVien.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgv_NhanVien.Location = new System.Drawing.Point(3, 19);

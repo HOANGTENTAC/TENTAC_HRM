@@ -29,18 +29,18 @@ namespace TENTAC_HRM.Forms.NghiPhep
             cbo_trangthai.ComboBox.SelectionChangeCommitted += cbo_trangthai_SelectionChangeCommitted;
             cbo_year.ComboBox.SelectionChangeCommitted += cbo_year_SelectionChangeCommitted1;
             cbo_Thang.ComboBox.SelectionChangeCommitted += cbo_month_SelectionChangeCommitted1;
-            //if (IdPermision.Contains(2) || LoginInfo.Group == "ADMIN")
-            //{
-            //    btn_add.Visible = true;
-            //}
-            //if (IdPermision.Contains(4) || LoginInfo.Group == "ADMIN")
-            //{
-            //    btn_delete.Visible = true;
-            //}
-            //if (IdPermision.Contains(3) || LoginInfo.Group == "ADMIN")
-            //{
-            //    edit_column.Visible = true;
-            //}
+            if (IdPermision.Contains(2) || LoginInfo.Group == "ADMIN")
+            {
+                btn_add.Visible = true;
+            }
+            if (IdPermision.Contains(4) || LoginInfo.Group == "ADMIN")
+            {
+                btn_delete.Visible = true;
+            }
+            if (IdPermision.Contains(3) || LoginInfo.Group == "ADMIN")
+            {
+                edit_column.Visible = true;
+            }
         }
 
         private bool CheckReportTo()
@@ -374,6 +374,11 @@ namespace TENTAC_HRM.Forms.NghiPhep
         private void cbo_trangthai_SelectedIndexChanged(object sender, EventArgs e)
         {
             //load_data();
+        }
+
+        private void dgv_annual_leave_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataProvider.NumberRowDataGridView(sender, e);
         }
     }
 }

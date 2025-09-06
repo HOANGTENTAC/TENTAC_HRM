@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 
 namespace TENTAC_HRM.Models.CommonModel
 {
@@ -16,10 +17,12 @@ namespace TENTAC_HRM.Models.CommonModel
             LoadAllRuntime();
         }
         #region Attribute And Method Default
-        public static string RootSolutionPath { get; set; } =
-            Directory.GetParent("Kyuyo_Meisai").Parent.Parent.FullName;
+        //public static string RootSolutionPath { get; set; } =
+        //    Directory.GetParent("Kyuyo_Meisai").Parent.Parent.FullName;
+        //public static string AppDataLocal { get; set; } =
+        //    $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\Kyuyo_Meisai";        
         public static string AppDataLocal { get; set; } =
-            $@"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\Kyuyo_Meisai";
+            $@"{Application.StartupPath}\Kyuyo_Meisai";
         public static string SettingFilePath { get; set; } =
             $@"{AppDataLocal}\Setting.ini";
         public static string DesktopPath { get; set; } =

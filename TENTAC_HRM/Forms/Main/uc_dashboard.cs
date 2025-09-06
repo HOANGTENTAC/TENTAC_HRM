@@ -9,7 +9,7 @@ using TENTAC_HRM.Custom;
 using TENTAC_HRM.Properties;
 using HorizontalAlignment = NPOI.SS.UserModel.HorizontalAlignment;
 
-namespace TENTAC_HRM.Forms.User_control
+namespace TENTAC_HRM.Forms.Main
 {
     public partial class uc_dashboard : UserControl
     {
@@ -34,16 +34,30 @@ namespace TENTAC_HRM.Forms.User_control
 
         private void uc_dashboard_Load(object sender, EventArgs e)
         {
-            string sql = "select MaNhanVien,TenNhanVien,case when nhanvien.MaKhuVuc = 'KV00003' then N'Thai sản' else TenPhongBan end TenPhongBan,convert(date,NgaySinh) NgaySinh " +
-                "from MITACOSQL.dbo.NHANVIEN nhanvien " +
-                "left join MITACOSQL.dbo.PHONGBAN phongban on nhanvien.MaPhongBan = phongban.MaPhongBan " +
-                "where MONTH(NgaySinh) = MONTH(GETDATE()) and nhanvien.MaCongTy is not null " +
-                "order by MaNhanVien";
+            LoadSinhNhat();
+            LoadNhanVienMoi();
+        }
+
+        private void LoadNhanVienMoi()
+        {
+            string sql = $@"select manhanvien,TenNhanVien,ngayvaolamviec 
+                        from MITACOSQL.dbo.NHANVIEN 
+                        where datediff(day,ngayvaolamviec,GETDATE()) <= 30";
+            DataTable dt = SQLHelper.ExecuteDt(sql);
+            dgv_NhanVienMoi.DataSource = dt;
+            grb_NhanVienMoi.Text = $"{dt.Rows.Count} Nhân viên mới";
+        }
+        public void LoadSinhNhat()
+        {
+            string sql = $@"select MaNhanVien,TenNhanVien,case when nhanvien.MaKhuVuc = 'KV00003' then N'Thai sản' else TenPhongBan end TenPhongBan,convert(date,NgaySinh) NgaySinh 
+                        from MITACOSQL.dbo.NHANVIEN nhanvien 
+                        left join MITACOSQL.dbo.PHONGBAN phongban on nhanvien.MaPhongBan = phongban.MaPhongBan 
+                        where MONTH(NgaySinh) = MONTH(GETDATE()) and nhanvien.MaCongTy is not null 
+                        order by MaNhanVien";
             DataTable dt = SQLHelper.ExecuteDt(sql);
             dgv_SinhNhat.DataSource = dt;
             grb_SinhNhat.Text = $"{dt.Rows.Count} Nhân viên có sinh nhật tháng này";
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (isCollapsed)

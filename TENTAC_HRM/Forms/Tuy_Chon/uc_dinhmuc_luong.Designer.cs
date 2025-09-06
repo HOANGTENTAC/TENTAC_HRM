@@ -94,10 +94,6 @@
             this.txt_dinhmuc_toida = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.dgv_mucthue = new System.Windows.Forms.DataGridView();
-            this.thunhap_tu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thunhap_den = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thue_luytien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thuesuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -131,6 +127,10 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_luu = new TENTAC_HRM.Custom.RJButton();
+            this.thunhaptu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thunhapden = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thueluytien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thuesuat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -795,41 +795,14 @@
             this.dgv_mucthue.AllowUserToAddRows = false;
             this.dgv_mucthue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_mucthue.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.thunhap_tu,
-            this.thunhap_den,
-            this.thue_luytien,
+            this.thunhaptu,
+            this.thunhapden,
+            this.thueluytien,
             this.thuesuat});
             this.dgv_mucthue.Location = new System.Drawing.Point(6, 45);
             this.dgv_mucthue.Name = "dgv_mucthue";
             this.dgv_mucthue.Size = new System.Drawing.Size(562, 203);
             this.dgv_mucthue.TabIndex = 0;
-            // 
-            // thunhap_tu
-            // 
-            this.thunhap_tu.DataPropertyName = "thunhap_tu";
-            this.thunhap_tu.HeaderText = "Thu nhập từ (VND)";
-            this.thunhap_tu.Name = "thunhap_tu";
-            this.thunhap_tu.Width = 150;
-            // 
-            // thunhap_den
-            // 
-            this.thunhap_den.DataPropertyName = "thunhap_den";
-            this.thunhap_den.HeaderText = "Thu nhập đến (VND)";
-            this.thunhap_den.Name = "thunhap_den";
-            this.thunhap_den.Width = 125;
-            // 
-            // thue_luytien
-            // 
-            this.thue_luytien.DataPropertyName = "thue_luytien";
-            this.thue_luytien.HeaderText = "Lũy tiến";
-            this.thue_luytien.Name = "thue_luytien";
-            this.thue_luytien.Width = 125;
-            // 
-            // thuesuat
-            // 
-            this.thuesuat.DataPropertyName = "thuesuat";
-            this.thuesuat.HeaderText = "Thuế xuất (%)";
-            this.thuesuat.Name = "thuesuat";
             // 
             // groupBox6
             // 
@@ -1185,6 +1158,33 @@
             this.btn_luu.UseVisualStyleBackColor = false;
             this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
             // 
+            // thunhaptu
+            // 
+            this.thunhaptu.DataPropertyName = "thunhaptu";
+            this.thunhaptu.HeaderText = "Thu nhập từ (VND)";
+            this.thunhaptu.Name = "thunhaptu";
+            this.thunhaptu.Width = 150;
+            // 
+            // thunhapden
+            // 
+            this.thunhapden.DataPropertyName = "thunhapden";
+            this.thunhapden.HeaderText = "Thu nhập đến (VND)";
+            this.thunhapden.Name = "thunhapden";
+            this.thunhapden.Width = 125;
+            // 
+            // thueluytien
+            // 
+            this.thueluytien.DataPropertyName = "thueluytien";
+            this.thueluytien.HeaderText = "Lũy tiến";
+            this.thueluytien.Name = "thueluytien";
+            this.thueluytien.Width = 125;
+            // 
+            // thuesuat
+            // 
+            this.thuesuat.DataPropertyName = "thuesuat";
+            this.thuesuat.HeaderText = "Thuế xuất (%)";
+            this.thuesuat.Name = "thuesuat";
+            // 
             // uc_dinhmuc_luong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1322,10 +1322,10 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn thunhap_tu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn thunhap_den;
-        private System.Windows.Forms.DataGridViewTextBoxColumn thue_luytien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn thuesuat;
         private Custom.RJButton btn_luu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thunhaptu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thunhapden;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thueluytien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thuesuat;
     }
 }

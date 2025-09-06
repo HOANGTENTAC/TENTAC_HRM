@@ -32,53 +32,53 @@ namespace TENTAC_HRM.Forms.Tuy_Chon
 
         private void load_thuesuat()
         {
-            string sql = "select thunhap_tu,thunhap_den,thue_luytien,thuesuat from dic_thuesuat order by buoc_thue";
+            string sql = "select ThuNhapTu,ThuNhapDen,ThueLuyTien,ThueSuat from mst_ThueSuat order by BuocThue";
             dgv_mucthue.DataSource = SQLHelper.ExecuteDt(sql);
         }
 
         private void load_data()
         {
-            string sql = "select * from dic_congthuc_luong";
+            string sql = "select * from mst_CongThucLuong";
             DataTable dataTable = new DataTable();
             dataTable = SQLHelper.ExecuteDt(sql);
             if (dataTable.Rows.Count > 0)
             {
-                txt_bhxh_nguoilaodong.Text = dataTable.Rows[0]["bhxh"].ToString();
-                txt_bhyt_nguoilaodong.Text = dataTable.Rows[0]["bhyt"].ToString();
-                txt_bhtn_nguoilaodong.Text = dataTable.Rows[0]["bhtn"].ToString();
-                txt_bhxh_congty.Text = dataTable.Rows[0]["bhxh1"].ToString();
-                txt_bhyt_congty.Text = dataTable.Rows[0]["bhyt1"].ToString();
-                txt_bhtn_congty.Text = dataTable.Rows[0]["bhtn1"].ToString();
-                txt_dinhmuc_toida.Text = dataTable.Rows[0]["bhxh_toida"].ToString();
-                cbo_phicongdoan_nguoilaodong.SelectedValue = dataTable.Rows[0]["loai_congdoan"].ToString();
-                txt_phicongdoan_nguoilaodong.Text = dataTable.Rows[0]["giatri_congdoan"].ToString();
-                cbo_phicongdoan_congty.SelectedValue = dataTable.Rows[0]["loai_congdoan1"].ToString();
-                txt_phicongdoan_congty.Text = dataTable.Rows[0]["giatri_congdoan1"].ToString();
-                txt_dinhmuc_congdoan_toida.Text = dataTable.Rows[0]["congdoan_toida"].ToString();
-                txt_thu_tncn.Text = dataTable.Rows[0]["thue_thunhap"].ToString();
-                txt_giamtrugiacanh.Text = dataTable.Rows[0]["giamtru_thue"].ToString();
-                cbo_giamtru_tc_ngaythuong.SelectedValue = dataTable.Rows[0]["loai_giamtruthue_ngaythuong"].ToString();
-                txt_giamtru_tc_ngaythuong.Text = dataTable.Rows[0]["giatri_giamtruthue_ngaythuong"].ToString();
-                cbo_giamtru_tc_ngaychunhat.SelectedValue = dataTable.Rows[0]["loai_giamtruthue_chunhat"].ToString();
-                txt_giamtru_tc_ngaythuong.Text = dataTable.Rows[0]["giatri_giamtruthue_chunhat"].ToString();
-                cbo_giamtru_tc_ngayle.SelectedValue = dataTable.Rows[0]["loai_giamtruthue_ngayle"].ToString();
-                txt_giamtru_tc_ngayle.Text = dataTable.Rows[0]["giatri_giamtruthue_ngayle"].ToString();
-                cbo_giamtru_tcd_ngaythuong.SelectedValue = dataTable.Rows[0]["loai_giamtruthue_dem_ngaythuong"].ToString();
-                txt_giamtru_tcd_ngaythuong.Text = dataTable.Rows[0]["giatri_giamtruthue_dem_ngaythuong"].ToString();
-                cbo_giamtru_tcd_ngaychunhat.SelectedValue = dataTable.Rows[0]["loai_giamtruthue_dem_ngaychunhat"].ToString();
-                txt_giamtru_tcd_ngaythuong.Text = dataTable.Rows[0]["giatri_giamtruthue_dem_ngaychunhat"].ToString();
-                cbo_giamtru_tcd_ngayle.SelectedValue = dataTable.Rows[0]["loai_giamtruthue_dem_ngayle"].ToString();
-                txt_giamtru_tcd_ngayle.Text = dataTable.Rows[0]["giatri_giamtruthue_dem_ngayle"].ToString();
-                txt_heso_tc_ngaythuong.Text = dataTable.Rows[0]["heso_lamthem_ngaythuong"].ToString();
-                txt_heso_tc_ngaychunhat.Text = dataTable.Rows[0]["heso_lamthem_ngaychunhat"].ToString();
-                txt_heso_tc_ngayle.Text = dataTable.Rows[0]["heso_lamthem_ngayle"].ToString();
-                txt_heso_tcd_ngaythuong.Text = dataTable.Rows[0]["heso_lamthem_dem_ngaythuong"].ToString();
-                txt_heso_tcd_chunhat.Text = dataTable.Rows[0]["heso_lamthem_dem_ngaychunhat"].ToString();
-                txt_heso_tcd_ngayle.Text = dataTable.Rows[0]["heso_lamthem_dem_ngayle"].ToString();
-                chk_trutien_ditre_vesom.Checked = bool.Parse(dataTable.Rows[0]["trutien_ditre_vesom"].ToString());
-                txt_sophut.Text = dataTable.Rows[0]["sophut_muon"].ToString();
-                cbo_cachtinh_luonggio.SelectedValue = dataTable.Rows[0]["loai_luonggio"].ToString();
-                txt_lamtron.Text = dataTable.Rows[0]["lamtron_luong"].ToString();
+                txt_bhxh_nguoilaodong.Text = dataTable.Rows[0]["BHXH"].ToString();
+                txt_bhyt_nguoilaodong.Text = dataTable.Rows[0]["BHYT"].ToString();
+                txt_bhtn_nguoilaodong.Text = dataTable.Rows[0]["BHTN"].ToString();
+                txt_bhxh_congty.Text = dataTable.Rows[0]["BHXH1"].ToString();
+                txt_bhyt_congty.Text = dataTable.Rows[0]["BHYT1"].ToString();
+                txt_bhtn_congty.Text = dataTable.Rows[0]["BHTN1"].ToString();
+                txt_dinhmuc_toida.Text = dataTable.Rows[0]["BHXHToiDa"].ToString();
+                cbo_phicongdoan_nguoilaodong.SelectedValue = dataTable.Rows[0]["LoaiCongdoan"].ToString();
+                txt_phicongdoan_nguoilaodong.Text = dataTable.Rows[0]["GiaTriCongDoan"].ToString();
+                cbo_phicongdoan_congty.SelectedValue = dataTable.Rows[0]["LoaiCongdoan1"].ToString();
+                txt_phicongdoan_congty.Text = dataTable.Rows[0]["GiaTriCongDoan1"].ToString();
+                txt_dinhmuc_congdoan_toida.Text = dataTable.Rows[0]["CongDoanToiDa"].ToString();
+                txt_thu_tncn.Text = dataTable.Rows[0]["ThueThuNhap"].ToString();
+                txt_giamtrugiacanh.Text = dataTable.Rows[0]["GiamTruThue"].ToString();
+                cbo_giamtru_tc_ngaythuong.SelectedValue = dataTable.Rows[0]["LoaiGiamTruThue_NT"].ToString();
+                txt_giamtru_tc_ngaythuong.Text = dataTable.Rows[0]["GiaTriGiamTruThue_NT"].ToString();
+                cbo_giamtru_tc_ngaychunhat.SelectedValue = dataTable.Rows[0]["LoaiGiamTruThue_CN"].ToString();
+                txt_giamtru_tc_ngaythuong.Text = dataTable.Rows[0]["GiaTriGiamTruThue_CN"].ToString();
+                cbo_giamtru_tc_ngayle.SelectedValue = dataTable.Rows[0]["LoaiGiamTruThue_NL"].ToString();
+                txt_giamtru_tc_ngayle.Text = dataTable.Rows[0]["GiaTriGiamTruThue_NL"].ToString();
+                cbo_giamtru_tcd_ngaythuong.SelectedValue = dataTable.Rows[0]["LoaiGiamTruThue_DemNT"].ToString();
+                txt_giamtru_tcd_ngaythuong.Text = dataTable.Rows[0]["GiaTriGiamTruThue_DemNT"].ToString();
+                cbo_giamtru_tcd_ngaychunhat.SelectedValue = dataTable.Rows[0]["LoaiGiamTruThue_DemCN"].ToString();
+                txt_giamtru_tcd_ngaythuong.Text = dataTable.Rows[0]["GiaTriGiamTruThue_DemCN"].ToString();
+                cbo_giamtru_tcd_ngayle.SelectedValue = dataTable.Rows[0]["LoaiGiamTruThue_DemNL"].ToString();
+                txt_giamtru_tcd_ngayle.Text = dataTable.Rows[0]["GiaTriGiamTruThue_DemNL"].ToString();
+                txt_heso_tc_ngaythuong.Text = dataTable.Rows[0]["HeSoLamThemNT"].ToString();
+                txt_heso_tc_ngaychunhat.Text = dataTable.Rows[0]["HeSoLamThemNgayCN"].ToString();
+                txt_heso_tc_ngayle.Text = dataTable.Rows[0]["HeSoLamThemNL"].ToString();
+                txt_heso_tcd_ngaythuong.Text = dataTable.Rows[0]["HeSoLamThem_DemNT"].ToString();
+                txt_heso_tcd_chunhat.Text = dataTable.Rows[0]["HeSoLamThem_DemCN"].ToString();
+                txt_heso_tcd_ngayle.Text = dataTable.Rows[0]["HeSoLamThem_DemNl"].ToString();
+                chk_trutien_ditre_vesom.Checked = bool.Parse(dataTable.Rows[0]["TruTienDiTre_VeSom"].ToString());
+                txt_sophut.Text = dataTable.Rows[0]["SoPhutMuon"].ToString();
+                cbo_cachtinh_luonggio.SelectedValue = dataTable.Rows[0]["LoaiLuongGio"].ToString();
+                txt_lamtron.Text = dataTable.Rows[0]["LamTronLuong"].ToString();
             }
         }
         private void load_item_cbo_phicongdoan()

@@ -185,11 +185,6 @@ namespace TENTAC_HRM.Forms.NghiPhep
             e.Graphics.DrawString(rowIdx, Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
 
-        private void dgv_annual_leave_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void dgv_annual_leave_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             switch (dgv_annual_leave.CurrentCell.OwningColumn.Name)

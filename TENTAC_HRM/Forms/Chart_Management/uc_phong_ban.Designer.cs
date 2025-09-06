@@ -36,22 +36,20 @@
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_add = new System.Windows.Forms.Button();
             this.dgv_phong_ban = new System.Windows.Forms.DataGridView();
-            this.ma_phong_ban_root = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ma_phong_ban = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ten_phong_ban = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dien_thoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.edit_column = new System.Windows.Forms.DataGridViewImageColumn();
+            this.MaPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenPhongBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_dien_thoai = new System.Windows.Forms.TextBox();
+            this.cbo_CongTy = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_phong_ban)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 6);
+            this.label1.Location = new System.Drawing.Point(55, 71);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 17);
             this.label1.TabIndex = 0;
@@ -59,14 +57,14 @@
             // 
             // txt_ma_phong_ban
             // 
-            this.txt_ma_phong_ban.Location = new System.Drawing.Point(196, 3);
+            this.txt_ma_phong_ban.Location = new System.Drawing.Point(196, 68);
             this.txt_ma_phong_ban.Name = "txt_ma_phong_ban";
             this.txt_ma_phong_ban.Size = new System.Drawing.Size(327, 23);
             this.txt_ma_phong_ban.TabIndex = 0;
             // 
             // txt_ten_phong_ban
             // 
-            this.txt_ten_phong_ban.Location = new System.Drawing.Point(196, 32);
+            this.txt_ten_phong_ban.Location = new System.Drawing.Point(196, 97);
             this.txt_ten_phong_ban.Name = "txt_ten_phong_ban";
             this.txt_ten_phong_ban.Size = new System.Drawing.Size(327, 23);
             this.txt_ten_phong_ban.TabIndex = 1;
@@ -74,7 +72,7 @@
             // cbo_khu_vuc
             // 
             this.cbo_khu_vuc.FormattingEnabled = true;
-            this.cbo_khu_vuc.Location = new System.Drawing.Point(196, 61);
+            this.cbo_khu_vuc.Location = new System.Drawing.Point(196, 38);
             this.cbo_khu_vuc.Name = "cbo_khu_vuc";
             this.cbo_khu_vuc.Size = new System.Drawing.Size(327, 24);
             this.cbo_khu_vuc.TabIndex = 2;
@@ -83,7 +81,7 @@
             // 
             this.btn_delete.Image = global::TENTAC_HRM.Properties.Resources.bin;
             this.btn_delete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_delete.Location = new System.Drawing.Point(418, 120);
+            this.btn_delete.Location = new System.Drawing.Point(418, 155);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(105, 29);
             this.btn_delete.TabIndex = 6;
@@ -96,7 +94,7 @@
             // 
             this.btn_update.Image = global::TENTAC_HRM.Properties.Resources.update;
             this.btn_update.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_update.Location = new System.Drawing.Point(307, 120);
+            this.btn_update.Location = new System.Drawing.Point(307, 155);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(105, 29);
             this.btn_update.TabIndex = 5;
@@ -109,7 +107,7 @@
             // 
             this.btn_add.Image = global::TENTAC_HRM.Properties.Resources.add_file;
             this.btn_add.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_add.Location = new System.Drawing.Point(196, 120);
+            this.btn_add.Location = new System.Drawing.Point(196, 155);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(105, 29);
             this.btn_add.TabIndex = 4;
@@ -123,57 +121,20 @@
             this.dgv_phong_ban.AllowUserToAddRows = false;
             this.dgv_phong_ban.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_phong_ban.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ma_phong_ban_root,
             this.edit_column,
-            this.ma_phong_ban,
-            this.ten_phong_ban,
-            this.dien_thoai});
+            this.MaPhongBan,
+            this.TenPhongBan});
             this.dgv_phong_ban.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgv_phong_ban.Location = new System.Drawing.Point(0, 155);
+            this.dgv_phong_ban.Location = new System.Drawing.Point(0, 248);
             this.dgv_phong_ban.Name = "dgv_phong_ban";
-            this.dgv_phong_ban.Size = new System.Drawing.Size(590, 345);
+            this.dgv_phong_ban.Size = new System.Drawing.Size(590, 252);
             this.dgv_phong_ban.TabIndex = 6;
             this.dgv_phong_ban.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_phong_ban_CellClick);
-            // 
-            // ma_phong_ban_root
-            // 
-            this.ma_phong_ban_root.DataPropertyName = "ma_phong_ban_root";
-            this.ma_phong_ban_root.HeaderText = "ma_phong_ban_root";
-            this.ma_phong_ban_root.Name = "ma_phong_ban_root";
-            this.ma_phong_ban_root.Visible = false;
-            // 
-            // edit_column
-            // 
-            this.edit_column.HeaderText = "";
-            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
-            this.edit_column.Name = "edit_column";
-            this.edit_column.Width = 30;
-            // 
-            // ma_phong_ban
-            // 
-            this.ma_phong_ban.DataPropertyName = "ma_phong_ban";
-            this.ma_phong_ban.HeaderText = "Mã phòng ban";
-            this.ma_phong_ban.Name = "ma_phong_ban";
-            this.ma_phong_ban.Width = 130;
-            // 
-            // ten_phong_ban
-            // 
-            this.ten_phong_ban.DataPropertyName = "ten_phong_ban";
-            this.ten_phong_ban.HeaderText = "Tên phòng ban";
-            this.ten_phong_ban.Name = "ten_phong_ban";
-            this.ten_phong_ban.Width = 200;
-            // 
-            // dien_thoai
-            // 
-            this.dien_thoai.DataPropertyName = "dien_thoai";
-            this.dien_thoai.HeaderText = "Điện thoại";
-            this.dien_thoai.Name = "dien_thoai";
-            this.dien_thoai.Width = 120;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 35);
+            this.label2.Location = new System.Drawing.Point(55, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(105, 17);
             this.label2.TabIndex = 0;
@@ -182,27 +143,49 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(55, 64);
+            this.label3.Location = new System.Drawing.Point(55, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 17);
             this.label3.TabIndex = 0;
             this.label3.Text = "Khu vực";
             // 
+            // edit_column
+            // 
+            this.edit_column.HeaderText = "";
+            this.edit_column.Image = global::TENTAC_HRM.Properties.Resources.pen;
+            this.edit_column.Name = "edit_column";
+            this.edit_column.Width = 30;
+            // 
+            // MaPhongBan
+            // 
+            this.MaPhongBan.DataPropertyName = "MaPhongBan";
+            this.MaPhongBan.HeaderText = "Mã phòng ban";
+            this.MaPhongBan.Name = "MaPhongBan";
+            this.MaPhongBan.Width = 130;
+            // 
+            // TenPhongBan
+            // 
+            this.TenPhongBan.DataPropertyName = "TenPhongBan";
+            this.TenPhongBan.HeaderText = "Tên phòng ban";
+            this.TenPhongBan.Name = "TenPhongBan";
+            this.TenPhongBan.Width = 200;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(55, 94);
+            this.label4.Location = new System.Drawing.Point(55, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 17);
+            this.label4.Size = new System.Drawing.Size(56, 17);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Điện thoại";
+            this.label4.Text = "Công ty";
             // 
-            // txt_dien_thoai
+            // cbo_CongTy
             // 
-            this.txt_dien_thoai.Location = new System.Drawing.Point(196, 91);
-            this.txt_dien_thoai.Name = "txt_dien_thoai";
-            this.txt_dien_thoai.Size = new System.Drawing.Size(327, 23);
-            this.txt_dien_thoai.TabIndex = 3;
+            this.cbo_CongTy.FormattingEnabled = true;
+            this.cbo_CongTy.Location = new System.Drawing.Point(196, 9);
+            this.cbo_CongTy.Name = "cbo_CongTy";
+            this.cbo_CongTy.Size = new System.Drawing.Size(327, 24);
+            this.cbo_CongTy.TabIndex = 2;
             // 
             // uc_phong_ban
             // 
@@ -212,12 +195,12 @@
             this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.btn_add);
+            this.Controls.Add(this.cbo_CongTy);
             this.Controls.Add(this.cbo_khu_vuc);
-            this.Controls.Add(this.txt_dien_thoai);
             this.Controls.Add(this.txt_ten_phong_ban);
             this.Controls.Add(this.txt_ma_phong_ban);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -243,12 +226,10 @@
         private System.Windows.Forms.DataGridView dgv_phong_ban;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_dien_thoai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_phong_ban_root;
         private System.Windows.Forms.DataGridViewImageColumn edit_column;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ma_phong_ban;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ten_phong_ban;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dien_thoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaPhongBan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenPhongBan;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbo_CongTy;
     }
 }

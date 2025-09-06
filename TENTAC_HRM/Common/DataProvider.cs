@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,7 +12,7 @@ using TENTAC_HRM.Custom;
 
 namespace TENTAC_HRM
 {
-    class DataProvider
+    public class DataProvider
     {
         public DataTable load_nhanvien(string MaChamCong = "")
         {
@@ -162,16 +163,43 @@ namespace TENTAC_HRM
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public DataTable load_treeview(int type)
+        public DataTable LoadPhongBan(string MaPhongBan = "")
         {
-            string sql = string.Format("select ma_phong_ban as id,ten_phong_ban as name from phong_ban where id_loai_phong_ban = {0}", type);
+            string sql = "select MaPhongBan as id,TenPhongBan as name from MITACOSQL.dbo.PHONGBAN";
+            if (!string.IsNullOrEmpty(MaPhongBan))
+            {
+                sql += $" where MaPhongBan = '{MaPhongBan}'";
+            }
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;
         }
-        public DataTable load_chuc_vu()
+        public DataTable LoadChucVu(string machucvu = "")
         {
-            string sql = string.Format("select ma_chuc_vu as id,ten_chuc_vu as name from chuc_vu");
+            string sql = "select MaChucVu as id,TenChucVu as name from MITACOSQL.dbo.CHUCVU";
+            if (!string.IsNullOrEmpty(machucvu))
+            {
+                sql += $" where MaChucVu = '{machucvu}'";
+            }
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            return dt;
+        }
+        public DataTable LoadCty()
+        {
+            string sql = "select MaCongTy as id,TenCongTy as name from MITACOSQL.dbo.CongTy";
+            DataTable dt = new DataTable();
+            dt = SQLHelper.ExecuteDt(sql);
+            return dt;
+        }
+
+        public DataTable LoadKhuVuc(string MaKhuVuc = "")
+        {
+            string sql = "select MaKhuVuc as id,TenKhuVuc as name from MITACOSQL.dbo.KhuVuc";
+            if (!string.IsNullOrEmpty(MaKhuVuc))
+            {
+                sql += $" where MaKhuVuc = '{MaKhuVuc}'";
+            }
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             return dt;
@@ -491,7 +519,7 @@ namespace TENTAC_HRM
             if (dt.Rows.Count > 0)
             {
                 string storedPasswordHashSHA1 = dt.Rows[0]["MatKhau"].ToString();
-                string enteredPasswordHashSHA1 = Hash_sha(pass_word);
+                string enteredPasswordHashSHA1 = Hash_md5(pass_word);
 
                 LoginInfo.Group = "";
                 LoginInfo.UserCd = "";
@@ -575,12 +603,22 @@ namespace TENTAC_HRM
                 return false;
             }
         }
-        public DataTable LoadPhongBan()
+
+        public static void NumberRowDataGridView(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            string sql = "select MaPhongBan as id,TenPhongBan as name from MITACOSQL.dbo.PHONGBAN";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            return dt;
+            var grid = sender as DataGridView;
+            //grid.TopLeftHeaderCell.Value = Resources.OrderNumber;
+            var rowIdx = (e.RowIndex + 1).ToString();
+            var centerFormat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            var textSize = TextRenderer.MeasureText(rowIdx, grid.Font);
+            //if (grid.RowHeadersWidth < textSize.Width + 45) grid.RowHeadersWidth = textSize.Width + 45; //Increase 40 to 45
+            var headerBounds =
+                new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIdx, grid.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
     }
 }

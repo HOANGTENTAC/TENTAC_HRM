@@ -29,29 +29,23 @@ namespace TENTAC_HRM.Forms.Main
         }
         private void load_chucvu(string machucvu)
         {
-            string sql = string.Format("select ma_phong_ban as id,ten_phong_ban as name from phong_ban where ma_phong_ban_root = '{0}'", machucvu);
-            DataTable dt = SQLHelper.ExecuteDt(sql);
-
-            cbo_chucvu.DataSource = dt;
+            cbo_chucvu.DataSource = provider.LoadChucVu(machucvu);
             cbo_chucvu.DisplayMember = "name";
             cbo_chucvu.ValueMember = "id";
         }
         private void load_chucvu_moi(string machucvu)
         {
-            string sql = string.Format("select ma_phong_ban as id,ten_phong_ban as name from phong_ban where ma_phong_ban_root = '{0}'", machucvu);
-            DataTable dt = SQLHelper.ExecuteDt(sql);
-
-            cbo_chucvu_moi.DataSource = dt;
+            cbo_chucvu_moi.DataSource = provider.LoadChucVu(machucvu);
             cbo_chucvu_moi.DisplayMember = "name";
             cbo_chucvu_moi.ValueMember = "id";
         }
         private void load_phongban()
         {
-            cbo_bophan.DataSource = provider.load_treeview(3);
+            cbo_bophan.DataSource = provider.LoadPhongBan();
             cbo_bophan.DisplayMember = "name";
             cbo_bophan.ValueMember = "id";
 
-            cbo_bophan_moi.DataSource = provider.load_treeview(3);
+            cbo_bophan_moi.DataSource = provider.LoadPhongBan();
             cbo_bophan_moi.DisplayMember = "name";
             cbo_bophan_moi.ValueMember = "id";
         }

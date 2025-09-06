@@ -21,10 +21,10 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void load_data()
         {
-            string sql = "select a.id_tai_san,'false' as chk_column,a.ma_tai_san,a.ten_tai_san,b.type_name as trang_thai,a.so_luong,a.don_gia,a.con_lai " +
-                "from danhmuc_taisan a " +
-                "join sys_all_type b on a.trang_thai = b.type_id " +
-                "where del_flg = 0";
+            string sql = "select a.Id,'false' as chk_column,a.MaTaiSan,a.TenTaiSan,b.TypeName as trang_thai,a.SoLuong,a.DonGia,a.ConLai " +
+                "from tbl_DanhMucTaiSan a " +
+                "join SysAllType b on a.TrangThai = b.TypeId " +
+                "where DelFlg = 0";
             DataTable dt = new DataTable();
             dt = SQLHelper.ExecuteDt(sql);
             dgv_taisan.DataSource = dt;
@@ -49,9 +49,9 @@ namespace TENTAC_HRM.Forms.Category
                 dgv_taisan.CurrentRow.Cells["chk_column"].Value = true;
                 list_taisan.Add(new taisan
                 {
-                    id_tai_san = int.Parse(dgv_taisan.CurrentRow.Cells["id_tai_san"].Value.ToString()),
-                    ma_tai_san = dgv_taisan.CurrentRow.Cells["ma_tai_san"].Value.ToString(),
-                    ten_tai_san = dgv_taisan.CurrentRow.Cells["ten_tai_san"].Value.ToString()
+                    id_tai_san = int.Parse(dgv_taisan.CurrentRow.Cells["Id"].Value.ToString()),
+                    ma_tai_san = dgv_taisan.CurrentRow.Cells["MaTaiSan"].Value.ToString(),
+                    ten_tai_san = dgv_taisan.CurrentRow.Cells["TenTaiSan"].Value.ToString()
                 });
             }
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_login));
             this.panel2 = new System.Windows.Forms.Panel();
             this.btn_exit = new System.Windows.Forms.PictureBox();
@@ -39,8 +40,8 @@
             this.lb_error = new System.Windows.Forms.Label();
             this.btn_show_pass = new System.Windows.Forms.Button();
             this.txt_user = new RJTextBox.RJTextBox();
-            this.chk_remember_me = new System.Windows.Forms.CheckBox();
             this.btn_login = new TENTAC_HRM.Custom.RJButton();
+            this.chk_remember_me = new System.Windows.Forms.CheckBox();
             this.txt_password = new TENTAC_HRM.Custom.RJTextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_exit)).BeginInit();
@@ -124,7 +125,7 @@
             // 
             this.btn_close.FlatAppearance.BorderSize = 0;
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_close.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            this.btn_close.IconChar = FontAwesome.Sharp.IconChar.Remove;
             this.btn_close.IconColor = System.Drawing.Color.Black;
             this.btn_close.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btn_close.IconSize = 20;
@@ -185,17 +186,6 @@
             this.txt_user._TextChanged += new System.EventHandler(this.txtUser_TextChanged);
             this.txt_user.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_user_KeyPress);
             // 
-            // chk_remember_me
-            // 
-            this.chk_remember_me.AutoSize = true;
-            this.chk_remember_me.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.chk_remember_me.Location = new System.Drawing.Point(33, 195);
-            this.chk_remember_me.Name = "chk_remember_me";
-            this.chk_remember_me.Size = new System.Drawing.Size(115, 21);
-            this.chk_remember_me.TabIndex = 2;
-            this.chk_remember_me.Text = "Nhớ mật khẩu";
-            this.chk_remember_me.UseVisualStyleBackColor = true;
-            // 
             // btn_login
             // 
             this.btn_login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(113)))), ((int)(((byte)(249)))));
@@ -214,6 +204,17 @@
             this.btn_login.TextColor = System.Drawing.Color.White;
             this.btn_login.UseVisualStyleBackColor = false;
             this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
+            // 
+            // chk_remember_me
+            // 
+            this.chk_remember_me.AutoSize = true;
+            this.chk_remember_me.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.chk_remember_me.Location = new System.Drawing.Point(33, 195);
+            this.chk_remember_me.Name = "chk_remember_me";
+            this.chk_remember_me.Size = new System.Drawing.Size(115, 21);
+            this.chk_remember_me.TabIndex = 2;
+            this.chk_remember_me.Text = "Nhớ mật khẩu";
+            this.chk_remember_me.UseVisualStyleBackColor = true;
             // 
             // txt_password
             // 
@@ -243,13 +244,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(356, 290);
+            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_login";
+            this.PaletteMode = ComponentFactory.Krypton.Toolkit.PaletteMode.Custom;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

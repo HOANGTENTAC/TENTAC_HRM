@@ -238,6 +238,7 @@ namespace TENTAC_HRM.Forms.Main
                 }
                 // ClickOnceでインストールされたアプリケーションを起動する場合はダブルクォーテーションで囲む
                 param = startParameter;
+                //param = "\"" + startParameter + " \"";
                 Process.Start(menuStartStrings, param);
             }
 

@@ -224,7 +224,7 @@
             this.ts_date.Image = ((System.Drawing.Image)(resources.GetObject("ts_date.Image")));
             this.ts_date.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ts_date.Name = "ts_date";
-            this.ts_date.Size = new System.Drawing.Size(854, 17);
+            this.ts_date.Size = new System.Drawing.Size(844, 17);
             this.ts_date.Spring = true;
             this.ts_date.Text = "2023/07/13";
             this.ts_date.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

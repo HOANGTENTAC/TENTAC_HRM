@@ -31,26 +31,21 @@ namespace TENTAC_HRM.Forms.Chart_Management
         }
         private void load_data()
         {
-            string sql = "SELECT ma_phong_ban,ten_phong_ban,ma_phong_ban_root,dien_thoai " +
-             "FROM phong_ban where id_loai_phong_ban = 3 and is_hoat_dong = 1 and del_flg = 0";
-            DataTable dt = new DataTable();
-            dt = SQLHelper.ExecuteDt(sql);
-            dgv_phong_ban.DataSource = dt;
+            dgv_phong_ban.DataSource = provider.LoadPhongBan();
         }
         private void load_khuvuc()
         {
-            cbo_khu_vuc.DataSource = provider.load_treeview(2);
+            cbo_khu_vuc.DataSource = provider.LoadKhuVuc();
             cbo_khu_vuc.DisplayMember = "name";
             cbo_khu_vuc.ValueMember = "id";
-
         }
         private void btn_add_Click(object sender, System.EventArgs e)
         {
-            string sql = string.Format("select ma_phong_ban from phong_ban where ma_phong_ban = '{0}'",txt_ma_phong_ban.Text);
+            string sql = string.Format("select MaPhongBan from MITACOSQL.dbo.PHONGBAN where MaPhongBan = '{0}'", txt_ma_phong_ban.Text);
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if(dt.Rows.Count > 0)
             {
-                RJMessageBox.Show("Mã phòng ban " + dt.Rows[0]["ma_phong_ban"].ToString() + " đã tồn tại","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                RJMessageBox.Show("Mã phòng ban " + dt.Rows[0]["MaPhongBan"].ToString() + " đã tồn tại","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
             else
             {
@@ -63,8 +58,8 @@ namespace TENTAC_HRM.Forms.Chart_Management
         {
             try
             {
-                string sql = string.Format("insert phong_ban(ma_phong_ban,ten_phong_ban,id_loai_phong_ban,ma_phong_ban_root,is_hoat_dong,dien_thoai) " +
-                    "values('{0}',N'{1}',3,'{2}',1,'{3}')", txt_ma_phong_ban.Text, txt_ten_phong_ban.Text, cbo_khu_vuc.SelectedValue.ToString(), txt_dien_thoai.Text);
+                string sql = string.Format("insert MITACOSQL.dbo.PHONGBAN(MaPhongBan,TenPhongBan) " +
+                    "values('{0}',N'{1}',3,'{2}',1,'{3}')", txt_ma_phong_ban.Text, txt_ten_phong_ban.Text, cbo_khu_vuc.SelectedValue.ToString());
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,9 +75,9 @@ namespace TENTAC_HRM.Forms.Chart_Management
         {
             try
             {
-                string sql = string.Format("update phong_ban set ma_phong_ban='{1}',ten_phong_ban = N'{2}',ma_phong_ban_root='{3}',dien_thoai = '{4}' " +
+                string sql = string.Format("update MITACOSQL.dbo.PHONGBAN set MaPhongBan='{1}',TenPhongBan = N'{2}' " +
                     "where ma_phong_ban = '{0}'",txt_ma_phong_ban.Text,
-                    txt_ma_phong_ban.Text,txt_ten_phong_ban.Text,cbo_khu_vuc.SelectedValue.ToString(),txt_dien_thoai.Text);
+                    txt_ma_phong_ban.Text,txt_ten_phong_ban.Text,cbo_khu_vuc.SelectedValue.ToString());
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -104,7 +99,7 @@ namespace TENTAC_HRM.Forms.Chart_Management
         {
             try
             {
-                string sql = string.Format("update phong_ban set del_flg = 1 where ma_phong_ban = '{0}'", txt_ma_phong_ban.Text);
+                string sql = string.Format("Delete MITACOSQL.dbo.PHONGBAN where MaPhongBan = '{0}'", txt_ma_phong_ban.Text);
                 if (SQLHelper.ExecuteSql(sql) == 1)
                 {
                     RJMessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -121,10 +116,8 @@ namespace TENTAC_HRM.Forms.Chart_Management
             if (dgv_phong_ban.CurrentCell.OwningColumn.Name == "edit_column")
             {
                 edit = true;
-                txt_ma_phong_ban.Text = dgv_phong_ban.CurrentRow.Cells["ma_phong_ban"].Value.ToString();
-                txt_ten_phong_ban.Text = dgv_phong_ban.CurrentRow.Cells["ten_phong_ban"].Value.ToString();
-                txt_dien_thoai.Text = dgv_phong_ban.CurrentRow.Cells["dien_thoai"].Value.ToString();
-                cbo_khu_vuc.SelectedValue = dgv_phong_ban.CurrentRow.Cells["ma_phong_ban_root"].Value.ToString();
+                txt_ma_phong_ban.Text = dgv_phong_ban.CurrentRow.Cells["MaPhongBan"].Value.ToString();
+                txt_ten_phong_ban.Text = dgv_phong_ban.CurrentRow.Cells["TenPhongBan"].Value.ToString();
             }
         }
     }

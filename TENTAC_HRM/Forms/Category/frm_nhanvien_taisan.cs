@@ -125,9 +125,8 @@ namespace TENTAC_HRM.Forms.Category
         {
             load_hientrang();
             load_trangthai();
-            load_cty();
-            load_bophan();
-            load_chucvu();
+            LoadCty();
+            LoadChucVu();
             load_nhanvien();
             if (edit == true)
             {
@@ -135,12 +134,6 @@ namespace TENTAC_HRM.Forms.Category
                 btn_xoa_taisan.Enabled = false;
                 load_data();
             }
-        }
-        private void load_chucvu()
-        {
-            cbo_chucvu.DataSource = provider.load_chuc_vu();
-            cbo_chucvu.DisplayMember = "name";
-            cbo_chucvu.ValueMember = "id";
         }
         private void load_hientrang()
         {
@@ -156,48 +149,48 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void load_data()
         {
-            string sql = string.Format("select * from nhanvien_taisan where id_nhanvien_taisan = '{0}'", _id_nhanvien_taisan);
+            string sql = string.Format("select * from tbl_NhanVienTaiSan where Id = '{0}'", _id_nhanvien_taisan);
             DataTable dt = SQLHelper.ExecuteDt(sql);
             if (dt.Rows.Count > 0)
             {
-                dtp_tungay.Text = dt.Rows[0]["tu_ngay"].ToString();
-                dtp_denngay.Text = dt.Rows[0]["den_ngay"].ToString();
-                txt_sophieu.Text = dt.Rows[0]["so_phieu"].ToString();
-                dtp_ngayvaoso.Text = dt.Rows[0]["ngay_vao_so"].ToString();
-                cbo_trangthai.SelectedValue = dt.Rows[0]["trang_thai"].ToString();
-                cbo_quytrinh.SelectedValue = dt.Rows[0]["quy_trinh"].ToString();
-                cbo_kho.SelectedValue = dt.Rows[0]["kho"].ToString();
-                cbo_ke.SelectedValue = dt.Rows[0]["ke"].ToString();
-                txt_diengiai.Texts = dt.Rows[0]["dien_giai"].ToString();
-                txt_ghichu.Text = dt.Rows[0]["ghi_chu"].ToString();
-                cbo_donvi.SelectedValue = dt.Rows[0]["ma_don_vi"].ToString();
-                cbo_khuvuc.SelectedValue = dt.Rows[0]["ma_khu_vuc"].ToString();
-                cbo_phongban.SelectedValue = dt.Rows[0]["ma_phong_ban"].ToString();
-                cbo_chucvu.SelectedValue = dt.Rows[0]["ma_chuc_vu"].ToString();
-                txt_thanhphan1.Text = dt.Rows[0]["thanh_phan1"].ToString();
-                txt_chucvu1.Text = dt.Rows[0]["chuc_vu1"].ToString();
-                txt_daidien1.Text = dt.Rows[0]["dai_dien1"].ToString();
-                txt_thanhphan2.Text = dt.Rows[0]["thanh_phan2"].ToString();
-                txt_chucvu2.Text = dt.Rows[0]["chuc_vu2"].ToString();
-                txt_daidien2.Text = dt.Rows[0]["dai_dien2"].ToString();
-                txt_thanhphan3.Text = dt.Rows[0]["thanh_phan3"].ToString();
-                txt_chucvu3.Text = dt.Rows[0]["chuc_vu3"].ToString();
-                txt_daidien3.Text = dt.Rows[0]["dai_dien3"].ToString();
-                txt_thanhphan4.Text = dt.Rows[0]["thanh_phan4"].ToString();
-                txt_chucvu4.Text = dt.Rows[0]["chuc_vu4"].ToString();
-                txt_daidien4.Text = dt.Rows[0]["dai_dien4"].ToString();
-                txt_thanhphan5.Text = dt.Rows[0]["thanh_phan5"].ToString();
-                txt_chucvu5.Text = dt.Rows[0]["chuc_vu5"].ToString();
-                txt_daidien5.Text = dt.Rows[0]["dai_dien5"].ToString();
+                dtp_tungay.Text = dt.Rows[0]["TuNgay"].ToString();
+                dtp_denngay.Text = dt.Rows[0]["DenNgay"].ToString();
+                txt_sophieu.Text = dt.Rows[0]["Sophieu"].ToString();
+                dtp_ngayvaoso.Text = dt.Rows[0]["NgayVaoSo"].ToString();
+                cbo_trangthai.SelectedValue = dt.Rows[0]["TrangThai"].ToString();
+                cbo_quytrinh.SelectedValue = dt.Rows[0]["QuyTrinh"].ToString();
+                cbo_kho.SelectedValue = dt.Rows[0]["Kho"].ToString();
+                cbo_ke.SelectedValue = dt.Rows[0]["Ke"].ToString();
+                txt_diengiai.Texts = dt.Rows[0]["DienGiai"].ToString();
+                txt_ghichu.Text = dt.Rows[0]["GhiChu"].ToString();
+                cbo_donvi.SelectedValue = dt.Rows[0]["MaDonVi"].ToString();
+                cbo_khuvuc.SelectedValue = dt.Rows[0]["MaKhuVuc"].ToString();
+                cbo_phongban.SelectedValue = dt.Rows[0]["MaPhongBan"].ToString();
+                cbo_chucvu.SelectedValue = dt.Rows[0]["MaChucVu"].ToString();
+                txt_thanhphan1.Text = dt.Rows[0]["ThanhPhan1"].ToString();
+                txt_chucvu1.Text = dt.Rows[0]["ChucVu1"].ToString();
+                txt_daidien1.Text = dt.Rows[0]["DaiDien1"].ToString();
+                txt_thanhphan2.Text = dt.Rows[0]["ThanhPhan2"].ToString();
+                txt_chucvu2.Text = dt.Rows[0]["ChucVu2"].ToString();
+                txt_daidien2.Text = dt.Rows[0]["DaiDien2"].ToString();
+                txt_thanhphan3.Text = dt.Rows[0]["ThanhPhan3"].ToString();
+                txt_chucvu3.Text = dt.Rows[0]["ChucVu3"].ToString();
+                txt_daidien3.Text = dt.Rows[0]["DaiDien3"].ToString();
+                txt_thanhphan4.Text = dt.Rows[0]["ThanhPhan4"].ToString();
+                txt_chucvu4.Text = dt.Rows[0]["ChucVu4"].ToString();
+                txt_daidien4.Text = dt.Rows[0]["DaiDien4"].ToString();
+                txt_thanhphan5.Text = dt.Rows[0]["ThanhPhan5"].ToString();
+                txt_chucvu5.Text = dt.Rows[0]["ChucVu5"].ToString();
+                txt_daidien5.Text = dt.Rows[0]["DaiDien5"].ToString();
 
-                string sql_taisan = string.Format("select a.id_tai_san,b.ma_tai_san,ten_tai_san,a.hien_trang,a.so_luong,a.ghi_chu " +
-                    "from tai_san a " +
-                    "join danhmuc_taisan b on a.id_tai_san = b.id_tai_san " +
-                    "where id_nhanvien_taisan = '{0}'", dt.Rows[0]["id_nhanvien_taisan"].ToString());
+                string sql_taisan = string.Format("select a.Id,b.MaTaiSan,TenTaiSan,a.HienTrang,a.SoLuong,a.GhiChu " +
+                    "from tbl_TaiSan a " +
+                    "join tbl_DanhMucTaiSan b on a.IdTaiSan = b.Id " +
+                    "where IdNhanVienTaiSan = '{0}'", dt.Rows[0]["IdNhanVienTaiSan"].ToString());
                 DataTable dt_taisan = SQLHelper.ExecuteDt(sql_taisan);
                 foreach (DataRow dr in dt_taisan.Rows)
                 {
-                    dgv_taisan.Rows.Add(dr["id_tai_san"].ToString(), dr["ma_tai_san"].ToString(), dr["ten_tai_san"].ToString(), int.Parse(dr["hien_trang"].ToString()), dr["so_luong"].ToString(), dr["ghi_chu"].ToString());
+                    dgv_taisan.Rows.Add(dr["Id"].ToString(), dr["MaTaiSan"].ToString(), dr["TenTaiSan"].ToString(), int.Parse(dr["HienTrang"].ToString()), dr["SoLuong"].ToString(), dr["GhiChu"].ToString());
                 }
             }
         }
@@ -208,15 +201,15 @@ namespace TENTAC_HRM.Forms.Category
             cbo_nhanvien.ValueMember = "value";
             cbo_nhanvien.SelectedValue = _ma_nhan_vien;
         }
-        private void load_cty()
+        private void LoadCty()
         {
-            cbo_donvi.DataSource = provider.load_treeview(1);
+            cbo_donvi.DataSource = provider.LoadCty();
             cbo_donvi.DisplayMember = "name";
             cbo_donvi.ValueMember = "id";
         }
-        private void load_bophan()
+        private void LoadChucVu()
         {
-            cbo_chucvu.DataSource = provider.load_treeview(3);
+            cbo_chucvu.DataSource = provider.LoadChucVu();
             cbo_chucvu.DisplayMember = "name";
             cbo_chucvu.ValueMember = "id";
         }
@@ -313,10 +306,10 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-                string sql = string.Format("insert into nhanvien_taisan(ma_nhan_vien,so_phieu,ngay_vao_so,tu_ngay,den_ngay,trang_thai," +
-                    "quy_trinh,kho,ke,dien_giai,ghi_chu,ma_don_vi,ma_khu_vuc,ma_phong_ban,ma_chuc_vu," +
-                    "thanh_phan1,chuc_vu1,dai_dien1,thanh_phan2,chuc_vu2,dai_dien2,thanh_phan3,chuc_vu3,dai_dien3," +
-                    "thanh_phan4,chuc_vu4,dai_dien4,thanh_phan5,chuc_vu5,dai_dien5,ngay_tao,id_nguoi_tao,del_flg) " +
+                string sql = string.Format("insert into tbl_NhanVienTaiSan(MaNhanVien,SoPhieu,NgayVaoSo,TuNgay,DenNgay,TrangThai," +
+                    "QuyTrinh,Kho,Ke,DienGiai,GhiChu,MaDonVi,MaKhuVuc,MaPhongBan,MaChucVu," +
+                    "ThanhPhan1,ChucVu1,DaiDien1,ThanhPhan2,ChucVu2,DaiDien2,ThanhPhan3,ChucVu3,DaiDien3," +
+                    "ThanhPhan4,ChucVu4,DaiDien4,ThanhPhan5,ChucVu5,DaiDien5,NgayTao,NguoiTao,DelFlg) " +
                     "values('{0}','{1}','{2}','{3}','{4}','{5}'," +
                     "'{6}','{7}','{8}',N'{9}',N'{10}','{11}','{12}','{13}','{14}'," +
                     "'{15}','{16}','{17}','{18}','{19}','{20}','{21}','{22}','{23}'," +
@@ -331,8 +324,8 @@ namespace TENTAC_HRM.Forms.Category
 
                     foreach (DataGridViewRow item in dgv_taisan.Rows)
                     {
-                        string sql_taisan = string.Format("insert into tai_san(id_tai_san,id_nhanvien_taisan,hien_trang," +
-                                            "so_luong,ghi_chu,ngay_tao,id_nguoi_tao,del_flg) " +
+                        string sql_taisan = string.Format("insert into tbl_TaiSan(IdTaiSan,IdNhanVienTaiSan,HienTrang," +
+                                            "SoLuong,GhiChu,NgayTao,NguoiTao,DelFlg) " +
                                             "values('{0}','{1}','{2}','{3}',N'{4}',GETDATE(),'{5}',0)",
                                             item.Cells["id_tai_san"].Value.ToString(), id_nhanvien_taisan_new, item.Cells["hien_trang"].Value,
                                             item.Cells["so_luong"].Value.ToString(), item.Cells["ghi_chu"].Value.ToString(), LoginInfo.UserCd);
@@ -350,13 +343,13 @@ namespace TENTAC_HRM.Forms.Category
         {
             try
             {
-                string sql = string.Format("update nhanvien_taisan set so_phieu = '{1}',ngay_vao_so = '{2}',tu_ngay='{3}',den_ngay='{4}'," +
-                    "trang_thai ='{5}', quy_trinh ='{6}',kho='{7}',ke ='{8}',dien_giai=N'{9}',ghi_chu=N'{10}'," +
-                    "ma_don_vi='{11}',ma_khu_vuc='{12}',ma_phong_ban='{13}',ma_chuc_vu='{14}'," +
-                    "thanh_phan1='{15}',chuc_vu1='{16}',dai_dien1='{17}',thanh_phan2='{18}',chuc_vu2='{19}',dai_dien2='{20}'," +
-                    "thanh_phan3='{21}',chuc_vu3='{22}',dai_dien3='{23}',thanh_phan4='{24}',chuc_vu4='{25}',dai_dien4='{26}'," +
-                    "thanh_phan5='{27}',chuc_vu5='{28}',dai_dien5='{29}',ngay_cap_nhat = GETDATE() " +
-                    "where id_nhanvien_taisan = '{0}'",
+                string sql = string.Format("update tbl_NhanVienTaiSan set SoPhieu = '{1}',NgayVaoSo = '{2}',TuNgay='{3}',DenNgay='{4}'," +
+                    "TrangThai ='{5}', QuyTrinh ='{6}',Kho='{7}',Ke ='{8}',DienGiai=N'{9}',GhiChu=N'{10}'," +
+                    "MaDonVi='{11}',MaKhuVuc='{12}',MaPhongBan='{13}',MaChucVu='{14}'," +
+                    "ThanhPhan1='{15}',ChucVu1='{16}',DaiDien1='{17}',ThanhPhan2='{18}',ChucVu2='{19}',DaiDien2='{20}'," +
+                    "ThanhPhan3='{21}',ChucVu3='{22}',DaiDien3='{23}',ThanhPhan4='{24}',ChucVu4='{25}',DaiDien4='{26}'," +
+                    "ThanhPhan5='{27}',ChucVu5='{28}',DaiDien5='{29}',NgayCapNhat = GETDATE() " +
+                    "where Id = '{0}'",
                     _id_nhanvien_taisan, nhanvien_taisan_model.so_phieu, nhanvien_taisan_model.ngay_vao_so, nhanvien_taisan_model.tu_ngay, nhanvien_taisan_model.den_ngay,
                     nhanvien_taisan_model.trang_thai, nhanvien_taisan_model.quy_trinh, nhanvien_taisan_model.kho, nhanvien_taisan_model.ke, nhanvien_taisan_model.dien_giai, nhanvien_taisan_model.ghi_chu,
                     nhanvien_taisan_model.ma_donvi, nhanvien_taisan_model.ma_khuvuc, nhanvien_taisan_model.ma_phongban, nhanvien_taisan_model.ma_chucvu,
@@ -369,9 +362,9 @@ namespace TENTAC_HRM.Forms.Category
                     foreach (DataGridViewRow item in dgv_taisan.Rows)
                     {
                         string sql_taisan = string.Format("Execute update_taisan '{0}','{1}','{2}','{3}',N'{4}','{5}'",
-                            item.Cells["id_tai_san"].Value, _id_nhanvien_taisan,
-                            item.Cells["hien_trang"].Value, item.Cells["so_luong"].Value,
-                            item.Cells["ghi_chu"].Value, LoginInfo.UserCd);
+                            item.Cells["IdTaiSan"].Value, _id_nhanvien_taisan,
+                            item.Cells["HienTrang"].Value, item.Cells["SoLuong"].Value,
+                            item.Cells["GhiChu"].Value, LoginInfo.UserCd);
                         SQLHelper.ExecuteSql(sql_taisan);
                     }
                     RJMessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -445,7 +438,7 @@ namespace TENTAC_HRM.Forms.Category
             string row = vrow.Row.ItemArray[0].ToString();
             if (row != "")
             {
-                string sql = string.Format("select ma_phong_ban as id,ten_phong_ban as name from phong_ban where ma_phong_ban_root = '{0}'", row);
+                string sql = string.Format("select MaKhuVuc as id,TenKhuVuc as name from select * from MITACOSQL.dbo.KhuVuc where MaCongTy = '{0}'", row);
                 cbo_khuvuc.DataSource = SQLHelper.ExecuteDt(sql);
                 cbo_khuvuc.DisplayMember = "name";
                 cbo_khuvuc.ValueMember = "id";
@@ -458,7 +451,7 @@ namespace TENTAC_HRM.Forms.Category
             string row = vrow.Row.ItemArray[0].ToString();
             if (row != "")
             {
-                string sql = string.Format("select ma_phong_ban as id,ten_phong_ban as name from phong_ban where ma_phong_ban_root = '{0}'", row);
+                string sql = string.Format("select MaKhuVuc as id,TenKhuVuc as name from MITACOSQL.dbo.PhongBan where MaKhuVu = '{0}'", row);
                 cbo_phongban.DataSource = SQLHelper.ExecuteDt(sql);
                 cbo_phongban.DisplayMember = "name";
                 cbo_phongban.ValueMember = "id";
@@ -471,15 +464,15 @@ namespace TENTAC_HRM.Forms.Category
             string row = vrow.Row.ItemArray[0].ToString();
             if (row != "0")
             {
-                string sql_nhanvien = string.Format("select ma_cong_ty,ma_khu_vuc,ma_phong_ban,ma_chuc_vu " +
-                    "from nhanvien_phongban where ma_nhan_vien = '{0}' and is_active = 1", row);
+                string sql_nhanvien = $@"select MaCongTy,MaKhuVuc,MaPhongBan,MaChucVu from MITACOSQL.dbo.NHANVIEN nv
+                                        where nv.MaNhanVien = '{vrow}'";
                 DataTable nhanvien_phongban = SQLHelper.ExecuteDt(sql_nhanvien);
                 if (nhanvien_phongban.Rows.Count > 0)
                 {
-                    cbo_donvi.SelectedValue = nhanvien_phongban.Rows[0]["ma_cong_ty"].ToString();
-                    cbo_khuvuc.SelectedValue = nhanvien_phongban.Rows[0]["ma_khu_vuc"].ToString();
-                    cbo_phongban.SelectedValue = nhanvien_phongban.Rows[0]["ma_phong_ban"].ToString();
-                    cbo_chucvu.SelectedValue = nhanvien_phongban.Rows[0]["ma_chuc_vu"].ToString();
+                    cbo_donvi.SelectedValue = nhanvien_phongban.Rows[0]["MaCongTy"].ToString();
+                    cbo_khuvuc.SelectedValue = nhanvien_phongban.Rows[0]["MaKhuVuc"].ToString();
+                    cbo_phongban.SelectedValue = nhanvien_phongban.Rows[0]["MaPhongBan"].ToString();
+                    cbo_chucvu.SelectedValue = nhanvien_phongban.Rows[0]["MaChucVu"].ToString();
                 }
             }
         }

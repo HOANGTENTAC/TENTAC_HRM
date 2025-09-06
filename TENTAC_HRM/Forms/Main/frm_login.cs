@@ -65,25 +65,35 @@ namespace TENTAC_HRM.Forms.Main
 
             if (provider.check_login(txt_user.Texts.Trim().ToUpper(), txt_password.Texts))
             {
-                if (chk_remember_me.Checked)
+                if(txt_password.Texts == "12345678")
                 {
-                    Properties.Settings.Default.UserName = txt_user.Texts;
-                    Properties.Settings.Default.PassWord = txt_password.Texts;
-                    Properties.Settings.Default.Reme = "yes";
-                    Properties.Settings.Default.Save();
+                    RJMessageBox.Show("Bạn chưa thay đổi mặt khẩu mặc định! \r\n Thay đổi mật khẩu trước khi sử dụng","Thông báo");
+                    frm_ChangePassWord frm = new frm_ChangePassWord();
+                    frm._userName = txt_user.Texts;
+                    frm.ShowDialog();
                 }
                 else
                 {
-                    Properties.Settings.Default.UserName = txt_user.Texts;
-                    Properties.Settings.Default.PassWord = "";
-                    Properties.Settings.Default.Reme = "no";
-                    Properties.Settings.Default.Save();
-                }
+                    if (chk_remember_me.Checked)
+                    {
+                        Properties.Settings.Default.UserName = txt_user.Texts;
+                        Properties.Settings.Default.PassWord = txt_password.Texts;
+                        Properties.Settings.Default.Reme = "yes";
+                        Properties.Settings.Default.Save();
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.UserName = txt_user.Texts;
+                        Properties.Settings.Default.PassWord = "";
+                        Properties.Settings.Default.Reme = "no";
+                        Properties.Settings.Default.Save();
+                    }
 
-                frm_home frm = new frm_home();
-                this.Hide();
-                frm.Show();
-                frm.FormClosed += (s, args) => this.Close();
+                    frm_home frm = new frm_home();
+                    this.Hide();
+                    frm.Show();
+                    frm.FormClosed += (s, args) => this.Close();
+                }
             }
             else
             {

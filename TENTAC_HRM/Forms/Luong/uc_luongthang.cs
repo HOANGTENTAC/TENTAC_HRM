@@ -94,10 +94,5 @@ namespace TENTAC_HRM.Forms.Luong
             }
             timer1.Start();
         }
-
-        private void btn_close_Click(object sender, EventArgs e)
-        {
-            provider.btn_close(this.Parent);
-        }
     }
 }

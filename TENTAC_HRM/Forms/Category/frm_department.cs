@@ -64,7 +64,7 @@ namespace TENTAC_HRM.Forms.Category
 
         private void load_donvi()
         {
-            cbo_donvi.DataSource = provider.load_treeview(1);
+            cbo_donvi.DataSource = provider.LoadCty();
             cbo_donvi.DisplayMember = "name";
             cbo_donvi.ValueMember = "id";
         }
@@ -87,7 +87,7 @@ namespace TENTAC_HRM.Forms.Category
         }
         private void load_khuvuc()
         {
-            DataTable dt = provider.load_treeview(2);
+            DataTable dt = provider.LoadKhuVuc();
             cbo_khuvuc.DataSource = dt;
             cbo_khuvuc.DisplayMember = "name";
             cbo_khuvuc.ValueMember = "id";

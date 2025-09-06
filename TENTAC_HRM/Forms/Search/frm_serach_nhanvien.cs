@@ -67,7 +67,7 @@ namespace TENTAC_HRM.Forms.Search
         }
         public void load_chucvu()
         {
-            cbo_chucvu.DataSource = provider.load_treeview(4);
+            cbo_chucvu.DataSource = provider.LoadChucVu();
             cbo_chucvu.DisplayMember = "name";
             cbo_chucvu.ValueMember = "id";
         }

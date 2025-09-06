@@ -39,7 +39,7 @@ namespace TENTAC_HRM.Forms.Chart_Management
         }
         private void load_khuvuc()
         {
-            cbo_khu_vuc.DataSource = provider.load_treeview(2);
+            cbo_khu_vuc.DataSource = provider.LoadKhuVuc();
             cbo_khu_vuc.DisplayMember = "name";
             cbo_khu_vuc.ValueMember = "id";
         }
